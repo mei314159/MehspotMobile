@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using HockeyApp.iOS;
 using mehspot.core.Auth;
 using mehspot.iOS.Core;
 using UIKit;
@@ -21,6 +22,13 @@ namespace mehspot.iOS
 
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
+            var manager = BITHockeyManager.SharedHockeyManager;
+            manager.Configure ("939417b83e9b41b6bbfe772dd8129ac3");
+            manager.CrashManager.EnableAppNotTerminatingCleanlyDetection = true;
+            manager.DebugLogEnabled = true;
+            manager.StartManager ();
+            manager.Authenticator.AuthenticateInstallation ();
+
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
             this.Window = new UIWindow (UIScreen.MainScreen.Bounds);
