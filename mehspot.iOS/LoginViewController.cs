@@ -3,6 +3,7 @@ using UIKit;
 using Mehspot.Core.Models;
 using mehspot.iOS.Wrappers;
 using mehspot.Core.Auth;
+using System.Threading.Tasks;
 
 namespace mehspot.iOS
 {
@@ -15,15 +16,27 @@ namespace mehspot.iOS
             model.SignedIn += Model_SignedIn;
         }
 
-        async partial void SignInButtonTouched (UIButton sender)
+        public override void ViewDidLoad ()
         {
-            await model.SignInAsync (this.EmailField.Text, this.PasswordField.Text);
+            this.EmailField.ShouldReturn += TextFieldShouldReturn;
+            this.PasswordField.ShouldReturn += TextFieldShouldReturn;
         }
 
-        void Model_SignedIn (AuthenticationResult result)
+        partial void SignInButtonTouched (UIButton sender)
+        {
+            sender.BecomeFirstResponder ();
+            SignInAsync ();
+        }
+
+        private void Model_SignedIn (AuthenticationResult result)
         {
             var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateInitialViewController ();
             SwapRootView (targetViewController, UIViewAnimationOptions.TransitionFlipFromRight);
+        }
+
+        private async void SignInAsync ()
+        {
+            await model.SignInAsync (this.EmailField.Text, this.PasswordField.Text);
         }
 
         private static void SwapRootView (UIViewController newView, UIViewAnimationOptions opt)
@@ -32,6 +45,21 @@ namespace mehspot.iOS
                 UIApplication.SharedApplication.KeyWindow.RootViewController = newView;
 
             }, null);
+        }
+
+        private bool TextFieldShouldReturn (UITextField textField)
+        {
+            var nextTag = textField.Tag + 1;
+            UIResponder nextResponder = this.View.ViewWithTag (nextTag);
+            if (nextResponder != null) {
+                nextResponder.BecomeFirstResponder ();
+            } else {
+                // Not found, so remove keyboard.
+                textField.ResignFirstResponder ();
+                SignInAsync ();
+            }
+
+            return false; // We do not want UITextField to insert line-breaks.
         }
     }
 }

@@ -131,12 +131,12 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="14" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="20" y="278" width="335" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" autocorrectionType="no" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="19" translatesAutoresizingMaskIntoConstraints="NO">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="19" translatesAutoresizingMaskIntoConstraints="NO" tag="1">
                                 <rect key="frame" x="20" y="350" width="335" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES" spellCheckingType="no" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" spellCheckingType="no" autocorrectionType="no" returnKeyType="join"/>
                             </textField>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="25" translatesAutoresizingMaskIntoConstraints="NO" opaque="NO">
                                 <rect key="frame" x="127" y="396" width="120" height="30"/>
