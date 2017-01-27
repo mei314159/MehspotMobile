@@ -1,6 +1,6 @@
 ﻿using Foundation;
 using HockeyApp.iOS;
-using mehspot.core.Auth;
+using mehspot.Core.Auth;
 using mehspot.iOS.Core;
 using UIKit;
 

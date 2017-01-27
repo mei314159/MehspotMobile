@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace mehspot.core.Auth.Dto
+namespace mehspot.Core.Auth.Dto
 {
 
     public class ErrorResult

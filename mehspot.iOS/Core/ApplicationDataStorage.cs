@@ -1,7 +1,7 @@
 ﻿using System;
 using Foundation;
-using mehspot.core.Auth.Dto;
-using mehspot.core.Contracts;
+using mehspot.Core.Auth.Dto;
+using mehspot.Core.Contracts;
 using Newtonsoft.Json;
 
 namespace mehspot.iOS.Core

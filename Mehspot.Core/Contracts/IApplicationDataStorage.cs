@@ -1,7 +1,7 @@
 ﻿using System;
-using mehspot.core.Auth.Dto;
+using mehspot.Core.Auth.Dto;
 
-namespace mehspot.core.Contracts
+namespace mehspot.Core.Contracts
 {
     public interface IApplicationDataStorage
     {

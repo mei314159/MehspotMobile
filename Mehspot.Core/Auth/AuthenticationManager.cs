@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using mehspot.core.Auth.Dto;
-using mehspot.core.Contracts;
+using mehspot.Core.Auth.Dto;
+using mehspot.Core.Contracts;
 using Mehspot.Core;
 using Newtonsoft.Json;
 
-namespace mehspot.core.Auth
+namespace mehspot.Core.Auth
 {
     public class AuthenticationManager
     {

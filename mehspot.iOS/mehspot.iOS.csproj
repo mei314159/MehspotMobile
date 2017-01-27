@@ -123,6 +123,8 @@
     <Folder Include="Resources\" />
     <Folder Include="Core\" />
     <Folder Include="Core\Auth\" />
+    <Folder Include="Views\" />
+    <Folder Include="Wrappers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -149,6 +151,8 @@
       <DependentUpon>LoginViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\ApplicationDataStorage.cs" />
+    <Compile Include="Views\LoadingOverlay.cs" />
+    <Compile Include="Wrappers\ViewHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

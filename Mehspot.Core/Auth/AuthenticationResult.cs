@@ -1,7 +1,6 @@
-﻿using mehspot.core.Auth.Dto;
-using mehspot.core.Contracts;
+﻿using mehspot.Core.Auth.Dto;
 
-namespace mehspot.core.Auth
+namespace mehspot.Core.Auth
 {
     public class AuthenticationResult
     {

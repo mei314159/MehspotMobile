@@ -1,25 +1,29 @@
-using Foundation;
 using System;
 using UIKit;
+using Mehspot.Core.Models;
+using mehspot.iOS.Wrappers;
+using mehspot.Core.Auth;
 
 namespace mehspot.iOS
 {
     public partial class LoginViewController : UIViewController
     {
+        SignInModel model;
         public LoginViewController (IntPtr handle) : base (handle)
         {
+            model = new SignInModel (AppDelegate.AuthManager, new ViewHelper (this.View));
+            model.SignedIn += Model_SignedIn;
         }
 
         async partial void SignInButtonTouched (UIButton sender)
         {
-            var authenticationResult = await AppDelegate.AuthManager.AuthenticateAsync (this.EmailField.Text, this.PasswordField.Text);
+            await model.SignInAsync (this.EmailField.Text, this.PasswordField.Text);
+        }
 
-            if (authenticationResult.IsSuccess) {
-                SwapRootView (UIStoryboard.FromName ("Main", null).InstantiateInitialViewController (), UIViewAnimationOptions.TransitionFlipFromRight);
-            } else { 
-                var avAlert = new UIAlertView ("Error", authenticationResult.ErrorMessage, null, "OK", null);
-                avAlert.Show ();
-            }
+        void Model_SignedIn (AuthenticationResult result)
+        {
+            var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateInitialViewController ();
+            SwapRootView (targetViewController, UIViewAnimationOptions.TransitionFlipFromRight);
         }
 
         private static void SwapRootView (UIViewController newView, UIViewAnimationOptions opt)
