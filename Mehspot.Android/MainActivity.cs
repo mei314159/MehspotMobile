@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace Mehspot.Android
 {
-    [Activity (Label = "Mehspot", MainLauncher = true, Icon = "@mipmap/ic_launcher")]
+    [Activity (Label = "Mehspot")]
     public class MainActivity : Activity
     {
         int count = 1;
