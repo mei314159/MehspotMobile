@@ -5,38 +5,74 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px"
-    android:gravity="center">
-    <TextView
-        android:text="Email:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+    android:gravity="center"
+    android:background="#ffffffff">
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
-    <EditText
-        android:inputType="textEmailAddress"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout1"
+        android:layout_weight="0.5"
+        android:background="#ffffffff">
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView1" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/EmailField"
-        android:tag="1" />
-    <TextView
-        android:text="Password:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout3"
+        android:layout_weight="0.65" />
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <EditText
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/PasswordField"
-        android:tag="2" />
-    <Button
-        android:text="Sign In"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/SignInButton"
-        android:background="#ff39ec34"
-        android:textColor="#ffffffff"
-        android:clickable="true"
-        android:tag="3" />
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout2"
+        android:layout_weight="0.3">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout1">
+            <TextView
+                android:text="Email:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1" />
+            <EditText
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EmailField"
+                android:tag="1" />
+            <TextView
+                android:text="Password:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" />
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PasswordField"
+                android:tag="2" />
+            <Button
+                android:text="Sign In"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SignInButton"
+                android:background="#ff39ec34"
+                android:textColor="#ffffffff"
+                android:clickable="true"
+                android:tag="3" />
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
