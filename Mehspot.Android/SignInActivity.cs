@@ -26,13 +26,13 @@ namespace Mehspot.Android
         {
             var authManager = new AuthenticationManager (new ApplicationDataStorage ());
             base.OnCreate (savedInstanceState);
-            model = new SignInModel (authManager, new ActivityHelper (Application.Context));
+            model = new SignInModel (authManager, new ActivityHelper (this));
             model.SignedIn += Model_SignedIn;
 
 
             SetContentView (Resource.Layout.SignIn);
 
-            Button signInButton = FindViewById<Button> (Resource.Id.SignInButton);
+            var signInButton = FindViewById<Button> (Resource.Id.SignInButton);
             signInButton.Click += SignInButton_Click;
         }
 
@@ -50,7 +50,7 @@ namespace Mehspot.Android
 
         private void Model_SignedIn (AuthenticationResult result)
         {
-            base.StartActivity (new Intent (Application.Context, typeof (MainActivity)));
+            this.StartActivity (new Intent (Application.Context, typeof (MainActivity)));
         }
     }
 }

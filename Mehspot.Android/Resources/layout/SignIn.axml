@@ -16,7 +16,8 @@
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/EmailField" />
+        android:id="@+id/EmailField"
+        android:tag="1" />
     <TextView
         android:text="Password:"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -27,7 +28,8 @@
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/PasswordField" />
+        android:id="@+id/PasswordField"
+        android:tag="2" />
     <Button
         android:text="Sign In"
         android:layout_width="match_parent"
@@ -35,5 +37,6 @@
         android:id="@+id/SignInButton"
         android:background="#ff39ec34"
         android:textColor="#ffffffff"
-        android:clickable="true" />
+        android:clickable="true"
+        android:tag="3" />
 </LinearLayout>

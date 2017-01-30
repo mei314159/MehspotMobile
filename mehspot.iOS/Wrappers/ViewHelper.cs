@@ -30,7 +30,11 @@ namespace mehspot.iOS.Wrappers
 
         public void HideOverlay ()
         {
-            loadingOverlay.Hide ();
+            if (loadingOverlay != null) {
+                loadingOverlay.Hide ();
+                loadingOverlay.Dispose ();
+                loadingOverlay = null;
+            }
         }
     }
 
