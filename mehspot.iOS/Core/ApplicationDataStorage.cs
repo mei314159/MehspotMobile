@@ -1,6 +1,6 @@
 ﻿using System;
 using Foundation;
-using mehspot.Core.Auth.Dto;
+using mehspot.Core.Dto;
 using mehspot.Core.Contracts;
 using Newtonsoft.Json;
 
@@ -12,12 +12,12 @@ namespace mehspot.iOS.Core
         {
         }
 
-        public AuthenticationInfoResult AuthInfo {
+        public AuthenticationInfoDto AuthInfo {
             get {
                 var data = NSUserDefaults.StandardUserDefaults.StringForKey (nameof (IApplicationDataStorage.AuthInfo));
 
                 if (!string.IsNullOrWhiteSpace (data)) {
-                    var result = JsonConvert.DeserializeObject<AuthenticationInfoResult> (data);
+                    var result = JsonConvert.DeserializeObject<AuthenticationInfoDto> (data);
                     return result;
                 }
 

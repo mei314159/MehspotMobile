@@ -8,9 +8,9 @@ namespace Mehspot.Core.Models
     public class SignInModel
     {
         private IViewHelper viewHelper;
-        readonly AuthenticationManager authManager;
+        readonly AuthenticationService authManager;
 
-        public SignInModel (AuthenticationManager authManager, IViewHelper alertWrapper)
+        public SignInModel (AuthenticationService authManager, IViewHelper alertWrapper)
         {
             this.authManager = authManager;
             this.viewHelper = alertWrapper;

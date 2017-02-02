@@ -1,7 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
-using mehspot.Core.Auth.Dto;
+using mehspot.Core.Dto;
 using mehspot.Core.Contracts;
 using Newtonsoft.Json;
 
@@ -16,11 +16,11 @@ namespace mehspot.Android.Core
             settings = Application.Context.GetSharedPreferences ("Mehspot", FileCreationMode.Private);
         }
 
-        public AuthenticationInfoResult AuthInfo {
+        public AuthenticationInfoDto AuthInfo {
             get {
                 var data = settings.GetString (nameof (IApplicationDataStorage.AuthInfo), null);
                 if (!string.IsNullOrWhiteSpace (data)) {
-                    var result = JsonConvert.DeserializeObject<AuthenticationInfoResult> (data);
+                    var result = JsonConvert.DeserializeObject<AuthenticationInfoDto> (data);
                     return result;
                 }
 

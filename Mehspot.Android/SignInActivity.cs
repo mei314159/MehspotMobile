@@ -24,7 +24,7 @@ namespace Mehspot.Android
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
-            var authManager = new AuthenticationManager (new ApplicationDataStorage ());
+            var authManager = new AuthenticationService (new ApplicationDataStorage ());
             base.OnCreate (savedInstanceState);
             model = new SignInModel (authManager, new ActivityHelper (this));
             model.SignedIn += Model_SignedIn;

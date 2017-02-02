@@ -1,10 +1,10 @@
 ﻿using System;
-using mehspot.Core.Auth.Dto;
+using mehspot.Core.Dto;
 
 namespace mehspot.Core.Contracts
 {
     public interface IApplicationDataStorage
     {
-        AuthenticationInfoResult AuthInfo { get; set; }
+        AuthenticationInfoDto AuthInfo { get; set; }
     }
 }

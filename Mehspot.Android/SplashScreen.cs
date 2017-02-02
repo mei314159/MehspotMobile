@@ -23,7 +23,7 @@ namespace Mehspot.Android
             });
 
             startupWork.ContinueWith (t => {
-                var authManager = new mehspot.Core.Auth.AuthenticationManager (new ApplicationDataStorage ());
+                var authManager = new mehspot.Core.Auth.AuthenticationService (new ApplicationDataStorage ());
 
                 Type targetActivityType;
                 if (!authManager.IsAuthenticated ()) {

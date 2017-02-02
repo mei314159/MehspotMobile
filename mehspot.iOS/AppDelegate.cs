@@ -11,7 +11,7 @@ namespace mehspot.iOS
     [Register ("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
-        public static AuthenticationManager AuthManager = new AuthenticationManager (new ApplicationDataStorage ());
+        public static AuthenticationService AuthManager = new AuthenticationService (new ApplicationDataStorage ());
 
         // class-level declarations
 

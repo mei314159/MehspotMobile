@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace mehspot.Core.Auth.Dto
+namespace mehspot.Core.Dto
 {
-    public class AuthenticationInfoResult
+    public class AuthenticationInfoDto
     {
         [JsonProperty (PropertyName = "access_token")]
         public string AccessToken { get; set; }
@@ -24,6 +25,8 @@ namespace mehspot.Core.Auth.Dto
 
         [JsonProperty (PropertyName = "userid")]
         public string UserId { get; set; }
+
+        public DateTime AuthDate { get; set; }
     }
 
     

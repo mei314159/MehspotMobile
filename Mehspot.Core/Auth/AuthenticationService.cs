@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using mehspot.Core.Auth.Dto;
+using mehspot.Core.Dto;
 using mehspot.Core.Contracts;
 using Mehspot.Core;
 using Newtonsoft.Json;
 
 namespace mehspot.Core.Auth
 {
-    public class AuthenticationManager
+    public class AuthenticationService
     {
         private readonly IApplicationDataStorage _applicationDataStorage;
 
-        public AuthenticationManager (IApplicationDataStorage applicationDataStorage)
+        public AuthenticationService (IApplicationDataStorage applicationDataStorage)
         {
             this._applicationDataStorage = applicationDataStorage;
         }
 
+        public AuthenticationInfoDto AuthInfo 
+        {
+            get { return _applicationDataStorage.AuthInfo; }
+        }
+
         public bool IsAuthenticated ()
         {
-            return this._applicationDataStorage.AuthInfo != null;
+            var totalSecondsSinceAuth = (DateTime.Now - _applicationDataStorage.AuthInfo.AuthDate).TotalSeconds;
+            return _applicationDataStorage.AuthInfo != null && totalSecondsSinceAuth < _applicationDataStorage.AuthInfo.ExpiresIn;
         }
 
         public async Task<AuthenticationResult> AuthenticateAsync (string email, string password)
@@ -37,7 +43,8 @@ namespace mehspot.Core.Auth
                     var response = await webClient.PostAsync (uri, new FormUrlEncodedContent (data)).ConfigureAwait (false);
                     var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var authInfo = JsonConvert.DeserializeObject<AuthenticationInfoResult> (responseString);
+                        var authInfo = JsonConvert.DeserializeObject<AuthenticationInfoDto> (responseString);
+                        authInfo.AuthDate = DateTime.Now;
                         _applicationDataStorage.AuthInfo = authInfo;
                         return new AuthenticationResult {
                             IsSuccess = true,
@@ -45,7 +52,7 @@ namespace mehspot.Core.Auth
                             ErrorMessage = null
                         };
                     } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorResult> (responseString);
+                        var errorResponse = JsonConvert.DeserializeObject<AuthErrorDto> (responseString);
                         return new AuthenticationResult {
                             IsSuccess = false,
                             ErrorMessage = errorResponse.ErrorDescription

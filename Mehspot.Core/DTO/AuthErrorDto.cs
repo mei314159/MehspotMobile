@@ -1,9 +1,9 @@
 using Newtonsoft.Json;
 
-namespace mehspot.Core.Auth.Dto
+namespace mehspot.Core.Dto
 {
 
-    public class ErrorResult
+    public class AuthErrorDto
     {
         [JsonProperty (PropertyName = "error")]
         public string Error { get; set; }
