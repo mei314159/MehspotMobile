@@ -6,6 +6,7 @@ using mehspot.Core.Dto;
 using mehspot.Core.Contracts;
 using Mehspot.Core;
 using Newtonsoft.Json;
+using Mehspot.Core.DTO;
 
 namespace mehspot.Core.Auth
 {
@@ -31,7 +32,7 @@ namespace mehspot.Core.Auth
 
         public async Task<AuthenticationResult> AuthenticateAsync (string email, string password)
         {
-            var uri = new Uri (Constants.ApiHost + "/token");
+            var uri = new Uri (Constants.AuthServerHost + "/token");
 
             using (var webClient = new HttpClient ()) {
                 try {
@@ -52,7 +53,7 @@ namespace mehspot.Core.Auth
                             ErrorMessage = null
                         };
                     } else {
-                        var errorResponse = JsonConvert.DeserializeObject<AuthErrorDto> (responseString);
+                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
                         return new AuthenticationResult {
                             IsSuccess = false,
                             ErrorMessage = errorResponse.ErrorDescription
@@ -61,7 +62,7 @@ namespace mehspot.Core.Auth
 
                 } catch (Exception ex) {
                     return new AuthenticationResult {
-                        IsSuccess = true,
+                        IsSuccess = false,
                         ErrorMessage = ex.Message
                     };
                 }

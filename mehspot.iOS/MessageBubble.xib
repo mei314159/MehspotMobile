@@ -13,22 +13,26 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <point key="canvasLocation" x="-105" y="-72"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="5" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0" baselineAdjustment="alignBaselines" misplaced="YES">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="5" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0" baselineAdjustment="alignBaselines" text="Hello" misplaced="YES">
+                    <rect key="frame" x="11" y="10" width="576" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
-                    <string key="text">Label sdg k ha;dslfjasdghas; gkasdg ;asg;asdhdgsa sdlga;ga sdgasdg aga sdgdfgsdfgdf gafdgadfh aadfha fhafdhdfhsfhLabel sdg k ha;dslfjasdghas; gkasdg ;asg;asdhdgsa sdlga;ga sdgasdg aga sdgdfgsdfgdf gafdgadfh aadfha fhafdhdfhsfh</string>
                 </label>
             </subviews>
             <constraints>
-                <constraint id="6" firstItem="5" firstAttribute="top" secondItem="1" secondAttribute="top"/>
-                <constraint id="7" firstItem="5" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
-                <constraint id="11" firstItem="5" firstAttribute="width" secondItem="1" secondAttribute="width"/>
+                <constraint id="6" firstItem="5" firstAttribute="top" secondItem="1" secondAttribute="top" constant="10"/>
+                <constraint id="7" firstItem="5" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10"/>
+                <constraint id="25" firstItem="1" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="10"/>
             </constraints>
             <connections>
                 <outlet property="textLabel" destination="5" id="name-outlet-5"/>
             </connections>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                    <real key="value" value="15"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
         </view>
     </objects>
     <resources>

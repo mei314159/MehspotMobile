@@ -26,6 +26,10 @@ namespace mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton sendButton { get; set; }
 
+        [Action ("SendButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SendButtonTouched (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (messageField != null) {

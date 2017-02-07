@@ -12,7 +12,12 @@ namespace mehspot.iOS
 
         partial void SubmitButtonTouched (UIButton sender)
         {
-            PerformSegue ("GoToMessagingSegue", this);
+            GoToMessaging ();
+        }
+
+        public override void ViewDidLoad ()
+        {
+            toUserNameField.ShouldReturn += TextFieldShouldReturn;
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -20,6 +25,18 @@ namespace mehspot.iOS
             var controller = (MessagingViewController)segue.DestinationViewController;
             controller.ToUserName = this.toUserNameField.Text;
             base.PrepareForSegue (segue, sender);
+        }
+
+        private bool TextFieldShouldReturn (UITextField textField)
+        {
+            GoToMessaging ();
+
+            return false; // We do not want UITextField to insert line-breaks.
+        }
+
+        void GoToMessaging ()
+        {
+            PerformSegue ("GoToMessagingSegue", this);
         }
     }
 }

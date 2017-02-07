@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace mehspot.Core.Dto
 {
 
-    public class AuthErrorDto
+    public class ErrorDto
     {
         [JsonProperty (PropertyName = "error")]
         public string Error { get; set; }

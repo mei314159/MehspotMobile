@@ -7,56 +7,135 @@ using mehspot.iOS.Core;
 using CoreGraphics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.AspNet.SignalR.Client;
+using Mehspot.Core;
+using Mehspot.Core.DTO;
 
 namespace mehspot.iOS
 {
     public partial class MessagingViewController : UIViewController
     {
+        private readonly ApplicationDataStorage applicationDataStorage;
+        private readonly MessagesService messagesService;
+        private readonly UIRefreshControl refreshControl;
         private ViewHelper viewHelper;
+        private nfloat spacing = 20;
 
         public string ToUserName { get; set; }
 
         public MessagingViewController (IntPtr handle) : base (handle)
         {
-            viewHelper = new ViewHelper (this.View);
+            applicationDataStorage = new ApplicationDataStorage ();
+            messagesService = new MessagesService (applicationDataStorage);
+            refreshControl = new UIRefreshControl ();
+            viewHelper = new ViewHelper (View);
         }
 
-        public override void ViewDidLoad ()
+        public override async void ViewDidLoad ()
         {
-            base.ViewDidLoad ();
+            this.View.BackgroundColor = UIColor.White;
+            NavigationItem.Title = ToUserName;
+            refreshControl.ValueChanged += RefreshControl_ValueChanged;
+            messagesScrollView.AddSubview (refreshControl);
+
+            var hubConnection = new HubConnection (Constants.ApiHost);
+            hubConnection.Headers.Add ("Authorization", "Bearer " + applicationDataStorage.AuthInfo.AccessToken);
+            var messageNotificationHub = hubConnection.CreateHubProxy ("MessageNotificationHub");
+
+            messageNotificationHub.On<MessagingNotificationType, MessageDto> ("OnSendNotification", OnSendNotification);
+            // Start the connection
+            await hubConnection.Start ();
+
+            //// Invoke the 'UpdateNick' method on the server
+            //await chatHubProxy.Invoke ("UpdateNick", "JohnDoe");
         }
 
         public override async void ViewDidAppear (bool animated)
         {
             viewHelper.ShowOverlay ("Loading messages...");
 
-            await this.LoadMessagesAsync ();
+            await LoadMessagesAsync ();
 
             viewHelper.HideOverlay ();
         }
 
+        async void RefreshControl_ValueChanged (object sender, EventArgs e)
+        {
+            await LoadMessagesAsync ();
+            refreshControl.EndRefreshing ();
+        }
+
+        private int page = 1;
+
         async Task LoadMessagesAsync ()
         {
-            var messagesService = new MessagesService (new ApplicationDataStorage ());
+            var messagesResult = await messagesService.GetMessages (ToUserName, page++);
 
-            var messagesResult = await messagesService.GetMessages (this.ToUserName, 1);
-            nfloat spacing = 20;
-            nfloat contentHeight = 0;
             if (messagesResult.IsSuccess) {
-                for (var i = 0; i < messagesResult.Messages.Data.Length; i++) {
-                    var messageDto = messagesResult.Messages.Data[i];
-                    var isMyMessage = messageDto.FromUserId == AppDelegate.AuthManager.AuthInfo.UserId;
-                    var bubble = MessageBubble.Create (new CGSize(200, nfloat.MaxValue), messageDto.Message, isMyMessage);
-                    var x = isMyMessage ? messagesScrollView.Bounds.Width - bubble.Frame.Width : 0;
-                    var y = contentHeight + spacing;
-                    bubble.Frame = new CGRect (new CGPoint (x, y), bubble.Frame.Size);
-                    contentHeight = y + bubble.Frame.Height;
+                var existingMessages = messagesScrollView.Subviews.OfType<MessageBubble> ().ToList ();
 
-                    this.messagesScrollView.AddSubview (bubble);
+                nfloat shiftHeight = 0;
+                var newMessages = new List<MessageBubble> ();
+                foreach (var messageDto in messagesResult.Data.Data.Reverse()) {
+                    var bubble = CreateMessageBubble (messageDto, shiftHeight);
+                    shiftHeight = bubble.Frame.Y + bubble.Frame.Height;
+                    newMessages.Add (bubble);
                 }
 
-                this.messagesScrollView.ContentSize = new CGSize (messagesScrollView.Bounds.Width, contentHeight > this.messagesScrollView.Frame.Height ? contentHeight : this.messagesScrollView.Frame.Height);
+                foreach (var messageBubble in existingMessages) {
+                    messageBubble.Frame = new CGRect (new CGPoint (messageBubble.Frame.X, messageBubble.Frame.Y + shiftHeight), messageBubble.Frame.Size);
+                }
+
+                foreach (var messageBubble in newMessages) {
+                    messagesScrollView.AddSubview (messageBubble);
+                }
+
+                var contentHeight = messagesScrollView.ContentSize.Height + shiftHeight;
+                messagesScrollView.ContentSize = new CGSize (messagesScrollView.Bounds.Width, contentHeight > messagesScrollView.Frame.Height ? contentHeight : messagesScrollView.Frame.Height);
+                messagesScrollView.ContentOffset = new CGPoint (messagesScrollView.ContentOffset.X, page > 2 ? shiftHeight : 0);
             }
+        }
+
+        async partial void SendButtonTouched (UIButton sender)
+        {
+            if (!string.IsNullOrWhiteSpace (messageField.Text))
+            {
+                var result = await messagesService.SendMessageAsync (ToUserName, this.messageField.Text);
+                if (result.IsSuccess) {
+                    AddMessageBubbleToEnd (result.Data);
+                    this.messageField.Text = string.Empty;
+                }
+            }
+        }
+
+        void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
+        {
+            if (notificationType == MessagingNotificationType.Message) {
+                InvokeOnMainThread (() => {
+                    AddMessageBubbleToEnd (data);
+                });
+            }
+        }
+
+        void AddMessageBubbleToEnd (MessageDto messageDto)
+        {
+            var shiftY = messagesScrollView.Subviews.OfType<MessageBubble> ().OrderByDescending (a => a.Frame.Y).Select (a => a.Frame.Y + a.Frame.Height).FirstOrDefault ();
+            var bubble = this.CreateMessageBubble (messageDto, shiftY);
+            this.messagesScrollView.AddSubview (bubble);
+            messagesScrollView.ContentSize = new CGSize (messagesScrollView.Bounds.Width, bubble.Frame.Y + bubble.Frame.Height);
+            messagesScrollView.ScrollRectToVisible (new CGRect (messagesScrollView.ContentSize.Width - 1, messagesScrollView.ContentSize.Height - 1, 1, 1), true); //scroll to end programmatically
+        }
+
+        private MessageBubble CreateMessageBubble (MessageDto messageDto, nfloat shiftHeight)
+        {
+            var isMyMessage = messageDto.FromUserId == AppDelegate.AuthManager.AuthInfo.UserId;
+            var bubble = MessageBubble.Create (new CGSize (200, nfloat.MaxValue), messageDto.Message, isMyMessage);
+            var x = isMyMessage ? messagesScrollView.Bounds.Width - bubble.Frame.Width : 0;
+            var y = shiftHeight + spacing;
+            bubble.Frame = new CGRect (new CGPoint (x, y), bubble.Frame.Size);
+
+            return bubble;
         }
     }
 }

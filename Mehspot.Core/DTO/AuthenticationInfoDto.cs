@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace mehspot.Core.Dto
+namespace Mehspot.Core.DTO
 {
     public class AuthenticationInfoDto
     {

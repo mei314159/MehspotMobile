@@ -1,9 +1,8 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using mehspot.Core.Dto;
 using mehspot.Core.Contracts;
 using Newtonsoft.Json;
+using Mehspot.Core.DTO;
 
 namespace mehspot.Android.Core
 {

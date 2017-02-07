@@ -1,4 +1,4 @@
-﻿using mehspot.Core.Dto;
+﻿using Mehspot.Core.DTO;
 
 namespace mehspot.Core.Auth
 {
