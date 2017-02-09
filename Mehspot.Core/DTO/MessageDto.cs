@@ -3,10 +3,6 @@ namespace Mehspot.Core.DTO
 {
     public class MessageDto
     {
-        public MessageDto ()
-        {
-        }
-
         public int Id { get; set; }
 
         public string FromUserId { get; set; }
@@ -14,6 +10,8 @@ namespace Mehspot.Core.DTO
         public string ToUserId { get; set; }
 
         public string ToUserName { get; set; }
+
+        public string FromUserName { get; set; }
 
         public DateTime SendDate { get; set; }
 

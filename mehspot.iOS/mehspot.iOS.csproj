@@ -133,6 +133,7 @@
     <Folder Include="Core\" />
     <Folder Include="Views\" />
     <Folder Include="Wrappers\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -174,6 +175,7 @@
     <Compile Include="MessageBubble.designer.cs">
       <DependentUpon>MessageBubble.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

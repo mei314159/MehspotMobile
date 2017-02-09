@@ -262,7 +262,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="416" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                                         <rect key="frame" x="20" y="15" width="281" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="send"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="419" translatesAutoresizingMaskIntoConstraints="NO">
                                         <rect key="frame" x="309" y="15" width="46" height="30"/>
@@ -285,6 +285,7 @@
                                     <constraint id="421" firstItem="419" firstAttribute="centerY" secondItem="406" secondAttribute="centerY"/>
                                     <constraint id="422" firstItem="419" firstAttribute="leading" secondItem="416" secondAttribute="trailing" constant="20"/>
                                 </constraints>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="411" translatesAutoresizingMaskIntoConstraints="NO" alwaysBounceVertical="YES">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="494"/>
@@ -306,6 +307,8 @@
                         <outlet property="messagesScrollView" destination="411" id="name-outlet-411"/>
                         <outlet property="sendButton" destination="419" id="name-outlet-419"/>
                         <outlet property="messageField" destination="416" id="name-outlet-416"/>
+                        <outlet property="BottomMargin" destination="407" id="name-outlet-407"/>
+                        <outlet property="messageFieldWrapper" destination="406" id="name-outlet-406"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89" userLabel="First Responder" sceneMemberID="firstResponder"/>

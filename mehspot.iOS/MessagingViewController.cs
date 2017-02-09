@@ -1,4 +1,3 @@
-using Foundation;
 using System;
 using UIKit;
 using mehspot.iOS.Wrappers;
@@ -8,9 +7,10 @@ using CoreGraphics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Microsoft.AspNet.SignalR.Client;
-using Mehspot.Core;
 using Mehspot.Core.DTO;
+using Foundation;
+using ObjCRuntime;
+using mehspot.iOS.Extensions;
 
 namespace mehspot.iOS
 {
@@ -20,7 +20,7 @@ namespace mehspot.iOS
         private readonly MessagesService messagesService;
         private readonly UIRefreshControl refreshControl;
         private ViewHelper viewHelper;
-        private nfloat spacing = 20;
+        private const int spacing = 20;
 
         public string ToUserName { get; set; }
 
@@ -30,25 +30,69 @@ namespace mehspot.iOS
             messagesService = new MessagesService (applicationDataStorage);
             refreshControl = new UIRefreshControl ();
             viewHelper = new ViewHelper (View);
+            AppDelegate.ReceivedNotification += OnSendNotification;
+        }
+
+        protected virtual void RegisterForKeyboardNotifications ()
+        {
+            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillHideNotification, OnKeyboardNotification);
+            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, OnKeyboardNotification);
+        }
+
+        private void OnKeyboardNotification (NSNotification notification)
+        {
+            if (!IsViewLoaded) return;
+
+            //Check if the keyboard is becoming visible
+            var visible = notification.Name == UIKeyboard.WillShowNotification;
+
+            //Start an animation, using values from the keyboard
+            UIView.BeginAnimations ("AnimateForKeyboard");
+            UIView.SetAnimationBeginsFromCurrentState (true);
+            UIView.SetAnimationDuration (UIKeyboard.AnimationDurationFromNotification (notification));
+            UIView.SetAnimationCurve ((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification (notification));
+
+            //Pass the notification, calculating keyboard height, etc.
+            var keyboardFrame = visible
+                                    ? UIKeyboard.FrameEndFromNotification (notification)
+                                    : UIKeyboard.FrameBeginFromNotification (notification);
+            OnKeyboardChanged (visible, keyboardFrame);
+            //Commit the animation
+            UIView.CommitAnimations ();
+        }
+
+        protected virtual void OnKeyboardChanged (bool visible, CGRect keyboardFrame)
+        {
+            if (View.Superview == null) {
+                return;
+            }
+            
+            if (visible) {
+                var relativeLocation = View.Superview.ConvertPointToView (keyboardFrame.Location, View);
+                var y = relativeLocation.Y - messageFieldWrapper.Frame.Height;
+                messageFieldWrapper.Frame = new CGRect (new CGPoint (messageFieldWrapper.Frame.X, y), messageFieldWrapper.Frame.Size);
+
+            } else {
+                var y = messagesScrollView.Frame.Y + messagesScrollView.Frame.Height;
+                messageFieldWrapper.Frame = new CGRect (new CGPoint (messageFieldWrapper.Frame.X, y), messageFieldWrapper.Frame.Size);
+            }
         }
 
         public override async void ViewDidLoad ()
         {
+            View.BringSubviewToFront (messageFieldWrapper);
             this.View.BackgroundColor = UIColor.White;
-            NavigationItem.Title = ToUserName;
+            this.Title = ToUserName;
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
             messagesScrollView.AddSubview (refreshControl);
+            messagesScrollView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            messageField.ShouldReturn += MessageField_ShouldReturn;
+            RegisterForKeyboardNotifications ();
+        }
 
-            var hubConnection = new HubConnection (Constants.ApiHost);
-            hubConnection.Headers.Add ("Authorization", "Bearer " + applicationDataStorage.AuthInfo.AccessToken);
-            var messageNotificationHub = hubConnection.CreateHubProxy ("MessageNotificationHub");
-
-            messageNotificationHub.On<MessagingNotificationType, MessageDto> ("OnSendNotification", OnSendNotification);
-            // Start the connection
-            await hubConnection.Start ();
-
-            //// Invoke the 'UpdateNick' method on the server
-            //await chatHubProxy.Invoke ("UpdateNick", "JohnDoe");
+        public void HideKeyboard()
+        {
+            messageField.ResignFirstResponder ();
         }
 
         public override async void ViewDidAppear (bool animated)
@@ -77,7 +121,7 @@ namespace mehspot.iOS
 
                 nfloat shiftHeight = 0;
                 var newMessages = new List<MessageBubble> ();
-                foreach (var messageDto in messagesResult.Data.Data.Reverse()) {
+                foreach (var messageDto in messagesResult.Data.Data.Reverse ()) {
                     var bubble = CreateMessageBubble (messageDto, shiftHeight);
                     shiftHeight = bubble.Frame.Y + bubble.Frame.Height;
                     newMessages.Add (bubble);
@@ -99,19 +143,13 @@ namespace mehspot.iOS
 
         async partial void SendButtonTouched (UIButton sender)
         {
-            if (!string.IsNullOrWhiteSpace (messageField.Text))
-            {
-                var result = await messagesService.SendMessageAsync (ToUserName, this.messageField.Text);
-                if (result.IsSuccess) {
-                    AddMessageBubbleToEnd (result.Data);
-                    this.messageField.Text = string.Empty;
-                }
-            }
+            await SendMessageAsync ();
         }
+
 
         void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
         {
-            if (notificationType == MessagingNotificationType.Message) {
+            if (notificationType == MessagingNotificationType.Message && string.Equals(data.FromUserName, ToUserName, StringComparison.InvariantCultureIgnoreCase)) {
                 InvokeOnMainThread (() => {
                     AddMessageBubbleToEnd (data);
                 });
@@ -136,6 +174,35 @@ namespace mehspot.iOS
             bubble.Frame = new CGRect (new CGPoint (x, y), bubble.Frame.Size);
 
             return bubble;
+        }
+
+        async Task SendMessageAsync ()
+        {
+            if (!string.IsNullOrWhiteSpace (messageField.Text)) {
+                this.sendButton.Enabled = this.messageField.Enabled = false;
+                var result = await messagesService.SendMessageAsync (ToUserName, this.messageField.Text);
+                if (result.IsSuccess) {
+                    AddMessageBubbleToEnd (result.Data);
+                    this.messageField.Text = string.Empty;
+                }
+
+                this.sendButton.Enabled = this.messageField.Enabled = true;
+            }
+        }
+
+        bool MessageField_ShouldReturn (UITextField textField)
+        {
+            var nextTag = textField.Tag + 1;
+            UIResponder nextResponder = this.View.ViewWithTag (nextTag);
+            if (nextResponder != null) {
+                nextResponder.BecomeFirstResponder ();
+            } else {
+                // Not found, so remove keyboard.
+                textField.ResignFirstResponder ();
+                SendMessageAsync ();
+            }
+
+            return false; // We do not want UITextField to insert line-breaks.
         }
     }
 }

@@ -24,10 +24,11 @@ namespace mehspot.Core.Auth
             get { return _applicationDataStorage.AuthInfo; }
         }
 
+        public event Action<AuthenticationInfoDto> Authenticated;
+
         public bool IsAuthenticated ()
         {
-            var totalSecondsSinceAuth = (DateTime.Now - _applicationDataStorage.AuthInfo.AuthDate).TotalSeconds;
-            return _applicationDataStorage.AuthInfo != null && totalSecondsSinceAuth < _applicationDataStorage.AuthInfo.ExpiresIn;
+            return _applicationDataStorage.AuthInfo != null && (DateTime.Now - _applicationDataStorage.AuthInfo.AuthDate).TotalSeconds < _applicationDataStorage.AuthInfo.ExpiresIn;
         }
 
         public async Task<AuthenticationResult> AuthenticateAsync (string email, string password)
@@ -47,6 +48,9 @@ namespace mehspot.Core.Auth
                         var authInfo = JsonConvert.DeserializeObject<AuthenticationInfoDto> (responseString);
                         authInfo.AuthDate = DateTime.Now;
                         _applicationDataStorage.AuthInfo = authInfo;
+                        if (Authenticated != null) {
+                            Authenticated (authInfo);
+                        }
                         return new AuthenticationResult {
                             IsSuccess = true,
                             AuthInfo = authInfo,

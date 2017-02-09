@@ -1,7 +1,11 @@
-﻿using Foundation;
+﻿using System;
+using Foundation;
 using HockeyApp.iOS;
 using mehspot.Core.Auth;
 using mehspot.iOS.Core;
+using Mehspot.Core.DTO;
+using Mehspot.Core.Messaging;
+using Microsoft.AspNet.SignalR.Client;
 using UIKit;
 
 namespace mehspot.iOS
@@ -11,6 +15,7 @@ namespace mehspot.iOS
     [Register ("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
+        private HubConnection hubConnection;
         public static AuthenticationService AuthManager = new AuthenticationService (new ApplicationDataStorage ());
 
         // class-level declarations
@@ -20,20 +25,25 @@ namespace mehspot.iOS
             set;
         }
 
+        public static event Action<MessagingNotificationType, MessageDto> ReceivedNotification;
+
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
-            var manager = BITHockeyManager.SharedHockeyManager;
-            manager.Configure ("939417b83e9b41b6bbfe772dd8129ac3");
-            manager.CrashManager.EnableAppNotTerminatingCleanlyDetection = true;
-            manager.DebugLogEnabled = true;
-            manager.StartManager ();
-            manager.Authenticator.AuthenticateInstallation ();
+            AuthManager.Authenticated += OnAuthenticated;
+            
+            InitializeHockeyApp ();
+
+            var isAuthenticated = AuthManager.IsAuthenticated ();
+            if (isAuthenticated) {
+                RunSignalRAsync ();
+            }
 
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
             this.Window = new UIWindow (UIScreen.MainScreen.Bounds);
-            this.Window.RootViewController = GetInitialViewController ();
+            this.Window.RootViewController = GetInitialViewController (isAuthenticated);
             this.Window.MakeKeyAndVisible ();
+            this.Window.BackgroundColor = UIColor.White;
             return true;
         }
 
@@ -68,14 +78,49 @@ namespace mehspot.iOS
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
 
-        private UIViewController GetInitialViewController ()
+        private void OnAuthenticated (AuthenticationInfoDto authInfo)
+        {
+            if (hubConnection == null) {
+                RunSignalRAsync ();
+            }
+        }
+
+        private void InitializeHockeyApp ()
+        {
+            var manager = BITHockeyManager.SharedHockeyManager;
+            manager.Configure ("939417b83e9b41b6bbfe772dd8129ac3");
+            manager.CrashManager.EnableAppNotTerminatingCleanlyDetection = true;
+            manager.DebugLogEnabled = true;
+            manager.StartManager ();
+            manager.Authenticator.AuthenticateInstallation ();
+        }
+
+        private UIViewController GetInitialViewController (bool isAuthenticated)
         {
             var storyboard = UIStoryboard.FromName ("Main", null);
-            if (!AuthManager.IsAuthenticated()) {
+            if (!isAuthenticated) {
                 return storyboard.InstantiateViewController ("LoginViewController");
             }
 
             return storyboard.InstantiateInitialViewController ();
+        }
+
+        private async void RunSignalRAsync ()
+        {
+            hubConnection = new HubConnection (Mehspot.Core.Constants.ApiHost);
+            hubConnection.Headers.Add ("Authorization", "Bearer " + AuthManager.AuthInfo.AccessToken);
+            var messageNotificationHub = hubConnection.CreateHubProxy ("MessageNotificationHub");
+
+            messageNotificationHub.On<MessagingNotificationType, MessageDto> ("OnSendNotification", OnSendNotification);
+            // Start the connection
+            await hubConnection.Start ();
+        }
+
+        void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
+        {
+            if (ReceivedNotification != null) {
+                ReceivedNotification (notificationType, data);
+            }
         }
     }
 }

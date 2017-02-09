@@ -16,7 +16,15 @@ namespace mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.NSLayoutConstraint BottomMargin { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField messageField { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView messageFieldWrapper { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -32,9 +40,19 @@ namespace mehspot.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (BottomMargin != null) {
+                BottomMargin.Dispose ();
+                BottomMargin = null;
+            }
+
             if (messageField != null) {
                 messageField.Dispose ();
                 messageField = null;
+            }
+
+            if (messageFieldWrapper != null) {
+                messageFieldWrapper.Dispose ();
+                messageFieldWrapper = null;
             }
 
             if (messagesScrollView != null) {
