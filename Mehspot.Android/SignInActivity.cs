@@ -1,18 +1,13 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using mehspot.Android.Core;
 using mehspot.Core.Auth;
 using Mehspot.Android.Wrappers;
+using Mehspot.Core;
 using Mehspot.Core.Models;
 
 namespace Mehspot.Android
@@ -24,9 +19,8 @@ namespace Mehspot.Android
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
-            var authManager = new AuthenticationService (new ApplicationDataStorage ());
             base.OnCreate (savedInstanceState);
-            model = new SignInModel (authManager, new ActivityHelper (this));
+            model = new SignInModel (MehspotAppContext.Instance.AuthManager, new ActivityHelper (this));
             model.SignedIn += Model_SignedIn;
 
 
@@ -50,7 +44,7 @@ namespace Mehspot.Android
 
         private void Model_SignedIn (AuthenticationResult result)
         {
-            this.StartActivity (new Intent (Application.Context, typeof (MainActivity)));
+            this.StartActivity (new Intent (Application.Context, typeof (MessageBoardActivity)));
         }
     }
 }

@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Mehspot.Core.DTO;
 using Foundation;
-using ObjCRuntime;
-using mehspot.iOS.Extensions;
+using Mehspot.Core;
 
 namespace mehspot.iOS
 {
@@ -30,7 +29,7 @@ namespace mehspot.iOS
             messagesService = new MessagesService (applicationDataStorage);
             refreshControl = new UIRefreshControl ();
             viewHelper = new ViewHelper (View);
-            AppDelegate.ReceivedNotification += OnSendNotification;
+            MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
         }
 
         protected virtual void RegisterForKeyboardNotifications ()
@@ -167,7 +166,7 @@ namespace mehspot.iOS
 
         private MessageBubble CreateMessageBubble (MessageDto messageDto, nfloat shiftHeight)
         {
-            var isMyMessage = messageDto.FromUserId == AppDelegate.AuthManager.AuthInfo.UserId;
+            var isMyMessage = messageDto.FromUserId == MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
             var bubble = MessageBubble.Create (new CGSize (200, nfloat.MaxValue), messageDto.Message, isMyMessage);
             var x = isMyMessage ? messagesScrollView.Bounds.Width - bubble.Frame.Width : 0;
             var y = shiftHeight + spacing;

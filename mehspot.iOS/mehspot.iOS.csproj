@@ -97,15 +97,6 @@
     <Reference Include="HockeySDK.iOSBindings">
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.1\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Client">
-      <HintPath>..\Components\signalr-2.1.2.2\lib\ios-unified\Microsoft.AspNet.SignalR.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\Components\signalr-2.1.2.2\lib\ios-unified\System.Net.Http.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\Components\signalr-2.1.2.2\lib\ios-unified\System.Net.Http.Primitives.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -189,12 +180,6 @@
       <Project>{0AF925F0-1DF8-4BFB-8FB7-9A3ECB7B3267}</Project>
       <Name>Mehspot.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="signalr">
-      <Version>2.1.2.2</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

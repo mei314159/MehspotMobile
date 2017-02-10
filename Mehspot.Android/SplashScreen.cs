@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using mehspot.Android.Core;
+using Mehspot.Core;
 
 namespace Mehspot.Android
 {
@@ -13,29 +14,30 @@ namespace Mehspot.Android
     {
         protected override void OnCreate (Bundle savedInstanceState)
         {
-            base.OnCreate (savedInstanceState);
+            MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
 
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.SplashScreen);
 
             Task startupWork = new Task (() => {
-                Task.Delay (2000);  // Simulate a bit of startup work.
+                Task.Delay (1000);  // Simulate a bit of startup work.
             });
 
             startupWork.ContinueWith (t => {
-                var authManager = new mehspot.Core.Auth.AuthenticationService (new ApplicationDataStorage ());
-
+                
                 Type targetActivityType;
-                if (!authManager.IsAuthenticated ()) {
+                if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated ()) {
                     targetActivityType = typeof (SignInActivity);
                 } else {
-                    targetActivityType = typeof (MainActivity);
+                    targetActivityType = typeof (MessageBoardActivity);
                 }
                 base.StartActivity (new Intent (Application.Context, targetActivityType));
 
             }, TaskScheduler.FromCurrentSynchronizationContext ());
 
             startupWork.Start ();
+
+            base.OnCreate (savedInstanceState);
         }
     }
 }

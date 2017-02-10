@@ -3,7 +3,7 @@ using UIKit;
 using Mehspot.Core.Models;
 using mehspot.iOS.Wrappers;
 using mehspot.Core.Auth;
-using System.Threading.Tasks;
+using Mehspot.Core;
 
 namespace mehspot.iOS
 {
@@ -12,7 +12,7 @@ namespace mehspot.iOS
         SignInModel model;
         public LoginViewController (IntPtr handle) : base (handle)
         {
-            model = new SignInModel (AppDelegate.AuthManager, new ViewHelper (this.View));
+            model = new SignInModel (MehspotAppContext.Instance.AuthManager, new ViewHelper (this.View));
             model.SignedIn += Model_SignedIn;
         }
 
