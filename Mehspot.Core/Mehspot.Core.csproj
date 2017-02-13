@@ -42,12 +42,15 @@
     <Compile Include="Messaging\MessagingNotificationType.cs" />
     <Compile Include="DTO\Result.cs" />
     <Compile Include="MehspotAppContext.cs" />
+    <Compile Include="Models\MessagingModel.cs" />
+    <Compile Include="Contracts\ViewControllers\IMessagingViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Contracts\Wrappers\" />
     <Folder Include="Messaging\" />
     <Folder Include="DTO\" />
+    <Folder Include="Contracts\ViewControllers\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
