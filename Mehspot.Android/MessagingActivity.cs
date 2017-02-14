@@ -1,19 +1,12 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Text;
-using Android.Views;
-using Android.Views.InputMethods;
+using Android.Support.V4.Widget;
 using Android.Widget;
 using mehspot.Android.Core;
-using mehspot.Core.Auth;
 using Mehspot.Android.Resources.layout;
 using Mehspot.Android.Wrappers;
 using Mehspot.Core;
@@ -55,6 +48,16 @@ namespace Mehspot.Android
 
             Button button = FindViewById<Button> (Resource.Id.sendMessageButton);
             button.Click += SendButtonClicked;
+
+            var refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+            refresher.SetColorScheme (Resource.Color.xam_dark_blue,
+                                      Resource.Color.xam_purple,
+                                      Resource.Color.xam_gray,
+                                      Resource.Color.xam_green);
+            refresher.Refresh += async delegate {
+                await this.messagingModel.LoadMessagesAsync ();
+                refresher.Refreshing = false;
+            };
 
             await this.messagingModel.LoadMessagesAsync ();
         }
@@ -99,8 +102,8 @@ namespace Mehspot.Android
         private MessageBubble CreateMessageBubble (MessageDto messageDto)
         {
             var isMyMessage = messageDto.FromUserId == MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
-            var bubble = new MessageBubble(this, messageDto.Message, isMyMessage);
+            var bubble = new MessageBubble (this, messageDto.Message, isMyMessage);
             return bubble;
         }
-   }
+    }
 }
