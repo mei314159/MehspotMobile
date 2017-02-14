@@ -50,12 +50,12 @@ namespace Mehspot.Android
             button.Click += SendButtonClicked;
 
             var refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-            refresher.SetColorScheme (Resource.Color.xam_dark_blue,
-                                      Resource.Color.xam_purple,
-                                      Resource.Color.xam_gray,
-                                      Resource.Color.xam_green);
-            refresher.Refresh += async delegate {
-                await this.messagingModel.LoadMessagesAsync ();
+            refresher.SetColorSchemeColors (Resource.Color.xam_dark_blue,
+                                            Resource.Color.xam_purple,
+                                            Resource.Color.xam_gray,
+                                            Resource.Color.xam_green);
+            refresher.Refresh += async (sender, e) => {
+                await messagingModel.LoadMessagesAsync ();
                 refresher.Refreshing = false;
             };
 

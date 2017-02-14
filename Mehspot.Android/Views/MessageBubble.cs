@@ -24,10 +24,12 @@ namespace Mehspot.Android.Resources.layout
             inflater.Inflate (Resource.Layout.MessageBubble, this);
             var textView = (TextView)FindViewById (Resource.Id.messageBubbleText);
             textView.Text = text;
-            this.LayoutParameters = new RelativeLayout.LayoutParams (ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent) {
-                TopMargin = ConvertDpsToPixels(20)
-            };
-            this.SetBackgroundColor (isMyMessage ? new Color (58, 155, 252) : new Color (249, 217, 128));
+
+
+            RelativeLayout.LayoutParams parameters = (RelativeLayout.LayoutParams)textView.LayoutParameters;
+            parameters.AddRule (isMyMessage ? LayoutRules.AlignParentRight : LayoutRules.AlignParentLeft);
+            textView.LayoutParameters = parameters; //causes layout update
+            textView.SetBackgroundColor (isMyMessage ? new Color (58, 155, 252) : new Color (249, 217, 128));
         }
 
         private int ConvertPixelsToDp (float pixelValue)
