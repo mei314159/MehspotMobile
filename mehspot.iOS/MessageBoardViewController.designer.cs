@@ -16,17 +16,22 @@ namespace mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField toUserNameField { get; set; }
+        UIKit.UITableView MessageBoardTable { get; set; }
 
-        [Action ("SubmitButtonTouched:")]
+        [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void SubmitButtonTouched (UIKit.UIButton sender);
+        UIKit.UISearchBar SearchBar { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (toUserNameField != null) {
-                toUserNameField.Dispose ();
-                toUserNameField = null;
+            if (MessageBoardTable != null) {
+                MessageBoardTable.Dispose ();
+                MessageBoardTable = null;
+            }
+
+            if (SearchBar != null) {
+                SearchBar.Dispose ();
+                SearchBar = null;
             }
         }
     }

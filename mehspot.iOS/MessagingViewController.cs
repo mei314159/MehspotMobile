@@ -31,6 +31,7 @@ namespace mehspot.iOS
         }
 
         public string ToUserName { get; set; }
+        public string ToUserId { get; set; }
 
         public string MessageFieldValue {
             get {
@@ -42,7 +43,6 @@ namespace mehspot.iOS
         }
 
         public IViewHelper ViewHelper { get; private set; }
-
 
         protected virtual void RegisterForKeyboardNotifications ()
         {
@@ -86,7 +86,7 @@ namespace mehspot.iOS
 
         void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
         {
-            if (notificationType == MessagingNotificationType.Message && string.Equals (data.FromUserName, ToUserName, StringComparison.InvariantCultureIgnoreCase)) {
+            if (notificationType == MessagingNotificationType.Message && string.Equals (data.FromUserId, ToUserId, StringComparison.InvariantCultureIgnoreCase)) {
                 InvokeOnMainThread (() => {
                     AddMessageBubbleToEnd (data);
                 });

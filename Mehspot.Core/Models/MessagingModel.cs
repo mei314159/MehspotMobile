@@ -20,7 +20,7 @@ namespace Mehspot.Core.Models
         public async Task LoadMessagesAsync ()
         {
             viewController.ViewHelper.ShowOverlay ("Loading messages...");
-            var messagesResult = await messagesService.GetMessages (viewController.ToUserName, Page++);
+            var messagesResult = await messagesService.GetMessages (Page++, viewController.ToUserId, viewController.ToUserName); 
             if (messagesResult.IsSuccess) {
                 viewController.DisplayMessages (messagesResult);
             }
@@ -32,7 +32,8 @@ namespace Mehspot.Core.Models
             var message = viewController.MessageFieldValue;
             if (!string.IsNullOrWhiteSpace (message)) {
                 viewController.ToggleMessagingControls (false);
-                var result = await this.messagesService.SendMessageAsync (viewController.ToUserName, message);
+                var result = await messagesService.SendMessageAsync (message, viewController.ToUserId, viewController.ToUserName);
+                                  
                 if (result.IsSuccess) {
                     this.viewController.AddMessageBubbleToEnd (result.Data);
                     this.viewController.MessageFieldValue = string.Empty;

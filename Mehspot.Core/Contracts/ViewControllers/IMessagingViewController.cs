@@ -6,6 +6,8 @@ namespace Mehspot.Core.Contracts.ViewControllers
 
     public interface IMessagingViewController
     {
+        string ToUserId { get; }
+
         string ToUserName { get; }
 
         string MessageFieldValue { get; set; }

@@ -17,63 +17,42 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Message User" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD" misplaced="YES">
-                                <rect key="frame" x="69" y="50" width="237" height="42"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="32"/>
-                                <color key="textColor" colorSpace="calibratedRGB" red="0.066666666666666666" green="0.52549019607843139" blue="0.996078431372549" alpha="1"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="69" translatesAutoresizingMaskIntoConstraints="NO" text="Username:" misplaced="YES">
-                                <rect key="frame" x="20" y="232" width="85" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="72" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="20" y="261" width="335" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="77" translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" tag="1">
-                                <rect key="frame" x="128" y="313" width="120" height="30"/>
-                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0" green="1" blue="0" alpha="1"/>
-                                <color key="tintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="SubmitButtonTouched:" destination="9pv-A4-QxB" id="384" eventType="touchUpInside"/>
-                                </connections>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <constraints>
-                                    <constraint id="80" firstItem="77" firstAttribute="width" constant="120"/>
-                                </constraints>
-                            </button>
+                            <searchBar contentMode="redraw" id="452" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Search for user">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="1" sectionFooterHeight="1" id="456" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" showsHorizontalScrollIndicator="NO">
+                                <rect key="frame" x="0.0" y="42" width="375" height="512"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="457" reuseIdentifier="MessageBoardItem">
+                                        <rect key="frame" x="0.0" y="1" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="457" id="458">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint id="67" firstItem="KQZ-1w-vlD" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="50"/>
-                            <constraint id="68" firstItem="KQZ-1w-vlD" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX"/>
-                            <constraint id="71" firstItem="69" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" constant="20"/>
-                            <constraint id="73" firstItem="72" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" constant="20"/>
-                            <constraint id="74" firstItem="tsR-hK-woN" firstAttribute="trailing" secondItem="72" secondAttribute="trailing" constant="20"/>
-                            <constraint id="75" firstItem="72" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="8"/>
-                            <constraint id="76" firstItem="tsR-hK-woN" firstAttribute="centerY" secondItem="72" secondAttribute="centerY"/>
-                            <constraint id="82" firstItem="77" firstAttribute="top" secondItem="72" secondAttribute="bottom" constant="20"/>
-                            <constraint id="83" firstItem="77" firstAttribute="centerX" secondItem="72" secondAttribute="centerX"/>
+                            <constraint id="453" firstItem="452" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top"/>
+                            <constraint id="454" firstItem="452" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading"/>
+                            <constraint id="455" firstItem="452" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width"/>
+                            <constraint id="459" firstItem="456" firstAttribute="bottom" secondItem="tsR-hK-woN" secondAttribute="bottom"/>
+                            <constraint id="460" firstItem="452" firstAttribute="bottom" secondItem="456" secondAttribute="top"/>
+                            <constraint id="461" firstItem="456" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading"/>
+                            <constraint id="462" firstItem="456" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="First" id="acW-dT-cKf"/>
                     <connections>
                         <segue id="181" destination="87" kind="show" identifier="GoToMessagingSegue"/>
-                        <outlet property="toUserNameField" destination="72" id="name-outlet-72"/>
+                        <outlet property="SearchBar" destination="452" id="name-outlet-452"/>
+                        <outlet property="MessageBoardTable" destination="456" id="name-outlet-456"/>
                     </connections>
-                    <navigationItem title="Title" id="242" key="navigationItem"/>
+                    <navigationItem title="Message Board" id="242" key="navigationItem"/>
                     <extendedEdge key="edgesForExtendedLayout"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

@@ -35,7 +35,10 @@ namespace Mehspot.Android
             }
         }
 
+        public string ToUserId { get; set; } = null;
+
         public IViewHelper ViewHelper { get; private set; }
+
 
         protected override async void OnCreate (Bundle savedInstanceState)
         {

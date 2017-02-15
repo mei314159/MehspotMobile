@@ -44,6 +44,8 @@
     <Compile Include="MehspotAppContext.cs" />
     <Compile Include="Models\MessagingModel.cs" />
     <Compile Include="Contracts\ViewControllers\IMessagingViewController.cs" />
+    <Compile Include="DTO\MessageBoardItemDto.cs" />
+    <Compile Include="DTO\ApplicationUserBaseDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
