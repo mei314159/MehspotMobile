@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Messaging;
 
@@ -20,6 +21,7 @@ namespace Mehspot.Core.Models
         public async Task LoadMessagesAsync ()
         {
             viewController.ViewHelper.ShowOverlay ("Loading messages...");
+            //TODO: toUserName value is a temporary solution that was used unit messagebord implemented. Should be removed when android version will be updated;
             var messagesResult = await messagesService.GetMessages (Page++, viewController.ToUserId, viewController.ToUserName); 
             if (messagesResult.IsSuccess) {
                 viewController.DisplayMessages (messagesResult);
@@ -32,6 +34,7 @@ namespace Mehspot.Core.Models
             var message = viewController.MessageFieldValue;
             if (!string.IsNullOrWhiteSpace (message)) {
                 viewController.ToggleMessagingControls (false);
+                //TODO: toUserName value is a temporary solution that was used unit messagebord implemented. Should be removed when android version will be updated;
                 var result = await messagesService.SendMessageAsync (message, viewController.ToUserId, viewController.ToUserName);
                                   
                 if (result.IsSuccess) {
@@ -41,6 +44,11 @@ namespace Mehspot.Core.Models
 
                 viewController.ToggleMessagingControls (true);
             }
+        }
+
+        public async Task MarkMessagesReadAsync ()
+        {
+            await messagesService.MarkMessagesReadAsync (viewController.ToUserId);
         }
     }
 

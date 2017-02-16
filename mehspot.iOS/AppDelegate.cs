@@ -2,6 +2,7 @@
 using HockeyApp.iOS;
 using mehspot.iOS.Core;
 using Mehspot.Core;
+using SDWebImage;
 using UIKit;
 
 namespace mehspot.iOS
@@ -30,6 +31,10 @@ namespace mehspot.iOS
             this.Window.RootViewController = GetInitialViewController (MehspotAppContext.Instance.AuthManager.IsAuthenticated ());
             this.Window.MakeKeyAndVisible ();
             this.Window.BackgroundColor = UIColor.White;
+
+            SDWebImageManager.SharedManager.ImageDownloader.MaxConcurrentDownloads = 3;
+            SDWebImageManager.SharedManager.ImageCache.ShouldCacheImagesInMemory = false;
+            SDImageCache.SharedImageCache.ShouldCacheImagesInMemory = false;
             return true;
         }
 

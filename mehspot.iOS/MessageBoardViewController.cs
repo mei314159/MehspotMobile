@@ -6,6 +6,8 @@ using Mehspot.Core.Messaging;
 using mehspot.iOS.Core;
 using Mehspot.Core;
 using mehspot.iOS.Wrappers;
+using System.Threading.Tasks;
+using SDWebImage;
 
 namespace mehspot.iOS
 {
@@ -13,6 +15,7 @@ namespace mehspot.iOS
     {
         private readonly MessagesService messagingModel;
         private ViewHelper viewHelper;
+        private UIRefreshControl refreshControl;
         private MessageBoardItemDto [] items;
         private MessageBoardItemDto selectedItem;
 
@@ -31,28 +34,44 @@ namespace mehspot.iOS
             MessageBoardTable.RegisterNibForCellReuse (MessageBoardCell.Nib, MessageBoardCell.Key);
             MessageBoardTable.WeakDataSource = this;
             MessageBoardTable.Delegate = this;
+            this.SearchBar.OnEditingStarted += SearchBar_OnEditingStarted;
+            this.SearchBar.OnEditingStopped += SearchBar_OnEditingStopped;
+            this.SearchBar.CancelButtonClicked += SearchBar_CancelButtonClicked;
+            this.SearchBar.SearchButtonClicked += SearchBar_SearchButtonClicked;
+            refreshControl = new UIRefreshControl ();
+            refreshControl.ValueChanged += RefreshControl_ValueChanged;
+            this.MessageBoardTable.AddSubview (refreshControl);
+            LoadMessageBoardAsync ();
         }
 
-        public override async void ViewDidAppear (bool animated)
+        async void RefreshControl_ValueChanged (object sender, EventArgs e)
         {
-            viewHelper.ShowOverlay ("Loading Message Board...");
-            var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
-            if (messageBoardResult.IsSuccess) {
-                this.items = messageBoardResult.Data;
-                MessageBoardTable.ReloadData ();
-            }
-            viewHelper.HideOverlay ();
+            await LoadMessageBoardAsync ();
+            refreshControl.EndRefreshing ();
         }
 
-        //partial void SubmitButtonTouched (UIButton sender)
-        //{
-        //    GoToMessaging ();
-        //}
+        void SearchBar_OnEditingStarted (object sender, EventArgs e)
+        {
+            SearchBar.SetShowsCancelButton (true, true);
+        }
 
-        //public override void ViewDidLoad ()
-        //{
-        //    toUserNameField.ShouldReturn += TextFieldShouldReturn;
-        //}
+        void SearchBar_OnEditingStopped (object sender, EventArgs e)
+        {
+            SearchBar.SetShowsCancelButton (false, true);
+            SearchBar.ResignFirstResponder ();
+        }
+
+        async void SearchBar_CancelButtonClicked (object sender, EventArgs e)
+        {
+            SearchBar.EndEditing (true);
+            await LoadMessageBoardAsync ();
+        }
+
+        async void SearchBar_SearchButtonClicked (object sender, EventArgs e)
+        {
+            SearchBar.EndEditing (true);
+            await LoadMessageBoardAsync ();
+        }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
@@ -71,6 +90,18 @@ namespace mehspot.iOS
             //}
         }
 
+        async Task LoadMessageBoardAsync ()
+        {
+            viewHelper.ShowOverlay ("Loading Message Board...");
+
+            var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
+            if (messageBoardResult.IsSuccess) {
+                this.items = messageBoardResult.Data;
+                MessageBoardTable.ReloadData ();
+            }
+            viewHelper.HideOverlay ();
+        }
+
         void GoToMessaging ()
         {
             PerformSegue ("GoToMessagingSegue", this);
@@ -86,7 +117,7 @@ namespace mehspot.iOS
             var item = items [indexPath.Row];
 
             var cell = MessageBoardTable.DequeueReusableCell (MessageBoardCell.Key, indexPath);
-            ConfigureCell (cell as MessageBoardCell, item); 
+            ConfigureCell (cell as MessageBoardCell, item);
             return cell;
         }
 
@@ -100,9 +131,12 @@ namespace mehspot.iOS
 
         private void ConfigureCell (MessageBoardCell cell, MessageBoardItemDto item)
         {
-            if (!string.IsNullOrEmpty (item.WithUser.ProfilePicturePath))
-            {
-                cell.ProfilePicture.Image = UIImage.LoadFromData (NSData.FromUrl (NSUrl.FromString (item.WithUser.ProfilePicturePath)));
+            if (!string.IsNullOrEmpty (item.WithUser.ProfilePicturePath)) {
+
+                var url = NSUrl.FromString (item.WithUser.ProfilePicturePath);
+                if (url != null) {
+                    cell.ProfilePicture.SetImage (url);
+                }
             }
             cell.ProfilePicture.Layer.CornerRadius = cell.ProfilePicture.Frame.Width / 2;
             cell.UserName.Text = item.WithUser.UserName;

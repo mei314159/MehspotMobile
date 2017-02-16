@@ -7,11 +7,11 @@ namespace Mehspot.Core.DTO
 
         public string ToUserId { get; set; }
 
-        public DateTime SentDate { get; set; }
+        public DateTime? SentDate { get; set; }
 
         public string LastMessage { get; set; }
 
-        public bool IsRead { get; set; }
+        public bool? IsRead { get; set; }
 
         public bool IsOnline { get; set; }
     }

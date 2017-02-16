@@ -84,12 +84,14 @@ namespace mehspot.iOS
             await messagingModel.SendMessageAsync ();
         }
 
-        void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
+        async void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
         {
             if (notificationType == MessagingNotificationType.Message && string.Equals (data.FromUserId, ToUserId, StringComparison.InvariantCultureIgnoreCase)) {
                 InvokeOnMainThread (() => {
                     AddMessageBubbleToEnd (data);
                 });
+
+                await this.messagingModel.MarkMessagesReadAsync ();
             }
         }
 

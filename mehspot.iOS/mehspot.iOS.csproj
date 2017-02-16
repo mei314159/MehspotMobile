@@ -100,13 +100,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SDWebImage">
+      <HintPath>..\packages\Xamarin.SDWebImage.3.7.5\lib\Xamarin.iOS\SDWebImage.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\First.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\First.imageset\vector.pdf" />
-    <ImageAsset Include="Assets.xcassets\Second.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Second.imageset\vector.pdf" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40%403x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40%402x.png" />
@@ -118,6 +117,12 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\chat-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\chat-icon.imageset\chat-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\chat-icon.imageset\chat-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\about-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\about-icon.imageset\about-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\about-icon.imageset\about-icon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -125,6 +130,8 @@
     <Folder Include="Views\" />
     <Folder Include="Wrappers\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Assets.xcassets\chat-icon.imageset\" />
+    <Folder Include="Assets.xcassets\about-icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -190,6 +197,12 @@
       <Project>{0AF925F0-1DF8-4BFB-8FB7-9A3ECB7B3267}</Project>
       <Name>Mehspot.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="sdwebimage">
+      <Version>3.7.5</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

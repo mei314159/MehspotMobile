@@ -134,5 +134,41 @@ namespace Mehspot.Core.Messaging
                 }
             }
         }
+
+
+        public async Task<Result> MarkMessagesReadAsync (string toUserId)
+        {
+            var uri = new Uri (Constants.ApiHost + "/api/Badges/MarkMessagesRead");
+
+            using (var webClient = new HttpClient ()) {
+                try {
+                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+
+                    var data = new Dictionary<string, string> ();
+                    data.Add ("toUserId", toUserId);
+
+                    var response = await webClient.PostAsync (uri, new FormUrlEncodedContent (data)).ConfigureAwait (false);
+                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+                        return new Result {
+                            IsSuccess = true,
+                            ErrorMessage = null
+                        };
+                    } else {
+                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
+                        return new Result {
+                            IsSuccess = false,
+                            ErrorMessage = errorResponse.ErrorDescription
+                        };
+                    }
+
+                } catch (Exception ex) {
+                    return new Result {
+                        IsSuccess = false,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+        }
     }
 }
