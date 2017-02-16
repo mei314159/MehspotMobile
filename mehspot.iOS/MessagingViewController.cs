@@ -50,7 +50,7 @@ namespace mehspot.iOS
             NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, OnKeyboardNotification);
         }
 
-        public override async void ViewDidLoad ()
+        public override void ViewDidLoad ()
         {
             View.BringSubviewToFront (messageFieldWrapper);
             this.View.BackgroundColor = UIColor.White;

@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2" translatesAutoresizingMaskIntoConstraints="NO" image="profile_image" clipsSubviews="YES">
-                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
                         <constraints>
-                            <constraint id="5" firstItem="2" firstAttribute="width" constant="70"/>
+                            <constraint id="5" firstItem="2" firstAttribute="width" constant="50"/>
                             <constraint id="6" firstAttribute="width" secondItem="2" secondAttribute="height" multiplier="1:1"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7" translatesAutoresizingMaskIntoConstraints="NO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                         <rect key="frame" x="85" y="4" width="205" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -38,15 +38,15 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint id="3" firstItem="2" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
-                    <constraint id="4" firstItem="2" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading"/>
+                    <constraint id="3" firstItem="2" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="10"/>
+                    <constraint id="4" firstItem="2" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="10"/>
                     <constraint id="8" firstItem="7" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="4"/>
                     <constraint id="9" firstItem="7" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="15"/>
                     <constraint id="10" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="30"/>
                     <constraint id="17" firstItem="16" firstAttribute="leading" secondItem="7" secondAttribute="leading"/>
                     <constraint id="18" firstItem="16" firstAttribute="trailing" secondItem="7" secondAttribute="trailing"/>
                     <constraint id="19" firstItem="16" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="4"/>
-                    <constraint id="21" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="16" secondAttribute="bottom" constant="4" relation="lessThanOrEqual"/>
+                    <constraint id="21" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="16" secondAttribute="bottom" constant="4" relation="greaterThanOrEqual"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -59,5 +59,7 @@
     <resources>
         <image name="logo.jpg" width="350" height="350"/>
         <image name="profile_image.png" width="400" height="400"/>
+        <image name="chat-icon" width="25" height="25"/>
+        <image name="about-icon" width="25" height="25"/>
     </resources>
 </document>
