@@ -11,6 +11,8 @@ namespace Mehspot.Core.DTO
 
         public string LastMessage { get; set; }
 
+        public int UnreadMessagesCount { get; set; }
+
         public bool? IsRead { get; set; }
 
         public bool IsOnline { get; set; }

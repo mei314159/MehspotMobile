@@ -15,6 +15,10 @@ namespace mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        public UIKit.UILabel CountLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         public UIKit.UILabel Message { get; set; }
 
         [Outlet]
@@ -27,6 +31,11 @@ namespace mehspot.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (CountLabel != null) {
+                CountLabel.Dispose ();
+                CountLabel = null;
+            }
+
             if (Message != null) {
                 Message.Dispose ();
                 Message = null;

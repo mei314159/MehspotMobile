@@ -306,6 +306,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="BottomMargin" destination="407" id="name-outlet-407"/>
                         <outlet property="messageFieldWrapper" destination="406" id="name-outlet-406"/>
                     </connections>
+                    <navigationItem title="Title" id="496" key="navigationItem"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

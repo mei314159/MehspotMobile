@@ -54,7 +54,7 @@ namespace mehspot.iOS
         {
             View.BringSubviewToFront (messageFieldWrapper);
             this.View.BackgroundColor = UIColor.White;
-            this.Title = ToUserName;
+
 
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
             messagesScrollView.AddSubview (refreshControl);
@@ -68,9 +68,16 @@ namespace mehspot.iOS
             messageField.ResignFirstResponder ();
         }
 
+        public override void ViewWillAppear (bool animated)
+        {
+            this.Title = ToUserName;
+            this.NavigationItem.Title = ToUserName;
+        }
+
         public override async void ViewDidAppear (bool animated)
         {
             await this.messagingModel.LoadMessagesAsync ();
+            await this.messagingModel.MarkMessagesReadAsync ();
         }
 
         async void RefreshControl_ValueChanged (object sender, EventArgs e)

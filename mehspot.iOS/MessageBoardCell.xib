@@ -22,19 +22,46 @@
                             <constraint id="5" firstItem="2" firstAttribute="width" constant="50"/>
                             <constraint id="6" firstAttribute="width" secondItem="2" secondAttribute="height" multiplier="1:1"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                <real key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                        <rect key="frame" x="85" y="4" width="205" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7" translatesAutoresizingMaskIntoConstraints="NO" text="User Name">
+                        <rect key="frame" x="75" y="4" width="189" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
+                        <constraints>
+                            <constraint id="29" firstItem="7" firstAttribute="height" constant="21"/>
+                        </constraints>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="4" numberOfLines="4" misplaced="YES">
-                        <rect key="frame" x="85" y="28" width="205" height="38"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="4" numberOfLines="4">
+                        <rect key="frame" x="75" y="28" width="189" height="38"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <string key="text">dfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfg</string>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="35" translatesAutoresizingMaskIntoConstraints="NO" clipsSubviews="YES">
+                        <rect key="frame" x="275" y="22" width="36" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                        <nil key="highlightedColor"/>
+                        <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                        <constraints>
+                            <constraint id="38" firstItem="35" firstAttribute="height" constant="24"/>
+                            <constraint id="39" firstItem="35" firstAttribute="width" constant="36"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="PaddingH">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
                 <constraints>
@@ -42,17 +69,20 @@
                     <constraint id="4" firstItem="2" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="10"/>
                     <constraint id="8" firstItem="7" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="4"/>
                     <constraint id="9" firstItem="7" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="15"/>
-                    <constraint id="10" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="30"/>
+                    <constraint id="10" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="56"/>
                     <constraint id="17" firstItem="16" firstAttribute="leading" secondItem="7" secondAttribute="leading"/>
                     <constraint id="18" firstItem="16" firstAttribute="trailing" secondItem="7" secondAttribute="trailing"/>
                     <constraint id="19" firstItem="16" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="4"/>
                     <constraint id="21" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="16" secondAttribute="bottom" constant="4" relation="greaterThanOrEqual"/>
+                    <constraint id="36" firstItem="35" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
+                    <constraint id="37" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="35" secondAttribute="trailing" constant="10"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="ProfilePicture" destination="2" id="name-outlet-2"/>
                 <outlet property="UserName" destination="7" id="name-outlet-7"/>
                 <outlet property="Message" destination="16" id="name-outlet-16"/>
+                <outlet property="CountLabel" destination="35" id="name-outlet-35"/>
             </connections>
         </tableViewCell>
     </objects>

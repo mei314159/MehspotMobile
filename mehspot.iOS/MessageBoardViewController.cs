@@ -41,6 +41,11 @@ namespace mehspot.iOS
             refreshControl = new UIRefreshControl ();
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
             this.MessageBoardTable.AddSubview (refreshControl);
+            viewHelper.ShowOverlay ("Loading Message Board...");
+        }
+
+        public override void ViewDidAppear (bool animated)
+        {
             LoadMessageBoardAsync ();
         }
 
@@ -83,17 +88,25 @@ namespace mehspot.iOS
 
         void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
         {
-            //if (notificationType == MessagingNotificationType.Message && string.Equals (data.FromUserName, ToUserName, StringComparison.InvariantCultureIgnoreCase)) {
-            //    InvokeOnMainThread (() => {
-            //        AddMessageBubbleToEnd (data);
-            //    });
-            //}
+            if (notificationType == MessagingNotificationType.Message) {
+                InvokeOnMainThread (() => {
+
+                    for (int i = 0; i < items.Length; i++) {
+                        var item = items [i];
+                        if (item.WithUser.Id == data.FromUserId) {
+                            var cell = (MessageBoardCell) MessageBoardTable.CellAt (NSIndexPath.FromItemSection (i, 0));
+                            cell.CountLabel.Text = (int.Parse (cell.CountLabel.Text) + 1).ToString();
+                            cell.CountLabel.Hidden = false;
+                            break;
+                        }
+                    }
+                });
+            }
         }
 
         async Task LoadMessageBoardAsync ()
         {
-            viewHelper.ShowOverlay ("Loading Message Board...");
-
+            
             var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
             if (messageBoardResult.IsSuccess) {
                 this.items = messageBoardResult.Data;
@@ -138,9 +151,10 @@ namespace mehspot.iOS
                     cell.ProfilePicture.SetImage (url);
                 }
             }
-            cell.ProfilePicture.Layer.CornerRadius = cell.ProfilePicture.Frame.Width / 2;
             cell.UserName.Text = item.WithUser.UserName;
             cell.Message.Text = item.LastMessage;
+            cell.CountLabel.Hidden = item.UnreadMessagesCount == 0;
+            cell.CountLabel.Text = item.UnreadMessagesCount.ToString ();
         }
     }
 }
