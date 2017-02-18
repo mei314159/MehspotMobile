@@ -29,7 +29,7 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>74ed2620-353c-4aab-bdd2-7776c29e2a1a</CodesignProvision>
+    <CodesignProvision>f19b65c4-7128-478a-a7bf-16b604f54ff3</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
