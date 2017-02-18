@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using System;
+using Foundation;
 using HockeyApp.iOS;
 using mehspot.iOS.Core;
 using Mehspot.Core;
@@ -24,6 +25,7 @@ namespace mehspot.iOS
             InitializeHockeyApp ();
 
             MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
+            MehspotAppContext.Instance.HubError += SignalRHubError;
 
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
@@ -87,6 +89,11 @@ namespace mehspot.iOS
             }
 
             return storyboard.InstantiateInitialViewController ();
+        }
+
+        void SignalRHubError (Exception obj)
+        {
+            Console.WriteLine ($"SignalR Exception: {obj.Message} + {Environment.NewLine} + {obj.StackTrace}");
         }
     }
 }
