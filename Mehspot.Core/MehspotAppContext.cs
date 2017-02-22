@@ -23,6 +23,7 @@ namespace Mehspot.Core
 
         public void Initialize (IApplicationDataStorage dataStorage)
         {
+            DataStorage = dataStorage;
             AuthManager = new AuthenticationService (dataStorage);
             AuthManager.Authenticated += OnAuthenticated;
             var isAuthenticated = AuthManager.IsAuthenticated ();
@@ -32,6 +33,8 @@ namespace Mehspot.Core
                 });
             }
         }
+
+        public IApplicationDataStorage DataStorage { get; private set; }
 
         public AuthenticationService AuthManager { get; private set; }
 

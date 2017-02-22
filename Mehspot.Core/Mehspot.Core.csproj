@@ -46,6 +46,8 @@
     <Compile Include="Contracts\ViewControllers\IMessagingViewController.cs" />
     <Compile Include="DTO\MessageBoardItemDto.cs" />
     <Compile Include="DTO\ApplicationUserBaseDto.cs" />
+    <Compile Include="Push\PushService.cs" />
+    <Compile Include="Push\OsType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -53,6 +55,7 @@
     <Folder Include="Messaging\" />
     <Folder Include="DTO\" />
     <Folder Include="Contracts\ViewControllers\" />
+    <Folder Include="Push\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Foundation;
 using HockeyApp.iOS;
 using mehspot.iOS.Core;
+using mehspot.iOS.Core.DTO;
 using Mehspot.Core;
+using Mehspot.Core.Push;
+using Newtonsoft.Json;
 using SDWebImage;
 using UIKit;
 
@@ -13,6 +17,8 @@ namespace mehspot.iOS
     [Register ("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
+        private const string HockeyAppId = "939417b83e9b41b6bbfe772dd8129ac3";
+
         // class-level declarations
 
         public override UIWindow Window {
@@ -26,6 +32,7 @@ namespace mehspot.iOS
 
             MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
             MehspotAppContext.Instance.HubError += SignalRHubError;
+            MehspotAppContext.Instance.AuthManager.Authenticated += AuthManager_Authenticated;;
 
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
@@ -37,6 +44,9 @@ namespace mehspot.iOS
             SDWebImageManager.SharedManager.ImageDownloader.MaxConcurrentDownloads = 3;
             SDWebImageManager.SharedManager.ImageCache.ShouldCacheImagesInMemory = false;
             SDImageCache.SharedImageCache.ShouldCacheImagesInMemory = false;
+
+            AskForPushNotifications ();
+
             return true;
         }
 
@@ -71,10 +81,112 @@ namespace mehspot.iOS
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
 
+        public override void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)
+        {
+            // Get previous device token
+            var oldDeviceToken = MehspotAppContext.Instance.DataStorage.PushToken;
+
+            // Get current device token
+            var newDeviceToken = deviceToken.Description;
+            if (!string.IsNullOrWhiteSpace (newDeviceToken)) {
+                newDeviceToken = newDeviceToken.Trim ('<').Trim ('>').Replace (" ", string.Empty);
+            }
+
+            // Has the token changed?
+            if (string.IsNullOrEmpty (oldDeviceToken) || !oldDeviceToken.Equals (newDeviceToken) || !MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend) {
+
+                MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend = false;
+                MehspotAppContext.Instance.DataStorage.OldPushToken = oldDeviceToken;
+                MehspotAppContext.Instance.DataStorage.PushToken = newDeviceToken;
+                SendPushTokenToServerAsync (oldDeviceToken, newDeviceToken);
+            }
+        }
+
+        public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
+        {
+            NSError error = new NSError ();
+            var pushJson = new NSString (NSJsonSerialization.Serialize (userInfo, 0, out error), NSStringEncoding.UTF8).ToString ();
+            var notification = JsonConvert.DeserializeObject<IosNotification> (pushJson);
+
+
+
+            //if (application.ApplicationState == UIApplicationState.Active) {
+
+            //} else if (application.ApplicationState == UIApplicationState.Background) {
+
+            //} else if (application.ApplicationState == UIApplicationState.Inactive) {
+
+            //}
+            var controller = Window.RootViewController as UITabBarController;
+            if (controller == null)
+                return;
+            
+            foreach (var c in controller.ViewControllers) {
+                var rootController = c as UINavigationController;
+                if (rootController == null) {
+                    continue;
+                }
+
+                if (rootController.TopViewController is MessageBoardViewController) {
+                    var messageBoardViewController = ((MessageBoardViewController)rootController.TopViewController);
+
+                    controller.SelectedViewController = rootController;
+                    messageBoardViewController.GoToMessages (notification.FromUserId);
+                    break;
+                }
+
+                //if (rootController.TopViewController is MessagingViewController) {
+                //    ((MessagingViewController)rootController.TopViewController).unwid);
+                //    break;
+                //}
+            }
+        }
+
+        private void AskForPushNotifications ()
+        {
+            if (MehspotAppContext.Instance.DataStorage.PushIsEnabled) {
+                RegisterPushNotifications ();
+            } else {
+                UIAlertView alert = new UIAlertView (
+                                            "Enable push notifications",
+                                            "Do you want to get notified about the latest updates?",
+                                            null,
+                                            "Cancel",
+                                            new string [] { "Yes, I do" });
+                alert.Clicked += (object sender, UIButtonEventArgs e) => {
+                    MehspotAppContext.Instance.DataStorage.PushIsEnabled = true;
+                    if (e.ButtonIndex != alert.CancelButtonIndex) {
+                        RegisterPushNotifications ();
+                    }
+                };
+
+                alert.Show ();
+            }
+        }
+
+        private void RegisterPushNotifications ()
+        {
+            var pushSettings = UIUserNotificationSettings
+                                        .GetSettingsForTypes (
+                                            UIUserNotificationType.Alert |
+                                            UIUserNotificationType.Badge |
+                                            UIUserNotificationType.Sound, new NSSet ());
+
+            UIApplication.SharedApplication.RegisterUserNotificationSettings (pushSettings);
+            UIApplication.SharedApplication.RegisterForRemoteNotifications ();
+        }
+
+        private async Task SendPushTokenToServerAsync (string oldPushToken, string newPushToken)
+        {
+            var pushService = new PushService (MehspotAppContext.Instance.DataStorage);
+            var result = await pushService.RegisterAsync (oldPushToken, newPushToken, OsType.iOS);
+            MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend = result.IsSuccess;
+        }
+
         private void InitializeHockeyApp ()
         {
             var manager = BITHockeyManager.SharedHockeyManager;
-            manager.Configure ("939417b83e9b41b6bbfe772dd8129ac3");
+            manager.Configure (HockeyAppId);
             manager.CrashManager.EnableAppNotTerminatingCleanlyDetection = true;
             manager.DebugLogEnabled = true;
             manager.StartManager ();
@@ -94,6 +206,13 @@ namespace mehspot.iOS
         void SignalRHubError (Exception obj)
         {
             Console.WriteLine ($"SignalR Exception: {obj.Message} + {Environment.NewLine} + {obj.StackTrace}");
+        }
+
+        void AuthManager_Authenticated (Mehspot.Core.DTO.AuthenticationInfoDto obj)
+        {
+            if (!MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend) {
+                SendPushTokenToServerAsync (MehspotAppContext.Instance.DataStorage.OldPushToken, MehspotAppContext.Instance.DataStorage.PushToken);
+            }
         }
     }
 }

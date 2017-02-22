@@ -29,7 +29,7 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>f19b65c4-7128-478a-a7bf-16b604f54ff3</CodesignProvision>
+    <CodesignProvision>b4cdc6a1-57ec-425f-9ab7-3c8564b42602</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -84,7 +84,7 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>f19b65c4-7128-478a-a7bf-16b604f54ff3</CodesignProvision>
+    <CodesignProvision>b4cdc6a1-57ec-425f-9ab7-3c8564b42602</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -132,6 +132,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Assets.xcassets\chat-icon.imageset\" />
     <Folder Include="Assets.xcassets\about-icon.imageset\" />
+    <Folder Include="Core\DTO\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -148,12 +149,8 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="FirstViewController.cs" />
-    <Compile Include="SecondViewController.cs" />
     <Compile Include="FirstViewController.designer.cs">
       <DependentUpon>FirstViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SecondViewController.designer.cs">
-      <DependentUpon>SecondViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginViewController.cs" />
     <Compile Include="LoginViewController.designer.cs">
@@ -183,6 +180,7 @@
     <Compile Include="SimpleTableCell.designer.cs">
       <DependentUpon>SimpleTableCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\DTO\IosNotification.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

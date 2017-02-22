@@ -8,6 +8,7 @@ using Mehspot.Core;
 using mehspot.iOS.Wrappers;
 using System.Threading.Tasks;
 using SDWebImage;
+using System.Linq;
 
 namespace mehspot.iOS
 {
@@ -49,75 +50,12 @@ namespace mehspot.iOS
             LoadMessageBoardAsync ();
         }
 
-        async void RefreshControl_ValueChanged (object sender, EventArgs e)
-        {
-            await LoadMessageBoardAsync ();
-            refreshControl.EndRefreshing ();
-        }
-
-        void SearchBar_OnEditingStarted (object sender, EventArgs e)
-        {
-            SearchBar.SetShowsCancelButton (true, true);
-        }
-
-        void SearchBar_OnEditingStopped (object sender, EventArgs e)
-        {
-            SearchBar.SetShowsCancelButton (false, true);
-            SearchBar.ResignFirstResponder ();
-        }
-
-        async void SearchBar_CancelButtonClicked (object sender, EventArgs e)
-        {
-            SearchBar.EndEditing (true);
-            await LoadMessageBoardAsync ();
-        }
-
-        async void SearchBar_SearchButtonClicked (object sender, EventArgs e)
-        {
-            SearchBar.EndEditing (true);
-            await LoadMessageBoardAsync ();
-        }
-
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
             var controller = (MessagingViewController)segue.DestinationViewController;
             controller.ToUserName = this.selectedItem.WithUser.UserName;
             controller.ToUserId = this.selectedItem.WithUser.Id;
             base.PrepareForSegue (segue, sender);
-        }
-
-        void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
-        {
-            if (notificationType == MessagingNotificationType.Message) {
-                InvokeOnMainThread (() => {
-
-                    for (int i = 0; i < items.Length; i++) {
-                        var item = items [i];
-                        if (item.WithUser.Id == data.FromUserId) {
-                            var cell = (MessageBoardCell) MessageBoardTable.CellAt (NSIndexPath.FromItemSection (i, 0));
-                            cell.CountLabel.Text = (int.Parse (cell.CountLabel.Text) + 1).ToString();
-                            cell.CountLabel.Hidden = false;
-                            break;
-                        }
-                    }
-                });
-            }
-        }
-
-        async Task LoadMessageBoardAsync ()
-        {
-            
-            var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
-            if (messageBoardResult.IsSuccess) {
-                this.items = messageBoardResult.Data;
-                MessageBoardTable.ReloadData ();
-            }
-            viewHelper.HideOverlay ();
-        }
-
-        void GoToMessaging ()
-        {
-            PerformSegue ("GoToMessagingSegue", this);
         }
 
         public nint RowsInSection (UITableView tableView, nint section)
@@ -137,9 +75,31 @@ namespace mehspot.iOS
         [Export ("tableView:didSelectRowAtIndexPath:")]
         public void RowSelected (UITableView tableView, NSIndexPath indexPath)
         {
-            this.selectedItem = items [indexPath.Row];
-            GoToMessaging ();
+            GoToMessages (indexPath.Row);
             tableView.DeselectRow (indexPath, true);
+        }
+
+        public void GoToMessages (int index)
+        {
+            this.selectedItem = items [index];
+            PerformSegue ("GoToMessagingSegue", this);
+        }
+
+        public void GoToMessages (string userId)
+        {
+            this.selectedItem = items.FirstOrDefault (a => a.WithUser.Id == userId);
+            PerformSegue ("GoToMessagingSegue", this);
+        }
+
+        private async Task LoadMessageBoardAsync ()
+        {
+
+            var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
+            if (messageBoardResult.IsSuccess) {
+                this.items = messageBoardResult.Data;
+                MessageBoardTable.ReloadData ();
+            }
+            viewHelper.HideOverlay ();
         }
 
         private void ConfigureCell (MessageBoardCell cell, MessageBoardItemDto item)
@@ -155,6 +115,53 @@ namespace mehspot.iOS
             cell.Message.Text = item.LastMessage;
             cell.CountLabel.Hidden = item.UnreadMessagesCount == 0;
             cell.CountLabel.Text = item.UnreadMessagesCount.ToString ();
+        }
+
+        private void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
+        {
+            if (notificationType == MessagingNotificationType.Message) {
+                InvokeOnMainThread (() => {
+
+                    for (int i = 0; i < items.Length; i++) {
+                        var item = items [i];
+                        if (item.WithUser.Id == data.FromUserId) {
+                            var cell = (MessageBoardCell)MessageBoardTable.CellAt (NSIndexPath.FromItemSection (i, 0));
+                            cell.CountLabel.Text = (int.Parse (cell.CountLabel.Text) + 1).ToString ();
+                            cell.CountLabel.Hidden = false;
+                            break;
+                        }
+                    }
+                });
+            }
+        }
+
+        private async void RefreshControl_ValueChanged (object sender, EventArgs e)
+        {
+            await LoadMessageBoardAsync ();
+            refreshControl.EndRefreshing ();
+        }
+
+        private void SearchBar_OnEditingStarted (object sender, EventArgs e)
+        {
+            SearchBar.SetShowsCancelButton (true, true);
+        }
+
+        private void SearchBar_OnEditingStopped (object sender, EventArgs e)
+        {
+            SearchBar.SetShowsCancelButton (false, true);
+            SearchBar.ResignFirstResponder ();
+        }
+
+        private async void SearchBar_CancelButtonClicked (object sender, EventArgs e)
+        {
+            SearchBar.EndEditing (true);
+            await LoadMessageBoardAsync ();
+        }
+
+        private async void SearchBar_SearchButtonClicked (object sender, EventArgs e)
+        {
+            SearchBar.EndEditing (true);
+            await LoadMessageBoardAsync ();
         }
     }
 }
