@@ -98,12 +98,15 @@ namespace mehspot.iOS
             }
 
             // Has the token changed?
-            if (string.IsNullOrEmpty (oldDeviceToken) || !oldDeviceToken.Equals (newDeviceToken) || !MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend) {
+            if ((string.IsNullOrEmpty (oldDeviceToken) || 
+                 !oldDeviceToken.Equals (newDeviceToken) || 
+                 !MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend)) {
 
                 MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend = false;
                 MehspotAppContext.Instance.DataStorage.OldPushToken = oldDeviceToken;
                 MehspotAppContext.Instance.DataStorage.PushToken = newDeviceToken;
-                SendPushTokenToServerAsync (oldDeviceToken, newDeviceToken);
+                if (MehspotAppContext.Instance.AuthManager.IsAuthenticated ())
+                    SendPushTokenToServerAsync (oldDeviceToken, newDeviceToken);
             }
         }
 
@@ -210,7 +213,9 @@ namespace mehspot.iOS
         void AuthManager_Authenticated (Mehspot.Core.DTO.AuthenticationInfoDto obj)
         {
             if (!MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend) {
-                SendPushTokenToServerAsync (MehspotAppContext.Instance.DataStorage.OldPushToken, MehspotAppContext.Instance.DataStorage.PushToken);
+                var oldPushToken = MehspotAppContext.Instance.DataStorage.OldPushToken;
+                var pushToken = MehspotAppContext.Instance.DataStorage.PushToken;
+                SendPushTokenToServerAsync (oldPushToken, pushToken);
             }
         }
     }
