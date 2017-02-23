@@ -10,6 +10,9 @@ namespace mehspot.iOS.Core.DTO
 
         [JsonProperty (PropertyName = "fromUserId")]
         public string FromUserId { get; set; }
+
+        [JsonProperty (PropertyName = "fromUserName")]
+        public string FromUseName { get; set; }
     }
 
     public class NotificationData

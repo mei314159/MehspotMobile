@@ -18,7 +18,9 @@ namespace mehspot.iOS
         private ViewHelper viewHelper;
         private UIRefreshControl refreshControl;
         private MessageBoardItemDto [] items;
-        private MessageBoardItemDto selectedItem;
+        private string SelectedUserId;
+        private string SelectedUserName;
+        private bool GoToMessagesWhenAppear;
 
 
         public MessageBoardViewController (IntPtr handle) : base (handle)
@@ -45,16 +47,20 @@ namespace mehspot.iOS
             viewHelper.ShowOverlay ("Loading Message Board...");
         }
 
-        public override void ViewDidAppear (bool animated)
+        public override async void ViewDidAppear (bool animated)
         {
-            LoadMessageBoardAsync ();
+            await LoadMessageBoardAsync ();
+            if (GoToMessagesWhenAppear) {
+                GoToMessagesWhenAppear = false;
+                PerformSegue ("GoToMessagingSegue", this);
+            }
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
             var controller = (MessagingViewController)segue.DestinationViewController;
-            controller.ToUserName = this.selectedItem.WithUser.UserName;
-            controller.ToUserId = this.selectedItem.WithUser.Id;
+            controller.ToUserName = this.SelectedUserName;
+            controller.ToUserId = this.SelectedUserId;
             base.PrepareForSegue (segue, sender);
         }
 
@@ -75,25 +81,26 @@ namespace mehspot.iOS
         [Export ("tableView:didSelectRowAtIndexPath:")]
         public void RowSelected (UITableView tableView, NSIndexPath indexPath)
         {
-            GoToMessages (indexPath.Row);
+            var dto = items [indexPath.Row].WithUser;
+            this.SelectedUserId = dto.Id;
+            this.SelectedUserName = dto.UserName;
+            PerformSegue ("GoToMessagingSegue", this);
             tableView.DeselectRow (indexPath, true);
         }
 
-        public void GoToMessages (int index)
+        public void ShowMessagesFromUser (string userId, string userName)
         {
-            this.selectedItem = items [index];
-            PerformSegue ("GoToMessagingSegue", this);
-        }
-
-        public void GoToMessages (string userId)
-        {
-            this.selectedItem = items.FirstOrDefault (a => a.WithUser.Id == userId);
-            PerformSegue ("GoToMessagingSegue", this);
+            this.SelectedUserId = userId;
+            this.SelectedUserName = userName;
+            if (this.IsViewLoaded) {
+                PerformSegue ("GoToMessagingSegue", this);
+            } else {
+                GoToMessagesWhenAppear = true;
+            }
         }
 
         private async Task LoadMessageBoardAsync ()
         {
-
             var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
             if (messageBoardResult.IsSuccess) {
                 this.items = messageBoardResult.Data;

@@ -32,7 +32,7 @@ namespace mehspot.iOS
 
             MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
             MehspotAppContext.Instance.HubError += SignalRHubError;
-            MehspotAppContext.Instance.AuthManager.Authenticated += AuthManager_Authenticated;;
+            MehspotAppContext.Instance.AuthManager.Authenticated += AuthManager_Authenticated; ;
 
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
@@ -46,7 +46,12 @@ namespace mehspot.iOS
             SDImageCache.SharedImageCache.ShouldCacheImagesInMemory = false;
 
             AskForPushNotifications ();
-
+            if (launchOptions != null) {
+                var notification = (NSDictionary)launchOptions.ObjectForKey (UIApplication.LaunchOptionsRemoteNotificationKey);
+                if (notification != null) {
+                    ProcessNotification (notification);
+                }
+            }
             return true;
         }
 
@@ -104,42 +109,7 @@ namespace mehspot.iOS
 
         public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
         {
-            NSError error = new NSError ();
-            var pushJson = new NSString (NSJsonSerialization.Serialize (userInfo, 0, out error), NSStringEncoding.UTF8).ToString ();
-            var notification = JsonConvert.DeserializeObject<IosNotification> (pushJson);
-
-
-
-            //if (application.ApplicationState == UIApplicationState.Active) {
-
-            //} else if (application.ApplicationState == UIApplicationState.Background) {
-
-            //} else if (application.ApplicationState == UIApplicationState.Inactive) {
-
-            //}
-            var controller = Window.RootViewController as UITabBarController;
-            if (controller == null)
-                return;
-            
-            foreach (var c in controller.ViewControllers) {
-                var rootController = c as UINavigationController;
-                if (rootController == null) {
-                    continue;
-                }
-
-                if (rootController.TopViewController is MessageBoardViewController) {
-                    var messageBoardViewController = ((MessageBoardViewController)rootController.TopViewController);
-
-                    controller.SelectedViewController = rootController;
-                    messageBoardViewController.GoToMessages (notification.FromUserId);
-                    break;
-                }
-
-                //if (rootController.TopViewController is MessagingViewController) {
-                //    ((MessagingViewController)rootController.TopViewController).unwid);
-                //    break;
-                //}
-            }
+            ProcessNotification (userInfo);
         }
 
         private void AskForPushNotifications ()
@@ -161,6 +131,35 @@ namespace mehspot.iOS
                 };
 
                 alert.Show ();
+            }
+        }
+
+        void ProcessNotification (NSDictionary userInfo)
+        {
+            var controller = Window.RootViewController as UITabBarController;
+            if (controller == null)
+                return;
+
+            foreach (var c in controller.ViewControllers) {
+                var rootController = c as UINavigationController;
+                if (rootController == null) {
+                    continue;
+                }
+
+                if (rootController.TopViewController is MessageBoardViewController) {
+                    var messageBoardViewController = ((MessageBoardViewController)rootController.TopViewController);
+
+                    if (controller.SelectedViewController != rootController || !messageBoardViewController.IsViewLoaded) {
+                        controller.SelectedViewController = rootController;
+
+                        NSError error = new NSError ();
+                        var pushJson = new NSString (NSJsonSerialization.Serialize (userInfo, 0, out error), NSStringEncoding.UTF8).ToString ();
+                        var notification = JsonConvert.DeserializeObject<IosNotification> (pushJson);
+
+                        messageBoardViewController.ShowMessagesFromUser (notification.FromUserId, notification.FromUseName);
+                        break;
+                    }
+                }
             }
         }
 
