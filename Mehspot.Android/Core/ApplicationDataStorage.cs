@@ -4,6 +4,7 @@ using mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
 using System;
+using Mehspot.Core.Push;
 
 namespace mehspot.Android.Core
 {
@@ -83,6 +84,14 @@ namespace mehspot.Android.Core
                 var prefEditor = settings.Edit ();
                 prefEditor.PutBoolean (nameof (IApplicationDataStorage.PushIsEnabled), value);
                 prefEditor.Commit ();
+            }
+        }
+
+
+
+        public OsType OsType {
+            get {
+                return OsType.Android;
             }
         }
     }

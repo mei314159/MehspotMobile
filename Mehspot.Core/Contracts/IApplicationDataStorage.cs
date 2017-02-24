@@ -1,4 +1,5 @@
 ﻿using Mehspot.Core.DTO;
+using Mehspot.Core.Push;
 
 namespace mehspot.Core.Contracts
 {
@@ -9,5 +10,6 @@ namespace mehspot.Core.Contracts
         string PushToken { get; set; }
         bool PushIsEnabled { get; set; }
         bool PushDeviceTokenSentToBackend { get; set; }
+        OsType OsType { get; }
     }
 }

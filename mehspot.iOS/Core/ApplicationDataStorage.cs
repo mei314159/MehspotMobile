@@ -3,6 +3,7 @@ using Foundation;
 using mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
+using Mehspot.Core.Push;
 
 namespace mehspot.iOS.Core
 {
@@ -22,6 +23,7 @@ namespace mehspot.iOS.Core
             set {
                 var data = value == null ? null : JsonConvert.SerializeObject (value);
                 NSUserDefaults.StandardUserDefaults.SetString (data, nameof (IApplicationDataStorage.AuthInfo));
+                NSUserDefaults.StandardUserDefaults.Synchronize ();
             }
         }
 
@@ -38,6 +40,7 @@ namespace mehspot.iOS.Core
                 NSUserDefaults
                     .StandardUserDefaults
                     .SetString (value, nameof (IApplicationDataStorage.PushToken));
+                NSUserDefaults.StandardUserDefaults.Synchronize ();
             }
         }
 
@@ -57,6 +60,7 @@ namespace mehspot.iOS.Core
                     NSUserDefaults
                         .StandardUserDefaults
                         .SetString (value, nameof (IApplicationDataStorage.OldPushToken));
+                    NSUserDefaults.StandardUserDefaults.Synchronize ();
                 }
             }
         }
@@ -74,6 +78,7 @@ namespace mehspot.iOS.Core
                 NSUserDefaults
                     .StandardUserDefaults
                     .SetBool (value, nameof (IApplicationDataStorage.PushDeviceTokenSentToBackend));
+                NSUserDefaults.StandardUserDefaults.Synchronize ();
             }
         }
 
@@ -90,6 +95,13 @@ namespace mehspot.iOS.Core
                 NSUserDefaults
                     .StandardUserDefaults
                     .SetBool (value, nameof (IApplicationDataStorage.PushIsEnabled));
+                NSUserDefaults.StandardUserDefaults.Synchronize ();
+            }
+        }
+
+        public OsType OsType {
+            get {
+                return OsType.iOS;
             }
         }
     }

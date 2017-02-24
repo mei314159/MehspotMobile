@@ -32,7 +32,6 @@ namespace mehspot.iOS
 
             MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
             MehspotAppContext.Instance.HubError += SignalRHubError;
-            MehspotAppContext.Instance.AuthManager.Authenticated += AuthManager_Authenticated; ;
 
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
@@ -45,7 +44,6 @@ namespace mehspot.iOS
             SDWebImageManager.SharedManager.ImageCache.ShouldCacheImagesInMemory = false;
             SDImageCache.SharedImageCache.ShouldCacheImagesInMemory = false;
 
-            AskForPushNotifications ();
             if (launchOptions != null) {
                 var notification = (NSDictionary)launchOptions.ObjectForKey (UIApplication.LaunchOptionsRemoteNotificationKey);
                 if (notification != null) {
@@ -86,7 +84,7 @@ namespace mehspot.iOS
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
 
-        public override void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)
+        public override async void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)
         {
             // Get previous device token
             var oldDeviceToken = MehspotAppContext.Instance.DataStorage.PushToken;
@@ -95,18 +93,18 @@ namespace mehspot.iOS
             var newDeviceToken = deviceToken.Description;
             if (!string.IsNullOrWhiteSpace (newDeviceToken)) {
                 newDeviceToken = newDeviceToken.Trim ('<').Trim ('>').Replace (" ", string.Empty);
-            }
 
-            // Has the token changed?
-            if ((string.IsNullOrEmpty (oldDeviceToken) || 
-                 !oldDeviceToken.Equals (newDeviceToken) || 
-                 !MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend)) {
+                // Has the token changed?
+                if ((string.IsNullOrEmpty (oldDeviceToken) ||
+                     !oldDeviceToken.Equals (newDeviceToken) ||
+                     !MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend)) {
 
-                MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend = false;
-                MehspotAppContext.Instance.DataStorage.OldPushToken = oldDeviceToken;
-                MehspotAppContext.Instance.DataStorage.PushToken = newDeviceToken;
-                if (MehspotAppContext.Instance.AuthManager.IsAuthenticated ())
-                    SendPushTokenToServerAsync (oldDeviceToken, newDeviceToken);
+                    MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend = false;
+                    MehspotAppContext.Instance.DataStorage.OldPushToken = oldDeviceToken;
+                    MehspotAppContext.Instance.DataStorage.PushToken = newDeviceToken;
+                    if (MehspotAppContext.Instance.AuthManager.IsAuthenticated ())
+                        await SendPushTokenToServerAsync (oldDeviceToken, newDeviceToken);
+                }
             }
         }
 
@@ -115,7 +113,7 @@ namespace mehspot.iOS
             ProcessNotification (userInfo);
         }
 
-        private void AskForPushNotifications ()
+        public static void CheckPushNotificationsPermissions ()
         {
             if (MehspotAppContext.Instance.DataStorage.PushIsEnabled) {
                 RegisterPushNotifications ();
@@ -166,7 +164,7 @@ namespace mehspot.iOS
             }
         }
 
-        private void RegisterPushNotifications ()
+        private static void RegisterPushNotifications ()
         {
             var pushSettings = UIUserNotificationSettings
                                         .GetSettingsForTypes (
@@ -178,10 +176,10 @@ namespace mehspot.iOS
             UIApplication.SharedApplication.RegisterForRemoteNotifications ();
         }
 
-        private async Task SendPushTokenToServerAsync (string oldPushToken, string newPushToken)
+        private async Task SendPushTokenToServerAsync (string oldToken, string newToken)
         {
             var pushService = new PushService (MehspotAppContext.Instance.DataStorage);
-            var result = await pushService.RegisterAsync (oldPushToken, newPushToken, OsType.iOS);
+            var result = await pushService.RegisterAsync (oldToken, newToken);
             MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend = result.IsSuccess;
         }
 
@@ -208,15 +206,6 @@ namespace mehspot.iOS
         void SignalRHubError (Exception obj)
         {
             Console.WriteLine ($"SignalR Exception: {obj.Message} + {Environment.NewLine} + {obj.StackTrace}");
-        }
-
-        void AuthManager_Authenticated (Mehspot.Core.DTO.AuthenticationInfoDto obj)
-        {
-            if (!MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend) {
-                var oldPushToken = MehspotAppContext.Instance.DataStorage.OldPushToken;
-                var pushToken = MehspotAppContext.Instance.DataStorage.PushToken;
-                SendPushTokenToServerAsync (oldPushToken, pushToken);
-            }
         }
     }
 }

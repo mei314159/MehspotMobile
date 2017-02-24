@@ -19,7 +19,7 @@ namespace Mehspot.Core.Push
             _applicationDataStorage = applicationDataStorage;
         }
 
-        public async Task<Result> RegisterAsync (string oldToken, string newToken, OsType osType)
+        public async Task<Result> RegisterAsync (string oldToken, string newToken)
         {
             var uri = new Uri (Constants.ApiHost + "/api/Push/RegisterToken");
 
@@ -30,7 +30,7 @@ namespace Mehspot.Core.Push
                     var data = new Dictionary<string, string> ();
                     data.Add ("oldToken", oldToken);
                     data.Add ("token", newToken);
-                    data.Add ("osType", osType.ToString ());
+                    data.Add ("osType", _applicationDataStorage.OsType.ToString ());
 
                     var response = await webClient.PostAsync (uri, new FormUrlEncodedContent (data)).ConfigureAwait (false);
                     var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
