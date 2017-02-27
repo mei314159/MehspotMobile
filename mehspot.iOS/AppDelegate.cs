@@ -43,7 +43,6 @@ namespace mehspot.iOS
             SDWebImageManager.SharedManager.ImageDownloader.MaxConcurrentDownloads = 3;
             SDWebImageManager.SharedManager.ImageCache.ShouldCacheImagesInMemory = false;
             SDImageCache.SharedImageCache.ShouldCacheImagesInMemory = false;
-
             if (launchOptions != null) {
                 var notification = (NSDictionary)launchOptions.ObjectForKey (UIApplication.LaunchOptionsRemoteNotificationKey);
                 if (notification != null) {
@@ -137,6 +136,11 @@ namespace mehspot.iOS
 
         void ProcessNotification (NSDictionary userInfo)
         {
+            NSError error = new NSError ();
+            var pushJson = new NSString (NSJsonSerialization.Serialize (userInfo, 0, out error), NSStringEncoding.UTF8).ToString ();
+            var notification = JsonConvert.DeserializeObject<IosNotification> (pushJson);
+
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = notification.Data.Badge ?? 1;
             var controller = Window.RootViewController as UITabBarController;
             if (controller == null)
                 return;
@@ -152,10 +156,6 @@ namespace mehspot.iOS
 
                     if (controller.SelectedViewController != rootController || !messageBoardViewController.IsViewLoaded) {
                         controller.SelectedViewController = rootController;
-
-                        NSError error = new NSError ();
-                        var pushJson = new NSString (NSJsonSerialization.Serialize (userInfo, 0, out error), NSStringEncoding.UTF8).ToString ();
-                        var notification = JsonConvert.DeserializeObject<IosNotification> (pushJson);
 
                         messageBoardViewController.ShowMessagesFromUser (notification.FromUserId, notification.FromUseName);
                         break;

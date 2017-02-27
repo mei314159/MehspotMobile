@@ -105,9 +105,16 @@ namespace mehspot.iOS
             var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
             if (messageBoardResult.IsSuccess) {
                 this.items = messageBoardResult.Data;
+                UpdateApplicationBadge ();
                 MessageBoardTable.ReloadData ();
             }
             viewHelper.HideOverlay ();
+        }
+
+        void UpdateApplicationBadge ()
+        {
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber =
+                 this.items.Length > 0 ? this.items.Sum (a => a.UnreadMessagesCount) : 0;
         }
 
         private void ConfigureCell (MessageBoardCell cell, MessageBoardItemDto item)
@@ -136,6 +143,8 @@ namespace mehspot.iOS
                             var cell = (MessageBoardCell)MessageBoardTable.CellAt (NSIndexPath.FromItemSection (i, 0));
                             cell.CountLabel.Text = (int.Parse (cell.CountLabel.Text) + 1).ToString ();
                             cell.CountLabel.Hidden = false;
+                            item.UnreadMessagesCount++;
+                            UpdateApplicationBadge ();
                             break;
                         }
                     }
