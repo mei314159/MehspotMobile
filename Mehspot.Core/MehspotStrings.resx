@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Babysitter" xml:space="preserve">
+	    <value>Babysitter</value>
+	</data>
+	<data name="BabysitterEmployer" xml:space="preserve">
+	    <value>Babysitter</value>
+	</data>
+	<data name="Fitness" xml:space="preserve">
+	    <value>Fitness</value>
+	</data>
+	<data name="Friendship" xml:space="preserve">
+	    <value>Friendship</value>
+	</data>
+	<data name="Golf" xml:space="preserve">
+	    <value>Golf</value>
+	</data>
+	<data name="Hobby" xml:space="preserve">
+	    <value>Hobby</value>
+	</data>
+	<data name="KidsPlayDate" xml:space="preserve">
+	    <value>Kids Playdate</value>
+	</data>
+	<data name="OtherJobs" xml:space="preserve">
+	    <value>Other Jobs</value>
+	</data>
+	<data name="PetSitter" xml:space="preserve">
+	    <value>Pet Sitter</value>
+	</data>
+	<data name="PetSitterEmployer" xml:space="preserve">
+	    <value>Pet Sitter Employer</value>
+	</data>
+	<data name="Sports" xml:space="preserve">
+	    <value>Sports</value>
+	</data>
+	<data name="Tennis" xml:space="preserve">
+	    <value>Tennis</value>
+	</data>
+	<data name="Tutor" xml:space="preserve">
+	    <value>Tutor</value>
+	</data>
+	<data name="TutorEmployer" xml:space="preserve">
+	    <value>Tutor Employer</value>
+	</data>
+</root>

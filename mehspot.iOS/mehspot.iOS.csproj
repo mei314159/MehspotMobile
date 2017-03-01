@@ -125,6 +125,9 @@
     <ImageAsset Include="Assets.xcassets\about-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\about-icon.imageset\about-icon%403x.png" />
     <ImageAsset Include="Assets.xcassets\about-icon.imageset\about-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\profile-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\profile-icon.imageset\profile%403x.png" />
+    <ImageAsset Include="Assets.xcassets\profile-icon.imageset\profile%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -135,12 +138,15 @@
     <Folder Include="Assets.xcassets\chat-icon.imageset\" />
     <Folder Include="Assets.xcassets\about-icon.imageset\" />
     <Folder Include="Core\DTO\" />
+    <Folder Include="Assets.xcassets\profile-icon.imageset\" />
+    <Folder Include="Resources\badges\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="MessageBubble.xib" />
     <InterfaceDefinition Include="MessageBoardCell.xib" />
+    <InterfaceDefinition Include="Views\BadgeItemView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -175,14 +181,16 @@
     </Compile>
     <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="MessageBoardCell.cs" />
-    <Compile Include="MessageBoardCell.designer.cs">
-      <DependentUpon>MessageBoardCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="SimpleTableCell.cs" />
     <Compile Include="SimpleTableCell.designer.cs">
       <DependentUpon>SimpleTableCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\DTO\IosNotification.cs" />
+    <Compile Include="ProfileViewController.cs" />
+    <Compile Include="ProfileViewController.designer.cs">
+      <DependentUpon>ProfileViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BadgeItemView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
@@ -191,6 +199,20 @@
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />
     <BundleResource Include="Resources\profile_image.png" />
+    <BundleResource Include="Resources\badges\babysitter.png" />
+    <BundleResource Include="Resources\badges\babysitteremployer.png" />
+    <BundleResource Include="Resources\badges\fitness.png" />
+    <BundleResource Include="Resources\badges\friendship.png" />
+    <BundleResource Include="Resources\badges\golf.png" />
+    <BundleResource Include="Resources\badges\hobby.png" />
+    <BundleResource Include="Resources\badges\kidsplaydate.png" />
+    <BundleResource Include="Resources\badges\otherjobs.png" />
+    <BundleResource Include="Resources\badges\petsitter.png" />
+    <BundleResource Include="Resources\badges\petsitteremployer.png" />
+    <BundleResource Include="Resources\badges\sports.png" />
+    <BundleResource Include="Resources\badges\tennis.png" />
+    <BundleResource Include="Resources\badges\tutor.png" />
+    <BundleResource Include="Resources\badges\tutoremployer.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

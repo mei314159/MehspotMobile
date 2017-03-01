@@ -13,22 +13,6 @@ namespace mehspot.iOS
     [Register ("MessageBoardCell")]
     partial class MessageBoardCell
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel CountLabel { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel Message { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIImageView ProfilePicture { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel UserName { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
             if (CountLabel != null) {

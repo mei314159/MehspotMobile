@@ -48,6 +48,13 @@
     <Compile Include="DTO\ApplicationUserBaseDto.cs" />
     <Compile Include="Push\PushService.cs" />
     <Compile Include="Push\OsType.cs" />
+    <Compile Include="Profile\ProfileService.cs" />
+    <Compile Include="DTO\ProfileDto.cs" />
+    <Compile Include="Badge\BadgeService.cs" />
+    <Compile Include="DTO\BadgeSummaryDto.cs" />
+    <Compile Include="MehspotStrings.Designer.cs">
+      <DependentUpon>MehspotStrings.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -56,6 +63,8 @@
     <Folder Include="DTO\" />
     <Folder Include="Contracts\ViewControllers\" />
     <Folder Include="Push\" />
+    <Folder Include="Profile\" />
+    <Folder Include="Badge\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -73,6 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MehspotStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MehspotStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

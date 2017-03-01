@@ -119,7 +119,7 @@ namespace mehspot.iOS
             } else {
                 UIAlertView alert = new UIAlertView (
                                             "Enable push notifications",
-                                            "Do you want to get notified about the latest updates?",
+                                            "Do you want to get notified about unread messages?",
                                             null,
                                             "Cancel",
                                             new string [] { "Yes, I do" });
