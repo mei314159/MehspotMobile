@@ -61,7 +61,6 @@ namespace mehspot.iOS
                                             "Cancel",
                                             new string [] { "Yes, I do" });
             alert.Clicked += (object s, UIButtonEventArgs e) => {
-                MehspotAppContext.Instance.DataStorage.PushIsEnabled = true;
                 if (e.ButtonIndex != alert.CancelButtonIndex) {
                     MehspotAppContext.Instance.AuthManager.SignOut ();
                     MehspotAppContext.Instance.DisconnectSignalR ();
@@ -71,7 +70,6 @@ namespace mehspot.iOS
                     targetViewController.SwapController (UIViewAnimationOptions.TransitionFlipFromRight);
                 }
             };
-
             alert.Show ();
         }
 
@@ -80,6 +78,7 @@ namespace mehspot.iOS
             var profileResult = await profileService.GetProfileAsync ();
             if (profileResult.IsSuccess) {
                 SetFields (profileResult.Data);
+                ProfileInfoContainer.Hidden = false;
                 var badgesResult = await badgeService.GetBadgesSummaryAsync ();
                 if (badgesResult.IsSuccess) {
                     SetBadges (badgesResult.Data);

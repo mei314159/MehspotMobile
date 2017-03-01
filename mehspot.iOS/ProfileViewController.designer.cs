@@ -28,6 +28,10 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView ProfileInfoContainer { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView ProfilePicture { get; set; }
 
         [Outlet]
@@ -57,6 +61,11 @@ namespace mehspot.iOS
             if (MainScrollView != null) {
                 MainScrollView.Dispose ();
                 MainScrollView = null;
+            }
+
+            if (ProfileInfoContainer != null) {
+                ProfileInfoContainer.Dispose ();
+                ProfileInfoContainer = null;
             }
 
             if (ProfilePicture != null) {

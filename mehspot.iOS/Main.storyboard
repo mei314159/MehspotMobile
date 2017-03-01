@@ -345,15 +345,6 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="512" translatesAutoresizingMaskIntoConstraints="NO" showsHorizontalScrollIndicator="NO" alwaysBounceVertical="YES">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="534" translatesAutoresizingMaskIntoConstraints="NO">
-                                        <rect key="frame" x="13" y="103" width="82" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
-                                        <nil key="highlightedColor"/>
-                                        <constraints>
-                                            <constraint id="538" firstItem="534" firstAttribute="height" constant="30"/>
-                                        </constraints>
-                                    </label>
                                     <view contentMode="scaleToFill" id="611" translatesAutoresizingMaskIntoConstraints="NO">
                                         <rect key="frame" x="0.0" y="153" width="375" height="70"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -361,8 +352,8 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                             <constraint id="615" firstItem="611" firstAttribute="height" constant="70" relation="greaterThanOrEqual"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" id="632" translatesAutoresizingMaskIntoConstraints="NO">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                                    <view contentMode="scaleToFill" id="632" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="517" translatesAutoresizingMaskIntoConstraints="NO" image="profile_image.png" clipsSubviews="YES">
@@ -402,6 +393,15 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                                     <action selector="SignoutButtonTouched:" destination="508" id="657" eventType="touchUpInside"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="534" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <rect key="frame" x="13" y="103" width="82" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                                <nil key="highlightedColor"/>
+                                                <constraints>
+                                                    <constraint id="538" firstItem="534" firstAttribute="height" constant="30"/>
+                                                </constraints>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint id="636" firstItem="517" firstAttribute="leading" secondItem="632" secondAttribute="leading" constant="13"/>
@@ -414,19 +414,19 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                             <constraint id="645" firstItem="625" firstAttribute="centerY" secondItem="524" secondAttribute="centerY"/>
                                             <constraint id="647" firstItem="625" firstAttribute="leading" secondItem="524" secondAttribute="trailing" constant="10" relation="greaterThanOrEqual"/>
                                             <constraint id="648" firstItem="625" firstAttribute="leading" secondItem="528" secondAttribute="trailing" constant="10" relation="greaterThanOrEqual"/>
-                                            <constraint id="653" firstItem="632" firstAttribute="height" constant="96"/>
+                                            <constraint id="653" firstItem="632" firstAttribute="height" constant="153"/>
+                                            <constraint id="669" firstItem="517" firstAttribute="leading" secondItem="534" secondAttribute="leading"/>
+                                            <constraint id="670" firstItem="534" firstAttribute="top" secondItem="517" secondAttribute="bottom" constant="20"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint id="612" firstItem="611" firstAttribute="leading" secondItem="512" secondAttribute="leading"/>
                                     <constraint id="613" firstItem="611" firstAttribute="width" secondItem="512" secondAttribute="width"/>
-                                    <constraint id="614" firstItem="611" firstAttribute="top" secondItem="534" secondAttribute="bottom" constant="20"/>
                                     <constraint id="633" firstItem="632" firstAttribute="top" secondItem="512" secondAttribute="top"/>
                                     <constraint id="634" firstItem="632" firstAttribute="leading" secondItem="512" secondAttribute="leading"/>
                                     <constraint id="646" firstItem="632" firstAttribute="width" secondItem="512" secondAttribute="width"/>
-                                    <constraint id="652" firstItem="534" firstAttribute="top" secondItem="632" secondAttribute="bottom" constant="7"/>
-                                    <constraint id="654" firstItem="534" firstAttribute="leading" secondItem="512" secondAttribute="leading" constant="13"/>
+                                    <constraint id="672" firstItem="611" firstAttribute="top" secondItem="632" secondAttribute="bottom"/>
                                 </constraints>
                                 <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </scrollView>
@@ -445,6 +445,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="UserNameLabel" destination="524" id="name-outlet-524"/>
                         <outlet property="FullName" destination="528" id="name-outlet-528"/>
                         <outlet property="SignoutButton" destination="625" id="name-outlet-625"/>
+                        <outlet property="ProfileInfoContainer" destination="632" id="name-outlet-632"/>
                     </connections>
                     <tabBarItem key="tabBarItem" title="Profile" id="602" image="profile-icon"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -463,12 +464,12 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
         <image name="profile-icon" width="25" height="25"/>
         <image name="badges/babysitter.png" width="70" height="69"/>
         <image name="badges/babysitteremployer.png" width="70" height="70"/>
-        <image name="badges/fitness.png" width="466" height="467"/>
+        <image name="badges/fitness.png" width="210" height="210"/>
         <image name="badges/friendship.png" width="70" height="70"/>
         <image name="badges/golf.png" width="500" height="500"/>
-        <image name="badges/hobby.png" width="494" height="489"/>
-        <image name="badges/kidsplaydate.png" width="500" height="500"/>
-        <image name="badges/otherjobs.png" width="494" height="489"/>
+        <image name="badges/hobby.png" width="210" height="208"/>
+        <image name="badges/kidsplaydate.png" width="210" height="210"/>
+        <image name="badges/otherjobs.png" width="210" height="210"/>
         <image name="badges/petsitter.png" width="500" height="500"/>
         <image name="badges/petsitteremployer.png" width="500" height="500"/>
         <image name="badges/sports.png" width="70" height="70"/>
@@ -476,6 +477,20 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
         <image name="badges/tutor.png" width="466" height="467"/>
         <image name="badges/tutoremployer.png" width="494" height="489"/>
         <image name="signout-icon" width="22" height="22"/>
+        <image name="badges/babysitterb.png" width="70" height="69"/>
+        <image name="badges/babysitteremployerb.png" width="70" height="70"/>
+        <image name="badges/friendshipb.png" width="70" height="70"/>
+        <image name="badges/golfb.png" width="500" height="500"/>
+        <image name="badges/petsitterb.png" width="500" height="500"/>
+        <image name="badges/petsitteremployerb.png" width="500" height="500"/>
+        <image name="badges/sportsb.png" width="70" height="70"/>
+        <image name="badges/tennisb.png" width="140" height="140"/>
+        <image name="badges/tutorb.png" width="466" height="467"/>
+        <image name="badges/tutoremployerb.png" width="494" height="489"/>
+        <image name="badges/fitnessb.png" width="210" height="210"/>
+        <image name="badges/hobbyb.png" width="210" height="208"/>
+        <image name="badges/kidsplaydateb.png" width="210" height="210"/>
+        <image name="badges/otherjobsb.png" width="210" height="210"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>
