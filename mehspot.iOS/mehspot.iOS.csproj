@@ -144,9 +144,9 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="MessageBubble.xib" />
-    <InterfaceDefinition Include="MessageBoardCell.xib" />
     <InterfaceDefinition Include="Views\BadgeItemView.xib" />
+    <InterfaceDefinition Include="Views\MessageBubble.xib" />
+    <InterfaceDefinition Include="Views\MessageBoardCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -175,12 +175,7 @@
     <Compile Include="MessagingViewController.designer.cs">
       <DependentUpon>MessagingViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBubble.cs" />
-    <Compile Include="MessageBubble.designer.cs">
-      <DependentUpon>MessageBubble.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\ViewExtensions.cs" />
-    <Compile Include="MessageBoardCell.cs" />
     <Compile Include="SimpleTableCell.cs" />
     <Compile Include="SimpleTableCell.designer.cs">
       <DependentUpon>SimpleTableCell.cs</DependentUpon>
@@ -191,6 +186,11 @@
       <DependentUpon>ProfileViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\BadgeItemView.cs" />
+    <Compile Include="Views\MessageBubble.cs" />
+    <Compile Include="Views\MessageBubble.designer.cs">
+      <DependentUpon>MessageBubble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageBoardCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

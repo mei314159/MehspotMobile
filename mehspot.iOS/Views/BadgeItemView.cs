@@ -32,8 +32,6 @@ namespace mehspot.iOS
         {
 
             var arr = NSBundle.MainBundle.LoadNib ("BadgeItemView", null, null);
-
-
             var v = Runtime.GetNSObject<BadgeItemView> (arr.ValueAt (0));
             return v;
         }
