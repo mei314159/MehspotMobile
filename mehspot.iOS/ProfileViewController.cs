@@ -114,7 +114,7 @@ namespace mehspot.iOS
             for (int i = 0; i < badges.Length; i++) {
                 var badge = badges [i];
                 var badgeItemView = BadgeItemView.Create ();
-                badgeItemView.BadgeImage.Image = UIImage.FromFile ("badges/" + badge.BadgeName.ToLower ());
+                badgeItemView.BadgeImage.Image = UIImage.FromFile ("badges/" + badge.BadgeName.ToLower () + (badge.IsRegistered ? string.Empty : "b"));
                 badgeItemView.BadgeName.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName);
                 badgeItemView.LikesCount.Text = badge.Likes.ToString ();
                 badgeItemView.RecommendationsCount.Text = badge.Recommendations.ToString ();

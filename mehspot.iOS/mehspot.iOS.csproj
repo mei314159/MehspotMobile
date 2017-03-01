@@ -213,6 +213,20 @@
     <BundleResource Include="Resources\badges\tennis.png" />
     <BundleResource Include="Resources\badges\tutor.png" />
     <BundleResource Include="Resources\badges\tutoremployer.png" />
+    <BundleResource Include="Resources\badges\babysitterb.png" />
+    <BundleResource Include="Resources\badges\babysitteremployerb.png" />
+    <BundleResource Include="Resources\badges\friendshipb.png" />
+    <BundleResource Include="Resources\badges\golfb.png" />
+    <BundleResource Include="Resources\badges\petsitterb.png" />
+    <BundleResource Include="Resources\badges\petsitteremployerb.png" />
+    <BundleResource Include="Resources\badges\sportsb.png" />
+    <BundleResource Include="Resources\badges\tennisb.png" />
+    <BundleResource Include="Resources\badges\tutorb.png" />
+    <BundleResource Include="Resources\badges\tutoremployerb.png" />
+    <BundleResource Include="Resources\badges\fitnessb.png" />
+    <BundleResource Include="Resources\badges\hobbyb.png" />
+    <BundleResource Include="Resources\badges\kidsplaydateb.png" />
+    <BundleResource Include="Resources\badges\otherjobsb.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">
