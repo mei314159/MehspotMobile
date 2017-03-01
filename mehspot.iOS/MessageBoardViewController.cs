@@ -9,13 +9,13 @@ using mehspot.iOS.Wrappers;
 using System.Threading.Tasks;
 using SDWebImage;
 using System.Linq;
+using CoreGraphics;
 
 namespace mehspot.iOS
 {
     public partial class MessageBoardViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
         private readonly MessagesService messagingModel;
-        private ViewHelper viewHelper;
         private UIRefreshControl refreshControl;
         private MessageBoardItemDto [] items;
         private string SelectedUserId;
@@ -32,8 +32,6 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
-            viewHelper = new ViewHelper (this.View);
-
             MessageBoardTable.RegisterNibForCellReuse (MessageBoardCell.Nib, MessageBoardCell.Key);
             MessageBoardTable.WeakDataSource = this;
             MessageBoardTable.Delegate = this;
@@ -44,7 +42,6 @@ namespace mehspot.iOS
             refreshControl = new UIRefreshControl ();
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
             this.MessageBoardTable.AddSubview (refreshControl);
-            viewHelper.ShowOverlay ("Loading Message Board...");
         }
 
         public override async void ViewDidAppear (bool animated)
@@ -102,13 +99,16 @@ namespace mehspot.iOS
 
         private async Task LoadMessageBoardAsync ()
         {
+            refreshControl.BeginRefreshing ();
+            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -refreshControl.Frame.Size.Height), true);
             var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
             if (messageBoardResult.IsSuccess) {
                 this.items = messageBoardResult.Data;
                 UpdateApplicationBadge ();
                 MessageBoardTable.ReloadData ();
             }
-            viewHelper.HideOverlay ();
+
+            refreshControl.EndRefreshing ();
         }
 
         void UpdateApplicationBadge ()
@@ -155,7 +155,6 @@ namespace mehspot.iOS
         private async void RefreshControl_ValueChanged (object sender, EventArgs e)
         {
             await LoadMessageBoardAsync ();
-            refreshControl.EndRefreshing ();
         }
 
         private void SearchBar_OnEditingStarted (object sender, EventArgs e)

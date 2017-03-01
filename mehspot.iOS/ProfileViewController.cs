@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using CoreGraphics;
 using System.Linq;
 using Mehspot.Core;
+using mehspot.iOS.Extensions;
 
 namespace mehspot.iOS
 {
@@ -31,6 +32,8 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
+            this.SignoutButton.ImageView.Image =
+                this.SignoutButton.ImageView.Image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysTemplate);
             this.MainScrollView.AddSubview (refreshControl);
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
@@ -39,6 +42,7 @@ namespace mehspot.iOS
         {
             if (!refreshControl.Refreshing) {
                 this.refreshControl.BeginRefreshing ();
+                this.MainScrollView.SetContentOffset (new CGPoint (0, -refreshControl.Frame.Size.Height), true);
                 RefreshAsync ();
             }
         }
@@ -46,6 +50,29 @@ namespace mehspot.iOS
         void RefreshControl_ValueChanged (object sender, EventArgs e)
         {
             RefreshAsync ();
+        }
+
+        partial void SignoutButtonTouched (UIButton sender)
+        {
+            UIAlertView alert = new UIAlertView (
+                                            "Sign Out",
+                                            "Are you sure you want to sign out?",
+                                            null,
+                                            "Cancel",
+                                            new string [] { "Yes, I do" });
+            alert.Clicked += (object s, UIButtonEventArgs e) => {
+                MehspotAppContext.Instance.DataStorage.PushIsEnabled = true;
+                if (e.ButtonIndex != alert.CancelButtonIndex) {
+                    MehspotAppContext.Instance.AuthManager.SignOut ();
+                    MehspotAppContext.Instance.DisconnectSignalR ();
+
+                    var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateViewController ("LoginViewController");
+
+                    targetViewController.SwapController (UIViewAnimationOptions.TransitionFlipFromRight);
+                }
+            };
+
+            alert.Show ();
         }
 
         async Task RefreshAsync ()
@@ -87,10 +114,10 @@ namespace mehspot.iOS
             for (int i = 0; i < badges.Length; i++) {
                 var badge = badges [i];
                 var badgeItemView = BadgeItemView.Create ();
-                badgeItemView.BadgeImage.Image = UIImage.FromFile ("badges/" + badge.BadgeName.ToLower());
+                badgeItemView.BadgeImage.Image = UIImage.FromFile ("badges/" + badge.BadgeName.ToLower ());
                 badgeItemView.BadgeName.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName);
-                badgeItemView.LikesCount.Text = badge.Likes.ToString();
-                badgeItemView.RecommendationsCount.Text = badge.Recommendations.ToString();
+                badgeItemView.LikesCount.Text = badge.Likes.ToString ();
+                badgeItemView.RecommendationsCount.Text = badge.Recommendations.ToString ();
                 badgeItemView.ReferencesCount.Text = badge.References.ToString ();
                 badgeItemView.Frame = new CGRect (0, i * badgeItemView.Frame.Height, BadgesContainer.Frame.Width, badgeItemView.Frame.Height);
                 this.BadgesContainer.AddSubview (badgeItemView);

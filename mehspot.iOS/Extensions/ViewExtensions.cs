@@ -55,5 +55,13 @@ namespace mehspot.iOS.Extensions
 
             return null;
         }
+
+        public static void SwapController (this UIViewController newController, UIViewAnimationOptions opt)
+        {
+            UIView.Transition (UIApplication.SharedApplication.KeyWindow, 0.5, opt, delegate {
+                UIApplication.SharedApplication.KeyWindow.RootViewController?.DismissViewController (true, null);
+                UIApplication.SharedApplication.KeyWindow.RootViewController = newController;
+            }, null);
+        }
     }
 }

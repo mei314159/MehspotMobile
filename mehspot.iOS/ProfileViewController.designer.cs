@@ -32,7 +32,15 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton SignoutButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel UserNameLabel { get; set; }
+
+        [Action ("SignoutButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SignoutButtonTouched (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
@@ -54,6 +62,11 @@ namespace mehspot.iOS
             if (ProfilePicture != null) {
                 ProfilePicture.Dispose ();
                 ProfilePicture = null;
+            }
+
+            if (SignoutButton != null) {
+                SignoutButton.Dispose ();
+                SignoutButton = null;
             }
 
             if (UserNameLabel != null) {

@@ -27,7 +27,7 @@ namespace Mehspot.Core.Models
             } else {
 
                 viewHelper.ShowOverlay ("Sign In...");
-                var authenticationResult = await authManager.AuthenticateAsync (email, password);
+                var authenticationResult = await authManager.SignInAsync (email, password);
                 viewHelper.HideOverlay ();
 
                 if (authenticationResult.IsSuccess) {

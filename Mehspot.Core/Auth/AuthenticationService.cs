@@ -31,7 +31,7 @@ namespace mehspot.Core.Auth
             return _applicationDataStorage.AuthInfo != null && (DateTime.Now - _applicationDataStorage.AuthInfo.AuthDate).TotalSeconds < _applicationDataStorage.AuthInfo.ExpiresIn;
         }
 
-        public async Task<AuthenticationResult> AuthenticateAsync (string email, string password)
+        public async Task<AuthenticationResult> SignInAsync (string email, string password)
         {
             var uri = new Uri (Constants.AuthServerHost + "/token");
 
@@ -71,6 +71,11 @@ namespace mehspot.Core.Auth
                     };
                 }
             }
+        }
+
+        public void SignOut()
+        {
+            _applicationDataStorage.AuthInfo = null;
         }
     }
 }

@@ -4,6 +4,7 @@ using Mehspot.Core.Models;
 using mehspot.iOS.Wrappers;
 using mehspot.Core.Auth;
 using Mehspot.Core;
+using mehspot.iOS.Extensions;
 
 namespace mehspot.iOS
 {
@@ -31,20 +32,12 @@ namespace mehspot.iOS
         private void Model_SignedIn (AuthenticationResult result)
         {
             var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateInitialViewController ();
-            SwapRootView (targetViewController, UIViewAnimationOptions.TransitionFlipFromRight);
+            targetViewController.SwapController (UIViewAnimationOptions.TransitionFlipFromRight);
         }
 
         private async void SignInAsync ()
         {
             await model.SignInAsync (this.EmailField.Text, this.PasswordField.Text);
-        }
-
-        private static void SwapRootView (UIViewController newView, UIViewAnimationOptions opt)
-        {
-            UIView.Transition (UIApplication.SharedApplication.KeyWindow, 0.5, opt, delegate {
-                UIApplication.SharedApplication.KeyWindow.RootViewController = newView;
-
-            }, null);
         }
 
         private bool TextFieldShouldReturn (UITextField textField)

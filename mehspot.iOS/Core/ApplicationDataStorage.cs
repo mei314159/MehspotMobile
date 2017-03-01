@@ -1,5 +1,4 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
 using mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
@@ -21,9 +20,13 @@ namespace mehspot.iOS.Core
                 return null;
             }
             set {
-                var data = value == null ? null : JsonConvert.SerializeObject (value);
-                NSUserDefaults.StandardUserDefaults.SetString (data, nameof (IApplicationDataStorage.AuthInfo));
-                NSUserDefaults.StandardUserDefaults.Synchronize ();
+                if (value == null) {
+                    NSUserDefaults.StandardUserDefaults.RemoveObject (nameof (IApplicationDataStorage.AuthInfo));
+                } else {
+                    var data = JsonConvert.SerializeObject (value);
+                    NSUserDefaults.StandardUserDefaults.SetString (data, nameof (IApplicationDataStorage.AuthInfo));
+                    NSUserDefaults.StandardUserDefaults.Synchronize ();
+                }
             }
         }
 

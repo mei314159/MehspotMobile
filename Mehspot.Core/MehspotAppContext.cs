@@ -38,19 +38,23 @@ namespace Mehspot.Core
 
         public AuthenticationService AuthManager { get; private set; }
 
-        private async Task RunSignalRAsync (bool dismissCurrentConnection = false)
+        public void DisconnectSignalR ()
         {
             if (connection != null) {
-                if (!dismissCurrentConnection) {
-                    return;
-                }
-
                 connection.StateChanged -= HubConnection_StateChanged;
                 connection.Error -= HubConnection_Error;
                 connection = null;
                 proxy = null;
             }
+        }
 
+        private async Task RunSignalRAsync (bool dismissCurrentConnection = false)
+        {
+            if (connection != null && !dismissCurrentConnection) {
+                return;
+            }
+
+            DisconnectSignalR ();
             connection = new HubConnection (Constants.ApiHost);
             connection.TraceLevel = TraceLevels.All;
             connection.Headers.Add ("Authorization", "Bearer " + AuthManager.AuthInfo.AccessToken);
@@ -64,7 +68,7 @@ namespace Mehspot.Core
 
         void HubConnection_StateChanged (StateChange obj)
         {
-            if (obj.NewState == ConnectionState.Disconnected) { 
+            if (obj.NewState == ConnectionState.Disconnected) {
                 Task.Factory.StartNew (async () => {
                     await RunSignalRAsync (true);
                 });

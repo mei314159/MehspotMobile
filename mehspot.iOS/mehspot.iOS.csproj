@@ -128,6 +128,9 @@
     <ImageAsset Include="Assets.xcassets\profile-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\profile-icon.imageset\profile%403x.png" />
     <ImageAsset Include="Assets.xcassets\profile-icon.imageset\profile%402x.png" />
+    <ImageAsset Include="Assets.xcassets\signout-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\signout-icon.imageset\signout%402x.png" />
+    <ImageAsset Include="Assets.xcassets\signout-icon.imageset\signout%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -140,6 +143,7 @@
     <Folder Include="Core\DTO\" />
     <Folder Include="Assets.xcassets\profile-icon.imageset\" />
     <Folder Include="Resources\badges\" />
+    <Folder Include="Assets.xcassets\signout-icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
