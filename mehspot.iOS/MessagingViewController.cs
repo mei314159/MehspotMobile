@@ -188,9 +188,11 @@ namespace mehspot.iOS
             if (visible) {
                 var relativeLocation = View.Superview.ConvertPointToView (keyboardFrame.Location, View);
                 var y = relativeLocation.Y - messageFieldWrapper.Frame.Height;
+                var deltaY = messageFieldWrapper.Frame.Y - y;
                 messageFieldWrapper.Frame = new CGRect (new CGPoint (messageFieldWrapper.Frame.X, y), messageFieldWrapper.Frame.Size);
-
+                messagesScrollView.Frame = new CGRect (new CGPoint (messagesScrollView.Frame.X, messagesScrollView.Frame.Y - deltaY), messagesScrollView.Frame.Size);
             } else {
+                messagesScrollView.Frame = new CGRect (CGPoint.Empty, messagesScrollView.Frame.Size);
                 var y = messagesScrollView.Frame.Y + messagesScrollView.Frame.Height;
                 messageFieldWrapper.Frame = new CGRect (new CGPoint (messageFieldWrapper.Frame.X, y), messageFieldWrapper.Frame.Size);
             }

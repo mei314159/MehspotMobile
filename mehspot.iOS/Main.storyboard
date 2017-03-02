@@ -284,7 +284,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                 </constraints>
                                 <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="411" translatesAutoresizingMaskIntoConstraints="NO" alwaysBounceVertical="YES">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="411" translatesAutoresizingMaskIntoConstraints="NO" alwaysBounceVertical="YES" autoresizesSubviews="NO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="494"/>
                                 <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </scrollView>
