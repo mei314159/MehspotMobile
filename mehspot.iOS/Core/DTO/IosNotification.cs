@@ -12,7 +12,7 @@ namespace mehspot.iOS.Core.DTO
         public string FromUserId { get; set; }
 
         [JsonProperty (PropertyName = "fromUserName")]
-        public string FromUseName { get; set; }
+        public string FromUserName { get; set; }
     }
 
     public class NotificationData

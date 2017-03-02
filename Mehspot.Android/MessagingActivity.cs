@@ -67,7 +67,7 @@ namespace Mehspot.Android
 
         void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
         {
-            if (notificationType == MessagingNotificationType.Message && string.Equals (data.FromUserName, ToUserName, StringComparison.InvariantCultureIgnoreCase)) {
+            if (notificationType == MessagingNotificationType.Message && string.Equals (data.FromUserId, ToUserId, StringComparison.InvariantCultureIgnoreCase)) {
                 RunOnUiThread (() => {
                     AddMessageBubbleToEnd (data);
                 });

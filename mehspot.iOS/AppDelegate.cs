@@ -157,7 +157,7 @@ namespace mehspot.iOS
                     if (controller.SelectedViewController != rootController || !messageBoardViewController.IsViewLoaded) {
                         controller.SelectedViewController = rootController;
 
-                        messageBoardViewController.ShowMessagesFromUser (notification.FromUserId, notification.FromUseName);
+                        messageBoardViewController.ShowMessagesFromUser (notification.FromUserId, notification.FromUserName);
                         break;
                     }
                 }
