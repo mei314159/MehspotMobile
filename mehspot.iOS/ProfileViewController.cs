@@ -3,8 +3,6 @@ using System;
 using UIKit;
 using Mehspot.Core.Messaging;
 using mehspot.iOS.Core;
-using Mehspot.Core.Contracts.Wrappers;
-using mehspot.iOS.Wrappers;
 using SDWebImage;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
@@ -17,6 +15,8 @@ namespace mehspot.iOS
 {
     public partial class ProfileViewController : UIViewController
     {
+        ProfileDto profile;
+
         private ProfileService profileService;
         private BadgeService badgeService;
         private ApplicationDataStorage applicationDataStorage;
@@ -52,6 +52,13 @@ namespace mehspot.iOS
             RefreshAsync ();
         }
 
+        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+        {
+            var controller = (EditProfileController)segue.DestinationViewController;
+            controller.profile = this.profile;
+            base.PrepareForSegue (segue, sender);
+        }
+
         partial void SignoutButtonTouched (UIButton sender)
         {
             UIAlertView alert = new UIAlertView (
@@ -76,7 +83,9 @@ namespace mehspot.iOS
         async Task RefreshAsync ()
         {
             var profileResult = await profileService.GetProfileAsync ();
+            this.EditButton.Enabled = profileResult.IsSuccess;
             if (profileResult.IsSuccess) {
+                this.profile = profileResult.Data;
                 SetFields (profileResult.Data);
                 ProfileInfoContainer.Hidden = false;
                 var badgesResult = await badgeService.GetBadgesSummaryAsync ();

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq.Expressions;
+using System.Reflection;
 using UIKit;
 
 namespace mehspot.iOS.Extensions
@@ -62,6 +64,14 @@ namespace mehspot.iOS.Extensions
                 UIApplication.SharedApplication.KeyWindow.RootViewController?.DismissViewController (true, null);
                 UIApplication.SharedApplication.KeyWindow.RootViewController = newController;
             }, null);
+        }
+
+        public static void SetProperty<TModel, TProperty> (this TModel model, Expression<Func<TModel, TProperty>> entityExpression, TProperty newValueEntity)
+        {
+            var memberExpression = (MemberExpression)entityExpression.Body;
+            var property = (PropertyInfo)memberExpression.Member;
+
+            property.SetValue (model, newValueEntity, null);
         }
     }
 }

@@ -151,6 +151,7 @@
     <InterfaceDefinition Include="Views\BadgeItemView.xib" />
     <InterfaceDefinition Include="Views\MessageBubble.xib" />
     <InterfaceDefinition Include="Views\MessageBoardCell.xib" />
+    <InterfaceDefinition Include="Views\TextEditCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -191,6 +192,14 @@
       <DependentUpon>MessageBubble.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MessageBoardCell.cs" />
+    <Compile Include="EditProfileController.cs" />
+    <Compile Include="EditProfileController.designer.cs">
+      <DependentUpon>EditProfileController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextEditCell.cs" />
+    <Compile Include="Views\TextEditCell.designer.cs">
+      <DependentUpon>TextEditCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

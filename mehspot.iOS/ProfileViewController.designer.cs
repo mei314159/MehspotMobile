@@ -20,6 +20,10 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem EditButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel FullName { get; set; }
 
         [Outlet]
@@ -51,6 +55,11 @@ namespace mehspot.iOS
             if (BadgesContainer != null) {
                 BadgesContainer.Dispose ();
                 BadgesContainer = null;
+            }
+
+            if (EditButton != null) {
+                EditButton.Dispose ();
+                EditButton = null;
             }
 
             if (FullName != null) {

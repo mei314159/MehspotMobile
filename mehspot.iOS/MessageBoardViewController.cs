@@ -5,7 +5,6 @@ using Mehspot.Core.DTO;
 using Mehspot.Core.Messaging;
 using mehspot.iOS.Core;
 using Mehspot.Core;
-using mehspot.iOS.Wrappers;
 using System.Threading.Tasks;
 using SDWebImage;
 using System.Linq;
