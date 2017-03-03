@@ -18,6 +18,10 @@ namespace mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView ProfileTableView { get; set; }
 
+        [Action ("SaveButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SaveButtonTouched (UIKit.UIBarButtonItem sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (ProfileTableView != null) {

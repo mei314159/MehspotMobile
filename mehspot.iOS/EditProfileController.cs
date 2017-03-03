@@ -35,6 +35,10 @@ namespace mehspot.iOS
             ProfileTableView.Delegate = this;
         }
 
+        partial void SaveButtonTouched (UIBarButtonItem sender)
+        {
+        }
+
         private void InitializeCells ()
         {
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name"));

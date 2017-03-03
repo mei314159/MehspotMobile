@@ -543,6 +543,9 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                     <connections>
                         <outlet property="ProfileTableView" destination="2692" id="name-outlet-2692"/>
                     </connections>
+                    <navigationItem title="Edit Profile" id="2746" key="navigationItem">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="2747"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="946" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
