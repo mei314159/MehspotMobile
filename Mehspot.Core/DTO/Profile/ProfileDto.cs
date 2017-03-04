@@ -1,10 +1,13 @@
 using System;
+
 namespace Mehspot.Core.DTO
 {
 
-    public class ProfileDto:ApplicationUserBaseDto
+    public class UserProfileDto : ValidationModelBase
     {
-        public string EmailAddress2 { get; set; }
+        public new string Id { get; set; }
+
+        public string UserName { get; set; }
 
         public string PhoneNumber { get; set; }
 
@@ -32,10 +35,12 @@ namespace Mehspot.Core.DTO
 
         public int? SubdivisionOptionId { get; set; }
 
-        public string ScheduledNotificationId { get; set; }
+        public string ProfilePicturePath { get; set; }
 
         public bool MehspotNotificationsEnabled { get; set; }
 
         public bool AllGroupsNotificationsEnabled { get; set; }
     }
+
+    
 }

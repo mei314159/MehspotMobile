@@ -144,14 +144,18 @@
     <Folder Include="Assets.xcassets\profile-icon.imageset\" />
     <Folder Include="Resources\badges\" />
     <Folder Include="Assets.xcassets\signout-icon.imageset\" />
+    <Folder Include="Views\Cell\" />
+    <Folder Include="Views\DatePicker\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Views\BadgeItemView.xib" />
     <InterfaceDefinition Include="Views\MessageBubble.xib" />
-    <InterfaceDefinition Include="Views\MessageBoardCell.xib" />
-    <InterfaceDefinition Include="Views\TextEditCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\BooleanEditCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\DateEditCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -191,15 +195,29 @@
     <Compile Include="Views\MessageBubble.designer.cs">
       <DependentUpon>MessageBubble.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MessageBoardCell.cs" />
     <Compile Include="EditProfileController.cs" />
     <Compile Include="EditProfileController.designer.cs">
       <DependentUpon>EditProfileController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\TextEditCell.cs" />
-    <Compile Include="Views\TextEditCell.designer.cs">
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Views\Cell\BooleanEditCell.cs" />
+    <Compile Include="Views\Cell\BooleanEditCell.designer.cs">
+      <DependentUpon>BooleanEditCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\DateEditCell.cs" />
+    <Compile Include="Views\Cell\DateEditCell.designer.cs">
+      <DependentUpon>DateEditCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\MessageBoardCell.cs" />
+    <Compile Include="Views\Cell\TextEditCell.cs" />
+    <Compile Include="Views\Cell\TextEditCell.designer.cs">
       <DependentUpon>TextEditCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\DatePicker\CustomPickerModel.cs" />
+    <Compile Include="Views\DatePicker\ModalPickerAnimatedDismissed.cs" />
+    <Compile Include="Views\DatePicker\ModalPickerAnimatedTransitioning.cs" />
+    <Compile Include="Views\DatePicker\ModalPickerTransitionDelegate.cs" />
+    <Compile Include="Views\DatePicker\ModalPickerViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

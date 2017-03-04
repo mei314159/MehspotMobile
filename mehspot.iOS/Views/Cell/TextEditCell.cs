@@ -22,10 +22,11 @@ namespace mehspot.iOS.Views
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public static TextEditCell Create<T> (T Model, Expression<Func<T, object>> property, string placeholder) where T : class
+        public static TextEditCell Create<T> (T Model, Expression<Func<T, object>> property, string placeholder, bool isReadOnly = false) where T : class
         {
             var cell = (TextEditCell)Nib.Instantiate (null, null)[0];
             cell.TextInput.Placeholder = placeholder;
+            cell.TextInput.Enabled = !isReadOnly;
             cell.FieldLabel.Text = placeholder;
             cell.TextInput.Text = property.Compile ().Invoke (Model)?.ToString();
 

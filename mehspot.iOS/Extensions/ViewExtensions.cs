@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
-using System.Reflection;
 using UIKit;
 
 namespace mehspot.iOS.Extensions
@@ -66,12 +64,14 @@ namespace mehspot.iOS.Extensions
             }, null);
         }
 
-        public static void SetProperty<TModel, TProperty> (this TModel model, Expression<Func<TModel, TProperty>> entityExpression, TProperty newValueEntity)
+        public static UIViewController GetViewController (this UIView view)
         {
-            var memberExpression = (MemberExpression)entityExpression.Body;
-            var property = (PropertyInfo)memberExpression.Member;
+            var responder = (UIResponder)view;
+            while (responder != null && !(responder is UIViewController)) {
+                responder = responder.NextResponder;
+            }
 
-            property.SetValue (model, newValueEntity, null);
+            return (UIViewController)responder;
         }
     }
 }

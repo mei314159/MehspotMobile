@@ -15,7 +15,7 @@ namespace mehspot.iOS
 {
     public partial class ProfileViewController : UIViewController
     {
-        ProfileDto profile;
+        EditProfileDto profile;
 
         private ProfileService profileService;
         private BadgeService badgeService;
@@ -100,7 +100,7 @@ namespace mehspot.iOS
             refreshControl.EndRefreshing ();
         }
 
-        private void SetFields (ProfileDto profile)
+        private void SetFields (EditProfileDto profile)
         {
             this.UserNameLabel.Text = profile.UserName;
             this.FullName.Text = $"{profile.FirstName} {profile.LastName}".Trim (' ');

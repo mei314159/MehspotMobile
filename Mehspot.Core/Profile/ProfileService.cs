@@ -18,7 +18,7 @@ namespace Mehspot.Core.Messaging
 
         public Action<int, object> OnSendNotification;
 
-        public async Task<Result<ProfileDto>> GetProfileAsync ()
+        public async Task<Result<EditProfileDto>> GetProfileAsync ()
         {
             var uri = new Uri ($"{Constants.ApiHost}/api/Profile/Get");
 
@@ -29,23 +29,23 @@ namespace Mehspot.Core.Messaging
                     var response = await webClient.GetAsync (uri).ConfigureAwait (false);
                     var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var data = JsonConvert.DeserializeObject<ProfileDto> (responseString);
+                        var data = JsonConvert.DeserializeObject<EditProfileDto> (responseString);
 
-                        return new Result<ProfileDto> {
+                        return new Result<EditProfileDto> {
                             IsSuccess = true,
                             Data = data,
                             ErrorMessage = null
                         };
                     } else {
                         var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<ProfileDto> {
+                        return new Result<EditProfileDto> {
                             IsSuccess = false,
                             ErrorMessage = errorResponse.ErrorDescription
                         };
                     }
 
                 } catch (Exception ex) {
-                    return new Result<ProfileDto> {
+                    return new Result<EditProfileDto> {
                         IsSuccess = false,
                         ErrorMessage = ex.Message
                     };
