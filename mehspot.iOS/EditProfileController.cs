@@ -4,6 +4,7 @@ using UIKit;
 using System.Collections.Generic;
 using mehspot.iOS.Views;
 using Mehspot.Core.DTO;
+using System.Linq;
 
 namespace mehspot.iOS
 {
@@ -41,11 +42,17 @@ namespace mehspot.iOS
 
         private void InitializeCells ()
         {
+            var genders = new [] {
+                new KeyValuePair<string, string>(null, "N/A"),
+                new KeyValuePair<string, string>("M", "Male"),
+                new KeyValuePair<string, string>("F", "Female")
+            };
+
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name", true));
             cells.Add (TextEditCell.Create (profile, a => a.Email, "Email"));
             cells.Add (TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number"));// TODO: Mask field
-            cells.Add (DateEditCell.Create (profile, a => a.DateOfBirth, "Date Of Birth"));// TODO: Date picker
-            cells.Add (TextEditCell.Create (profile, a => a.Gender, "Gender"));// TODO: Date picker
+            cells.Add (DateEditCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Select Date Of Birth"));
+            cells.Add (DateEditCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, v => genders.First (a => a.Key == v).Value, "Select Gender", genders));
             // TODO: Email field
             cells.Add (TextEditCell.Create (profile, a => a.FirstName, "First Name"));
             cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));

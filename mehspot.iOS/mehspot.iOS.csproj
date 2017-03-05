@@ -145,7 +145,7 @@
     <Folder Include="Resources\badges\" />
     <Folder Include="Assets.xcassets\signout-icon.imageset\" />
     <Folder Include="Views\Cell\" />
-    <Folder Include="Views\DatePicker\" />
+    <Folder Include="Views\CustomPicker\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -205,19 +205,16 @@
       <DependentUpon>BooleanEditCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cell\DateEditCell.cs" />
-    <Compile Include="Views\Cell\DateEditCell.designer.cs">
-      <DependentUpon>DateEditCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Cell\MessageBoardCell.cs" />
     <Compile Include="Views\Cell\TextEditCell.cs" />
     <Compile Include="Views\Cell\TextEditCell.designer.cs">
       <DependentUpon>TextEditCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\DatePicker\CustomPickerModel.cs" />
-    <Compile Include="Views\DatePicker\ModalPickerAnimatedDismissed.cs" />
-    <Compile Include="Views\DatePicker\ModalPickerAnimatedTransitioning.cs" />
-    <Compile Include="Views\DatePicker\ModalPickerTransitionDelegate.cs" />
-    <Compile Include="Views\DatePicker\ModalPickerViewController.cs" />
+    <Compile Include="Views\CustomPicker\ModalPickerAnimatedDismissed.cs" />
+    <Compile Include="Views\CustomPicker\ModalPickerAnimatedTransitioning.cs" />
+    <Compile Include="Views\CustomPicker\ModalPickerTransitionDelegate.cs" />
+    <Compile Include="Views\CustomPicker\ModalPickerViewController.cs" />
+    <Compile Include="Views\CustomPicker\CustomPickerModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

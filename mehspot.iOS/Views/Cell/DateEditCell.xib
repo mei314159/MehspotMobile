@@ -25,9 +25,10 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="21" translatesAutoresizingMaskIntoConstraints="NO">
                         <rect key="frame" x="165" y="0.0" width="155" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" title="Date">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="titleColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                         </state>
                         <connections>
                             <action selector="EditDateButtonTouched:" destination="cxk-wN-pdQ" id="38" eventType="touchUpInside"/>
