@@ -57,6 +57,7 @@
     <Compile Include="DTO\ValidationModelBase.cs" />
     <Compile Include="DTO\Profile\EditProfileDto.cs" />
     <Compile Include="DTO\Profile\ProfileDto.cs" />
+    <Compile Include="DTO\Profile\StaticDataDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

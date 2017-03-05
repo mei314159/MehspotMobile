@@ -5,16 +5,21 @@ using System.Collections.Generic;
 using mehspot.iOS.Views;
 using Mehspot.Core.DTO;
 using System.Linq;
+using Mehspot.Core.Messaging;
+using Mehspot.Core;
+using System.Threading.Tasks;
 
 namespace mehspot.iOS
 {
     public partial class EditProfileController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
+        private readonly ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
         public EditProfileDto profile;
 
         public EditProfileController (IntPtr handle) : base (handle)
         {
+            profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
         }
 
         public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -28,25 +33,29 @@ namespace mehspot.iOS
             return cells.Count;
         }
 
-        public override void ViewDidLoad ()
+        public override async void ViewDidLoad ()
         {
             this.ProfileTableView.TableFooterView = new UIView ();
-            InitializeCells ();
+            await InitializeCells ();
             ProfileTableView.WeakDataSource = this;
             ProfileTableView.Delegate = this;
+            ProfileTableView.ReloadData();
         }
 
         partial void SaveButtonTouched (UIBarButtonItem sender)
         {
         }
 
-        private void InitializeCells ()
+        private async Task InitializeCells ()
         {
             var genders = new [] {
                 new KeyValuePair<string, string>(null, "N/A"),
                 new KeyValuePair<string, string>("M", "Male"),
                 new KeyValuePair<string, string>("F", "Female")
             };
+
+            var statesResult = await profileService.GetStatesAsync ();
+            var states = statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray();
 
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name", true));
             cells.Add (TextEditCell.Create (profile, a => a.Email, "Email"));
@@ -58,7 +67,7 @@ namespace mehspot.iOS
             cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine1, "Address Line 1"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine2, "Address Line 2"));
-            cells.Add (TextEditCell.Create (profile, a => a.State, "State")); // State selector
+            cells.Add (DateEditCell.Create (profile, a => a.State, (model, property) => { model.State = property; }, v => states.FirstOrDefault (a => a.Key == v).Value, "Select State", states));
             cells.Add (TextEditCell.Create (profile, a => a.City, "City"));
             cells.Add (TextEditCell.Create (profile, a => a.Zip, "Zip")); //zip mask
             cells.Add (TextEditCell.Create (profile, a => a.SubdivisionName, "Subdivision")); //Subdivision Selector

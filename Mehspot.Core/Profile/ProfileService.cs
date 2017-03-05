@@ -52,5 +52,40 @@ namespace Mehspot.Core.Messaging
                 }
             }
         }
+
+        public async Task<Result<StaticDataDto[]>> GetStatesAsync ()
+        {
+            var uri = new Uri ($"{Constants.ApiHost}/api/Profile/GetStates");
+
+            using (var webClient = new HttpClient ()) {
+                try {
+                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+
+                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
+                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+                        var data = JsonConvert.DeserializeObject<StaticDataDto[]> (responseString);
+
+                        return new Result<StaticDataDto[]> {
+                            IsSuccess = true,
+                            Data = data,
+                            ErrorMessage = null
+                        };
+                    } else {
+                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
+                        return new Result<StaticDataDto[]> {
+                            IsSuccess = false,
+                            ErrorMessage = errorResponse.ErrorDescription
+                        };
+                    }
+
+                } catch (Exception ex) {
+                    return new Result<StaticDataDto[]> {
+                        IsSuccess = false,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+        }
     }
 }

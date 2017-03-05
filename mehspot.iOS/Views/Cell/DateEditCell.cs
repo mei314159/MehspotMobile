@@ -13,6 +13,7 @@ namespace mehspot.iOS.Views
     {
         private const string dateFormat = "MMMM dd, yyyy";
         private object Model;
+        private Type propertyType;
         private Action<object> SetProperty;
         private Func<object> GetProperty;
         private Func<object, string> GetPropertyString;
@@ -53,6 +54,7 @@ namespace mehspot.iOS.Views
             var cell = (DateEditCell)Nib.Instantiate (null, null) [0];
             cell.Placeholder = placeholder;
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
+            cell.propertyType = typeof (TProperty);
             cell.GetProperty = () => getProperty (model);
             cell.GetPropertyString = (s) => getPropertyString ((TProperty)s);
             cell.SetProperty = (p) => {
@@ -79,23 +81,21 @@ namespace mehspot.iOS.Views
                 ModalPresentationStyle = UIModalPresentationStyle.Custom,
             };
 
-            var isDateTimePicker = false;
             var initialValue = cell.GetProperty ();
-            if (initialValue != null) {
-                DateTime? dateValue;
-                if (initialValue is DateTime || initialValue is DateTime?) {
-                    isDateTimePicker = true;
-                    dateValue = initialValue as DateTime?;
-                    modalPicker.DatePicker.Mode = UIDatePickerMode.Date;
-                    modalPicker.DatePicker.TimeZone = NSTimeZone.FromGMT (0);
-                    modalPicker.DatePicker.SetDate (dateValue.Value.DateTimeToNSDate (), false);
-                    modalPicker.OnModalPickerDismissed += (s, ea) => {
-                        cell.SetProperty (modalPicker.DatePicker.Date.NSDateToDateTime ().Date);
-                    };
-                }
-            }
+            var isDateTimePicker = propertyType == typeof (DateTime) || propertyType == typeof (DateTime?);
+            if (isDateTimePicker) {
 
-            if (!isDateTimePicker) {
+                DateTime? dateValue;
+                dateValue = initialValue as DateTime?;
+                modalPicker.DatePicker.Mode = UIDatePickerMode.Date;
+                modalPicker.DatePicker.TimeZone = NSTimeZone.FromGMT (0);
+                if (dateValue.HasValue) {
+                    modalPicker.DatePicker.SetDate (dateValue.Value.DateTimeToNSDate (), false);
+                }
+                modalPicker.OnModalPickerDismissed += (s, ea) => {
+                    cell.SetProperty (modalPicker.DatePicker.Date.NSDateToDateTime ().Date);
+                };
+            } else {
                 nint selectedRow = 0;
                 for (int i = 0; i < cell.RowValues.Length; i++) {
                     var item = cell.RowValues [i];
@@ -114,8 +114,6 @@ namespace mehspot.iOS.Views
                     cell.SetProperty (value);
                 };
             }
-
-
             await controller.PresentViewControllerAsync (modalPicker, true);
         }
 
