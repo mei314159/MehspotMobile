@@ -15,7 +15,10 @@ namespace mehspot.iOS
     {
         private readonly ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
+        private KeyValuePair<int?, string> [] subdivisions;
+
         public EditProfileDto profile;
+
 
         public EditProfileController (IntPtr handle) : base (handle)
         {
@@ -57,23 +60,51 @@ namespace mehspot.iOS
             var statesResult = await profileService.GetStatesAsync ();
             var states = statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray();
 
+            subdivisions = await GetSubdivisions (profile.Zip);
+
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name", true));
             cells.Add (TextEditCell.Create (profile, a => a.Email, "Email"));
             cells.Add (TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number"));// TODO: Mask field
-            cells.Add (DateEditCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Select Date Of Birth"));
-            cells.Add (DateEditCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, v => genders.First (a => a.Key == v).Value, "Select Gender", genders));
+            cells.Add (PickerCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Date Of Birth"));
+            cells.Add (PickerCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, v => genders.First (a => a.Key == v).Value, "Gender", genders));
             // TODO: Email field
             cells.Add (TextEditCell.Create (profile, a => a.FirstName, "First Name"));
             cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine1, "Address Line 1"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine2, "Address Line 2"));
-            cells.Add (DateEditCell.Create (profile, a => a.State, (model, property) => { model.State = property; }, v => states.FirstOrDefault (a => a.Key == v).Value, "Select State", states));
+            cells.Add (PickerCell.Create (profile, a => a.State, (model, property) => { model.State = property; }, v => states.FirstOrDefault (a => a.Key == v).Value, "State", states));
             cells.Add (TextEditCell.Create (profile, a => a.City, "City"));
-            cells.Add (TextEditCell.Create (profile, a => a.Zip, "Zip")); //zip mask
-            cells.Add (TextEditCell.Create (profile, a => a.SubdivisionName, "Subdivision")); //Subdivision Selector
+            var zipCell = MaskedTextEditCell.Create (profile, a => a.Zip, "Zip");
+            zipCell.Mask = "#####";
+            var subdivisionEnabled = !string.IsNullOrWhiteSpace(profile.Zip) && zipCell.IsValid;
+            var subdivisionCell = PickerCell.Create (profile, a => a.SubdivisionId, (model, property) => { model.SubdivisionId = (int?)property; }, v => subdivisions.FirstOrDefault (a => a.Key == v).Value, "Subdivision", subdivisions, !subdivisionEnabled);
+            zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
+            cells.Add (zipCell); //zip mask
+            cells.Add (subdivisionCell); //Subdivision Selector
 
             cells.Add (BooleanEditCell.Create (profile, a => a.MehspotNotificationsEnabled, "Email notifications enabled")); //True-False selector
             cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled")); //True-False selector
+        }
+
+        async void ZipCell_ValueChanged (MaskedTextEditCell sender, string value, PickerCell subdivisionCell)
+        {
+            subdivisionCell.IsReadOnly = true;
+            if (sender.IsValid) {
+                subdivisionCell.RowValues = (await GetSubdivisions (profile.Zip)).Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
+            }
+
+            subdivisionCell.IsReadOnly = !sender.IsValid;
+        }
+
+        private async Task<KeyValuePair<int?, string> []> GetSubdivisions (string zipCode)
+        {
+            var subdivisionsResult = await profileService.GetSubdivisionsAsync (zipCode);
+            if (subdivisionsResult.IsSuccess) {
+                subdivisions = subdivisionsResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.DisplayName)).ToArray ();
+                return subdivisions;
+            }
+
+            return null;
         }
     }
 }

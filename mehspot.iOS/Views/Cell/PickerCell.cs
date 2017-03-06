@@ -8,8 +8,8 @@ using UIKit;
 
 namespace mehspot.iOS.Views
 {
-    [Register ("DateEditCell")]
-    public class DateEditCell : UITableViewCell
+    [Register ("PickerCell")]
+    public class PickerCell : UITableViewCell
     {
         private const string dateFormat = "MMMM dd, yyyy";
         private object Model;
@@ -17,32 +17,40 @@ namespace mehspot.iOS.Views
         private Action<object> SetProperty;
         private Func<object> GetProperty;
         private Func<object, string> GetPropertyString;
-        private KeyValuePair<object, string> [] RowValues;
+
         private string Placeholder;
 
-        public static readonly NSString Key = new NSString ("DateEditCell");
+        public static readonly NSString Key = new NSString ("PickerCell");
         public static readonly UINib Nib;
 
-        static DateEditCell ()
+        static PickerCell ()
         {
-            Nib = UINib.FromName ("DateEditCell", NSBundle.MainBundle);
+            Nib = UINib.FromName ("PickerCell", NSBundle.MainBundle);
         }
 
-        protected DateEditCell (IntPtr handle) : base (handle)
+        protected PickerCell (IntPtr handle) : base (handle)
         {
             // Note: this .ctor should not contain any initialization logic.
         }
 
         [Outlet]
-        UIButton ChangeDateButton { get; set; }
+        UIButton SelectValueButton { get; set; }
 
         [Outlet]
         UILabel FieldLabel { get; set; }
 
+        public KeyValuePair<object, string> [] RowValues { get; set; }
 
 
-
-        public static DateEditCell Create<T, TProperty> (
+        public bool IsReadOnly {
+            get {
+                return this.SelectValueButton.Enabled;
+            }
+            set {
+                this.SelectValueButton.Enabled = !value;
+            }
+        }
+        public static PickerCell Create<T, TProperty> (
             T model,
             Func<T, TProperty> getProperty,
             Action<T, TProperty> setProperty,
@@ -51,7 +59,7 @@ namespace mehspot.iOS.Views
             IEnumerable<KeyValuePair<TProperty, string>> rowValues = null,
             bool isReadOnly = false)
         {
-            var cell = (DateEditCell)Nib.Instantiate (null, null) [0];
+            var cell = (PickerCell)Nib.Instantiate (null, null) [0];
             cell.Placeholder = placeholder;
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
             cell.propertyType = typeof (TProperty);
@@ -59,19 +67,20 @@ namespace mehspot.iOS.Views
             cell.GetPropertyString = (s) => getPropertyString ((TProperty)s);
             cell.SetProperty = (p) => {
                 setProperty (model, (TProperty)p);
-                cell.SetChangeValueButtonTitle ();
+                cell.SetSelectValueButtonTitle ();
             };
-
-            cell.ChangeDateButton.Enabled = !isReadOnly;
+            cell.SelectValueButton.TouchUpInside += SelectValueButton_TouchUpInside;
+            cell.IsReadOnly = isReadOnly;
             cell.FieldLabel.Text = placeholder;
-            cell.SetChangeValueButtonTitle ();
+            cell.SetSelectValueButtonTitle ();
             return cell;
         }
 
-        [Action ("EditDateButtonTouched:")]
-        async void EditDateButtonTouched (UIButton sender)
+
+
+        public static async void SelectValueButton_TouchUpInside (object sender, EventArgs e)
         {
-            var cell = (DateEditCell)sender.Superview.Superview;
+            var cell = (PickerCell)((UIButton)sender).Superview.Superview;
             var controller = cell.GetViewController ();
 
             var modalPicker = new ModalPickerViewController (ModalPickerType.Date, cell.Placeholder, controller) {
@@ -82,7 +91,7 @@ namespace mehspot.iOS.Views
             };
 
             var initialValue = cell.GetProperty ();
-            var isDateTimePicker = propertyType == typeof (DateTime) || propertyType == typeof (DateTime?);
+            var isDateTimePicker = cell.propertyType == typeof (DateTime) || cell.propertyType == typeof (DateTime?);
             if (isDateTimePicker) {
 
                 DateTime? dateValue;
@@ -96,37 +105,40 @@ namespace mehspot.iOS.Views
                     cell.SetProperty (modalPicker.DatePicker.Date.NSDateToDateTime ().Date);
                 };
             } else {
-                nint selectedRow = 0;
-                for (int i = 0; i < cell.RowValues.Length; i++) {
-                    var item = cell.RowValues [i];
-                    if (item.Key == initialValue) {
-                        selectedRow = i;
-                        break;
-                    }
-                }
 
                 modalPicker.PickerType = ModalPickerType.Custom;
-                modalPicker.PickerView.Model = new CustomPickerModel (cell.RowValues.Select (a => a.Value).ToList ());
-                modalPicker.PickerView.Select (selectedRow, 0, false);
+                nint selectedRow = 0;
+                if (cell.RowValues != null) {
+                    for (int i = 0; i < cell.RowValues.Length; i++) {
+                        var item = cell.RowValues [i];
+                        if (item.Key == initialValue) {
+                            selectedRow = i;
+                            break;
+                        }
+                    }
+                    modalPicker.PickerView.Model = new CustomPickerModel (cell.RowValues.Select (a => a.Value).ToList ());
+                    modalPicker.PickerView.Select (selectedRow, 0, false);
+                }
                 modalPicker.OnModalPickerDismissed += (s, ea) => {
                     var index = modalPicker.PickerView.SelectedRowInComponent (0);
-                    var value = cell.RowValues [(int)index].Key;
+                    var value = cell.RowValues? [(int)index].Key;
                     cell.SetProperty (value);
                 };
             }
             await controller.PresentViewControllerAsync (modalPicker, true);
         }
 
-        void SetChangeValueButtonTitle ()
+        void SetSelectValueButtonTitle ()
         {
-            ChangeDateButton.SetTitle (GetPropertyString (GetProperty ()), UIControlState.Normal);
+            var title = GetPropertyString (GetProperty ()) ?? this.Placeholder;
+            SelectValueButton.SetTitle (title, UIControlState.Normal);
         }
 
         void ReleaseDesignerOutlets ()
         {
-            if (ChangeDateButton != null) {
-                ChangeDateButton.Dispose ();
-                ChangeDateButton = null;
+            if (SelectValueButton != null) {
+                SelectValueButton.Dispose ();
+                SelectValueButton = null;
             }
 
             if (FieldLabel != null) {

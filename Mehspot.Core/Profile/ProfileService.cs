@@ -5,6 +5,8 @@ using mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Mehspot.DTO;
+
 namespace Mehspot.Core.Messaging
 {
     public class ProfileService
@@ -81,6 +83,41 @@ namespace Mehspot.Core.Messaging
 
                 } catch (Exception ex) {
                     return new Result<StaticDataDto[]> {
+                        IsSuccess = false,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+        }
+
+        public async Task<Result<SubdivisionDto []>> GetSubdivisionsAsync (string zip)
+        {
+            var uri = new Uri ($"{Constants.ApiHost}/api/Profile/GetSubdivisions?zipCode=" + zip);
+
+            using (var webClient = new HttpClient ()) {
+                try {
+                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+
+                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
+                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+                        var data = JsonConvert.DeserializeObject<SubdivisionDto []> (responseString);
+
+                        return new Result<SubdivisionDto []> {
+                            IsSuccess = true,
+                            Data = data,
+                            ErrorMessage = null
+                        };
+                    } else {
+                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
+                        return new Result<SubdivisionDto []> {
+                            IsSuccess = false,
+                            ErrorMessage = errorResponse.ErrorDescription
+                        };
+                    }
+
+                } catch (Exception ex) {
+                    return new Result<SubdivisionDto []> {
                         IsSuccess = false,
                         ErrorMessage = ex.Message
                     };

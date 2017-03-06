@@ -10,8 +10,8 @@ using System.CodeDom.Compiler;
 
 namespace mehspot.iOS.Views
 {
-    [Register ("TextEditCell")]
-    partial class TextEditCell
+    [Register ("MaskedTextEditCell")]
+    partial class MaskedTextEditCell
     {
         void ReleaseDesignerOutlets ()
         {

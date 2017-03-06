@@ -33,7 +33,7 @@ namespace mehspot.Core.Auth
 
         public async Task<AuthenticationResult> SignInAsync (string email, string password)
         {
-            var uri = new Uri (Constants.AuthServerHost + "/token");
+            var uri = new Uri (Constants.ApiHost + "/token");
 
             using (var webClient = new HttpClient ()) {
                 try {

@@ -10,8 +10,8 @@ using System.CodeDom.Compiler;
 
 namespace mehspot.iOS.Views
 {
-    [Register ("TextEditCell")]
-    partial class TextEditCell
+    [Register ("PickerCell")]
+    partial class PickerCell
     {
         void ReleaseDesignerOutlets ()
         {
@@ -20,9 +20,9 @@ namespace mehspot.iOS.Views
                 FieldLabel = null;
             }
 
-            if (TextInput != null) {
-                TextInput.Dispose ();
-                TextInput = null;
+            if (SelectValueButton != null) {
+                SelectValueButton.Dispose ();
+                SelectValueButton = null;
             }
         }
     }

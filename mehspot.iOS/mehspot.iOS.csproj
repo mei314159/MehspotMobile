@@ -153,9 +153,10 @@
     <InterfaceDefinition Include="Views\BadgeItemView.xib" />
     <InterfaceDefinition Include="Views\MessageBubble.xib" />
     <InterfaceDefinition Include="Views\Cell\BooleanEditCell.xib" />
-    <InterfaceDefinition Include="Views\Cell\DateEditCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\PickerCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
     <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\MaskedTextEditCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -204,17 +205,15 @@
     <Compile Include="Views\Cell\BooleanEditCell.designer.cs">
       <DependentUpon>BooleanEditCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cell\DateEditCell.cs" />
+    <Compile Include="Views\Cell\PickerCell.cs" />
     <Compile Include="Views\Cell\MessageBoardCell.cs" />
     <Compile Include="Views\Cell\TextEditCell.cs" />
-    <Compile Include="Views\Cell\TextEditCell.designer.cs">
-      <DependentUpon>TextEditCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\CustomPicker\ModalPickerAnimatedDismissed.cs" />
     <Compile Include="Views\CustomPicker\ModalPickerAnimatedTransitioning.cs" />
     <Compile Include="Views\CustomPicker\ModalPickerTransitionDelegate.cs" />
     <Compile Include="Views\CustomPicker\ModalPickerViewController.cs" />
     <Compile Include="Views\CustomPicker\CustomPickerModel.cs" />
+    <Compile Include="Views\Cell\MaskedTextEditCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
