@@ -8,6 +8,8 @@ using System.Linq;
 using Mehspot.Core.Messaging;
 using Mehspot.Core;
 using System.Threading.Tasks;
+using CoreGraphics;
+using mehspot.iOS.Extensions;
 
 namespace mehspot.iOS
 {
@@ -43,10 +45,57 @@ namespace mehspot.iOS
             ProfileTableView.WeakDataSource = this;
             ProfileTableView.Delegate = this;
             ProfileTableView.ReloadData();
+            RegisterForKeyboardNotifications ();
         }
 
         partial void SaveButtonTouched (UIBarButtonItem sender)
         {
+        }
+
+        protected virtual void RegisterForKeyboardNotifications ()
+        {
+            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillHideNotification, OnKeyboardNotification);
+            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, OnKeyboardNotification);
+        }
+
+        private void OnKeyboardNotification (NSNotification notification)
+        {
+            if (!IsViewLoaded)
+                return;
+
+            //Check if the keyboard is becoming visible
+            var visible = notification.Name == UIKeyboard.WillShowNotification;
+
+            //Start an animation, using values from the keyboard
+            UIView.BeginAnimations ("AnimateForKeyboard");
+            UIView.SetAnimationBeginsFromCurrentState (true);
+            UIView.SetAnimationDuration (UIKeyboard.AnimationDurationFromNotification (notification));
+            UIView.SetAnimationCurve ((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification (notification));
+
+            //Pass the notification, calculating keyboard height, etc.
+            var keyboardFrame = visible
+                                    ? UIKeyboard.FrameEndFromNotification (notification)
+                                    : UIKeyboard.FrameBeginFromNotification (notification);
+            OnKeyboardChanged (visible, keyboardFrame);
+            //Commit the animation
+            UIView.CommitAnimations ();
+        }
+
+        private void OnKeyboardChanged (bool visible, CGRect keyboardFrame)
+        {
+            if (View.Superview == null) {
+                return;
+            }
+
+            if (visible) {
+                var relativeLocation = View.Superview.ConvertPointToView (keyboardFrame.Location, View);
+                var yTreshold = ProfileTableView.Frame.Y + ProfileTableView.Frame.Height;
+                var deltaY = yTreshold - relativeLocation.Y;
+                ProfileTableView.Frame = new CGRect (ProfileTableView.Frame.Location, new CGSize(ProfileTableView.Frame.Width, ProfileTableView.Frame.Height - deltaY));
+            } else {
+                var deltaY = (this.View.Frame.Height) - (ProfileTableView.Frame.Y + ProfileTableView.Frame.Height);
+                ProfileTableView.Frame = new CGRect (ProfileTableView.Frame.Location, new CGSize (ProfileTableView.Frame.Width, ProfileTableView.Frame.Height + deltaY));
+            }
         }
 
         private async Task InitializeCells ()

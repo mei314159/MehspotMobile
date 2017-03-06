@@ -51,9 +51,9 @@ namespace mehspot.iOS.Views
         public static MaskedTextEditCell Create<T> (T Model, Expression<Func<T, string>> property, string placeholder, bool isReadOnly = false) where T : class
         {
             var cell = (MaskedTextEditCell)Nib.Instantiate (null, null) [0];
+            cell.FieldLabel.Text = placeholder;
             cell.TextInput.Placeholder = placeholder;
             cell.TextInput.Enabled = !isReadOnly;
-            cell.FieldLabel.Text = placeholder;
             cell.TextInput.Text = property.Compile ().Invoke (Model)?.ToString ();
             cell.TextInput.EditingChanged += cell.TextInput_EditingChanged;
             cell.TextInput.ShouldChangeCharacters += (textField, range, replacementString) => cell.TextInput_ShouldChangeCharacters (textField, range, replacementString);
