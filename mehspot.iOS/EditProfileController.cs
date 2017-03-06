@@ -64,7 +64,9 @@ namespace mehspot.iOS
 
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name", true));
             cells.Add (TextEditCell.Create (profile, a => a.Email, "Email"));
-            cells.Add (TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number"));// TODO: Mask field
+            var phoneNumberCell = MaskedTextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
+            phoneNumberCell.Mask = "(###)###-####";
+            cells.Add (phoneNumberCell);// TODO: Mask field
             cells.Add (PickerCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Date Of Birth"));
             cells.Add (PickerCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, v => genders.First (a => a.Key == v).Value, "Gender", genders));
             // TODO: Email field

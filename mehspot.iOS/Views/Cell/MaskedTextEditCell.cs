@@ -30,7 +30,18 @@ namespace mehspot.iOS.Views
         UITextField TextInput { get; set; }
 
         public int? MaxLength { get; set; }
-        public string Mask { get; set; }
+        string mask;
+
+        public string Mask {
+            get {
+                return mask;
+            }
+
+            set {
+                mask = value;
+                this.TextInput.Placeholder = mask;
+            }
+        }
 
         public bool IsValid => ValidateMask (TextInput.Text, true);
 
