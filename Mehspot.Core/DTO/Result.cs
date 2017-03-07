@@ -1,8 +1,11 @@
-﻿namespace Mehspot.Core.DTO
+﻿using mehspot.Core.Dto;
+
+namespace Mehspot.Core.DTO
 {
     public class Result
     {
         public string ErrorMessage { get; set; }
+        public ModelStateDto ModelState { get; set; }
         public bool IsSuccess { get; set; }
     }
 

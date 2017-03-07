@@ -10,11 +10,13 @@ using Mehspot.Core;
 using System.Threading.Tasks;
 using CoreGraphics;
 using mehspot.iOS.Extensions;
+using mehspot.iOS.Wrappers;
 
 namespace mehspot.iOS
 {
     public partial class EditProfileController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
+        private ViewHelper viewHelper;
         private readonly ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
         private KeyValuePair<int?, string> [] subdivisions;
@@ -25,6 +27,7 @@ namespace mehspot.iOS
         public EditProfileController (IntPtr handle) : base (handle)
         {
             profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
+            viewHelper = new ViewHelper (this.View);
         }
 
         public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -44,12 +47,33 @@ namespace mehspot.iOS
             await InitializeCells ();
             ProfileTableView.WeakDataSource = this;
             ProfileTableView.Delegate = this;
-            ProfileTableView.ReloadData();
+            ProfileTableView.ReloadData ();
             RegisterForKeyboardNotifications ();
+            ProfileTableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
         }
 
-        partial void SaveButtonTouched (UIBarButtonItem sender)
+        public void HideKeyboard ()
         {
+            this.View.FindFirstResponder()?.ResignFirstResponder ();
+        }
+
+        async partial void SaveButtonTouched (UIBarButtonItem sender)
+        {
+            HideKeyboard ();
+            viewHelper.ShowOverlay ("Saving...");
+            var result = await this.profileService.UpdateAsync (profile);
+            viewHelper.HideOverlay ();
+            if (!result.IsSuccess) {
+                var error = string.Join (Environment.NewLine, result.ModelState.ModelState.SelectMany (a => a.Value));
+                UIAlertView alert = new UIAlertView (
+                                    result.ErrorMessage,
+                                    error,
+                                    null,
+                                    "OK");
+                alert.Show ();
+            } else {
+                this.NavigationController.PopViewController (true);
+            }
         }
 
         protected virtual void RegisterForKeyboardNotifications ()
@@ -91,7 +115,7 @@ namespace mehspot.iOS
                 var relativeLocation = View.Superview.ConvertPointToView (keyboardFrame.Location, View);
                 var yTreshold = ProfileTableView.Frame.Y + ProfileTableView.Frame.Height;
                 var deltaY = yTreshold - relativeLocation.Y;
-                ProfileTableView.Frame = new CGRect (ProfileTableView.Frame.Location, new CGSize(ProfileTableView.Frame.Width, ProfileTableView.Frame.Height - deltaY));
+                ProfileTableView.Frame = new CGRect (ProfileTableView.Frame.Location, new CGSize (ProfileTableView.Frame.Width, ProfileTableView.Frame.Height - deltaY));
             } else {
                 var deltaY = (this.View.Frame.Height) - (ProfileTableView.Frame.Y + ProfileTableView.Frame.Height);
                 ProfileTableView.Frame = new CGRect (ProfileTableView.Frame.Location, new CGSize (ProfileTableView.Frame.Width, ProfileTableView.Frame.Height + deltaY));
@@ -107,13 +131,13 @@ namespace mehspot.iOS
             };
 
             var statesResult = await profileService.GetStatesAsync ();
-            var states = statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray();
+            var states = statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
 
             subdivisions = await GetSubdivisions (profile.Zip);
 
-            cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name", true));
-            cells.Add (TextEditCell.Create (profile, a => a.Email, "Email"));
-            var phoneNumberCell = MaskedTextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
+            cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name"));
+            cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", true));
+            var phoneNumberCell = TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
             phoneNumberCell.Mask = "(###)###-####";
             cells.Add (phoneNumberCell);// TODO: Mask field
             cells.Add (PickerCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Date Of Birth"));
@@ -125,9 +149,9 @@ namespace mehspot.iOS
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine2, "Address Line 2"));
             cells.Add (PickerCell.Create (profile, a => a.State, (model, property) => { model.State = property; }, v => states.FirstOrDefault (a => a.Key == v).Value, "State", states));
             cells.Add (TextEditCell.Create (profile, a => a.City, "City"));
-            var zipCell = MaskedTextEditCell.Create (profile, a => a.Zip, "Zip");
+            var zipCell = TextEditCell.Create (profile, a => a.Zip, "Zip");
             zipCell.Mask = "#####";
-            var subdivisionEnabled = !string.IsNullOrWhiteSpace(profile.Zip) && zipCell.IsValid;
+            var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
             var subdivisionCell = PickerCell.Create (profile, a => a.SubdivisionId, (model, property) => { model.SubdivisionId = (int?)property; }, v => subdivisions.FirstOrDefault (a => a.Key == v).Value, "Subdivision", subdivisions, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
             cells.Add (zipCell); //zip mask
@@ -137,7 +161,7 @@ namespace mehspot.iOS
             cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled")); //True-False selector
         }
 
-        async void ZipCell_ValueChanged (MaskedTextEditCell sender, string value, PickerCell subdivisionCell)
+        async void ZipCell_ValueChanged (TextEditCell sender, string value, PickerCell subdivisionCell)
         {
             subdivisionCell.IsReadOnly = true;
             if (sender.IsValid) {

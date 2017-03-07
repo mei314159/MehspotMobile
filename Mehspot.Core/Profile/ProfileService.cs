@@ -55,6 +55,44 @@ namespace Mehspot.Core.Messaging
             }
         }
 
+        public async Task<Result<EditProfileDto>> UpdateAsync (EditProfileDto profile)
+        {
+            var uri = new Uri (Constants.ApiHost + "/api/profile/update");
+
+            using (var webClient = new HttpClient ()) {
+                try {
+                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+
+                    var data = JsonConvert.SerializeObject (profile);
+                    var stringContent = new StringContent (data, System.Text.Encoding.UTF8, "application/json");
+                    stringContent.Headers.ContentLength = data.Length;
+                    var response = await webClient.PutAsync (uri, stringContent).ConfigureAwait (false);
+                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+                        var messageDto = JsonConvert.DeserializeObject<EditProfileDto> (responseString);
+                        return new Result<EditProfileDto> {
+                            IsSuccess = true,
+                            Data = messageDto,
+                            ErrorMessage = null
+                        };
+                    } else {
+                        var modelState = JsonConvert.DeserializeObject<ModelStateDto> (responseString);
+                        return new Result<EditProfileDto> {
+                            IsSuccess = false,
+                            ErrorMessage = modelState.Message,
+                            ModelState = modelState
+                        };
+                    }
+
+                } catch (Exception ex) {
+                    return new Result<EditProfileDto> {
+                        IsSuccess = false,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+        }
+
         public async Task<Result<StaticDataDto[]>> GetStatesAsync ()
         {
             var uri = new Uri ($"{Constants.ApiHost}/api/Profile/GetStates");

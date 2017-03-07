@@ -59,6 +59,7 @@
     <Compile Include="DTO\Profile\ProfileDto.cs" />
     <Compile Include="DTO\Profile\StaticDataDto.cs" />
     <Compile Include="DTO\SubdivisionDto.cs" />
+    <Compile Include="DTO\ModelStateDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
