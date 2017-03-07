@@ -16,7 +16,15 @@ namespace mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView ProfilePicture { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView ProfileTableView { get; set; }
+
+        [Action ("ChangePhotoButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ChangePhotoButtonTouched (UIKit.UIButton sender);
 
         [Action ("SaveButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -24,6 +32,11 @@ namespace mehspot.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (ProfilePicture != null) {
+                ProfilePicture.Dispose ();
+                ProfilePicture = null;
+            }
+
             if (ProfileTableView != null) {
                 ProfileTableView.Dispose ();
                 ProfileTableView = null;

@@ -141,6 +141,7 @@ namespace mehspot.iOS
                         if (item.WithUser.Id == data.FromUserId) {
                             var cell = (MessageBoardCell)MessageBoardTable.CellAt (NSIndexPath.FromItemSection (i, 0));
                             cell.CountLabel.Text = (int.Parse (cell.CountLabel.Text) + 1).ToString ();
+                            cell.Message.Text = data.Message;
                             cell.CountLabel.Hidden = false;
                             item.UnreadMessagesCount++;
                             UpdateApplicationBadge ();

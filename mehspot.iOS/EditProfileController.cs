@@ -1,21 +1,25 @@
 using Foundation;
-using System;
-using UIKit;
-using System.Collections.Generic;
-using mehspot.iOS.Views;
-using Mehspot.Core.DTO;
-using System.Linq;
-using Mehspot.Core.Messaging;
-using Mehspot.Core;
-using System.Threading.Tasks;
 using CoreGraphics;
+using UIKit;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Mehspot.Core;
+using Mehspot.Core.DTO;
+using Mehspot.Core.Messaging;
+using mehspot.iOS.Views;
 using mehspot.iOS.Extensions;
 using mehspot.iOS.Wrappers;
+using System.Runtime.InteropServices;
+using SDWebImage;
 
 namespace mehspot.iOS
 {
     public partial class EditProfileController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
+        bool profileImageChanged;
+
         private ViewHelper viewHelper;
         private readonly ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
@@ -41,10 +45,14 @@ namespace mehspot.iOS
             return cells.Count;
         }
 
-        public override async void ViewDidLoad ()
+        public override void ViewDidLoad ()
         {
             this.ProfileTableView.TableFooterView = new UIView ();
-            await InitializeCells ();
+        }
+
+        public override async void ViewWillAppear (bool animated)
+        {
+            await InitializeView ();
             ProfileTableView.WeakDataSource = this;
             ProfileTableView.Delegate = this;
             ProfileTableView.ReloadData ();
@@ -54,13 +62,74 @@ namespace mehspot.iOS
 
         public void HideKeyboard ()
         {
-            this.View.FindFirstResponder()?.ResignFirstResponder ();
+            this.View.FindFirstResponder ()?.ResignFirstResponder ();
         }
+
+        partial void ChangePhotoButtonTouched (UIButton sender)
+        {
+            var photoSourceActionSheet = new UIActionSheet ("Take a photo from");
+            photoSourceActionSheet.AddButton ("Camera");
+            photoSourceActionSheet.AddButton ("Photo Library");
+            photoSourceActionSheet.AddButton ("Cancel");
+            photoSourceActionSheet.CancelButtonIndex = 2;
+            photoSourceActionSheet.Clicked += PhotoSouceActionSheet_Clicked; ;
+            photoSourceActionSheet.ShowInView (View);
+        }
+
+        private void PhotoSouceActionSheet_Clicked (object sender, UIButtonEventArgs e)
+        {
+            var imagePicker = new UIImagePickerController ();
+            imagePicker.MediaTypes = new string [] { MobileCoreServices.UTType.Image };
+            if (e.ButtonIndex == 0) {
+                imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
+            } else if (e.ButtonIndex == 1) {
+                imagePicker.SourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+            } else {
+                return;
+            }
+
+            imagePicker.FinishedPickingMedia += Handle_FinishedPickingMedia;
+            imagePicker.Canceled += Handle_Canceled;
+
+            NavigationController.PresentModalViewController (imagePicker, true);
+        }
+
+        void Handle_FinishedPickingMedia (object sender, UIImagePickerMediaPickedEventArgs e)
+        {
+            if (e.Info [UIImagePickerController.MediaType].ToString () != MobileCoreServices.UTType.Image)
+                return;
+
+            NSUrl referenceURL = e.Info [new NSString (UIImagePickerController.ReferenceUrl)] as NSUrl;
+            if (referenceURL != null)
+                Console.WriteLine ("Url:" + referenceURL);
+
+            UIImage originalImage = e.Info [UIImagePickerController.OriginalImage] as UIImage;
+            if (originalImage != null) {
+                ProfilePicture.Image = originalImage;
+                this.profileImageChanged = true;
+            }
+
+            ((UIImagePickerController)sender).DismissModalViewController (true);
+        }
+
+        void Handle_Canceled (object sender, EventArgs e)
+        {
+            ((UIImagePickerController)sender).DismissModalViewController (true);
+        }
+
 
         async partial void SaveButtonTouched (UIBarButtonItem sender)
         {
             HideKeyboard ();
             viewHelper.ShowOverlay ("Saving...");
+
+            if (profileImageChanged) {
+                var data = this.ProfilePicture.Image.AsJPEG();
+                byte [] dataBytes = new byte [data.Length];
+                Marshal.Copy (data.Bytes, dataBytes, 0, Convert.ToInt32 (data.Length));
+                await this.profileService.UploadProfileImageAsync (dataBytes);
+            }
+
             var result = await this.profileService.UpdateAsync (profile);
             viewHelper.HideOverlay ();
             if (!result.IsSuccess) {
@@ -72,7 +141,7 @@ namespace mehspot.iOS
                                     "OK");
                 alert.Show ();
             } else {
-                this.NavigationController.PopViewController (true);
+                this.NavigationController?.PopViewController (true);
             }
         }
 
@@ -122,8 +191,15 @@ namespace mehspot.iOS
             }
         }
 
-        private async Task InitializeCells ()
+        private async Task InitializeView ()
         {
+            if (!string.IsNullOrEmpty (profile.ProfilePicturePath)) {
+                var url = NSUrl.FromString (profile.ProfilePicturePath);
+                if (url != null) {
+                    this.ProfilePicture.SetImage (url);
+                }
+            }
+
             var genders = new [] {
                 new KeyValuePair<string, string>(null, "N/A"),
                 new KeyValuePair<string, string>("M", "Male"),

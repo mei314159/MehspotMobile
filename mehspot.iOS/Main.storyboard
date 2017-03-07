@@ -512,6 +512,9 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                 <state key="normal" title="Change a photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ChangePhotoButtonTouched:" destination="944" id="2762" eventType="touchUpInside"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="2692" translatesAutoresizingMaskIntoConstraints="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceVertical="YES">
                                 <rect key="frame" x="0.0" y="128" width="375" height="426"/>
@@ -542,6 +545,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="ProfileTableView" destination="2692" id="name-outlet-2692"/>
+                        <outlet property="ProfilePicture" destination="2660" id="name-outlet-2660"/>
                     </connections>
                     <navigationItem title="Edit Profile" id="2746" key="navigationItem">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="2747">

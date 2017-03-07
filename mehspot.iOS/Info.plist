@@ -9,7 +9,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.16</string>
+	<string>1.0.17</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -34,7 +34,7 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To attach a photo to your feedback, we need access to your Photo Library.</string>
+	<string>This app needs access to the photo library to allow you to choose a new profile image.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -61,5 +61,7 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to the camera to allow you to make a new profile image.</string>
 </dict>
 </plist>

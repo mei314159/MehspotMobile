@@ -6,6 +6,7 @@ using Mehspot.Core.DTO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Mehspot.DTO;
+using System.Net.Http.Headers;
 
 namespace Mehspot.Core.Messaging
 {
@@ -86,6 +87,42 @@ namespace Mehspot.Core.Messaging
 
                 } catch (Exception ex) {
                     return new Result<EditProfileDto> {
+                        IsSuccess = false,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+        }
+
+        public async Task<Result> UploadProfileImageAsync (byte[] profileImage)
+        {
+            var uri = new Uri (Constants.ApiHost + "/api/profile/UploadProfileImage");
+
+            using (var webClient = new HttpClient ()) {
+                try {
+                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+
+                    var data = new MultipartFormDataContent ();
+                    var byteArrayContent = new ByteArrayContent (profileImage);
+                    data.Add (byteArrayContent, "file", "file.jpg");
+                    var response = await webClient.PostAsync (uri, data).ConfigureAwait (false);
+                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+                        return new Result {
+                            IsSuccess = true,
+                            ErrorMessage = null
+                        };
+                    } else {
+                        var modelState = JsonConvert.DeserializeObject<ModelStateDto> (responseString);
+                        return new Result {
+                            IsSuccess = false,
+                            ErrorMessage = modelState.Message,
+                            ModelState = modelState
+                        };
+                    }
+
+                } catch (Exception ex) {
+                    return new Result {
                         IsSuccess = false,
                         ErrorMessage = ex.Message
                     };
