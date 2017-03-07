@@ -18,7 +18,8 @@ namespace mehspot.iOS
 {
     public partial class EditProfileController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
-        bool profileImageChanged;
+        volatile bool viewWasInitialized;
+        volatile bool profileImageChanged;
 
         private ViewHelper viewHelper;
         private readonly ProfileService profileService;
@@ -52,7 +53,8 @@ namespace mehspot.iOS
 
         public override async void ViewWillAppear (bool animated)
         {
-            await InitializeView ();
+            if (!viewWasInitialized)
+                await InitializeView ();
             ProfileTableView.WeakDataSource = this;
             ProfileTableView.Delegate = this;
             ProfileTableView.ReloadData ();
@@ -105,7 +107,7 @@ namespace mehspot.iOS
 
             UIImage originalImage = e.Info [UIImagePickerController.OriginalImage] as UIImage;
             if (originalImage != null) {
-                ProfilePicture.Image = originalImage;
+                ProfilePicture.Image = UIImage.FromImage (originalImage.CGImage, 4, originalImage.Orientation);
                 this.profileImageChanged = true;
             }
 
@@ -120,6 +122,7 @@ namespace mehspot.iOS
 
         async partial void SaveButtonTouched (UIBarButtonItem sender)
         {
+            sender.Enabled = false;
             HideKeyboard ();
             viewHelper.ShowOverlay ("Saving...");
 
@@ -143,6 +146,8 @@ namespace mehspot.iOS
             } else {
                 this.NavigationController?.PopViewController (true);
             }
+
+            sender.Enabled = true;
         }
 
         protected virtual void RegisterForKeyboardNotifications ()
@@ -193,6 +198,7 @@ namespace mehspot.iOS
 
         private async Task InitializeView ()
         {
+            viewHelper.ShowOverlay ("Loading...");
             if (!string.IsNullOrEmpty (profile.ProfilePicturePath)) {
                 var url = NSUrl.FromString (profile.ProfilePicturePath);
                 if (url != null) {
@@ -235,6 +241,9 @@ namespace mehspot.iOS
 
             cells.Add (BooleanEditCell.Create (profile, a => a.MehspotNotificationsEnabled, "Email notifications enabled")); //True-False selector
             cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled")); //True-False selector
+
+            viewHelper.HideOverlay();
+            viewWasInitialized = true;
         }
 
         async void ZipCell_ValueChanged (TextEditCell sender, string value, PickerCell subdivisionCell)
