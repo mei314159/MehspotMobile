@@ -32,8 +32,8 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
-            this.SignoutButton.ImageView.Image =
-                this.SignoutButton.ImageView.Image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysTemplate);
+            EditButton.Layer.BorderWidth = 1;
+            EditButton.Layer.BorderColor = UIColor.LightGray.CGColor;
             this.MainScrollView.AddSubview (refreshControl);
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
@@ -59,7 +59,7 @@ namespace mehspot.iOS
             base.PrepareForSegue (segue, sender);
         }
 
-        partial void SignoutButtonTouched (UIButton sender)
+        partial void SignoutButtonTouched (UIBarButtonItem sender)
         {
             UIAlertView alert = new UIAlertView (
                                             "Sign Out",

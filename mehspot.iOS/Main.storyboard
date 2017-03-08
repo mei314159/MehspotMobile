@@ -369,31 +369,21 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="524" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="7" misplaced="YES">
-                                                <rect key="frame" x="93" y="23" width="237" height="24"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="524" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="7">
+                                                <rect key="frame" x="96" y="10" width="266" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="528" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="8" misplaced="YES">
-                                                <rect key="frame" x="93" y="47" width="237" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="528" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="8">
+                                                <rect key="frame" x="96" y="34" width="266" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                                                 <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="625" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="340" y="25" width="22" height="22"/>
-                                                <state key="normal" image="signout-icon">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
                                                 <constraints>
-                                                    <constraint id="627" firstItem="625" firstAttribute="height" constant="22"/>
-                                                    <constraint id="643" firstItem="625" firstAttribute="width" constant="22"/>
+                                                    <constraint id="2825" firstItem="528" firstAttribute="height" constant="21"/>
                                                 </constraints>
-                                                <connections>
-                                                    <action selector="SignoutButtonTouched:" destination="508" id="657" eventType="touchUpInside"/>
-                                                </connections>
-                                            </button>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="534" translatesAutoresizingMaskIntoConstraints="NO">
                                                 <rect key="frame" x="13" y="103" width="82" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -403,21 +393,40 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                                     <constraint id="538" firstItem="534" firstAttribute="height" constant="30"/>
                                                 </constraints>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2775" translatesAutoresizingMaskIntoConstraints="NO" enabled="NO">
+                                                <rect key="frame" x="96" y="57" width="266" height="26"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <state key="normal" title="Edit Profile">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue id="2820" destination="944" kind="show"/>
+                                                </connections>
+                                                <constraints>
+                                                    <constraint id="2829" firstItem="2775" firstAttribute="height" constant="26"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint id="636" firstItem="517" firstAttribute="leading" secondItem="632" secondAttribute="leading" constant="13"/>
                                             <constraint id="637" firstItem="517" firstAttribute="top" secondItem="632" secondAttribute="top" constant="13"/>
-                                            <constraint id="638" firstItem="517" firstAttribute="centerY" secondItem="524" secondAttribute="bottom" constant="1"/>
                                             <constraint id="639" firstItem="524" firstAttribute="leading" secondItem="517" secondAttribute="trailing" constant="13"/>
                                             <constraint id="641" firstItem="528" firstAttribute="top" secondItem="524" secondAttribute="bottom"/>
                                             <constraint id="642" firstItem="528" firstAttribute="leading" secondItem="524" secondAttribute="leading"/>
-                                            <constraint id="644" firstItem="632" firstAttribute="trailing" secondItem="625" secondAttribute="trailing" constant="13"/>
-                                            <constraint id="645" firstItem="625" firstAttribute="centerY" secondItem="524" secondAttribute="centerY"/>
-                                            <constraint id="647" firstItem="625" firstAttribute="leading" secondItem="524" secondAttribute="trailing" constant="10" relation="greaterThanOrEqual"/>
-                                            <constraint id="648" firstItem="625" firstAttribute="leading" secondItem="528" secondAttribute="trailing" constant="10" relation="greaterThanOrEqual"/>
                                             <constraint id="653" firstItem="632" firstAttribute="height" constant="143"/>
                                             <constraint id="669" firstItem="517" firstAttribute="leading" secondItem="534" secondAttribute="leading"/>
                                             <constraint id="670" firstItem="534" firstAttribute="top" secondItem="517" secondAttribute="bottom" constant="20"/>
+                                            <constraint id="2774" firstItem="524" firstAttribute="top" secondItem="517" secondAttribute="top" constant="-3"/>
+                                            <constraint id="2823" firstItem="2775" firstAttribute="bottom" secondItem="517" secondAttribute="bottom"/>
+                                            <constraint id="2824" firstItem="2775" firstAttribute="leading" secondItem="528" secondAttribute="leading"/>
+                                            <constraint id="2826" firstItem="632" firstAttribute="trailing" secondItem="524" secondAttribute="trailing" constant="13"/>
+                                            <constraint id="2827" firstItem="632" firstAttribute="trailing" secondItem="528" secondAttribute="trailing" constant="13"/>
+                                            <constraint id="2828" firstItem="632" firstAttribute="trailing" secondItem="2775" secondAttribute="trailing" constant="13"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -445,17 +454,16 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="ProfilePicture" destination="517" id="name-outlet-517"/>
                         <outlet property="UserNameLabel" destination="524" id="name-outlet-524"/>
                         <outlet property="FullName" destination="528" id="name-outlet-528"/>
-                        <outlet property="SignoutButton" destination="625" id="name-outlet-625"/>
                         <outlet property="ProfileInfoContainer" destination="632" id="name-outlet-632"/>
-                        <outlet property="EditButton" destination="940" id="name-outlet-940"/>
+                        <outlet property="EditButton" destination="2775" id="name-outlet-2775"/>
                     </connections>
                     <tabBarItem key="tabBarItem" title="Profile" id="602" image="profile-icon"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem title="Profile" id="820" key="navigationItem">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="940" enabled="NO">
+                        <barButtonItem key="rightBarButtonItem" id="2776" image="signout-icon">
                             <connections>
-                                <segue id="1016" destination="944" kind="show" identifier="EditProfileSegue"/>
+                                <action selector="SignoutButtonTouched:" destination="508" id="2777"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
