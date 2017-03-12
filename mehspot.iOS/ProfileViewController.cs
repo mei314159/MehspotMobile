@@ -10,41 +10,52 @@ using CoreGraphics;
 using System.Linq;
 using Mehspot.Core;
 using mehspot.iOS.Extensions;
+using mehspot.iOS.Views.Cell;
+using mehspot.iOS.Wrappers;
+using Mehspot.Core.Contracts.Wrappers;
 
 namespace mehspot.iOS
 {
-    public partial class ProfileViewController : UIViewController
+    public partial class ProfileViewController : UIViewController, IUICollectionViewDelegate, IUICollectionViewDataSource
     {
         EditProfileDto profile;
 
+        BadgeSummaryDto [] badgesList;
+        private string[] colorPalette = { "E67676", "F2F062", "A9E6E6", "7692E4", "CA3E6B", "FFE4B3" };
+        private string previousColor;
+        private Random random = new Random ();
+        private IViewHelper viewHelper;
         private ProfileService profileService;
         private BadgeService badgeService;
         private ApplicationDataStorage applicationDataStorage;
-        private readonly UIRefreshControl refreshControl;
 
         public ProfileViewController (IntPtr handle) : base (handle)
         {
             applicationDataStorage = new ApplicationDataStorage ();
             profileService = new ProfileService (applicationDataStorage);
             badgeService = new BadgeService (applicationDataStorage);
-            refreshControl = new UIRefreshControl ();
         }
 
         public override void ViewDidLoad ()
         {
+            viewHelper = new ViewHelper (this.View);
             EditButton.Layer.BorderWidth = 1;
             EditButton.Layer.BorderColor = UIColor.LightGray.CGColor;
-            this.MainScrollView.AddSubview (refreshControl);
-            refreshControl.ValueChanged += RefreshControl_ValueChanged;
+            BadgesContainer.RegisterNibForCell (BadgeCollectionViewCell.Nib, BadgeCollectionViewCell.Key);
+            BadgesContainer.WeakDataSource = this;
+            BadgesContainer.Delegate = this;
+            var collectionViewLayout = ((UICollectionViewFlowLayout)BadgesContainer.CollectionViewLayout);
+
+            var itemWidth = this.View.Frame.Width > 320 ? 123 : 106;
+            var itemSpacing = this.View.Frame.Width > 320 ? 3 : 1;
+            collectionViewLayout.ItemSize = new CGSize (itemWidth, 160);
+            collectionViewLayout.MinimumLineSpacing = itemSpacing;
+            collectionViewLayout.MinimumInteritemSpacing = itemSpacing;
         }
 
         public override void ViewDidAppear (bool animated)
         {
-            if (!refreshControl.Refreshing) {
-                this.refreshControl.BeginRefreshing ();
-                this.MainScrollView.SetContentOffset (new CGPoint (0, -refreshControl.Frame.Size.Height), true);
-                RefreshAsync ();
-            }
+            RefreshAsync ();
         }
 
         void RefreshControl_ValueChanged (object sender, EventArgs e)
@@ -82,8 +93,10 @@ namespace mehspot.iOS
 
         async Task RefreshAsync ()
         {
+            viewHelper.ShowOverlay ("Refreshing...");
             var profileResult = await profileService.GetProfileAsync ();
             this.EditButton.Enabled = profileResult.IsSuccess;
+
             if (profileResult.IsSuccess) {
                 this.profile = profileResult.Data;
                 SetFields (profileResult.Data);
@@ -97,7 +110,8 @@ namespace mehspot.iOS
             } else {
                 new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
             }
-            refreshControl.EndRefreshing ();
+
+            viewHelper.HideOverlay ();
         }
 
         private void SetFields (EditProfileDto profile)
@@ -114,25 +128,37 @@ namespace mehspot.iOS
 
         void SetBadges (BadgeSummaryDto [] badges)
         {
-            foreach (var subview in this.BadgesContainer.Subviews) {
-                subview.RemoveFromSuperview ();
-                subview.Dispose ();
-            }
+            this.badgesList = badges;
+            BadgesContainer.ReloadData ();
+        }
 
-            for (int i = 0; i < badges.Length; i++) {
-                var badge = badges [i];
-                var badgeItemView = BadgeItemView.Create ();
-                badgeItemView.BadgeImage.Image = UIImage.FromFile ("badges/" + badge.BadgeName.ToLower () + (badge.IsRegistered ? string.Empty : "b"));
-                badgeItemView.BadgeName.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName);
-                badgeItemView.LikesCount.Text = badge.Likes.ToString ();
-                badgeItemView.RecommendationsCount.Text = badge.Recommendations.ToString ();
-                badgeItemView.ReferencesCount.Text = badge.References.ToString ();
-                badgeItemView.Frame = new CGRect (0, i * badgeItemView.Frame.Height, BadgesContainer.Frame.Width, badgeItemView.Frame.Height);
-                this.BadgesContainer.AddSubview (badgeItemView);
-            }
-            var badgesContainerHeight = this.BadgesContainer.Subviews.Length > 0 ? this.BadgesContainer.Subviews.Max (a => a.Frame.Height + a.Frame.Y) : this.BadgesContainer.Frame.Height;
-            this.BadgesContainer.Frame = new CGRect (this.BadgesContainer.Frame.Location, new CGSize (this.BadgesContainer.Frame.Width, badgesContainerHeight));
-            this.MainScrollView.ContentSize = new CGSize (this.MainScrollView.Frame.Width, this.BadgesContainer.Frame.Y + this.BadgesContainer.Frame.Height);
+        public nint GetItemsCount (UICollectionView collectionView, nint section)
+        {
+            return badgesList?.Length ?? 0;
+        }
+
+        public UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            var item = badgesList [indexPath.Row];
+
+            var cell = BadgesContainer.DequeueReusableCell (BadgeCollectionViewCell.Key, indexPath) as BadgeCollectionViewCell;
+            ConfigureCell (cell, item);
+            return cell;
+        }
+
+        private void ConfigureCell (BadgeCollectionViewCell cell, BadgeSummaryDto badge)
+        {
+            string color;
+            do {
+                color = colorPalette [random.Next (colorPalette.Length)];
+            } while (previousColor == color);
+            previousColor = color;
+            cell.BackgroundColor = UIColor.Clear.FromHexString (color);
+            cell.BadgeImage.Image = UIImage.FromFile ("badges/" + badge.BadgeName.ToLower () + (badge.IsRegistered ? string.Empty : "b"));
+            cell.BadgeName.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName);
+            cell.LikesCount.Text = badge.Likes.ToString ();
+            cell.RecommendationsCount.Text = badge.Recommendations.ToString ();
+            cell.ReferencesCount.Text = badge.References.ToString ();
         }
     }
 }

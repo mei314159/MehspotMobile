@@ -16,7 +16,7 @@ namespace mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIView BadgesContainer { get; set; }
+        UIKit.UICollectionView BadgesContainer { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -25,10 +25,6 @@ namespace mehspot.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel FullName { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIScrollView MainScrollView { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -61,11 +57,6 @@ namespace mehspot.iOS
             if (FullName != null) {
                 FullName.Dispose ();
                 FullName = null;
-            }
-
-            if (MainScrollView != null) {
-                MainScrollView.Dispose ();
-                MainScrollView = null;
             }
 
             if (ProfileInfoContainer != null) {

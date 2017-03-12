@@ -122,7 +122,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
                 <exit id="2998" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="241" y="-380"/>
+            <point key="canvasLocation" x="-1810" y="-859"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -142,7 +142,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1840" y="20"/>
+            <point key="canvasLocation" x="-2388" y="-37"/>
         </scene>
         <scene sceneID="7">
             <objects>
@@ -257,7 +257,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1850" y="-711"/>
+            <point key="canvasLocation" x="-2376" y="-860"/>
         </scene>
         <scene sceneID="86">
             <objects>
@@ -360,119 +360,111 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="512" translatesAutoresizingMaskIntoConstraints="NO" showsHorizontalScrollIndicator="NO" alwaysBounceVertical="YES">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                            <view contentMode="scaleToFill" id="632" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="611" translatesAutoresizingMaskIntoConstraints="NO">
-                                        <rect key="frame" x="0.0" y="143" width="375" height="70"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="517" translatesAutoresizingMaskIntoConstraints="NO" image="profile_image.png" clipsSubviews="YES">
+                                        <rect key="frame" x="13" y="13" width="70" height="70"/>
                                         <constraints>
-                                            <constraint id="615" firstItem="611" firstAttribute="height" constant="70" relation="greaterThanOrEqual"/>
+                                            <constraint id="520" firstItem="517" firstAttribute="height" constant="70"/>
+                                            <constraint id="521" firstItem="517" firstAttribute="width" constant="70"/>
                                         </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" id="632" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="517" translatesAutoresizingMaskIntoConstraints="NO" image="profile_image.png" clipsSubviews="YES">
-                                                <rect key="frame" x="13" y="13" width="70" height="70"/>
-                                                <constraints>
-                                                    <constraint id="520" firstItem="517" firstAttribute="height" constant="70"/>
-                                                    <constraint id="521" firstItem="517" firstAttribute="width" constant="70"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                                                        <real key="value" value="35"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="524" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="7">
-                                                <rect key="frame" x="96" y="10" width="266" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="528" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="8">
-                                                <rect key="frame" x="96" y="34" width="266" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
-                                                <nil key="highlightedColor"/>
-                                                <constraints>
-                                                    <constraint id="2825" firstItem="528" firstAttribute="height" constant="21"/>
-                                                </constraints>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="534" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="13" y="103" width="82" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
-                                                <nil key="highlightedColor"/>
-                                                <constraints>
-                                                    <constraint id="538" firstItem="534" firstAttribute="height" constant="30"/>
-                                                </constraints>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2775" translatesAutoresizingMaskIntoConstraints="NO" enabled="NO">
-                                                <rect key="frame" x="96" y="57" width="266" height="26"/>
-                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <state key="normal" title="Edit Profile">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue id="2820" destination="944" kind="show"/>
-                                                </connections>
-                                                <constraints>
-                                                    <constraint id="2829" firstItem="2775" firstAttribute="height" constant="26"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                                                        <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                        </subviews>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                                <real key="value" value="35"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="524" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="7">
+                                        <rect key="frame" x="96" y="10" width="266" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="528" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="8">
+                                        <rect key="frame" x="96" y="34" width="266" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                        <nil key="highlightedColor"/>
                                         <constraints>
-                                            <constraint id="636" firstItem="517" firstAttribute="leading" secondItem="632" secondAttribute="leading" constant="13"/>
-                                            <constraint id="637" firstItem="517" firstAttribute="top" secondItem="632" secondAttribute="top" constant="13"/>
-                                            <constraint id="639" firstItem="524" firstAttribute="leading" secondItem="517" secondAttribute="trailing" constant="13"/>
-                                            <constraint id="641" firstItem="528" firstAttribute="top" secondItem="524" secondAttribute="bottom"/>
-                                            <constraint id="642" firstItem="528" firstAttribute="leading" secondItem="524" secondAttribute="leading"/>
-                                            <constraint id="653" firstItem="632" firstAttribute="height" constant="143"/>
-                                            <constraint id="669" firstItem="517" firstAttribute="leading" secondItem="534" secondAttribute="leading"/>
-                                            <constraint id="670" firstItem="534" firstAttribute="top" secondItem="517" secondAttribute="bottom" constant="20"/>
-                                            <constraint id="2774" firstItem="524" firstAttribute="top" secondItem="517" secondAttribute="top" constant="-3"/>
-                                            <constraint id="2823" firstItem="2775" firstAttribute="bottom" secondItem="517" secondAttribute="bottom"/>
-                                            <constraint id="2824" firstItem="2775" firstAttribute="leading" secondItem="528" secondAttribute="leading"/>
-                                            <constraint id="2826" firstItem="632" firstAttribute="trailing" secondItem="524" secondAttribute="trailing" constant="13"/>
-                                            <constraint id="2827" firstItem="632" firstAttribute="trailing" secondItem="528" secondAttribute="trailing" constant="13"/>
-                                            <constraint id="2828" firstItem="632" firstAttribute="trailing" secondItem="2775" secondAttribute="trailing" constant="13"/>
+                                            <constraint id="2825" firstItem="528" firstAttribute="height" constant="21"/>
                                         </constraints>
-                                    </view>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="534" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="13" y="103" width="82" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                        <nil key="highlightedColor"/>
+                                        <constraints>
+                                            <constraint id="538" firstItem="534" firstAttribute="height" constant="30"/>
+                                        </constraints>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2775" translatesAutoresizingMaskIntoConstraints="NO" enabled="NO">
+                                        <rect key="frame" x="96" y="57" width="266" height="26"/>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" title="Edit Profile">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue id="2820" destination="944" kind="show"/>
+                                        </connections>
+                                        <constraints>
+                                            <constraint id="2829" firstItem="2775" firstAttribute="height" constant="26"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint id="612" firstItem="611" firstAttribute="leading" secondItem="512" secondAttribute="leading"/>
-                                    <constraint id="613" firstItem="611" firstAttribute="width" secondItem="512" secondAttribute="width"/>
-                                    <constraint id="633" firstItem="632" firstAttribute="top" secondItem="512" secondAttribute="top"/>
-                                    <constraint id="634" firstItem="632" firstAttribute="leading" secondItem="512" secondAttribute="leading"/>
-                                    <constraint id="646" firstItem="632" firstAttribute="width" secondItem="512" secondAttribute="width"/>
-                                    <constraint id="672" firstItem="611" firstAttribute="top" secondItem="632" secondAttribute="bottom"/>
+                                    <constraint id="636" firstItem="517" firstAttribute="leading" secondItem="632" secondAttribute="leading" constant="13"/>
+                                    <constraint id="637" firstItem="517" firstAttribute="top" secondItem="632" secondAttribute="top" constant="13"/>
+                                    <constraint id="639" firstItem="524" firstAttribute="leading" secondItem="517" secondAttribute="trailing" constant="13"/>
+                                    <constraint id="641" firstItem="528" firstAttribute="top" secondItem="524" secondAttribute="bottom"/>
+                                    <constraint id="642" firstItem="528" firstAttribute="leading" secondItem="524" secondAttribute="leading"/>
+                                    <constraint id="653" firstItem="632" firstAttribute="height" constant="143"/>
+                                    <constraint id="669" firstItem="517" firstAttribute="leading" secondItem="534" secondAttribute="leading"/>
+                                    <constraint id="670" firstItem="534" firstAttribute="top" secondItem="517" secondAttribute="bottom" constant="20"/>
+                                    <constraint id="2774" firstItem="524" firstAttribute="top" secondItem="517" secondAttribute="top" constant="-3"/>
+                                    <constraint id="2823" firstItem="2775" firstAttribute="bottom" secondItem="517" secondAttribute="bottom"/>
+                                    <constraint id="2824" firstItem="2775" firstAttribute="leading" secondItem="528" secondAttribute="leading"/>
+                                    <constraint id="2826" firstItem="632" firstAttribute="trailing" secondItem="524" secondAttribute="trailing" constant="13"/>
+                                    <constraint id="2827" firstItem="632" firstAttribute="trailing" secondItem="528" secondAttribute="trailing" constant="13"/>
+                                    <constraint id="2828" firstItem="632" firstAttribute="trailing" secondItem="2775" secondAttribute="trailing" constant="13"/>
                                 </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="3026" translatesAutoresizingMaskIntoConstraints="NO" showsHorizontalScrollIndicator="NO" indicatorStyle="white">
+                                <rect key="frame" x="0.0" y="143" width="375" height="411"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0" minimumInteritemSpacing="0" id="3028">
+                                    <size key="itemSize" width="120" height="120"/>
+                                    <size key="headerReferenceSize" width="0" height="0"/>
+                                    <size key="footerReferenceSize" width="0" height="0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
                                 <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
-                            </scrollView>
+                            </collectionView>
                         </subviews>
                         <constraints>
-                            <constraint id="513" firstItem="512" firstAttribute="leading" secondItem="509" secondAttribute="leading"/>
-                            <constraint id="516" firstItem="512" firstAttribute="width" secondItem="509" secondAttribute="width"/>
-                            <constraint id="519" firstItem="512" firstAttribute="bottom" secondItem="509" secondAttribute="bottom"/>
-                            <constraint id="786" firstItem="512" firstAttribute="top" secondItem="505" secondAttribute="bottom"/>
+                            <constraint id="3057" firstItem="632" firstAttribute="top" secondItem="509" secondAttribute="top"/>
+                            <constraint id="3058" firstItem="632" firstAttribute="leading" secondItem="509" secondAttribute="leading"/>
+                            <constraint id="3059" firstItem="632" firstAttribute="trailing" secondItem="509" secondAttribute="trailing"/>
+                            <constraint id="3060" firstItem="3026" firstAttribute="top" secondItem="632" secondAttribute="bottom"/>
+                            <constraint id="3061" firstItem="3026" firstAttribute="leading" secondItem="509" secondAttribute="leading"/>
+                            <constraint id="3062" firstItem="3026" firstAttribute="trailing" secondItem="509" secondAttribute="trailing"/>
+                            <constraint id="3063" firstItem="3026" firstAttribute="bottom" secondItem="509" secondAttribute="bottom"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="MainScrollView" destination="512" id="name-outlet-512"/>
-                        <outlet property="BadgesContainer" destination="611" id="name-outlet-611"/>
                         <outlet property="ProfilePicture" destination="517" id="name-outlet-517"/>
                         <outlet property="UserNameLabel" destination="524" id="name-outlet-524"/>
                         <outlet property="FullName" destination="528" id="name-outlet-528"/>
                         <outlet property="ProfileInfoContainer" destination="632" id="name-outlet-632"/>
                         <outlet property="EditButton" destination="2775" id="name-outlet-2775"/>
+                        <outlet property="BadgesContainer" destination="3026" id="name-outlet-3026"/>
                     </connections>
                     <tabBarItem key="tabBarItem" title="Profile" id="602" image="profile-icon"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -487,7 +479,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="510" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-811" y="404"/>
+            <point key="canvasLocation" x="-804" y="80"/>
         </scene>
         <scene sceneID="714">
             <objects>
@@ -506,7 +498,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="718" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1342" y="293"/>
+            <point key="canvasLocation" x="-1328" y="84"/>
         </scene>
         <scene sceneID="943">
             <objects>
@@ -582,7 +574,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="946" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-208" y="412"/>
+            <point key="canvasLocation" x="-201" y="88"/>
         </scene>
     </scenes>
     <resources>
