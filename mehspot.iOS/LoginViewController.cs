@@ -5,6 +5,7 @@ using mehspot.iOS.Wrappers;
 using mehspot.Core.Auth;
 using Mehspot.Core;
 using mehspot.iOS.Extensions;
+using Foundation;
 
 namespace mehspot.iOS
 {
@@ -15,6 +16,12 @@ namespace mehspot.iOS
         {
             model = new SignInModel (MehspotAppContext.Instance.AuthManager, new ViewHelper (this.View));
             model.SignedIn += Model_SignedIn;
+        }
+
+        [Action ("UnwindToLoginViewController:")]
+        public void UnwindToLoginViewController (UIStoryboardSegue segue)
+        {
+            Console.WriteLine ("We've unwinded to Sign In!");
         }
 
         public override void ViewDidLoad ()

@@ -181,10 +181,6 @@
       <DependentUpon>MessagingViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ViewExtensions.cs" />
-    <Compile Include="SimpleTableCell.cs" />
-    <Compile Include="SimpleTableCell.designer.cs">
-      <DependentUpon>SimpleTableCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\DTO\IosNotification.cs" />
     <Compile Include="ProfileViewController.cs" />
     <Compile Include="ProfileViewController.designer.cs">
