@@ -14,12 +14,13 @@ namespace mehspot.iOS
 {
     public partial class MessageBoardViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
+        private volatile bool loading;
+        private volatile bool goToMessagesWhenAppear;
         private readonly MessagesService messagingModel;
         private UIRefreshControl refreshControl;
         private MessageBoardItemDto [] items;
         private string SelectedUserId;
         private string SelectedUserName;
-        private bool GoToMessagesWhenAppear;
 
 
         public MessageBoardViewController (IntPtr handle) : base (handle)
@@ -47,8 +48,8 @@ namespace mehspot.iOS
         {
             await LoadMessageBoardAsync ();
             AppDelegate.CheckPushNotificationsPermissions ();
-            if (GoToMessagesWhenAppear) {
-                GoToMessagesWhenAppear = false;
+            if (goToMessagesWhenAppear) {
+                goToMessagesWhenAppear = false;
                 PerformSegue ("GoToMessagingSegue", this);
             }
         }
@@ -92,12 +93,15 @@ namespace mehspot.iOS
             if (this.IsViewLoaded) {
                 PerformSegue ("GoToMessagingSegue", this);
             } else {
-                GoToMessagesWhenAppear = true;
+                goToMessagesWhenAppear = true;
             }
         }
 
         private async Task LoadMessageBoardAsync ()
         {
+            if (loading)
+                return;
+            loading = true;
             refreshControl.BeginRefreshing ();
             this.MessageBoardTable.SetContentOffset (new CGPoint (0, -refreshControl.Frame.Size.Height), true);
             var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
@@ -108,6 +112,7 @@ namespace mehspot.iOS
             }
 
             refreshControl.EndRefreshing ();
+            loading = false;
         }
 
         void UpdateApplicationBadge ()

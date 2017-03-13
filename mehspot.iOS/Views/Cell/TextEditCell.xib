@@ -49,7 +49,6 @@
     </objects>
     <resources>
         <image name="chat-icon" width="25" height="25"/>
-        <image name="about-icon" width="25" height="25"/>
         <image name="profile-icon" width="25" height="25"/>
         <image name="signout-icon" width="22" height="22"/>
         <image name="logo.jpg" width="350" height="350"/>
@@ -82,5 +81,6 @@
         <image name="badges/hobbyb.png" width="210" height="208"/>
         <image name="badges/kidsplaydateb.png" width="210" height="210"/>
         <image name="badges/otherjobsb.png" width="210" height="210"/>
+        <image name="search-icon" width="25" height="25"/>
     </resources>
 </document>

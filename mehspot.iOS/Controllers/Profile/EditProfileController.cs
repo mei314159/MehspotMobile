@@ -13,6 +13,7 @@ using mehspot.iOS.Extensions;
 using mehspot.iOS.Wrappers;
 using System.Runtime.InteropServices;
 using SDWebImage;
+using Mehspot.Core.Contracts.Wrappers;
 
 namespace mehspot.iOS
 {
@@ -21,7 +22,7 @@ namespace mehspot.iOS
         volatile bool viewWasInitialized;
         volatile bool profileImageChanged;
 
-        private ViewHelper viewHelper;
+        private IViewHelper viewHelper;
         private readonly ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
         private KeyValuePair<int?, string> [] states;
@@ -221,10 +222,9 @@ namespace mehspot.iOS
             cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", true));
             var phoneNumberCell = TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
             phoneNumberCell.Mask = "(###)###-####";
-            cells.Add (phoneNumberCell);// TODO: Mask field
+            cells.Add (phoneNumberCell);
             cells.Add (PickerCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Date Of Birth"));
             cells.Add (PickerCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, v => genders.First (a => a.Key == v).Value, "Gender", genders));
-            // TODO: Email field
             cells.Add (TextEditCell.Create (profile, a => a.FirstName, "First Name"));
             cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine1, "Address Line 1"));
@@ -236,11 +236,11 @@ namespace mehspot.iOS
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
             var subdivisionCell = PickerCell.Create (profile, a => a.SubdivisionId, (model, property) => { model.SubdivisionId = (int?)property; }, v => subdivisions.FirstOrDefault (a => a.Key == v).Value, "Subdivision", subdivisions, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
-            cells.Add (zipCell); //zip mask
-            cells.Add (subdivisionCell); //Subdivision Selector
+            cells.Add (zipCell);
+            cells.Add (subdivisionCell);
 
-            cells.Add (BooleanEditCell.Create (profile, a => a.MehspotNotificationsEnabled, "Email notifications enabled")); //True-False selector
-            cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled")); //True-False selector
+            cells.Add (BooleanEditCell.Create (profile, a => a.MehspotNotificationsEnabled, "Email notifications enabled"));
+            cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled"));
 
             viewHelper.HideOverlay ();
             viewWasInitialized = true;

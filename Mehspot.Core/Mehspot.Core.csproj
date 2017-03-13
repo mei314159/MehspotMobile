@@ -28,48 +28,51 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Auth\AuthenticationService.cs" />
     <Compile Include="Contracts\IApplicationDataStorage.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Auth\AuthenticationResult.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Contracts\Wrappers\IViewHelper.cs" />
-    <Compile Include="Messaging\MessagesService.cs" />
     <Compile Include="DTO\AuthenticationInfoDto.cs" />
     <Compile Include="DTO\ErrorDto.cs" />
-    <Compile Include="DTO\MessageDto.cs" />
     <Compile Include="DTO\CollectionDto.cs" />
-    <Compile Include="Messaging\MessagingNotificationType.cs" />
     <Compile Include="DTO\Result.cs" />
     <Compile Include="MehspotAppContext.cs" />
     <Compile Include="Models\MessagingModel.cs" />
     <Compile Include="Contracts\ViewControllers\IMessagingViewController.cs" />
-    <Compile Include="DTO\MessageBoardItemDto.cs" />
-    <Compile Include="DTO\ApplicationUserBaseDto.cs" />
-    <Compile Include="Push\PushService.cs" />
-    <Compile Include="Push\OsType.cs" />
-    <Compile Include="Profile\ProfileService.cs" />
-    <Compile Include="Badge\BadgeService.cs" />
-    <Compile Include="DTO\BadgeSummaryDto.cs" />
     <Compile Include="MehspotStrings.Designer.cs">
       <DependentUpon>MehspotStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="DTO\ValidationModelBase.cs" />
     <Compile Include="DTO\Profile\ProfileDto.cs" />
     <Compile Include="DTO\Profile\StaticDataDto.cs" />
-    <Compile Include="DTO\SubdivisionDto.cs" />
     <Compile Include="DTO\ModelStateDto.cs" />
+    <Compile Include="DTO\Search\SearchBabysitterDTO.cs" />
+    <Compile Include="Services\PushService.cs" />
+    <Compile Include="Services\ProfileService.cs" />
+    <Compile Include="Services\MessagesService.cs" />
+    <Compile Include="Services\BadgeService.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="DTO\Messaging\MessageBoardItemDto.cs" />
+    <Compile Include="DTO\Messaging\MessageDto.cs" />
+    <Compile Include="DTO\Profile\SubdivisionDto.cs" />
+    <Compile Include="DTO\Badges\BadgeSummaryDto.cs" />
+    <Compile Include="DTO\Profile\ApplicationUserBaseDto.cs" />
+    <Compile Include="DTO\Push\OsType.cs" />
+    <Compile Include="DTO\Messaging\MessagingNotificationType.cs" />
+    <Compile Include="DTO\AuthenticationResult.cs" />
+    <Compile Include="DTO\Search\SearchFilterDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Contracts\Wrappers\" />
-    <Folder Include="Messaging\" />
     <Folder Include="DTO\" />
     <Folder Include="Contracts\ViewControllers\" />
-    <Folder Include="Push\" />
-    <Folder Include="Profile\" />
-    <Folder Include="Badge\" />
     <Folder Include="DTO\Profile\" />
+    <Folder Include="DTO\Search\" />
+    <Folder Include="Services\" />
+    <Folder Include="DTO\Messaging\" />
+    <Folder Include="DTO\Badges\" />
+    <Folder Include="DTO\Push\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

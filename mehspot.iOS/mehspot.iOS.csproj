@@ -128,6 +128,9 @@
     <ImageAsset Include="Assets.xcassets\signout-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\signout-icon.imageset\signout%402x.png" />
     <ImageAsset Include="Assets.xcassets\signout-icon.imageset\signout%403x.png" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\search%402x.png" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\search%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -143,6 +146,11 @@
     <Folder Include="Assets.xcassets\signout-icon.imageset\" />
     <Folder Include="Views\Cell\" />
     <Folder Include="Views\CustomPicker\" />
+    <Folder Include="Assets.xcassets\search-icon.imageset\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Search\" />
+    <Folder Include="Controllers\Profile\" />
+    <Folder Include="Controllers\Messaging\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -153,6 +161,7 @@
     <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
     <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
     <InterfaceDefinition Include="Views\Cell\BadgeCollectionViewCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -162,34 +171,14 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="LoginViewController.cs" />
-    <Compile Include="LoginViewController.designer.cs">
-      <DependentUpon>LoginViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\ApplicationDataStorage.cs" />
     <Compile Include="Views\LoadingOverlay.cs" />
     <Compile Include="Wrappers\ViewHelper.cs" />
-    <Compile Include="MessageBoardViewController.cs" />
-    <Compile Include="MessageBoardViewController.designer.cs">
-      <DependentUpon>MessageBoardViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MessagingViewController.cs" />
-    <Compile Include="MessagingViewController.designer.cs">
-      <DependentUpon>MessagingViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="Core\DTO\IosNotification.cs" />
-    <Compile Include="ProfileViewController.cs" />
-    <Compile Include="ProfileViewController.designer.cs">
-      <DependentUpon>ProfileViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MessageBubble.cs" />
     <Compile Include="Views\MessageBubble.designer.cs">
       <DependentUpon>MessageBubble.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EditProfileController.cs" />
-    <Compile Include="EditProfileController.designer.cs">
-      <DependentUpon>EditProfileController.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Views\Cell\BooleanEditCell.cs" />
@@ -205,6 +194,35 @@
     <Compile Include="Views\CustomPicker\CustomPickerModel.cs" />
     <Compile Include="Views\Cell\TextEditCell.cs" />
     <Compile Include="Views\Cell\BadgeCollectionViewCell.cs" />
+    <Compile Include="Controllers\Search\SearchBabysitterController.cs" />
+    <Compile Include="Controllers\Search\SearchBabysitterController.designer.cs">
+      <DependentUpon>SearchBabysitterController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\LoginViewController.cs" />
+    <Compile Include="Controllers\LoginViewController.designer.cs">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Profile\EditProfileController.cs" />
+    <Compile Include="Controllers\Profile\EditProfileController.designer.cs">
+      <DependentUpon>EditProfileController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Profile\ProfileViewController.cs" />
+    <Compile Include="Controllers\Profile\ProfileViewController.designer.cs">
+      <DependentUpon>ProfileViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Messaging\MessageBoardViewController.cs" />
+    <Compile Include="Controllers\Messaging\MessageBoardViewController.designer.cs">
+      <DependentUpon>MessageBoardViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Messaging\MessagingViewController.cs" />
+    <Compile Include="Controllers\Messaging\MessagingViewController.designer.cs">
+      <DependentUpon>MessagingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\ButtonCell.cs" />
+    <Compile Include="Controllers\Search\SearchResultsViewController.cs" />
+    <Compile Include="Controllers\Search\SearchResultsViewController.designer.cs">
+      <DependentUpon>SearchResultsViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
