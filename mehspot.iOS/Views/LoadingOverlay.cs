@@ -15,7 +15,7 @@ namespace mehspot.iOS.Views
         {
             // configurable bits
             BackgroundColor = UIColor.Black;
-            Alpha = 0.75f;
+            Alpha = 0.5f;
             AutoresizingMask = UIViewAutoresizing.All;
 
             nfloat labelHeight = 22;

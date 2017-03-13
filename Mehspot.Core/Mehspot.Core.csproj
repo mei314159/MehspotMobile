@@ -55,7 +55,6 @@
       <DependentUpon>MehspotStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="DTO\ValidationModelBase.cs" />
-    <Compile Include="DTO\Profile\EditProfileDto.cs" />
     <Compile Include="DTO\Profile\ProfileDto.cs" />
     <Compile Include="DTO\Profile\StaticDataDto.cs" />
     <Compile Include="DTO\SubdivisionDto.cs" />

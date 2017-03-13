@@ -7,7 +7,6 @@ using SDWebImage;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
 using CoreGraphics;
-using System.Linq;
 using Mehspot.Core;
 using mehspot.iOS.Extensions;
 using mehspot.iOS.Views.Cell;
@@ -18,10 +17,8 @@ namespace mehspot.iOS
 {
     public partial class ProfileViewController : UIViewController, IUICollectionViewDelegate, IUICollectionViewDataSource
     {
-        EditProfileDto profile;
-
         BadgeSummaryDto [] badgesList;
-        private string[] colorPalette = { "E67676", "F2F062", "A9E6E6", "7692E4", "CA3E6B", "FFE4B3" };
+        private string[] colorPalette = { "fdfdfd", "fdcd5b", "0091ae", "bcc0c6", "f48f46" };
         private string previousColor;
         private Random random = new Random ();
         private IViewHelper viewHelper;
@@ -66,7 +63,7 @@ namespace mehspot.iOS
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
             var controller = (EditProfileController)segue.DestinationViewController;
-            controller.profile = this.profile;
+            controller.profile = MehspotAppContext.Instance.DataStorage.Profile;
             base.PrepareForSegue (segue, sender);
         }
 
@@ -98,7 +95,7 @@ namespace mehspot.iOS
             this.EditButton.Enabled = profileResult.IsSuccess;
 
             if (profileResult.IsSuccess) {
-                this.profile = profileResult.Data;
+                MehspotAppContext.Instance.DataStorage.Profile = profileResult.Data;
                 SetFields (profileResult.Data);
                 ProfileInfoContainer.Hidden = false;
                 var badgesResult = await badgeService.GetBadgesSummaryAsync ();
@@ -114,7 +111,7 @@ namespace mehspot.iOS
             viewHelper.HideOverlay ();
         }
 
-        private void SetFields (EditProfileDto profile)
+        private void SetFields (ProfileDto profile)
         {
             this.UserNameLabel.Text = profile.UserName;
             this.FullName.Text = $"{profile.FirstName} {profile.LastName}".Trim (' ');

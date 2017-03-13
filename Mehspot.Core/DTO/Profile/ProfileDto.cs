@@ -3,7 +3,7 @@ using System;
 namespace Mehspot.Core.DTO
 {
 
-    public class UserProfileDto : ValidationModelBase
+    public class ProfileDto : ValidationModelBase
     {
         public new string Id { get; set; }
 
@@ -40,7 +40,9 @@ namespace Mehspot.Core.DTO
         public bool MehspotNotificationsEnabled { get; set; }
 
         public bool AllGroupsNotificationsEnabled { get; set; }
-    }
 
-    
+        public string Email { get; set; }
+
+        public string ReferralCode { get; set; }
+    }
 }

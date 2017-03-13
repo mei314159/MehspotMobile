@@ -122,9 +122,6 @@
     <ImageAsset Include="Assets.xcassets\chat-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\chat-icon.imageset\chat-icon%403x.png" />
     <ImageAsset Include="Assets.xcassets\chat-icon.imageset\chat-icon%402x.png" />
-    <ImageAsset Include="Assets.xcassets\about-icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\about-icon.imageset\about-icon%403x.png" />
-    <ImageAsset Include="Assets.xcassets\about-icon.imageset\about-icon%402x.png" />
     <ImageAsset Include="Assets.xcassets\profile-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\profile-icon.imageset\profile%403x.png" />
     <ImageAsset Include="Assets.xcassets\profile-icon.imageset\profile%402x.png" />

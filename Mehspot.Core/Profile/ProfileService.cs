@@ -21,7 +21,7 @@ namespace Mehspot.Core.Messaging
 
         public Action<int, object> OnSendNotification;
 
-        public async Task<Result<EditProfileDto>> GetProfileAsync ()
+        public async Task<Result<ProfileDto>> GetProfileAsync ()
         {
             var uri = new Uri ($"{Constants.ApiHost}/api/Profile/Get");
 
@@ -32,23 +32,23 @@ namespace Mehspot.Core.Messaging
                     var response = await webClient.GetAsync (uri).ConfigureAwait (false);
                     var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var data = JsonConvert.DeserializeObject<EditProfileDto> (responseString);
+                        var data = JsonConvert.DeserializeObject<ProfileDto> (responseString);
 
-                        return new Result<EditProfileDto> {
+                        return new Result<ProfileDto> {
                             IsSuccess = true,
                             Data = data,
                             ErrorMessage = null
                         };
                     } else {
                         var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<EditProfileDto> {
+                        return new Result<ProfileDto> {
                             IsSuccess = false,
                             ErrorMessage = errorResponse.ErrorDescription
                         };
                     }
 
                 } catch (Exception ex) {
-                    return new Result<EditProfileDto> {
+                    return new Result<ProfileDto> {
                         IsSuccess = false,
                         ErrorMessage = ex.Message
                     };
@@ -56,7 +56,7 @@ namespace Mehspot.Core.Messaging
             }
         }
 
-        public async Task<Result<EditProfileDto>> UpdateAsync (EditProfileDto profile)
+        public async Task<Result<ProfileDto>> UpdateAsync (ProfileDto profile)
         {
             var uri = new Uri (Constants.ApiHost + "/api/profile/update");
 
@@ -70,15 +70,15 @@ namespace Mehspot.Core.Messaging
                     var response = await webClient.PutAsync (uri, stringContent).ConfigureAwait (false);
                     var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var messageDto = JsonConvert.DeserializeObject<EditProfileDto> (responseString);
-                        return new Result<EditProfileDto> {
+                        var messageDto = JsonConvert.DeserializeObject<ProfileDto> (responseString);
+                        return new Result<ProfileDto> {
                             IsSuccess = true,
                             Data = messageDto,
                             ErrorMessage = null
                         };
                     } else {
                         var modelState = JsonConvert.DeserializeObject<ModelStateDto> (responseString);
-                        return new Result<EditProfileDto> {
+                        return new Result<ProfileDto> {
                             IsSuccess = false,
                             ErrorMessage = modelState.Message,
                             ModelState = modelState
@@ -86,7 +86,7 @@ namespace Mehspot.Core.Messaging
                     }
 
                 } catch (Exception ex) {
-                    return new Result<EditProfileDto> {
+                    return new Result<ProfileDto> {
                         IsSuccess = false,
                         ErrorMessage = ex.Message
                     };

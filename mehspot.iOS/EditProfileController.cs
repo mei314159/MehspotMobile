@@ -24,9 +24,10 @@ namespace mehspot.iOS
         private ViewHelper viewHelper;
         private readonly ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
+        private KeyValuePair<int?, string> [] states;
         private KeyValuePair<int?, string> [] subdivisions;
 
-        public EditProfileDto profile;
+        public ProfileDto profile;
 
 
         public EditProfileController (IntPtr handle) : base (handle)
@@ -127,7 +128,7 @@ namespace mehspot.iOS
             viewHelper.ShowOverlay ("Saving...");
 
             if (profileImageChanged) {
-                var data = this.ProfilePicture.Image.AsJPEG();
+                var data = this.ProfilePicture.Image.AsJPEG ();
                 byte [] dataBytes = new byte [data.Length];
                 Marshal.Copy (data.Bytes, dataBytes, 0, Convert.ToInt32 (data.Length));
                 await this.profileService.UploadProfileImageAsync (dataBytes);
@@ -198,7 +199,7 @@ namespace mehspot.iOS
 
         private async Task InitializeView ()
         {
-            viewHelper.ShowOverlay ("Loading...");
+
             if (!string.IsNullOrEmpty (profile.ProfilePicturePath)) {
                 var url = NSUrl.FromString (profile.ProfilePicturePath);
                 if (url != null) {
@@ -212,9 +213,8 @@ namespace mehspot.iOS
                 new KeyValuePair<string, string>("F", "Female")
             };
 
-            var statesResult = await profileService.GetStatesAsync ();
-            var states = statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
-
+            viewHelper.ShowOverlay ("Loading...");
+            states = await GetStates ();
             subdivisions = await GetSubdivisions (profile.Zip);
 
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name"));
@@ -242,7 +242,7 @@ namespace mehspot.iOS
             cells.Add (BooleanEditCell.Create (profile, a => a.MehspotNotificationsEnabled, "Email notifications enabled")); //True-False selector
             cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled")); //True-False selector
 
-            viewHelper.HideOverlay();
+            viewHelper.HideOverlay ();
             viewWasInitialized = true;
         }
 
@@ -258,10 +258,22 @@ namespace mehspot.iOS
 
         private async Task<KeyValuePair<int?, string> []> GetSubdivisions (string zipCode)
         {
-            var subdivisionsResult = await profileService.GetSubdivisionsAsync (zipCode);
-            if (subdivisionsResult.IsSuccess) {
-                subdivisions = subdivisionsResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.DisplayName)).ToArray ();
-                return subdivisions;
+            if (!string.IsNullOrWhiteSpace (zipCode)) {
+                var subdivisionsResult = await profileService.GetSubdivisionsAsync (zipCode);
+                if (subdivisionsResult.IsSuccess) {
+                    subdivisions = subdivisionsResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.DisplayName)).ToArray ();
+                    return subdivisions;
+                }
+            }
+
+            return null;
+        }
+
+        private async Task<KeyValuePair<int?, string> []> GetStates ()
+        {
+            var statesResult = await profileService.GetStatesAsync ();
+            if (statesResult.IsSuccess) {
+                return statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
             }
 
             return null;

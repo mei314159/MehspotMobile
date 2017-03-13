@@ -30,6 +30,29 @@ namespace mehspot.iOS.Core
             }
         }
 
+
+        public ProfileDto Profile {
+            get {
+                var data = NSUserDefaults.StandardUserDefaults.StringForKey (nameof (IApplicationDataStorage.Profile));
+
+                if (!string.IsNullOrWhiteSpace (data)) {
+                    var result = JsonConvert.DeserializeObject<ProfileDto> (data);
+                    return result;
+                }
+
+                return null;
+            }
+            set {
+                if (value == null) {
+                    NSUserDefaults.StandardUserDefaults.RemoveObject (nameof (IApplicationDataStorage.Profile));
+                } else {
+                    var data = JsonConvert.SerializeObject (value);
+                    NSUserDefaults.StandardUserDefaults.SetString (data, nameof (IApplicationDataStorage.Profile));
+                    NSUserDefaults.StandardUserDefaults.Synchronize ();
+                }
+            }
+        }
+
         public string PushToken {
             get {
                 var result = NSUserDefaults

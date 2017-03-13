@@ -11,5 +11,7 @@ namespace mehspot.Core.Contracts
         bool PushIsEnabled { get; set; }
         bool PushDeviceTokenSentToBackend { get; set; }
         OsType OsType { get; }
+
+        ProfileDto Profile { get; set; }
     }
 }
