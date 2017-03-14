@@ -119,19 +119,28 @@ namespace mehspot.iOS
             }
         }
 
+        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.Identifier == "SearchResultsSegue") {
+                ((SearchResultsViewController)segue.DestinationViewController).Filter = filter;
+            }
+
+            base.PrepareForSegue (segue, sender);
+        }
+
         private async Task InitializeView ()
         {
             viewHelper.ShowOverlay ("Loading...");
             ageRanges = await GetAgeRangesAsync ();
 
-            cells.Add (TextEditCell.Create (filter, a => a.MaxDistance, "Max Distance"));
-            cells.Add (TextEditCell.Create (filter, a => a.MaxHourlyRate, "Max Hourly Rate ($)"));
+            cells.Add (SliderCell.Create (filter, a => a.MaxDistance, "Max Distance"));
+            cells.Add (SliderCell.Create (filter, a => a.HourlyRate, "Max Hourly Rate ($)"));
             var zipCell = TextEditCell.Create (filter, a => a.Zip, "Zip");
             zipCell.Mask = "#####";
             cells.Add (zipCell);
 
             cells.Add (BooleanEditCell.Create (filter, a => a.HasCar, "Has Car"));
-            cells.Add (BooleanEditCell.Create (filter, a => a.HasProfilePicture, "Has Profile Picture"));
+            cells.Add (BooleanEditCell.Create (filter, a => a.HasPicture, "Has Profile Picture"));
             cells.Add (BooleanEditCell.Create (filter, a => a.HasReferences, "Has References"));
             cells.Add (BooleanEditCell.Create (filter, a => a.HasCertifications, "Has Certifications"));
             cells.Add (PickerCell.Create (filter, a => a.AgeRange, (model, property) => { model.AgeRange = property; }, v => ageRanges.FirstOrDefault (a => a.Key == v).Value, "Age Range", ageRanges));
@@ -155,7 +164,7 @@ namespace mehspot.iOS
             return null;
         }
 
-        void SearchButtonTouched (UIButton sender)
+        private void SearchButtonTouched (UIButton sender)
         {
             this.PerformSegue ("SearchResultsSegue", this);
         }

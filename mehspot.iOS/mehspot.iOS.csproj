@@ -162,6 +162,7 @@
     <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
     <InterfaceDefinition Include="Views\Cell\BadgeCollectionViewCell.xib" />
     <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SliderCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -222,6 +223,10 @@
     <Compile Include="Controllers\Search\SearchResultsViewController.cs" />
     <Compile Include="Controllers\Search\SearchResultsViewController.designer.cs">
       <DependentUpon>SearchResultsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\SliderCell.cs" />
+    <Compile Include="Views\Cell\SliderCell.designer.cs">
+      <DependentUpon>SliderCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
