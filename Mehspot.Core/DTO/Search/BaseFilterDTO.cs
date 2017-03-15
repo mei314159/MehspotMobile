@@ -1,6 +1,6 @@
 namespace Mehspot.Core.DTO.Search
 {
-    public class SearchFilterDTO
+    public class BaseFilterDTO
     {
         public int? MaxDistance { get; set; }
 

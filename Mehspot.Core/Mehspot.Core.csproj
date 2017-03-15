@@ -55,12 +55,16 @@
     <Compile Include="DTO\Messaging\MessageBoardItemDto.cs" />
     <Compile Include="DTO\Messaging\MessageDto.cs" />
     <Compile Include="DTO\Profile\SubdivisionDto.cs" />
-    <Compile Include="DTO\Badges\BadgeSummaryDto.cs" />
+    <Compile Include="DTO\Badges\BadgeSummaryDTO.cs" />
     <Compile Include="DTO\Profile\ApplicationUserBaseDto.cs" />
     <Compile Include="DTO\Push\OsType.cs" />
     <Compile Include="DTO\Messaging\MessagingNotificationType.cs" />
     <Compile Include="DTO\AuthenticationResult.cs" />
-    <Compile Include="DTO\Search\SearchFilterDTO.cs" />
+    <Compile Include="DTO\Search\BaseFilterDTO.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="DTO\Badges\BabysitterDetailsDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeUserDetailsViewDTO.cs" />
+    <Compile Include="DTO\Search\ISearchFilterDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -73,6 +77,7 @@
     <Folder Include="DTO\Messaging\" />
     <Folder Include="DTO\Badges\" />
     <Folder Include="DTO\Push\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

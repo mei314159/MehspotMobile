@@ -53,7 +53,6 @@ namespace mehspot.iOS
             if (!viewWasInitialized)
                 await InitializeView ();
             this.TableView.ReloadData ();
-            RegisterForKeyboardNotifications ();
             this.TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
         }
 
@@ -68,61 +67,18 @@ namespace mehspot.iOS
             return cells.Count;
         }
 
-        protected virtual void RegisterForKeyboardNotifications ()
-        {
-            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillHideNotification, OnKeyboardNotification);
-            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, OnKeyboardNotification);
-        }
-
         public void HideKeyboard ()
         {
             this.View.FindFirstResponder ()?.ResignFirstResponder ();
         }
 
-        private void OnKeyboardNotification (NSNotification notification)
-        {
-            if (!IsViewLoaded)
-                return;
-
-            //Check if the keyboard is becoming visible
-            var visible = notification.Name == UIKeyboard.WillShowNotification;
-
-            //Start an animation, using values from the keyboard
-            UIView.BeginAnimations ("AnimateForKeyboard");
-            UIView.SetAnimationBeginsFromCurrentState (true);
-            UIView.SetAnimationDuration (UIKeyboard.AnimationDurationFromNotification (notification));
-            UIView.SetAnimationCurve ((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification (notification));
-
-            //Pass the notification, calculating keyboard height, etc.
-            var keyboardFrame = visible
-                                    ? UIKeyboard.FrameEndFromNotification (notification)
-                                    : UIKeyboard.FrameBeginFromNotification (notification);
-            OnKeyboardChanged (visible, keyboardFrame);
-            //Commit the animation
-            UIView.CommitAnimations ();
-        }
-
-        private void OnKeyboardChanged (bool visible, CGRect keyboardFrame)
-        {
-            if (View.Superview == null) {
-                return;
-            }
-
-            if (visible) {
-                var relativeLocation = View.Superview.ConvertPointToView (keyboardFrame.Location, View);
-                var yTreshold = this.TableView.Frame.Y + this.TableView.Frame.Height;
-                var deltaY = yTreshold - relativeLocation.Y;
-                this.TableView.Frame = new CGRect (this.TableView.Frame.Location, new CGSize (this.TableView.Frame.Width, this.TableView.Frame.Height - deltaY));
-            } else {
-                var deltaY = (this.View.Frame.Height) - (this.TableView.Frame.Y + this.TableView.Frame.Height);
-                this.TableView.Frame = new CGRect (this.TableView.Frame.Location, new CGSize (this.TableView.Frame.Width, this.TableView.Frame.Height + deltaY));
-            }
-        }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
             if (segue.Identifier == "SearchResultsSegue") {
-                ((SearchResultsViewController)segue.DestinationViewController).Filter = filter;
+                var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
+                destinationViewController.Filter = filter;
+                destinationViewController.BadgeName = "Babysitter";
             }
 
             base.PrepareForSegue (segue, sender);
@@ -133,15 +89,15 @@ namespace mehspot.iOS
             viewHelper.ShowOverlay ("Loading...");
             ageRanges = await GetAgeRangesAsync ();
 
-            cells.Add (SliderCell.Create (filter, a => a.MaxDistance, "Max Distance"));
+            cells.Add (SliderCell.Create (filter, a => a.Details.MaxDistance, "Max Distance"));
             cells.Add (SliderCell.Create (filter, a => a.HourlyRate, "Max Hourly Rate ($)"));
-            var zipCell = TextEditCell.Create (filter, a => a.Zip, "Zip");
+            var zipCell = TextEditCell.Create (filter, a => a.Details.Zip, "Zip");
             zipCell.Mask = "#####";
             cells.Add (zipCell);
 
             cells.Add (BooleanEditCell.Create (filter, a => a.HasCar, "Has Car"));
-            cells.Add (BooleanEditCell.Create (filter, a => a.HasPicture, "Has Profile Picture"));
-            cells.Add (BooleanEditCell.Create (filter, a => a.HasReferences, "Has References"));
+            cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasPicture, "Has Profile Picture"));
+            cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasReferences, "Has References"));
             cells.Add (BooleanEditCell.Create (filter, a => a.HasCertifications, "Has Certifications"));
             cells.Add (PickerCell.Create (filter, a => a.AgeRange, (model, property) => { model.AgeRange = property; }, v => ageRanges.FirstOrDefault (a => a.Key == v).Value, "Age Range", ageRanges));
             var searchButtonCell = ButtonCell.Create (SearchButtonTouched, "Search");

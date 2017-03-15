@@ -1,7 +1,11 @@
-﻿namespace Mehspot.Core.DTO.Search
+﻿using System;
+
+namespace Mehspot.Core.DTO.Search
 {
-    public class SearchBabysitterDTO : SearchFilterDTO
+    public class SearchBabysitterDTO : ISearchFilterDTO
     {
+        public BaseFilterDTO Details { get; set; } = new BaseFilterDTO ();
+
         public float? HourlyRate { get; set; }
 
         public bool? HasCar { get; set; }

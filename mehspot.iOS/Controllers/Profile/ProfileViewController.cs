@@ -17,7 +17,7 @@ namespace mehspot.iOS
 {
     public partial class ProfileViewController : UIViewController, IUICollectionViewDelegate, IUICollectionViewDataSource
     {
-        BadgeSummaryDto [] badgesList;
+        BadgeSummaryDTO [] badgesList;
         private string[] colorPalette = { "fdfdfd", "fdcd5b", "0091ae", "bcc0c6", "f48f46" };
         private string previousColor;
         private Random random = new Random ();
@@ -123,7 +123,7 @@ namespace mehspot.iOS
             }
         }
 
-        void SetBadges (BadgeSummaryDto [] badges)
+        void SetBadges (BadgeSummaryDTO [] badges)
         {
             this.badgesList = badges;
             BadgesContainer.ReloadData ();
@@ -143,7 +143,7 @@ namespace mehspot.iOS
             return cell;
         }
 
-        private void ConfigureCell (BadgeCollectionViewCell cell, BadgeSummaryDto badge)
+        private void ConfigureCell (BadgeCollectionViewCell cell, BadgeSummaryDTO badge)
         {
             string color;
             do {

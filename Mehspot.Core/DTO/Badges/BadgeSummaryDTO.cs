@@ -1,6 +1,6 @@
 ﻿namespace Mehspot.Core.DTO
 {
-    public class BadgeSummaryDto
+    public class BadgeSummaryDTO
     {
         public string BadgeName { get; set; }
         public int BadgeId { get; set; }
