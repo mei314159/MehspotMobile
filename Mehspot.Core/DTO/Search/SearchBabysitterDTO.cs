@@ -8,9 +8,9 @@ namespace Mehspot.Core.DTO.Search
 
         public int? HourlyRate { get; set; }
 
-        public bool? HasCar { get; set; }
+        public bool? OwnCar { get; set; }
 
-        public bool? HasCertifications { get; set; }
+        public bool? HasCertification { get; set; }
 
         public int? AgeRange { get; set; }
     }

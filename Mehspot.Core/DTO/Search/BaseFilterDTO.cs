@@ -2,9 +2,9 @@ namespace Mehspot.Core.DTO.Search
 {
     public class BaseFilterDTO
     {
-        public int? MaxDistance { get; set; }
+        public int? DistanceFrom { get; set; }
 
-        public string Zip { get; set; }
+        public string ZipCode { get; set; }
 
         public bool? HasPicture { get; set; }
 

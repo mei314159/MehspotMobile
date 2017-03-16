@@ -89,16 +89,16 @@ namespace mehspot.iOS
             viewHelper.ShowOverlay ("Loading...");
             ageRanges = await GetAgeRangesAsync ();
 
-            cells.Add (SliderCell.Create (filter, a => a.Details.MaxDistance, "Max Distance", 0, 200));
+            cells.Add (SliderCell.Create (filter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
             cells.Add (SliderCell.Create (filter, a => a.HourlyRate, "Max Hourly Rate ($)", 0, 200));
-            var zipCell = TextEditCell.Create (filter, a => a.Details.Zip, "Zip");
+            var zipCell = TextEditCell.Create (filter, a => a.Details.ZipCode, "Zip");
             zipCell.Mask = "#####";
             cells.Add (zipCell);
 
-            cells.Add (BooleanEditCell.Create (filter, a => a.HasCar, "Has Car"));
+            cells.Add (BooleanEditCell.Create (filter, a => a.OwnCar, "Has Car"));
             cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasPicture, "Has Profile Picture"));
             cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasReferences, "Has References"));
-            cells.Add (BooleanEditCell.Create (filter, a => a.HasCertifications, "Has Certifications"));
+            cells.Add (BooleanEditCell.Create (filter, a => a.HasCertification, "Has Certification"));
             cells.Add (PickerCell.Create (filter, a => a.AgeRange, (model, property) => { model.AgeRange = property; }, v => ageRanges.FirstOrDefault (a => a.Key == v).Value, "Age Range", ageRanges));
             var searchButtonCell = ButtonCell.Create (SearchButtonTouched, "Search");
             searchButtonCell.CellButton.BackgroundColor = UIColor.FromRGB (0, 254, 0);

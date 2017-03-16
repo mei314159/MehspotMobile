@@ -38,7 +38,6 @@ namespace mehspot.iOS
             this.TableView.WeakDataSource = this;
             this.TableView.Delegate = this;
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
-            this.TableView.SetContentOffset (new CGPoint (0, -this.RefreshControl.Frame.Size.Height), true);
             this.TableView.TableFooterView.Hidden = true;
         }
         public override async void ViewDidAppear (bool animated)
@@ -133,6 +132,8 @@ namespace mehspot.iOS
                 return;
             loading = true;
             this.RefreshControl.BeginRefreshing ();
+
+            this.TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
             await LoadDataAsync ();
             this.RefreshControl.EndRefreshing ();
             loading = false;
