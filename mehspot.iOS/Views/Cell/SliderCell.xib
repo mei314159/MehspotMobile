@@ -23,17 +23,17 @@
                             <constraint id="5" firstItem="2" firstAttribute="width" constant="145"/>
                         </constraints>
                     </label>
-                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="7" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                        <rect key="frame" x="198" y="7" width="122" height="31"/>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="7" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="213" y="7" width="104" height="31"/>
                         <connections/>
                     </slider>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="22" translatesAutoresizingMaskIntoConstraints="NO">
-                        <rect key="frame" x="165" y="0.0" width="30" height="44"/>
+                        <rect key="frame" x="165" y="0.0" width="45" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                         <nil key="highlightedColor"/>
                         <constraints>
-                            <constraint id="28" firstItem="22" firstAttribute="width" constant="30"/>
+                            <constraint id="28" firstItem="22" firstAttribute="width" constant="45"/>
                         </constraints>
                     </label>
                 </subviews>
@@ -42,11 +42,11 @@
                     <constraint id="4" firstItem="2" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
                     <constraint id="6" firstItem="2" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
                     <constraint id="8" firstItem="7" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
-                    <constraint id="10" firstItem="7" firstAttribute="trailing" secondItem="YTl-1W-gDM" secondAttribute="trailing"/>
                     <constraint id="25" firstItem="22" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="5"/>
                     <constraint id="26" firstItem="22" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
                     <constraint id="27" firstItem="22" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
                     <constraint id="29" firstItem="7" firstAttribute="leading" secondItem="22" secondAttribute="trailing" constant="5"/>
+                    <constraint id="33" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="5"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

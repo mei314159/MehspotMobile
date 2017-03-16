@@ -89,8 +89,8 @@ namespace mehspot.iOS
             viewHelper.ShowOverlay ("Loading...");
             ageRanges = await GetAgeRangesAsync ();
 
-            cells.Add (SliderCell.Create (filter, a => a.Details.MaxDistance, "Max Distance"));
-            cells.Add (SliderCell.Create (filter, a => a.HourlyRate, "Max Hourly Rate ($)"));
+            cells.Add (SliderCell.Create (filter, a => a.Details.MaxDistance, "Max Distance", 0, 200));
+            cells.Add (SliderCell.Create (filter, a => a.HourlyRate, "Max Hourly Rate ($)", 0, 200));
             var zipCell = TextEditCell.Create (filter, a => a.Details.Zip, "Zip");
             zipCell.Mask = "#####";
             cells.Add (zipCell);

@@ -93,7 +93,7 @@ namespace Mehspot.Core.Messaging
 
         public async Task<Result<TResult []>> Search<TResult>(ISearchFilterDTO filter, string badgeName, int skip, int take)
         {
-            var uri = new Uri ($"{Constants.ApiHost}/api/Badges/SearchForApp?badgeName={badgeName}&skip={skip}&take={take}" + filter.GetQueryString ());
+            var uri = new Uri ($"{Constants.ApiHost}/api/Badges/SearchForApp?badgeName={badgeName}&skip={skip}&take={take}&" + filter.GetQueryString ());
 
             using (var webClient = new HttpClient ()) {
                 try {

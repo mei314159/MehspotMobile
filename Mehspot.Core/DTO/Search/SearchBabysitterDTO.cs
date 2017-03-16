@@ -6,7 +6,7 @@ namespace Mehspot.Core.DTO.Search
     {
         public BaseFilterDTO Details { get; set; } = new BaseFilterDTO ();
 
-        public float? HourlyRate { get; set; }
+        public int? HourlyRate { get; set; }
 
         public bool? HasCar { get; set; }
 

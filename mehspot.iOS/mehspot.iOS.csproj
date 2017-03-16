@@ -163,6 +163,7 @@
     <InterfaceDefinition Include="Views\Cell\BadgeCollectionViewCell.xib" />
     <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SliderCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SearchResultsCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -227,6 +228,10 @@
     <Compile Include="Views\Cell\SliderCell.cs" />
     <Compile Include="Views\Cell\SliderCell.designer.cs">
       <DependentUpon>SliderCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\SearchResultsCell.cs" />
+    <Compile Include="Views\Cell\SearchResultsCell.designer.cs">
+      <DependentUpon>SearchResultsCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ namespace mehspot.iOS
         private volatile bool loading;
         private volatile bool goToMessagesWhenAppear;
         private readonly MessagesService messagingModel;
-        private UIRefreshControl refreshControl;
+
         private MessageBoardItemDto [] items;
         private string SelectedUserId;
         private string SelectedUserName;
@@ -39,9 +39,8 @@ namespace mehspot.iOS
             this.SearchBar.OnEditingStopped += SearchBar_OnEditingStopped;
             this.SearchBar.CancelButtonClicked += SearchBar_CancelButtonClicked;
             this.SearchBar.SearchButtonClicked += SearchBar_SearchButtonClicked;
-            refreshControl = new UIRefreshControl ();
-            refreshControl.ValueChanged += RefreshControl_ValueChanged;
-            this.MessageBoardTable.AddSubview (refreshControl);
+            this.MessageBoardTable.RefreshControl = new UIRefreshControl ();
+            this.MessageBoardTable.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
         public override async void ViewDidAppear (bool animated)
@@ -102,8 +101,8 @@ namespace mehspot.iOS
             if (loading)
                 return;
             loading = true;
-            refreshControl.BeginRefreshing ();
-            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -refreshControl.Frame.Size.Height), true);
+            this.MessageBoardTable.RefreshControl.BeginRefreshing ();
+            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -this.MessageBoardTable.RefreshControl.Frame.Size.Height), true);
             var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
             if (messageBoardResult.IsSuccess) {
                 this.items = messageBoardResult.Data;
@@ -111,7 +110,7 @@ namespace mehspot.iOS
                 MessageBoardTable.ReloadData ();
             }
 
-            refreshControl.EndRefreshing ();
+            this.MessageBoardTable.RefreshControl.EndRefreshing ();
             loading = false;
         }
 

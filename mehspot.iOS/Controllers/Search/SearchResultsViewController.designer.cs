@@ -14,8 +14,16 @@ namespace mehspot.iOS
     [Register ("SearchResultsViewController")]
     partial class SearchResultsViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView ActivityIndicator { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (ActivityIndicator != null) {
+                ActivityIndicator.Dispose ();
+                ActivityIndicator = null;
+            }
         }
     }
 }

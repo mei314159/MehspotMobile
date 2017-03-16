@@ -21,30 +21,43 @@ namespace mehspot.iOS.Views.Cell
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public static SliderCell Create<T,TProperty> (T Model, Expression<Func<T, TProperty>> property, string placeholder, float? minValue = null, float? maxValue = null, bool isReadOnly = false) where T : class
+        public static SliderCell Create<T,TProperty> (T Model, Expression<Func<T, TProperty>> property, string placeholder, float? minValue, float? maxValue, bool isReadOnly = false) where T : class
         {
             var cell = (SliderCell)Nib.Instantiate (null, null) [0];
             cell.CellSlider.Enabled = !isReadOnly;
             cell.FieldLabel.Text = placeholder;
-            if (minValue.HasValue)
-                cell.CellSlider.MinValue = minValue.Value;
-            if (maxValue.HasValue)
-                cell.CellSlider.MaxValue = maxValue.Value;
+            if (minValue.HasValue) {
+                cell.CellSlider.MinValue = minValue.Value - 1;
+            }
+
+            if (maxValue.HasValue) {
+                cell.CellSlider.MaxValue = maxValue.Value - 1;
+            }
+
             var propertyValue = property.Compile ().Invoke (Model);
             cell.CellSlider.Value = (float?)(object)propertyValue ?? cell.CellSlider.MinValue;
-            cell.ValueLabel.Text = cell.CellSlider.Value.ToString();
+            cell.SetValueLabel (cell.CellSlider.Value == cell.CellSlider.MinValue ? string.Empty : cell.CellSlider.Value.ToString ());
 
             var propertyType = Nullable.GetUnderlyingType (typeof (TProperty)) ?? typeof (TProperty);
 
             cell.CellSlider.ValueChanged += (sender, e) => {
-                var value = ((UISlider)sender).Value;
-
+                var slider = (UISlider)sender;
+                var value = slider.Value;
                 var val = (TProperty)Convert.ChangeType (value, propertyType);
+                var clearValue = slider.Value == slider.MinValue;
+                if (clearValue) {
+                    val = default(TProperty);
+                }
+
+                cell.SetValueLabel (clearValue ? string.Empty : val?.ToString ());
                 Model.SetProperty (property, val);
-                cell.ValueLabel.Text = val.ToString();
             };
 
             return cell;
+        }
+
+        private void SetValueLabel (string value) {
+            this.ValueLabel.Text = value;
         }
     }
 }
