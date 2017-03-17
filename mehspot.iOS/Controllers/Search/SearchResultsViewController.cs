@@ -142,7 +142,8 @@ namespace mehspot.iOS
 
         private async Task LoadDataAsync (bool refresh = false)
         {
-            var result = await badgeService.Search<BabysitterDetailsDTO> (this.Filter, this.BadgeName, items?.Count ?? 0, pageSize);
+            var skip = refresh ? 0 : (items?.Count ?? 0);
+            var result = await badgeService.Search<BabysitterDetailsDTO> (this.Filter, this.BadgeName, skip, pageSize);
             if (result.IsSuccess) {
                 if (refresh) {
                     this.items.Clear ();
