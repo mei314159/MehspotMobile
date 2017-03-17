@@ -11,11 +11,15 @@ using System.CodeDom.Compiler;
 namespace mehspot.iOS.Views.Cell
 {
     [Register ("SearchResultsCell")]
-    public partial class SearchResultsCell
+    partial class SearchResultsCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         public UIKit.UILabel DistanceLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        public UIKit.UILabel HourlyRate { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -34,6 +38,11 @@ namespace mehspot.iOS.Views.Cell
             if (DistanceLabel != null) {
                 DistanceLabel.Dispose ();
                 DistanceLabel = null;
+            }
+
+            if (HourlyRate != null) {
+                HourlyRate.Dispose ();
+                HourlyRate = null;
             }
 
             if (ProfilePicture != null) {

@@ -43,7 +43,7 @@ namespace mehspot.iOS
         public override async void ViewDidAppear (bool animated)
         {
             if (!viewWasInitialized) {
-                await LoadMessageBoardAsync ();
+                await RefreshResultsAsync ();
                 viewWasInitialized = true;
             }
         }
@@ -113,6 +113,7 @@ namespace mehspot.iOS
             var distanceFrom = item.Details.DistanceFrom ?? 0;
             cell.DistanceLabel.Text = item.Details.DistanceFrom > 0 ? Math.Round (distanceFrom, 2) + " miles" : "Same subdivision";
             cell.SubdivisionLabel.Text = $"{item.Details.Subdivision} ({item.Details.ZipCode})";
+            cell.HourlyRate.Text = $"${item.HourlyRate}/hr";
         }
 
 
@@ -123,10 +124,10 @@ namespace mehspot.iOS
 
         private async void RefreshControl_ValueChanged (object sender, EventArgs e)
         {
-            await LoadMessageBoardAsync ();
+            await RefreshResultsAsync ();
         }
 
-        private async Task LoadMessageBoardAsync ()
+        private async Task RefreshResultsAsync ()
         {
             if (loading)
                 return;
@@ -134,15 +135,18 @@ namespace mehspot.iOS
             this.RefreshControl.BeginRefreshing ();
 
             this.TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
-            await LoadDataAsync ();
+            await LoadDataAsync (true);
             this.RefreshControl.EndRefreshing ();
             loading = false;
         }
 
-        private async Task LoadDataAsync ()
+        private async Task LoadDataAsync (bool refresh = false)
         {
             var result = await badgeService.Search<BabysitterDetailsDTO> (this.Filter, this.BadgeName, items?.Count ?? 0, pageSize);
             if (result.IsSuccess) {
+                if (refresh) {
+                    this.items.Clear ();
+                }
                 this.items.AddRange (result.Data);
                 TableView.ReloadData ();
             }
