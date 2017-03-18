@@ -89,7 +89,7 @@ namespace mehspot.iOS
             photoSourceActionSheet.AddButton ("Photo Library");
             photoSourceActionSheet.AddButton ("Cancel");
             photoSourceActionSheet.CancelButtonIndex = 2;
-            photoSourceActionSheet.Clicked += PhotoSouceActionSheet_Clicked; ;
+            photoSourceActionSheet.Clicked += PhotoSouceActionSheet_Clicked;
             photoSourceActionSheet.ShowInView (View);
         }
 
@@ -122,7 +122,7 @@ namespace mehspot.iOS
 
             UIImage originalImage = e.Info [UIImagePickerController.OriginalImage] as UIImage;
             if (originalImage != null) {
-
+                ProfilePicture.Image = UIImage.FromImage (originalImage.CGImage, 4, originalImage.Orientation); 
                 this.profileImageChanged = true;
             }
 
