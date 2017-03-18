@@ -11,16 +11,28 @@ using UIKit;
 
 namespace mehspot.iOS
 {
-    [Register ("EditProfileController")]
-    partial class EditProfileController
+    [Register ("EditProfileViewController")]
+    partial class EditProfileViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton ChangePhotoButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel FullName { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView ProfilePicture { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView ProfileTableView { get; set; }
+        UIKit.UIBarButtonItem SaveButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel UserNameLabel { get; set; }
 
         [Action ("ChangePhotoButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -32,14 +44,29 @@ namespace mehspot.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (ChangePhotoButton != null) {
+                ChangePhotoButton.Dispose ();
+                ChangePhotoButton = null;
+            }
+
+            if (FullName != null) {
+                FullName.Dispose ();
+                FullName = null;
+            }
+
             if (ProfilePicture != null) {
                 ProfilePicture.Dispose ();
                 ProfilePicture = null;
             }
 
-            if (ProfileTableView != null) {
-                ProfileTableView.Dispose ();
-                ProfileTableView = null;
+            if (SaveButton != null) {
+                SaveButton.Dispose ();
+                SaveButton = null;
+            }
+
+            if (UserNameLabel != null) {
+                UserNameLabel.Dispose ();
+                UserNameLabel = null;
             }
         }
     }

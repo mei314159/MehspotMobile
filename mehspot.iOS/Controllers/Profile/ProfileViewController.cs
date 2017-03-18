@@ -22,14 +22,12 @@ namespace mehspot.iOS
         private string previousColor;
         private Random random = new Random ();
         private IViewHelper viewHelper;
-        private ProfileService profileService;
         private BadgeService badgeService;
         private ApplicationDataStorage applicationDataStorage;
 
         public ProfileViewController (IntPtr handle) : base (handle)
         {
             applicationDataStorage = new ApplicationDataStorage ();
-            profileService = new ProfileService (applicationDataStorage);
             badgeService = new BadgeService (applicationDataStorage);
         }
 
@@ -60,13 +58,6 @@ namespace mehspot.iOS
             RefreshAsync ();
         }
 
-        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
-        {
-            var controller = (EditProfileController)segue.DestinationViewController;
-            controller.profile = MehspotAppContext.Instance.DataStorage.Profile;
-            base.PrepareForSegue (segue, sender);
-        }
-
         partial void SignoutButtonTouched (UIBarButtonItem sender)
         {
             UIAlertView alert = new UIAlertView (
@@ -91,36 +82,13 @@ namespace mehspot.iOS
         async Task RefreshAsync ()
         {
             viewHelper.ShowOverlay ("Refreshing...");
-            var profileResult = await profileService.GetProfileAsync ();
-            this.EditButton.Enabled = profileResult.IsSuccess;
-
-            if (profileResult.IsSuccess) {
-                MehspotAppContext.Instance.DataStorage.Profile = profileResult.Data;
-                SetFields (profileResult.Data);
-                ProfileInfoContainer.Hidden = false;
-                var badgesResult = await badgeService.GetBadgesSummaryAsync ();
-                if (badgesResult.IsSuccess) {
-                    SetBadges (badgesResult.Data);
-                } else {
-                    new UIAlertView ("Error", "Can not load badges data", null, "OK").Show ();
-                }
+            var badgesResult = await badgeService.GetBadgesSummaryAsync ();
+            if (badgesResult.IsSuccess) {
+                SetBadges (badgesResult.Data);
             } else {
-                new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
+                new UIAlertView ("Error", "Can not load badges data", null, "OK").Show ();
             }
-
             viewHelper.HideOverlay ();
-        }
-
-        private void SetFields (ProfileDto profile)
-        {
-            this.UserNameLabel.Text = profile.UserName;
-            this.FullName.Text = $"{profile.FirstName} {profile.LastName}".Trim (' ');
-            if (!string.IsNullOrEmpty (profile.ProfilePicturePath)) {
-                var url = NSUrl.FromString (profile.ProfilePicturePath);
-                if (url != null) {
-                    this.ProfilePicture.SetImage (url);
-                }
-            }
         }
 
         void SetBadges (BadgeSummaryDTO [] badges)

@@ -205,10 +205,6 @@
     <Compile Include="Controllers\LoginViewController.designer.cs">
       <DependentUpon>LoginViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Profile\EditProfileController.cs" />
-    <Compile Include="Controllers\Profile\EditProfileController.designer.cs">
-      <DependentUpon>EditProfileController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\Profile\ProfileViewController.cs" />
     <Compile Include="Controllers\Profile\ProfileViewController.designer.cs">
       <DependentUpon>ProfileViewController.cs</DependentUpon>
@@ -233,6 +229,10 @@
     <Compile Include="Views\Cell\SearchResultsCell.cs" />
     <Compile Include="Views\Cell\SearchResultsCell.designer.cs">
       <DependentUpon>SearchResultsCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Profile\EditProfileViewController.cs" />
+    <Compile Include="Controllers\Profile\EditProfileViewController.designer.cs">
+      <DependentUpon>EditProfileViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
