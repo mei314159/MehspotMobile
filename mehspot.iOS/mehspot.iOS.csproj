@@ -161,10 +161,10 @@
     <InterfaceDefinition Include="Views\Cell\PickerCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
     <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
-    <InterfaceDefinition Include="Views\Cell\BadgeCollectionViewCell.xib" />
     <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SliderCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SearchResultsCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\BadgeItemCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -196,7 +196,6 @@
     <Compile Include="Views\CustomPicker\ModalPickerViewController.cs" />
     <Compile Include="Views\CustomPicker\CustomPickerModel.cs" />
     <Compile Include="Views\Cell\TextEditCell.cs" />
-    <Compile Include="Views\Cell\BadgeCollectionViewCell.cs" />
     <Compile Include="Controllers\Search\SearchBabysitterController.cs" />
     <Compile Include="Controllers\Search\SearchBabysitterController.designer.cs">
       <DependentUpon>SearchBabysitterController.cs</DependentUpon>
@@ -204,10 +203,6 @@
     <Compile Include="Controllers\LoginViewController.cs" />
     <Compile Include="Controllers\LoginViewController.designer.cs">
       <DependentUpon>LoginViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\Profile\ProfileViewController.cs" />
-    <Compile Include="Controllers\Profile\ProfileViewController.designer.cs">
-      <DependentUpon>ProfileViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Messaging\MessageBoardViewController.cs" />
     <Compile Include="Controllers\Messaging\MessageBoardViewController.designer.cs">
@@ -233,6 +228,14 @@
     <Compile Include="Controllers\Profile\EditProfileViewController.cs" />
     <Compile Include="Controllers\Profile\EditProfileViewController.designer.cs">
       <DependentUpon>EditProfileViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Profile\BadgesViewController.cs" />
+    <Compile Include="Controllers\Profile\BadgesViewController.designer.cs">
+      <DependentUpon>BadgesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\BadgeItemCell.cs" />
+    <Compile Include="Views\Cell\BadgeItemCell.designer.cs">
+      <DependentUpon>BadgeItemCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

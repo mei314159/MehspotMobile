@@ -42,6 +42,10 @@ namespace mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SaveButtonTouched (UIKit.UIBarButtonItem sender);
 
+        [Action ("SignoutButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SignoutButtonTouched (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (ChangePhotoButton != null) {

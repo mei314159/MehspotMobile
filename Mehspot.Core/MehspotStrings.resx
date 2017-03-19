@@ -54,4 +54,46 @@
 	<data name="TutorEmployer" xml:space="preserve">
 	    <value>Tutor Employer</value>
 	</data>
+	<data name="Babysitter_Description" xml:space="preserve">
+	    <value>Search for for families in need of a babysitter</value>
+	</data>
+	<data name="BabysitterEmployer_Description" xml:space="preserve">
+	    <value>Search for babysitters</value>
+	</data>
+	<data name="Fitness_Description" xml:space="preserve">
+	    <value>Search for fitness partner</value>
+	</data>
+	<data name="Friendship_Description" xml:space="preserve">
+	    <value>Search for friend</value>
+	</data>
+	<data name="Golf_Description" xml:space="preserve">
+	    <value>Search for golf partner</value>
+	</data>
+	<data name="Hobby_Description" xml:space="preserve">
+	    <value>Search for hobby partner</value>
+	</data>
+	<data name="KidsPlayDate_Description" xml:space="preserve">
+	    <value>Search playdates for your children</value>
+	</data>
+	<data name="OtherJobs_Description" xml:space="preserve">
+	    <value>Search for other jobs</value>
+	</data>
+	<data name="PetSitter_Description" xml:space="preserve">
+		<value>Search for pet sitting services</value>
+	</data>
+	<data name="PetSitterEmployer_Description" xml:space="preserve">
+	    <value>Search for people who are in need of pet service</value>
+	</data>
+	<data name="Sports_Description" xml:space="preserve">
+	    <value>Search for sport partner</value>
+	</data>
+	<data name="Tennis_Description" xml:space="preserve">
+	    <value>Search for other tennis players</value>
+	</data>
+	<data name="Tutor_Description" xml:space="preserve">
+	    <value>Search for students in needs of SAT, math, languages and other tutoring</value>
+	</data>
+	<data name="TutorEmployer_Description" xml:space="preserve">
+	    <value>Search for tutors who teach SAT prep, math, languages, etc.</value>
+	</data>
 </root>

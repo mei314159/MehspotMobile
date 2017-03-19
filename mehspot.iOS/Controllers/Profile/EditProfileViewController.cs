@@ -54,13 +54,12 @@ namespace mehspot.iOS
         {
             profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
             viewHelper = new ViewHelper (this.View);
-            this.TableView.TableFooterView = new UIView ();
             ChangePhotoButton.Layer.BorderWidth = 1;
             ChangePhotoButton.Layer.BorderColor = UIColor.LightGray.CGColor;
             TableView.Delegate = this;
             TableView.WeakDataSource = this;
             TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
-            TableView.TableHeaderView.Hidden = true;
+            TableView.TableHeaderView.Hidden = TableView.TableFooterView.Hidden = true;
             RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
@@ -68,7 +67,7 @@ namespace mehspot.iOS
         {
             if (!dataLoaded) {
                 await RefreshView ();
-                TableView.TableHeaderView.Hidden = false;
+                TableView.TableHeaderView.Hidden = TableView.TableFooterView.Hidden = false;
             }
         }
 
@@ -122,7 +121,8 @@ namespace mehspot.iOS
 
             UIImage originalImage = e.Info [UIImagePickerController.OriginalImage] as UIImage;
             if (originalImage != null) {
-                ProfilePicture.Image = UIImage.FromImage (originalImage.CGImage, 4, originalImage.Orientation); 
+                ProfilePicture.Image = UIImage.FromImage (originalImage.CGImage, 4, originalImage.Orientation);
+ 
                 this.profileImageChanged = true;
             }
 
@@ -162,6 +162,27 @@ namespace mehspot.iOS
             }
 
             sender.Enabled = true;
+        }
+
+        partial void SignoutButtonTouched (UIButton sender)
+        {
+            UIAlertView alert = new UIAlertView (
+                                            "Sign Out",
+                                            "Are you sure you want to sign out?",
+                                            null,
+                                            "Cancel",
+                                            new string [] { "Yes, I do" });
+            alert.Clicked += (object s, UIButtonEventArgs e) => {
+                if (e.ButtonIndex != alert.CancelButtonIndex) {
+                    MehspotAppContext.Instance.AuthManager.SignOut ();
+                    MehspotAppContext.Instance.DisconnectSignalR ();
+
+                    var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateViewController ("LoginViewController");
+
+                    targetViewController.SwapController (UIViewAnimationOptions.TransitionFlipFromRight);
+                }
+            };
+            alert.Show ();
         }
 
         private async Task RefreshView ()
