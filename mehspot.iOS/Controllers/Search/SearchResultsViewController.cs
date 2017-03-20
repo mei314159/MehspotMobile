@@ -25,6 +25,9 @@ namespace mehspot.iOS
         private const int pageSize = 20;
 
         public ISearchFilterDTO Filter;
+
+        public KeyValuePair<int?, string> [] AgeRanges { get; internal set; }
+
         public string BadgeName;
 
         public SearchResultsViewController (IntPtr handle) : base (handle)
@@ -111,9 +114,12 @@ namespace mehspot.iOS
             }
             cell.UserNameLabel.Text = item.Details.FirstName;
             var distanceFrom = item.Details.DistanceFrom ?? 0;
-            cell.DistanceLabel.Text = item.Details.DistanceFrom > 0 ? Math.Round (distanceFrom, 2) + " miles" : "Same subdivision";
-            cell.SubdivisionLabel.Text = $"{item.Details.Subdivision} ({item.Details.ZipCode})";
-            cell.HourlyRate.Text = $"${item.HourlyRate}/hr";
+            cell.DistanceLabel.Text = Math.Round (distanceFrom, 2) + " miles";
+            cell.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace (item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
+            cell.HourlyRateLabel.Text = $"${item.HourlyRate}/hr";
+            cell.AgeRangeLabel.Text = item.AgeRange.HasValue ? AgeRanges [item.AgeRange.Value].Value : string.Empty;
+            cell.FavoriteIcon.Hidden = !item.Details.Favourite;
+            cell.LikesLabel.Text = $"{item.Details.Likes} Likes / {item.Details.Recommendations} Recommendations";
         }
 
 

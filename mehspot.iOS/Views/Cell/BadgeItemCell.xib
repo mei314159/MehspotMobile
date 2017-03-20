@@ -207,5 +207,6 @@
         <image name="badges/hobbyb.png" width="210" height="208"/>
         <image name="badges/kidsplaydateb.png" width="210" height="210"/>
         <image name="badges/otherjobsb.png" width="210" height="210"/>
+        <image name="star-yellow-icon" width="24" height="24"/>
     </resources>
 </document>

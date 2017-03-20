@@ -132,6 +132,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\star-yellow%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\star-yellow%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -152,6 +155,7 @@
     <Folder Include="Controllers\Search\" />
     <Folder Include="Controllers\Profile\" />
     <Folder Include="Controllers\Messaging\" />
+    <Folder Include="Assets.xcassets\star-yellow-icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

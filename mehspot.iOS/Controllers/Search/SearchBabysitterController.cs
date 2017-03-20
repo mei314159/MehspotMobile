@@ -78,6 +78,7 @@ namespace mehspot.iOS
             if (segue.Identifier == "SearchResultsSegue") {
                 var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
                 destinationViewController.Filter = filter;
+                destinationViewController.AgeRanges = ageRanges;
                 destinationViewController.BadgeName = "Babysitter";
             }
 

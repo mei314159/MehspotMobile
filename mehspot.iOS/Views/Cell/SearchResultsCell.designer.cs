@@ -15,11 +15,23 @@ namespace mehspot.iOS.Views.Cell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        public UIKit.UILabel AgeRangeLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         public UIKit.UILabel DistanceLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel HourlyRate { get; set; }
+        public UIKit.UIImageView FavoriteIcon { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        public UIKit.UILabel HourlyRateLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        public UIKit.UILabel LikesLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -35,14 +47,29 @@ namespace mehspot.iOS.Views.Cell
 
         void ReleaseDesignerOutlets ()
         {
+            if (AgeRangeLabel != null) {
+                AgeRangeLabel.Dispose ();
+                AgeRangeLabel = null;
+            }
+
             if (DistanceLabel != null) {
                 DistanceLabel.Dispose ();
                 DistanceLabel = null;
             }
 
-            if (HourlyRate != null) {
-                HourlyRate.Dispose ();
-                HourlyRate = null;
+            if (FavoriteIcon != null) {
+                FavoriteIcon.Dispose ();
+                FavoriteIcon = null;
+            }
+
+            if (HourlyRateLabel != null) {
+                HourlyRateLabel.Dispose ();
+                HourlyRateLabel = null;
+            }
+
+            if (LikesLabel != null) {
+                LikesLabel.Dispose ();
+                LikesLabel = null;
             }
 
             if (ProfilePicture != null) {
