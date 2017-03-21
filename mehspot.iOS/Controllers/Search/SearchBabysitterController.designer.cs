@@ -14,6 +14,10 @@ namespace mehspot.iOS
     [Register ("SearchBabysitterController")]
     partial class SearchBabysitterController
     {
+        [Action ("SearchButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SearchButtonTouched (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
         }

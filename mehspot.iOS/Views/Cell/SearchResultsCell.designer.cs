@@ -39,11 +39,27 @@ namespace mehspot.iOS.Views.Cell
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        public UIKit.UIButton SendMessageButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         public UIKit.UILabel SubdivisionLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         public UIKit.UILabel UserNameLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        public UIKit.UIButton ViewProfileButton { get; set; }
+
+        [Action ("SendMessageButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SendMessageButtonTouched (UIKit.UIButton sender);
+
+        [Action ("ViewProfileButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ViewProfileButtonTouched (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
@@ -77,6 +93,11 @@ namespace mehspot.iOS.Views.Cell
                 ProfilePicture = null;
             }
 
+            if (SendMessageButton != null) {
+                SendMessageButton.Dispose ();
+                SendMessageButton = null;
+            }
+
             if (SubdivisionLabel != null) {
                 SubdivisionLabel.Dispose ();
                 SubdivisionLabel = null;
@@ -85,6 +106,11 @@ namespace mehspot.iOS.Views.Cell
             if (UserNameLabel != null) {
                 UserNameLabel.Dispose ();
                 UserNameLabel = null;
+            }
+
+            if (ViewProfileButton != null) {
+                ViewProfileButton.Dispose ();
+                ViewProfileButton = null;
             }
         }
     }

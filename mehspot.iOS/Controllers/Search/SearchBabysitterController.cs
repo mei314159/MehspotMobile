@@ -37,6 +37,7 @@ namespace mehspot.iOS
             cells = new List<UITableViewCell> ();
             this.TableView.WeakDataSource = this;
             this.TableView.Delegate = this;
+            this.TableView.TableFooterView.Hidden = true;
         }
 
         public override string TitleForHeader (UITableView tableView, nint section)
@@ -54,6 +55,7 @@ namespace mehspot.iOS
                 await InitializeView ();
             this.TableView.ReloadData ();
             this.TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            this.TableView.TableFooterView.Hidden = false;
         }
 
         public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -101,11 +103,6 @@ namespace mehspot.iOS
             cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasReferences, "Has References"));
             cells.Add (BooleanEditCell.Create (filter, a => a.HasCertification, "Has Certification"));
             cells.Add (PickerCell.Create (filter, a => a.AgeRange, (model, property) => { model.AgeRange = property; }, v => ageRanges.FirstOrDefault (a => a.Key == v).Value, "Age Range", ageRanges));
-            var searchButtonCell = ButtonCell.Create (SearchButtonTouched, "Search");
-            searchButtonCell.CellButton.BackgroundColor = UIColor.FromRGB (0, 254, 0);
-            searchButtonCell.CellButton.TintColor = UIColor.White;
-            searchButtonCell.CellButton.Layer.CornerRadius = 5;
-            cells.Add (searchButtonCell);
             viewHelper.HideOverlay ();
             viewWasInitialized = true;
         }
@@ -121,7 +118,7 @@ namespace mehspot.iOS
             return null;
         }
 
-        private void SearchButtonTouched (UIButton sender)
+        partial void SearchButtonTouched (UIButton sender)
         {
             this.PerformSegue ("SearchResultsSegue", this);
         }

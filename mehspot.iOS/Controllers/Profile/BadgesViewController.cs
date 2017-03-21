@@ -88,9 +88,9 @@ namespace mehspot.iOS
             cell.BadgeName.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName);
             cell.BadgeSummary = badge;
             cell.SearchButton.Layer.BorderWidth = cell.BadgeRegisterButton.Layer.BorderWidth = 1;
-            cell.BadgeRegisterButton.Layer.BorderColor = UIColor.FromRGB (255, 128, 52).CGColor;
+            cell.SearchButton.Layer.BorderColor = cell.SearchButton.TitleColor (UIControlState.Normal).CGColor;
+            cell.BadgeRegisterButton.Layer.BorderColor = cell.BadgeRegisterButton.TitleColor(UIControlState.Normal).CGColor;
             cell.BadgeRegisterButton.SetTitle (badge.IsRegistered ? "Update" : "Register", UIControlState.Normal);
-            cell.SearchButton.Layer.BorderColor = UIColor.FromRGB (126, 194, 51).CGColor;
             cell.BadgeDescription.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName + "_Description");
             cell.LikesCount.Text = badge.Likes.ToString ();
             cell.RecommendationsCount.Text = badge.Recommendations.ToString ();

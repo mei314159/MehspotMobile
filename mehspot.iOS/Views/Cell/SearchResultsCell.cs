@@ -15,9 +15,22 @@ namespace mehspot.iOS.Views.Cell
             Nib = UINib.FromName ("SearchResultsCell", NSBundle.MainBundle);
         }
 
+        public Action<UIButton> SendMessageButtonAction;
+        public Action<UIButton> ViewProfileButtonAction;
+
         protected SearchResultsCell (IntPtr handle) : base (handle)
         {
             // Note: this .ctor should not contain any initialization logic.
+        }
+
+        partial void SendMessageButtonTouched (UIButton sender)
+        {
+            SendMessageButtonAction?.Invoke (sender);
+        }
+
+        partial void ViewProfileButtonTouched (UIButton sender)
+        {
+            ViewProfileButtonAction?.Invoke (sender);
         }
     }
 }

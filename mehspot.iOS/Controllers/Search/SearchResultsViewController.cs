@@ -17,6 +17,7 @@ namespace mehspot.iOS
     {
         private volatile bool loading;
         private volatile bool viewWasInitialized;
+        private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
         private List<BabysitterDetailsDTO> items = new List<BabysitterDetailsDTO>();
         private BadgeService badgeService;
         private string SelectedUserId;
@@ -87,11 +88,21 @@ namespace mehspot.iOS
 
         public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
         {
-            var dto = items [indexPath.Row];
-            this.SelectedUserId = dto.Details.UserId;
-            this.SelectedUserName = dto.Details.FirstName;
-            PerformSegue ("GoToMessagingSegue", this);
-            tableView.DeselectRow (indexPath, true);
+            if (expandedPaths.Contains (indexPath)) {
+                expandedPaths.Remove (indexPath);
+            } else {
+                expandedPaths.Add (indexPath);
+            }
+            tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Fade);
+        }
+
+        public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+        {
+            if (expandedPaths.Contains (indexPath)) {
+                return 125;
+            } else {
+                return 85;
+            }
         }
 
         public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -112,16 +123,27 @@ namespace mehspot.iOS
                     cell.ProfilePicture.SetImage (url);
                 }
             }
+
             cell.UserNameLabel.Text = item.Details.FirstName;
-            var distanceFrom = item.Details.DistanceFrom ?? 0;
-            cell.DistanceLabel.Text = Math.Round (distanceFrom, 2) + " miles";
+            cell.DistanceLabel.Text = Math.Round (item.Details.DistanceFrom ?? 0, 2) + " miles";
             cell.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace (item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
             cell.HourlyRateLabel.Text = $"${item.HourlyRate}/hr";
             cell.AgeRangeLabel.Text = item.AgeRange.HasValue ? AgeRanges [item.AgeRange.Value].Value : string.Empty;
             cell.FavoriteIcon.Hidden = !item.Details.Favourite;
             cell.LikesLabel.Text = $"{item.Details.Likes} Likes / {item.Details.Recommendations} Recommendations";
+
+            cell.SendMessageButton.Layer.BorderWidth = cell.ViewProfileButton.Layer.BorderWidth = 1;
+            cell.SendMessageButton.Layer.BorderColor = cell.SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
+            cell.ViewProfileButton.Layer.BorderColor = cell.ViewProfileButton.TitleColor (UIControlState.Normal).CGColor;
+            cell.SendMessageButtonAction = (obj) => SendMessageButtonTouched (obj, item);
         }
 
+        void SendMessageButtonTouched (UIButton obj, BabysitterDetailsDTO dto)
+        {
+            this.SelectedUserId = dto.Details.UserId;
+            this.SelectedUserName = dto.Details.FirstName;
+            PerformSegue ("GoToMessagingSegue", this);
+        }
 
         public override nint RowsInSection (UITableView tableView, nint section)
         {
