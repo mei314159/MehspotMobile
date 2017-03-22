@@ -14,12 +14,13 @@ namespace mehspot.iOS
 {
     public partial class MessageBoardViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
+        private volatile bool loading;
+        private volatile bool goToMessagesWhenAppear;
         private readonly MessagesService messagingModel;
-        private UIRefreshControl refreshControl;
+
         private MessageBoardItemDto [] items;
         private string SelectedUserId;
         private string SelectedUserName;
-        private bool GoToMessagesWhenAppear;
 
 
         public MessageBoardViewController (IntPtr handle) : base (handle)
@@ -38,17 +39,16 @@ namespace mehspot.iOS
             this.SearchBar.OnEditingStopped += SearchBar_OnEditingStopped;
             this.SearchBar.CancelButtonClicked += SearchBar_CancelButtonClicked;
             this.SearchBar.SearchButtonClicked += SearchBar_SearchButtonClicked;
-            refreshControl = new UIRefreshControl ();
-            refreshControl.ValueChanged += RefreshControl_ValueChanged;
-            this.MessageBoardTable.AddSubview (refreshControl);
+            this.MessageBoardTable.RefreshControl = new UIRefreshControl ();
+            this.MessageBoardTable.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
         public override async void ViewDidAppear (bool animated)
         {
             await LoadMessageBoardAsync ();
             AppDelegate.CheckPushNotificationsPermissions ();
-            if (GoToMessagesWhenAppear) {
-                GoToMessagesWhenAppear = false;
+            if (goToMessagesWhenAppear) {
+                goToMessagesWhenAppear = false;
                 PerformSegue ("GoToMessagingSegue", this);
             }
         }
@@ -92,14 +92,17 @@ namespace mehspot.iOS
             if (this.IsViewLoaded) {
                 PerformSegue ("GoToMessagingSegue", this);
             } else {
-                GoToMessagesWhenAppear = true;
+                goToMessagesWhenAppear = true;
             }
         }
 
         private async Task LoadMessageBoardAsync ()
         {
-            refreshControl.BeginRefreshing ();
-            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -refreshControl.Frame.Size.Height), true);
+            if (loading)
+                return;
+            loading = true;
+            this.MessageBoardTable.RefreshControl.BeginRefreshing ();
+            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -this.MessageBoardTable.RefreshControl.Frame.Size.Height), true);
             var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
             if (messageBoardResult.IsSuccess) {
                 this.items = messageBoardResult.Data;
@@ -107,7 +110,8 @@ namespace mehspot.iOS
                 MessageBoardTable.ReloadData ();
             }
 
-            refreshControl.EndRefreshing ();
+            this.MessageBoardTable.RefreshControl.EndRefreshing ();
+            loading = false;
         }
 
         void UpdateApplicationBadge ()

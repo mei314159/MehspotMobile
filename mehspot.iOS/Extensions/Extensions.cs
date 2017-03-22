@@ -32,10 +32,17 @@ namespace mehspot.iOS.Extensions
 
         public static void SetProperty<TModel, TProperty> (this TModel model, Expression<Func<TModel, TProperty>> entityExpression, TProperty newValueEntity)
         {
+            object targetObject = model;
             var memberExpression = (MemberExpression)entityExpression.Body;
-            var property = (PropertyInfo)memberExpression.Member;
+            var targetExpression = memberExpression;
+            while (targetExpression.Expression.NodeType == ExpressionType.MemberAccess){
+                targetExpression = (MemberExpression)targetExpression.Expression;
+                targetObject = ((PropertyInfo)targetExpression.Member).GetValue (targetObject);
+            } 
 
-            property.SetValue (model, newValueEntity, null);
+
+            var property = (PropertyInfo)memberExpression.Member;
+            property.SetValue (targetObject, newValueEntity, null);
         }
 
         public static UIColor FromHexString (this UIColor color, string hexValue, float alpha = 1.0f)

@@ -11,16 +11,12 @@ using UIKit;
 
 namespace mehspot.iOS
 {
-    [Register ("ProfileViewController")]
-    partial class ProfileViewController
+    [Register ("EditProfileViewController")]
+    partial class EditProfileViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UICollectionView BadgesContainer { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton EditButton { get; set; }
+        UIKit.UIButton ChangePhotoButton { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -28,30 +24,33 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIView ProfileInfoContainer { get; set; }
+        UIKit.UIImageView ProfilePicture { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView ProfilePicture { get; set; }
+        UIKit.UIBarButtonItem SaveButton { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel UserNameLabel { get; set; }
 
+        [Action ("ChangePhotoButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ChangePhotoButtonTouched (UIKit.UIButton sender);
+
+        [Action ("SaveButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SaveButtonTouched (UIKit.UIBarButtonItem sender);
+
         [Action ("SignoutButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void SignoutButtonTouched (UIKit.UIBarButtonItem sender);
+        partial void SignoutButtonTouched (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
-            if (BadgesContainer != null) {
-                BadgesContainer.Dispose ();
-                BadgesContainer = null;
-            }
-
-            if (EditButton != null) {
-                EditButton.Dispose ();
-                EditButton = null;
+            if (ChangePhotoButton != null) {
+                ChangePhotoButton.Dispose ();
+                ChangePhotoButton = null;
             }
 
             if (FullName != null) {
@@ -59,14 +58,14 @@ namespace mehspot.iOS
                 FullName = null;
             }
 
-            if (ProfileInfoContainer != null) {
-                ProfileInfoContainer.Dispose ();
-                ProfileInfoContainer = null;
-            }
-
             if (ProfilePicture != null) {
                 ProfilePicture.Dispose ();
                 ProfilePicture = null;
+            }
+
+            if (SaveButton != null) {
+                SaveButton.Dispose ();
+                SaveButton = null;
             }
 
             if (UserNameLabel != null) {

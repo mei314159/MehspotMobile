@@ -7,50 +7,60 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cxk-wN-pdQ" customClass="TextEditCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="cxk-wN-pdQ" customClass="SliderCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="2" translatesAutoresizingMaskIntoConstraints="NO" clearButtonMode="whileEditing">
-                        <rect key="frame" x="165" y="0.0" width="155" height="44"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                        <connections/>
-                    </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="9" numberOfLines="2">
-                        <rect key="frame" x="15" y="0.0" width="145" height="44"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="15" y="0.0" width="145" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                         <nil key="highlightedColor"/>
                         <constraints>
-                            <constraint id="19" firstItem="16" firstAttribute="width" constant="145"/>
+                            <constraint id="5" firstItem="2" firstAttribute="width" constant="145"/>
+                        </constraints>
+                    </label>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="7" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="213" y="7" width="104" height="31"/>
+                        <connections/>
+                    </slider>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="22" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="165" y="0.0" width="45" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                        <nil key="highlightedColor"/>
+                        <constraints>
+                            <constraint id="28" firstItem="22" firstAttribute="width" constant="45"/>
                         </constraints>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint id="4" firstItem="2" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
-                    <constraint id="7" firstItem="2" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
-                    <constraint id="13" firstItem="2" firstAttribute="trailing" secondItem="YTl-1W-gDM" secondAttribute="trailing"/>
-                    <constraint id="17" firstItem="16" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
-                    <constraint id="18" firstItem="16" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
-                    <constraint id="20" firstItem="2" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="5"/>
-                    <constraint id="27" firstItem="16" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
+                    <constraint id="3" firstItem="2" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
+                    <constraint id="4" firstItem="2" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
+                    <constraint id="6" firstItem="2" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
+                    <constraint id="8" firstItem="7" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
+                    <constraint id="25" firstItem="22" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="5"/>
+                    <constraint id="26" firstItem="22" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
+                    <constraint id="27" firstItem="22" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
+                    <constraint id="29" firstItem="7" firstAttribute="leading" secondItem="22" secondAttribute="trailing" constant="5"/>
+                    <constraint id="33" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="5"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="TextInput" destination="2" id="name-outlet-2"/>
-                <outlet property="FieldLabel" destination="16" id="name-outlet-16"/>
+                <outlet property="CellSlider" destination="7" id="name-outlet-7"/>
+                <outlet property="FieldLabel" destination="2" id="name-outlet-2"/>
+                <outlet property="ValueLabel" destination="22" id="name-outlet-22"/>
             </connections>
-            <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="chat-icon" width="25" height="25"/>
         <image name="profile-icon" width="25" height="25"/>
         <image name="signout-icon" width="22" height="22"/>
+        <image name="search-icon" width="25" height="25"/>
         <image name="logo.jpg" width="350" height="350"/>
         <image name="profile_image.png" width="400" height="400"/>
         <image name="badges/babysitter.png" width="70" height="69"/>
@@ -81,6 +91,5 @@
         <image name="badges/hobbyb.png" width="210" height="208"/>
         <image name="badges/kidsplaydateb.png" width="210" height="210"/>
         <image name="badges/otherjobsb.png" width="210" height="210"/>
-        <image name="search-icon" width="25" height="25"/>
     </resources>
 </document>

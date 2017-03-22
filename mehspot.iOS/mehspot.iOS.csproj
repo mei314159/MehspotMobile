@@ -109,16 +109,6 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
     <ImageAsset Include="Assets.xcassets\chat-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\chat-icon.imageset\chat-icon%403x.png" />
     <ImageAsset Include="Assets.xcassets\chat-icon.imageset\chat-icon%402x.png" />
@@ -128,6 +118,23 @@
     <ImageAsset Include="Assets.xcassets\signout-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\signout-icon.imageset\signout%402x.png" />
     <ImageAsset Include="Assets.xcassets\signout-icon.imageset\signout%403x.png" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\search%402x.png" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\search%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Notification%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\star-yellow%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\star-yellow%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -143,6 +150,12 @@
     <Folder Include="Assets.xcassets\signout-icon.imageset\" />
     <Folder Include="Views\Cell\" />
     <Folder Include="Views\CustomPicker\" />
+    <Folder Include="Assets.xcassets\search-icon.imageset\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Search\" />
+    <Folder Include="Controllers\Profile\" />
+    <Folder Include="Controllers\Messaging\" />
+    <Folder Include="Assets.xcassets\star-yellow-icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -152,7 +165,10 @@
     <InterfaceDefinition Include="Views\Cell\PickerCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
     <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
-    <InterfaceDefinition Include="Views\Cell\BadgeCollectionViewCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SliderCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SearchResultsCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\BadgeItemCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -162,34 +178,14 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="LoginViewController.cs" />
-    <Compile Include="LoginViewController.designer.cs">
-      <DependentUpon>LoginViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\ApplicationDataStorage.cs" />
     <Compile Include="Views\LoadingOverlay.cs" />
     <Compile Include="Wrappers\ViewHelper.cs" />
-    <Compile Include="MessageBoardViewController.cs" />
-    <Compile Include="MessageBoardViewController.designer.cs">
-      <DependentUpon>MessageBoardViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MessagingViewController.cs" />
-    <Compile Include="MessagingViewController.designer.cs">
-      <DependentUpon>MessagingViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="Core\DTO\IosNotification.cs" />
-    <Compile Include="ProfileViewController.cs" />
-    <Compile Include="ProfileViewController.designer.cs">
-      <DependentUpon>ProfileViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MessageBubble.cs" />
     <Compile Include="Views\MessageBubble.designer.cs">
       <DependentUpon>MessageBubble.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EditProfileController.cs" />
-    <Compile Include="EditProfileController.designer.cs">
-      <DependentUpon>EditProfileController.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Views\Cell\BooleanEditCell.cs" />
@@ -204,11 +200,47 @@
     <Compile Include="Views\CustomPicker\ModalPickerViewController.cs" />
     <Compile Include="Views\CustomPicker\CustomPickerModel.cs" />
     <Compile Include="Views\Cell\TextEditCell.cs" />
-    <Compile Include="Views\Cell\BadgeCollectionViewCell.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork" />
-    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <Compile Include="Controllers\Search\SearchBabysitterController.cs" />
+    <Compile Include="Controllers\Search\SearchBabysitterController.designer.cs">
+      <DependentUpon>SearchBabysitterController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\LoginViewController.cs" />
+    <Compile Include="Controllers\LoginViewController.designer.cs">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Messaging\MessageBoardViewController.cs" />
+    <Compile Include="Controllers\Messaging\MessageBoardViewController.designer.cs">
+      <DependentUpon>MessageBoardViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Messaging\MessagingViewController.cs" />
+    <Compile Include="Controllers\Messaging\MessagingViewController.designer.cs">
+      <DependentUpon>MessagingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\ButtonCell.cs" />
+    <Compile Include="Controllers\Search\SearchResultsViewController.cs" />
+    <Compile Include="Controllers\Search\SearchResultsViewController.designer.cs">
+      <DependentUpon>SearchResultsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\SliderCell.cs" />
+    <Compile Include="Views\Cell\SliderCell.designer.cs">
+      <DependentUpon>SliderCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\SearchResultsCell.cs" />
+    <Compile Include="Views\Cell\SearchResultsCell.designer.cs">
+      <DependentUpon>SearchResultsCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Profile\EditProfileViewController.cs" />
+    <Compile Include="Controllers\Profile\EditProfileViewController.designer.cs">
+      <DependentUpon>EditProfileViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Profile\BadgesViewController.cs" />
+    <Compile Include="Controllers\Profile\BadgesViewController.designer.cs">
+      <DependentUpon>BadgesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\BadgeItemCell.cs" />
+    <Compile Include="Views\Cell\BadgeItemCell.designer.cs">
+      <DependentUpon>BadgeItemCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />
@@ -253,6 +285,10 @@
       <Version>3.7.5</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

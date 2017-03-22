@@ -1,66 +1,79 @@
 using Foundation;
-using CoreGraphics;
-using UIKit;
 using System;
+using UIKit;
+using Mehspot.Core.Contracts.Wrappers;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mehspot.Core;
-using Mehspot.Core.DTO;
 using Mehspot.Core.Messaging;
-using mehspot.iOS.Views;
-using mehspot.iOS.Extensions;
+using Mehspot.Core.DTO;
+using Mehspot.Core;
 using mehspot.iOS.Wrappers;
+using mehspot.iOS.Extensions;
 using System.Runtime.InteropServices;
+using CoreGraphics;
+using System.Threading.Tasks;
 using SDWebImage;
+using mehspot.iOS.Views;
+using System.Linq;
 
 namespace mehspot.iOS
 {
-    public partial class EditProfileController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
+    public partial class EditProfileViewController : UITableViewController, IUITableViewDataSource, IUITableViewDelegate
     {
-        volatile bool viewWasInitialized;
+        volatile bool loading;
+        volatile bool dataLoaded;
         volatile bool profileImageChanged;
 
-        private ViewHelper viewHelper;
-        private readonly ProfileService profileService;
+        private IViewHelper viewHelper;
+        private ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
-        private KeyValuePair<int?, string> [] states;
-        private KeyValuePair<int?, string> [] subdivisions;
+        private KeyValuePair<string, string> [] genders = new [] {
+                new KeyValuePair<string, string>(null, "N/A"),
+                new KeyValuePair<string, string>("M", "Male"),
+                new KeyValuePair<string, string>("F", "Female")
+        };
 
         public ProfileDto profile;
 
 
-        public EditProfileController (IntPtr handle) : base (handle)
+        public EditProfileViewController (IntPtr handle) : base (handle)
         {
-            profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
-            viewHelper = new ViewHelper (this.View);
         }
 
-        public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
+        public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
         {
             var item = cells [indexPath.Row];
             return item;
         }
 
-        public nint RowsInSection (UITableView tableView, nint section)
+        public override nint RowsInSection (UITableView tableView, nint section)
         {
             return cells.Count;
         }
 
         public override void ViewDidLoad ()
         {
-            this.ProfileTableView.TableFooterView = new UIView ();
+            profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
+            viewHelper = new ViewHelper (this.View);
+            ChangePhotoButton.Layer.BorderWidth = 1;
+            ChangePhotoButton.Layer.BorderColor = UIColor.LightGray.CGColor;
+            TableView.Delegate = this;
+            TableView.WeakDataSource = this;
+            TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            TableView.TableHeaderView.Hidden = TableView.TableFooterView.Hidden = true;
+            RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
-        public override async void ViewWillAppear (bool animated)
+        public override async void ViewDidAppear (bool animated)
         {
-            if (!viewWasInitialized)
-                await InitializeView ();
-            ProfileTableView.WeakDataSource = this;
-            ProfileTableView.Delegate = this;
-            ProfileTableView.ReloadData ();
-            RegisterForKeyboardNotifications ();
-            ProfileTableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            if (!dataLoaded) {
+                await RefreshView ();
+                TableView.TableHeaderView.Hidden = TableView.TableFooterView.Hidden = false;
+            }
+        }
+
+        private async void RefreshControl_ValueChanged (object sender, EventArgs e)
+        {
+            await RefreshView ();
         }
 
         public void HideKeyboard ()
@@ -75,7 +88,7 @@ namespace mehspot.iOS
             photoSourceActionSheet.AddButton ("Photo Library");
             photoSourceActionSheet.AddButton ("Cancel");
             photoSourceActionSheet.CancelButtonIndex = 2;
-            photoSourceActionSheet.Clicked += PhotoSouceActionSheet_Clicked; ;
+            photoSourceActionSheet.Clicked += PhotoSouceActionSheet_Clicked;
             photoSourceActionSheet.ShowInView (View);
         }
 
@@ -109,6 +122,7 @@ namespace mehspot.iOS
             UIImage originalImage = e.Info [UIImagePickerController.OriginalImage] as UIImage;
             if (originalImage != null) {
                 ProfilePicture.Image = UIImage.FromImage (originalImage.CGImage, 4, originalImage.Orientation);
+ 
                 this.profileImageChanged = true;
             }
 
@@ -119,7 +133,6 @@ namespace mehspot.iOS
         {
             ((UIImagePickerController)sender).DismissModalViewController (true);
         }
-
 
         async partial void SaveButtonTouched (UIBarButtonItem sender)
         {
@@ -151,54 +164,62 @@ namespace mehspot.iOS
             sender.Enabled = true;
         }
 
-        protected virtual void RegisterForKeyboardNotifications ()
+        partial void SignoutButtonTouched (UIButton sender)
         {
-            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillHideNotification, OnKeyboardNotification);
-            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, OnKeyboardNotification);
+            UIAlertView alert = new UIAlertView (
+                                            "Sign Out",
+                                            "Are you sure you want to sign out?",
+                                            null,
+                                            "Cancel",
+                                            new string [] { "Yes, I do" });
+            alert.Clicked += (object s, UIButtonEventArgs e) => {
+                if (e.ButtonIndex != alert.CancelButtonIndex) {
+                    MehspotAppContext.Instance.AuthManager.SignOut ();
+                    MehspotAppContext.Instance.DisconnectSignalR ();
+
+                    var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateViewController ("LoginViewController");
+
+                    targetViewController.SwapController (UIViewAnimationOptions.TransitionFlipFromRight);
+                }
+            };
+            alert.Show ();
         }
 
-        private void OnKeyboardNotification (NSNotification notification)
+        private async Task RefreshView ()
         {
-            if (!IsViewLoaded)
+            if (loading)
                 return;
+            loading = true;
+            TableView.UserInteractionEnabled = false;
+            this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = false;
+            RefreshControl.BeginRefreshing ();
+            TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
 
-            //Check if the keyboard is becoming visible
-            var visible = notification.Name == UIKeyboard.WillShowNotification;
+            var profileResult = await profileService.GetProfileAsync ();
 
-            //Start an animation, using values from the keyboard
-            UIView.BeginAnimations ("AnimateForKeyboard");
-            UIView.SetAnimationBeginsFromCurrentState (true);
-            UIView.SetAnimationDuration (UIKeyboard.AnimationDurationFromNotification (notification));
-            UIView.SetAnimationCurve ((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification (notification));
-
-            //Pass the notification, calculating keyboard height, etc.
-            var keyboardFrame = visible
-                                    ? UIKeyboard.FrameEndFromNotification (notification)
-                                    : UIKeyboard.FrameBeginFromNotification (notification);
-            OnKeyboardChanged (visible, keyboardFrame);
-            //Commit the animation
-            UIView.CommitAnimations ();
-        }
-
-        private void OnKeyboardChanged (bool visible, CGRect keyboardFrame)
-        {
-            if (View.Superview == null) {
+            if (profileResult.IsSuccess) {
+                profile = profileResult.Data;
+            }else {
+                RefreshControl.EndRefreshing ();
+                new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
                 return;
             }
 
-            if (visible) {
-                var relativeLocation = View.Superview.ConvertPointToView (keyboardFrame.Location, View);
-                var yTreshold = ProfileTableView.Frame.Y + ProfileTableView.Frame.Height;
-                var deltaY = yTreshold - relativeLocation.Y;
-                ProfileTableView.Frame = new CGRect (ProfileTableView.Frame.Location, new CGSize (ProfileTableView.Frame.Width, ProfileTableView.Frame.Height - deltaY));
-            } else {
-                var deltaY = (this.View.Frame.Height) - (ProfileTableView.Frame.Y + ProfileTableView.Frame.Height);
-                ProfileTableView.Frame = new CGRect (ProfileTableView.Frame.Location, new CGSize (ProfileTableView.Frame.Width, ProfileTableView.Frame.Height + deltaY));
-            }
+            var states = await GetStates ();
+            var subdivisions = await GetSubdivisions (profile.Zip);
+            InitializeTable (profile, states, subdivisions);
+
+            RefreshControl.EndRefreshing ();
+            TableView.UserInteractionEnabled = true;
+            this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = profileResult.IsSuccess;
+            dataLoaded = profileResult.IsSuccess;
+            loading = false;
         }
 
-        private async Task InitializeView ()
+        void InitializeTable (ProfileDto profile, KeyValuePair<int?, string> [] states, KeyValuePair<int?, string> [] subdivisions)
         {
+            this.UserNameLabel.Text = profile.UserName;
+            this.FullName.Text = $"{profile.FirstName} {profile.LastName}".Trim (' ');
 
             if (!string.IsNullOrEmpty (profile.ProfilePicturePath)) {
                 var url = NSUrl.FromString (profile.ProfilePicturePath);
@@ -207,24 +228,14 @@ namespace mehspot.iOS
                 }
             }
 
-            var genders = new [] {
-                new KeyValuePair<string, string>(null, "N/A"),
-                new KeyValuePair<string, string>("M", "Male"),
-                new KeyValuePair<string, string>("F", "Female")
-            };
-
-            viewHelper.ShowOverlay ("Loading...");
-            states = await GetStates ();
-            subdivisions = await GetSubdivisions (profile.Zip);
-
+            cells.Clear ();
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name"));
             cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", true));
             var phoneNumberCell = TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
             phoneNumberCell.Mask = "(###)###-####";
-            cells.Add (phoneNumberCell);// TODO: Mask field
+            cells.Add (phoneNumberCell);
             cells.Add (PickerCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Date Of Birth"));
             cells.Add (PickerCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, v => genders.First (a => a.Key == v).Value, "Gender", genders));
-            // TODO: Email field
             cells.Add (TextEditCell.Create (profile, a => a.FirstName, "First Name"));
             cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine1, "Address Line 1"));
@@ -236,14 +247,13 @@ namespace mehspot.iOS
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
             var subdivisionCell = PickerCell.Create (profile, a => a.SubdivisionId, (model, property) => { model.SubdivisionId = (int?)property; }, v => subdivisions.FirstOrDefault (a => a.Key == v).Value, "Subdivision", subdivisions, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
-            cells.Add (zipCell); //zip mask
-            cells.Add (subdivisionCell); //Subdivision Selector
+            cells.Add (zipCell);
+            cells.Add (subdivisionCell);
 
-            cells.Add (BooleanEditCell.Create (profile, a => a.MehspotNotificationsEnabled, "Email notifications enabled")); //True-False selector
-            cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled")); //True-False selector
+            cells.Add (BooleanEditCell.Create (profile, a => a.MehspotNotificationsEnabled, "Email notifications enabled"));
+            cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled"));
 
-            viewHelper.HideOverlay ();
-            viewWasInitialized = true;
+            TableView.ReloadData ();
         }
 
         async void ZipCell_ValueChanged (TextEditCell sender, string value, PickerCell subdivisionCell)
@@ -261,8 +271,7 @@ namespace mehspot.iOS
             if (!string.IsNullOrWhiteSpace (zipCode)) {
                 var subdivisionsResult = await profileService.GetSubdivisionsAsync (zipCode);
                 if (subdivisionsResult.IsSuccess) {
-                    subdivisions = subdivisionsResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.DisplayName)).ToArray ();
-                    return subdivisions;
+                    return subdivisionsResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.DisplayName)).ToArray ();
                 }
             }
 

@@ -23,7 +23,7 @@ namespace Mehspot.Core {
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MehspotStrings() {
+        public MehspotStrings() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -128,6 +128,90 @@ namespace Mehspot.Core {
         public static string TutorEmployer {
             get {
                 return ResourceManager.GetString("TutorEmployer", resourceCulture);
+            }
+        }
+        
+        public static string Babysitter_Description {
+            get {
+                return ResourceManager.GetString("Babysitter_Description", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterEmployer_Description {
+            get {
+                return ResourceManager.GetString("BabysitterEmployer_Description", resourceCulture);
+            }
+        }
+        
+        public static string Fitness_Description {
+            get {
+                return ResourceManager.GetString("Fitness_Description", resourceCulture);
+            }
+        }
+        
+        public static string Friendship_Description {
+            get {
+                return ResourceManager.GetString("Friendship_Description", resourceCulture);
+            }
+        }
+        
+        public static string Golf_Description {
+            get {
+                return ResourceManager.GetString("Golf_Description", resourceCulture);
+            }
+        }
+        
+        public static string Hobby_Description {
+            get {
+                return ResourceManager.GetString("Hobby_Description", resourceCulture);
+            }
+        }
+        
+        public static string KidsPlayDate_Description {
+            get {
+                return ResourceManager.GetString("KidsPlayDate_Description", resourceCulture);
+            }
+        }
+        
+        public static string OtherJobs_Description {
+            get {
+                return ResourceManager.GetString("OtherJobs_Description", resourceCulture);
+            }
+        }
+        
+        public static string PetSitter_Description {
+            get {
+                return ResourceManager.GetString("PetSitter_Description", resourceCulture);
+            }
+        }
+        
+        public static string PetSitterEmployer_Description {
+            get {
+                return ResourceManager.GetString("PetSitterEmployer_Description", resourceCulture);
+            }
+        }
+        
+        public static string Sports_Description {
+            get {
+                return ResourceManager.GetString("Sports_Description", resourceCulture);
+            }
+        }
+        
+        public static string Tennis_Description {
+            get {
+                return ResourceManager.GetString("Tennis_Description", resourceCulture);
+            }
+        }
+        
+        public static string Tutor_Description {
+            get {
+                return ResourceManager.GetString("Tutor_Description", resourceCulture);
+            }
+        }
+        
+        public static string TutorEmployer_Description {
+            get {
+                return ResourceManager.GetString("TutorEmployer_Description", resourceCulture);
             }
         }
     }
