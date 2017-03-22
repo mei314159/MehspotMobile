@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Extensions;
+using System.Net.Http.Headers;
+using MehSpot.Models.ViewModels;
 
 namespace Mehspot.Core.Messaging
 {
@@ -97,7 +99,7 @@ namespace Mehspot.Core.Messaging
 
             using (var webClient = new HttpClient ()) {
                 try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
 
                     var response = await webClient.GetAsync (uri).ConfigureAwait (false);
                     var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
@@ -119,6 +121,41 @@ namespace Mehspot.Core.Messaging
 
                 } catch (Exception ex) {
                     return new Result<TResult []> {
+                        IsSuccess = false,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+        }
+
+        public async Task<Result<BadgeProfileDTO<BabysitterProfileDTO>>> GetBadgeProfileAsync (string badgeName, string userId)
+        {
+            var uri = new Uri ($"{Constants.ApiHost}/api/Badges/Profile?badgeName={badgeName}&userId={userId}");
+
+            using (var webClient = new HttpClient ()) {
+                try {
+                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+
+                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
+                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+                        var data = JsonConvert.DeserializeObject<BadgeProfileDTO<BabysitterProfileDTO>> (responseString);
+
+                        return new Result<BadgeProfileDTO<BabysitterProfileDTO>> {
+                            IsSuccess = true,
+                            Data = data,
+                            ErrorMessage = null
+                        };
+                    } else {
+                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
+                        return new Result<BadgeProfileDTO<BabysitterProfileDTO>> {
+                            IsSuccess = false,
+                            ErrorMessage = errorResponse.ErrorDescription
+                        };
+                    }
+
+                } catch (Exception ex) {
+                    return new Result<BadgeProfileDTO<BabysitterProfileDTO>> {
                         IsSuccess = false,
                         ErrorMessage = ex.Message
                     };

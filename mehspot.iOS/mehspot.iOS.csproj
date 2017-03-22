@@ -241,6 +241,10 @@
     <Compile Include="Views\Cell\BadgeItemCell.designer.cs">
       <DependentUpon>BadgeItemCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Profile\ViewProfileViewController.cs" />
+    <Compile Include="Controllers\Profile\ViewProfileViewController.designer.cs">
+      <DependentUpon>ViewProfileViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

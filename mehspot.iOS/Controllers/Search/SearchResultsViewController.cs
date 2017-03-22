@@ -18,7 +18,7 @@ namespace mehspot.iOS
         private volatile bool loading;
         private volatile bool viewWasInitialized;
         private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
-        private List<BabysitterDetailsDTO> items = new List<BabysitterDetailsDTO>();
+        private List<BabysitterFilterDTO> items = new List<BabysitterFilterDTO> ();
         private BadgeService badgeService;
         private string SelectedUserId;
         private string SelectedUserName;
@@ -44,12 +44,18 @@ namespace mehspot.iOS
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
             this.TableView.TableFooterView.Hidden = true;
         }
+
         public override async void ViewDidAppear (bool animated)
         {
             if (!viewWasInitialized) {
                 await RefreshResultsAsync ();
                 viewWasInitialized = true;
             }
+        }
+
+        [Action ("UnwindToSearchResultsViewController:")]
+        public void UnwindToSearchResultsViewController (UIStoryboardSegue segue)
+        {
         }
 
         [Export ("scrollViewDidScroll:")]
@@ -80,9 +86,15 @@ namespace mehspot.iOS
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
-            var controller = (MessagingViewController)segue.DestinationViewController;
-            controller.ToUserName = this.SelectedUserName;
-            controller.ToUserId = this.SelectedUserId;
+            if (segue.Identifier == "GoToMessagingSegue") {
+                var controller = (MessagingViewController)segue.DestinationViewController;
+                controller.ToUserName = this.SelectedUserName;
+                controller.ToUserId = this.SelectedUserId;
+            } else if (segue.Identifier == "ViewProfileSegue") {
+                var controller = (ViewProfileViewController)segue.DestinationViewController;
+                controller.UserId = this.SelectedUserId;
+            }
+
             base.PrepareForSegue (segue, sender);
         }
 
@@ -101,7 +113,7 @@ namespace mehspot.iOS
             if (expandedPaths.Contains (indexPath)) {
                 return 125;
             } else {
-                return 85;
+                return 84;
             }
         }
 
@@ -114,7 +126,7 @@ namespace mehspot.iOS
             return cell;
         }
 
-        private void ConfigureCell (SearchResultsCell cell, BabysitterDetailsDTO item)
+        private void ConfigureCell (SearchResultsCell cell, BabysitterFilterDTO item)
         {
             if (!string.IsNullOrEmpty (item.Details.ProfilePicturePath)) {
 
@@ -136,13 +148,21 @@ namespace mehspot.iOS
             cell.SendMessageButton.Layer.BorderColor = cell.SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
             cell.ViewProfileButton.Layer.BorderColor = cell.ViewProfileButton.TitleColor (UIControlState.Normal).CGColor;
             cell.SendMessageButtonAction = (obj) => SendMessageButtonTouched (obj, item);
+            cell.ViewProfileButtonAction = (obj) => ViewProfileButtonTouched (obj, item);
         }
 
-        void SendMessageButtonTouched (UIButton obj, BabysitterDetailsDTO dto)
+        void SendMessageButtonTouched (UIButton obj, BabysitterFilterDTO dto)
         {
             this.SelectedUserId = dto.Details.UserId;
             this.SelectedUserName = dto.Details.FirstName;
             PerformSegue ("GoToMessagingSegue", this);
+        }
+
+        void ViewProfileButtonTouched (UIButton obj, BabysitterFilterDTO dto)
+        {
+            this.SelectedUserId = dto.Details.UserId;
+            this.SelectedUserName = dto.Details.FirstName;
+            PerformSegue ("ViewProfileSegue", this);
         }
 
         public override nint RowsInSection (UITableView tableView, nint section)
@@ -171,7 +191,7 @@ namespace mehspot.iOS
         private async Task LoadDataAsync (bool refresh = false)
         {
             var skip = refresh ? 0 : (items?.Count ?? 0);
-            var result = await badgeService.Search<BabysitterDetailsDTO> (this.Filter, this.BadgeName, skip, pageSize);
+            var result = await badgeService.Search<BabysitterFilterDTO> (this.Filter, this.BadgeName, skip, pageSize);
             if (result.IsSuccess) {
                 if (refresh) {
                     this.items.Clear ();

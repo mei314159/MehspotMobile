@@ -134,10 +134,10 @@
                     <constraint id="67" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="10" relation="greaterThanOrEqual"/>
                     <constraint id="77" firstItem="73" firstAttribute="width" secondItem="74" secondAttribute="width"/>
                     <constraint id="78" firstItem="73" firstAttribute="height" secondItem="74" secondAttribute="height"/>
-                    <constraint id="79" firstItem="74" firstAttribute="top" secondItem="41" secondAttribute="bottom" constant="10"/>
                     <constraint id="82" firstItem="73" firstAttribute="top" secondItem="74" secondAttribute="top"/>
                     <constraint id="95" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="74" secondAttribute="trailing" constant="10"/>
                     <constraint id="99" firstItem="74" firstAttribute="leading" secondItem="73" secondAttribute="trailing" constant="14"/>
+                    <constraint id="102" firstItem="74" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="84"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

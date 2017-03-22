@@ -62,9 +62,13 @@
     <Compile Include="DTO\AuthenticationResult.cs" />
     <Compile Include="DTO\Search\BaseFilterDTO.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
-    <Compile Include="DTO\Badges\BabysitterDetailsDTO.cs" />
-    <Compile Include="DTO\Badges\BadgeUserDetailsViewDTO.cs" />
+    <Compile Include="DTO\Badges\BabysitterFilterDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeUserDetailsFilterDTO.cs" />
     <Compile Include="DTO\Search\ISearchFilterDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeProfileDetailsDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeProfileDTO.cs" />
+    <Compile Include="DTO\Badges\IBadgeProfileValues.cs" />
+    <Compile Include="DTO\Badges\BabysitterProfileDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
