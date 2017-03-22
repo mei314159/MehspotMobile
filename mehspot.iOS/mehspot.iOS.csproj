@@ -156,6 +156,8 @@
     <Folder Include="Controllers\Profile\" />
     <Folder Include="Controllers\Messaging\" />
     <Folder Include="Assets.xcassets\star-yellow-icon.imageset\" />
+    <Folder Include="Controllers\Badges\" />
+    <Folder Include="Controllers\Badges\BadgeProfileDataSource\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -169,6 +171,7 @@
     <InterfaceDefinition Include="Views\Cell\SliderCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SearchResultsCell.xib" />
     <InterfaceDefinition Include="Views\Cell\BadgeItemCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\TextViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -233,18 +236,20 @@
     <Compile Include="Controllers\Profile\EditProfileViewController.designer.cs">
       <DependentUpon>EditProfileViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Profile\BadgesViewController.cs" />
-    <Compile Include="Controllers\Profile\BadgesViewController.designer.cs">
-      <DependentUpon>BadgesViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Cell\BadgeItemCell.cs" />
     <Compile Include="Views\Cell\BadgeItemCell.designer.cs">
       <DependentUpon>BadgeItemCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Profile\ViewProfileViewController.cs" />
-    <Compile Include="Controllers\Profile\ViewProfileViewController.designer.cs">
+    <Compile Include="Controllers\Badges\BadgesViewController.cs" />
+    <Compile Include="Controllers\Badges\BadgesViewController.designer.cs">
+      <DependentUpon>BadgesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\ViewProfileViewController.cs" />
+    <Compile Include="Controllers\Badges\ViewProfileViewController.designer.cs">
       <DependentUpon>ViewProfileViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Badges\BadgeProfileDataSource\BabysitterDataSource.cs" />
+    <Compile Include="Views\Cell\TextViewCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />
