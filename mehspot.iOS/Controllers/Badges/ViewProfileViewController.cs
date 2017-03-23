@@ -5,7 +5,6 @@ using Mehspot.Core.Messaging;
 using Mehspot.Core;
 using System.Threading.Tasks;
 using SDWebImage;
-using System.Linq;
 using MehSpot.Models.ViewModels;
 using mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
 
@@ -13,15 +12,14 @@ namespace mehspot.iOS
 {
     public partial class ViewProfileViewController : UIViewController
     {
-        volatile bool loading;
+        private volatile bool loading;
         private BadgeService badgeService;
-        BadgeProfileDTO<BabysitterProfileDTO> profile;
+        private BadgeProfileDTO<BabysitterProfileDTO> profile;
+        public BabysitterSearchResultDTO SearchResultDTO;
 
         public ViewProfileViewController (IntPtr handle) : base (handle)
         {
         }
-
-        public string UserId { get; set; }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
@@ -38,7 +36,7 @@ namespace mehspot.iOS
         public override void ViewDidLoad ()
         {
             SendMessageButton.Layer.BorderWidth = 1;
-            SendMessageButton.Layer.BorderColor = UIColor.LightGray.CGColor;
+            SendMessageButton.Layer.BorderColor = SendMessageButton.TitleColor(UIControlState.Normal).CGColor;
             this.NavBar.TopItem.Title = BadgeService.BadgeNames.Babysitter + " Profile";
             TableView.InsertSections (new NSIndexSet (), UITableViewRowAnimation.None);
             TableView.InsertSections (new NSIndexSet (), UITableViewRowAnimation.None);
@@ -64,8 +62,9 @@ namespace mehspot.iOS
                 return;
             loading = true;
             TableView.UserInteractionEnabled = false;
+            ActivityIndicator.StartAnimating ();
 
-            var result = await badgeService.GetBadgeProfileAsync (BadgeService.BadgeNames.Babysitter, this.UserId);
+            var result = await badgeService.GetBadgeProfileAsync (BadgeService.BadgeNames.Babysitter, this.SearchResultDTO.Details.UserId);
 
             if (result.IsSuccess) {
                 profile = result.Data;
@@ -76,15 +75,22 @@ namespace mehspot.iOS
                 return;
             }
 
+            ActivityIndicator.StopAnimating ();
+            ActivityIndicator.RemoveFromSuperview ();
             TableView.UserInteractionEnabled = true;
             loading = false;
         }
 
         void InitializeTable ()
         {
-            this.UserNameLabel.Text = profile.Details.UserName;
-            this.FirstName.Text = profile.Details.FirstName;
-
+            this.NavBar.TopItem.Title =  $"{BadgeService.BadgeNames.Babysitter} {profile.Details.UserName}";
+            this.FirstNameLabel.Text = profile.Values.FirstName;
+            this.SubdivisionLabel.Text = profile.Details.SubdivisionName.Trim ();
+            this.HourlyRateLabel.Text = $"${profile.Values.HourlyRate}/hr";
+            this.AgeRangeLabel.Text = profile.Values.AgeRange;
+            this.DistanceLabel.Text = Math.Round (SearchResultDTO.Details.DistanceFrom ?? 0, 2) + " miles";
+            this.LikesLabel.Text = $"{SearchResultDTO.Details.Likes} Likes / {SearchResultDTO.Details.Recommendations} Recommendations";
+            this.FavoriteIcon.Hidden = !SearchResultDTO.Details.Favourite;
             if (!string.IsNullOrEmpty (profile.Details.ProfilePicturePath)) {
                 var url = NSUrl.FromString (profile.Details.ProfilePicturePath);
                 if (url != null) {
@@ -92,7 +98,7 @@ namespace mehspot.iOS
                 }
             }
 
-            TableView.Source = new BabysitterDataSource (profile);
+            TableView.Source = new BabysitterDataSource (profile, badgeService);
             TableView.ReloadData ();
         }
     }

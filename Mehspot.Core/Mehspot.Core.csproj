@@ -62,7 +62,7 @@
     <Compile Include="DTO\AuthenticationResult.cs" />
     <Compile Include="DTO\Search\BaseFilterDTO.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
-    <Compile Include="DTO\Badges\BabysitterFilterDTO.cs" />
+    <Compile Include="DTO\Badges\BabysitterSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\BadgeUserDetailsFilterDTO.cs" />
     <Compile Include="DTO\Search\ISearchFilterDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDetailsDTO.cs" />

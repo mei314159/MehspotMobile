@@ -16,7 +16,31 @@ namespace mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel FirstName { get; set; }
+        UIKit.UIActivityIndicatorView ActivityIndicator { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel AgeRangeLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel DistanceLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView FavoriteIcon { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel FirstNameLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel HourlyRateLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel LikesLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -32,11 +56,11 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView TableView { get; set; }
+        UIKit.UILabel SubdivisionLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel UserNameLabel { get; set; }
+        UIKit.UITableView TableView { get; set; }
 
         [Action ("CloseButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -44,9 +68,39 @@ namespace mehspot.iOS
 
         void ReleaseDesignerOutlets ()
         {
-            if (FirstName != null) {
-                FirstName.Dispose ();
-                FirstName = null;
+            if (ActivityIndicator != null) {
+                ActivityIndicator.Dispose ();
+                ActivityIndicator = null;
+            }
+
+            if (AgeRangeLabel != null) {
+                AgeRangeLabel.Dispose ();
+                AgeRangeLabel = null;
+            }
+
+            if (DistanceLabel != null) {
+                DistanceLabel.Dispose ();
+                DistanceLabel = null;
+            }
+
+            if (FavoriteIcon != null) {
+                FavoriteIcon.Dispose ();
+                FavoriteIcon = null;
+            }
+
+            if (FirstNameLabel != null) {
+                FirstNameLabel.Dispose ();
+                FirstNameLabel = null;
+            }
+
+            if (HourlyRateLabel != null) {
+                HourlyRateLabel.Dispose ();
+                HourlyRateLabel = null;
+            }
+
+            if (LikesLabel != null) {
+                LikesLabel.Dispose ();
+                LikesLabel = null;
             }
 
             if (NavBar != null) {
@@ -64,14 +118,14 @@ namespace mehspot.iOS
                 SendMessageButton = null;
             }
 
+            if (SubdivisionLabel != null) {
+                SubdivisionLabel.Dispose ();
+                SubdivisionLabel = null;
+            }
+
             if (TableView != null) {
                 TableView.Dispose ();
                 TableView = null;
-            }
-
-            if (UserNameLabel != null) {
-                UserNameLabel.Dispose ();
-                UserNameLabel = null;
             }
         }
     }

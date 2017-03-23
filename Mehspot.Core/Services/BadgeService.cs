@@ -93,6 +93,80 @@ namespace Mehspot.Core.Messaging
             }
         }
 
+        public async Task<Result> ToggleBadgeEmploymentHistoryAsync (string userId, string badgeName, bool delete)
+        {
+            var uri = new Uri (Constants.ApiHost + "/api/badges/ToggleBadgeEmploymentHistory");
+
+            using (var webClient = new HttpClient ()) {
+                try {
+                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+
+                    var data = JsonConvert.SerializeObject (new { EmployeeId = userId, Delete = delete, BadgeName = badgeName });
+
+                    var stringContent = new StringContent (data, System.Text.Encoding.UTF8, "application/json");
+                    stringContent.Headers.ContentLength = data.Length;
+                    var response = await webClient.PostAsync (uri, stringContent).ConfigureAwait (false);
+                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+                        return new Result {
+                            IsSuccess = true,
+                            ErrorMessage = null
+                        };
+                    } else {
+                        var modelState = JsonConvert.DeserializeObject<ModelStateDto> (responseString);
+                        return new Result {
+                            IsSuccess = false,
+                            ErrorMessage = modelState.Message,
+                            ModelState = modelState
+                        };
+                    }
+
+                } catch (Exception ex) {
+                    return new Result {
+                        IsSuccess = false,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+        }
+
+        public async Task<Result> ToggleReferenceAsync (string userId, string badgeName, bool delete)
+        {
+            var uri = new Uri (Constants.ApiHost + "/api/badges/ToggleReference");
+
+            using (var webClient = new HttpClient ()) {
+                try {
+                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+
+                    var data = JsonConvert.SerializeObject (new { EmployeeId = userId, Delete = delete, BadgeName = badgeName });
+
+                    var stringContent = new StringContent (data, System.Text.Encoding.UTF8, "application/json");
+                    stringContent.Headers.ContentLength = data.Length;
+                    var response = await webClient.PostAsync (uri, stringContent).ConfigureAwait (false);
+                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+                        return new Result {
+                            IsSuccess = true,
+                            ErrorMessage = null
+                        };
+                    } else {
+                        var modelState = JsonConvert.DeserializeObject<ModelStateDto> (responseString);
+                        return new Result {
+                            IsSuccess = false,
+                            ErrorMessage = modelState.Message,
+                            ModelState = modelState
+                        };
+                    }
+
+                } catch (Exception ex) {
+                    return new Result {
+                        IsSuccess = false,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+        }
+
         public async Task<Result<TResult []>> Search<TResult>(ISearchFilterDTO filter, string badgeName, int skip, int take)
         {
             var uri = new Uri ($"{Constants.ApiHost}/api/Badges/SearchForApp?badgeName={badgeName}&skip={skip}&take={take}&" + filter.GetQueryString ());

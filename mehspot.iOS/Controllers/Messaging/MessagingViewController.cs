@@ -17,16 +17,14 @@ namespace mehspot.iOS
 {
     public partial class MessagingViewController : UIViewController, IMessagingViewController
     {
-        private MessagingModel messagingModel;
+        private readonly MessagingModel messagingModel;
         private readonly UIRefreshControl refreshControl;
         private const int spacing = 20;
 
         public MessagingViewController (IntPtr handle) : base (handle)
         {
             refreshControl = new UIRefreshControl ();
-            ViewHelper = new ViewHelper (View);
-            messagingModel = new MessagingModel (new MessagesService (new ApplicationDataStorage ()), this);
-            MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
+            messagingModel = new MessagingModel (new MessagesService (MehspotAppContext.Instance.DataStorage), this);
         }
 
         public string ToUserName { get; set; }
@@ -54,6 +52,8 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
+            ViewHelper = new ViewHelper (this.messagesScrollView);
+            MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
             View.BringSubviewToFront (messageFieldWrapper);
             this.View.BackgroundColor = UIColor.White;
 

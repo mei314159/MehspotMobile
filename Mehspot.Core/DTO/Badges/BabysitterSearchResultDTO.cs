@@ -1,6 +1,6 @@
 ﻿namespace MehSpot.Models.ViewModels
 {
-    public class BabysitterFilterDTO
+    public class BabysitterSearchResultDTO
     {
         public BadgeUserDetailsFilterDTO Details { get; set; }
         public string Description { get; set; }

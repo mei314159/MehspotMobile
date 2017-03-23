@@ -26,7 +26,7 @@ namespace mehspot.iOS.Views
         UILabel FieldLabel { get; set; }
 
         [Outlet]
-        UITextView Text { get; set; }
+        public UITextView Text { get; set; }
 
         public static TextViewCell Create (string text, string label)
         {
