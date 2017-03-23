@@ -69,6 +69,8 @@
     <Compile Include="DTO\Badges\BadgeProfileDTO.cs" />
     <Compile Include="DTO\Badges\IBadgeProfileValues.cs" />
     <Compile Include="DTO\Badges\BabysitterProfileDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeUserDescriptionDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeDescriptionTypeEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

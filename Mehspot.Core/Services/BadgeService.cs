@@ -9,6 +9,7 @@ using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Extensions;
 using System.Net.Http.Headers;
 using MehSpot.Models.ViewModels;
+using MehSpot.Web.ViewModels;
 
 namespace Mehspot.Core.Messaging
 {
@@ -130,15 +131,15 @@ namespace Mehspot.Core.Messaging
             }
         }
 
-        public async Task<Result> ToggleReferenceAsync (string userId, string badgeName, bool delete)
+        public async Task<Result> ToggleBadgeUserDescriptionAsync (BadgeUserDescriptionDTO dto)
         {
-            var uri = new Uri (Constants.ApiHost + "/api/badges/ToggleReference");
+            var uri = new Uri (Constants.ApiHost + "/api/badges/ToggleBadgeUserDescription");
 
             using (var webClient = new HttpClient ()) {
                 try {
                     webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
 
-                    var data = JsonConvert.SerializeObject (new { EmployeeId = userId, Delete = delete, BadgeName = badgeName });
+                    var data = JsonConvert.SerializeObject (dto);
 
                     var stringContent = new StringContent (data, System.Text.Encoding.UTF8, "application/json");
                     stringContent.Headers.ContentLength = data.Length;

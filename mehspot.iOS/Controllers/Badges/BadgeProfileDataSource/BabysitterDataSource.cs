@@ -4,6 +4,7 @@ using Foundation;
 using mehspot.iOS.Views;
 using Mehspot.Core.Messaging;
 using MehSpot.Models.ViewModels;
+using MehSpot.Web.ViewModels;
 using UIKit;
 
 namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
@@ -27,11 +28,10 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             var isHiredCell = BooleanEditCell.Create (profile, a => a.Details.IsHired, "Hired Before");
             cells.Add (isHiredCell); // TODO POST request
             var addReferenceCell = BooleanEditCell.Create (profile, a => a.Details.HasReference, "Add Reference");
-            var referenceCountCell = TextViewCell.Create (profile.Details.ReferenceCount.ToString (), "References Count");
             cells.Add (addReferenceCell);
-            cells.Add (referenceCountCell);
+            cells.Add (TextViewCell.Create (profile.Details.ReferenceCount.ToString (), "References Count"));
             isHiredCell.ValueChanged += IsHiredCell_ValueChanged;
-            addReferenceCell.ValueChanged += (value) => AddReferenceCell_ValueChanged (value, referenceCountCell); 
+            addReferenceCell.ValueChanged += AddReferenceCell_ValueChanged; 
         }
 
         public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -56,16 +56,16 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             badgeService.ToggleBadgeEmploymentHistoryAsync (profile.Details.UserId, BadgeService.BadgeNames.Babysitter, !value);
         }
 
-        void AddReferenceCell_ValueChanged (bool value, TextViewCell referencesCountCell)
+        void AddReferenceCell_ValueChanged (bool value)
         {
-            var currentValue = int.Parse (referencesCountCell.Text.Text);
-            if (value) {
-                referencesCountCell.Text.Text = (currentValue + 1).ToString ();
-            } else {
-                referencesCountCell.Text.Text = (currentValue - 1).ToString ();
-            }
+            var dto = new BadgeUserDescriptionDTO {
+                EmployeeId = profile.Details.UserId,
+                BadgeName = BadgeService.BadgeNames.Babysitter,
+                Delete = !value,
+                Type = BadgeDescriptionTypeEnum.Reference
+            };
 
-            badgeService.ToggleReferenceAsync (profile.Details.UserId, BadgeService.BadgeNames.Babysitter, !value);
+            badgeService.ToggleBadgeUserDescriptionAsync (dto);
         }
     }
 }

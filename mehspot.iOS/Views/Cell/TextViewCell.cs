@@ -8,7 +8,6 @@ namespace mehspot.iOS.Views
     [Register ("TextViewCell")]
     public class TextViewCell : UITableViewCell
     {
-        private string mask;
         public static readonly NSString Key = new NSString ("TextViewCell");
         public static readonly UINib Nib;
 
@@ -26,7 +25,7 @@ namespace mehspot.iOS.Views
         UILabel FieldLabel { get; set; }
 
         [Outlet]
-        public UITextView Text { get; set; }
+        UITextView Text { get; set; }
 
         public static TextViewCell Create (string text, string label)
         {

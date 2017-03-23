@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SDWebImage;
 using MehSpot.Models.ViewModels;
 using mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
+using MehSpot.Web.ViewModels;
 
 namespace mehspot.iOS
 {
@@ -43,12 +44,35 @@ namespace mehspot.iOS
             TableView.TableHeaderView.Hidden = true;
             TableView.TableFooterView = new UIView ();
             badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
+            this.ProfilePicture.UserInteractionEnabled = true;
+            var tapGestureRecognizer = new UITapGestureRecognizer (ProfilePictureDoupleTapped);
+            tapGestureRecognizer.NumberOfTapsRequired = 2;
+            this.ProfilePicture.AddGestureRecognizer (tapGestureRecognizer);
         }
 
         public override async void ViewDidAppear (bool animated)
         {
             await RefreshView ();
             TableView.TableHeaderView.Hidden = false;
+        }
+
+        async void ProfilePictureDoupleTapped ()
+        {
+            var dto = new BadgeUserDescriptionDTO {
+                BadgeName = BadgeService.BadgeNames.Babysitter,
+                Delete = this.SearchResultDTO.Details.Favourite,
+                EmployeeId = this.SearchResultDTO.Details.UserId,
+                Type = BadgeDescriptionTypeEnum.Favourite
+            };
+
+            this.FavoriteIcon.Hidden = this.SearchResultDTO.Details.Favourite;
+            var result = await badgeService.ToggleBadgeUserDescriptionAsync (dto);
+            if (result.IsSuccess) {
+                this.SearchResultDTO.Details.Favourite = !this.SearchResultDTO.Details.Favourite;
+            } else {
+                this.FavoriteIcon.Hidden = !this.SearchResultDTO.Details.Favourite;
+            }
+
         }
 
         partial void CloseButtonTouched (UIBarButtonItem sender)
