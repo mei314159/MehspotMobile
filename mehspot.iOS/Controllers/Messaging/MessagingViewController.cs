@@ -17,21 +17,21 @@ namespace mehspot.iOS
 {
     public partial class MessagingViewController : UIViewController, IMessagingViewController
     {
-        private MessagingModel messagingModel;
-
+        private readonly MessagingModel messagingModel;
         private readonly UIRefreshControl refreshControl;
         private const int spacing = 20;
 
         public MessagingViewController (IntPtr handle) : base (handle)
         {
             refreshControl = new UIRefreshControl ();
-            ViewHelper = new ViewHelper (View);
-            messagingModel = new MessagingModel (new MessagesService (new ApplicationDataStorage ()), this);
-            MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
+            messagingModel = new MessagingModel (new MessagesService (MehspotAppContext.Instance.DataStorage), this);
         }
 
         public string ToUserName { get; set; }
         public string ToUserId { get; set; }
+        public UIViewController ParentController { get; set; }
+
+        public event Action Appeared;
 
         public string MessageFieldValue {
             get {
@@ -52,6 +52,8 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
+            ViewHelper = new ViewHelper (this.messagesScrollView);
+            MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
             View.BringSubviewToFront (messageFieldWrapper);
             this.View.BackgroundColor = UIColor.White;
 
@@ -63,6 +65,15 @@ namespace mehspot.iOS
             RegisterForKeyboardNotifications ();
         }
 
+        partial void CloseButtonTouched (UIBarButtonItem sender)
+        {
+            if (ParentController is MessageBoardViewController) {
+                DismissViewController (true, null);
+            } else {
+                PerformSegue ("UnwindToSearchResults", this);
+            }
+        }
+
         public void HideKeyboard ()
         {
             messageField.ResignFirstResponder ();
@@ -71,11 +82,12 @@ namespace mehspot.iOS
         public override void ViewWillAppear (bool animated)
         {
             this.Title = ToUserName;
-            this.NavigationItem.Title = ToUserName;
+            this.NavBar.TopItem.Title = ToUserName;
         }
 
         public override async void ViewDidAppear (bool animated)
         {
+            Appeared?.Invoke ();
             await this.messagingModel.LoadMessagesAsync ();
             await this.messagingModel.MarkMessagesReadAsync ();
         }

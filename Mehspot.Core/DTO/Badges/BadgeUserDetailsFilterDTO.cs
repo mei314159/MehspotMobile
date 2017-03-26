@@ -1,6 +1,6 @@
 ﻿namespace MehSpot.Models.ViewModels
 {
-    public class BadgeUserDetailsViewDTO
+    public class BadgeUserDetailsFilterDTO
     {
         public string UserId { get; set; }
         public int BadgeId { get; set; }

@@ -21,7 +21,6 @@ namespace mehspot.iOS
         [Action ("UnwindToLoginViewController:")]
         public void UnwindToLoginViewController (UIStoryboardSegue segue)
         {
-            Console.WriteLine ("We've unwinded to Sign In!");
         }
 
         public override void ViewDidLoad ()

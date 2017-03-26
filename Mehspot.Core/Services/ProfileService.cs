@@ -100,7 +100,7 @@ namespace Mehspot.Core.Messaging
 
             using (var webClient = new HttpClient ()) {
                 try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
 
                     var data = new MultipartFormDataContent ();
                     var byteArrayContent = new ByteArrayContent (profileImage);

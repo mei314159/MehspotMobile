@@ -48,7 +48,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue id="181" destination="87" kind="show" identifier="GoToMessagingSegue"/>
+                        <segue id="181" destination="87" kind="presentation" identifier="GoToMessagingSegue"/>
                         <outlet property="SearchBar" destination="452" id="name-outlet-452"/>
                         <outlet property="MessageBoardTable" destination="456" id="name-outlet-456"/>
                     </connections>
@@ -268,12 +268,12 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <viewControllerLayoutGuide type="bottom" id="85"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="88">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="406" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="0.0" y="494" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="416" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                                         <rect key="frame" x="20" y="15" width="281" height="30"/>
@@ -304,9 +304,31 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                 <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="411" translatesAutoresizingMaskIntoConstraints="NO" alwaysBounceVertical="YES" autoresizesSubviews="NO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="494"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="543"/>
                                 <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </scrollView>
+                            <navigationBar contentMode="scaleToFill" id="5258" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="5259">
+                                        <barButtonItem key="leftBarButtonItem" id="5265" systemItem="stop">
+                                            <connections>
+                                                <action selector="CloseButtonTouched:" destination="87" id="5267"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <constraints>
+                                    <constraint id="5263" firstItem="5258" firstAttribute="height" constant="44"/>
+                                </constraints>
+                            </navigationBar>
+                            <view key="titleView" contentMode="scaleToFill" id="5275" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <constraints>
+                                    <constraint id="5279" firstItem="5275" firstAttribute="height" constant="20"/>
+                                </constraints>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1"/>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint id="407" firstItem="406" firstAttribute="bottom" secondItem="88" secondAttribute="bottom"/>
@@ -314,8 +336,14 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                             <constraint id="409" firstItem="406" firstAttribute="width" secondItem="88" secondAttribute="width"/>
                             <constraint id="412" firstItem="411" firstAttribute="bottom" secondItem="406" secondAttribute="top"/>
                             <constraint id="413" firstItem="411" firstAttribute="centerX" secondItem="88" secondAttribute="centerX"/>
-                            <constraint id="414" firstItem="411" firstAttribute="top" secondItem="88" secondAttribute="top"/>
                             <constraint id="415" firstItem="411" firstAttribute="width" secondItem="88" secondAttribute="width"/>
+                            <constraint id="5260" firstItem="5258" firstAttribute="top" secondItem="84" secondAttribute="bottom"/>
+                            <constraint id="5261" firstItem="5258" firstAttribute="centerX" secondItem="88" secondAttribute="centerX"/>
+                            <constraint id="5262" firstItem="5258" firstAttribute="width" secondItem="88" secondAttribute="width"/>
+                            <constraint id="5264" firstItem="411" firstAttribute="top" secondItem="5258" secondAttribute="bottom"/>
+                            <constraint id="5276" firstItem="5275" firstAttribute="top" secondItem="88" secondAttribute="top"/>
+                            <constraint id="5277" firstItem="5275" firstAttribute="leading" secondItem="88" secondAttribute="leading"/>
+                            <constraint id="5278" firstItem="5275" firstAttribute="trailing" secondItem="88" secondAttribute="trailing"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -325,12 +353,15 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="messageField" destination="416" id="name-outlet-416"/>
                         <outlet property="BottomMargin" destination="407" id="name-outlet-407"/>
                         <outlet property="messageFieldWrapper" destination="406" id="name-outlet-406"/>
+                        <outlet property="NavBar" destination="5258" id="name-outlet-5258"/>
+                        <segue id="5404" destination="5285" kind="unwind" unwindAction="UnwindToSearchResultsViewController:" identifier="UnwindToSearchResults"/>
                     </connections>
                     <navigationItem title="Title" id="496" key="navigationItem"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5285" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-224" y="-207"/>
+            <point key="canvasLocation" x="-214" y="-205"/>
         </scene>
         <scene sceneID="192">
             <objects>
@@ -403,11 +434,10 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
         <scene sceneID="3719">
             <objects>
                 <tableViewController id="3720" sceneMemberID="viewController" customClass="SearchResultsViewController" hasRefreshControl="1">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="1" sectionFooterHeight="44" id="3721">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="1" sectionFooterHeight="44" id="3721">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes/>
                         <connections>
                             <outlet property="dataSource" destination="3720" id="3722"/>
                             <outlet property="delegate" destination="3720" id="3723"/>
@@ -440,8 +470,9 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         </view>
                     </tableView>
                     <connections>
-                        <segue id="3834" destination="87" kind="show" identifier="GoToMessagingSegue"/>
+                        <segue id="3834" destination="87" kind="presentation" identifier="GoToMessagingSegue"/>
                         <outlet property="ActivityIndicator" destination="3872" id="name-outlet-3872"/>
+                        <segue id="4990" destination="4901" kind="presentation" identifier="ViewProfileSegue"/>
                     </connections>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="3840">
                         <autoresizingMask key="autoresizingMask"/>
@@ -450,7 +481,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3726" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-316" y="853"/>
+            <point key="canvasLocation" x="-303" y="825"/>
         </scene>
         <scene sceneID="4053">
             <objects>
@@ -655,6 +686,188 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4416" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1813" y="811"/>
+        </scene>
+        <scene sceneID="4900">
+            <objects>
+                <viewController id="4901" sceneMemberID="viewController" customClass="ViewProfileViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4898"/>
+                        <viewControllerLayoutGuide type="bottom" id="4899"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4902">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="4905" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="4906" title="Badge Profile">
+                                        <barButtonItem key="leftBarButtonItem" id="4932" systemItem="stop">
+                                            <connections>
+                                                <action selector="CloseButtonTouched:" destination="4901" id="4958"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <constraints>
+                                    <constraint id="4910" firstItem="4905" firstAttribute="height" constant="44"/>
+                                </constraints>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="115" sectionFooterHeight="1" id="4925" translatesAutoresizingMaskIntoConstraints="NO" showsHorizontalScrollIndicator="NO">
+                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view contentMode="scaleToFill" id="4933" key="tableHeaderView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4934" translatesAutoresizingMaskIntoConstraints="NO" image="profile_image.png" clipsSubviews="YES">
+                                            <rect key="frame" x="13" y="13" width="70" height="70"/>
+                                            <constraints>
+                                                <constraint id="4935" firstItem="4934" firstAttribute="height" constant="70"/>
+                                                <constraint id="4936" firstItem="4934" firstAttribute="width" constant="70"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                                    <real key="value" value="35"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="4937" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="7">
+                                            <rect key="frame" x="96" y="10" width="86" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17" weight="medium"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4940" translatesAutoresizingMaskIntoConstraints="NO" enabled="NO">
+                                            <rect key="frame" x="96" y="79" width="266" height="26"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <state key="normal" title="Send Message">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.72156862745098038" blue="0.15686274509803921" alpha="1"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="ChangePhotoButtonTouched:" destination="4942" id="4941" eventType="touchUpInside"/>
+                                                <action selector="SendMessageButtonTouched:" destination="4944" id="4943" eventType="touchUpInside"/>
+                                                <segue id="5248" destination="87" kind="show" identifier="GoToMessagingSegue"/>
+                                            </connections>
+                                            <constraints>
+                                                <constraint id="4945" firstItem="4940" firstAttribute="height" constant="26"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 Likes / 5 Recommedations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="61" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="10">
+                                            <rect key="frame" x="96" y="31" width="154" height="13"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAMDEN POND (30005)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="5423" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="10">
+                                            <rect key="frame" x="96" y="44" width="150" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10/hr" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="5430" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="6">
+                                            <rect key="frame" x="313" y="10" width="49" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" colorSpace="calibratedRGB" red="0.36078431372549019" green="0.68235294117647061" blue="0.11764705882352941" alpha="1"/>
+                                            <nil key="highlightedColor"/>
+                                            <constraints>
+                                                <constraint id="5431" firstItem="5430" firstAttribute="width" constant="50" relation="greaterThanOrEqual"/>
+                                            </constraints>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="5432" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="6" text="3.5 miles" numberOfLines="2">
+                                            <rect key="frame" x="313" y="24" width="49" height="13"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" colorSpace="calibratedRGB" red="0.9882352941176471" green="0.41568627450980394" blue="0.15686274509803921" alpha="1"/>
+                                            <nil key="highlightedColor"/>
+                                            <constraints>
+                                                <constraint id="5433" firstItem="5432" firstAttribute="width" constant="50" relation="greaterThanOrEqual"/>
+                                            </constraints>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="5442" translatesAutoresizingMaskIntoConstraints="NO" image="star-yellow-icon" hidden="YES">
+                                            <rect key="frame" x="62" y="62" width="28" height="28"/>
+                                            <constraints>
+                                                <constraint id="5443" firstItem="5442" firstAttribute="height" constant="28"/>
+                                                <constraint id="5444" firstAttribute="width" secondItem="5442" secondAttribute="height" multiplier="1:1"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Middle School" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="41" translatesAutoresizingMaskIntoConstraints="NO">
+                                            <rect key="frame" x="96" y="60" width="81" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint id="4946" firstItem="4934" firstAttribute="leading" secondItem="4933" secondAttribute="leading" constant="13"/>
+                                        <constraint id="4947" firstItem="4934" firstAttribute="top" secondItem="4933" secondAttribute="top" constant="13"/>
+                                        <constraint id="4948" firstItem="4937" firstAttribute="leading" secondItem="4934" secondAttribute="trailing" constant="13"/>
+                                        <constraint id="4950" firstItem="4934" firstAttribute="top" secondItem="4937" secondAttribute="top" constant="3"/>
+                                        <constraint id="4956" firstItem="4933" firstAttribute="trailing" secondItem="4940" secondAttribute="trailing" constant="13"/>
+                                        <constraint id="5419" firstItem="61" firstAttribute="leading" secondItem="4937" secondAttribute="leading"/>
+                                        <constraint id="5422" firstItem="61" firstAttribute="top" secondItem="4937" secondAttribute="bottom"/>
+                                        <constraint id="5426" firstItem="5423" firstAttribute="leading" secondItem="61" secondAttribute="leading"/>
+                                        <constraint id="5427" firstItem="5423" firstAttribute="top" secondItem="61" secondAttribute="bottom"/>
+                                        <constraint id="5429" firstItem="4933" firstAttribute="trailing" secondItem="5423" secondAttribute="trailing" constant="13" relation="greaterThanOrEqual"/>
+                                        <constraint id="5436" firstItem="4933" firstAttribute="trailing" secondItem="5432" secondAttribute="trailing" constant="13"/>
+                                        <constraint id="5438" firstItem="4933" firstAttribute="trailing" secondItem="5430" secondAttribute="trailing" constant="13"/>
+                                        <constraint id="5441" firstItem="5430" firstAttribute="leading" secondItem="61" secondAttribute="trailing" constant="5" relation="greaterThanOrEqual"/>
+                                        <constraint id="5447" firstItem="4934" firstAttribute="trailing" secondItem="5442" secondAttribute="centerX" constant="7"/>
+                                        <constraint id="5449" firstItem="4934" firstAttribute="bottom" secondItem="5442" secondAttribute="centerY" constant="7"/>
+                                        <constraint id="5450" firstItem="5430" firstAttribute="top" secondItem="4937" secondAttribute="top"/>
+                                        <constraint id="5453" firstItem="5432" firstAttribute="top" secondItem="5430" secondAttribute="bottom"/>
+                                        <constraint id="5454" firstItem="5430" firstAttribute="leading" secondItem="4937" secondAttribute="trailing" constant="5" relation="greaterThanOrEqual"/>
+                                        <constraint id="5461" firstItem="41" firstAttribute="top" secondItem="5423" secondAttribute="bottom"/>
+                                        <constraint id="5462" firstItem="41" firstAttribute="leading" secondItem="5423" secondAttribute="leading"/>
+                                        <constraint id="5466" firstItem="4940" firstAttribute="top" secondItem="41" secondAttribute="bottom" constant="4"/>
+                                        <constraint id="5467" firstItem="4940" firstAttribute="leading" secondItem="41" secondAttribute="leading"/>
+                                    </constraints>
+                                    <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                </view>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="5480">
+                                <rect key="frame" x="169" y="347" width="37" height="37"/>
+                                <color key="color" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <constraints>
+                            <constraint id="4907" firstItem="4905" firstAttribute="top" secondItem="4898" secondAttribute="bottom"/>
+                            <constraint id="4908" firstItem="4905" firstAttribute="centerX" secondItem="4902" secondAttribute="centerX"/>
+                            <constraint id="4909" firstItem="4905" firstAttribute="width" secondItem="4902" secondAttribute="width"/>
+                            <constraint id="4928" firstItem="4925" firstAttribute="top" secondItem="4905" secondAttribute="bottom" constant="1"/>
+                            <constraint id="4929" firstItem="4925" firstAttribute="width" secondItem="4902" secondAttribute="width"/>
+                            <constraint id="4930" firstItem="4925" firstAttribute="centerX" secondItem="4902" secondAttribute="centerX"/>
+                            <constraint id="4931" firstItem="4925" firstAttribute="bottom" secondItem="4902" secondAttribute="bottom"/>
+                            <constraint id="5481" firstItem="5480" firstAttribute="centerX" secondItem="4925" secondAttribute="centerX"/>
+                            <constraint id="5482" firstItem="4925" firstAttribute="centerY" secondItem="5480" secondAttribute="centerY"/>
+                        </constraints>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="TableView" destination="4925" id="name-outlet-4925"/>
+                        <outlet property="FirstNameLabel" destination="4937" id="name-outlet-4937"/>
+                        <outlet property="SendMessageButton" destination="4940" id="name-outlet-4940"/>
+                        <outlet property="ProfilePicture" destination="4934" id="name-outlet-4934"/>
+                        <outlet property="NavBar" destination="4905" id="name-outlet-4905"/>
+                        <outlet property="SubdivisionLabel" destination="5423" id="name-outlet-5423"/>
+                        <outlet property="FavoriteIcon" destination="5442" id="name-outlet-5442"/>
+                        <outlet property="LikesLabel" destination="61" id="name-outlet-61"/>
+                        <outlet property="HourlyRateLabel" destination="5430" id="name-outlet-5430"/>
+                        <outlet property="DistanceLabel" destination="5432" id="name-outlet-5432"/>
+                        <outlet property="AgeRangeLabel" destination="41" id="name-outlet-41"/>
+                        <outlet property="ActivityIndicator" destination="5480" id="name-outlet-5480"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4903" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5293" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="282" y="730"/>
         </scene>
     </scenes>
     <resources>

@@ -58,6 +58,7 @@ namespace mehspot.iOS
             var controller = (MessagingViewController)segue.DestinationViewController;
             controller.ToUserName = this.SelectedUserName;
             controller.ToUserId = this.SelectedUserId;
+            controller.ParentController = this;
             base.PrepareForSegue (segue, sender);
         }
 

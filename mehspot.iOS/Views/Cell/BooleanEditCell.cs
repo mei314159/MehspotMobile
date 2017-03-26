@@ -11,6 +11,8 @@ namespace mehspot.iOS.Views
         public static readonly NSString Key = new NSString ("BooleanEditCell");
         public static readonly UINib Nib;
 
+        public event Action<bool> ValueChanged;
+
         static BooleanEditCell ()
         {
             Nib = UINib.FromName ("BooleanEditCell", NSBundle.MainBundle);
@@ -29,7 +31,9 @@ namespace mehspot.iOS.Views
             cell.Switch.SetState (property.Compile ().Invoke (Model), false);
 
             cell.Switch.ValueChanged += (sender, e) => {
-                Model.SetProperty (property, ((UISwitch)sender).On);
+                var value = ((UISwitch)sender).On;
+                Model.SetProperty (property, value);
+                cell.ValueChanged?.Invoke (value);
             };
 
             return cell;

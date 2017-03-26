@@ -32,7 +32,15 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationBar NavBar { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton sendButton { get; set; }
+
+        [Action ("CloseButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);
 
         [Action ("SendButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -58,6 +66,11 @@ namespace mehspot.iOS
             if (messagesScrollView != null) {
                 messagesScrollView.Dispose ();
                 messagesScrollView = null;
+            }
+
+            if (NavBar != null) {
+                NavBar.Dispose ();
+                NavBar = null;
             }
 
             if (sendButton != null) {
