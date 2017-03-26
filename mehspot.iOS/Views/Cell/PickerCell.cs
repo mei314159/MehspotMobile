@@ -12,7 +12,6 @@ namespace mehspot.iOS.Views
     public class PickerCell : UITableViewCell
     {
         private const string dateFormat = "MMMM dd, yyyy";
-        private object Model;
         private Type propertyType;
         private Action<object> SetProperty;
         private Func<object> GetProperty;

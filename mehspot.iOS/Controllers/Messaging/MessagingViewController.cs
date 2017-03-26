@@ -12,6 +12,7 @@ using Mehspot.Core;
 using Mehspot.Core.Models;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.Contracts.ViewControllers;
+using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {

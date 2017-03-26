@@ -1,174 +1,59 @@
 using System;
 using System.Net.Http;
-using mehspot.Core.Dto;
 using mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
-using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using mehspot.Core;
 
-namespace Mehspot.Core.Messaging
+namespace Mehspot.Core.Services
 {
-    public class MessagesService
+    public class MessagesService : BaseDataService
     {
-        private IApplicationDataStorage _applicationDataStorage;
-
-        public MessagesService (IApplicationDataStorage applicationDataStorage)
+        public MessagesService (IApplicationDataStorage applicationDataStorage) : base (applicationDataStorage)
         {
-            _applicationDataStorage = applicationDataStorage;
         }
 
         public Action<int, object> OnSendNotification;
 
-        public async Task<Result<MessageBoardItemDto[]>> GetMessageBoard (string filter)
+        public Task<Result<MessageBoardItemDto []>> GetMessageBoard (string filter)
         {
-            var uri = new Uri ($"{Constants.ApiHost}/api/Badges/MessageBoard?filter=" + filter);
-
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var data = JsonConvert.DeserializeObject<MessageBoardItemDto[]> (responseString);
-
-                        return new Result<MessageBoardItemDto[]> {
-                            IsSuccess = true,
-                            Data = data,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<MessageBoardItemDto[]> {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result<MessageBoardItemDto[]> {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
+            return GetAsync<MessageBoardItemDto[]>("Badges/MessageBoard?filter=" + filter);
         }
 
-        public async Task<Result<CollectionDto<MessageDto>>> GetMessages(int pageNumber, string toUserId = null, string toUserName = null)
+        public Task<Result<CollectionDto<MessageDto>>> GetMessages (int pageNumber, string toUserId = null, string toUserName = null)
         {
-            Uri uri = toUserId != null
-                ? new Uri ($"{Constants.ApiHost}/api/Badges/GetMessages?toUserId={toUserId}&pageNumber={pageNumber}")
-                : new Uri ($"{Constants.ApiHost}/api/Badges/GetMessagesByUserName?toUserName={toUserName}&pageNumber={pageNumber}");
+            var uri = toUserId != null
+                ? $"Badges/GetMessages?toUserId={toUserId}&pageNumber={pageNumber}"
+                : $"Badges/GetMessagesByUserName?toUserName={toUserName}&pageNumber={pageNumber}";
 
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var messages = JsonConvert.DeserializeObject<CollectionDto<MessageDto>> (responseString);
-
-                        return new Result<CollectionDto<MessageDto>> {
-                            IsSuccess = true,
-                            Data = messages,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<CollectionDto<MessageDto>> {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result<CollectionDto<MessageDto>> {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
+            return GetAsync<CollectionDto<MessageDto>>(uri);
         }
 
-        public async Task<Result<MessageDto>> SendMessageAsync (string message, string toUserId = null, string toUserName = null)
+        public Task<Result<MessageDto>> SendMessageAsync (string message, string toUserId = null, string toUserName = null)
         {
-            var uri = new Uri (Constants.ApiHost + "/api/Badges/Send");
-
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var data = new Dictionary<string, string> ();
-                    data.Add ("Message", message);
-                    if (toUserId != null) {
-                        data.Add ("ToUserId", toUserId);
-                    } else {
-                        data.Add ("ToUserName", toUserName);
-                    }
-                    data.Add ("FromUserId", _applicationDataStorage.AuthInfo.UserId);
-
-                    var response = await webClient.PostAsync (uri, new FormUrlEncodedContent (data)).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var messageDto = JsonConvert.DeserializeObject<MessageDto> (responseString);
-                        return new Result<MessageDto> {
-                            IsSuccess = true,
-                            Data = messageDto,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<MessageDto> {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result<MessageDto> {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
+            var data = new Dictionary<string, string> ();
+            data.Add ("Message", message);
+            if (toUserId != null) {
+                data.Add ("ToUserId", toUserId);
+            } else {
+                data.Add ("ToUserName", toUserName);
             }
+
+            data.Add ("FromUserId", this.ApplicationDataStorage.AuthInfo.UserId);
+
+            return SendDataAsync<MessageDto> ("Badges/Send", HttpMethod.Post, new FormUrlEncodedContent (data));
+
         }
 
 
         public async Task<Result> MarkMessagesReadAsync (string toUserId)
         {
-            var uri = new Uri (Constants.ApiHost + "/api/Badges/MarkMessagesRead");
+            var data = new FormUrlEncodedContent (new Dictionary<string, string> {
+                { "toUserId", toUserId }
+            });
 
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var data = new Dictionary<string, string> ();
-                    data.Add ("toUserId", toUserId);
-
-                    var response = await webClient.PostAsync (uri, new FormUrlEncodedContent (data)).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        return new Result {
-                            IsSuccess = true,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
+            return await SendDataAsync<object> ("Badges/MarkMessagesRead", HttpMethod.Post, data).ConfigureAwait (false);
         }
     }
 }

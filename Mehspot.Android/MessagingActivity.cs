@@ -15,6 +15,7 @@ using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Messaging;
 using Mehspot.Core.Models;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Android
 {
@@ -46,7 +47,7 @@ namespace Mehspot.Android
             SetContentView (Resource.Layout.Messaging);
 
             this.ViewHelper = new ActivityHelper (this);
-            this.messagingModel = new MessagingModel (new MessagesService (new ApplicationDataStorage ()), this);
+            this.messagingModel = new MessagingModel (new MessagesService (MehspotAppContext.Instance.DataStorage), this);
             MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
 
             Button button = FindViewById<Button> (Resource.Id.sendMessageButton);

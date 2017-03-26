@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using SDWebImage;
 using mehspot.iOS.Views;
 using System.Linq;
+using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {
@@ -157,11 +158,9 @@ namespace mehspot.iOS
                                     null,
                                     "OK");
                 alert.Show ();
-            } else {
-                this.NavigationController?.PopViewController (true);
             }
 
-            sender.Enabled = true;
+            this.SaveButton.Enabled = true;
         }
 
         partial void SignoutButtonTouched (UIButton sender)

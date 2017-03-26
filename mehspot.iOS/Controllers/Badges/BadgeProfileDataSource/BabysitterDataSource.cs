@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Foundation;
 using mehspot.iOS.Views;
-using Mehspot.Core.Messaging;
+using Mehspot.Core;
 using MehSpot.Models.ViewModels;
 using MehSpot.Web.ViewModels;
 using UIKit;
