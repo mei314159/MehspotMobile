@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Mehspot.Core.DTO.Search
+﻿namespace Mehspot.Core.DTO.Search
 {
     public class SearchBabysitterDTO : ISearchFilterDTO
     {

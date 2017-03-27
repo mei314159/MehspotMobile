@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-namespace MehSpot.Models.ViewModels
+namespace Mehspot.Core.DTO.Badges
 {
 
     public interface IBadgeProfileValues {

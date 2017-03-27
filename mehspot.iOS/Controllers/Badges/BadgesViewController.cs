@@ -2,12 +2,12 @@ using Foundation;
 using System;
 using UIKit;
 using Mehspot.Core.DTO;
-using Mehspot.Core.Messaging;
 using Mehspot.Core;
 using System.Threading.Tasks;
 using mehspot.iOS.Views;
 using CoreGraphics;
 using System.Collections.Generic;
+using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {
@@ -18,6 +18,8 @@ namespace mehspot.iOS
         private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
         private BadgeSummaryDTO [] badgesList;
         private BadgeService badgeService;
+        private int SelectedBadgeId;
+
 
         public BadgesViewController (IntPtr handle) : base (handle)
         {
@@ -36,6 +38,17 @@ namespace mehspot.iOS
         {
             if (!dataLoaded)
                 await RefreshAsync ();
+        }
+
+        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.Identifier == "GoToSearchFilterSegue") {
+                ((SearchBabysitterController)segue.DestinationViewController).BadgeId = this.SelectedBadgeId;
+            } else if (segue.Identifier == "GoToEditBadgeSegue") {
+                ((EditBadgeProfileController)segue.DestinationViewController).BadgeId = this.SelectedBadgeId;
+            }
+
+            base.PrepareForSegue (segue, sender);
         }
 
         async void RefreshControl_ValueChanged (object sender, EventArgs e)
@@ -89,13 +102,14 @@ namespace mehspot.iOS
             cell.BadgeSummary = badge;
             cell.SearchButton.Layer.BorderWidth = cell.BadgeRegisterButton.Layer.BorderWidth = 1;
             cell.SearchButton.Layer.BorderColor = cell.SearchButton.TitleColor (UIControlState.Normal).CGColor;
-            cell.BadgeRegisterButton.Layer.BorderColor = cell.BadgeRegisterButton.TitleColor(UIControlState.Normal).CGColor;
+            cell.BadgeRegisterButton.Layer.BorderColor = cell.BadgeRegisterButton.TitleColor (UIControlState.Normal).CGColor;
             cell.BadgeRegisterButton.SetTitle (badge.IsRegistered ? "Update" : "Register", UIControlState.Normal);
             cell.BadgeDescription.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName + "_Description");
             cell.LikesCount.Text = badge.Likes.ToString ();
             cell.RecommendationsCount.Text = badge.Recommendations.ToString ();
             cell.ReferencesCount.Text = badge.References.ToString ();
             cell.SearchButtonTouch = SearchButton_TouchUpInside;
+            cell.BadgeRegisterButtonTouch = BadgeRegisterButton_TouchUpInside;
         }
 
         public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
@@ -105,6 +119,7 @@ namespace mehspot.iOS
             } else {
                 expandedPaths.Add (indexPath);
             }
+            this.SelectedBadgeId = badgesList [indexPath.Row].BadgeId;
             tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Fade);
         }
 
@@ -120,6 +135,11 @@ namespace mehspot.iOS
         void SearchButton_TouchUpInside (UIButton button)
         {
             PerformSegue ("GoToSearchFilterSegue", this);
+        }
+
+        void BadgeRegisterButton_TouchUpInside (UIButton button)
+        {
+            PerformSegue ("GoToEditBadgeSegue", this);
         }
     }
 }

@@ -72,6 +72,11 @@
     <Compile Include="DTO\Badges\BadgeUserDescriptionDTO.cs" />
     <Compile Include="DTO\Badges\BadgeDescriptionTypeEnum.cs" />
     <Compile Include="Services\BaseDataService.cs" />
+    <Compile Include="DTO\Profile\ProfilePartialDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeItemOptionDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeItemDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeBadgeItemDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeItemValueDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

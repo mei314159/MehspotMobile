@@ -1,13 +1,13 @@
 using Foundation;
 using System;
 using UIKit;
-using Mehspot.Core.Messaging;
 using Mehspot.Core;
 using System.Threading.Tasks;
 using SDWebImage;
 using MehSpot.Models.ViewModels;
 using mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
-using MehSpot.Web.ViewModels;
+using Mehspot.Core.Services;
+using Mehspot.Core.DTO.Badges;
 
 namespace mehspot.iOS
 {
@@ -17,6 +17,7 @@ namespace mehspot.iOS
         private BadgeService badgeService;
         private BadgeProfileDTO<BabysitterProfileDTO> profile;
         public BabysitterSearchResultDTO SearchResultDTO;
+        public int BadgeId;
 
         public ViewProfileViewController (IntPtr handle) : base (handle)
         {
@@ -37,10 +38,9 @@ namespace mehspot.iOS
         public override void ViewDidLoad ()
         {
             SendMessageButton.Layer.BorderWidth = 1;
-            SendMessageButton.Layer.BorderColor = SendMessageButton.TitleColor(UIControlState.Normal).CGColor;
+            SendMessageButton.Layer.BorderColor = SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
             this.NavBar.TopItem.Title = BadgeService.BadgeNames.Babysitter + " Profile";
-            TableView.InsertSections (new NSIndexSet (), UITableViewRowAnimation.None);
-            TableView.InsertSections (new NSIndexSet (), UITableViewRowAnimation.None);
+
             TableView.TableHeaderView.Hidden = true;
             TableView.TableFooterView = new UIView ();
             badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
@@ -88,7 +88,7 @@ namespace mehspot.iOS
             TableView.UserInteractionEnabled = false;
             ActivityIndicator.StartAnimating ();
 
-            var result = await badgeService.GetBadgeProfileAsync (BadgeService.BadgeNames.Babysitter, this.SearchResultDTO.Details.UserId);
+            var result = await badgeService.GetBadgeProfileAsync (BadgeId, this.SearchResultDTO.Details.UserId);
 
             if (result.IsSuccess) {
                 profile = result.Data;
@@ -107,11 +107,11 @@ namespace mehspot.iOS
 
         void InitializeTable ()
         {
-            this.NavBar.TopItem.Title =  $"{BadgeService.BadgeNames.Babysitter} {profile.Details.UserName}";
-            this.FirstNameLabel.Text = profile.Values.FirstName;
+            this.NavBar.TopItem.Title = $"{BadgeService.BadgeNames.Babysitter} {profile.Details.UserName}";
+            this.FirstNameLabel.Text = profile.BadgeValues.FirstName;
             this.SubdivisionLabel.Text = profile.Details.SubdivisionName.Trim ();
-            this.HourlyRateLabel.Text = $"${profile.Values.HourlyRate}/hr";
-            this.AgeRangeLabel.Text = profile.Values.AgeRange;
+            this.HourlyRateLabel.Text = $"${profile.BadgeValues.HourlyRate}/hr";
+            this.AgeRangeLabel.Text = profile.BadgeValues.AgeRange;
             this.DistanceLabel.Text = Math.Round (SearchResultDTO.Details.DistanceFrom ?? 0, 2) + " miles";
             this.LikesLabel.Text = $"{SearchResultDTO.Details.Likes} Likes / {SearchResultDTO.Details.Recommendations} Recommendations";
             this.FavoriteIcon.Hidden = !SearchResultDTO.Details.Favourite;
@@ -122,7 +122,7 @@ namespace mehspot.iOS
                 }
             }
 
-            TableView.Source = new BabysitterDataSource (profile, badgeService);
+            TableView.Source = new ViewBabysitterDataSource (profile, this.BadgeId, badgeService);
             TableView.ReloadData ();
         }
     }

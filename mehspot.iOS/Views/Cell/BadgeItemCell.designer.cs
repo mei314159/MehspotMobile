@@ -27,10 +27,6 @@ namespace mehspot.iOS.Views
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIButton BadgeRegisterButton { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         public UIKit.UILabel LikesCount { get; set; }
 
         [Outlet]
@@ -44,9 +40,20 @@ namespace mehspot.iOS.Views
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         public UIKit.UIButton SearchButton { get; set; }
+
         [Action ("SearchButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SearchButtonTouched (UIKit.UIButton sender);
+
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        public UIKit.UIButton BadgeRegisterButton { get; set; }
+
+        [Action ("BadgeRegisterButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BadgeRegisterButtonTouched (UIKit.UIButton sender);
+
 
         void ReleaseDesignerOutlets ()
         {

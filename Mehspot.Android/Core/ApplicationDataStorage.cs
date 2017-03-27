@@ -35,24 +35,6 @@ namespace mehspot.Android.Core
             }
         }
 
-        public ProfileDto Profile {
-            get {
-                var data = settings.GetString (nameof (IApplicationDataStorage.Profile), null);
-                if (!string.IsNullOrWhiteSpace (data)) {
-                    var result = JsonConvert.DeserializeObject<ProfileDto> (data);
-                    return result;
-                }
-
-                return null;
-            }
-            set {
-                var data = value == null ? null : JsonConvert.SerializeObject (value);
-                var prefEditor = settings.Edit ();
-                prefEditor.PutString (nameof (IApplicationDataStorage.Profile), data);
-                prefEditor.Commit ();
-            }
-        }
-
         public string PushToken {
             get {
                 var result = settings.GetString (nameof (IApplicationDataStorage.PushToken), null);

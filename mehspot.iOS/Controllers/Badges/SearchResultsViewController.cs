@@ -10,6 +10,7 @@ using MehSpot.Models.ViewModels;
 using mehspot.iOS.Views.Cell;
 using SDWebImage;
 using System.Collections.Generic;
+using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {
@@ -24,11 +25,11 @@ namespace mehspot.iOS
 
         private const int pageSize = 20;
 
-        public ISearchFilterDTO Filter;
-
         public KeyValuePair<int?, string> [] AgeRanges { get; internal set; }
-
+        public ISearchFilterDTO Filter;
         public string BadgeName;
+        public int BadgeId;
+
 
         public SearchResultsViewController (IntPtr handle) : base (handle)
         {
@@ -92,6 +93,7 @@ namespace mehspot.iOS
             } else if (segue.Identifier == "ViewProfileSegue") {
                 var controller = (ViewProfileViewController)segue.DestinationViewController;
                 controller.SearchResultDTO = this.SelectedItem;
+                controller.BadgeId = this.BadgeId;
             }
 
             base.PrepareForSegue (segue, sender);
@@ -188,7 +190,7 @@ namespace mehspot.iOS
         private async Task LoadDataAsync (bool refresh = false)
         {
             var skip = refresh ? 0 : (items?.Count ?? 0);
-            var result = await badgeService.Search<BabysitterSearchResultDTO> (this.Filter, this.BadgeName, skip, pageSize);
+            var result = await badgeService.Search<BabysitterSearchResultDTO> (this.Filter, this.BadgeId, skip, pageSize);
             if (result.IsSuccess) {
                 if (refresh) {
                     this.items.Clear ();
