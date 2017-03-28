@@ -14,8 +14,4 @@ namespace Mehspot.Core.DTO.Badges
         public string BabysitterOtherCertifications { get; set; }
         public string BabysitterAdditionalInformation { get; set; }
     }
-
-    public class EditBabysitterProfileDTO : Dictionary<string, BadgeItemValueDTO>, IBadgeProfileValues
-    {
-    }
 }

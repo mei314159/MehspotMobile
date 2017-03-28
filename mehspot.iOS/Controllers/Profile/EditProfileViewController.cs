@@ -195,23 +195,20 @@ namespace mehspot.iOS
             TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
 
             var profileResult = await profileService.GetProfileAsync ();
+            RefreshControl.EndRefreshing ();
 
             if (profileResult.IsSuccess) {
                 profile = profileResult.Data;
+                var states = await GetStates ();
+                var subdivisions = await GetSubdivisions (profile.Zip);
+                InitializeTable (profile, states, subdivisions);
             }else {
                 RefreshControl.EndRefreshing ();
                 new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
-                return;
             }
 
-            var states = await GetStates ();
-            var subdivisions = await GetSubdivisions (profile.Zip);
-            InitializeTable (profile, states, subdivisions);
-
-            RefreshControl.EndRefreshing ();
             TableView.UserInteractionEnabled = true;
-            this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = profileResult.IsSuccess;
-            dataLoaded = profileResult.IsSuccess;
+            dataLoaded = this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = profileResult.IsSuccess;
             loading = false;
         }
 

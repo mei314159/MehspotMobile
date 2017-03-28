@@ -77,6 +77,9 @@
     <Compile Include="DTO\Badges\BadgeItemDTO.cs" />
     <Compile Include="DTO\Badges\BadgeBadgeItemDTO.cs" />
     <Compile Include="DTO\Badges\BadgeItemValueDTO.cs" />
+    <Compile Include="DTO\Badges\EditBadgeProfileDTO.cs" />
+    <Compile Include="DTO\Badges\BadgeDataType.cs" />
+    <Compile Include="DTO\Badges\ProfileKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

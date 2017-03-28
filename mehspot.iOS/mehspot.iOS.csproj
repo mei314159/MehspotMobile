@@ -249,7 +249,7 @@
     <Compile Include="Controllers\Badges\EditBadgeProfileController.designer.cs">
       <DependentUpon>EditBadgeProfileController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\BadgeProfileDataSource\RegisterBabysitterTableSource.cs" />
+    <Compile Include="Controllers\Badges\BadgeProfileDataSource\RegisterBadgeTableSource.cs" />
     <Compile Include="Controllers\Badges\SearchBabysitterController.cs" />
     <Compile Include="Controllers\Badges\SearchBabysitterController.designer.cs">
       <DependentUpon>..\Search\SearchBabysitterController.cs</DependentUpon>
