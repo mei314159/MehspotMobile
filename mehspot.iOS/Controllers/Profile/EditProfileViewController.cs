@@ -226,7 +226,7 @@ namespace mehspot.iOS
 
             cells.Clear ();
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name"));
-            cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", true));
+            cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", null, true));
             var phoneNumberCell = TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
             phoneNumberCell.Mask = "(###)###-####";
             cells.Add (phoneNumberCell);

@@ -23,7 +23,8 @@ namespace mehspot.iOS
         private IViewHelper viewHelper;
 
         public int BadgeId;
-
+        public string BadgeName;
+        public bool BadgeIsRegistered;
 
         BadgeProfileDTO<EditBadgeProfileDTO> profile;
 
@@ -34,6 +35,13 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
+            var badgeName = MehspotStrings.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
+            var title =
+                BadgeIsRegistered ?
+                "Update " + (this.BadgeName == BadgeService.BadgeNames.BabysitterEmployer ? "babysitting (employer) page" : badgeName)
+                : "Sign up " + (this.BadgeName == BadgeService.BadgeNames.Fitness ? "for " : this.BadgeName == BadgeService.BadgeNames.Babysitter ? "as " : string.Empty) + badgeName;
+
+            this.NavBar.Title = title;
             badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
             profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
             viewHelper = new ViewHelper (this.View);
@@ -68,7 +76,8 @@ namespace mehspot.iOS
             var result = await this.badgeService.SaveBadgeProfileAsync (profile);
             viewHelper.HideOverlay ();
             if (!result.IsSuccess) {
-                var error = string.Join (Environment.NewLine, result.ModelState.ModelState.SelectMany (a => a.Value));
+                var errors = result.ModelState.ModelState?.SelectMany (a => a.Value);
+                var error = errors != null ? string.Join (Environment.NewLine, errors) : result.ErrorMessage;
                 UIAlertView alert = new UIAlertView (
                                     result.ErrorMessage,
                                     error,

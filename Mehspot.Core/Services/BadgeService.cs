@@ -34,7 +34,7 @@ namespace Mehspot.Core.Services
 
         public async Task<Result<BadgeProfileDTO<EditBadgeProfileDTO>>> GetMyBadgeProfileAsync(int badgeId)
         {
-            return await GetAsync<BadgeProfileDTO<EditBadgeProfileDTO>>($"Badges/Profile?badgeId={badgeId}&userId={this.ApplicationDataStorage.AuthInfo.UserId}&edit=true").ConfigureAwait(false);
+            return await GetAsync<BadgeProfileDTO<EditBadgeProfileDTO>>($"Badges/EditProfile?badgeId={badgeId}&userId={this.ApplicationDataStorage.AuthInfo.UserId}").ConfigureAwait(false);
         }
 
         public async Task<Result<TResult []>> Search<TResult> (ISearchFilterDTO filter, int badgeId, int skip, int take)
@@ -60,6 +60,8 @@ namespace Mehspot.Core.Services
         public class BadgeNames
         {
             public const string Babysitter = "Babysitter";
+            public const string BabysitterEmployer = "BabysitterEmployer";
+            public const string Fitness = "Fitness";
         }
     }
 }

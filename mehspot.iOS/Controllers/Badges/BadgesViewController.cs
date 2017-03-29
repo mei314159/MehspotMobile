@@ -8,6 +8,7 @@ using mehspot.iOS.Views;
 using CoreGraphics;
 using System.Collections.Generic;
 using Mehspot.Core.Services;
+using mehspot.iOS.Extensions;
 
 namespace mehspot.iOS
 {
@@ -18,7 +19,7 @@ namespace mehspot.iOS
         private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
         private BadgeSummaryDTO [] badgesList;
         private BadgeService badgeService;
-        private int SelectedBadgeId;
+        private BadgeSummaryDTO SelectedBadge;
 
 
         public BadgesViewController (IntPtr handle) : base (handle)
@@ -43,9 +44,14 @@ namespace mehspot.iOS
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
             if (segue.Identifier == "GoToSearchFilterSegue") {
-                ((SearchBabysitterController)segue.DestinationViewController).BadgeId = this.SelectedBadgeId;
+                var controller = ((SearchBabysitterController)segue.DestinationViewController);
+                controller.BadgeId = this.SelectedBadge.BadgeId;
+                controller.BadgeName = this.SelectedBadge.BadgeName;
             } else if (segue.Identifier == "GoToEditBadgeSegue") {
-                ((EditBadgeProfileController)segue.DestinationViewController).BadgeId = this.SelectedBadgeId;
+                var controller = ((EditBadgeProfileController)segue.DestinationViewController);
+                controller.BadgeId = this.SelectedBadge.BadgeId;
+                controller.BadgeName = this.SelectedBadge.BadgeName;
+                controller.BadgeIsRegistered = this.SelectedBadge.IsRegistered;
             }
 
             base.PrepareForSegue (segue, sender);
@@ -119,7 +125,7 @@ namespace mehspot.iOS
             } else {
                 expandedPaths.Add (indexPath);
             }
-            this.SelectedBadgeId = badgesList [indexPath.Row].BadgeId;
+            this.SelectedBadge = badgesList [indexPath.Row];
             tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Fade);
         }
 
@@ -134,11 +140,17 @@ namespace mehspot.iOS
 
         void SearchButton_TouchUpInside (UIButton button)
         {
+            var cell = (BadgeItemCell)button.FindSuperviewOfType (this.View, typeof (BadgeItemCell));
+            var indexPath = this.TableView.IndexPathForCell (cell);
+            this.SelectedBadge = badgesList [indexPath.Row];
             PerformSegue ("GoToSearchFilterSegue", this);
         }
 
         void BadgeRegisterButton_TouchUpInside (UIButton button)
         {
+            var cell = (BadgeItemCell)button.FindSuperviewOfType (this.View, typeof (BadgeItemCell));
+            var indexPath = this.TableView.IndexPathForCell (cell);
+            this.SelectedBadge = badgesList [indexPath.Row];
             PerformSegue ("GoToEditBadgeSegue", this);
         }
     }

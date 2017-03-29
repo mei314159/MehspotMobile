@@ -30,7 +30,8 @@ namespace mehspot.iOS
             viewHelper = new ViewHelper (this.View);
         }
 
-        public int BadgeId { get; set; }
+        public int BadgeId;
+        public string BadgeName;
 
         public override void ViewDidLoad ()
         {

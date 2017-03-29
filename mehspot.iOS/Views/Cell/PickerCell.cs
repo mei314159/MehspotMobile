@@ -54,12 +54,12 @@ namespace mehspot.iOS.Views
             Func<T, TProperty> getProperty,
             Action<T, TProperty> setProperty,
             Func<TProperty, string> getPropertyString,
-            string placeholder,
+            string label,
             IEnumerable<KeyValuePair<TProperty, string>> rowValues = null,
             bool isReadOnly = false)
         {
             var cell = (PickerCell)Nib.Instantiate (null, null) [0];
-            cell.Placeholder = placeholder;
+            cell.Placeholder = label;
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
             cell.propertyType = typeof (TProperty);
             cell.GetProperty = () => getProperty (model);
@@ -70,7 +70,7 @@ namespace mehspot.iOS.Views
             };
             cell.SelectValueButton.TouchUpInside += SelectValueButton_TouchUpInside;
             cell.IsReadOnly = isReadOnly;
-            cell.FieldLabel.Text = placeholder;
+            cell.FieldLabel.Text = label;
             cell.SetSelectValueButtonTitle ();
             return cell;
         }

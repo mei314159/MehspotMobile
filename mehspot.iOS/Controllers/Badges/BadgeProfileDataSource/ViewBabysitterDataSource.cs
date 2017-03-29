@@ -18,6 +18,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         public ViewBabysitterDataSource (BadgeProfileDTO<BabysitterProfileDTO> profile, int badgeId, BadgeService badgeService)
         {
+            this.BadgeId = badgeId;
             this.profile = profile;
             this.badgeService = badgeService;
             cells = new List<UITableViewCell> ();

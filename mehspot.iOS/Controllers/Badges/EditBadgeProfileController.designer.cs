@@ -16,6 +16,10 @@ namespace mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationItem NavBar { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIBarButtonItem SaveButton { get; set; }
 
         [Action ("SaveButtonTouched:")]
@@ -24,6 +28,11 @@ namespace mehspot.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (NavBar != null) {
+                NavBar.Dispose ();
+                NavBar = null;
+            }
+
             if (SaveButton != null) {
                 SaveButton.Dispose ();
                 SaveButton = null;
