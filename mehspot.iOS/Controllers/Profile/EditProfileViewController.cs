@@ -27,7 +27,7 @@ namespace mehspot.iOS
         private IViewHelper viewHelper;
         private ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
-        private KeyValuePair<string, string> [] genders = new [] {
+        private KeyValuePair<string, string> [] genders = {
                 new KeyValuePair<string, string>(null, "N/A"),
                 new KeyValuePair<string, string>("M", "Male"),
                 new KeyValuePair<string, string>("F", "Female")
@@ -230,18 +230,18 @@ namespace mehspot.iOS
             var phoneNumberCell = TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
             phoneNumberCell.Mask = "(###)###-####";
             cells.Add (phoneNumberCell);
-            cells.Add (PickerCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Date Of Birth"));
-            cells.Add (PickerCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, v => genders.First (a => a.Key == v).Value, "Gender", genders));
+            cells.Add (PickerCell.CreateDatePicker (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, "Date Of Birth"));
+            cells.Add (PickerCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, "Gender", genders));
             cells.Add (TextEditCell.Create (profile, a => a.FirstName, "First Name"));
             cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine1, "Address Line 1"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine2, "Address Line 2"));
-            cells.Add (PickerCell.Create (profile, a => a.State, (model, property) => { model.State = property; }, v => states.FirstOrDefault (a => a.Key == v).Value, "State", states));
+            cells.Add (PickerCell.Create (profile, a => a.State, (model, property) => { model.State = property; }, "State", states));
             cells.Add (TextEditCell.Create (profile, a => a.City, "City"));
             var zipCell = TextEditCell.Create (profile, a => a.Zip, "Zip");
             zipCell.Mask = "#####";
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
-            var subdivisionCell = PickerCell.Create (profile, a => a.SubdivisionId, (model, property) => { model.SubdivisionId = (int?)property; }, v => subdivisions.FirstOrDefault (a => a.Key == v).Value, "Subdivision", subdivisions, !subdivisionEnabled);
+            var subdivisionCell = PickerCell.Create (profile, a => a.SubdivisionId, (model, property) => { model.SubdivisionId = (int?)property; }, "Subdivision", subdivisions, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
             cells.Add (zipCell);
             cells.Add (subdivisionCell);

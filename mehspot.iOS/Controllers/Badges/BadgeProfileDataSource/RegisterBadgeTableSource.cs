@@ -55,12 +55,12 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         {
             this.states = await GetStates ();
             this.subdivisions = await GetSubdivisions (profile.Profile.Zip);
-            cells.Add (PickerCell.Create (profile, a => a.Profile.State, (model, property) => { model.Profile.State = property; }, v => states.FirstOrDefault (a => a.Key == v).Value, "State", states));
+            cells.Add (PickerCell.Create (profile, a => a.Profile.State, (model, property) => { model.Profile.State = property; }, "State", states));
             cells.Add (TextEditCell.Create (profile, a => a.Profile.City, "City"));
             var zipCell = TextEditCell.Create (profile, a => a.Profile.Zip, "Zip");
             zipCell.Mask = "#####";
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Profile.Zip) && zipCell.IsValid;
-            var subdivisionCell = PickerCell.Create (profile, a => a.Profile.SubdivisionId, (model, property) => { model.Profile.SubdivisionId = (int?)property; }, v => subdivisions.FirstOrDefault (a => a.Key == v).Value, "Subdivision", subdivisions, !subdivisionEnabled);
+            var subdivisionCell = PickerCell.Create (profile, a => a.Profile.SubdivisionId, (model, property) => { model.Profile.SubdivisionId = (int?)property; }, "Subdivision", subdivisions, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
             cells.Add (zipCell);
             cells.Add (subdivisionCell);
@@ -82,12 +82,12 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                 if (valueType == BadgeDataType.Boolean) {
                     cells.Add (BooleanEditCell.Create (badgeValue.Value, a => a.Value, label));
                 } else if (valueType == BadgeDataType.List) {
-                    var listData = badgeItem.BadgeItemOptions.Select (a => new KeyValuePair<string, string> (a.Id.ToString (), a.Name)).ToArray ();
-                    cells.Add (PickerCell.Create (badgeValue.Value, a => a.Value, (model, property) => { badgeValue.Value.Value = property; }, v => listData.FirstOrDefault (a => a.Key == v).Value, label, listData));
-                //} else if (valueType == BadgeDataType.CheckList) {
-                //    var listData = badgeItem.BadgeItemOptions.Select (a => new KeyValuePair<string, string> (a.Id.ToString (), a.Name)).ToArray ();
-                //    //TODO Implement checklist control
-                //    cells.Add (PickerCell.Create (profile, a => badgeValue.Value.Value, (model, property) => { badgeValue.Value.Value = property; }, v => listData.FirstOrDefault (a => a.Key == v).Value, label, listData));
+                    var listData = badgeItem.BadgeItemOptions.Select (a => new KeyValuePair<string, string> (a.Id.ToString (), MehspotStrings.ResourceManager.GetString (a.Name) ?? a.Name)).ToArray ();
+                    cells.Add (PickerCell.Create (badgeValue.Value, a => a.Value, (model, property) => { model.Value = property; }, label, listData));
+                } else if (valueType == BadgeDataType.CheckList) {
+                    var listData = badgeItem.BadgeItemOptions
+                                            .Select (a => new KeyValuePair<string, string> (a.Id.ToString (), MehspotStrings.ResourceManager.GetString (a.Name)?? a.Name)).ToArray ();
+                    cells.Add (PickerCell.Create (badgeValue.Value, a => a.Values, (model, property) => { model.Values = property; }, label, listData));
                 } else if (valueType == BadgeDataType.LongString) {
                     cells.Add (TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder));
                 } else if (valueType == BadgeDataType.Integer) {

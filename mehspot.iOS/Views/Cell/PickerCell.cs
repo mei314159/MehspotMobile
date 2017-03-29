@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using mehspot.iOS.Extensions;
+using Mehspot.iOS.Views.MultiSelectPicker;
 using SharpMobileCode.ModalPicker;
 using UIKit;
 
@@ -13,11 +15,12 @@ namespace mehspot.iOS.Views
     {
         private const string dateFormat = "MMMM dd, yyyy";
         private Type propertyType;
+        private PickerTypeEnum pickerType;
+        private string placeholder;
+
         private Action<object> SetProperty;
         private Func<object> GetProperty;
         private Func<object, string> GetPropertyString;
-
-        private string Placeholder;
 
         public static readonly NSString Key = new NSString ("PickerCell");
         public static readonly UINib Nib;
@@ -49,40 +52,100 @@ namespace mehspot.iOS.Views
                 this.SelectValueButton.Enabled = !value;
             }
         }
+
         public static PickerCell Create<T, TProperty> (
             T model,
             Func<T, TProperty> getProperty,
             Action<T, TProperty> setProperty,
-            Func<TProperty, string> getPropertyString,
             string label,
-            IEnumerable<KeyValuePair<TProperty, string>> rowValues = null,
+            IEnumerable<KeyValuePair<TProperty, string>> rowValues,
             bool isReadOnly = false)
         {
             var cell = (PickerCell)Nib.Instantiate (null, null) [0];
-            cell.Placeholder = label;
+            cell.pickerType = PickerTypeEnum.List;
+            cell.placeholder = label;
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
             cell.propertyType = typeof (TProperty);
             cell.GetProperty = () => getProperty (model);
-            cell.GetPropertyString = (s) => getPropertyString ((TProperty)s);
+            cell.GetPropertyString = (s) => {
+                return rowValues.FirstOrDefault (a => Equals (a.Key, (TProperty)s)).Value;
+            };
+
             cell.SetProperty = (p) => {
                 setProperty (model, (TProperty)p);
                 cell.SetSelectValueButtonTitle ();
             };
-            cell.SelectValueButton.TouchUpInside += SelectValueButton_TouchUpInside;
             cell.IsReadOnly = isReadOnly;
             cell.FieldLabel.Text = label;
             cell.SetSelectValueButtonTitle ();
             return cell;
         }
 
-
-
-        public static async void SelectValueButton_TouchUpInside (object sender, EventArgs e)
+        public static PickerCell Create<T, TProperty> (
+            T model,
+            Func<T, TProperty[]> getProperty,
+            Action<T, TProperty[]> setProperty,
+            string label,
+            IEnumerable<KeyValuePair<TProperty, string>> rowValues,
+            bool isReadOnly = false)
         {
-            var cell = (PickerCell)((UIButton)sender).Superview.Superview;
+            var cell = (PickerCell)Nib.Instantiate (null, null) [0];
+            cell.pickerType = PickerTypeEnum.Multiselect;
+            cell.placeholder = label;
+            cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
+            cell.propertyType = typeof (TProperty);
+            cell.GetProperty = () => getProperty (model);
+            cell.GetPropertyString = (s) => {
+                var values = (TProperty [])s;
+                if (values != null) {
+                    var valuesStrings = rowValues.Where (a => values.Contains (a.Key)).Select (a => a.Value).ToArray ();
+                    if (valuesStrings != null) {
+                        return string.Join (",", valuesStrings);
+                    }
+                }
+                return null;
+            };
+
+            cell.SetProperty = (p) => {
+                setProperty (model, ((IEnumerable)p).Cast<TProperty>().ToArray());
+                cell.SetSelectValueButtonTitle ();
+            };
+            cell.IsReadOnly = isReadOnly;
+            cell.FieldLabel.Text = label;
+            cell.SetSelectValueButtonTitle ();
+            return cell;
+        }
+
+        public static PickerCell CreateDatePicker<T> (
+            T model,
+            Func<T, DateTime?> getProperty,
+            Action<T, DateTime?> setProperty,
+            string label,
+            bool isReadOnly = false)
+        {
+            var cell = (PickerCell)Nib.Instantiate (null, null) [0];
+            cell.pickerType = PickerTypeEnum.Date;
+            cell.placeholder = label;
+            cell.propertyType = typeof (DateTime?);
+            cell.GetProperty = () => getProperty (model);
+            cell.GetPropertyString = (s) => ((DateTime?)s)?.ToString (dateFormat);
+            cell.SetProperty = (p) => {
+                setProperty (model, (DateTime?)p);
+                cell.SetSelectValueButtonTitle ();
+            };
+            cell.IsReadOnly = isReadOnly;
+            cell.FieldLabel.Text = label;
+            cell.SetSelectValueButtonTitle ();
+            return cell;
+        }
+
+        [Action ("SelectValueButton_TouchUpInside:")]
+        async void SelectValueButton_TouchUpInside (UIButton sender)
+        {
+            var cell = (PickerCell)(sender).Superview.Superview;
             var controller = cell.GetViewController ();
 
-            var modalPicker = new ModalPickerViewController (ModalPickerType.Date, cell.Placeholder, controller) {
+            var modalPicker = new ModalPickerViewController (ModalPickerType.Date, cell.placeholder, controller) {
                 HeaderBackgroundColor = UIColor.White,
                 HeaderTextColor = UIColor.DarkGray,
                 TransitioningDelegate = new ModalPickerTransitionDelegate (),
@@ -90,8 +153,7 @@ namespace mehspot.iOS.Views
             };
 
             var initialValue = cell.GetProperty ();
-            var isDateTimePicker = cell.propertyType == typeof (DateTime) || cell.propertyType == typeof (DateTime?);
-            if (isDateTimePicker) {
+            if (cell.pickerType == PickerTypeEnum.Date) {
 
                 DateTime? dateValue;
                 dateValue = initialValue as DateTime?;
@@ -103,7 +165,10 @@ namespace mehspot.iOS.Views
                 modalPicker.OnModalPickerDismissed += (s, ea) => {
                     cell.SetProperty (modalPicker.DatePicker.Date.NSDateToDateTime ().Date);
                 };
-            } else {
+
+                await controller.PresentViewControllerAsync (modalPicker, true);
+
+            } else if (cell.pickerType == PickerTypeEnum.List) {
 
                 modalPicker.PickerType = ModalPickerType.Custom;
                 nint selectedRow = 0;
@@ -123,13 +188,30 @@ namespace mehspot.iOS.Views
                     var value = cell.RowValues? [(int)index].Key;
                     cell.SetProperty (value);
                 };
+
+                await controller.PresentViewControllerAsync (modalPicker, true);
+            } else if (cell.pickerType == PickerTypeEnum.Multiselect) {
+                var values = cell.GetProperty () as IEnumerable;
+                var rows = cell.RowValues.Select ((x, i) => new SourceItem { Name = x.Value, Selected = values != null && values.Cast<object> ().Any (a => Equals (x.Key, a)) }).ToArray ();
+                var picker = new MultiSelectPickerViewController (cell.placeholder, controller, rows) {
+                    HeaderBackgroundColor = UIColor.White,
+                    HeaderTextColor = UIColor.DarkGray,
+                    TransitioningDelegate = new ModalPickerTransitionDelegate (),
+                    ModalPresentationStyle = UIModalPresentationStyle.Custom,
+                };
+
+                picker.OnModalPickerDismissed += (indexes) => {
+                    var rowValues = cell.RowValues;
+                    cell.SetProperty (indexes.Select (a => rowValues [a].Key).ToArray ());
+                };
+                await controller.PresentViewControllerAsync (picker, true);
             }
-            await controller.PresentViewControllerAsync (modalPicker, true);
         }
 
         void SetSelectValueButtonTitle ()
         {
-            var title = GetPropertyString (GetProperty ()) ?? this.Placeholder;
+            var v = GetProperty ();
+            var title = GetPropertyString (v) ?? this.placeholder;
             SelectValueButton.SetTitle (title, UIControlState.Normal);
         }
 
@@ -144,6 +226,13 @@ namespace mehspot.iOS.Views
                 FieldLabel.Dispose ();
                 FieldLabel = null;
             }
+        }
+
+        enum PickerTypeEnum
+        {
+            Date,
+            List,
+            Multiselect
         }
     }
 }

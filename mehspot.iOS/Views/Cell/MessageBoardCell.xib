@@ -58,9 +58,6 @@
                             <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
                                 <real key="value" value="12"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="PaddingH">
-                                <integer key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>

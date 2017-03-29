@@ -157,6 +157,7 @@
     <Folder Include="Assets.xcassets\star-yellow-icon.imageset\" />
     <Folder Include="Controllers\Badges\" />
     <Folder Include="Controllers\Badges\BadgeProfileDataSource\" />
+    <Folder Include="Views\MultiSelectPicker\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -258,6 +259,8 @@
     <Compile Include="Controllers\Badges\SearchResultsViewController.designer.cs">
       <DependentUpon>..\Search\SearchResultsViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MultiSelectPicker\MultiSelectPickerViewController.cs" />
+    <Compile Include="Views\MultiSelectPicker\SourceItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />
