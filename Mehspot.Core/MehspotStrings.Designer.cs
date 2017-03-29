@@ -298,5 +298,29 @@ namespace Mehspot.Core {
                 return ResourceManager.GetString("BabysitterOtherCertifications", resourceCulture);
             }
         }
+        
+        public static string Adult {
+            get {
+                return ResourceManager.GetString("Adult", resourceCulture);
+            }
+        }
+        
+        public static string CollegeStudent {
+            get {
+                return ResourceManager.GetString("CollegeStudent", resourceCulture);
+            }
+        }
+        
+        public static string HighSchool {
+            get {
+                return ResourceManager.GetString("HighSchool", resourceCulture);
+            }
+        }
+        
+        public static string MiddleSchool {
+            get {
+                return ResourceManager.GetString("MiddleSchool", resourceCulture);
+            }
+        }
     }
 }

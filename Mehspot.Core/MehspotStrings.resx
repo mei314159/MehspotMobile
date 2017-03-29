@@ -138,4 +138,16 @@
     <data name="BabysitterOtherCertifications" xml:space="preserve">
         <value>Other Certifications and URLs</value>
     </data>
+    <data name="Adult" xml:space="preserve">
+        <value>Adult</value>
+    </data>
+    <data name="CollegeStudent" xml:space="preserve">
+        <value>College Student</value>
+    </data>
+    <data name="HighSchool" xml:space="preserve">
+        <value>High School</value>
+    </data>
+    <data name="MiddleSchool" xml:space="preserve">
+        <value>Middle School</value>
+    </data>
 </root>
