@@ -14,7 +14,6 @@ namespace mehspot.iOS.Views
     public class PickerCell : UITableViewCell
     {
         private const string dateFormat = "MMMM dd, yyyy";
-        private Type propertyType;
         private PickerTypeEnum pickerType;
         private string placeholder;
 
@@ -65,7 +64,6 @@ namespace mehspot.iOS.Views
             cell.pickerType = PickerTypeEnum.List;
             cell.placeholder = label;
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
-            cell.propertyType = typeof (TProperty);
             cell.GetProperty = () => getProperty (model);
             cell.GetPropertyString = (s) => {
                 return rowValues.FirstOrDefault (a => Equals (a.Key, (TProperty)s)).Value;
@@ -93,7 +91,6 @@ namespace mehspot.iOS.Views
             cell.pickerType = PickerTypeEnum.Multiselect;
             cell.placeholder = label;
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
-            cell.propertyType = typeof (TProperty);
             cell.GetProperty = () => getProperty (model);
             cell.GetPropertyString = (s) => {
                 var values = (TProperty [])s;
@@ -126,7 +123,6 @@ namespace mehspot.iOS.Views
             var cell = (PickerCell)Nib.Instantiate (null, null) [0];
             cell.pickerType = PickerTypeEnum.Date;
             cell.placeholder = label;
-            cell.propertyType = typeof (DateTime?);
             cell.GetProperty = () => getProperty (model);
             cell.GetPropertyString = (s) => ((DateTime?)s)?.ToString (dateFormat);
             cell.SetProperty = (p) => {

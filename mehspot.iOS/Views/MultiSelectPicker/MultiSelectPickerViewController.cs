@@ -53,6 +53,12 @@ namespace Mehspot.iOS.Views.MultiSelectPicker
         {
             base.ViewDidAppear (animated);
             TableView.ReloadData ();
+            for (int i = 0; i < TableItems.Length; i++) {
+                var item = TableItems [i];
+                if (item.Selected) {
+                    TableView.SelectRow (NSIndexPath.FromRowSection (i, 0), false, UITableViewScrollPosition.None);
+                }
+            }
             Show ();
         }
 
@@ -168,6 +174,7 @@ namespace Mehspot.iOS.Views.MultiSelectPicker
                 cell = new UITableViewCell (UITableViewCellStyle.Default, CellIdentifier);
             }
 
+            cell.SelectionStyle = UITableViewCellSelectionStyle.Gray;
             cell.TextLabel.Text = item.Name;
             cell.SetSelected (item.Selected, false);
             return cell;

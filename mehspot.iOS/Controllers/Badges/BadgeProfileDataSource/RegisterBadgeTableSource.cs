@@ -97,7 +97,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                     cells.Add (cell);
                 } else if (valueType == BadgeDataType.Float) {
                     var cell = TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder);
-                    cell.ValidationRegex = "^\\d+(\\.\\d{0,2})?$";
+                    cell.ValidationRegex = "^\\d+([\\.\\,]{0,1}\\d{0,2})?$";
                     cell.TextInput.KeyboardType = UIKeyboardType.DecimalPad;
                     cells.Add (cell);
                 //} else if (valueType == BadgeDataType.Date) {
