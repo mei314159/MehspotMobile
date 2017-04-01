@@ -106,7 +106,7 @@ namespace mehspot.iOS
             cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasPicture, "Has Profile Picture"));
             cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasReferences, "Has References"));
             cells.Add (BooleanEditCell.Create (filter, a => a.HasCertification, "Has Certification"));
-            cells.Add (PickerCell.Create (filter, a => a.AgeRange, (model, property) => { model.AgeRange = property; }, "Age Range", ageRanges));
+            cells.Add (PickerCell.Create (filter.AgeRange, (property) => { filter.AgeRange = property; }, "Age Range", ageRanges));
             viewHelper.HideOverlay ();
             viewWasInitialized = true;
         }
