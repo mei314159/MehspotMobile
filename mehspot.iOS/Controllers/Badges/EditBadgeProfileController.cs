@@ -35,6 +35,16 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
+            SetTitle ();
+            badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
+            profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
+            viewHelper = new ViewHelper (this.View);
+            TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            RefreshControl.ValueChanged += RefreshControl_ValueChanged;
+        }
+
+        private void SetTitle () {
+
             var badgeName = MehspotStrings.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
             var title =
                 BadgeIsRegistered ?
@@ -42,11 +52,6 @@ namespace mehspot.iOS
                 : "Sign up " + (this.BadgeName == BadgeService.BadgeNames.Fitness ? "for " : this.BadgeName == BadgeService.BadgeNames.Babysitter ? "as " : string.Empty) + badgeName;
 
             this.NavBar.Title = title;
-            badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
-            profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
-            viewHelper = new ViewHelper (this.View);
-            TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
-            RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
         public override async void ViewDidAppear (bool animated)
@@ -75,16 +80,22 @@ namespace mehspot.iOS
 
             var result = await this.badgeService.SaveBadgeProfileAsync (profile);
             viewHelper.HideOverlay ();
-            if (!result.IsSuccess) {
+            string message;
+            if (result.IsSuccess) {
+                if (!BadgeIsRegistered)
+                    BadgeIsRegistered = true;
+                SetTitle ();
+                message = $"{BadgeName} badge profile successfully saved";
+            } else {
                 var errors = result.ModelState.ModelState?.SelectMany (a => a.Value);
-                var error = errors != null ? string.Join (Environment.NewLine, errors) : result.ErrorMessage;
-                UIAlertView alert = new UIAlertView (
-                                    result.ErrorMessage,
-                                    error,
+                message = errors != null ? string.Join (Environment.NewLine, errors) : result.ErrorMessage;
+            }
+            UIAlertView alert = new UIAlertView (
+                                    result.IsSuccess ? "Success" : "Error",
+                                    message,
                                     null,
                                     "OK");
-                alert.Show ();
-            }
+            alert.Show ();
 
             sender.Enabled = true;
         }

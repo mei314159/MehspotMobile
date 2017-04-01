@@ -215,7 +215,7 @@ namespace mehspot.iOS.Views
             string title = null;
             if (value != null) {
                 var val = value as IEnumerable;
-                if (val != null) {
+                if (!(val is string) && val != null) {
                     var count = val.Count ();
                     if (count > 0)
                         title = $"{count} items";
