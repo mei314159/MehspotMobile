@@ -1,245 +1,67 @@
 using System;
-using System.Net.Http;
-using mehspot.Core.Dto;
 using mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
-using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Extensions;
-using System.Net.Http.Headers;
-using MehSpot.Models.ViewModels;
-using MehSpot.Web.ViewModels;
+using mehspot.Core;
+using Mehspot.Core.DTO.Badges;
 
-namespace Mehspot.Core.Messaging
+namespace Mehspot.Core.Services
 {
-    public class BadgeService
+    public class BadgeService : BaseDataService
     {
-        private IApplicationDataStorage _applicationDataStorage;
-
-        public BadgeService (IApplicationDataStorage applicationDataStorage)
+        public BadgeService (IApplicationDataStorage applicationDataStorage) : base (applicationDataStorage)
         {
-            _applicationDataStorage = applicationDataStorage;
         }
 
         public Action<int, object> OnSendNotification;
 
-        public async Task<Result<BadgeSummaryDTO[]>> GetBadgesSummaryAsync ()
+        public async Task<Result<BadgeSummaryDTO []>> GetBadgesSummaryAsync ()
         {
-            var uri = new Uri ($"{Constants.ApiHost}/api/Badges/Get");
-
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var data = JsonConvert.DeserializeObject<BadgeSummaryDTO []> (responseString);
-
-                        return new Result<BadgeSummaryDTO []> {
-                            IsSuccess = true,
-                            Data = data,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<BadgeSummaryDTO []> {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result<BadgeSummaryDTO []> {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
+            return await GetAsync<BadgeSummaryDTO []> ("Badges/Get").ConfigureAwait (false);
         }
 
-        public async Task<Result<StaticDataDto []>> GetAgeRangesAsync (string badgeName)
+        public async Task<Result<StaticDataDto []>> GetAgeRangesAsync (int badgeId)
         {
-            var uri = new Uri ($"{Constants.ApiHost}/api/Badges/GetAgeRanges?badgeName=" + badgeName);
-
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var data = JsonConvert.DeserializeObject<StaticDataDto []> (responseString);
-
-                        return new Result<StaticDataDto []> {
-                            IsSuccess = true,
-                            Data = data,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<StaticDataDto []> {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result<StaticDataDto []> {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
+            return await GetAsync<StaticDataDto []> ("Badges/GetAgeRanges?badgeId=" + badgeId).ConfigureAwait (false);
         }
 
-        public async Task<Result> ToggleBadgeEmploymentHistoryAsync (string userId, string badgeName, bool delete)
+        public async Task<Result<BadgeProfileDTO<BabysitterProfileDTO>>> GetBadgeProfileAsync (int badgeId, string userId)
         {
-            var uri = new Uri (Constants.ApiHost + "/api/badges/ToggleBadgeEmploymentHistory");
+            return await GetAsync<BadgeProfileDTO<BabysitterProfileDTO>> ($"Badges/Profile?badgeId={badgeId}&userId={userId}").ConfigureAwait (false);
+        }
 
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+        public async Task<Result<BadgeProfileDTO<EditBadgeProfileDTO>>> GetMyBadgeProfileAsync(int badgeId)
+        {
+            return await GetAsync<BadgeProfileDTO<EditBadgeProfileDTO>>($"Badges/EditProfile?badgeId={badgeId}&userId={this.ApplicationDataStorage.AuthInfo.UserId}").ConfigureAwait(false);
+        }
 
-                    var data = JsonConvert.SerializeObject (new { EmployeeId = userId, Delete = delete, BadgeName = badgeName });
+        public async Task<Result<TResult []>> Search<TResult> (ISearchFilterDTO filter, int badgeId, int skip, int take)
+        {
+            return await GetAsync<TResult []> ($"Badges/SearchForApp?badgeId={badgeId}&skip={skip}&take={take}&" + filter.GetQueryString ()).ConfigureAwait (false);
+        }
 
-                    var stringContent = new StringContent (data, System.Text.Encoding.UTF8, "application/json");
-                    stringContent.Headers.ContentLength = data.Length;
-                    var response = await webClient.PostAsync (uri, stringContent).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        return new Result {
-                            IsSuccess = true,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var modelState = JsonConvert.DeserializeObject<ModelStateDto> (responseString);
-                        return new Result {
-                            IsSuccess = false,
-                            ErrorMessage = modelState.Message,
-                            ModelState = modelState
-                        };
-                    }
+        public async Task<Result> ToggleBadgeEmploymentHistoryAsync (string userId, int badgeId, bool delete)
+        {
+            return await PostAsync<object> ($"Badges/ToggleBadgeEmploymentHistory", new { EmployeeId = userId, Delete = delete, BadgeId = badgeId }).ConfigureAwait (false);
+        }
 
-                } catch (Exception ex) {
-                    return new Result {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
+        public async Task<Result> SaveBadgeProfileAsync(BadgeProfileDTO<EditBadgeProfileDTO> profile)
+        {
+            return await PostAsync<object>($"Badges/SaveProfile", profile).ConfigureAwait(false);
         }
 
         public async Task<Result> ToggleBadgeUserDescriptionAsync (BadgeUserDescriptionDTO dto)
         {
-            var uri = new Uri (Constants.ApiHost + "/api/badges/ToggleBadgeUserDescription");
-
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var data = JsonConvert.SerializeObject (dto);
-
-                    var stringContent = new StringContent (data, System.Text.Encoding.UTF8, "application/json");
-                    stringContent.Headers.ContentLength = data.Length;
-                    var response = await webClient.PostAsync (uri, stringContent).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        return new Result {
-                            IsSuccess = true,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var modelState = JsonConvert.DeserializeObject<ModelStateDto> (responseString);
-                        return new Result {
-                            IsSuccess = false,
-                            ErrorMessage = modelState.Message,
-                            ModelState = modelState
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
+            return await PostAsync<object> ($"Badges/ToggleBadgeUserDescription", dto).ConfigureAwait (false);
         }
 
-        public async Task<Result<TResult []>> Search<TResult>(ISearchFilterDTO filter, string badgeName, int skip, int take)
+        public class BadgeNames
         {
-            var uri = new Uri ($"{Constants.ApiHost}/api/Badges/SearchForApp?badgeName={badgeName}&skip={skip}&take={take}&" + filter.GetQueryString ());
-
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var data = JsonConvert.DeserializeObject<TResult []> (responseString);
-
-                        return new Result<TResult []> {
-                            IsSuccess = true,
-                            Data = data,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<TResult []> {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result<TResult []> {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
-        }
-
-        public async Task<Result<BadgeProfileDTO<BabysitterProfileDTO>>> GetBadgeProfileAsync (string badgeName, string userId)
-        {
-            var uri = new Uri ($"{Constants.ApiHost}/api/Badges/Profile?badgeName={badgeName}&userId={userId}");
-
-            using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
-
-                    var response = await webClient.GetAsync (uri).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var data = JsonConvert.DeserializeObject<BadgeProfileDTO<BabysitterProfileDTO>> (responseString);
-
-                        return new Result<BadgeProfileDTO<BabysitterProfileDTO>> {
-                            IsSuccess = true,
-                            Data = data,
-                            ErrorMessage = null
-                        };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result<BadgeProfileDTO<BabysitterProfileDTO>> {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
-                        };
-                    }
-
-                } catch (Exception ex) {
-                    return new Result<BadgeProfileDTO<BabysitterProfileDTO>> {
-                        IsSuccess = false,
-                        ErrorMessage = ex.Message
-                    };
-                }
-            }
-        }
-
-        public class BadgeNames {
             public const string Babysitter = "Babysitter";
+            public const string BabysitterEmployer = "BabysitterEmployer";
+            public const string Fitness = "Fitness";
         }
     }
 }

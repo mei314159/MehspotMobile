@@ -48,6 +48,9 @@
                                 <real key="value" value="4"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="BadgeRegisterButtonTouched:" destination="cxk-wN-pdQ" id="103" eventType="touchUpInside"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="27" translatesAutoresizingMaskIntoConstraints="NO">
                         <rect key="frame" x="235" y="112" width="75" height="30"/>

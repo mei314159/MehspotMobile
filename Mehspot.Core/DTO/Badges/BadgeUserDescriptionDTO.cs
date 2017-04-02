@@ -1,4 +1,4 @@
-﻿namespace MehSpot.Web.ViewModels
+﻿namespace Mehspot.Core.DTO.Badges
 {
     public class BadgeUserDescriptionDTO
     {

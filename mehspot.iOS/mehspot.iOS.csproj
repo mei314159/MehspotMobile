@@ -152,12 +152,12 @@
     <Folder Include="Views\CustomPicker\" />
     <Folder Include="Assets.xcassets\search-icon.imageset\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Controllers\Search\" />
     <Folder Include="Controllers\Profile\" />
     <Folder Include="Controllers\Messaging\" />
     <Folder Include="Assets.xcassets\star-yellow-icon.imageset\" />
     <Folder Include="Controllers\Badges\" />
     <Folder Include="Controllers\Badges\BadgeProfileDataSource\" />
+    <Folder Include="Views\MultiSelectPicker\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -203,10 +203,6 @@
     <Compile Include="Views\CustomPicker\ModalPickerViewController.cs" />
     <Compile Include="Views\CustomPicker\CustomPickerModel.cs" />
     <Compile Include="Views\Cell\TextEditCell.cs" />
-    <Compile Include="Controllers\Search\SearchBabysitterController.cs" />
-    <Compile Include="Controllers\Search\SearchBabysitterController.designer.cs">
-      <DependentUpon>SearchBabysitterController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\LoginViewController.cs" />
     <Compile Include="Controllers\LoginViewController.designer.cs">
       <DependentUpon>LoginViewController.cs</DependentUpon>
@@ -220,10 +216,6 @@
       <DependentUpon>MessagingViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cell\ButtonCell.cs" />
-    <Compile Include="Controllers\Search\SearchResultsViewController.cs" />
-    <Compile Include="Controllers\Search\SearchResultsViewController.designer.cs">
-      <DependentUpon>SearchResultsViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Cell\SliderCell.cs" />
     <Compile Include="Views\Cell\SliderCell.designer.cs">
       <DependentUpon>SliderCell.cs</DependentUpon>
@@ -248,8 +240,27 @@
     <Compile Include="Controllers\Badges\ViewProfileViewController.designer.cs">
       <DependentUpon>ViewProfileViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\BadgeProfileDataSource\BabysitterDataSource.cs" />
+    <Compile Include="Controllers\Badges\BadgeProfileDataSource\ViewBabysitterDataSource.cs" />
     <Compile Include="Views\Cell\TextViewCell.cs" />
+    <Compile Include="BadgeProfileController.cs" />
+    <Compile Include="BadgeProfileController.designer.cs">
+      <DependentUpon>BadgeProfileController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\EditBadgeProfileController.cs" />
+    <Compile Include="Controllers\Badges\EditBadgeProfileController.designer.cs">
+      <DependentUpon>EditBadgeProfileController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\BadgeProfileDataSource\RegisterBadgeTableSource.cs" />
+    <Compile Include="Controllers\Badges\SearchBabysitterController.cs" />
+    <Compile Include="Controllers\Badges\SearchBabysitterController.designer.cs">
+      <DependentUpon>..\Search\SearchBabysitterController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\SearchResultsViewController.cs" />
+    <Compile Include="Controllers\Badges\SearchResultsViewController.designer.cs">
+      <DependentUpon>..\Search\SearchResultsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MultiSelectPicker\MultiSelectPickerViewController.cs" />
+    <Compile Include="Views\MultiSelectPicker\SourceItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

@@ -10,7 +10,6 @@ namespace Mehspot.Core.Extensions
         public static string GetQueryString (this object content)
         {
             if (content != null) {
-                var propInfos = content.GetType ().GetRuntimeProperties ();
                 var parameters = new Dictionary<string, string> ();
                 ProcessObject (content, parameters);
                 if (parameters.Count > 0) {

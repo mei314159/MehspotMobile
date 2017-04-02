@@ -1,5 +1,4 @@
-﻿using System;
-namespace Mehspot.Core.Contracts.Wrappers
+﻿namespace Mehspot.Core.Contracts.Wrappers
 {
     public interface IViewHelper
     {

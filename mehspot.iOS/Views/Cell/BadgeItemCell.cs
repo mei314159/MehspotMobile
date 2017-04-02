@@ -24,11 +24,16 @@ namespace mehspot.iOS.Views
         public BadgeSummaryDTO BadgeSummary { get; set; }
 
         public Action<UIButton> SearchButtonTouch { get; set; }
+        public Action<UIButton> BadgeRegisterButtonTouch { get; set; }
 
         partial void SearchButtonTouched (UIButton sender)
         {
             SearchButtonTouch?.Invoke (sender);
         }
 
+        partial void BadgeRegisterButtonTouched (UIButton sender)
+        {
+            BadgeRegisterButtonTouch?.Invoke (sender);
+        }
     }
 }

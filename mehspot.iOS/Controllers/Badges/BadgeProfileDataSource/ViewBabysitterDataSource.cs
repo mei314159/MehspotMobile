@@ -2,29 +2,31 @@ using System;
 using System.Collections.Generic;
 using Foundation;
 using mehspot.iOS.Views;
-using Mehspot.Core.Messaging;
-using MehSpot.Models.ViewModels;
-using MehSpot.Web.ViewModels;
+using Mehspot.Core.DTO.Badges;
+using Mehspot.Core.Services;
 using UIKit;
 
 namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
-    public class BabysitterDataSource: UITableViewSource
+    public class ViewBabysitterDataSource: UITableViewSource
     {
         private readonly List<UITableViewCell> cells;
+
+        private int BadgeId;
         private readonly BadgeService badgeService;
         private readonly BadgeProfileDTO<BabysitterProfileDTO> profile;
 
-        public BabysitterDataSource (BadgeProfileDTO<BabysitterProfileDTO> profile, BadgeService badgeService)
+        public ViewBabysitterDataSource (BadgeProfileDTO<BabysitterProfileDTO> profile, int badgeId, BadgeService badgeService)
         {
+            this.BadgeId = badgeId;
             this.profile = profile;
             this.badgeService = badgeService;
             cells = new List<UITableViewCell> ();
-            cells.Add (BooleanEditCell.Create (profile, a=> a.Values.OwnCar, "Own Car", true));
-            cells.Add (BooleanEditCell.Create (profile, a => a.Values.CanDrive, "Can Drive", true));
-            cells.Add (TextViewCell.Create (profile.Values.BabysitterCertificationInfo, "Certifications"));
-            cells.Add (TextViewCell.Create (profile.Values.BabysitterOtherCertifications, "Other Certifications and  URLs"));
-            cells.Add (TextViewCell.Create (profile.Values.BabysitterAdditionalInformation, "Additional Information"));
+            cells.Add (BooleanEditCell.Create (profile, a=> a.BadgeValues.OwnCar, "Own Car", true));
+            cells.Add (BooleanEditCell.Create (profile, a => a.BadgeValues.CanDrive, "Can Drive", true));
+            cells.Add (TextViewCell.Create (profile.BadgeValues.BabysitterCertificationInfo, "Certifications"));
+            cells.Add (TextViewCell.Create (profile.BadgeValues.BabysitterOtherCertifications, "Other Certifications and  URLs"));
+            cells.Add (TextViewCell.Create (profile.BadgeValues.BabysitterAdditionalInformation, "Additional Information"));
             var isHiredCell = BooleanEditCell.Create (profile, a => a.Details.IsHired, "Hired Before");
             cells.Add (isHiredCell); // TODO POST request
             var addReferenceCell = BooleanEditCell.Create (profile, a => a.Details.HasReference, "Add Reference");
@@ -53,7 +55,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         void IsHiredCell_ValueChanged (bool value)
         {
-            badgeService.ToggleBadgeEmploymentHistoryAsync (profile.Details.UserId, BadgeService.BadgeNames.Babysitter, !value);
+            badgeService.ToggleBadgeEmploymentHistoryAsync (profile.Details.UserId, this.BadgeId, !value);
         }
 
         void AddReferenceCell_ValueChanged (bool value)

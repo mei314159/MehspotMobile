@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using SDWebImage;
 using System.Linq;
 using CoreGraphics;
+using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {

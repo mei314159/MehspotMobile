@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using SDWebImage;
 using mehspot.iOS.Views;
 using System.Linq;
+using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {
@@ -26,7 +27,7 @@ namespace mehspot.iOS
         private IViewHelper viewHelper;
         private ProfileService profileService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
-        private KeyValuePair<string, string> [] genders = new [] {
+        private KeyValuePair<string, string> [] genders = {
                 new KeyValuePair<string, string>(null, "N/A"),
                 new KeyValuePair<string, string>("M", "Male"),
                 new KeyValuePair<string, string>("F", "Female")
@@ -157,11 +158,9 @@ namespace mehspot.iOS
                                     null,
                                     "OK");
                 alert.Show ();
-            } else {
-                this.NavigationController?.PopViewController (true);
             }
 
-            sender.Enabled = true;
+            this.SaveButton.Enabled = true;
         }
 
         partial void SignoutButtonTouched (UIButton sender)
@@ -196,23 +195,20 @@ namespace mehspot.iOS
             TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
 
             var profileResult = await profileService.GetProfileAsync ();
+            RefreshControl.EndRefreshing ();
 
             if (profileResult.IsSuccess) {
                 profile = profileResult.Data;
+                var states = await GetStates ();
+                var subdivisions = await GetSubdivisions (profile.Zip);
+                InitializeTable (profile, states, subdivisions);
             }else {
                 RefreshControl.EndRefreshing ();
                 new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
-                return;
             }
 
-            var states = await GetStates ();
-            var subdivisions = await GetSubdivisions (profile.Zip);
-            InitializeTable (profile, states, subdivisions);
-
-            RefreshControl.EndRefreshing ();
             TableView.UserInteractionEnabled = true;
-            this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = profileResult.IsSuccess;
-            dataLoaded = profileResult.IsSuccess;
+            dataLoaded = this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = profileResult.IsSuccess;
             loading = false;
         }
 
@@ -230,22 +226,22 @@ namespace mehspot.iOS
 
             cells.Clear ();
             cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name"));
-            cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", true));
+            cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", null, true));
             var phoneNumberCell = TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
             phoneNumberCell.Mask = "(###)###-####";
             cells.Add (phoneNumberCell);
-            cells.Add (PickerCell.Create (profile, a => a.DateOfBirth, (model, property) => { model.DateOfBirth = property; }, v => v?.ToString ("MMMM dd, yyyy"), "Date Of Birth"));
-            cells.Add (PickerCell.Create (profile, a => a.Gender, (model, property) => { model.Gender = property; }, v => genders.First (a => a.Key == v).Value, "Gender", genders));
+            cells.Add (PickerCell.CreateDatePicker (profile.DateOfBirth, (property) => { profile.DateOfBirth = property; }, "Date Of Birth"));
+            cells.Add (PickerCell.Create (profile.Gender, (property) => { profile.Gender = property; }, "Gender", genders));
             cells.Add (TextEditCell.Create (profile, a => a.FirstName, "First Name"));
             cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine1, "Address Line 1"));
             cells.Add (TextEditCell.Create (profile, a => a.AddressLine2, "Address Line 2"));
-            cells.Add (PickerCell.Create (profile, a => a.State, (model, property) => { model.State = property; }, v => states.FirstOrDefault (a => a.Key == v).Value, "State", states));
+            cells.Add (PickerCell.Create (profile.State, (property) => { profile.State = property; }, "State", states));
             cells.Add (TextEditCell.Create (profile, a => a.City, "City"));
             var zipCell = TextEditCell.Create (profile, a => a.Zip, "Zip");
             zipCell.Mask = "#####";
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
-            var subdivisionCell = PickerCell.Create (profile, a => a.SubdivisionId, (model, property) => { model.SubdivisionId = (int?)property; }, v => subdivisions.FirstOrDefault (a => a.Key == v).Value, "Subdivision", subdivisions, !subdivisionEnabled);
+            var subdivisionCell = PickerCell.Create (profile.SubdivisionId, (property) => { profile.SubdivisionId = (int?)property; }, "Subdivision", subdivisions, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
             cells.Add (zipCell);
             cells.Add (subdivisionCell);

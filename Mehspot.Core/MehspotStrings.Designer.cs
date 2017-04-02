@@ -214,5 +214,113 @@ namespace Mehspot.Core {
                 return ResourceManager.GetString("TutorEmployer_Description", resourceCulture);
             }
         }
+        
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterFirstName {
+            get {
+                return ResourceManager.GetString("BabysitterFirstName", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterCanDrive {
+            get {
+                return ResourceManager.GetString("BabysitterCanDrive", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterOwnCar {
+            get {
+                return ResourceManager.GetString("BabysitterOwnCar", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterHourlyRate {
+            get {
+                return ResourceManager.GetString("BabysitterHourlyRate", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterDescriptionDefault {
+            get {
+                return ResourceManager.GetString("BabysitterDescriptionDefault", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterAdditionalInformation {
+            get {
+                return ResourceManager.GetString("BabysitterAdditionalInformation", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterBabysitterCertificationInfoDefault {
+            get {
+                return ResourceManager.GetString("BabysitterBabysitterCertificationInfoDefault", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterCertificationInfo {
+            get {
+                return ResourceManager.GetString("BabysitterCertificationInfo", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterCertificationInfo_AHA_CPR {
+            get {
+                return ResourceManager.GetString("BabysitterCertificationInfo_AHA_CPR", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterCertificationInfo_AHA_FirstAid {
+            get {
+                return ResourceManager.GetString("BabysitterCertificationInfo_AHA_FirstAid", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterCertificationInfo_BabysitterBootCamp {
+            get {
+                return ResourceManager.GetString("BabysitterCertificationInfo_BabysitterBootCamp", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterCertificationInfo_Other {
+            get {
+                return ResourceManager.GetString("BabysitterCertificationInfo_Other", resourceCulture);
+            }
+        }
+        
+        public static string BabysitterOtherCertifications {
+            get {
+                return ResourceManager.GetString("BabysitterOtherCertifications", resourceCulture);
+            }
+        }
+        
+        public static string Adult {
+            get {
+                return ResourceManager.GetString("Adult", resourceCulture);
+            }
+        }
+        
+        public static string CollegeStudent {
+            get {
+                return ResourceManager.GetString("CollegeStudent", resourceCulture);
+            }
+        }
+        
+        public static string HighSchool {
+            get {
+                return ResourceManager.GetString("HighSchool", resourceCulture);
+            }
+        }
+        
+        public static string MiddleSchool {
+            get {
+                return ResourceManager.GetString("MiddleSchool", resourceCulture);
+            }
+        }
     }
 }

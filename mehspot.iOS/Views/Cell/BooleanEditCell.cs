@@ -52,5 +52,22 @@ namespace mehspot.iOS.Views
 
             return cell;
         }
+
+        public static BooleanEditCell Create<T> (T Model, Expression<Func<T, string>> property, string placeholder, bool isReadOnly = false) where T : class
+        {
+            var cell = (BooleanEditCell)Nib.Instantiate (null, null) [0];
+            cell.Switch.Enabled = !isReadOnly;
+            cell.FieldLabel.Text = placeholder;
+            var val = property.Compile ().Invoke (Model);
+
+            bool boolValue;
+            cell.Switch.SetState (bool.TryParse(val, out boolValue) && boolValue, false);
+
+            cell.Switch.ValueChanged += (sender, e) => {
+                Model.SetProperty (property, (((UISwitch)sender).On == true).ToString());
+            };
+
+            return cell;
+        }
     }
 }

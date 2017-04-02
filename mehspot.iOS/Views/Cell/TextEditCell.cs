@@ -29,7 +29,7 @@ namespace mehspot.iOS.Views
         UILabel FieldLabel { get; set; }
 
         [Outlet]
-        UITextField TextInput { get; set; }
+        public UITextField TextInput { get; set; }
 
 
         public int? MaxLength { get; set; }
@@ -46,17 +46,19 @@ namespace mehspot.iOS.Views
             }
         }
 
+        public string ValidationRegex { get; set; }
+
         public bool IsValid => ValidateMask (TextInput.Text, true);
 
         public Action<string> SetModelProperty;
         public event Action<TextEditCell, string> ValueChanged;
 
-        public static TextEditCell Create<T> (T Model, Expression<Func<T, string>> property, string placeholder, bool isReadOnly = false) where T : class
+        public static TextEditCell Create<T> (T Model, Expression<Func<T, string>> property, string label, string placeholder = null, bool isReadOnly = false) where T : class
         {
             var cell = (TextEditCell)Nib.Instantiate (null, null) [0];
             cell.SelectionStyle = UITableViewCellSelectionStyle.None;
-            cell.FieldLabel.Text = placeholder;
-            cell.TextInput.Placeholder = placeholder;
+            cell.FieldLabel.Text = label;
+            cell.TextInput.Placeholder = placeholder ?? label;
             cell.TextInput.Enabled = !isReadOnly;
             cell.TextInput.Text = property.Compile ().Invoke (Model)?.ToString ();
             cell.TextInput.EditingChanged += cell.TextInput_EditingChanged;
@@ -79,6 +81,11 @@ namespace mehspot.iOS.Views
 
             if (this.MaxLength.HasValue && newText.Length > this.MaxLength.Value)
                 return false;
+
+
+            if (ValidationRegex != null && !Regex.IsMatch (newText, ValidationRegex)) {
+                return false;
+            }
 
             if (this.Mask == null || this.ValidateMask (newText))
                 return true;

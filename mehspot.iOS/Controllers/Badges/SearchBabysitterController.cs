@@ -2,7 +2,6 @@ using Foundation;
 using System;
 using UIKit;
 using System.Threading.Tasks;
-using CoreGraphics;
 using System.Collections.Generic;
 using mehspot.iOS.Extensions;
 using Mehspot.Core.Contracts.Wrappers;
@@ -10,9 +9,9 @@ using mehspot.iOS.Wrappers;
 using Mehspot.Core.DTO.Search;
 using mehspot.iOS.Views;
 using System.Linq;
-using Mehspot.Core.Messaging;
 using Mehspot.Core;
 using mehspot.iOS.Views.Cell;
+using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {
@@ -25,10 +24,14 @@ namespace mehspot.iOS
         private List<UITableViewCell> cells;
         private KeyValuePair<int?, string> [] ageRanges;
 
+
         public SearchBabysitterController (IntPtr handle) : base (handle)
         {
             viewHelper = new ViewHelper (this.View);
         }
+
+        public int BadgeId;
+        public string BadgeName;
 
         public override void ViewDidLoad ()
         {
@@ -81,7 +84,8 @@ namespace mehspot.iOS
                 var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
                 destinationViewController.Filter = filter;
                 destinationViewController.AgeRanges = ageRanges;
-                destinationViewController.BadgeName = "Babysitter";
+                destinationViewController.BadgeName = BadgeService.BadgeNames.Babysitter;
+                destinationViewController.BadgeId = this.BadgeId;
             }
 
             base.PrepareForSegue (segue, sender);
@@ -102,7 +106,7 @@ namespace mehspot.iOS
             cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasPicture, "Has Profile Picture"));
             cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasReferences, "Has References"));
             cells.Add (BooleanEditCell.Create (filter, a => a.HasCertification, "Has Certification"));
-            cells.Add (PickerCell.Create (filter, a => a.AgeRange, (model, property) => { model.AgeRange = property; }, v => ageRanges.FirstOrDefault (a => a.Key == v).Value, "Age Range", ageRanges));
+            cells.Add (PickerCell.Create (filter.AgeRange, (property) => { filter.AgeRange = property; }, "Age Range", ageRanges));
             viewHelper.HideOverlay ();
             viewWasInitialized = true;
         }
@@ -110,7 +114,7 @@ namespace mehspot.iOS
 
         private async Task<KeyValuePair<int?, string> []> GetAgeRangesAsync ()
         {
-            var result = await badgeService.GetAgeRangesAsync (BadgeService.BadgeNames.Babysitter);
+            var result = await badgeService.GetAgeRangesAsync (BadgeId);
             if (result.IsSuccess) {
                 return result.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
             }
