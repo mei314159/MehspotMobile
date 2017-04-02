@@ -261,6 +261,10 @@
     </Compile>
     <Compile Include="Views\MultiSelectPicker\MultiSelectPickerViewController.cs" />
     <Compile Include="Views\MultiSelectPicker\SourceItem.cs" />
+    <Compile Include="Controllers\SignupViewController.cs" />
+    <Compile Include="Controllers\SignupViewController.designer.cs">
+      <DependentUpon>SignupViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

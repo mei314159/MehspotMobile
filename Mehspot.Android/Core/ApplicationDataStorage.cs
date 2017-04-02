@@ -17,11 +17,11 @@ namespace mehspot.Android.Core
             settings = Application.Context.GetSharedPreferences ("Mehspot", FileCreationMode.Private);
         }
 
-        public AuthenticationInfoDto AuthInfo {
+        public AuthenticationInfoDTO AuthInfo {
             get {
                 var data = settings.GetString (nameof (IApplicationDataStorage.AuthInfo), null);
                 if (!string.IsNullOrWhiteSpace (data)) {
-                    var result = JsonConvert.DeserializeObject<AuthenticationInfoDto> (data);
+                    var result = JsonConvert.DeserializeObject<AuthenticationInfoDTO> (data);
                     return result;
                 }
 
@@ -93,6 +93,25 @@ namespace mehspot.Android.Core
             get {
                 return OsType.Android;
             }
+        }
+
+        public T Get<T> (string key) where T : class
+        {
+            var data = settings.GetString (key, null);
+            if (!string.IsNullOrWhiteSpace (data)) {
+                var result = JsonConvert.DeserializeObject<T> (data);
+                return result;
+            }
+
+            return null;
+        }
+
+        public void Set<T> (string key, T value) where T : class
+        {
+            var data = value == null ? null : JsonConvert.SerializeObject (value);
+            var prefEditor = settings.Edit ();
+            prefEditor.PutString (key, data);
+            prefEditor.Commit ();
         }
     }
 }

@@ -51,7 +51,7 @@
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\MessagesService.cs" />
     <Compile Include="Services\BadgeService.cs" />
-    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\AccountService.cs" />
     <Compile Include="DTO\Messaging\MessageBoardItemDto.cs" />
     <Compile Include="DTO\Messaging\MessageDto.cs" />
     <Compile Include="DTO\Profile\SubdivisionDto.cs" />
@@ -80,6 +80,9 @@
     <Compile Include="DTO\Badges\EditBadgeProfileDTO.cs" />
     <Compile Include="DTO\Badges\BadgeDataType.cs" />
     <Compile Include="DTO\Badges\ProfileKeys.cs" />
+    <Compile Include="DTO\SignUpDTO.cs" />
+    <Compile Include="DTO\SignUpResultDTO.cs" />
+    <Compile Include="Models\SignUpModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

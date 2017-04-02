@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using mehspot.Core.Auth;
 using Mehspot.Core.Contracts.Wrappers;
@@ -8,9 +9,9 @@ namespace Mehspot.Core.Models
     public class SignInModel
     {
         private IViewHelper viewHelper;
-        readonly AuthenticationService authManager;
+        readonly AccountService authManager;
 
-        public SignInModel (AuthenticationService authManager, IViewHelper alertWrapper)
+        public SignInModel (AccountService authManager, IViewHelper alertWrapper)
         {
             this.authManager = authManager;
             this.viewHelper = alertWrapper;

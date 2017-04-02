@@ -47,6 +47,7 @@ namespace mehspot.Core
                     }
 
                 } catch (Exception ex) {
+                    MehspotAppContext.Instance.LogException(ex);
                     return new Result<T> {
                         IsSuccess = false,
                         ErrorMessage = ex.Message
@@ -60,27 +61,30 @@ namespace mehspot.Core
             return SendDataAsync<TResult> (uri, data, HttpMethod.Put);
         }
 
-        public Task<Result<TResult>> PostAsync<TResult> (string uri, object data)
+        public Task<Result<TResult>> PostAsync<TResult> (string uri, object data, bool anonymously = false)
         {
-            return SendDataAsync<TResult> (uri, data, HttpMethod.Post);
+            return SendDataAsync<TResult> (uri, data, HttpMethod.Post, anonymously);
         }
 
-        public Task<Result<TResult>> SendDataAsync<TResult> (string uri, object data, HttpMethod method) {
+        public Task<Result<TResult>> SendDataAsync<TResult> (string uri, object data, HttpMethod method, bool anonymously = false) {
 
             var serializedData = JsonConvert.SerializeObject (data);
             var stringContent = new StringContent (serializedData, System.Text.Encoding.UTF8, "application/json");
             stringContent.Headers.ContentLength = serializedData.Length;
 
-            return SendDataAsync<TResult> (uri, method, stringContent);
+            return SendDataAsync<TResult> (uri, method, stringContent, anonymously);
         }
 
-        public async Task<Result<TResult>> SendDataAsync<TResult> (string uri, HttpMethod method, HttpContent content)
+        public async Task<Result<TResult>> SendDataAsync<TResult> (string uri, HttpMethod method, HttpContent content, bool anonymously = false)
         {
             var requestUri = new Uri ($"{Constants.ApiHost}/api/{uri}");
 
             using (var webClient = new HttpClient ()) {
                 try {
-                    webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue ("Bearer", this.ApplicationDataStorage.AuthInfo.AccessToken);
+                    if (!anonymously)
+                    {
+                        webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.ApplicationDataStorage.AuthInfo.AccessToken);
+                    }
 
                     HttpResponseMessage response;
                     if (method == HttpMethod.Put)
