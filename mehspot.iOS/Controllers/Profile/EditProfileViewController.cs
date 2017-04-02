@@ -3,7 +3,6 @@ using System;
 using UIKit;
 using Mehspot.Core.Contracts.Wrappers;
 using System.Collections.Generic;
-using Mehspot.Core.Messaging;
 using Mehspot.Core.DTO;
 using Mehspot.Core;
 using mehspot.iOS.Wrappers;

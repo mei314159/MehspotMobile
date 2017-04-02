@@ -124,7 +124,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
                 <exit id="2998" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1810" y="-859"/>
+            <point key="canvasLocation" x="-2012" y="-1378"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -181,11 +181,11 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="join" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25">
-                                <rect key="frame" x="127" y="396" width="120" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25" tag="2">
+                                <rect key="frame" x="88" y="430" width="200" height="30"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.70980392156862748" green="0.83137254901960789" blue="0.38039215686274508" alpha="1"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="60"/>
+                                    <constraint firstAttribute="width" constant="200" id="60"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Sign In">
@@ -207,10 +207,11 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57">
-                                <rect key="frame" x="20" y="442" width="136" height="30"/>
+                                <rect key="frame" x="20" y="381" width="136" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Forgot password">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.047058823529411764" green="0.42745098039215684" blue="0.996078431372549" alpha="1"/>
                                 </state>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2858">
@@ -229,6 +230,35 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New to MehSpot?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5879" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="127" y="475" width="122" height="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="5882" firstItem="5879" firstAttribute="width" constant="122"/>
+                                </constraints>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5890">
+                                <rect key="frame" x="88" y="509" width="200" height="30"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.95686274509803926" green="0.65490196078431373" blue="0.11372549019607843" alpha="1"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="SignInButtonTouched:" destination="5892" eventType="touchUpInside" id="5891"/>
+                                    <segue id="5913" destination="5753" kind="show"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="5896" firstItem="5890" firstAttribute="width" constant="200"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -240,18 +270,23 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                             <constraint firstItem="19" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="8" id="22"/>
                             <constraint firstItem="19" firstAttribute="top" secondItem="14" secondAttribute="bottom" constant="42" id="23"/>
                             <constraint firstAttribute="centerY" secondItem="14" secondAttribute="centerY" constant="40" id="24"/>
-                            <constraint firstItem="25" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="16" id="26"/>
+                            <constraint firstItem="25" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="50" id="26"/>
                             <constraint firstItem="25" firstAttribute="centerX" secondItem="19" secondAttribute="centerX" id="27"/>
                             <constraint firstItem="12" firstAttribute="leading" secondItem="19" secondAttribute="leading" id="32"/>
                             <constraint firstItem="13" firstAttribute="leading" secondItem="14" secondAttribute="leading" id="33"/>
                             <constraint firstItem="40" firstAttribute="trailing" secondItem="9" secondAttribute="trailing" id="42"/>
                             <constraint firstItem="40" firstAttribute="leading" secondItem="9" secondAttribute="leading" id="43"/>
                             <constraint firstItem="57" firstAttribute="leading" secondItem="19" secondAttribute="leading" id="58"/>
-                            <constraint firstItem="57" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="16" id="59"/>
                             <constraint firstItem="2858" firstAttribute="top" secondItem="5" secondAttribute="bottom" id="2860"/>
                             <constraint firstItem="2858" firstAttribute="trailing" secondItem="9" secondAttribute="trailing" id="2861"/>
                             <constraint firstItem="2858" firstAttribute="leading" secondItem="9" secondAttribute="leading" id="2862"/>
                             <constraint firstItem="40" firstAttribute="top" secondItem="2858" secondAttribute="bottom" id="2864"/>
+                            <constraint id="5888" firstItem="5879" firstAttribute="centerX" secondItem="25" secondAttribute="centerX"/>
+                            <constraint id="5889" firstItem="5879" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="15"/>
+                            <constraint id="5894" firstItem="5890" firstAttribute="top" secondItem="5879" secondAttribute="bottom" constant="15"/>
+                            <constraint id="5895" firstItem="5890" firstAttribute="centerX" secondItem="25" secondAttribute="centerX"/>
+                            <constraint id="5897" firstItem="57" firstAttribute="leading" secondItem="19" secondAttribute="leading"/>
+                            <constraint id="5898" firstItem="57" firstAttribute="top" secondItem="19" secondAttribute="bottom"/>
                         </constraints>
                     </view>
                     <connections>
@@ -261,7 +296,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2376" y="-860"/>
+            <point key="canvasLocation" x="-2578" y="-1379"/>
         </scene>
         <!--Title-->
         <scene sceneID="86">
@@ -940,6 +975,250 @@ If you are under age of 18, we recommend that you have your parents escort you t
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5540" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="359" y="1223"/>
+        </scene>
+        <scene sceneID="5752">
+            <objects>
+                <viewController storyboardIdentifier="SignupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5753" customClass="SignupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5790"/>
+                        <viewControllerLayoutGuide type="bottom" id="5794"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5758" clipsSubviews="YES">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5764">
+                                <rect key="frame" x="0.0" y="64" width="375" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="5765"/>
+                                </constraints>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5767">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5772"/>
+                                </constraints>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Sign Up" id="5768">
+                                        <barButtonItem key="leftBarButtonItem" id="5916" title="Back">
+                                            <connections>
+                                                <segue id="5931" destination="5810" kind="unwind" unwindAction="UnwindToLoginViewController:" identifier="UnwindToLoginSegue"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" id="5954" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="234" width="375" height="433"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5760" misplaced="YES">
+                                        <rect key="frame" x="20" y="1" width="123" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5755">
+                                        <rect key="frame" x="20" y="30" width="335" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="continue"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5812" misplaced="YES">
+                                        <rect key="frame" x="20" y="73" width="68" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5811" tag="1">
+                                        <rect key="frame" x="20" y="102" width="335" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="continue"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5759" misplaced="YES">
+                                        <rect key="frame" x="20" y="145" width="95" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5757">
+                                        <rect key="frame" x="20" y="174" width="335" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="join" secureTextEntry="YES"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5822" misplaced="YES">
+                                        <rect key="frame" x="20" y="217" width="180" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5821">
+                                        <rect key="frame" x="20" y="246" width="335" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="join" secureTextEntry="YES"/>
+                                    </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="5830" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="20" y="292" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By checking this box, you agree to our" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5833" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="86" y="291" width="269" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <constraints>
+                                            <constraint id="5861" firstItem="5833" firstAttribute="height" constant="18"/>
+                                        </constraints>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5837" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="86" y="309" width="86" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Terms of Use">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <constraints>
+                                            <constraint id="5840" firstItem="5837" firstAttribute="height" constant="18"/>
+                                            <constraint id="5842" firstItem="5837" firstAttribute="width" constant="86"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="TermsofUseButtonTouched:" destination="5753" id="5871" eventType="touchUpInside"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5843" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="172" y="309" width="5" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <constraints>
+                                            <constraint id="5846" firstItem="5843" firstAttribute="width" constant="5"/>
+                                            <constraint id="5847" firstItem="5843" firstAttribute="height" constant="18"/>
+                                        </constraints>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5848" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="179" y="309" width="90" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Privacy Policy">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <constraints>
+                                            <constraint id="5849" firstItem="5848" firstAttribute="height" constant="18"/>
+                                            <constraint id="5853" firstItem="5848" firstAttribute="width" constant="90"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="PrivacyPolicyButtonTouched:" destination="5753" id="5870" eventType="touchUpInside"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5854" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="274" y="309" width="25" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <constraints>
+                                            <constraint id="5856" firstItem="5854" firstAttribute="height" constant="18"/>
+                                            <constraint id="5857" firstItem="5854" firstAttribute="width" constant="25"/>
+                                        </constraints>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5862" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="86" y="327" width="146" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Community Guidelines">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <constraints>
+                                            <constraint id="5863" firstItem="5862" firstAttribute="height" constant="18"/>
+                                            <constraint id="5867" firstItem="5862" firstAttribute="width" constant="146"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="CommunityGuidelinesButtonTouched:" destination="5753" id="5869" eventType="touchUpInside"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5761" tag="4">
+                                        <rect key="frame" x="88" y="361" width="200" height="30"/>
+                                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.65098039215686276" green="0.803921568627451" blue="0.30980392156862746" alpha="1"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="SignupButtonTouched:" destination="5753" id="5878" eventType="touchUpInside"/>
+                                        </connections>
+                                        <constraints>
+                                            <constraint id="5915" firstItem="5761" firstAttribute="width" constant="200"/>
+                                        </constraints>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint id="5959" firstItem="5755" firstAttribute="leading" secondItem="5954" secondAttribute="leading" constant="20"/>
+                                    <constraint id="5960" firstItem="5954" firstAttribute="trailing" secondItem="5755" secondAttribute="trailing" constant="20"/>
+                                    <constraint id="5962" firstItem="5755" firstAttribute="top" secondItem="5954" secondAttribute="top" constant="30"/>
+                                    <constraint id="5963" firstItem="5755" firstAttribute="top" secondItem="5760" secondAttribute="bottom" constant="8"/>
+                                    <constraint id="5964" firstItem="5760" firstAttribute="leading" secondItem="5755" secondAttribute="leading"/>
+                                    <constraint id="5965" firstItem="5811" firstAttribute="top" secondItem="5755" secondAttribute="bottom" constant="42"/>
+                                    <constraint id="5966" firstItem="5757" firstAttribute="top" secondItem="5811" secondAttribute="bottom" constant="42"/>
+                                    <constraint id="5967" firstItem="5821" firstAttribute="top" secondItem="5757" secondAttribute="bottom" constant="42"/>
+                                    <constraint id="5968" firstItem="5812" firstAttribute="leading" secondItem="5811" secondAttribute="leading"/>
+                                    <constraint id="5969" firstItem="5759" firstAttribute="leading" secondItem="5757" secondAttribute="leading"/>
+                                    <constraint id="5970" firstItem="5822" firstAttribute="leading" secondItem="5821" secondAttribute="leading"/>
+                                    <constraint id="5971" firstItem="5811" firstAttribute="leading" secondItem="5755" secondAttribute="leading"/>
+                                    <constraint id="5972" firstItem="5757" firstAttribute="leading" secondItem="5811" secondAttribute="leading"/>
+                                    <constraint id="5973" firstItem="5821" firstAttribute="leading" secondItem="5757" secondAttribute="leading"/>
+                                    <constraint id="5974" firstItem="5821" firstAttribute="trailing" secondItem="5757" secondAttribute="trailing"/>
+                                    <constraint id="5975" firstItem="5757" firstAttribute="trailing" secondItem="5811" secondAttribute="trailing"/>
+                                    <constraint id="5976" firstItem="5811" firstAttribute="trailing" secondItem="5755" secondAttribute="trailing"/>
+                                    <constraint id="5977" firstItem="5821" firstAttribute="top" secondItem="5822" secondAttribute="bottom" constant="8"/>
+                                    <constraint id="5978" firstItem="5757" firstAttribute="top" secondItem="5759" secondAttribute="bottom" constant="8"/>
+                                    <constraint id="5979" firstItem="5811" firstAttribute="top" secondItem="5812" secondAttribute="bottom" constant="8"/>
+                                    <constraint id="5980" firstItem="5830" firstAttribute="leading" secondItem="5821" secondAttribute="leading"/>
+                                    <constraint id="5981" firstItem="5830" firstAttribute="top" secondItem="5821" secondAttribute="bottom" constant="16"/>
+                                    <constraint id="5982" firstItem="5830" firstAttribute="top" secondItem="5833" secondAttribute="top" constant="1"/>
+                                    <constraint id="5983" firstItem="5833" firstAttribute="leading" secondItem="5830" secondAttribute="trailing" constant="15"/>
+                                    <constraint id="5984" firstItem="5837" firstAttribute="leading" secondItem="5833" secondAttribute="leading"/>
+                                    <constraint id="5985" firstItem="5862" firstAttribute="leading" secondItem="5837" secondAttribute="leading"/>
+                                    <constraint id="5986" firstItem="5843" firstAttribute="leading" secondItem="5837" secondAttribute="trailing"/>
+                                    <constraint id="5987" firstItem="5837" firstAttribute="top" secondItem="5833" secondAttribute="bottom"/>
+                                    <constraint id="5988" firstItem="5862" firstAttribute="top" secondItem="5837" secondAttribute="bottom"/>
+                                    <constraint id="5989" firstItem="5843" firstAttribute="centerY" secondItem="5837" secondAttribute="centerY"/>
+                                    <constraint id="5990" firstItem="5848" firstAttribute="leading" secondItem="5843" secondAttribute="centerX" constant="4"/>
+                                    <constraint id="5991" firstItem="5848" firstAttribute="centerY" secondItem="5837" secondAttribute="centerY"/>
+                                    <constraint id="5992" firstItem="5854" firstAttribute="centerY" secondItem="5848" secondAttribute="centerY"/>
+                                    <constraint id="5993" firstItem="5854" firstAttribute="leading" secondItem="5848" secondAttribute="trailing" constant="5"/>
+                                    <constraint id="5994" firstItem="5761" firstAttribute="centerX" secondItem="5954" secondAttribute="centerX"/>
+                                    <constraint id="5995" firstItem="5761" firstAttribute="top" secondItem="5821" secondAttribute="bottom" constant="85"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5764" firstAttribute="trailing" secondItem="5758" secondAttribute="trailing" id="5785"/>
+                            <constraint firstItem="5764" firstAttribute="leading" secondItem="5758" secondAttribute="leading" id="5786"/>
+                            <constraint firstItem="5767" firstAttribute="trailing" secondItem="5758" secondAttribute="trailing" id="5791"/>
+                            <constraint firstItem="5767" firstAttribute="leading" secondItem="5758" secondAttribute="leading" id="5792"/>
+                            <constraint firstItem="5764" firstAttribute="top" secondItem="5767" secondAttribute="bottom" id="5793"/>
+                            <constraint id="5945" firstItem="5767" firstAttribute="top" secondItem="5758" secondAttribute="top" constant="20"/>
+                            <constraint id="5955" firstItem="5954" firstAttribute="leading" secondItem="5758" secondAttribute="leading"/>
+                            <constraint id="5956" firstItem="5954" firstAttribute="trailing" secondItem="5758" secondAttribute="trailing"/>
+                            <constraint id="5957" firstItem="5954" firstAttribute="top" secondItem="5764" secondAttribute="bottom" constant="10"/>
+                            <constraint id="5958" firstItem="5954" firstAttribute="bottom" secondItem="5758" secondAttribute="bottom"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="UserNameField" destination="5755" id="name-outlet-5755"/>
+                        <outlet property="EmailField" destination="5811" id="name-outlet-5811"/>
+                        <outlet property="PasswordField" destination="5757" id="5756"/>
+                        <outlet property="ConfirmationPasswordField" destination="5821" id="name-outlet-5821"/>
+                        <outlet property="AgreeWithTerms" destination="5830" id="name-outlet-5830"/>
+                        <outlet property="ContentWrapper" destination="5954" id="name-outlet-5954"/>
+                    </connections>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5795" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5810" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-2021" y="-2149"/>
         </scene>
     </scenes>
     <resources>

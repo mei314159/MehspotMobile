@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Mehspot.Core.DTO
 {
-    public class AuthenticationInfoDto
+    public class AuthenticationInfoDTO
     {
         [JsonProperty (PropertyName = "access_token")]
         public string AccessToken { get; set; }
@@ -28,6 +28,4 @@ namespace Mehspot.Core.DTO
 
         public DateTime AuthDate { get; set; }
     }
-
-    
 }

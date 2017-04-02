@@ -8,12 +8,12 @@ namespace mehspot.iOS.Core
 {
     public class ApplicationDataStorage : IApplicationDataStorage
     {
-        public AuthenticationInfoDto AuthInfo {
+        public AuthenticationInfoDTO AuthInfo {
             get {
                 var data = NSUserDefaults.StandardUserDefaults.StringForKey (nameof (IApplicationDataStorage.AuthInfo));
 
                 if (!string.IsNullOrWhiteSpace (data)) {
-                    var result = JsonConvert.DeserializeObject<AuthenticationInfoDto> (data);
+                    var result = JsonConvert.DeserializeObject<AuthenticationInfoDTO> (data);
                     return result;
                 }
 
@@ -105,6 +105,29 @@ namespace mehspot.iOS.Core
         public OsType OsType {
             get {
                 return OsType.iOS;
+            }
+        }
+
+        public T Get<T> (string key) where T : class
+        {
+            var data = NSUserDefaults.StandardUserDefaults.StringForKey (key);
+
+            if (!string.IsNullOrWhiteSpace (data)) {
+                var result = JsonConvert.DeserializeObject<T> (data);
+                return result;
+            }
+
+            return null;
+        }
+
+        public void Set<T> (string key, T value) where T : class
+        {
+            if (value == null) {
+                NSUserDefaults.StandardUserDefaults.RemoveObject (key);
+            } else {
+                var data = JsonConvert.SerializeObject (value);
+                NSUserDefaults.StandardUserDefaults.SetString (data, key);
+                NSUserDefaults.StandardUserDefaults.Synchronize ();
             }
         }
     }

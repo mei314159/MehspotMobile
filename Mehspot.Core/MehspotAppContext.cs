@@ -24,7 +24,7 @@ namespace Mehspot.Core
         public void Initialize (IApplicationDataStorage dataStorage)
         {
             DataStorage = dataStorage;
-            AuthManager = new AuthenticationService (dataStorage);
+            AuthManager = new AccountService (dataStorage);
             AuthManager.Authenticated += OnAuthenticated;
             var isAuthenticated = AuthManager.IsAuthenticated ();
             if (isAuthenticated) {
@@ -35,8 +35,9 @@ namespace Mehspot.Core
         }
 
         public IApplicationDataStorage DataStorage { get; private set; }
+        public event Action<Exception> OnException;
 
-        public AuthenticationService AuthManager { get; private set; }
+        public AccountService AuthManager { get; private set; }
 
         public void DisconnectSignalR ()
         {
@@ -66,6 +67,11 @@ namespace Mehspot.Core
             await connection.Start ();
         }
 
+        public void LogException(Exception ex)
+        {
+            OnException?.Invoke(ex);
+        }
+
         void HubConnection_StateChanged (StateChange obj)
         {
             if (obj.NewState == ConnectionState.Disconnected) {
@@ -77,7 +83,7 @@ namespace Mehspot.Core
 
         void HubConnection_Error (Exception ex)
         {
-            OnHubError (ex);
+            LogException(ex);
         }
 
         private void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
@@ -87,14 +93,7 @@ namespace Mehspot.Core
             }
         }
 
-        private void OnHubError (Exception ex)
-        {
-            if (HubError != null) {
-                HubError (ex);
-            }
-        }
-
-        private void OnAuthenticated (AuthenticationInfoDto authInfo)
+        private void OnAuthenticated (AuthenticationInfoDTO authInfo)
         {
             if (connection == null) {
                 Task.Factory.StartNew (async () => {

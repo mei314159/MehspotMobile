@@ -110,7 +110,7 @@ namespace mehspot.iOS
             this.NavBar.TopItem.Title = $"{BadgeService.BadgeNames.Babysitter} {profile.Details.UserName}";
             this.FirstNameLabel.Text = profile.BadgeValues.FirstName;
             this.SubdivisionLabel.Text = profile.Details.SubdivisionName.Trim ();
-            this.HourlyRateLabel.Text = $"${profile.BadgeValues.HourlyRate}/hr";
+            this.HourlyRateLabel.Text = $"${(profile.BadgeValues.HourlyRate ?? 0)}/hr";
             this.AgeRangeLabel.Text = profile.BadgeValues.AgeRange;
             this.DistanceLabel.Text = Math.Round (SearchResultDTO.Details.DistanceFrom ?? 0, 2) + " miles";
             this.LikesLabel.Text = $"{SearchResultDTO.Details.Likes} Likes / {SearchResultDTO.Details.Recommendations} Recommendations";

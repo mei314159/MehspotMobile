@@ -31,7 +31,7 @@ namespace mehspot.iOS
             InitializeHockeyApp ();
 
             MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
-            MehspotAppContext.Instance.HubError += SignalRHubError;
+            MehspotAppContext.Instance.OnException += OnException;
 
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
@@ -203,9 +203,9 @@ namespace mehspot.iOS
             return storyboard.InstantiateInitialViewController ();
         }
 
-        void SignalRHubError (Exception obj)
+        void OnException (Exception exception)
         {
-            Console.WriteLine ($"SignalR Exception: {obj.Message} + {Environment.NewLine} + {obj.StackTrace}");
+            Console.WriteLine ($"Exception: {exception.Message} + {Environment.NewLine} + {exception.StackTrace}");
         }
     }
 }

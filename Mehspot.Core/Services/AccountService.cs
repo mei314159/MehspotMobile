@@ -10,25 +10,22 @@ using Mehspot.Core.DTO;
 
 namespace mehspot.Core.Auth
 {
-    public class AuthenticationService
+    public class AccountService:BaseDataService
     {
-        private readonly IApplicationDataStorage _applicationDataStorage;
-
-        public AuthenticationService (IApplicationDataStorage applicationDataStorage)
+        public AccountService (IApplicationDataStorage applicationDataStorage): base(applicationDataStorage)
         {
-            this._applicationDataStorage = applicationDataStorage;
         }
 
-        public AuthenticationInfoDto AuthInfo 
+        public AuthenticationInfoDTO AuthInfo 
         {
-            get { return _applicationDataStorage.AuthInfo; }
+            get { return this.ApplicationDataStorage.AuthInfo; }
         }
 
-        public event Action<AuthenticationInfoDto> Authenticated;
+        public event Action<AuthenticationInfoDTO> Authenticated;
 
         public bool IsAuthenticated ()
         {
-            return _applicationDataStorage.AuthInfo != null && (DateTime.Now - _applicationDataStorage.AuthInfo.AuthDate).TotalSeconds < _applicationDataStorage.AuthInfo.ExpiresIn;
+            return this.ApplicationDataStorage.AuthInfo != null && (DateTime.Now - this.ApplicationDataStorage.AuthInfo.AuthDate).TotalSeconds < this.ApplicationDataStorage.AuthInfo.ExpiresIn;
         }
 
         public async Task<AuthenticationResult> SignInAsync (string email, string password)
@@ -45,9 +42,9 @@ namespace mehspot.Core.Auth
                     var response = await webClient.PostAsync (uri, new FormUrlEncodedContent (data)).ConfigureAwait (false);
                     var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                        var authInfo = JsonConvert.DeserializeObject<AuthenticationInfoDto> (responseString);
+                        var authInfo = JsonConvert.DeserializeObject<AuthenticationInfoDTO> (responseString);
                         authInfo.AuthDate = DateTime.Now;
-                        _applicationDataStorage.AuthInfo = authInfo;
+                        this.ApplicationDataStorage.AuthInfo = authInfo;
                         if (Authenticated != null) {
                             Authenticated (authInfo);
                         }
@@ -73,9 +70,15 @@ namespace mehspot.Core.Auth
             }
         }
 
+        public async Task<Result> SignUpAsync(string email, string username, string password, string confirmPassword)
+        {
+            var result = await this.PostAsync<object>("Account/Register", new SignUpDTO { Email = email, UserName = username, Password = password, ConfirmPassword = confirmPassword }, true).ConfigureAwait(false);
+            return result;
+        }
+
         public void SignOut()
         {
-            _applicationDataStorage.AuthInfo = null;
+            this.ApplicationDataStorage.AuthInfo = null;
         }
     }
 }
