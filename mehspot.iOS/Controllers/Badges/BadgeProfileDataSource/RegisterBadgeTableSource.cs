@@ -72,24 +72,23 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
                 var itemName = badgeItem.Name;
                 var badgeSpecificName = string.Format ("{0}{1}", profile.BadgeName, itemName);
-                var badgeSpecificValue = MehspotStrings.ResourceManager.GetString (badgeSpecificName);
+                var badgeSpecificValue = MehspotResources.ResourceManager.GetString (badgeSpecificName);
                 var badgeItemDefaultKey = string.Format ("{0}{1}Default", profile.BadgeName, itemName);
-                var placeholder = MehspotStrings.ResourceManager.GetString (badgeItemDefaultKey) ?? badgeItem.DefaultValue;
-                var label = badgeSpecificValue ?? MehspotStrings.ResourceManager.GetString (itemName) ?? itemName;
+                var placeholder = MehspotResources.ResourceManager.GetString (badgeItemDefaultKey) ?? badgeItem.DefaultValue;
+                var label = badgeSpecificValue ?? MehspotResources.ResourceManager.GetString (itemName) ?? itemName;
 
                 BadgeDataType valueType = BadgeDataType.String;
                 Enum.TryParse (badgeItem.ValueType, out valueType);
                 if (valueType == BadgeDataType.Boolean) {
-                    cells.Add (BooleanEditCell.Create (badgeValue.Value, a => a.Value, label));
+                    bool value;
+                    value = bool.TryParse (badgeValue.Value.Value, out value) && value;
+                    cells.Add (BooleanEditCell.Create (value, a => badgeValue.Value.Value = a.ToString (), label));
                 } else if (valueType == BadgeDataType.List) {
-                    var listData = badgeItem.BadgeItemOptions.Select (a => new KeyValuePair<string, string> (a.Id.ToString (), MehspotStrings.ResourceManager.GetString (a.Name) ?? a.Name)).ToArray ();
+                    var listData = badgeItem.BadgeItemOptions.Select (a => new KeyValuePair<string, string> (a.Id.ToString (), MehspotResources.ResourceManager.GetString (a.Name) ?? a.Name)).ToArray ();
                     cells.Add (PickerCell.Create (badgeValue.Value.Value, (property) => { badgeValue.Value.Value = property; }, label, listData));
                 } else if (valueType == BadgeDataType.CheckList) {
-                    var listData = badgeItem.BadgeItemOptions
-                                            .Select (a => new KeyValuePair<string, string> (a.Id.ToString (), MehspotStrings.ResourceManager.GetString (a.Name)?? a.Name)).ToArray ();
+                    var listData = badgeItem.BadgeItemOptions.Select (a => new KeyValuePair<string, string> (a.Id.ToString (), MehspotResources.ResourceManager.GetString (a.Name)?? a.Name)).ToArray ();
                     cells.Add (PickerCell.CreateMultiselect (badgeValue.Value.Values, (property) => { badgeValue.Value.Values = property?.ToArray(); }, label, listData));
-                } else if (valueType == BadgeDataType.LongString) {
-                    cells.Add (TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder));
                 } else if (valueType == BadgeDataType.Integer) {
                     var cell = TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder);
                     cell.ValidationRegex = "^[0-9]+$";
@@ -100,8 +99,10 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                     cell.ValidationRegex = "^\\d+([\\.\\,]{0,1}\\d{0,2})?$";
                     cell.TextInput.KeyboardType = UIKeyboardType.DecimalPad;
                     cells.Add (cell);
-                //} else if (valueType == BadgeDataType.Date) {
-                //    cells.Add (PickerCell.Create (badgeValue.Value, a => a.Value, (model, property) => { badgeValue.Value.Value = property; }, v => v, label));
+                } else if (valueType == BadgeDataType.Date) {
+                    cells.Add (PickerCell.CreateDatePicker (badgeValue.Value.Value, (property) => { badgeValue.Value.Value = property; }, label));
+                } else if (valueType == BadgeDataType.LongString) {
+                    cells.Add (TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder));
                 } else
                     cells.Add (TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder));
             }

@@ -15,7 +15,6 @@ namespace Mehspot.Core
         private IHubProxy proxy;
         public static MehspotAppContext Instance => lazy.Value;
         public event Action<MessagingNotificationType, MessageDto> ReceivedNotification;
-        public event Action<Exception> HubError;
 
         private MehspotAppContext ()
         {

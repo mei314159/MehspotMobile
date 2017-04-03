@@ -104,13 +104,13 @@ namespace mehspot.iOS
         private void ConfigureCell (BadgeItemCell cell, BadgeSummaryDTO badge)
         {
             cell.BadgePicture.Image = UIImage.FromFile ("badges/" + badge.BadgeName.ToLower () + (badge.IsRegistered ? string.Empty : "b"));
-            cell.BadgeName.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName);
+            cell.BadgeName.Text = MehspotResources.ResourceManager.GetString (badge.BadgeName);
             cell.BadgeSummary = badge;
             cell.SearchButton.Layer.BorderWidth = cell.BadgeRegisterButton.Layer.BorderWidth = 1;
             cell.SearchButton.Layer.BorderColor = cell.SearchButton.TitleColor (UIControlState.Normal).CGColor;
             cell.BadgeRegisterButton.Layer.BorderColor = cell.BadgeRegisterButton.TitleColor (UIControlState.Normal).CGColor;
             cell.BadgeRegisterButton.SetTitle (badge.IsRegistered ? "Update" : "Register", UIControlState.Normal);
-            cell.BadgeDescription.Text = MehspotStrings.ResourceManager.GetString (badge.BadgeName + "_Description");
+            cell.BadgeDescription.Text = MehspotResources.ResourceManager.GetString (badge.BadgeName + "_Description");
             cell.LikesCount.Text = badge.Likes.ToString ();
             cell.RecommendationsCount.Text = badge.Recommendations.ToString ();
             cell.ReferencesCount.Text = badge.References.ToString ();

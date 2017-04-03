@@ -45,7 +45,7 @@ namespace mehspot.iOS
 
         private void SetTitle () {
 
-            var badgeName = MehspotStrings.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
+            var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
             var title =
                 BadgeIsRegistered ?
                 "Update " + (this.BadgeName == BadgeService.BadgeNames.BabysitterEmployer ? "babysitting (employer) page" : badgeName)

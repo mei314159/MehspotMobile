@@ -39,8 +39,8 @@
     <Compile Include="MehspotAppContext.cs" />
     <Compile Include="Models\MessagingModel.cs" />
     <Compile Include="Contracts\ViewControllers\IMessagingViewController.cs" />
-    <Compile Include="MehspotStrings.Designer.cs">
-      <DependentUpon>MehspotStrings.resx</DependentUpon>
+    <Compile Include="MehspotResources.Designer.cs">
+      <DependentUpon>MehspotResources.resx</DependentUpon>
     </Compile>
     <Compile Include="DTO\ValidationModelBase.cs" />
     <Compile Include="DTO\Profile\ProfileDto.cs" />
@@ -115,9 +115,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MehspotStrings.resx">
+    <EmbeddedResource Include="MehspotResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MehspotStrings.Designer.cs</LastGenOutput>
+      <LastGenOutput>MehspotResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

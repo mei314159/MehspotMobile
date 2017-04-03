@@ -245,8 +245,8 @@ namespace mehspot.iOS
             cells.Add (zipCell);
             cells.Add (subdivisionCell);
 
-            cells.Add (BooleanEditCell.Create (profile, a => a.MehspotNotificationsEnabled, "Email notifications enabled"));
-            cells.Add (BooleanEditCell.Create (profile, a => a.AllGroupsNotificationsEnabled, "Group notifications enabled"));
+            cells.Add (BooleanEditCell.Create (profile.MehspotNotificationsEnabled, v => profile.MehspotNotificationsEnabled = v, "Email notifications enabled"));
+            cells.Add (BooleanEditCell.Create (profile.AllGroupsNotificationsEnabled, v => profile.AllGroupsNotificationsEnabled = v, "Group notifications enabled"));
 
             TableView.ReloadData ();
         }

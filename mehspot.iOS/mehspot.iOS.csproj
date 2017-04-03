@@ -167,7 +167,6 @@
     <InterfaceDefinition Include="Views\Cell\PickerCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
     <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
-    <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SliderCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SearchResultsCell.xib" />
     <InterfaceDefinition Include="Views\Cell\BadgeItemCell.xib" />
@@ -215,7 +214,6 @@
     <Compile Include="Controllers\Messaging\MessagingViewController.designer.cs">
       <DependentUpon>MessagingViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cell\ButtonCell.cs" />
     <Compile Include="Views\Cell\SliderCell.cs" />
     <Compile Include="Views\Cell\SliderCell.designer.cs">
       <DependentUpon>SliderCell.cs</DependentUpon>

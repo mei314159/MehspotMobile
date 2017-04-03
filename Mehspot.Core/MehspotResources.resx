@@ -1,0 +1,921 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Babysitter" xml:space="preserve">
+	    <value>Babysitter</value>
+	</data>
+	<data name="BabysitterEmployer" xml:space="preserve">
+	    <value>Babysitter Employer</value>
+	</data>
+	<data name="Fitness" xml:space="preserve">
+	    <value>Fitness</value>
+	</data>
+	<data name="Friendship" xml:space="preserve">
+	    <value>Friendship</value>
+	</data>
+	<data name="Golf" xml:space="preserve">
+	    <value>Golf</value>
+	</data>
+	<data name="Hobby" xml:space="preserve">
+	    <value>Hobby</value>
+	</data>
+	<data name="KidsPlayDate" xml:space="preserve">
+	    <value>Kids Playdate</value>
+	</data>
+	<data name="OtherJobs" xml:space="preserve">
+	    <value>Other Jobs</value>
+	</data>
+	<data name="PetSitter" xml:space="preserve">
+	    <value>Pet Sitter</value>
+	</data>
+	<data name="PetSitterEmployer" xml:space="preserve">
+	    <value>Pet Sitter Employer</value>
+	</data>
+	<data name="Sports" xml:space="preserve">
+	    <value>Sports</value>
+	</data>
+	<data name="Tennis" xml:space="preserve">
+	    <value>Tennis</value>
+	</data>
+	<data name="Tutor" xml:space="preserve">
+	    <value>Tutor</value>
+	</data>
+	<data name="TutorEmployer" xml:space="preserve">
+	    <value>Tutor Employer</value>
+	</data>
+	<data name="Babysitter_Description" xml:space="preserve">
+	    <value>Search for for families in need of a babysitter</value>
+	</data>
+	<data name="BabysitterEmployer_Description" xml:space="preserve">
+	    <value>Search for babysitters</value>
+	</data>
+	<data name="Fitness_Description" xml:space="preserve">
+	    <value>Search for fitness partner</value>
+	</data>
+	<data name="Friendship_Description" xml:space="preserve">
+	    <value>Search for friend</value>
+	</data>
+	<data name="Golf_Description" xml:space="preserve">
+	    <value>Search for golf partner</value>
+	</data>
+	<data name="Hobby_Description" xml:space="preserve">
+	    <value>Search for hobby partner</value>
+	</data>
+	<data name="KidsPlayDate_Description" xml:space="preserve">
+	    <value>Search playdates for your children</value>
+	</data>
+	<data name="OtherJobs_Description" xml:space="preserve">
+	    <value>Search for other jobs</value>
+	</data>
+	<data name="PetSitter_Description" xml:space="preserve">
+		<value>Search for pet sitting services</value>
+	</data>
+	<data name="PetSitterEmployer_Description" xml:space="preserve">
+	    <value>Search for people who are in need of pet service</value>
+	</data>
+	<data name="Sports_Description" xml:space="preserve">
+	    <value>Search for sport partner</value>
+	</data>
+	<data name="Tennis_Description" xml:space="preserve">
+	    <value>Search for other tennis players</value>
+	</data>
+	<data name="Tutor_Description" xml:space="preserve">
+	    <value>Search for students in needs of SAT, math, languages and other tutoring</value>
+	</data>
+	<data name="TutorEmployer_Description" xml:space="preserve">
+	    <value>Search for tutors who teach SAT prep, math, languages, etc.</value>
+	</data>
+	<data name="FirstName" xml:space="preserve">
+        <value>First Name</value>
+    </data>
+	<data name="BabysitterFirstName" xml:space="preserve">
+        <value>Sitter First Name</value>
+    </data>
+	<data name="BabysitterCanDrive" xml:space="preserve">
+        <value>Can Drive</value>
+    </data>
+	<data name="BabysitterOwnCar" xml:space="preserve">
+        <value>Own Car</value>
+    </data>
+	<data name="BabysitterHourlyRate" xml:space="preserve">
+        <value>Hourly Rate in $</value>
+    </data>
+	<data name="BabysitterDescriptionDefault" xml:space="preserve">
+        <value>Enter a detailed description about your babysitting experience, which can include credentials such as CPR certification, college attended, when I am normally available, meal preparation, availability for other chores, etc.</value>
+    </data>
+	<data name="BabysitterAdditionalInformation" xml:space="preserve">
+        <value>Additional Information</value>
+    </data>
+	<data name="BabysitterBabysitterCertificationInfoDefault" xml:space="preserve">
+        <value>Specify Certifications Earned</value>
+    </data>
+	<data name="BabysitterCertificationInfo" xml:space="preserve">
+       <value>Certifications</value>
+    </data>
+	<data name="BabysitterCertificationInfo_AHA_CPR" xml:space="preserve">
+        <value>American Heart Association CPR and CED Certification</value>
+    </data>
+	<data name="BabysitterCertificationInfo_AHA_FirstAid" xml:space="preserve">
+        <value>American Heart Association First Aid Certification</value>
+    </data>
+	<data name="BabysitterCertificationInfo_BabysitterBootCamp" xml:space="preserve">
+        <value>Babysitter Boot Camp Certification</value>
+    </data>
+	<data name="BabysitterCertificationInfo_Other" xml:space="preserve">
+        <value>Other</value>
+    </data>
+	<data name="BabysitterOtherCertifications" xml:space="preserve">
+        <value>Other Certifications and URLs</value>
+    </data>
+	<data name="Adult" xml:space="preserve">
+        <value>Adult</value>
+    </data>
+	<data name="CollegeStudent" xml:space="preserve">
+        <value>College Student</value>
+    </data>
+	<data name="HighSchool" xml:space="preserve">
+        <value>High School</value>
+    </data>
+	<data name="MiddleSchool" xml:space="preserve">
+        <value>Middle School</value>
+    </data>
+	<data name="BabysitterEmployerHourlyRate" xml:space="preserve">
+        <value>Hourly Rate in $</value>
+    </data>
+	<data name="BabysitterEmployerCanDrive" xml:space="preserve">
+    <value>Do you require babysitter to drive?</value>
+  </data>
+	<data name="BabysitterEmployerOwnCar" xml:space="preserve">
+    <value>Do you require babysitter to own a Car?</value>
+  </data>
+	<data name="BabysitterEmployerDescriptionDefault" xml:space="preserve">
+    <value>Enter a detailed description about your babysitting needs, which can include detail description of your children, if you need someone with credentials such as CPR certification, college attended, when do you expect the babysitter to be available, if you need meal preparation, perform other chores, etc.</value>
+  </data>
+	<data name="KidsInformation" xml:space="preserve">
+    <value>Kid's information</value>
+  </data>
+	<data name="TennisAgeRange" xml:space="preserve">
+    <value>Age Range</value>
+  </data>
+	<data name="TennisSubdivision" xml:space="preserve">
+    <value>Court subdivision</value>
+  </data>
+	<data name="TennisZip" xml:space="preserve">
+    <value>Court zip</value>
+  </data>
+	<data name="TennisFirstName" xml:space="preserve">
+    <value>Player First Name</value>
+  </data>
+	<data name="TennisDescriptionDefault" xml:space="preserve">
+    <value>Enter a detailed description about your tennis experience</value>
+  </data>
+	<data name="HasCourtAccess" xml:space="preserve">
+    <value>Court access</value>
+  </data>
+	<data name="Ad" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+	<data name="Advanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+	<data name="Beginner" xml:space="preserve">
+    <value>Beginner</value>
+  </data>
+	<data name="BeginnerIntermediate" xml:space="preserve">
+    <value>Beginner-intermediate</value>
+  </data>
+	<data name="Duce" xml:space="preserve">
+    <value>Deuce</value>
+  </data>
+	<data name="HasCourtAccess" xml:space="preserve">
+    <value>Court access</value>
+  </data>
+	<data name="Intermediate" xml:space="preserve">
+    <value>Intermediate</value>
+  </data>
+	<data name="IntermediateAdvanced" xml:space="preserve">
+    <value>Intermediate-advanced</value>
+  </data>
+	<data name="NoPreference" xml:space="preserve">
+    <value>No preference</value>
+  </data>
+	<data name="PreferredSide" xml:space="preserve">
+    <value>Preferred side</value>
+  </data>
+	<data name="Professional" xml:space="preserve">
+    <value>Professional</value>
+  </data>
+	<data name="SkillLevel" xml:space="preserve">
+    <value>Skill level</value>
+  </data>
+	<data name="Court" xml:space="preserve">
+    <value>Court</value>
+  </data>
+	<data name="EightToTwelve" xml:space="preserve">
+    <value>8 -12</value>
+  </data>
+	<data name="FortyToSixty" xml:space="preserve">
+    <value>40-60</value>
+  </data>
+	<data name="FourteenToEighteen" xml:space="preserve">
+    <value>14-18</value>
+  </data>
+	<data name="LessThanTen" xml:space="preserve">
+    <value>10 and under</value>
+  </data>
+	<data name="Senior" xml:space="preserve">
+    <value>Senior</value>
+  </data>
+	<data name="SeventeenToThirty" xml:space="preserve">
+    <value>17-30</value>
+  </data>
+	<data name="TenToFourteen" xml:space="preserve">
+    <value>10-14</value>
+  </data>
+	<data name="ThirtyToFifty" xml:space="preserve">
+    <value>30-50</value>
+  </data>
+	<data name="TwelveToSixteen" xml:space="preserve">
+    <value>12-16</value>
+  </data>
+	<data name="TwentyToForty" xml:space="preserve">
+    <value>20-40</value>
+  </data>
+	<data name="TutorEmployerCanTravel" xml:space="preserve">
+    <value>Tutor must have transportation</value>
+  </data>
+	<data name="TutorEmployerGrade" xml:space="preserve">
+    <value>Student Grade</value>
+  </data>
+	<data name="TutorEmployerPreferredDate" xml:space="preserve">
+    <value>Preferred Study Date/Time</value>
+  </data>
+	<data name="TutorEmployerPreferredLength" xml:space="preserve">
+    <value>Preferred Study Length</value>
+  </data>
+	<data name="TutorEmployerPreferredLocation" xml:space="preserve">
+    <value>Preferred Study Location</value>
+  </data>
+	<data name="TutorEmployerStudentName" xml:space="preserve">
+    <value>Student First Name</value>
+  </data>
+	<data name="TutorEmployerSubject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+	<data name="AdditionalInfo" xml:space="preserve">
+    <value>Additional Information</value>
+  </data>
+	<data name="TutorEmployerGrade_College" xml:space="preserve">
+    <value>College</value>
+  </data>
+	<data name="TutorEmployerGrade_Eighth" xml:space="preserve">
+    <value>8th</value>
+  </data>
+	<data name="TutorEmployerGrade_Eleventh" xml:space="preserve">
+    <value>11th</value>
+  </data>
+	<data name="TutorEmployerGrade_First" xml:space="preserve">
+    <value>1st</value>
+  </data>
+	<data name="TutorEmployerGrade_Fiveth" xml:space="preserve">
+    <value>5th</value>
+  </data>
+	<data name="TutorEmployerGrade_Fouth" xml:space="preserve">
+    <value>4th</value>
+  </data>
+	<data name="TutorEmployerGrade_k" xml:space="preserve">
+    <value>K</value>
+  </data>
+	<data name="TutorEmployerGrade_Ninth" xml:space="preserve">
+    <value>9th</value>
+  </data>
+	<data name="TutorEmployerGrade_Second" xml:space="preserve">
+    <value>2nd</value>
+  </data>
+	<data name="TutorEmployerGrade_Seventh" xml:space="preserve">
+    <value>7th</value>
+  </data>
+	<data name="TutorEmployerGrade_Sixth" xml:space="preserve">
+    <value>6th</value>
+  </data>
+	<data name="TutorEmployerGrade_Tenth" xml:space="preserve">
+    <value>10th</value>
+  </data>
+	<data name="TutorEmployerGrade_Third" xml:space="preserve">
+    <value>3rd</value>
+  </data>
+	<data name="TutorEmployerGrade_Twelveth" xml:space="preserve">
+    <value>12th</value>
+  </data>
+	<data name="TutorEmployerSubject_Guitar" xml:space="preserve">
+    <value>Music-Guitar</value>
+  </data>
+	<data name="TutorEmployerSubject_OtherMusic" xml:space="preserve">
+    <value>Music-Other</value>
+  </data>
+	<data name="TutorEmployerSubject_Piano" xml:space="preserve">
+    <value>Music-Piano</value>
+  </data>
+	<data name="TutorEmployerSubject_Tennis" xml:space="preserve">
+    <value>Sports-Tennis</value>
+  </data>
+	<data name="TutorEmployerSubject_Violin" xml:space="preserve">
+    <value>Music-Violin</value>
+  </data>
+	<data name="TutorEmployerSubjectOther" xml:space="preserve">
+    <value>Specify other or other language</value>
+  </data>
+	<data name="TutorEmployerTutorEmployerSubjectOtherDefault" xml:space="preserve">
+    <value>Enter the subject if you specified 'other' or 'other language' in the previous field</value>
+  </data>
+	<data name="TutorCanTravel_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+	<data name="TutorCanTravel_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+	<data name="TutorEmployerTutorEmployerPreferredLocationDefault" xml:space="preserve">
+    <value>Specify Student home, Tutor's home, Public space, Starbucks, etc.</value>
+  </data>
+	<data name="TutorSubject_Chinese" xml:space="preserve">
+    <value>Language-Chinese</value>
+  </data>
+	<data name="TutorSubject_English" xml:space="preserve">
+    <value>Language-English</value>
+  </data>
+	<data name="TutorSubject_French" xml:space="preserve">
+    <value>Language-French</value>
+  </data>
+	<data name="TutorSubject_Math" xml:space="preserve">
+    <value>Math</value>
+  </data>
+	<data name="TutorSubject_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+	<data name="TutorSubject_OtherLanguage" xml:space="preserve">
+    <value>Language-Other</value>
+  </data>
+	<data name="TutorSubject_SATMath" xml:space="preserve">
+    <value>SAT Math</value>
+  </data>
+	<data name="TutorSubject_SATVerbal" xml:space="preserve">
+    <value>SAT Prep Verbal</value>
+  </data>
+	<data name="TutorSubject_SATWriting" xml:space="preserve">
+    <value>SAT Writing</value>
+  </data>
+	<data name="TutorSubject_Science" xml:space="preserve">
+    <value>Science</value>
+  </data>
+	<data name="TutorSubject_Spanish" xml:space="preserve">
+    <value>Language-Spanish</value>
+  </data>
+	<data name="PetSitterExpirience" xml:space="preserve">
+    <value>Experience with</value>
+  </data>
+	<data name="PetSitterDropOff" xml:space="preserve">
+    <value>Drop off option</value>
+  </data>
+	<data name="PetSitterExpirienceOther" xml:space="preserve">
+    <value>If other, specify</value>
+  </data>
+	<data name="PetSitterMultipleDaysDiscount" xml:space="preserve">
+    <value>Multiple day discount</value>
+  </data>
+	<data name="PetSitterMultiplePetDiscount" xml:space="preserve">
+    <value>Multiple pet discount</value>
+  </data>
+	<data name="PetSitterOtherRate" xml:space="preserve">
+    <value>Other Rate $ per day</value>
+  </data>
+	<data name="PetSitterPetType" xml:space="preserve">
+    <value>Pet types considered</value>
+  </data>
+	<data name="PetSitterPetWeight" xml:space="preserve">
+    <value>For dogs, specify maximum size in pounds.</value>
+  </data>
+	<data name="PetSitter_Bird" xml:space="preserve">
+    <value>Bird</value>
+  </data>
+	<data name="PetSitter_Cat" xml:space="preserve">
+    <value>Cat</value>
+  </data>
+	<data name="PetSitter_Dog" xml:space="preserve">
+    <value>Dog</value>
+  </data>
+	<data name="PetSitter_Fish" xml:space="preserve">
+    <value>Fish</value>
+  </data>
+	<data name="PetSitter_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+	<data name="PetSitter_Rodent" xml:space="preserve">
+    <value>Rodent</value>
+  </data>
+	<data name="PetSitterEmployerAdditionalPetInformation" xml:space="preserve">
+    <value>Additional pet information</value>
+  </data>
+	<data name="PetSitterEmployerExpirienceRequired" xml:space="preserve">
+    <value>Sitter experience with animal required</value>
+  </data>
+	<data name="PetSitterEmployerExpirienceRequiredInformation" xml:space="preserve">
+    <value>If yes, specify</value>
+  </data>
+	<data name="PetSitterEmployerPetType" xml:space="preserve">
+    <value>Types of pet</value>
+  </data>
+	<data name="PetSitterEmployerPetWeight" xml:space="preserve">
+    <value>Dog owners, please specify dog size</value>
+  </data>
+	<data name="PetSitterEmployerSearchable" xml:space="preserve">
+    <value>Searchable by pet sitters</value>
+  </data>
+	<data name="PetSitterEmployerSittersNotification" xml:space="preserve">
+    <value>Notify me if there are new sitters available</value>
+  </data>
+	<data name="PetSitterEmployerSittersNotificationDistance" xml:space="preserve">
+    <value>If Yes, sitter distance (miles)</value>
+  </data>
+	<data name="PetSitterEmployer_FiveMiles" xml:space="preserve">
+    <value>5</value>
+  </data>
+	<data name="PetSitterEmployer_TenMiles" xml:space="preserve">
+    <value>10</value>
+  </data>
+	<data name="PetSitterEmployer_TwentyMiles" xml:space="preserve">
+    <value>20</value>
+  </data>
+	<data name="TutorSubject_Guitar" xml:space="preserve">
+    <value>Music-Guitar</value>
+  </data>
+	<data name="TutorSubject_OtherMusic" xml:space="preserve">
+    <value>Music-Other</value>
+  </data>
+	<data name="TutorSubject_Piano" xml:space="preserve">
+    <value>Music-Piano</value>
+  </data>
+	<data name="TutorSubject_Tennis" xml:space="preserve">
+    <value>Sports-Tennis</value>
+  </data>
+	<data name="TutorSubject_Violin" xml:space="preserve">
+    <value>Music-Violin</value>
+  </data>
+	<data name="TutorGrade" xml:space="preserve">
+    <value>Tutor's education level</value>
+  </data>
+	<data name="TutorPreferredDate" xml:space="preserve">
+    <value>Preferred tutoring Date/Time</value>
+  </data>
+	<data name="TutorPreferredLength" xml:space="preserve">
+    <value>Preferred tutoring Length</value>
+  </data>
+	<data name="TutorPreferredLocation" xml:space="preserve">
+    <value>Preferred tutoring Location</value>
+  </data>
+	<data name="TutorSubject" xml:space="preserve">
+    <value>Main Subject</value>
+    </data>
+	<data name="TutorSubjectNote" xml:space="preserve">
+        <value>Note about subject</value>
+    </data>
+	<data name="TutorCanTravel" xml:space="preserve">
+        <value>Can travel to location</value>
+    </data>
+	<data name="TutorTutorPreferredLocationDefault" xml:space="preserve">
+        <value>Specify Student home, Tutor's home, Public space, Starbucks, etc.</value>
+    </data>
+	<data name="HourlyRate" xml:space="preserve">
+        <value>Hourly Rate in $</value>
+    </data>
+	<data name="TutorSubjectOther" xml:space="preserve">
+        <value>Specify other or other language</value>
+    </data>
+	<data name="TutorTutorSubjectOtherDefault" xml:space="preserve">
+        <value>Enter the subject if you specified 'other' or 'other language' in the previous field</value>
+    </data>
+  <data name="TutorGrade_Adult" xml:space="preserve">
+    <value>Adult</value>
+  </data>
+  <data name="TutorGrade_College" xml:space="preserve">
+    <value>College</value>
+  </data>
+  <data name="TutorGrade_Eleventh" xml:space="preserve">
+    <value>11th</value>
+  </data>
+  <data name="TutorGrade_Ninth" xml:space="preserve">
+    <value>9th</value>
+  </data>
+  <data name="TutorGrade_Tenth" xml:space="preserve">
+    <value>10th</value>
+  </data>
+  <data name="TutorGrade_Twelveth" xml:space="preserve">
+    <value>12th</value>
+  </data>
+  <data name="KidsPlayDateAdditionalInformation" xml:space="preserve">
+    <value>Additional Information</value>
+  </data>
+  <data name="KidsPlayDateDesiredAgeRange" xml:space="preserve">
+    <value>Desired Age Range</value>
+  </data>
+  <data name="KidsPlayDateDesiredDateAndTime" xml:space="preserve">
+    <value>Desired Date and Time</value>
+  </data>
+  <data name="KidsPlayDateDesiredGender" xml:space="preserve">
+    <value>Desired Gender</value>
+  </data>
+  <data name="KidsPlayDateDesiredGender_Both" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="KidsPlayDateDesiredGender_Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="KidsPlayDateDesiredGender_Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="KidsPlayDateDesiredLocation" xml:space="preserve">
+    <value>Desired Location</value>
+  </data>
+  <data name="KidsPlayDateKidAge" xml:space="preserve">
+    <value>Kid Age</value>
+  </data>
+  <data name="KidsPlayDateMyChild" xml:space="preserve">
+    <value>My child</value>
+  </data>
+  <data name="KidsPlayDateMyChild_SchoolFullTime" xml:space="preserve">
+    <value>Goes to school fulltime</value>
+  </data>
+  <data name="KidsPlayDateMyChild_SchoolPartTime" xml:space="preserve">
+    <value>Goes to school parttime</value>
+  </data>
+  <data name="KidsPlayDateMyChild_StaysHome" xml:space="preserve">
+    <value>Stays at home</value>
+  </data>
+  <data name="KidsPlayDateParentsInformation" xml:space="preserve">
+    <value>Parents Information</value>
+  </data>
+  <data name="KidsPlayDatePreferredMethodOfPlay" xml:space="preserve">
+    <value>Preferred method of play</value>
+  </data>
+  <data name="KidsPlayDateRace" xml:space="preserve">
+    <value>Race</value>
+  </data>
+  <data name="KidsPlayDateSpokenLanguage" xml:space="preserve">
+    <value>Spoken Language</value>
+  </data>
+  <data name="FitnessAdditionalInformation" xml:space="preserve">
+    <value>Additional Information</value>
+  </data>
+  <data name="FitnessAgeRange" xml:space="preserve">
+    <value>Age Range</value>
+  </data>
+  <data name="FitnessOther" xml:space="preserve">
+    <value>Specify Other</value>
+  </data>
+  <data name="FitnessPreferredDateTime" xml:space="preserve">
+    <value>Preferred Date and Time</value>
+  </data>
+  <data name="FitnessPreferredFrequency" xml:space="preserve">
+    <value>Preferred Frequency</value>
+  </data>
+  <data name="FitnessPreferredGender" xml:space="preserve">
+    <value>Preferred Gender</value>
+  </data>
+  <data name="FitnessPreferredGender_Either" xml:space="preserve">
+    <value>Either</value>
+  </data>
+  <data name="FitnessPreferredGender_Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="FitnessPreferredGender_Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="FitnessPreferredLocation" xml:space="preserve">
+    <value>Preferred Location</value>
+  </data>
+  <data name="FitnessType" xml:space="preserve">
+    <value>Fitness Type</value>
+  </data>
+  <data name="FitnessType_Basketball" xml:space="preserve">
+    <value>Basketball</value>
+  </data>
+  <data name="FitnessType_Biking" xml:space="preserve">
+    <value>Biking</value>
+  </data>
+  <data name="FitnessType_CardioDance" xml:space="preserve">
+    <value>Cardio Dance</value>
+  </data>
+  <data name="FitnessType_FlagFootball" xml:space="preserve">
+    <value>Flag Football</value>
+  </data>
+  <data name="FitnessType_GroupFitness" xml:space="preserve">
+    <value>Group Fitness</value>
+  </data>
+  <data name="FitnessType_Gymming" xml:space="preserve">
+    <value>Gym</value>
+  </data>
+  <data name="FitnessType_Hiking" xml:space="preserve">
+    <value>Hiking</value>
+  </data>
+  <data name="FitnessType_Jogging" xml:space="preserve">
+    <value>Jogging</value>
+  </data>
+  <data name="FitnessType_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="FitnessType_RockClimbing" xml:space="preserve">
+    <value>Rock Climbing</value>
+  </data>
+  <data name="FitnessType_Soccer" xml:space="preserve">
+    <value>Soccer</value>
+  </data>
+  <data name="FitnessType_Softball" xml:space="preserve">
+    <value>Softball</value>
+  </data>
+  <data name="FitnessType_Walking" xml:space="preserve">
+    <value>Walking</value>
+  </data>
+  <data name="FitnessType_WeighTraining" xml:space="preserve">
+    <value>Weight Training</value>
+  </data>
+  <data name="FitnessType_Yoga" xml:space="preserve">
+    <value>Yoga</value>
+  </data>
+  <data name="GolfAdditionalInformation" xml:space="preserve">
+    <value>Additional Information</value>
+  </data>
+  <data name="GolfAgeGroup" xml:space="preserve">
+    <value>Age group</value>
+  </data>
+  <data name="GolfCourseType_Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="GolfCourseType_Public" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="GolfCourtPreference_Always" xml:space="preserve">
+    <value>Always</value>
+  </data>
+  <data name="GolfCourtPreference_Mostly" xml:space="preserve">
+    <value>Mostly</value>
+  </data>
+  <data name="GolfCourtPreference_NoPreference" xml:space="preserve">
+    <value>No Preference</value>
+  </data>
+  <data name="GolfCourtPreference_NotPreferred" xml:space="preserve">
+    <value>Not Preferred</value>
+  </data>
+  <data name="GolfAgeGroup_EighteenToThirty" xml:space="preserve">
+    <value>18-30</value>
+  </data>
+  <data name="GolfAgeGroup_ForteenToTwenty" xml:space="preserve">
+    <value>14-20</value>
+  </data>
+  <data name="GolfAgeGroup_FortyToSixty" xml:space="preserve">
+    <value>40-60</value>
+  </data>
+  <data name="GolfAgeGroup_LessThanEight" xml:space="preserve">
+    <value>8 and under</value>
+  </data>
+  <data name="GolfAgeGroup_Senior" xml:space="preserve">
+    <value>Senior</value>
+  </data>
+  <data name="GolfAgeGroup_SixToTwelve" xml:space="preserve">
+    <value>6-12</value>
+  </data>
+  <data name="GolfAgeGroup_TenToSixteen" xml:space="preserve">
+    <value>10-16</value>
+  </data>
+  <data name="GolfAgeGroup_ThirtyToFifty" xml:space="preserve">
+    <value>30-50</value>
+  </data>
+  <data name="GolfAgeGroup_TwentyTwoToForty" xml:space="preserve">
+    <value>22-40</value>
+  </data>
+  <data name="GolfGreenFeeRangeWTP" xml:space="preserve">
+    <value>Amount I am willing to pay towards greens fees.</value>
+  </data>
+  <data name="GolfHandicap" xml:space="preserve">
+    <value>Handicap</value>
+  </data>
+  <data name="GolfHomeCourseSubdivision" xml:space="preserve">
+    <value>Home course</value>
+  </data>
+  <data name="GolfHomeCourseGreenFeeRange" xml:space="preserve">
+    <value>Home course green fee range</value>
+  </data>
+  <data name="GolfHomeCourseType" xml:space="preserve">
+    <value>Is your home course Private or Public</value>
+  </data>
+  <data name="GolfHomeCourseZip" xml:space="preserve">
+    <value>Home course zip</value>
+  </data>
+  <data name="GolfHomeCourtPreference" xml:space="preserve">
+    <value>Preference to play at home course</value>
+  </data>
+  <data name="GolfFirstName" xml:space="preserve">
+    <value>Player First Name</value>
+  </data>
+  <data name="KidsPlayDateFirstName" xml:space="preserve">
+    <value>Kid First Name</value>
+  </data>
+  <data name="PetSitterFirstName" xml:space="preserve">
+    <value>Sitter First Name</value>
+  </data>
+  <data name="TutorFirstName" xml:space="preserve">
+    <value>Tutor First Name</value>
+  </data>
+  <data name="HobbyType_BoardGaming" xml:space="preserve">
+    <value>Gaming-Board</value>
+  </data>
+  <data name="HobbyType_VideoGaming" xml:space="preserve">
+    <value>Gaming-Video</value>
+  </data>
+  <data name="HobbyAdditionalInformation" xml:space="preserve">
+    <value>Additional Information</value>
+  </data>
+  <data name="HobbyAgeRange" xml:space="preserve">
+    <value>Age Range</value>
+  </data>
+  <data name="HobbyOther" xml:space="preserve">
+    <value>Specify Other</value>
+  </data>
+  <data name="HobbyPreferredDateTime" xml:space="preserve">
+    <value>Preferred Date and Time</value>
+  </data>
+  <data name="HobbyPreferredLocation" xml:space="preserve">
+    <value>Preferred Location</value>
+  </data>
+  <data name="HobbyType" xml:space="preserve">
+    <value>Hobby</value>
+  </data>
+  <data name="HobbyType_Baking" xml:space="preserve">
+    <value>Baking</value>
+  </data>
+  <data name="HobbyType_BallroomDancing" xml:space="preserve">
+    <value>Ballroom Dancing</value>
+  </data>
+  <data name="HobbyType_BirdWatching" xml:space="preserve">
+    <value>Bird Watching</value>
+  </data>
+  <data name="HobbyType_Bookclub" xml:space="preserve">
+    <value>Bookclub</value>
+  </data>
+  <data name="HobbyType_Chess" xml:space="preserve">
+    <value>Chess</value>
+  </data>
+  <data name="HobbyType_Cooking" xml:space="preserve">
+    <value>Cooking</value>
+  </data>
+  <data name="HobbyType_Craft" xml:space="preserve">
+    <value>Craft</value>
+  </data>
+  <data name="HobbyType_Gardening" xml:space="preserve">
+    <value>Gardening</value>
+  </data>
+  <data name="HobbyType_Knitting" xml:space="preserve">
+    <value>Knitting</value>
+  </data>
+  <data name="HobbyType_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="HobbyType_Scrapbooking" xml:space="preserve">
+    <value>Scrapbooking</value>
+  </data>
+  <data name="HobbyType_Singing" xml:space="preserve">
+    <value>Singing</value>
+  </data>
+  <data name="OtherJobsAdditionalContactInfo" xml:space="preserve">
+    <value>Additional Contact Info</value>
+  </data>
+  <data name="OtherJobsAdditionalInformation" xml:space="preserve">
+    <value>Additional Information</value>
+  </data>
+  <data name="OtherJobsAgeRange" xml:space="preserve">
+    <value>Age Range</value>
+  </data>
+  <data name="OtherJobsExperiencey" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="OtherJobsLicense" xml:space="preserve">
+    <value>License (If Any)</value>
+  </data>
+  <data name="OtherJobsOther" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="OtherJobsOtherJobsAdditionalContactInfoDefault" xml:space="preserve">
+    <value>It is safest to contact each other through mehspot, but you can give other contact information if you prefer here</value>
+  </data>
+  <data name="OtherJobsOtherJobsExperienceyDefault" xml:space="preserve">
+    <value>Enter years of experience and describe your experience</value>
+  </data>
+  <data name="OtherJobsOtherJobsReferenceDefault" xml:space="preserve">
+    <value>Specifiy if you have references.  Enter URL for your portfolio.</value>
+  </data>
+  <data name="OtherJobsPreferredDateTime" xml:space="preserve">
+    <value>Preferred Date and Time</value>
+  </data>
+  <data name="OtherJobsReference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="OtherJobsType" xml:space="preserve">
+    <value>Jobs</value>
+  </data>
+  <data name="OtherJobsType_BarTender" xml:space="preserve">
+    <value>Bar Tender</value>
+  </data>
+  <data name="OtherJobsType_Caterer" xml:space="preserve">
+    <value>Caterer</value>
+  </data>
+  <data name="OtherJobsType_ComputerProgramming" xml:space="preserve">
+    <value>Computer Programming</value>
+  </data>
+  <data name="OtherJobsType_Cooking" xml:space="preserve">
+    <value>Cooking</value>
+  </data>
+  <data name="OtherJobsType_GraphicDesign" xml:space="preserve">
+    <value>Graphic Design</value>
+  </data>
+  <data name="OtherJobsType_Handyman" xml:space="preserve">
+    <value>Handyman</value>
+  </data>
+  <data name="OtherJobsType_HouseCleaning" xml:space="preserve">
+    <value>House Cleaning</value>
+  </data>
+  <data name="OtherJobsType_HouseSitting" xml:space="preserve">
+    <value>House Sitting</value>
+  </data>
+  <data name="OtherJobsType_Laundry" xml:space="preserve">
+    <value>Laundry</value>
+  </data>
+  <data name="OtherJobsType_Nanny" xml:space="preserve">
+    <value>Nanny</value>
+  </data>
+  <data name="OtherJobsType_OfficeWork" xml:space="preserve">
+    <value>Office Work</value>
+  </data>
+  <data name="OtherJobsType_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="OtherJobsType_PersonalAssistant" xml:space="preserve">
+    <value>Personal Assistant</value>
+  </data>
+  <data name="OtherJobsType_PhotoEditing" xml:space="preserve">
+    <value>Photo Editing</value>
+  </data>
+  <data name="OtherJobsType_Photography" xml:space="preserve">
+    <value>Photography</value>
+  </data>
+  <data name="OtherJobsType_PressureWash" xml:space="preserve">
+    <value>Pressure Wash</value>
+  </data>
+  <data name="OtherJobs_ProfileRequirements" xml:space="preserve">
+    <value>&lt;h4&gt;You must enter your city, state, zip and subdivision for your profile first before you can search for Other Jobs. Click &lt;a href='{0}'&gt;here&lt;/a&gt; to update your profile.&lt;/h4&gt;</value>
+  </data>
+  <data name="OtherJobsType_Sales" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+  <data name="OtherJobsType_SocialMedia" xml:space="preserve">
+    <value>Social Media</value>
+  </data>
+  <data name="OtherJobsType_SquirrelExtermination" xml:space="preserve">
+    <value>Squirrel Extermination</value>
+  </data>
+  <data name="OtherJobsType_Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="OtherJobsType_VideoEditing" xml:space="preserve">
+    <value>Video Editing</value>
+  </data>
+  <data name="OtherJobsType_WebDesign" xml:space="preserve">
+    <value>Web Design</value>
+  </data>
+  <data name="OtherJobsType_WritingAndEditing" xml:space="preserve">
+    <value>Writing and Editing</value>
+  </data>
+  <data name="OtherJobsType_YardWork" xml:space="preserve">
+    <value>Yard Work</value>
+  </data>
+  <data name="OtherJobsAgeRange_Adult" xml:space="preserve">
+    <value>Adult</value>
+  </data>
+  <data name="OtherJobsAgeRange_CollegeStudent" xml:space="preserve">
+    <value>College Student</value>
+  </data>
+  <data name="OtherJobsAgeRange_HighSchool" xml:space="preserve">
+    <value>High School</value>
+  </data>
+  <data name="OtherJobsAgeRange_MiddleSchool" xml:space="preserve">
+    <value>Middle School</value>
+  </data>
+</root>
