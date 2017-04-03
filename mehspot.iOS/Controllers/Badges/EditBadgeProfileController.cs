@@ -113,7 +113,7 @@ namespace mehspot.iOS
             dataLoaded = profileResult.IsSuccess;
             if (profileResult.IsSuccess) {
                 this.profile = profileResult.Data;
-                base.TableView.Source = await RegisterBadgeTableSource.Create (profileResult.Data, profileService);
+                base.TableView.Source = await EditBadgeTableSource.Create (profileResult.Data, profileService);
                 TableView.ReloadData ();
                 TableView.UserInteractionEnabled = this.SaveButton.Enabled = true;
                 RefreshControl.EndRefreshing ();

@@ -11,7 +11,7 @@ using UIKit;
 
 namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
-    public class RegisterBadgeTableSource : UITableViewSource
+    public class EditBadgeTableSource : UITableViewSource
     {
         KeyValuePair<int?, string> [] states;
         KeyValuePair<int?, string> [] subdivisions;
@@ -21,16 +21,16 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         private readonly BadgeProfileDTO<EditBadgeProfileDTO> profile;
         private readonly ProfileService profileService;
 
-        private RegisterBadgeTableSource (BadgeProfileDTO<EditBadgeProfileDTO> profile, ProfileService profileService)
+        private EditBadgeTableSource (BadgeProfileDTO<EditBadgeProfileDTO> profile, ProfileService profileService)
         {
             this.profile = profile;
             this.profileService = profileService;
             cells = new List<UITableViewCell> ();
         }
 
-        public static async Task<RegisterBadgeTableSource> Create (BadgeProfileDTO<EditBadgeProfileDTO> profile, ProfileService profileService)
+        public static async Task<EditBadgeTableSource> Create (BadgeProfileDTO<EditBadgeProfileDTO> profile, ProfileService profileService)
         {
-            var result = new RegisterBadgeTableSource (profile, profileService);
+            var result = new EditBadgeTableSource (profile, profileService);
             await result.InitializeAsync ().ConfigureAwait (false);
             return result;
         }
@@ -102,7 +102,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                 } else if (valueType == BadgeDataType.Date) {
                     cells.Add (PickerCell.CreateDatePicker (badgeValue.Value.Value, (property) => { badgeValue.Value.Value = property; }, label));
                 } else if (valueType == BadgeDataType.LongString) {
-                    cells.Add (TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder));
+                    cells.Add (MultilineTextEditCell.Create (badgeValue.Value.Value, (property) => badgeValue.Value.Value = property, label));
                 } else
                     cells.Add (TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder));
             }
