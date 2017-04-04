@@ -18,7 +18,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Dubnovitskiy Vitaliy (QDM2RDJUX7)</CodesignKey>
+    <CodesignKey>iPhone Developer: Vitaly Dubnovitsky (27Z797D283)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchUseSGen>true</MtouchUseSGen>
@@ -29,7 +29,7 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>b4cdc6a1-57ec-425f-9ab7-3c8564b42602</CodesignProvision>
+    <CodesignProvision>be358d3a-f30f-4c69-92c7-c38177184942</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -73,7 +73,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Dubnovitskiy Vitaliy (QDM2RDJUX7)</CodesignKey>
+    <CodesignKey>iPhone Developer: Vitaly Dubnovitsky (27Z797D283)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>false</MtouchFastDev>
@@ -86,7 +86,7 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>b4cdc6a1-57ec-425f-9ab7-3c8564b42602</CodesignProvision>
+    <CodesignProvision>be358d3a-f30f-4c69-92c7-c38177184942</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using Foundation;
-using mehspot.iOS.Extensions;
 using UIKit;
 
 namespace mehspot.iOS.Views
@@ -11,7 +8,6 @@ namespace mehspot.iOS.Views
     [Register ("MultilineTextEditCell")]
     public class MultilineTextEditCell : UITableViewCell
     {
-        private string mask;
         public static readonly NSString Key = new NSString ("MultilineTextEditCell");
         public static readonly UINib Nib;
 
