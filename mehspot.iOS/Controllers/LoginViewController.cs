@@ -25,6 +25,7 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
+            this.View.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
             this.EmailField.ShouldReturn += TextFieldShouldReturn;
             this.PasswordField.ShouldReturn += TextFieldShouldReturn;
         }
@@ -59,6 +60,11 @@ namespace mehspot.iOS
             }
 
             return false; // We do not want UITextField to insert line-breaks.
+        }
+
+        public void HideKeyboard ()
+        {
+            this.View.FindFirstResponder ()?.ResignFirstResponder ();
         }
     }
 }
