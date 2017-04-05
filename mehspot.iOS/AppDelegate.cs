@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Foundation;
+using Google.Maps;
 using HockeyApp.iOS;
 using mehspot.iOS.Core;
 using mehspot.iOS.Core.DTO;
@@ -19,6 +20,9 @@ namespace mehspot.iOS
     {
         private const string HockeyAppId = "939417b83e9b41b6bbfe772dd8129ac3";
 
+        private const string MapsApiKey = "AIzaSyDRWxkS58bSvtd0JwWKAv0aCAfzV-F7Nlw";
+
+
         // class-level declarations
 
         public override UIWindow Window {
@@ -29,6 +33,7 @@ namespace mehspot.iOS
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
             InitializeHockeyApp ();
+            MapServices.ProvideAPIKey (MapsApiKey);
 
             MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
             MehspotAppContext.Instance.OnException += OnException;

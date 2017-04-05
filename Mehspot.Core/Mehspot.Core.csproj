@@ -54,7 +54,7 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="DTO\Messaging\MessageBoardItemDto.cs" />
     <Compile Include="DTO\Messaging\MessageDto.cs" />
-    <Compile Include="DTO\Profile\SubdivisionDto.cs" />
+    <Compile Include="DTO\Profile\SubdivisionDTO.cs" />
     <Compile Include="DTO\Badges\BadgeSummaryDTO.cs" />
     <Compile Include="DTO\Profile\ApplicationUserBaseDto.cs" />
     <Compile Include="DTO\Push\OsType.cs" />

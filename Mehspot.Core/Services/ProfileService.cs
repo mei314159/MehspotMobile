@@ -26,9 +26,9 @@ namespace Mehspot.Core.Services
             return this.GetAsync<StaticDataDto []> ("Profile/GetStates");
         }
 
-        public Task<Result<SubdivisionDto []>> GetSubdivisionsAsync (string zip)
+        public Task<Result<SubdivisionDTO []>> GetSubdivisionsAsync (string zip)
         {
-            return this.GetAsync<SubdivisionDto []> ("Profile/GetSubdivisions?zipCode=" + zip);
+            return this.GetAsync<SubdivisionDTO []> ("Profile/GetSubdivisions?zipCode=" + zip);
         }
 
         public Task<Result<ProfileDto>> UpdateAsync (ProfileDto profile)
