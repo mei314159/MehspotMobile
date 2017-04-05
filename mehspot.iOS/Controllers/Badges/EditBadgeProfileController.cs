@@ -45,7 +45,7 @@ namespace mehspot.iOS
 
         private void SetTitle () {
 
-            var badgeName = MehspotStrings.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
+            var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
             var title =
                 BadgeIsRegistered ?
                 "Update " + (this.BadgeName == BadgeService.BadgeNames.BabysitterEmployer ? "babysitting (employer) page" : badgeName)
@@ -113,7 +113,7 @@ namespace mehspot.iOS
             dataLoaded = profileResult.IsSuccess;
             if (profileResult.IsSuccess) {
                 this.profile = profileResult.Data;
-                base.TableView.Source = await RegisterBadgeTableSource.Create (profileResult.Data, profileService);
+                base.TableView.Source = await EditBadgeTableSource.Create (profileResult.Data, profileService);
                 TableView.ReloadData ();
                 TableView.UserInteractionEnabled = this.SaveButton.Enabled = true;
                 RefreshControl.EndRefreshing ();

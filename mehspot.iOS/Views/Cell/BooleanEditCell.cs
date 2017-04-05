@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq.Expressions;
 using Foundation;
-using mehspot.iOS.Extensions;
 using UIKit;
 
 namespace mehspot.iOS.Views
@@ -10,8 +8,6 @@ namespace mehspot.iOS.Views
     {
         public static readonly NSString Key = new NSString ("BooleanEditCell");
         public static readonly UINib Nib;
-
-        public event Action<bool> ValueChanged;
 
         static BooleanEditCell ()
         {
@@ -23,49 +19,13 @@ namespace mehspot.iOS.Views
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public static BooleanEditCell Create<T> (T Model, Expression<Func<T, bool>> property, string placeholder, bool isReadOnly = false) where T : class
+        public static BooleanEditCell Create (bool initialValue, Action<bool> setValue, string placeholder, bool isReadOnly = false)
         {
             var cell = (BooleanEditCell)Nib.Instantiate (null, null) [0];
             cell.Switch.Enabled = !isReadOnly;
             cell.FieldLabel.Text = placeholder;
-            cell.Switch.SetState (property.Compile ().Invoke (Model), false);
-
-            cell.Switch.ValueChanged += (sender, e) => {
-                var value = ((UISwitch)sender).On;
-                Model.SetProperty (property, value);
-                cell.ValueChanged?.Invoke (value);
-            };
-
-            return cell;
-        }
-
-        public static BooleanEditCell Create<T> (T Model, Expression<Func<T, bool?>> property, string placeholder, bool isReadOnly = false) where T : class
-        {
-            var cell = (BooleanEditCell)Nib.Instantiate (null, null) [0];
-            cell.Switch.Enabled = !isReadOnly;
-            cell.FieldLabel.Text = placeholder;
-            cell.Switch.SetState (property.Compile ().Invoke (Model) == true, false);
-
-            cell.Switch.ValueChanged += (sender, e) => {
-                Model.SetProperty (property, ((UISwitch)sender).On == true ? true : (bool?)null);
-            };
-
-            return cell;
-        }
-
-        public static BooleanEditCell Create<T> (T Model, Expression<Func<T, string>> property, string placeholder, bool isReadOnly = false) where T : class
-        {
-            var cell = (BooleanEditCell)Nib.Instantiate (null, null) [0];
-            cell.Switch.Enabled = !isReadOnly;
-            cell.FieldLabel.Text = placeholder;
-            var val = property.Compile ().Invoke (Model);
-
-            bool boolValue;
-            cell.Switch.SetState (bool.TryParse(val, out boolValue) && boolValue, false);
-
-            cell.Switch.ValueChanged += (sender, e) => {
-                Model.SetProperty (property, (((UISwitch)sender).On == true).ToString());
-            };
+            cell.Switch.SetState (initialValue, false);
+            cell.Switch.ValueChanged += (sender, e) => setValue (((UISwitch)sender).On);
 
             return cell;
         }

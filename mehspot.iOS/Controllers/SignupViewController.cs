@@ -75,13 +75,10 @@ namespace mehspot.iOS
             SignUpAsync ();
         }
 
-
-
         public void HideKeyboard ()
         {
             this.View.FindFirstResponder ()?.ResignFirstResponder ();
         }
-
 
         protected virtual void RegisterForKeyboardNotifications ()
         {

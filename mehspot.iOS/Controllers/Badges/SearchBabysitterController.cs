@@ -102,10 +102,10 @@ namespace mehspot.iOS
             zipCell.Mask = "#####";
             cells.Add (zipCell);
 
-            cells.Add (BooleanEditCell.Create (filter, a => a.OwnCar, "Has Car"));
-            cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasPicture, "Has Profile Picture"));
-            cells.Add (BooleanEditCell.Create (filter, a => a.Details.HasReferences, "Has References"));
-            cells.Add (BooleanEditCell.Create (filter, a => a.HasCertification, "Has Certification"));
+            cells.Add (BooleanEditCell.Create (filter.OwnCar == true, v => filter.OwnCar = v == true ? v : (bool?)null, "Has Car"));
+            cells.Add (BooleanEditCell.Create (filter.Details.HasPicture == true, v => filter.Details.HasPicture = v == true ? v : (bool?)null, "Has Profile Picture"));
+            cells.Add (BooleanEditCell.Create (filter.Details.HasReferences == true, v => filter.Details.HasReferences = v == true ? v : (bool?)null, "Has References"));
+            cells.Add (BooleanEditCell.Create (filter.HasCertification == true, v => filter.HasCertification = v == true ? v : (bool?)null, "Has Certification"));
             cells.Add (PickerCell.Create (filter.AgeRange, (property) => { filter.AgeRange = property; }, "Age Range", ageRanges));
             viewHelper.HideOverlay ();
             viewWasInitialized = true;

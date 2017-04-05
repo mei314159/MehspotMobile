@@ -8,7 +8,7 @@ using UIKit;
 
 namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
-    public class ViewBabysitterDataSource: UITableViewSource
+    public class ViewBabysitterDataSource : UITableViewSource
     {
         private readonly List<UITableViewCell> cells;
 
@@ -22,18 +22,14 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             this.profile = profile;
             this.badgeService = badgeService;
             cells = new List<UITableViewCell> ();
-            cells.Add (BooleanEditCell.Create (profile, a=> a.BadgeValues.OwnCar, "Own Car", true));
-            cells.Add (BooleanEditCell.Create (profile, a => a.BadgeValues.CanDrive, "Can Drive", true));
+            cells.Add (BooleanEditCell.Create (profile.BadgeValues.OwnCar, v => { }, "Own Car", true));
+            cells.Add (BooleanEditCell.Create (profile.BadgeValues.CanDrive, v => { }, "Can Drive", true));
             cells.Add (TextViewCell.Create (profile.BadgeValues.BabysitterCertificationInfo, "Certifications"));
             cells.Add (TextViewCell.Create (profile.BadgeValues.BabysitterOtherCertifications, "Other Certifications and  URLs"));
             cells.Add (TextViewCell.Create (profile.BadgeValues.BabysitterAdditionalInformation, "Additional Information"));
-            var isHiredCell = BooleanEditCell.Create (profile, a => a.Details.IsHired, "Hired Before");
-            cells.Add (isHiredCell); // TODO POST request
-            var addReferenceCell = BooleanEditCell.Create (profile, a => a.Details.HasReference, "Add Reference");
-            cells.Add (addReferenceCell);
+            cells.Add (BooleanEditCell.Create (profile.Details.IsHired, v => { profile.Details.IsHired = v; IsHiredCell_ValueChanged (v); }, "Hired Before"));
+            cells.Add (BooleanEditCell.Create (profile.Details.HasReference, v => { profile.Details.HasReference = v; AddReferenceCell_ValueChanged (v); }, "Add Reference"));
             cells.Add (TextViewCell.Create (profile.Details.ReferenceCount.ToString (), "References Count"));
-            isHiredCell.ValueChanged += IsHiredCell_ValueChanged;
-            addReferenceCell.ValueChanged += AddReferenceCell_ValueChanged; 
         }
 
         public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)

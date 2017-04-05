@@ -22,6 +22,7 @@ namespace mehspot.iOS.Views
         private Action<object> SetProperty;
         private Func<object, string> GetPropertyString;
 
+
         public static readonly NSString Key = new NSString ("PickerCell");
         public static readonly UINib Nib;
 
@@ -41,6 +42,8 @@ namespace mehspot.iOS.Views
         [Outlet]
         UILabel FieldLabel { get; set; }
 
+        public string FieldName { get; set; }
+
         public KeyValuePair<object, string> [] RowValues { get; set; }
 
 
@@ -53,7 +56,8 @@ namespace mehspot.iOS.Views
             }
         }
 
-        private static PickerCell Instantiate (object initialValue, PickerTypeEnum type, string label, bool isReadOnly = false) {
+        private static PickerCell Instantiate (object initialValue, PickerTypeEnum type, string label, bool isReadOnly = false)
+        {
 
             var cell = (PickerCell)Nib.Instantiate (null, null) [0];
             cell.placeholder = label;
@@ -64,22 +68,22 @@ namespace mehspot.iOS.Views
             return cell;
         }
 
-        public static PickerCell Create<TProperty> (
-            TProperty initialValue,
-            Action<TProperty> setProperty,
+        public static PickerCell Create<T> (
+            T initialValue,
+            Action<T> setProperty,
             string label,
-            IEnumerable<KeyValuePair<TProperty, string>> rowValues,
+            IEnumerable<KeyValuePair<T, string>> rowValues,
             bool isReadOnly = false)
         {
             var cell = Instantiate (initialValue, PickerTypeEnum.List, label, isReadOnly);
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
 
             cell.GetPropertyString = (value) => {
-                return rowValues.FirstOrDefault (a => Equals (a.Key, value)).Value;
+                return cell.RowValues.FirstOrDefault (a => Equals (a.Key, value)).Value;
             };
             cell.SetProperty = (p) => {
                 cell.Value = p;
-                setProperty ((TProperty)p);
+                setProperty ((T)p);
                 cell.SetSelectValueButtonTitle (p);
             };
             cell.SetSelectValueButtonTitle (initialValue);
@@ -100,7 +104,7 @@ namespace mehspot.iOS.Views
                 if (value != null) {
                     var values = ((IEnumerable)value).Cast<TProperty> ();
                     if (values != null) {
-                        var valuesStrings = rowValues.Join (values, a => a.Key, a => a, (a, b) => a.Value).ToArray ();
+                        var valuesStrings = cell.RowValues.Join (values, a => a.Key, a => a, (a, b) => a.Value).ToArray ();
                         if (valuesStrings != null) {
                             return string.Join (Environment.NewLine, valuesStrings);
                         }
@@ -200,8 +204,7 @@ namespace mehspot.iOS.Views
                 picker.OnModalPickerDismissed += (indexes) => {
                     object value = null;
                     if (indexes != null) {
-                        var rowValues = cell.RowValues;
-                        value = indexes.Select (a => rowValues [a].Key).ToArray ();
+                        value = indexes.Select (a => cell.RowValues [a].Key).ToArray ();
                     }
 
                     cell.SetProperty (value);
