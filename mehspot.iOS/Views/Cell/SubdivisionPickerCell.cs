@@ -75,7 +75,7 @@ namespace mehspot.iOS.Views
             var cell = (SubdivisionPickerCell)(sender).Superview.Superview;
             var controller = cell.GetViewController ();
 
-            var subdivisionsListController = SubdivisionsListController.Create ();
+            var subdivisionsListController = new SubdivisionsListController ();
             subdivisionsListController.Subdivisions = this.Subdivisions;
             subdivisionsListController.SelectedSubdivisionId = this.SelectedSubdivisionId;
             subdivisionsListController.OnDismissed += (dto) => {

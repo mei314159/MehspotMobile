@@ -139,6 +139,9 @@
     <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\star-yellow%402x.png" />
     <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\star-yellow%403x.png" />
+    <ImageAsset Include="Assets.xcassets\more-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\more-icon.imageset\more-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\more-icon.imageset\more-icon%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -162,6 +165,8 @@
     <Folder Include="Controllers\Badges\" />
     <Folder Include="Controllers\Badges\BadgeProfileDataSource\" />
     <Folder Include="Views\MultiSelectPicker\" />
+    <Folder Include="Assets.xcassets\more-icon.imageset\" />
+    <Folder Include="Assets.xcassets\more-icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

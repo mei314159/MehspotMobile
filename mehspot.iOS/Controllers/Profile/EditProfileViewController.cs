@@ -123,7 +123,7 @@ namespace mehspot.iOS
             UIImage originalImage = e.Info [UIImagePickerController.OriginalImage] as UIImage;
             if (originalImage != null) {
                 ProfilePicture.Image = UIImage.FromImage (originalImage.CGImage, 4, originalImage.Orientation);
- 
+
                 this.profileImageChanged = true;
             }
 
@@ -195,16 +195,18 @@ namespace mehspot.iOS
             TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
 
             var profileResult = await profileService.GetProfileAsync ();
-            RefreshControl.EndRefreshing ();
 
             if (profileResult.IsSuccess) {
                 profile = profileResult.Data;
                 var states = await GetStates ();
                 var subdivisions = await GetSubdivisions (profile.Zip);
                 InitializeTable (profile, states, subdivisions);
-            }else {
+
                 RefreshControl.EndRefreshing ();
+            } else {
                 new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
+
+                RefreshControl.EndRefreshing ();
             }
 
             TableView.UserInteractionEnabled = true;
@@ -262,7 +264,7 @@ namespace mehspot.iOS
             subdivisionCell.IsReadOnly = !sender.IsValid;
         }
 
-        private async Task<SubdivisionDTO[]> GetSubdivisions (string zipCode)
+        private async Task<SubdivisionDTO []> GetSubdivisions (string zipCode)
         {
             if (!string.IsNullOrWhiteSpace (zipCode)) {
                 var subdivisionsResult = await profileService.GetSubdivisionsAsync (zipCode);

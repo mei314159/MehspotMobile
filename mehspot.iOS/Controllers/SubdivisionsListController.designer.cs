@@ -22,6 +22,10 @@ namespace mehspot.iOS.Controllers
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIPickerView PickerView { get; set; }
 
+        [Action ("AddButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void AddButtonTouched (UIKit.UIBarButtonItem sender);
+
         [Action ("CloseButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);

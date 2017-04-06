@@ -25,12 +25,6 @@ namespace mehspot.iOS.Controllers
 
         public int? SelectedSubdivisionId { get; set; }
 
-
-        public static SubdivisionsListController Create ()
-        {
-            return new SubdivisionsListController ();
-        }
-
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
@@ -62,7 +56,6 @@ namespace mehspot.iOS.Controllers
 
             marker = Marker.FromPosition (camera.Target);
             marker.Map = mapView;
-            mapView.CameraPositionChanged += MapView_CameraPositionChanged;
 
             MapWrapperView.AddSubview (mapView);
         }
@@ -103,9 +96,36 @@ namespace mehspot.iOS.Controllers
             DismissViewController (true, null);
         }
 
-        void MapView_CameraPositionChanged (object sender, GMSCameraEventArgs e)
+        partial void AddButtonTouched (UIBarButtonItem sender)
         {
-            
+            var subdivisionOptionsActionSheet = new UIActionSheet ("Options");
+            subdivisionOptionsActionSheet.AddButton ("Add Subdivision");
+            subdivisionOptionsActionSheet.AddButton ("Verify/Change Subdivision");
+            bool userIsAdmin = true; //TODO Temporary. Need to get real user status
+            if (userIsAdmin)
+                subdivisionOptionsActionSheet.AddButton ("Edit Subdivision");
+            subdivisionOptionsActionSheet.AddButton ("Cancel");
+            subdivisionOptionsActionSheet.CancelButtonIndex = 3;
+            subdivisionOptionsActionSheet.Clicked += SubdivisionOptionsActionSheet_Clicked;
+            subdivisionOptionsActionSheet.ShowInView (View);
+        }
+
+        void SubdivisionOptionsActionSheet_Clicked (object sender, UIButtonEventArgs e)
+        {
+            if (e.ButtonIndex == 0) { //Add subdivision
+                var controller = new SubdivisionController ();
+                this.PresentViewController (controller, true, null);
+            } else if (e.ButtonIndex == 1) { //Verify/Change subdivision
+                var controller = new SubdivisionController ();
+                controller.Subdivision = this.selectedSubdivision;
+                this.PresentViewController (controller, true, null);
+            } else if (e.ButtonIndex == 2) { //Edit subdivision
+                var controller = new SubdivisionController ();
+                controller.Subdivision = this.selectedSubdivision;
+                this.PresentViewController (controller, true, null);
+            } else {
+                return;
+            }
         }
     }
 }

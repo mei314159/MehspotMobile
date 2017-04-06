@@ -53,22 +53,28 @@
                     <rect key="frame" x="0.0" y="210" width="375" height="457"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="64" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="20" y="84" width="50" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="64" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="20" y="86" width="43" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <constraints>
+                        <constraint id="124" firstItem="64" firstAttribute="width" constant="43"/>
+                    </constraints>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="68" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="85" y="80" width="270" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="72" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="20" y="124" width="68" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="72" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="20" y="126" width="57" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <constraints>
+                        <constraint id="123" firstItem="72" firstAttribute="width" constant="57"/>
+                    </constraints>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="73" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="86" y="120" width="269" height="30"/>
@@ -76,7 +82,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text" borderStyle="roundedRect" minimumFontSize="17" id="84" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="264" y="160" width="90" height="30"/>
+                    <rect key="frame" x="264" y="160" width="91" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -90,12 +96,18 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <constraints>
+                        <constraint id="122" firstItem="90" firstAttribute="width" constant="57"/>
+                    </constraints>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94" translatesAutoresizingMaskIntoConstraints="NO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                     <rect key="frame" x="187" y="166" width="69" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <constraints>
+                        <constraint id="127" firstItem="94" firstAttribute="width" constant="69"/>
+                    </constraints>
                 </label>
             </subviews>
             <constraints>
@@ -122,9 +134,7 @@
                 <constraint id="95" firstItem="68" firstAttribute="leading" secondItem="73" secondAttribute="leading" constant="188"/>
                 <constraint id="98" firstItem="73" firstAttribute="leading" secondItem="68" secondAttribute="leading" constant="1"/>
                 <constraint id="102" firstItem="85" firstAttribute="leading" secondItem="73" secondAttribute="leading"/>
-                <constraint id="103" firstItem="73" firstAttribute="trailing" secondItem="84" secondAttribute="trailing" constant="1"/>
                 <constraint id="104" firstItem="84" firstAttribute="width" secondItem="85" secondAttribute="width"/>
-                <constraint id="106" firstItem="84" firstAttribute="centerY" secondItem="94" secondAttribute="centerY" constant="1"/>
                 <constraint id="107" firstItem="84" firstAttribute="leading" secondItem="94" secondAttribute="trailing" constant="13">
                     <variation key="heightClass=regular-widthClass=compact" constant="9"/>
                 </constraint>
@@ -135,15 +145,16 @@
                 <constraint id="110" firstItem="63" firstAttribute="leading" secondItem="2" secondAttribute="leading"/>
                 <constraint id="111" firstItem="63" firstAttribute="trailing" secondItem="2" secondAttribute="trailing"/>
                 <constraint id="112" firstItem="63" firstAttribute="bottom" secondItem="2" secondAttribute="bottom"/>
+                <constraint id="126" firstItem="84" firstAttribute="trailing" secondItem="73" secondAttribute="trailing"/>
+                <constraint id="128" firstItem="94" firstAttribute="centerY" secondItem="90" secondAttribute="centerY"/>
+                <constraint id="129" firstItem="85" firstAttribute="leading" secondItem="73" secondAttribute="leading"/>
             </constraints>
             <point key="canvasLocation" x="2" y="1"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="95"/>
                     <exclude reference="102"/>
-                    <exclude reference="103"/>
                     <exclude reference="104"/>
-                    <exclude reference="106"/>
                     <exclude reference="107"/>
                     <exclude reference="108"/>
                     <exclude reference="109"/>
@@ -156,9 +167,7 @@
                 <mask key="constraints">
                     <include reference="95"/>
                     <include reference="102"/>
-                    <include reference="103"/>
                     <include reference="104"/>
-                    <include reference="106"/>
                     <include reference="107"/>
                     <include reference="108"/>
                     <include reference="109"/>
@@ -205,6 +214,7 @@
         <image name="badges/hobbyb.png" width="210" height="208"/>
         <image name="badges/kidsplaydateb.png" width="210" height="210"/>
         <image name="badges/otherjobsb.png" width="210" height="210"/>
+        <image name="more-icon" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>
