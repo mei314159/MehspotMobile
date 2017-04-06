@@ -55,7 +55,7 @@
                         <constraint firstAttribute="height" constant="44" id="28"/>
                     </constraints>
                     <items>
-                        <navigationItem title="Title" id="16">
+                        <navigationItem title="Select Subdivision" id="16">
                             <barButtonItem key="leftBarButtonItem" systemItem="stop" id="18">
                                 <connections>
                                     <action selector="CloseButtonTouched:" destination="-1" id="48"/>
