@@ -20,7 +20,7 @@ namespace mehspot.iOS
     {
         private const string HockeyAppId = "939417b83e9b41b6bbfe772dd8129ac3";
 
-        private const string MapsApiKey = "AIzaSyDRWxkS58bSvtd0JwWKAv0aCAfzV-F7Nlw";
+        private const string MapsApiKey = "AIzaSyAqIup2dew1z_2_d1uTGcyArOboCWv2rN0";
 
 
         // class-level declarations

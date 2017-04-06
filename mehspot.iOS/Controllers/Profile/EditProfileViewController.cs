@@ -14,6 +14,7 @@ using SDWebImage;
 using mehspot.iOS.Views;
 using System.Linq;
 using Mehspot.Core.Services;
+using Mehspot.DTO;
 
 namespace mehspot.iOS
 {
@@ -211,7 +212,7 @@ namespace mehspot.iOS
             loading = false;
         }
 
-        void InitializeTable (ProfileDto profile, KeyValuePair<int?, string> [] states, KeyValuePair<int?, string> [] subdivisions)
+        void InitializeTable (ProfileDto profile, KeyValuePair<int?, string> [] states, SubdivisionDTO [] subdivisions)
         {
             this.UserNameLabel.Text = profile.UserName;
             this.FullName.Text = $"{profile.FirstName} {profile.LastName}".Trim (' ');
@@ -240,7 +241,7 @@ namespace mehspot.iOS
             var zipCell = TextEditCell.Create (profile, a => a.Zip, "Zip");
             zipCell.Mask = "#####";
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
-            var subdivisionCell = PickerCell.Create (profile.SubdivisionId, (property) => { profile.SubdivisionId = (int?)property; }, "Subdivision", subdivisions, !subdivisionEnabled);
+            var subdivisionCell = SubdivisionPickerCell.Create (profile.SubdivisionId, (property) => { profile.SubdivisionId = property?.Id; }, "Subdivision", subdivisions, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
             cells.Add (zipCell);
             cells.Add (subdivisionCell);
@@ -251,22 +252,22 @@ namespace mehspot.iOS
             TableView.ReloadData ();
         }
 
-        async void ZipCell_ValueChanged (TextEditCell sender, string value, PickerCell subdivisionCell)
+        async void ZipCell_ValueChanged (TextEditCell sender, string value, SubdivisionPickerCell subdivisionCell)
         {
             subdivisionCell.IsReadOnly = true;
             if (sender.IsValid) {
-                subdivisionCell.RowValues = (await GetSubdivisions (profile.Zip)).Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
+                subdivisionCell.Subdivisions = await GetSubdivisions (profile.Zip);
             }
 
             subdivisionCell.IsReadOnly = !sender.IsValid;
         }
 
-        private async Task<KeyValuePair<int?, string> []> GetSubdivisions (string zipCode)
+        private async Task<SubdivisionDTO[]> GetSubdivisions (string zipCode)
         {
             if (!string.IsNullOrWhiteSpace (zipCode)) {
                 var subdivisionsResult = await profileService.GetSubdivisionsAsync (zipCode);
                 if (subdivisionsResult.IsSuccess) {
-                    return subdivisionsResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.DisplayName)).ToArray ();
+                    return subdivisionsResult.Data;
                 }
             }
 

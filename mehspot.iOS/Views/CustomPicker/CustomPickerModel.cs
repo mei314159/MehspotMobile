@@ -24,9 +24,13 @@ using System.Collections.Generic;
 
 namespace SharpMobileCode.ModalPicker
 {
+    public delegate void RowSelected(UIPickerView pickerView, nint row, nint component);
+
     public class CustomPickerModel : UIPickerViewModel
     {
         private List<string> _itemsList;
+
+        public event RowSelected ItemSelected;
 
         public CustomPickerModel(List<string> itemsList)
         {
@@ -54,6 +58,11 @@ namespace SharpMobileCode.ModalPicker
             };
 
             return label;
+        }
+
+        public override void Selected (UIPickerView pickerView, nint row, nint component)
+        {
+            ItemSelected.Invoke (pickerView, row, component);
         }
     }
 }

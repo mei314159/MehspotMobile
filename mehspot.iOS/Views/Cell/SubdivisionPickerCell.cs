@@ -40,6 +40,7 @@ namespace mehspot.iOS.Views
 
         public SubdivisionDTO [] Subdivisions { get; set; }
 
+        public int? SelectedSubdivisionId { get; set; }
 
         public bool IsReadOnly {
             get {
@@ -56,6 +57,7 @@ namespace mehspot.iOS.Views
             cell.placeholder = label;
             cell.IsReadOnly = isReadOnly;
             cell.FieldLabel.Text = label;
+            cell.SelectedSubdivisionId = selectedId;
             cell.Subdivisions = list;
             cell.SetProperty = setProperty;
             cell.GetPropertyString = (value) => {
@@ -75,9 +77,11 @@ namespace mehspot.iOS.Views
 
             var subdivisionsListController = SubdivisionsListController.Create ();
             subdivisionsListController.Subdivisions = this.Subdivisions;
+            subdivisionsListController.SelectedSubdivisionId = this.SelectedSubdivisionId;
             subdivisionsListController.OnDismissed += (dto) => {
                 cell.SetProperty (dto);
                 cell.SetSelectValueButtonTitle (dto.Id);
+                cell.SelectedSubdivisionId = dto.Id;
             };
 
             await controller.PresentViewControllerAsync (subdivisionsListController, true);

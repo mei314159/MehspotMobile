@@ -14,6 +14,14 @@ namespace mehspot.iOS.Controllers
     [Register ("SubdivisionsListController")]
     partial class SubdivisionsListController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView MapWrapperView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIPickerView PickerView { get; set; }
+
         [Action ("CloseButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);
@@ -24,6 +32,15 @@ namespace mehspot.iOS.Controllers
 
         void ReleaseDesignerOutlets ()
         {
+            if (MapWrapperView != null) {
+                MapWrapperView.Dispose ();
+                MapWrapperView = null;
+            }
+
+            if (PickerView != null) {
+                PickerView.Dispose ();
+                PickerView = null;
+            }
         }
     }
 }
