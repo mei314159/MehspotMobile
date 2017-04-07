@@ -34,12 +34,17 @@
                     </constraints>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="13"/>
-                        <barButtonItem id="21" image="more-icon">
+                        <barButtonItem id="21" systemItem="add">
                             <connections>
                                 <action selector="AddButtonTouched:" destination="-1" id="56"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="14"/>
+                        <barButtonItem title="Item" id="59" image="more-icon">
+                            <connections>
+                                <action selector="MoreButtonTouched:" destination="-1" id="60"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                     <variation key="default">
                         <mask key="constraints">

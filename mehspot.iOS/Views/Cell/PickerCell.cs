@@ -5,6 +5,7 @@ using System.Linq;
 using CoreGraphics;
 using Foundation;
 using mehspot.iOS.Extensions;
+using Mehspot.iOS.Views.CustomPicker;
 using Mehspot.iOS.Views.MultiSelectPicker;
 using SharpMobileCode.ModalPicker;
 using UIKit;

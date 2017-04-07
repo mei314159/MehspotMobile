@@ -30,6 +30,10 @@ namespace mehspot.iOS.Controllers
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);
 
+        [Action ("MoreButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void MoreButtonTouched (UIKit.UIBarButtonItem sender);
+
         [Action ("SaveButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SaveButtonTouched (UIKit.UIBarButtonItem sender);

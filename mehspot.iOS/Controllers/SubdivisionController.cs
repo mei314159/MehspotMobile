@@ -1,7 +1,13 @@
 ﻿using System;
+using CoreLocation;
 using Foundation;
 using Google.Maps;
+using mehspot.iOS.Wrappers;
+using Mehspot.Core;
+using Mehspot.Core.DTO;
+using Mehspot.Core.Services;
 using Mehspot.DTO;
+using MehSpot.Core.DTO.Subdivision;
 using UIKit;
 
 namespace mehspot.iOS.Controllers
@@ -10,90 +16,135 @@ namespace mehspot.iOS.Controllers
     {
         MapView mapView;
         Marker marker;
+        Address Place;
+        Geocoder geocoder = new Geocoder ();
+        SubdivisionService subdivisionService;
+        ViewHelper viewHelper;
+        private bool setPlaceOnly;
 
-
-        public event Action<SubdivisionDTO> OnDismissed;
+        public event Action<EditSubdivisionDTO> OnDismissed;
 
         public SubdivisionController () : base ("SubdivisionController", NSBundle.MainBundle)
         {
         }
 
         public SubdivisionDTO Subdivision { get; set; }
+        public string ZipCode { get; set; }
+
+        public bool AllowEdititng { get; internal set; }
+
 
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
+            viewHelper = new ViewHelper (this.View);
+            subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
             LatitudeField.KeyboardType = LongitudeField.KeyboardType = UIKeyboardType.DecimalPad;
-
-            this.NameField.Text = Subdivision.DisplayName;
-            this.AddressField.Text = Subdivision.FormattedAddress;
-            this.LatitudeField.Text = Subdivision.Latitude.ToString();
-            this.LongitudeField.Text = Subdivision.Longitude.ToString ();
 
             CameraPosition camera;
             if (Subdivision == null) {
-                camera = CameraPosition.FromCamera (37.79, 32.40, 6);
+                camera = CameraPosition.FromCamera (33.7489954, -84.3879824, 15);
             } else {
+                setPlaceOnly = true;
                 camera = CameraPosition.FromCamera (Subdivision.Latitude, Subdivision.Longitude, 15);
+                this.NameField.Text = Subdivision.DisplayName;
+                this.AddressField.Text = Subdivision.FormattedAddress;
+                this.LatitudeField.Text = Subdivision.Latitude.ToString ();
+                this.LongitudeField.Text = Subdivision.Longitude.ToString ();
             }
+
+            GetLocationByCoordinates (camera.Target);
+
             mapView = MapView.FromCamera (MapWrapperView.Bounds, camera);
             mapView.MyLocationEnabled = true;
-            mapView.DraggingMarkerEnded += MapView_DraggingMarkerEnded;;
+            mapView.DraggingMarkerStarted += MapView_DraggingMarkerStarted;;
+            mapView.DraggingMarkerEnded += MapView_DraggingMarkerEnded ;
 
             marker = Marker.FromPosition (camera.Target);
             marker.Map = mapView;
             marker.Draggable = true;
+
+            if (!AllowEdititng)
+                this.NavBarItem.RightBarButtonItems = new UIBarButtonItem [] { };
+            this.NameField.Enabled = this.AddressField.Enabled = LatitudeField.Enabled = LongitudeField.Enabled = marker.Draggable = AllowEdititng;
+
             MapWrapperView.AddSubview (mapView);
         }
 
-        public override void ViewWillAppear (bool animated)
+        void MapView_DraggingMarkerStarted (object sender, GMSMarkerEventEventArgs e)
         {
-            base.ViewWillAppear (animated);
-            mapView.StartRendering ();
-        }
-        public override void ViewWillDisappear (bool animated)
-        {
-            mapView.StopRendering ();
-            base.ViewWillDisappear (animated);
-        }
-
-        public override void DidReceiveMemoryWarning ()
-        {
-            base.DidReceiveMemoryWarning ();
-            // Release any cached data, images, etc that aren't in use.
+            this.AddressField.Enabled = LatitudeField.Enabled = LongitudeField.Enabled = false;
         }
 
         void MapView_DraggingMarkerEnded (object sender, GMSMarkerEventEventArgs e)
         {
-            new Geocoder ().ReverseGeocodeCord (e.Marker.Position, HandleReverseGeocodeCallback);
+            viewHelper.ShowOverlay ("Wait...");
+            GetLocationByCoordinates (e.Marker.Position);
         }
 
         void HandleReverseGeocodeCallback (ReverseGeocodeResponse response, NSError error)
         {
+            this.AddressField.Enabled = LatitudeField.Enabled = LongitudeField.Enabled = AllowEdititng;
+
             if (error != null)
                 return;
 
-            this.AddressField.Text = response.FirstResult.Thoroughfare;
-            this.LatitudeField.Text = response.FirstResult.Coordinate.Latitude.ToString();
-            this.LongitudeField.Text = response.FirstResult.Coordinate.Longitude.ToString ();
+            this.Place = response.FirstResult;
+            if (!setPlaceOnly) {
+                this.NameField.Text = this.Place.SubLocality;
+                this.AddressField.Text = Place.Lines != null ? string.Join (", ", response.FirstResult.Lines) : response.FirstResult.Thoroughfare;
+                this.LatitudeField.Text = response.FirstResult.Coordinate.Latitude.ToString ();
+                this.LongitudeField.Text = response.FirstResult.Coordinate.Longitude.ToString ();
+            }
+
+            setPlaceOnly = false;
+            viewHelper.HideOverlay ();
         }
 
 
-        partial void SaveButtonTouched (UIBarButtonItem sender)
+        async partial void SaveButtonTouched (UIBarButtonItem sender)
         {
-            Subdivision.DisplayName = this.NameField.Text;
-            Subdivision.FormattedAddress = this.AddressField.Text;
-            Subdivision.Latitude = double.Parse (this.LatitudeField.Text);
-            Subdivision.Longitude = double.Parse (this.LongitudeField.Text);
+            viewHelper.ShowOverlay ("Saving...");
 
-            this.OnDismissed (Subdivision);
-            DismissViewController (true, null);
+            var zip = this.ZipCode ?? Place.PostalCode;
+            var dto = new EditSubdivisionDTO {
+                Id = Subdivision?.Id ?? default(int),
+                Name = this.NameField.Text,
+                ZipCode = zip,
+                Address = new AddressDTO {
+                    Latitude = Place.Coordinate.Latitude,
+                    Longitude = Place.Coordinate.Longitude,
+                    Country = Place.Country,
+                    FormattedAddress = this.AddressField.Text,
+                    PostalCode = zip,
+                    GoverningDistrictId = 1,
+                }
+            };
+
+            Result result;
+            if (Subdivision != null) {
+                result = await this.subdivisionService.OverrideAsync (dto);
+            } else {
+                result = await this.subdivisionService.CreateAsync (dto);
+            }
+
+            viewHelper.HideOverlay ();
+            if (result.IsSuccess) {
+                DismissViewController (true, null);
+                this.OnDismissed?.Invoke (dto);
+            } else {
+                viewHelper.ShowAlert ("Error", result.ErrorMessage);
+            }
         }
 
         partial void CloseButtonTouched (UIBarButtonItem sender)
         {
             DismissViewController (true, null);
         }
+
+        void GetLocationByCoordinates (CLLocationCoordinate2D position)
+        {
+            geocoder.ReverseGeocodeCord (position, HandleReverseGeocodeCallback);
+        }
     }
 }
-

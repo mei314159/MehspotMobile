@@ -26,6 +26,7 @@ namespace mehspot.iOS
 
         private IViewHelper viewHelper;
         private ProfileService profileService;
+        private SubdivisionService subdivisionService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
         private KeyValuePair<string, string> [] genders = {
                 new KeyValuePair<string, string>(null, "N/A"),
@@ -54,6 +55,7 @@ namespace mehspot.iOS
         public override void ViewDidLoad ()
         {
             profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
+            subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
             viewHelper = new ViewHelper (this.View);
             ChangePhotoButton.Layer.BorderWidth = 1;
             ChangePhotoButton.Layer.BorderColor = UIColor.LightGray.CGColor;
@@ -214,7 +216,7 @@ namespace mehspot.iOS
             loading = false;
         }
 
-        void InitializeTable (ProfileDto profile, KeyValuePair<int?, string> [] states, SubdivisionDTO [] subdivisions)
+        void InitializeTable (ProfileDto profile, KeyValuePair<int?, string> [] states, List<SubdivisionDTO> subdivisions)
         {
             this.UserNameLabel.Text = profile.UserName;
             this.FullName.Text = $"{profile.FirstName} {profile.LastName}".Trim (' ');
@@ -243,7 +245,10 @@ namespace mehspot.iOS
             var zipCell = TextEditCell.Create (profile, a => a.Zip, "Zip");
             zipCell.Mask = "#####";
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
-            var subdivisionCell = SubdivisionPickerCell.Create (profile.SubdivisionId, (property) => { profile.SubdivisionId = property?.Id; }, "Subdivision", subdivisions, !subdivisionEnabled);
+            var subdivisionCell = SubdivisionPickerCell.Create (profile.SubdivisionId, (property) => {
+                profile.SubdivisionId = property?.Id;
+                profile.SubdivisionOptionId = property?.OptionId;
+            }, "Subdivision", subdivisions, profile.Zip, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
             cells.Add (zipCell);
             cells.Add (subdivisionCell);
@@ -258,16 +263,17 @@ namespace mehspot.iOS
         {
             subdivisionCell.IsReadOnly = true;
             if (sender.IsValid) {
-                subdivisionCell.Subdivisions = await GetSubdivisions (profile.Zip);
+                subdivisionCell.Subdivisions = await GetSubdivisions (value);
+                subdivisionCell.ZipCode = value;
             }
 
             subdivisionCell.IsReadOnly = !sender.IsValid;
         }
 
-        private async Task<SubdivisionDTO []> GetSubdivisions (string zipCode)
+        private async Task<List<SubdivisionDTO>> GetSubdivisions (string zipCode)
         {
             if (!string.IsNullOrWhiteSpace (zipCode)) {
-                var subdivisionsResult = await profileService.GetSubdivisionsAsync (zipCode);
+                var subdivisionsResult = await subdivisionService.GetSubdivisionsAsync (zipCode);
                 if (subdivisionsResult.IsSuccess) {
                     return subdivisionsResult.Data;
                 }
@@ -278,7 +284,7 @@ namespace mehspot.iOS
 
         private async Task<KeyValuePair<int?, string> []> GetStates ()
         {
-            var statesResult = await profileService.GetStatesAsync ();
+            var statesResult = await subdivisionService.GetStatesAsync ();
             if (statesResult.IsSuccess) {
                 return statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
             }

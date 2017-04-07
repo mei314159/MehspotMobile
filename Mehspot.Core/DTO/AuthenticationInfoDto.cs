@@ -23,6 +23,9 @@ namespace Mehspot.Core.DTO
         [JsonProperty (PropertyName = "username")]
         public string UserName { get; set; }
 
+        [JsonProperty(PropertyName = "isadmin")]
+        public bool IsAdmin { get; set; }
+
         [JsonProperty (PropertyName = "userid")]
         public string UserId { get; set; }
 

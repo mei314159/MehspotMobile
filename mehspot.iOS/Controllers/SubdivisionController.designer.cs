@@ -38,6 +38,14 @@ namespace mehspot.iOS.Controllers
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UINavigationBar NavBar { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationItem NavBarItem { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem SaveButton { get; set; }
+
         [Action ("CloseButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);
@@ -76,6 +84,16 @@ namespace mehspot.iOS.Controllers
             if (NavBar != null) {
                 NavBar.Dispose ();
                 NavBar = null;
+            }
+
+            if (NavBarItem != null) {
+                NavBarItem.Dispose ();
+                NavBarItem = null;
+            }
+
+            if (SaveButton != null) {
+                SaveButton.Dispose ();
+                SaveButton = null;
             }
         }
     }

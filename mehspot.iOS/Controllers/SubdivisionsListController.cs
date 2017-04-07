@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using Google.Maps;
+using Mehspot.Core;
 using Mehspot.DTO;
-using SharpMobileCode.ModalPicker;
+using Mehspot.iOS.Views.CustomPicker;
+using MehSpot.Core.DTO.Subdivision;
 using UIKit;
 
 namespace mehspot.iOS.Controllers
@@ -21,7 +24,8 @@ namespace mehspot.iOS.Controllers
         }
 
 
-        public SubdivisionDTO [] Subdivisions { get; set; }
+        public List<SubdivisionDTO> Subdivisions { get; set; }
+        public string ZipCode { get; set; }
 
         public int? SelectedSubdivisionId { get; set; }
 
@@ -31,7 +35,7 @@ namespace mehspot.iOS.Controllers
             nint selectedRow = 0;
 
             if (Subdivisions != null) {
-                for (int i = 0; i < Subdivisions.Length; i++) {
+                for (int i = 0; i < Subdivisions.Count; i++) {
                     var item = Subdivisions [i];
                     if (item.Id == SelectedSubdivisionId) {
                         selectedRow = i;
@@ -60,29 +64,23 @@ namespace mehspot.iOS.Controllers
             MapWrapperView.AddSubview (mapView);
         }
 
-        public override void ViewWillAppear (bool animated)
+        public override void ViewDidAppear (bool animated)
         {
-            base.ViewWillAppear (animated);
-            mapView.StartRendering ();
-        }
-        public override void ViewWillDisappear (bool animated)
-        {
-            mapView.StopRendering ();
-            base.ViewWillDisappear (animated);
+            base.ViewDidAppear (animated);
+            if (this.selectedSubdivision != null)
+                RefreshMap (this.selectedSubdivision);
         }
 
         public void Selected (UIPickerView pickerView, nint row, nint component)
         {
-            selectedSubdivision = Subdivisions [row];
-            var camera = CameraPosition.FromCamera (selectedSubdivision.Latitude, selectedSubdivision.Longitude, 15);
-            mapView.Camera = camera;
-            marker.Position = camera.Target;
+            selectedSubdivision = Subdivisions.ElementAtOrDefault ((int)row);
+            RefreshMap (selectedSubdivision);
         }
 
-        public override void DidReceiveMemoryWarning ()
-        {
-            base.DidReceiveMemoryWarning ();
-            // Release any cached data, images, etc that aren't in use.
+        private void RefreshMap (SubdivisionDTO subdivision) {
+            var camera = CameraPosition.FromCamera (subdivision.Latitude, subdivision.Longitude, 15);
+            mapView.Camera = camera;
+            marker.Position = camera.Target;
         }
 
         partial void SaveButtonTouched (UIBarButtonItem sender)
@@ -98,34 +96,80 @@ namespace mehspot.iOS.Controllers
 
         partial void AddButtonTouched (UIBarButtonItem sender)
         {
-            var subdivisionOptionsActionSheet = new UIActionSheet ("Options");
-            subdivisionOptionsActionSheet.AddButton ("Add Subdivision");
-            subdivisionOptionsActionSheet.AddButton ("Verify/Change Subdivision");
-            bool userIsAdmin = true; //TODO Temporary. Need to get real user status
-            if (userIsAdmin)
-                subdivisionOptionsActionSheet.AddButton ("Edit Subdivision");
-            subdivisionOptionsActionSheet.AddButton ("Cancel");
-            subdivisionOptionsActionSheet.CancelButtonIndex = 3;
-            subdivisionOptionsActionSheet.Clicked += SubdivisionOptionsActionSheet_Clicked;
-            subdivisionOptionsActionSheet.ShowInView (View);
+            var controller = new SubdivisionController ();
+            controller.AllowEdititng = true;
+            controller.ZipCode = this.ZipCode;
+            controller.OnDismissed += SubdivisionCreated;
+            this.PresentViewController (controller, true, null);
         }
 
         void SubdivisionOptionsActionSheet_Clicked (object sender, UIButtonEventArgs e)
         {
-            if (e.ButtonIndex == 0) { //Add subdivision
-                var controller = new SubdivisionController ();
-                this.PresentViewController (controller, true, null);
-            } else if (e.ButtonIndex == 1) { //Verify/Change subdivision
-                var controller = new SubdivisionController ();
-                controller.Subdivision = this.selectedSubdivision;
-                this.PresentViewController (controller, true, null);
-            } else if (e.ButtonIndex == 2) { //Edit subdivision
-                var controller = new SubdivisionController ();
-                controller.Subdivision = this.selectedSubdivision;
-                this.PresentViewController (controller, true, null);
-            } else {
+            if (e.ButtonIndex != 0)
                 return;
+
+            if (!selectedSubdivision.IsVerified && !selectedSubdivision.IsVerifiedByCurrentUser) {
+                //var controller = new VerifySubdivisionController ();
+                //controller.Subdivision = selectedSubdivision;
+                //this.PresentViewController (controller, true, null);
+            } else {
+                var controller = new SubdivisionController ();
+                controller.Subdivision = this.selectedSubdivision;
+                controller.ZipCode = this.ZipCode;
+                controller.AllowEdititng = MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin;
+                controller.OnDismissed += SubdivisionUpdated;
+                this.PresentViewController (controller, true, null);
             }
+        }
+
+        partial void MoreButtonTouched (UIBarButtonItem sender)
+        {
+            var subdivisionOptionsActionSheet = new UIActionSheet ("Options");
+            if (!selectedSubdivision.IsVerified && !selectedSubdivision.IsVerifiedByCurrentUser) {
+                subdivisionOptionsActionSheet.AddButton ("Verify or Change Subdivision");
+            } else {
+                subdivisionOptionsActionSheet.AddButton (MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin ? "Edit Subdivision" : "View Details");
+            }
+
+            subdivisionOptionsActionSheet.AddButton ("Cancel");
+            subdivisionOptionsActionSheet.CancelButtonIndex = 1;
+            subdivisionOptionsActionSheet.Clicked += SubdivisionOptionsActionSheet_Clicked;
+            subdivisionOptionsActionSheet.ShowInView (View);
+        }
+
+        void SubdivisionCreated (EditSubdivisionDTO result)
+        {
+            selectedSubdivision = new SubdivisionDTO ();
+            UpdateDTO (selectedSubdivision, result);
+            this.Subdivisions.Add (selectedSubdivision);
+            var items = ((CustomPickerModel)this.PickerView.Model).Items;
+            items.Add (result.Name);
+            this.PickerView.ReloadAllComponents ();
+            this.PickerView.Select (items.Count - 1, 0, false);
+        }
+
+        void SubdivisionUpdated (EditSubdivisionDTO result)
+        {
+            var items = ((CustomPickerModel)this.PickerView.Model).Items;
+            var index = items.IndexOf (selectedSubdivision.DisplayName);
+            items.RemoveAt (index);
+            items.Insert (index, result.Name);
+            UpdateDTO (selectedSubdivision, result);
+            this.PickerView.ReloadAllComponents ();
+            this.PickerView.Select (index, 0, false);
+        }
+
+        private void UpdateDTO (SubdivisionDTO dto, EditSubdivisionDTO result) {
+            dto.Id = result.Id;
+            dto.DisplayName = result.Name;
+            dto.Latitude = result.Address.Latitude;
+            dto.Longitude = result.Address.Longitude;
+            dto.FormattedAddress = result.Address.FormattedAddress;
+            dto.IsVerified = false;
+            dto.IsVerifiedByCurrentUser = false;
+            dto.ZipCode = result.ZipCode;
+            dto.SubdivisionIdentifier = result.SubdivisionIdentifier;
+            dto.AddressId = result.AddressId;
         }
     }
 }

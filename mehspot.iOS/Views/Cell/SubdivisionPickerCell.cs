@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using mehspot.iOS.Controllers;
@@ -14,8 +15,6 @@ namespace mehspot.iOS.Views
         private string placeholder;
 
         private Action<SubdivisionDTO> SetProperty;
-        private Func<int, string> GetPropertyString;
-
 
         public static readonly NSString Key = new NSString ("SubdivisionPickerCell");
         public static readonly UINib Nib;
@@ -38,9 +37,21 @@ namespace mehspot.iOS.Views
 
         public string FieldName { get; set; }
 
-        public SubdivisionDTO [] Subdivisions { get; set; }
+        List<SubdivisionDTO> subdivisions;
+        public List<SubdivisionDTO> Subdivisions {
+            get {
+                return subdivisions;
+            }
+
+            set {
+                subdivisions = value;
+                this.SetSelectValueButtonTitle (value.FirstOrDefault (a => a.Id == this.SelectedSubdivisionId));
+            }
+        }
 
         public int? SelectedSubdivisionId { get; set; }
+
+        public string ZipCode { get; set; }
 
         public bool IsReadOnly {
             get {
@@ -51,20 +62,16 @@ namespace mehspot.iOS.Views
             }
         }
 
-        public static SubdivisionPickerCell Create (int? selectedId, Action<SubdivisionDTO> setProperty, string label, SubdivisionDTO [] list, bool isReadOnly = false)
+        public static SubdivisionPickerCell Create (int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
         {
             var cell = (SubdivisionPickerCell)Nib.Instantiate (null, null) [0];
             cell.placeholder = label;
             cell.IsReadOnly = isReadOnly;
             cell.FieldLabel.Text = label;
+            cell.ZipCode = zipCode;
             cell.SelectedSubdivisionId = selectedId;
-            cell.Subdivisions = list;
             cell.SetProperty = setProperty;
-            cell.GetPropertyString = (value) => {
-                return cell.Subdivisions.FirstOrDefault (a => Equals (a.Id, value)).DisplayName;
-            };
-
-            cell.SetSelectValueButtonTitle (selectedId);
+            cell.Subdivisions = list;
             return cell;
         }
 
@@ -76,20 +83,21 @@ namespace mehspot.iOS.Views
             var controller = cell.GetViewController ();
 
             var subdivisionsListController = new SubdivisionsListController ();
+            subdivisionsListController.ZipCode = this.ZipCode;
             subdivisionsListController.Subdivisions = this.Subdivisions;
             subdivisionsListController.SelectedSubdivisionId = this.SelectedSubdivisionId;
             subdivisionsListController.OnDismissed += (dto) => {
                 cell.SetProperty (dto);
-                cell.SetSelectValueButtonTitle (dto.Id);
+                cell.SetSelectValueButtonTitle (dto);
                 cell.SelectedSubdivisionId = dto.Id;
             };
 
             await controller.PresentViewControllerAsync (subdivisionsListController, true);
         }
 
-        void SetSelectValueButtonTitle (int? selectedSubdivisionId)
+        void SetSelectValueButtonTitle (SubdivisionDTO selectedSubdivision)
         {
-            SelectValueButton.SetTitle (selectedSubdivisionId.HasValue ? GetPropertyString (selectedSubdivisionId.Value) ?? this.placeholder : this.placeholder, UIControlState.Normal);
+            SelectValueButton.SetTitle (selectedSubdivision?.DisplayName ?? this.placeholder, UIControlState.Normal);
         }
 
         void ReleaseDesignerOutlets ()
