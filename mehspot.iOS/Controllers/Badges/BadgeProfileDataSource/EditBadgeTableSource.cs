@@ -7,7 +7,7 @@ using mehspot.iOS.Views;
 using Mehspot.Core;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.Services;
-using Mehspot.DTO;
+using MehSpot.Core.DTO.Subdivision;
 using UIKit;
 
 namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
@@ -18,12 +18,12 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         private readonly List<UITableViewCell> cells;
 
-        private readonly BadgeProfileDTO<EditBadgeProfileDTO> profile;
+        private readonly BadgeProfileDTO<EditBadgeProfileDTO> badge;
         private readonly SubdivisionService subdivisionService;
 
         private EditBadgeTableSource (BadgeProfileDTO<EditBadgeProfileDTO> profile, SubdivisionService subdivisionService)
         {
-            this.profile = profile;
+            this.badge = profile;
             this.subdivisionService = subdivisionService;
             cells = new List<UITableViewCell> ();
         }
@@ -55,43 +55,43 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         {
             var subdivisionCellKey = "";
             this.states = await GetStates ();
-            var profileSubdivisions = await GetSubdivisions (profile.Profile.Zip);
-            cells.Add (PickerCell.Create (profile.Profile.State, (property) => { profile.Profile.State = property; }, "State", states));
-            cells.Add (TextEditCell.Create (profile, a => a.Profile.City, "City"));
-            var zipCell = TextEditCell.Create (profile, a => a.Profile.Zip, "Zip");
+            var profileSubdivisions = await GetSubdivisions (badge.Profile.Zip);
+            cells.Add (PickerCell.Create (badge.Profile.State, (property) => { badge.Profile.State = property; }, "State", states));
+            cells.Add (TextEditCell.Create (badge.Profile.City, a => badge.Profile.City = a, "City"));
+            var zipCell = TextEditCell.Create (badge.Profile.Zip, a => badge.Profile.Zip = a, "Zip");
             zipCell.Mask = "#####";
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCellKey);
             cells.Add (zipCell);
 
-            var subdivisionCell = SubdivisionPickerCell.Create (profile.Profile.SubdivisionId, (property) => {
-                profile.Profile.SubdivisionId = property?.Id; }, "Subdivision", profileSubdivisions, profile.Profile.Zip, string.IsNullOrWhiteSpace (profile.Profile.Zip) || !zipCell.IsValid);
+            var subdivisionCell = SubdivisionPickerCell.Create (badge.Profile.SubdivisionId, (property) => {
+                badge.Profile.SubdivisionId = property?.Id; }, "Subdivision", profileSubdivisions, badge.Profile.Zip, string.IsNullOrWhiteSpace (badge.Profile.Zip) || !zipCell.IsValid);
             subdivisionCell.FieldName = subdivisionCellKey;
             cells.Add (subdivisionCell);
 
-            foreach (var badgeValue in profile.BadgeValues) {
+            foreach (var badgeValue in badge.BadgeValues) {
                 var badgeItem = badgeValue.Value.BadgeBadgeItem.BadgeItem;
                 if (ProfileKeys.NonDuplicatedKeys.Contains (badgeItem.Name))
                     continue;
 
                 var itemName = badgeItem.Name;
-                var badgeSpecificName = string.Format ("{0}{1}", profile.BadgeName, itemName);
+                var badgeSpecificName = string.Format ("{0}{1}", badge.BadgeName, itemName);
                 var badgeSpecificValue = MehspotResources.ResourceManager.GetString (badgeSpecificName);
-                var badgeItemDefaultKey = string.Format ("{0}{1}Default", profile.BadgeName, itemName);
+                var badgeItemDefaultKey = string.Format ("{0}{1}Default", badge.BadgeName, itemName);
                 var placeholder = MehspotResources.ResourceManager.GetString (badgeItemDefaultKey) ?? badgeItem.DefaultValue;
                 var label = badgeSpecificValue ?? MehspotResources.ResourceManager.GetString (itemName) ?? itemName;
 
                 BadgeDataType valueType = BadgeDataType.String;
                 Enum.TryParse (badgeItem.ValueType, out valueType);
-                if (itemName.EndsWith ("Subdivision", StringComparison.InvariantCultureIgnoreCase) && itemName.StartsWith (profile.BadgeName, StringComparison.InvariantCultureIgnoreCase)) {
+                if (itemName.EndsWith ("Subdivision", StringComparison.InvariantCultureIgnoreCase) && itemName.StartsWith (badge.BadgeName, StringComparison.InvariantCultureIgnoreCase)) {
                     var zipFieldName = itemName.Replace ("Subdivision", "Zip");
-                    var zipCode = profile.BadgeValues.FirstOrDefault (a => a.Value.BadgeBadgeItem.BadgeItem.Name == zipFieldName).Value?.Value;
+                    var zipCode = badge.BadgeValues.FirstOrDefault (a => a.Value.BadgeBadgeItem.BadgeItem.Name == zipFieldName).Value?.Value;
                     var subdivisions = await GetSubdivisions (zipCode);
                     int value;
                     var cell = SubdivisionPickerCell.Create (int.TryParse(badgeValue.Value.Value, out value) ? value : (int?)null, property => badgeValue.Value.Value = property.Id.ToString(), label, subdivisions, zipCode);
                     cell.FieldName = itemName;
                     cells.Add (cell);
-                } else if (itemName.EndsWith ("Zip", StringComparison.InvariantCultureIgnoreCase) && itemName.StartsWith (profile.BadgeName, StringComparison.InvariantCultureIgnoreCase)) {
-                    var cell = TextEditCell.Create (badgeValue.Value, a => a.Value, label);
+                } else if (itemName.EndsWith ("Zip", StringComparison.InvariantCultureIgnoreCase) && itemName.StartsWith (badge.BadgeName, StringComparison.InvariantCultureIgnoreCase)) {
+                    var cell = TextEditCell.Create (badgeValue.Value.Value, a => badgeValue.Value.Value = a, label);
                     cell.Mask = "#####";
                     cell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, itemName.Replace ("Zip", "Subdivision"));
                     cells.Add (cell);
@@ -106,12 +106,12 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                     var listData = badgeItem.BadgeItemOptions.Select (a => new KeyValuePair<string, string> (a.Id.ToString (), MehspotResources.ResourceManager.GetString (a.Name) ?? a.Name)).ToArray ();
                     cells.Add (PickerCell.CreateMultiselect (badgeValue.Value.Values, (property) => { badgeValue.Value.Values = property?.ToArray (); }, label, listData));
                 } else if (valueType == BadgeDataType.Integer) {
-                    var cell = TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder);
+                    var cell = TextEditCell.Create (badgeValue.Value.Value, a => badgeValue.Value.Value = a, label, placeholder);
                     cell.ValidationRegex = "^[0-9]+$";
                     cell.TextInput.KeyboardType = UIKeyboardType.NumberPad;
                     cells.Add (cell);
                 } else if (valueType == BadgeDataType.Float) {
-                    var cell = TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder);
+                    var cell = TextEditCell.Create (badgeValue.Value.Value, a => badgeValue.Value.Value = a, label, placeholder);
                     cell.ValidationRegex = "^\\d+([\\.\\,]{0,1}\\d{0,2})?$";
                     cell.TextInput.KeyboardType = UIKeyboardType.DecimalPad;
                     cells.Add (cell);
@@ -120,7 +120,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                 } else if (valueType == BadgeDataType.LongString) {
                     cells.Add (MultilineTextEditCell.Create (badgeValue.Value.Value, (property) => badgeValue.Value.Value = property, label));
                 } else
-                    cells.Add (TextEditCell.Create (badgeValue.Value, a => a.Value, label, placeholder));
+                    cells.Add (TextEditCell.Create (badgeValue.Value.Value, a => badgeValue.Value.Value = a, label, placeholder));
             }
         }
 
@@ -142,7 +142,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         private async Task<List<SubdivisionDTO>> GetSubdivisions (string zipCode)
         {
             if (!string.IsNullOrWhiteSpace (zipCode)) {
-                var subdivisionsResult = await subdivisionService.GetSubdivisionsAsync (zipCode);
+                var subdivisionsResult = await subdivisionService.ListSubdivisionsAsync (zipCode);
                 if (subdivisionsResult.IsSuccess) {
                     return subdivisionsResult.Data;
                 }
@@ -153,7 +153,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         private async Task<KeyValuePair<int?, string> []> GetStates ()
         {
-            var statesResult = await subdivisionService.GetStatesAsync ();
+            var statesResult = await subdivisionService.ListStatesAsync ();
             if (statesResult.IsSuccess) {
                 return statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
             }

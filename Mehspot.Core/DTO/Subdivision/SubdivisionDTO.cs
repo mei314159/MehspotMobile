@@ -1,4 +1,4 @@
-﻿namespace Mehspot.DTO
+﻿namespace MehSpot.Core.DTO.Subdivision
 {
     public class SubdivisionDTO
     {

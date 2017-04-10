@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using Foundation;
-using mehspot.iOS.Extensions;
 using UIKit;
 
 namespace mehspot.iOS.Views
@@ -53,17 +51,17 @@ namespace mehspot.iOS.Views
         public Action<string> SetModelProperty;
         public event Action<TextEditCell, string> ValueChanged;
 
-        public static TextEditCell Create<T> (T Model, Expression<Func<T, string>> property, string label, string placeholder = null, bool isReadOnly = false) where T : class
+        public static TextEditCell Create(string initialValue, Action<string> setProperty, string label, string placeholder = null, bool isReadOnly = false)
         {
             var cell = (TextEditCell)Nib.Instantiate (null, null) [0];
             cell.SelectionStyle = UITableViewCellSelectionStyle.None;
             cell.FieldLabel.Text = label;
             cell.TextInput.Placeholder = placeholder ?? label;
             cell.TextInput.Enabled = !isReadOnly;
-            cell.TextInput.Text = property.Compile ().Invoke (Model)?.ToString ();
+            cell.TextInput.Text = initialValue;
             cell.TextInput.EditingChanged += cell.TextInput_EditingChanged;
             cell.TextInput.ShouldChangeCharacters += (textField, range, replacementString) => cell.TextInput_ShouldChangeCharacters (textField, range, replacementString);
-            cell.SetModelProperty = (text) => { Model.SetProperty (property, text); };
+            cell.SetModelProperty = setProperty;
             return cell;
         }
 

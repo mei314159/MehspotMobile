@@ -98,7 +98,7 @@ namespace mehspot.iOS
 
             cells.Add (SliderCell.Create (filter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
             cells.Add (SliderCell.Create (filter, a => a.HourlyRate, "Max Hourly Rate ($)", 0, 200));
-            var zipCell = TextEditCell.Create (filter, a => a.Details.ZipCode, "Zip");
+            var zipCell = TextEditCell.Create (filter.Details.ZipCode, a => filter.Details.ZipCode = a, "Zip");
             zipCell.Mask = "#####";
             cells.Add (zipCell);
 

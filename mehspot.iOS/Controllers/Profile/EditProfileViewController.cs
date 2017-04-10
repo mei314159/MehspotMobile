@@ -14,7 +14,7 @@ using SDWebImage;
 using mehspot.iOS.Views;
 using System.Linq;
 using Mehspot.Core.Services;
-using Mehspot.DTO;
+using MehSpot.Core.DTO.Subdivision;
 
 namespace mehspot.iOS
 {
@@ -180,7 +180,7 @@ namespace mehspot.iOS
 
                     var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateViewController ("LoginViewController");
 
-                    targetViewController.SwapController (UIViewAnimationOptions.TransitionFlipFromRight);
+                    this.View.Window.SwapController (targetViewController);
                 }
             };
             alert.Show ();
@@ -229,20 +229,20 @@ namespace mehspot.iOS
             }
 
             cells.Clear ();
-            cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name"));
-            cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", null, true));
-            var phoneNumberCell = TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
+            cells.Add (TextEditCell.Create (profile.UserName, a => profile.UserName = a, "User Name"));
+            cells.Add (TextEditCell.Create (profile.Email, a => profile.Email = a, "Email", null, true));
+            var phoneNumberCell = TextEditCell.Create (profile.PhoneNumber, a => profile.PhoneNumber = a, "Phone Number");
             phoneNumberCell.Mask = "(###)###-####";
             cells.Add (phoneNumberCell);
             cells.Add (PickerCell.CreateDatePicker (profile.DateOfBirth, (property) => { profile.DateOfBirth = property; }, "Date Of Birth"));
             cells.Add (PickerCell.Create (profile.Gender, (property) => { profile.Gender = property; }, "Gender", genders));
-            cells.Add (TextEditCell.Create (profile, a => a.FirstName, "First Name"));
-            cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));
-            cells.Add (TextEditCell.Create (profile, a => a.AddressLine1, "Address Line 1"));
-            cells.Add (TextEditCell.Create (profile, a => a.AddressLine2, "Address Line 2"));
+            cells.Add (TextEditCell.Create (profile.FirstName, a => profile.FirstName = a, "First Name"));
+            cells.Add (TextEditCell.Create (profile.LastName, a => profile.LastName = a, "Last Name"));
+            cells.Add (TextEditCell.Create (profile.AddressLine1, a => profile.AddressLine1 = a, "Address Line 1"));
+            cells.Add (TextEditCell.Create (profile.AddressLine2, a => profile.AddressLine2 = a, "Address Line 2"));
             cells.Add (PickerCell.Create (profile.State, (property) => { profile.State = property; }, "State", states));
-            cells.Add (TextEditCell.Create (profile, a => a.City, "City"));
-            var zipCell = TextEditCell.Create (profile, a => a.Zip, "Zip");
+            cells.Add (TextEditCell.Create (profile.City, a => profile.City = a, "City"));
+            var zipCell = TextEditCell.Create (profile.Zip, a => profile.Zip = a, "Zip");
             zipCell.Mask = "#####";
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
             var subdivisionCell = SubdivisionPickerCell.Create (profile.SubdivisionId, (property) => {
@@ -273,7 +273,7 @@ namespace mehspot.iOS
         private async Task<List<SubdivisionDTO>> GetSubdivisions (string zipCode)
         {
             if (!string.IsNullOrWhiteSpace (zipCode)) {
-                var subdivisionsResult = await subdivisionService.GetSubdivisionsAsync (zipCode);
+                var subdivisionsResult = await subdivisionService.ListSubdivisionsAsync (zipCode);
                 if (subdivisionsResult.IsSuccess) {
                     return subdivisionsResult.Data;
                 }
@@ -284,7 +284,7 @@ namespace mehspot.iOS
 
         private async Task<KeyValuePair<int?, string> []> GetStates ()
         {
-            var statesResult = await subdivisionService.GetStatesAsync ();
+            var statesResult = await subdivisionService.ListStatesAsync ();
             if (statesResult.IsSuccess) {
                 return statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
             }

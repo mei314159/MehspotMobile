@@ -4,7 +4,6 @@ using System.Linq;
 using Foundation;
 using Google.Maps;
 using Mehspot.Core;
-using Mehspot.DTO;
 using Mehspot.iOS.Views.CustomPicker;
 using MehSpot.Core.DTO.Subdivision;
 using UIKit;
@@ -109,9 +108,10 @@ namespace mehspot.iOS.Controllers
                 return;
 
             if (!selectedSubdivision.IsVerified && !selectedSubdivision.IsVerifiedByCurrentUser) {
-                //var controller = new VerifySubdivisionController ();
-                //controller.Subdivision = selectedSubdivision;
-                //this.PresentViewController (controller, true, null);
+                var controller = new VerifySubdivisionController ();
+                controller.Subdivision = selectedSubdivision;
+                controller.ZipCode = this.ZipCode;
+                this.PresentViewController (controller, true, null);
             } else {
                 var controller = new SubdivisionController ();
                 controller.Subdivision = this.selectedSubdivision;

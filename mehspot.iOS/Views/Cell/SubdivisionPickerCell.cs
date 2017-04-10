@@ -4,7 +4,7 @@ using System.Linq;
 using Foundation;
 using mehspot.iOS.Controllers;
 using mehspot.iOS.Extensions;
-using Mehspot.DTO;
+using MehSpot.Core.DTO.Subdivision;
 using UIKit;
 
 namespace mehspot.iOS.Views

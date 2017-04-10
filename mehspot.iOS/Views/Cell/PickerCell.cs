@@ -57,11 +57,11 @@ namespace mehspot.iOS.Views
             }
         }
 
-        private static PickerCell Instantiate (object initialValue, PickerTypeEnum type, string label, bool isReadOnly = false)
+        private static PickerCell Instantiate (object initialValue, PickerTypeEnum type, string label, string placeholder = null, bool isReadOnly = false)
         {
 
             var cell = (PickerCell)Nib.Instantiate (null, null) [0];
-            cell.placeholder = label;
+            cell.placeholder = placeholder ?? label;
             cell.IsReadOnly = isReadOnly;
             cell.pickerType = type;
             cell.FieldLabel.Text = label;
@@ -74,9 +74,10 @@ namespace mehspot.iOS.Views
             Action<T> setProperty,
             string label,
             IEnumerable<KeyValuePair<T, string>> rowValues,
+            string placeholder = null,
             bool isReadOnly = false)
         {
-            var cell = Instantiate (initialValue, PickerTypeEnum.List, label, isReadOnly);
+            var cell = Instantiate (initialValue, PickerTypeEnum.List, label, placeholder, isReadOnly);
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
 
             cell.GetPropertyString = (value) => {
@@ -98,7 +99,7 @@ namespace mehspot.iOS.Views
             IEnumerable<KeyValuePair<TProperty, string>> rowValues,
             bool isReadOnly = false)
         {
-            var cell = Instantiate (initialValue, PickerTypeEnum.Multiselect, label, isReadOnly);
+            var cell = Instantiate (initialValue, PickerTypeEnum.Multiselect, label, null, isReadOnly);
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
 
             cell.GetPropertyString = (value) => {
@@ -129,7 +130,7 @@ namespace mehspot.iOS.Views
             string label,
             bool isReadOnly = false)
         {
-            var cell = Instantiate (initialValue, PickerTypeEnum.Date, label, isReadOnly);
+            var cell = Instantiate (initialValue, PickerTypeEnum.Date, label, null, isReadOnly);
 
             cell.GetPropertyString = (value) => ((DateTime?)value)?.ToString (dateFormat);
             cell.SetProperty = (p) => {

@@ -54,7 +54,6 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="DTO\Messaging\MessageBoardItemDto.cs" />
     <Compile Include="DTO\Messaging\MessageDto.cs" />
-    <Compile Include="DTO\Profile\SubdivisionDTO.cs" />
     <Compile Include="DTO\Badges\BadgeSummaryDTO.cs" />
     <Compile Include="DTO\Profile\ApplicationUserBaseDto.cs" />
     <Compile Include="DTO\Push\OsType.cs" />
@@ -88,6 +87,8 @@
     <Compile Include="DTO\Subdivision\CountryDTO.cs" />
     <Compile Include="DTO\Subdivision\GoverningDistrictDTO.cs" />
     <Compile Include="Services\SubdivisionService.cs" />
+    <Compile Include="DTO\Subdivision\SubdivisionOptionModel.cs" />
+    <Compile Include="DTO\Subdivision\SubdivisionDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

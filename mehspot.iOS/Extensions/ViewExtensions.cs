@@ -1,4 +1,6 @@
 ﻿using System;
+using CoreAnimation;
+using ObjCRuntime;
 using UIKit;
 
 namespace mehspot.iOS.Extensions
@@ -56,12 +58,20 @@ namespace mehspot.iOS.Extensions
             return null;
         }
 
-        public static void SwapController (this UIViewController newController, UIViewAnimationOptions opt)
+        public static void SwapController (this UIWindow window, UIViewController newController, UIViewAnimationOptions opt = UIViewAnimationOptions.TransitionFlipFromLeft)
         {
-            UIView.Transition (UIApplication.SharedApplication.KeyWindow, 0.5, opt, delegate {
-                UIApplication.SharedApplication.KeyWindow.RootViewController?.DismissViewController (true, null);
-                UIApplication.SharedApplication.KeyWindow.RootViewController = newController;
-            }, null);
+            UIViewController rootViewController = null;
+            rootViewController = window.RootViewController;
+            window.RootViewController = newController;
+            foreach (var subview in window.Subviews) {
+                if (subview.IsKindOfClass (new Class ("UITransitionView")))
+                    subview.RemoveFromSuperview ();
+            }
+
+            rootViewController?.DismissViewController (false, () => {
+                rootViewController.View.RemoveFromSuperview ();
+                rootViewController.Dispose ();
+            });
         }
 
         public static UIViewController GetViewController (this UIView view)

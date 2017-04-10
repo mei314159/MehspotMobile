@@ -43,7 +43,7 @@ namespace Mehspot.iOS.Views.CustomPicker
 
         public override void Selected (UIPickerView pickerView, nint row, nint component)
         {
-            ItemSelected.Invoke (pickerView, row, component);
+            ItemSelected?.Invoke (pickerView, row, component);
         }
     }
 }

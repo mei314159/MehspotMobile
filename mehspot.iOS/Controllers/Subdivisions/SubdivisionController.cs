@@ -6,7 +6,6 @@ using mehspot.iOS.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Services;
-using Mehspot.DTO;
 using MehSpot.Core.DTO.Subdivision;
 using UIKit;
 

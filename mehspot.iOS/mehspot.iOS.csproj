@@ -167,6 +167,7 @@
     <Folder Include="Views\MultiSelectPicker\" />
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
+    <Folder Include="Controllers\Subdivisions\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -181,9 +182,10 @@
     <InterfaceDefinition Include="Views\Cell\BadgeItemCell.xib" />
     <InterfaceDefinition Include="Views\Cell\TextViewCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MultilineTextEditCell.xib" />
-    <InterfaceDefinition Include="Controllers\SubdivisionController.xib" />
-    <InterfaceDefinition Include="Controllers\SubdivisionsListController.xib" />
     <InterfaceDefinition Include="Views\Cell\SubdivisionPickerCell.xib" />
+    <InterfaceDefinition Include="Controllers\Subdivisions\SubdivisionController.xib" />
+    <InterfaceDefinition Include="Controllers\Subdivisions\SubdivisionsListController.xib" />
+    <InterfaceDefinition Include="Controllers\Subdivisions\VerifySubdivisionController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -277,15 +279,20 @@
       <DependentUpon>SignupViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cell\MultilineTextEditCell.cs" />
-    <Compile Include="Controllers\SubdivisionController.cs" />
-    <Compile Include="Controllers\SubdivisionController.designer.cs">
+    <Compile Include="Views\Cell\SubdivisionPickerCell.cs" />
+    <Compile Include="Controllers\Subdivisions\SubdivisionController.cs" />
+    <Compile Include="Controllers\Subdivisions\SubdivisionController.designer.cs">
       <DependentUpon>SubdivisionController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\SubdivisionsListController.cs" />
-    <Compile Include="Controllers\SubdivisionsListController.designer.cs">
+    <Compile Include="Controllers\Subdivisions\SubdivisionsListController.cs" />
+    <Compile Include="Controllers\Subdivisions\SubdivisionsListController.designer.cs">
       <DependentUpon>SubdivisionsListController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cell\SubdivisionPickerCell.cs" />
+    <Compile Include="Controllers\Subdivisions\VerifySubdivisionController.cs" />
+    <Compile Include="Controllers\Subdivisions\VerifySubdivisionController.designer.cs">
+      <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

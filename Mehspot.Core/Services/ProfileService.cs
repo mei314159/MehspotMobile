@@ -1,9 +1,7 @@
-using System;
 using System.Net.Http;
 using mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
-using Mehspot.DTO;
 using mehspot.Core;
 
 namespace Mehspot.Core.Services
