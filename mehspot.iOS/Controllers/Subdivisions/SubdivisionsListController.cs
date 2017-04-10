@@ -111,6 +111,7 @@ namespace mehspot.iOS.Controllers
                 var controller = new VerifySubdivisionController ();
                 controller.Subdivision = selectedSubdivision;
                 controller.ZipCode = this.ZipCode;
+                controller.OnDismissed += SubdivisionVerified;
                 this.PresentViewController (controller, true, null);
             } else {
                 var controller = new SubdivisionController ();
@@ -159,6 +160,17 @@ namespace mehspot.iOS.Controllers
             this.PickerView.Select (index, 0, false);
         }
 
+        void SubdivisionVerified (SubdivisionDTO result)
+        {
+            var items = ((CustomPickerModel)this.PickerView.Model).Items;
+            var index = items.IndexOf (selectedSubdivision.DisplayName);
+            items.RemoveAt (index);
+            items.Insert (index, result.DisplayName);
+            UpdateDTO (selectedSubdivision, result);
+            this.PickerView.ReloadAllComponents ();
+            this.PickerView.Select (index, 0, false);
+        }
+
         private void UpdateDTO (SubdivisionDTO dto, EditSubdivisionDTO result) {
             dto.Id = result.Id;
             dto.DisplayName = result.Name;
@@ -167,6 +179,20 @@ namespace mehspot.iOS.Controllers
             dto.FormattedAddress = result.Address.FormattedAddress;
             dto.IsVerified = false;
             dto.IsVerifiedByCurrentUser = false;
+            dto.ZipCode = result.ZipCode;
+            dto.SubdivisionIdentifier = result.SubdivisionIdentifier;
+            dto.AddressId = result.AddressId;
+        }
+
+        private void UpdateDTO (SubdivisionDTO dto, SubdivisionDTO result)
+        {
+            dto.Id = result.Id;
+            dto.DisplayName = result.DisplayName;
+            dto.Latitude = result.Latitude;
+            dto.Longitude = result.Longitude;
+            dto.FormattedAddress = result.FormattedAddress;
+            dto.IsVerified = result.IsVerified;
+            dto.IsVerifiedByCurrentUser = result.IsVerifiedByCurrentUser;
             dto.ZipCode = result.ZipCode;
             dto.SubdivisionIdentifier = result.SubdivisionIdentifier;
             dto.AddressId = result.AddressId;
