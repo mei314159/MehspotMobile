@@ -141,7 +141,7 @@ namespace mehspot.iOS.Controllers
         void SubdivisionCreated (EditSubdivisionDTO result)
         {
             selectedSubdivision = new SubdivisionDTO ();
-            UpdateDTO (selectedSubdivision, result);
+            UpdateDTO (selectedSubdivision, result, false);
             this.Subdivisions.Add (selectedSubdivision);
             var items = ((CustomPickerModel)this.PickerView.Model).Items;
             items.Add (result.Name);
@@ -155,7 +155,7 @@ namespace mehspot.iOS.Controllers
             var index = items.IndexOf (selectedSubdivision.DisplayName);
             items.RemoveAt (index);
             items.Insert (index, result.Name);
-            UpdateDTO (selectedSubdivision, result);
+            UpdateDTO (selectedSubdivision, result, true);
             this.PickerView.ReloadAllComponents ();
             this.PickerView.Select (index, 0, false);
         }
@@ -171,13 +171,13 @@ namespace mehspot.iOS.Controllers
             this.PickerView.Select (index, 0, false);
         }
 
-        private void UpdateDTO (SubdivisionDTO dto, EditSubdivisionDTO result) {
+        private void UpdateDTO (SubdivisionDTO dto, EditSubdivisionDTO result, bool isVerified) {
             dto.Id = result.Id;
             dto.DisplayName = result.Name;
             dto.Latitude = result.Address.Latitude;
             dto.Longitude = result.Address.Longitude;
             dto.FormattedAddress = result.Address.FormattedAddress;
-            dto.IsVerified = false;
+            dto.IsVerified = isVerified;
             dto.IsVerifiedByCurrentUser = false;
             dto.ZipCode = result.ZipCode;
             dto.SubdivisionIdentifier = result.SubdivisionIdentifier;
