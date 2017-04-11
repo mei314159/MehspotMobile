@@ -111,7 +111,7 @@ namespace mehspot.iOS.Controllers
                 var controller = new VerifySubdivisionController ();
                 controller.Subdivision = selectedSubdivision;
                 controller.ZipCode = this.ZipCode;
-                controller.OnDismissed += SubdivisionVerified;
+                controller.SubdivisionVerified += SubdivisionVerified;
                 this.PresentViewController (controller, true, null);
             } else {
                 var controller = new SubdivisionController ();
@@ -140,10 +140,11 @@ namespace mehspot.iOS.Controllers
 
         void SubdivisionCreated (EditSubdivisionDTO result)
         {
+            var items = ((CustomPickerModel)this.PickerView.Model).Items;
+
             selectedSubdivision = new SubdivisionDTO ();
             UpdateDTO (selectedSubdivision, result, false);
             this.Subdivisions.Add (selectedSubdivision);
-            var items = ((CustomPickerModel)this.PickerView.Model).Items;
             items.Add (result.Name);
             this.PickerView.ReloadAllComponents ();
             this.PickerView.Select (items.Count - 1, 0, false);
@@ -152,6 +153,7 @@ namespace mehspot.iOS.Controllers
         void SubdivisionUpdated (EditSubdivisionDTO result)
         {
             var items = ((CustomPickerModel)this.PickerView.Model).Items;
+
             var index = items.IndexOf (selectedSubdivision.DisplayName);
             items.RemoveAt (index);
             items.Insert (index, result.Name);
@@ -160,13 +162,23 @@ namespace mehspot.iOS.Controllers
             this.PickerView.Select (index, 0, false);
         }
 
-        void SubdivisionVerified (SubdivisionDTO result)
+        void SubdivisionVerified (SubdivisionDTO result, bool isNewOption)
         {
             var items = ((CustomPickerModel)this.PickerView.Model).Items;
-            var index = items.IndexOf (selectedSubdivision.DisplayName);
-            items.RemoveAt (index);
-            items.Insert (index, result.DisplayName);
-            UpdateDTO (selectedSubdivision, result);
+            selectedSubdivision.IsVerifiedByCurrentUser = true;
+            int index;
+            if (isNewOption) {
+                selectedSubdivision = new SubdivisionDTO ();
+                UpdateDTO (selectedSubdivision, result);
+                this.Subdivisions.Add (selectedSubdivision);
+                index = items.Count - 1;
+            } else {
+                index = items.IndexOf (selectedSubdivision.DisplayName);
+                items.RemoveAt (index);
+                items.Insert (index, result.DisplayName);
+                UpdateDTO (selectedSubdivision, result);    
+            }
+
             this.PickerView.ReloadAllComponents ();
             this.PickerView.Select (index, 0, false);
         }
@@ -187,7 +199,10 @@ namespace mehspot.iOS.Controllers
         private void UpdateDTO (SubdivisionDTO dto, SubdivisionDTO result)
         {
             dto.Id = result.Id;
-            dto.DisplayName = result.DisplayName;
+            if (result.IsVerified) {
+                dto.DisplayName = result.DisplayName;
+            }
+
             dto.Latitude = result.Latitude;
             dto.Longitude = result.Longitude;
             dto.FormattedAddress = result.FormattedAddress;

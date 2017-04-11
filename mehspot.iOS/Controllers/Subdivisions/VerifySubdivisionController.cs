@@ -13,6 +13,7 @@ using UIKit;
 using Mehspot.Core.Extensions;
 using System.Linq;
 using Mehspot.Core.DTO;
+using mehspot.iOS.Extensions;
 
 namespace mehspot.iOS.Controllers
 {
@@ -32,7 +33,7 @@ namespace mehspot.iOS.Controllers
         private PickerCell addressPickerCell;
         private TextEditCell otherAddressCell;
 
-        public event Action<SubdivisionDTO> OnDismissed;
+        public event Action<SubdivisionDTO, bool> SubdivisionVerified;
 
         public VerifySubdivisionController () : base ("VerifySubdivisionController", NSBundle.MainBundle)
         {
@@ -41,9 +42,12 @@ namespace mehspot.iOS.Controllers
         public SubdivisionDTO Subdivision { get; set; }
         public string ZipCode { get; set; }
 
+        public VerifySubdivisionModel Model { get; set; }
+
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
+            this.View.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
             this.MainTable.TableFooterView = new UIView ();
             viewHelper = new ViewHelper (this.View);
             subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
@@ -98,7 +102,8 @@ namespace mehspot.iOS.Controllers
             viewHelper.ShowOverlay ("Saving...");
 
             Result result;
-            if (Model.NameOptionId.HasValue && Model.AddressOptionId.HasValue && Model.NameOptionId == Model.AddressOptionId) {
+            var verify = Model.NameOptionId.HasValue && Model.AddressOptionId.HasValue;
+            if (verify) {
                 var verifyResult = await this.subdivisionService.VerifyOptionAsync (Model.NameOptionId.Value);
                 if (verifyResult.IsSuccess) {
                     Subdivision = verifyResult.Data;
@@ -140,7 +145,8 @@ namespace mehspot.iOS.Controllers
             viewHelper.HideOverlay ();
             if (result.IsSuccess) {
                 DismissViewController (true, null);
-                this.OnDismissed?.Invoke (Subdivision);
+                this.SubdivisionVerified?.Invoke (Subdivision, !verify);
+                
             } else {
                 viewHelper.ShowAlert ("Error", result.ErrorMessage);
             }
@@ -183,7 +189,8 @@ namespace mehspot.iOS.Controllers
             var nameOptions = options.DistinctBy (a => a.Name).Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToList ();
             var addressOptions = options.DistinctBy (a => a.Address.FormattedAddress).Select (a => new KeyValuePair<int?, string> (a.Id, a.Address.FormattedAddress)).ToList ();
 
-            Model = new VerifySubdivisionModel (nameOptions [0].Key, addressOptions [0].Key);
+            var nameOption = nameOptions.First (a => a.Key == Subdivision.OptionId);
+            Model = new VerifySubdivisionModel (nameOption.Key, addressOptions [0].Key);
 
             var nameSection = new Section ("Verify Subdivision Name");
             nameOptions.Add (new KeyValuePair<int?, string> (null, "Other"));
@@ -221,7 +228,10 @@ namespace mehspot.iOS.Controllers
             SetCamera (addressOptions [0].Key.Value);
         }
 
-        public VerifySubdivisionModel Model { get; set; }
+        public void HideKeyboard ()
+        {
+            this.View.FindFirstResponder ()?.ResignFirstResponder ();
+        }
 
         void NameOptionChanged (int? value)
         {
@@ -235,9 +245,11 @@ namespace mehspot.iOS.Controllers
             if (value.HasValue) {
                 otherAddressCell.Hidden = true;
                 this.SetCamera (value.Value);
+                marker.Draggable = false;
 
             } else {
                 otherAddressCell.Hidden = false;
+                marker.Draggable = true;
                 GetLocationByCoordinates (marker.Position);
             }
         }

@@ -43,7 +43,7 @@ namespace Mehspot.Core.Push
                         var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
                         return new Result {
                             IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
+                            ErrorMessage = errorResponse.ErrorMessage
                         };
                     }
 

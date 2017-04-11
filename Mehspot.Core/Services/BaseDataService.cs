@@ -42,7 +42,7 @@ namespace mehspot.Core
                         var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
                         return new Result<T> {
                             IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
+                            ErrorMessage = errorResponse.ErrorMessage
                         };
                     }
 
