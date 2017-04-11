@@ -109,6 +109,17 @@ namespace mehspot.iOS.Controllers
                 var zip = this.ZipCode ?? Place.PostalCode;
                 var dto = new SubdivisionOptionDTO ();
                 dto.Name = Model.NameOptionId.HasValue ? options.First (a => a.Id == Model.NameOptionId).Name : Model.NewName;
+
+                if (string.IsNullOrWhiteSpace (dto.Name)) {
+                    viewHelper.ShowAlert ("Validation Error", "Subdivision Name can not be empty");
+                    return;
+                } else if (dto.Name.Length > 128) {
+                    if (string.IsNullOrWhiteSpace (dto.Name)) {
+                        viewHelper.ShowAlert ("Validation Error", "Subdivision Name length can not exceed 128 symbols ");
+                        return;
+                    }
+                }
+
                 dto.SubdivisionId = this.Subdivision.Id;
                 if (Model.AddressOptionId.HasValue) {
                     dto.AddressId =  options.First (a => a.Id == Model.AddressOptionId).AddressId;
