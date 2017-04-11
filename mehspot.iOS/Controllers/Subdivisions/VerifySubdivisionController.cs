@@ -109,8 +109,9 @@ namespace mehspot.iOS.Controllers
                 var zip = this.ZipCode ?? Place.PostalCode;
                 var dto = new SubdivisionOptionDTO ();
                 dto.Name = Model.NameOptionId.HasValue ? options.First (a => a.Id == Model.NameOptionId).Name : Model.NewName;
+                dto.SubdivisionId = this.Subdivision.Id;
                 if (Model.AddressOptionId.HasValue) {
-                    dto.AddressId = Model.AddressOptionId.Value;
+                    dto.AddressId =  options.First (a => a.Id == Model.AddressOptionId).AddressId;
                 } else {
                     dto.Address = new AddressDTO {
                          Latitude = Place.Coordinate.Latitude,
