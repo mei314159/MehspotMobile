@@ -13,10 +13,6 @@ namespace mehspot.iOS.Views
     [Register ("PickerCell")]
     partial class PickerCell
     {
-        [Action ("SelectValueButton_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void SelectValueButton_TouchUpInside (UIKit.UIButton sender);
-
         void ReleaseDesignerOutlets ()
         {
             if (FieldLabel != null) {

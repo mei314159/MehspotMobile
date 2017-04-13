@@ -129,25 +129,8 @@ namespace mehspot.iOS
 
         private void ConfigureCell (SearchResultsCell cell, BabysitterSearchResultDTO item)
         {
-            if (!string.IsNullOrEmpty (item.Details.ProfilePicturePath)) {
+            cell.Configure (item, AgeRanges);
 
-                var url = NSUrl.FromString (item.Details.ProfilePicturePath);
-                if (url != null) {
-                    cell.ProfilePicture.SetImage (url);
-                }
-            }
-
-            cell.UserNameLabel.Text = item.Details.FirstName;
-            cell.DistanceLabel.Text = Math.Round (item.Details.DistanceFrom ?? 0, 2) + " miles";
-            cell.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace (item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
-            cell.HourlyRateLabel.Text = $"${item.HourlyRate}/hr";
-            cell.AgeRangeLabel.Text = item.AgeRange.HasValue ? AgeRanges [item.AgeRange.Value].Value : string.Empty;
-            cell.FavoriteIcon.Hidden = !item.Details.Favourite;
-            cell.LikesLabel.Text = $"{item.Details.Likes} Likes / {item.Details.Recommendations} Recommendations";
-
-            cell.SendMessageButton.Layer.BorderWidth = cell.ViewProfileButton.Layer.BorderWidth = 1;
-            cell.SendMessageButton.Layer.BorderColor = cell.SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
-            cell.ViewProfileButton.Layer.BorderColor = cell.ViewProfileButton.TitleColor (UIControlState.Normal).CGColor;
             cell.SendMessageButtonAction = (obj) => SendMessageButtonTouched (obj, item);
             cell.ViewProfileButtonAction = (obj) => ViewProfileButtonTouched (obj, item);
         }

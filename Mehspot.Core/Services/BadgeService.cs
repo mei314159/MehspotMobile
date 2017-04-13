@@ -15,8 +15,6 @@ namespace Mehspot.Core.Services
         {
         }
 
-        public Action<int, object> OnSendNotification;
-
         public async Task<Result<BadgeSummaryDTO []>> GetBadgesSummaryAsync ()
         {
             return await GetAsync<BadgeSummaryDTO []> ("Badges/Get").ConfigureAwait (false);
@@ -64,4 +62,6 @@ namespace Mehspot.Core.Services
             public const string Fitness = "Fitness";
         }
     }
+
+    
 }

@@ -14,6 +14,7 @@ using SDWebImage;
 using mehspot.iOS.Views;
 using System.Linq;
 using Mehspot.Core.Services;
+using MehSpot.Core.DTO.Subdivision;
 
 namespace mehspot.iOS
 {
@@ -25,6 +26,7 @@ namespace mehspot.iOS
 
         private IViewHelper viewHelper;
         private ProfileService profileService;
+        private SubdivisionService subdivisionService;
         private List<UITableViewCell> cells = new List<UITableViewCell> ();
         private KeyValuePair<string, string> [] genders = {
                 new KeyValuePair<string, string>(null, "N/A"),
@@ -53,6 +55,7 @@ namespace mehspot.iOS
         public override void ViewDidLoad ()
         {
             profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
+            subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
             viewHelper = new ViewHelper (this.View);
             ChangePhotoButton.Layer.BorderWidth = 1;
             ChangePhotoButton.Layer.BorderColor = UIColor.LightGray.CGColor;
@@ -122,7 +125,7 @@ namespace mehspot.iOS
             UIImage originalImage = e.Info [UIImagePickerController.OriginalImage] as UIImage;
             if (originalImage != null) {
                 ProfilePicture.Image = UIImage.FromImage (originalImage.CGImage, 4, originalImage.Orientation);
- 
+
                 this.profileImageChanged = true;
             }
 
@@ -177,7 +180,7 @@ namespace mehspot.iOS
 
                     var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateViewController ("LoginViewController");
 
-                    targetViewController.SwapController (UIViewAnimationOptions.TransitionFlipFromRight);
+                    this.View.Window.SwapController (targetViewController);
                 }
             };
             alert.Show ();
@@ -194,16 +197,18 @@ namespace mehspot.iOS
             TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
 
             var profileResult = await profileService.GetProfileAsync ();
-            RefreshControl.EndRefreshing ();
 
             if (profileResult.IsSuccess) {
                 profile = profileResult.Data;
                 var states = await GetStates ();
                 var subdivisions = await GetSubdivisions (profile.Zip);
                 InitializeTable (profile, states, subdivisions);
-            }else {
+
                 RefreshControl.EndRefreshing ();
+            } else {
                 new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
+
+                RefreshControl.EndRefreshing ();
             }
 
             TableView.UserInteractionEnabled = true;
@@ -211,7 +216,7 @@ namespace mehspot.iOS
             loading = false;
         }
 
-        void InitializeTable (ProfileDto profile, KeyValuePair<int?, string> [] states, KeyValuePair<int?, string> [] subdivisions)
+        void InitializeTable (ProfileDto profile, KeyValuePair<int?, string> [] states, List<SubdivisionDTO> subdivisions)
         {
             this.UserNameLabel.Text = profile.UserName;
             this.FullName.Text = $"{profile.FirstName} {profile.LastName}".Trim (' ');
@@ -224,23 +229,26 @@ namespace mehspot.iOS
             }
 
             cells.Clear ();
-            cells.Add (TextEditCell.Create (profile, a => a.UserName, "User Name"));
-            cells.Add (TextEditCell.Create (profile, a => a.Email, "Email", null, true));
-            var phoneNumberCell = TextEditCell.Create (profile, a => a.PhoneNumber, "Phone Number");
+            cells.Add (TextEditCell.Create (profile.UserName, a => profile.UserName = a, "User Name"));
+            cells.Add (TextEditCell.Create (profile.Email, a => profile.Email = a, "Email", null, true));
+            var phoneNumberCell = TextEditCell.Create (profile.PhoneNumber, a => profile.PhoneNumber = a, "Phone Number");
             phoneNumberCell.Mask = "(###)###-####";
             cells.Add (phoneNumberCell);
             cells.Add (PickerCell.CreateDatePicker (profile.DateOfBirth, (property) => { profile.DateOfBirth = property; }, "Date Of Birth"));
             cells.Add (PickerCell.Create (profile.Gender, (property) => { profile.Gender = property; }, "Gender", genders));
-            cells.Add (TextEditCell.Create (profile, a => a.FirstName, "First Name"));
-            cells.Add (TextEditCell.Create (profile, a => a.LastName, "Last Name"));
-            cells.Add (TextEditCell.Create (profile, a => a.AddressLine1, "Address Line 1"));
-            cells.Add (TextEditCell.Create (profile, a => a.AddressLine2, "Address Line 2"));
+            cells.Add (TextEditCell.Create (profile.FirstName, a => profile.FirstName = a, "First Name"));
+            cells.Add (TextEditCell.Create (profile.LastName, a => profile.LastName = a, "Last Name"));
+            cells.Add (TextEditCell.Create (profile.AddressLine1, a => profile.AddressLine1 = a, "Address Line 1"));
+            cells.Add (TextEditCell.Create (profile.AddressLine2, a => profile.AddressLine2 = a, "Address Line 2"));
             cells.Add (PickerCell.Create (profile.State, (property) => { profile.State = property; }, "State", states));
-            cells.Add (TextEditCell.Create (profile, a => a.City, "City"));
-            var zipCell = TextEditCell.Create (profile, a => a.Zip, "Zip");
+            cells.Add (TextEditCell.Create (profile.City, a => profile.City = a, "City"));
+            var zipCell = TextEditCell.Create (profile.Zip, a => profile.Zip = a, "Zip");
             zipCell.Mask = "#####";
             var subdivisionEnabled = !string.IsNullOrWhiteSpace (profile.Zip) && zipCell.IsValid;
-            var subdivisionCell = PickerCell.Create (profile.SubdivisionId, (property) => { profile.SubdivisionId = (int?)property; }, "Subdivision", subdivisions, !subdivisionEnabled);
+            var subdivisionCell = SubdivisionPickerCell.Create (profile.SubdivisionId, (property) => {
+                profile.SubdivisionId = property?.Id;
+                profile.SubdivisionOptionId = property?.OptionId;
+            }, "Subdivision", subdivisions, profile.Zip, !subdivisionEnabled);
             zipCell.ValueChanged += (arg1, arg2) => ZipCell_ValueChanged (arg1, arg2, subdivisionCell);
             cells.Add (zipCell);
             cells.Add (subdivisionCell);
@@ -251,22 +259,23 @@ namespace mehspot.iOS
             TableView.ReloadData ();
         }
 
-        async void ZipCell_ValueChanged (TextEditCell sender, string value, PickerCell subdivisionCell)
+        async void ZipCell_ValueChanged (TextEditCell sender, string value, SubdivisionPickerCell subdivisionCell)
         {
             subdivisionCell.IsReadOnly = true;
             if (sender.IsValid) {
-                subdivisionCell.RowValues = (await GetSubdivisions (profile.Zip)).Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
+                subdivisionCell.Subdivisions = await GetSubdivisions (value);
+                subdivisionCell.ZipCode = value;
             }
 
             subdivisionCell.IsReadOnly = !sender.IsValid;
         }
 
-        private async Task<KeyValuePair<int?, string> []> GetSubdivisions (string zipCode)
+        private async Task<List<SubdivisionDTO>> GetSubdivisions (string zipCode)
         {
             if (!string.IsNullOrWhiteSpace (zipCode)) {
-                var subdivisionsResult = await profileService.GetSubdivisionsAsync (zipCode);
+                var subdivisionsResult = await subdivisionService.ListSubdivisionsAsync (zipCode);
                 if (subdivisionsResult.IsSuccess) {
-                    return subdivisionsResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.DisplayName)).ToArray ();
+                    return subdivisionsResult.Data;
                 }
             }
 
@@ -275,7 +284,7 @@ namespace mehspot.iOS
 
         private async Task<KeyValuePair<int?, string> []> GetStates ()
         {
-            var statesResult = await profileService.GetStatesAsync ();
+            var statesResult = await subdivisionService.ListStatesAsync ();
             if (statesResult.IsSuccess) {
                 return statesResult.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
             }

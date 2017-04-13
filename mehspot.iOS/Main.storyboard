@@ -1257,6 +1257,7 @@ If you are under age of 18, we recommend that you have your parents escort you t
         <image name="badges/hobbyb.png" width="210" height="208"/>
         <image name="badges/kidsplaydateb.png" width="210" height="210"/>
         <image name="badges/otherjobsb.png" width="210" height="210"/>
+        <image name="more-icon" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>

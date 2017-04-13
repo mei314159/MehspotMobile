@@ -15,43 +15,43 @@ namespace mehspot.iOS.Views.Cell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel AgeRangeLabel { get; set; }
+        UIKit.UILabel AgeRangeLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel DistanceLabel { get; set; }
+        UIKit.UILabel DistanceLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIImageView FavoriteIcon { get; set; }
+        UIKit.UIImageView FavoriteIcon { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel HourlyRateLabel { get; set; }
+        UIKit.UILabel HourlyRateLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel LikesLabel { get; set; }
+        UIKit.UILabel LikesLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIImageView ProfilePicture { get; set; }
+        UIKit.UIImageView ProfilePicture { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIButton SendMessageButton { get; set; }
+        UIKit.UIButton SendMessageButton { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel SubdivisionLabel { get; set; }
+        UIKit.UILabel SubdivisionLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel UserNameLabel { get; set; }
+        UIKit.UILabel UserNameLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIButton ViewProfileButton { get; set; }
+        UIKit.UIButton ViewProfileButton { get; set; }
 
         [Action ("SendMessageButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]

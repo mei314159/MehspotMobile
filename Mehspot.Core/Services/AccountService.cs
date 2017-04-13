@@ -57,7 +57,7 @@ namespace mehspot.Core.Auth
                         var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
                         return new AuthenticationResult {
                             IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorDescription
+                            ErrorMessage = errorResponse.ErrorMessage
                         };
                     }
 

@@ -1,9 +1,7 @@
-using System;
 using System.Net.Http;
 using mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
-using Mehspot.DTO;
 using mehspot.Core;
 
 namespace Mehspot.Core.Services
@@ -14,21 +12,9 @@ namespace Mehspot.Core.Services
         {
         }
 
-        public Action<int, object> OnSendNotification;
-
         public Task<Result<ProfileDto>> GetProfileAsync ()
         {
             return this.GetAsync<ProfileDto> ("Profile/Get");
-        }
-
-        public Task<Result<StaticDataDto []>> GetStatesAsync ()
-        {
-            return this.GetAsync<StaticDataDto []> ("Profile/GetStates");
-        }
-
-        public Task<Result<SubdivisionDto []>> GetSubdivisionsAsync (string zip)
-        {
-            return this.GetAsync<SubdivisionDto []> ("Profile/GetSubdivisions?zipCode=" + zip);
         }
 
         public Task<Result<ProfileDto>> UpdateAsync (ProfileDto profile)

@@ -15,45 +15,43 @@ namespace mehspot.iOS.Views
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel BadgeDescription { get; set; }
+        UIKit.UILabel BadgeDescription { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel BadgeName { get; set; }
+        UIKit.UILabel BadgeName { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIImageView BadgePicture { get; set; }
+        UIKit.UIImageView BadgePicture { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel LikesCount { get; set; }
+        UIKit.UIButton BadgeRegisterButton { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel RecommendationsCount { get; set; }
+        UIKit.UILabel LikesCount { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UILabel ReferencesCount { get; set; }
+        UIKit.UILabel RecommendationsCount { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIButton SearchButton { get; set; }
-
-        [Action ("SearchButtonTouched:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void SearchButtonTouched (UIKit.UIButton sender);
-
+        UIKit.UILabel ReferencesCount { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        public UIKit.UIButton BadgeRegisterButton { get; set; }
+        UIKit.UIButton SearchButton { get; set; }
 
         [Action ("BadgeRegisterButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void BadgeRegisterButtonTouched (UIKit.UIButton sender);
 
+        [Action ("SearchButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SearchButtonTouched (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {

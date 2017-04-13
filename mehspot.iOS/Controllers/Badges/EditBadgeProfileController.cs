@@ -19,7 +19,7 @@ namespace mehspot.iOS
         volatile bool loading;
         volatile bool dataLoaded;
         private BadgeService badgeService;
-        private ProfileService profileService;
+        private SubdivisionService subdivisionService;
         private IViewHelper viewHelper;
 
         public int BadgeId;
@@ -37,7 +37,7 @@ namespace mehspot.iOS
         {
             SetTitle ();
             badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
-            profileService = new ProfileService (MehspotAppContext.Instance.DataStorage);
+            subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
             viewHelper = new ViewHelper (this.View);
             TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
             RefreshControl.ValueChanged += RefreshControl_ValueChanged;
@@ -113,7 +113,7 @@ namespace mehspot.iOS
             dataLoaded = profileResult.IsSuccess;
             if (profileResult.IsSuccess) {
                 this.profile = profileResult.Data;
-                base.TableView.Source = await EditBadgeTableSource.Create (profileResult.Data, profileService);
+                base.TableView.Source = await EditBadgeTableSource.Create (profileResult.Data, subdivisionService);
                 TableView.ReloadData ();
                 TableView.UserInteractionEnabled = this.SaveButton.Enabled = true;
                 RefreshControl.EndRefreshing ();

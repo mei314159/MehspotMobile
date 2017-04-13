@@ -39,7 +39,7 @@ namespace mehspot.iOS
         private void Model_SignedIn (AuthenticationResult result)
         {
             var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateInitialViewController ();
-            targetViewController.SwapController (UIViewAnimationOptions.TransitionFlipFromRight);
+            this.View.Window.SwapController (targetViewController);
         }
 
         private async void SignInAsync ()
@@ -51,7 +51,7 @@ namespace mehspot.iOS
         {
             var nextTag = textField.Tag + 1;
             UIResponder nextResponder = this.View.ViewWithTag (nextTag);
-            if (nextResponder != null) {
+            if (nextResponder != null && nextTag < 2) {
                 nextResponder.BecomeFirstResponder ();
             } else {
                 // Not found, so remove keyboard.
