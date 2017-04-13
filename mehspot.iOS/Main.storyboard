@@ -423,7 +423,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
         <!--Search Babysitter-->
         <scene sceneID="3288">
             <objects>
-                <tableViewController id="3289" customClass="SearchBabysitterController" sceneMemberID="viewController">
+                <tableViewController id="3289" customClass="SearchBadgeController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="30" id="3290">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

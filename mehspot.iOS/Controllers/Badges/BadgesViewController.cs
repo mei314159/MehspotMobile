@@ -44,7 +44,7 @@ namespace mehspot.iOS
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
             if (segue.Identifier == "GoToSearchFilterSegue") {
-                var controller = ((SearchBabysitterController)segue.DestinationViewController);
+                var controller = ((SearchBadgeController)segue.DestinationViewController);
                 controller.BadgeId = this.SelectedBadge.BadgeId;
                 controller.BadgeName = this.SelectedBadge.BadgeName;
             } else if (segue.Identifier == "GoToEditBadgeSegue") {

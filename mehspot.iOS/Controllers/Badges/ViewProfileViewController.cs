@@ -16,8 +16,9 @@ namespace mehspot.iOS
         private volatile bool loading;
         private BadgeService badgeService;
         private BadgeProfileDTO<BabysitterProfileDTO> profile;
-        public BabysitterSearchResultDTO SearchResultDTO;
+        public ISearchResultDTO SearchResultDTO;
         public int BadgeId;
+        public string BadgeName;
 
         public ViewProfileViewController (IntPtr handle) : base (handle)
         {
@@ -39,7 +40,7 @@ namespace mehspot.iOS
         {
             SendMessageButton.Layer.BorderWidth = 1;
             SendMessageButton.Layer.BorderColor = SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
-            this.NavBar.TopItem.Title = BadgeService.BadgeNames.Babysitter + " Profile";
+            this.NavBar.TopItem.Title = this.BadgeName + " Profile";
 
             TableView.TableHeaderView.Hidden = true;
             TableView.TableFooterView = new UIView ();
@@ -59,7 +60,7 @@ namespace mehspot.iOS
         async void ProfilePictureDoupleTapped ()
         {
             var dto = new BadgeUserDescriptionDTO {
-                BadgeName = BadgeService.BadgeNames.Babysitter,
+                BadgeName = this.BadgeName,
                 Delete = this.SearchResultDTO.Details.Favourite,
                 EmployeeId = this.SearchResultDTO.Details.UserId,
                 Type = BadgeDescriptionTypeEnum.Favourite
@@ -107,7 +108,7 @@ namespace mehspot.iOS
 
         void InitializeTable ()
         {
-            this.NavBar.TopItem.Title = $"{BadgeService.BadgeNames.Babysitter} {profile.Details.UserName}";
+            this.NavBar.TopItem.Title = $"{BadgeName} {profile.Details.UserName}";
             this.FirstNameLabel.Text = profile.BadgeValues.FirstName;
             this.SubdivisionLabel.Text = profile.Details.SubdivisionName.Trim ();
             this.HourlyRateLabel.Text = $"${(profile.BadgeValues.HourlyRate ?? 0)}/hr";

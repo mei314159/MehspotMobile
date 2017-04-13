@@ -20,9 +20,9 @@ namespace Mehspot.Core.Services
             return await GetAsync<BadgeSummaryDTO []> ("Badges/Get").ConfigureAwait (false);
         }
 
-        public async Task<Result<StaticDataDto []>> GetAgeRangesAsync (int badgeId)
+        public async Task<Result<StaticDataDTO []>> GetAgeRangesAsync (int badgeId)
         {
-            return await GetAsync<StaticDataDto []> ("Badges/GetAgeRanges?badgeId=" + badgeId).ConfigureAwait (false);
+            return await GetAsync<StaticDataDTO []> ("Badges/GetAgeRanges?badgeId=" + badgeId).ConfigureAwait (false);
         }
 
         public async Task<Result<BadgeProfileDTO<BabysitterProfileDTO>>> GetBadgeProfileAsync (int badgeId, string userId)

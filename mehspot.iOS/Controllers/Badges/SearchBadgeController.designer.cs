@@ -11,8 +11,8 @@ using UIKit;
 
 namespace mehspot.iOS
 {
-    [Register ("SearchBabysitterController")]
-    partial class SearchBabysitterController
+    [Register ("SearchBadgeController")]
+    partial class SearchBadgeController
     {
         [Action ("SearchButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]

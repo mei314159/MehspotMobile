@@ -1,16 +1,14 @@
 using Foundation;
 using System;
 using UIKit;
-using Mehspot.Core.DTO.Search;
-using Mehspot.Core.Messaging;
 using Mehspot.Core;
 using System.Threading.Tasks;
 using CoreGraphics;
 using MehSpot.Models.ViewModels;
 using mehspot.iOS.Views.Cell;
-using SDWebImage;
 using System.Collections.Generic;
 using Mehspot.Core.Services;
+using mehspot.iOS.Controllers.Badges.DataSources.Search;
 
 namespace mehspot.iOS
 {
@@ -19,14 +17,13 @@ namespace mehspot.iOS
         private volatile bool loading;
         private volatile bool viewWasInitialized;
         private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
-        private List<BabysitterSearchResultDTO> items = new List<BabysitterSearchResultDTO> ();
+        private List<ISearchResultDTO> items = new List<ISearchResultDTO> ();
         private BadgeService badgeService;
-        private BabysitterSearchResultDTO SelectedItem;
+        private ISearchResultDTO SelectedItem;
 
         private const int pageSize = 20;
 
-        public KeyValuePair<int?, string> [] AgeRanges { get; internal set; }
-        public ISearchFilterDTO Filter;
+        public SearchModel SearchModel;
         public string BadgeName;
         public int BadgeId;
 
@@ -94,6 +91,7 @@ namespace mehspot.iOS
                 var controller = (ViewProfileViewController)segue.DestinationViewController;
                 controller.SearchResultDTO = this.SelectedItem;
                 controller.BadgeId = this.BadgeId;
+                controller.BadgeName = this.BadgeName;
             }
 
             base.PrepareForSegue (segue, sender);
@@ -127,21 +125,21 @@ namespace mehspot.iOS
             return cell;
         }
 
-        private void ConfigureCell (SearchResultsCell cell, BabysitterSearchResultDTO item)
+        private void ConfigureCell (SearchResultsCell cell, ISearchResultDTO item)
         {
-            cell.Configure (item, AgeRanges);
+            cell.Configure (item);
 
             cell.SendMessageButtonAction = (obj) => SendMessageButtonTouched (obj, item);
             cell.ViewProfileButtonAction = (obj) => ViewProfileButtonTouched (obj, item);
         }
 
-        void SendMessageButtonTouched (UIButton obj, BabysitterSearchResultDTO dto)
+        void SendMessageButtonTouched (UIButton obj, ISearchResultDTO dto)
         {
             this.SelectedItem = dto;
             PerformSegue ("GoToMessagingSegue", this);
         }
 
-        void ViewProfileButtonTouched (UIButton obj, BabysitterSearchResultDTO dto)
+        void ViewProfileButtonTouched (UIButton obj, ISearchResultDTO dto)
         {
             this.SelectedItem = dto;
             PerformSegue ("ViewProfileSegue", this);
@@ -173,7 +171,7 @@ namespace mehspot.iOS
         private async Task LoadDataAsync (bool refresh = false)
         {
             var skip = refresh ? 0 : (items?.Count ?? 0);
-            var result = await badgeService.Search<BabysitterSearchResultDTO> (this.Filter, this.BadgeId, skip, pageSize);
+            var result = await badgeService.Search<BabysitterSearchResultDTO> (this.SearchModel.Filter, this.BadgeId, skip, pageSize);
             if (result.IsSuccess) {
                 if (refresh) {
                     this.items.Clear ();

@@ -44,9 +44,8 @@
     </Compile>
     <Compile Include="DTO\ValidationModelBase.cs" />
     <Compile Include="DTO\Profile\ProfileDto.cs" />
-    <Compile Include="DTO\Profile\StaticDataDto.cs" />
+    <Compile Include="DTO\Profile\StaticDataDTO.cs" />
     <Compile Include="DTO\ModelStateDto.cs" />
-    <Compile Include="DTO\Search\SearchBabysitterDTO.cs" />
     <Compile Include="Services\PushService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\MessagesService.cs" />
@@ -59,11 +58,9 @@
     <Compile Include="DTO\Push\OsType.cs" />
     <Compile Include="DTO\Messaging\MessagingNotificationType.cs" />
     <Compile Include="DTO\AuthenticationResult.cs" />
-    <Compile Include="DTO\Search\BaseFilterDTO.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="DTO\Badges\BabysitterSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\BadgeUserDetailsFilterDTO.cs" />
-    <Compile Include="DTO\Search\ISearchFilterDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDetailsDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDTO.cs" />
     <Compile Include="DTO\Badges\IBadgeProfileValues.cs" />
@@ -89,6 +86,10 @@
     <Compile Include="Services\SubdivisionService.cs" />
     <Compile Include="DTO\Subdivision\SubdivisionOptionModel.cs" />
     <Compile Include="DTO\Subdivision\SubdivisionDTO.cs" />
+    <Compile Include="DTO\Badges\ISearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\BaseFilterDTO.cs" />
+    <Compile Include="DTO\Badges\ISearchFilterDTO.cs" />
+    <Compile Include="DTO\Badges\SearchBabysitterDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -96,7 +97,6 @@
     <Folder Include="DTO\" />
     <Folder Include="Contracts\ViewControllers\" />
     <Folder Include="DTO\Profile\" />
-    <Folder Include="DTO\Search\" />
     <Folder Include="Services\" />
     <Folder Include="DTO\Messaging\" />
     <Folder Include="DTO\Badges\" />
