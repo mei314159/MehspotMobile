@@ -24,5 +24,4 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             return Task.CompletedTask;
         }
     }
-
 }

@@ -1,7 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
+using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
+using MehSpot.Models.ViewModels;
 
 namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 {
@@ -16,7 +19,6 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             this.badgeService = badgeService;
             this.BadgeName = badgeName;
             this.Filter = filter;
-            this.SearchResultTableSource = new SearchResultTableSource (badgeService, filter);
         }
 
         public ISearchFilterDTO Filter { get; private set; }
@@ -36,6 +38,9 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             case BadgeService.BadgeNames.BabysitterEmployer:
                 result = new ViewBabysitterEmployerTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
                 break;
+            case BadgeService.BadgeNames.Tennis:
+                result = new ViewTennisTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
+                break;
             }
 
             await result.LoadAsync (userId);
@@ -45,12 +50,19 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         public static async Task<SearchModel> GetInstanceAsync (BadgeService badgeService, string badgeName, int badgeId)
         {
             FilterTableSource searchFilterTableSource;
+            Type resultType;
             switch (badgeName) {
             case BadgeService.BadgeNames.Babysitter:
                 searchFilterTableSource = new BabysitterFilterTableSource (badgeService, badgeId);
+                resultType = typeof (BabysitterSearchResultDTO);
                 break;
             case BadgeService.BadgeNames.BabysitterEmployer:
                 searchFilterTableSource = new BabysitterEmployerFilterTableSource (badgeService, badgeId);
+                resultType = typeof (BabysitterEmployerSearchResultDTO);
+                break;
+            case BadgeService.BadgeNames.Tennis:
+                searchFilterTableSource = new TennisFilterTableSource (badgeService, badgeId);
+                resultType = typeof (TennisSearchResultDTO);
                 break;
             default:
                 return null;
@@ -59,6 +71,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             await searchFilterTableSource.InitializeAsync ();
             var model = new SearchModel (badgeService, badgeName, searchFilterTableSource.Filter);
             model.SearchFilterTableSource = searchFilterTableSource;
+            model.SearchResultTableSource = new SearchResultTableSource (badgeService, searchFilterTableSource.Filter, resultType);
             return model;
         }
     }

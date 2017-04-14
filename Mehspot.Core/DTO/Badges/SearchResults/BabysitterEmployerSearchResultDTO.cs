@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 
 namespace MehSpot.Models.ViewModels
 {
-    public class BabysitterSearchResultDTO : ISearchResultDTO
+
+    public class BabysitterEmployerSearchResultDTO : ISearchResultDTO
     {
         public BadgeUserDetailsFilterDTO Details { get; set; }
         public string Description { get; set; }

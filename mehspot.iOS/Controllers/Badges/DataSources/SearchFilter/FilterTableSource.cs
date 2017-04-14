@@ -59,7 +59,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         protected async Task<KeyValuePair<int?, string> []> GetAgeRangesAsync ()
         {
-            var result = await badgeService.GetAgeRangesAsync (this.TypedFilter.BadgeId);
+            var result = await badgeService.GetBadgeKeysAsync (this.TypedFilter.BadgeId, BadgeService.BadgeKeys.AgeRange);
             if (result.IsSuccess) {
                 return result.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
             }

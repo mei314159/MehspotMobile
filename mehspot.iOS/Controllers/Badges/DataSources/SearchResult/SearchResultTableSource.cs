@@ -20,12 +20,13 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
         BadgeService badgeService;
         ISearchFilterDTO filter;
+        public Type ResultType;
 
-
-        public SearchResultTableSource (BadgeService badgeService, ISearchFilterDTO filter)
+        public SearchResultTableSource (BadgeService badgeService, ISearchFilterDTO filter, Type resultType)
         {
             this.badgeService = badgeService;
             this.filter = filter;
+            this.ResultType = resultType;
         }
 
         public List<ISearchResultDTO> Items { get; } = new List<ISearchResultDTO> ();
@@ -41,7 +42,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         {
             var skip = refresh ? 0 : (this.Items?.Count ?? 0);
 
-            var result = await badgeService.Search<BabysitterSearchResultDTO> (this.filter, skip, pageSize);
+            var result = await badgeService.Search(this.filter, skip, pageSize, this.ResultType);
             if (result.IsSuccess) {
                 if (refresh) {
                     this.Items.Clear ();

@@ -59,11 +59,9 @@
     <Compile Include="DTO\Messaging\MessagingNotificationType.cs" />
     <Compile Include="DTO\AuthenticationResult.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
-    <Compile Include="DTO\Badges\BabysitterSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\BadgeUserDetailsFilterDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDetailsDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDTO.cs" />
-    <Compile Include="DTO\Badges\BabysitterProfileDTO.cs" />
     <Compile Include="DTO\Badges\BadgeUserDescriptionDTO.cs" />
     <Compile Include="DTO\Badges\BadgeDescriptionTypeEnum.cs" />
     <Compile Include="Services\BaseDataService.cs" />
@@ -93,8 +91,13 @@
     <Compile Include="DTO\Badges\IBadgeProfileDTO.cs" />
     <Compile Include="DTO\Badges\IAdditionalInfo.cs" />
     <Compile Include="DTO\Badges\SearchBabysitterEmployerDTO.cs" />
-    <Compile Include="DTO\Badges\BabysitterEmployerProfileDTO.cs" />
     <Compile Include="DTO\Badges\SearchTennisDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\BabysitterSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\BabysitterProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\BabysitterEmployerProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\TennisProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\TennisSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\BabysitterEmployerSearchResultDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -108,6 +111,8 @@
     <Folder Include="DTO\Push\" />
     <Folder Include="Extensions\" />
     <Folder Include="DTO\Subdivision\" />
+    <Folder Include="DTO\Badges\SearchResults\" />
+    <Folder Include="DTO\Badges\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
