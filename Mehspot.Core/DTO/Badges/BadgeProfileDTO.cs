@@ -2,7 +2,7 @@
 
 namespace Mehspot.Core.DTO.Badges
 {
-    public class BadgeProfileDTO<T> where T: IBadgeProfileValues
+    public class BadgeProfileDTO<T> : IBadgeProfileDTO where T: IBadgeProfileValues
     {
         public string UserId { get; set; }
         public int BadgeId { get; set; }
@@ -12,6 +12,4 @@ namespace Mehspot.Core.DTO.Badges
         public BadgeProfileDetailsDTO Details { get; set; }
         public ProfilePartialDTO Profile { get; set; }
     }
-
-    
 }

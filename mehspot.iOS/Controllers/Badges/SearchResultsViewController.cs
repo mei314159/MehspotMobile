@@ -1,13 +1,10 @@
 using Foundation;
 using System;
 using UIKit;
-using Mehspot.Core;
 using System.Threading.Tasks;
 using CoreGraphics;
 using MehSpot.Models.ViewModels;
 using mehspot.iOS.Views.Cell;
-using System.Collections.Generic;
-using Mehspot.Core.Services;
 using mehspot.iOS.Controllers.Badges.DataSources.Search;
 
 namespace mehspot.iOS
@@ -16,16 +13,9 @@ namespace mehspot.iOS
     {
         private volatile bool loading;
         private volatile bool viewWasInitialized;
-        private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
-        private List<ISearchResultDTO> items = new List<ISearchResultDTO> ();
-        private BadgeService badgeService;
+
         private ISearchResultDTO SelectedItem;
-
-        private const int pageSize = 20;
-
         public SearchModel SearchModel;
-        public string BadgeName;
-        public int BadgeId;
 
 
         public SearchResultsViewController (IntPtr handle) : base (handle)
@@ -34,10 +24,13 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
-            badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
             this.TableView.RegisterNibForCellReuse (SearchResultsCell.Nib, SearchResultsCell.Key);
-            this.TableView.WeakDataSource = this;
-            this.TableView.Delegate = this;
+            SearchModel.SearchResultTableSource.SendMessageButtonTouched += SendMessageButtonTouched;
+            SearchModel.SearchResultTableSource.ViewProfileButtonTouched += ViewProfileButtonTouched;
+            SearchModel.SearchResultTableSource.LoadingStarted += LoadingStarted;
+            SearchModel.SearchResultTableSource.LoadingEnded += LoadingEnded;
+            this.TableView.Source = SearchModel.SearchResultTableSource;
+
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
             this.TableView.TableFooterView.Hidden = true;
         }
@@ -55,30 +48,16 @@ namespace mehspot.iOS
         {
         }
 
-        [Export ("scrollViewDidScroll:")]
-        public void Scrolled (UIScrollView scrollView)
+        private void LoadingStarted ()
         {
-            var currentOffset = scrollView.ContentOffset.Y;
-            var maximumOffset = scrollView.ContentSize.Height - scrollView.Frame.Size.Height;
-            var deltaOffset = maximumOffset - currentOffset;
-
-            if (deltaOffset <= 0) {
-                LoadMoreAsync ();
-            }
+            this.ActivityIndicator.StartAnimating ();
+            this.TableView.TableFooterView.Hidden = false;
         }
 
-        private async void LoadMoreAsync ()
+        private void LoadingEnded ()
         {
-            if (!loading) {
-                this.loading = true;
-                this.ActivityIndicator.StartAnimating ();
-                this.TableView.TableFooterView.Hidden = false;
-
-                await LoadDataAsync ();
-                this.ActivityIndicator.StopAnimating ();
-                this.TableView.TableFooterView.Hidden = true;
-                loading = false;
-            }
+            this.ActivityIndicator.StopAnimating ();
+            this.TableView.TableFooterView.Hidden = true;
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -89,48 +68,11 @@ namespace mehspot.iOS
                 controller.ToUserId = this.SelectedItem.Details.UserId;
             } else if (segue.Identifier == "ViewProfileSegue") {
                 var controller = (ViewProfileViewController)segue.DestinationViewController;
+                controller.SearchModel = SearchModel;
                 controller.SearchResultDTO = this.SelectedItem;
-                controller.BadgeId = this.BadgeId;
-                controller.BadgeName = this.BadgeName;
             }
 
             base.PrepareForSegue (segue, sender);
-        }
-
-        public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
-        {
-            if (expandedPaths.Contains (indexPath)) {
-                expandedPaths.Remove (indexPath);
-            } else {
-                expandedPaths.Add (indexPath);
-            }
-            tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Fade);
-        }
-
-        public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
-        {
-            if (expandedPaths.Contains (indexPath)) {
-                return 125;
-            } else {
-                return 84;
-            }
-        }
-
-        public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
-        {
-            var item = items [indexPath.Row];
-
-            var cell = TableView.DequeueReusableCell (SearchResultsCell.Key, indexPath);
-            ConfigureCell (cell as SearchResultsCell, item);
-            return cell;
-        }
-
-        private void ConfigureCell (SearchResultsCell cell, ISearchResultDTO item)
-        {
-            cell.Configure (item);
-
-            cell.SendMessageButtonAction = (obj) => SendMessageButtonTouched (obj, item);
-            cell.ViewProfileButtonAction = (obj) => ViewProfileButtonTouched (obj, item);
         }
 
         void SendMessageButtonTouched (UIButton obj, ISearchResultDTO dto)
@@ -143,11 +85,6 @@ namespace mehspot.iOS
         {
             this.SelectedItem = dto;
             PerformSegue ("ViewProfileSegue", this);
-        }
-
-        public override nint RowsInSection (UITableView tableView, nint section)
-        {
-            return items?.Count ?? 0;
         }
 
         private async void RefreshControl_ValueChanged (object sender, EventArgs e)
@@ -163,22 +100,9 @@ namespace mehspot.iOS
             this.RefreshControl.BeginRefreshing ();
 
             this.TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
-            await LoadDataAsync (true);
+            await SearchModel.SearchResultTableSource.LoadDataAsync (this.TableView, true);
             this.RefreshControl.EndRefreshing ();
             loading = false;
-        }
-
-        private async Task LoadDataAsync (bool refresh = false)
-        {
-            var skip = refresh ? 0 : (items?.Count ?? 0);
-            var result = await badgeService.Search<BabysitterSearchResultDTO> (this.SearchModel.Filter, this.BadgeId, skip, pageSize);
-            if (result.IsSuccess) {
-                if (refresh) {
-                    this.items.Clear ();
-                }
-                this.items.AddRange (result.Data);
-                TableView.ReloadData ();
-            }
         }
     }
 }

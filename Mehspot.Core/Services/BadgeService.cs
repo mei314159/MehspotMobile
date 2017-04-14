@@ -35,9 +35,9 @@ namespace Mehspot.Core.Services
             return await GetAsync<BadgeProfileDTO<EditBadgeProfileDTO>>($"Badges/EditProfile?badgeId={badgeId}&userId={this.ApplicationDataStorage.AuthInfo.UserId}").ConfigureAwait(false);
         }
 
-        public async Task<Result<TResult []>> Search<TResult> (ISearchFilterDTO filter, int badgeId, int skip, int take)
+        public async Task<Result<TResult []>> Search<TResult> (ISearchFilterDTO filter, int skip, int take)
         {
-            return await GetAsync<TResult []> ($"Badges/SearchForApp?badgeId={badgeId}&skip={skip}&take={take}&" + filter.GetQueryString ()).ConfigureAwait (false);
+            return await GetAsync<TResult []> ($"Badges/SearchForApp?badgeId={filter.BadgeId}&skip={skip}&take={take}&" + filter.GetQueryString ()).ConfigureAwait (false);
         }
 
         public async Task<Result> ToggleBadgeEmploymentHistoryAsync (string userId, int badgeId, bool delete)

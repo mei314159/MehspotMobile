@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foundation;
@@ -7,13 +7,13 @@ using UIKit;
 
 namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 {
-    public abstract class SearchTableDataSource: UITableViewSource
+    public abstract class SearchFilterTableSource: UITableViewSource
     {
-        protected List<UITableViewCell> Cells { get; set; } = new List<UITableViewCell> ();
+        protected readonly List<UITableViewCell> Cells = new List<UITableViewCell> ();
 
         public ISearchFilterDTO Filter { get; }
 
-        public SearchTableDataSource (ISearchFilterDTO filter)
+        public SearchFilterTableSource (ISearchFilterDTO filter)
         {
             this.Filter = filter;
         }

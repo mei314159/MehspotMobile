@@ -26,10 +26,16 @@ namespace mehspot.iOS
         public override void ViewDidLoad ()
         {
             viewHelper = new ViewHelper (this.View);
-            //this.TableView.Delegate = this;
-
+            SetTitle ();
             this.TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
             this.TableView.TableFooterView.Hidden = true;
+        }
+
+        private void SetTitle ()
+        {
+            var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
+            var title = "Search for " + badgeName;
+            this.NavBar.Title = title;
         }
 
         public override async void ViewWillAppear (bool animated)
@@ -40,7 +46,7 @@ namespace mehspot.iOS
             viewHelper.ShowOverlay ("Loading...");
 
             this.SearchModel = await SearchModel.GetInstanceAsync (new BadgeService (MehspotAppContext.Instance.DataStorage), this.BadgeName, this.BadgeId);
-            this.TableView.Source = this.SearchModel.TableSource;
+            this.TableView.Source = this.SearchModel.SearchFilterTableSource;
             this.TableView.ReloadData ();
 
             viewHelper.HideOverlay ();
@@ -58,8 +64,6 @@ namespace mehspot.iOS
             if (segue.Identifier == "SearchResultsSegue") {
                 var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
                 destinationViewController.SearchModel = this.SearchModel;
-                destinationViewController.BadgeName = this.BadgeName;
-                destinationViewController.BadgeId = this.BadgeId;
             }
 
             base.PrepareForSegue (segue, sender);

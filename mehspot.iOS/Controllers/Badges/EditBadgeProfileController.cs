@@ -90,7 +90,7 @@ namespace mehspot.iOS
                 var errors = result.ModelState.ModelState?.SelectMany (a => a.Value);
                 message = errors != null ? string.Join (Environment.NewLine, errors) : result.ErrorMessage;
             }
-            UIAlertView alert = new UIAlertView (
+            var alert = new UIAlertView (
                                     result.IsSuccess ? "Success" : "Error",
                                     message,
                                     null,

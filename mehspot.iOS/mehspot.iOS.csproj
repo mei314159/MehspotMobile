@@ -160,7 +160,9 @@
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Controllers\Subdivisions\" />
-    <Folder Include="Controllers\Badges\DataSources\Search\" />
+    <Folder Include="Controllers\Badges\DataSources\SearchFilter\" />
+    <Folder Include="Controllers\Badges\DataSources\Profile\" />
+    <Folder Include="Controllers\Badges\DataSources\SearchResult\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -246,7 +248,6 @@
     <Compile Include="Controllers\Badges\ViewProfileViewController.designer.cs">
       <DependentUpon>ViewProfileViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\DataSources\ViewBabysitterDataSource.cs" />
     <Compile Include="Views\Cell\TextViewCell.cs" />
     <Compile Include="BadgeProfileController.cs" />
     <Compile Include="BadgeProfileController.designer.cs">
@@ -286,9 +287,12 @@
       <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Search\SearchTableDataSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Search\SearchBabysitterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Search\SearchModel.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\SearchFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\SearchBabysitterFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBadgeProfileTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchModel.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchResult\SearchResultTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

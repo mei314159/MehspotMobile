@@ -63,7 +63,6 @@
     <Compile Include="DTO\Badges\BadgeUserDetailsFilterDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDetailsDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDTO.cs" />
-    <Compile Include="DTO\Badges\IBadgeProfileValues.cs" />
     <Compile Include="DTO\Badges\BabysitterProfileDTO.cs" />
     <Compile Include="DTO\Badges\BadgeUserDescriptionDTO.cs" />
     <Compile Include="DTO\Badges\BadgeDescriptionTypeEnum.cs" />
@@ -90,6 +89,8 @@
     <Compile Include="DTO\Badges\BaseFilterDTO.cs" />
     <Compile Include="DTO\Badges\ISearchFilterDTO.cs" />
     <Compile Include="DTO\Badges\SearchBabysitterDTO.cs" />
+    <Compile Include="DTO\Badges\IBadgeProfileValues.cs" />
+    <Compile Include="DTO\Badges\IBadgeProfileDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
