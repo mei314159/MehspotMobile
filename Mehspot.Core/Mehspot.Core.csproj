@@ -91,6 +91,10 @@
     <Compile Include="DTO\Badges\SearchBabysitterDTO.cs" />
     <Compile Include="DTO\Badges\IBadgeProfileValues.cs" />
     <Compile Include="DTO\Badges\IBadgeProfileDTO.cs" />
+    <Compile Include="DTO\Badges\IAdditionalInfo.cs" />
+    <Compile Include="DTO\Badges\SearchBabysitterEmployerDTO.cs" />
+    <Compile Include="DTO\Badges\BabysitterEmployerProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchTennisDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

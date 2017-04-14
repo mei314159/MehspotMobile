@@ -6,4 +6,9 @@ namespace Mehspot.Core.DTO.Search
         BaseFilterDTO Details { get; set; }
     }
 
+    public class SearchFilterDTOBase : ISearchFilterDTO
+    {
+        public int BadgeId { get; set; }
+        public BaseFilterDTO Details { get; set; } = new BaseFilterDTO();
+    }
 }

@@ -21,43 +21,44 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         public ISearchFilterDTO Filter { get; private set; }
 
-        public SearchFilterTableSource SearchFilterTableSource { get; private set; }
+        public FilterTableSource SearchFilterTableSource { get; private set; }
 
         public SearchResultTableSource SearchResultTableSource { get; private set; }
 
         public async Task<ViewBadgeProfileTableSource> GetViewProfileTableSource (string userId)
         {
-            var result = await badgeService.GetBadgeProfileAsync (this.Filter.BadgeId, userId);
-            if (result.IsSuccess) {
-                var profile = result.Data;
+            ViewBadgeProfileTableSource result = null;
 
-                switch (BadgeName) {
-                case BadgeService.BadgeNames.Babysitter: {
-                        return new ViewBabysitterTableSource (profile, this.Filter.BadgeId, this.BadgeName, badgeService);
-                    }
-                }
+            switch (BadgeName) {
+            case BadgeService.BadgeNames.Babysitter:
+                result = new ViewBabysitterTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
+                break;
+            case BadgeService.BadgeNames.BabysitterEmployer:
+                result = new ViewBabysitterEmployerTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
+                break;
             }
 
-            return null;
+            await result.LoadAsync (userId);
+            return result;
         }
 
         public static async Task<SearchModel> GetInstanceAsync (BadgeService badgeService, string badgeName, int badgeId)
         {
-            SearchBabysitterDTO filter;
-            SearchFilterTableSource tableSource;
+            FilterTableSource searchFilterTableSource;
             switch (badgeName) {
             case BadgeService.BadgeNames.Babysitter:
-                filter = new SearchBabysitterDTO (badgeId);
-                tableSource = new SearchBabysitterFilterTableSource (badgeService, filter);
-                await tableSource.InitializeAsync ();
-
+                searchFilterTableSource = new BabysitterFilterTableSource (badgeService, badgeId);
+                break;
+            case BadgeService.BadgeNames.BabysitterEmployer:
+                searchFilterTableSource = new BabysitterEmployerFilterTableSource (badgeService, badgeId);
                 break;
             default:
                 return null;
             }
 
-            var model = new SearchModel (badgeService, badgeName, filter);
-            model.SearchFilterTableSource = tableSource;
+            await searchFilterTableSource.InitializeAsync ();
+            var model = new SearchModel (badgeService, badgeName, searchFilterTableSource.Filter);
+            model.SearchFilterTableSource = searchFilterTableSource;
             return model;
         }
     }

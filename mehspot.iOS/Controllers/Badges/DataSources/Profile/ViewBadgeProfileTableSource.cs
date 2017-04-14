@@ -13,21 +13,21 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
     {
         protected readonly List<UITableViewCell> Cells = new List<UITableViewCell> ();
 
-        private readonly int BadgeId;
-        private readonly string BadgeName;
-        private readonly BadgeService badgeService;
+        protected readonly int BadgeId;
+        protected readonly string BadgeName;
+        protected readonly BadgeService badgeService;
 
-        public readonly IBadgeProfileDTO Profile;
 
-        public ViewBadgeProfileTableSource (IBadgeProfileDTO profile, int badgeId, string badgeName, BadgeService badgeService)
+        public ViewBadgeProfileTableSource (int badgeId, string badgeName, BadgeService badgeService)
         {
-            Profile = profile;
             BadgeId = badgeId;
             BadgeName = badgeName;
             this.badgeService = badgeService;
         }
 
-        public abstract Task InitializeAsync ();
+        public IBadgeProfileDTO Profile { get; protected set; }
+
+        public abstract Task LoadAsync (string userId);
 
         public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
         {
@@ -66,6 +66,26 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         {
             return badgeService.ToggleBadgeUserDescriptionAsync (dto);
         }
+    }
+
+    public abstract class ViewBadgeProfileTableSource<TProfile> : ViewBadgeProfileTableSource where TProfile : IBadgeProfileValues
+    {
+
+        public ViewBadgeProfileTableSource (int badgeId, string badgeName, BadgeService badgeService) : base (badgeId, badgeName, badgeService)
+        {
+        }
+
+        public override async Task LoadAsync (string userId)
+        {
+            var result = await badgeService.GetBadgeProfileAsync<BadgeProfileDTO<TProfile>> (this.BadgeId, userId);
+            if (result.IsSuccess) {
+                this.Profile = result.Data;
+                await InitializeAsync (result.Data);
+            }
+        }
+
+        public abstract Task InitializeAsync (BadgeProfileDTO<TProfile> profile);
+
     }
 
 }

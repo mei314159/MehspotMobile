@@ -27,7 +27,8 @@ namespace mehspot.iOS
         {
             SendMessageButton.Layer.BorderWidth = 1;
             SendMessageButton.Layer.BorderColor = SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
-            this.NavBar.TopItem.Title = this.SearchModel.BadgeName + " Profile";
+            this.NavBar.TopItem.Title =
+                (MehspotResources.ResourceManager.GetString (SearchModel.BadgeName) ?? SearchModel.BadgeName) + " Profile";
 
             TableView.TableHeaderView.Hidden = true;
             TableView.TableFooterView = new UIView ();
@@ -106,8 +107,8 @@ namespace mehspot.iOS
                 this.LikesLabel.Text = $"{SearchResultDTO.Details.Likes} Likes / {SearchResultDTO.Details.Recommendations} Recommendations";
                 this.FavoriteIcon.Hidden = !SearchResultDTO.Details.Favourite;
                 this.FirstNameLabel.Text = SearchResultDTO.Details.FirstName;
-                //this.HourlyRateLabel.Text = $"${(profile.BadgeValues.HourlyRate ?? 0)}/hr";
-                //this.AgeRangeLabel.Text = profile.BadgeValues.AgeRange;
+                this.HourlyRateLabel.Text = source.Profile.AdditionalInfo.InfoLabel1;
+                this.AgeRangeLabel.Text = source.Profile.AdditionalInfo.InfoLabel2;
 
 
                 TableView.ReloadData ();

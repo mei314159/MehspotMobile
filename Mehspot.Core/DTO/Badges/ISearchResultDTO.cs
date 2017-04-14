@@ -1,6 +1,8 @@
+using Mehspot.Core.DTO.Badges;
+
 namespace MehSpot.Models.ViewModels
 {
-    public interface ISearchResultDTO
+    public interface ISearchResultDTO: IAdditionalInfo
     {
         BadgeUserDetailsFilterDTO Details { get; set; }
     }

@@ -287,12 +287,14 @@
       <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\SearchFilterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\SearchBabysitterFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\FilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\BabysitterFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewBadgeProfileTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\SearchModel.cs" />
     <Compile Include="Controllers\Badges\DataSources\SearchResult\SearchResultTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\BabysitterEmployerFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterEmployerTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

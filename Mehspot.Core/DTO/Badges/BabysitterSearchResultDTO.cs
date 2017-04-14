@@ -1,4 +1,6 @@
-﻿namespace MehSpot.Models.ViewModels
+﻿using System;
+
+namespace MehSpot.Models.ViewModels
 {
     public class BabysitterSearchResultDTO : ISearchResultDTO
     {
@@ -15,5 +17,15 @@
         public string SubdivisionInfo { get; set; }
         public string Certification { get; set; }
         public bool HasCertification { get; set; }
+
+        public string InfoLabel1
+        {
+            get { return $"${(this.HourlyRate ?? 0)}/hr"; }
+        }
+
+        public string InfoLabel2
+        {
+            get { return this.AgeRangeLabel; }
+        }
     }
 }

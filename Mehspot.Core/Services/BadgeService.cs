@@ -25,9 +25,9 @@ namespace Mehspot.Core.Services
             return await GetAsync<StaticDataDTO []> ("Badges/GetAgeRanges?badgeId=" + badgeId).ConfigureAwait (false);
         }
 
-        public async Task<Result<BadgeProfileDTO<BabysitterProfileDTO>>> GetBadgeProfileAsync (int badgeId, string userId)
+        public async Task<Result<T>> GetBadgeProfileAsync<T> (int badgeId, string userId) where T: IBadgeProfileDTO
         {
-            return await GetAsync<BadgeProfileDTO<BabysitterProfileDTO>> ($"Badges/Profile?badgeId={badgeId}&userId={userId}").ConfigureAwait (false);
+            return await GetAsync<T> ($"Badges/Profile?badgeId={badgeId}&userId={userId}").ConfigureAwait (false);
         }
 
         public async Task<Result<BadgeProfileDTO<EditBadgeProfileDTO>>> GetMyBadgeProfileAsync(int badgeId)
@@ -37,7 +37,7 @@ namespace Mehspot.Core.Services
 
         public async Task<Result<TResult []>> Search<TResult> (ISearchFilterDTO filter, int skip, int take)
         {
-            return await GetAsync<TResult []> ($"Badges/SearchForApp?badgeId={filter.BadgeId}&skip={skip}&take={take}&" + filter.GetQueryString ()).ConfigureAwait (false);
+            return await GetAsync<TResult []> ($"Badges/SearchForApp?&skip={skip}&take={take}&" + filter.GetQueryString ()).ConfigureAwait (false);
         }
 
         public async Task<Result> ToggleBadgeEmploymentHistoryAsync (string userId, int badgeId, bool delete)

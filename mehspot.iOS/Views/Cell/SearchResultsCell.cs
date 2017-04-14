@@ -36,26 +36,25 @@ namespace mehspot.iOS.Views.Cell
 
         public void Configure (ISearchResultDTO item)
         {
-            var cell = this;
             if (!string.IsNullOrEmpty (item.Details.ProfilePicturePath)) {
 
                 var url = NSUrl.FromString (item.Details.ProfilePicturePath);
                 if (url != null) {
-                    cell.ProfilePicture.SetImage (url);
+                    this.ProfilePicture.SetImage (url);
                 }
             }
 
-            cell.UserNameLabel.Text = item.Details.FirstName;
-            cell.DistanceLabel.Text = Math.Round (item.Details.DistanceFrom ?? 0, 2) + " miles";
-            cell.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace (item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
-            cell.FavoriteIcon.Hidden = !item.Details.Favourite;
-            cell.LikesLabel.Text = $"{item.Details.Likes} Likes / {item.Details.Recommendations} Recommendations";
-            //cell.HourlyRateLabel.Text = $"${item.HourlyRate}/hr";
-            //cell.AgeRangeLabel.Text = item.AgeRangeLabel;
+            this.UserNameLabel.Text = item.Details.FirstName;
+            this.DistanceLabel.Text = Math.Round (item.Details.DistanceFrom ?? 0, 2) + " miles";
+            this.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace (item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
+            this.FavoriteIcon.Hidden = !item.Details.Favourite;
+            this.LikesLabel.Text = $"{item.Details.Likes} Likes / {item.Details.Recommendations} Recommendations";
+            this.HourlyRateLabel.Text = item.InfoLabel1;
+            this.AgeRangeLabel.Text = item.InfoLabel2;
 
-            cell.SendMessageButton.Layer.BorderWidth = cell.ViewProfileButton.Layer.BorderWidth = 1;
-            cell.SendMessageButton.Layer.BorderColor = cell.SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
-            cell.ViewProfileButton.Layer.BorderColor = cell.ViewProfileButton.TitleColor (UIControlState.Normal).CGColor;
+            this.SendMessageButton.Layer.BorderWidth = this.ViewProfileButton.Layer.BorderWidth = 1;
+            this.SendMessageButton.Layer.BorderColor = this.SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
+            this.ViewProfileButton.Layer.BorderColor = this.ViewProfileButton.TitleColor (UIControlState.Normal).CGColor;
         }
     }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foundation;
-using mehspot.iOS.Extensions;
 using mehspot.iOS.Views.Cell;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
@@ -50,6 +49,12 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
                 this.Items.AddRange (result.Data);
                 tableView.ReloadData ();
             }
+        }
+
+        public void Clear (UITableView tableView)
+        {
+            Items.Clear ();
+            tableView.ReloadData ();
         }
 
         public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
