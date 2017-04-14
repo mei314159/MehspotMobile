@@ -36,7 +36,6 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.Details.HasPicture == true, v => TypedFilter.Details.HasPicture = v == true ? v : (bool?)null, "Has Profile Picture"));
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.Details.HasReferences == true, v => TypedFilter.Details.HasReferences = v == true ? v : (bool?)null, "Has References"));
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.HasCourt == true, v => TypedFilter.HasCourt = v == true ? v : (bool?)null, "Has Court"));
-
         }
 
         protected async Task<KeyValuePair<string, string> []> GetGendersAsync ()

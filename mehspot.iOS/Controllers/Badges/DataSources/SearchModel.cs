@@ -54,15 +54,15 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             switch (badgeName) {
             case BadgeService.BadgeNames.Babysitter:
                 searchFilterTableSource = new BabysitterFilterTableSource (badgeService, badgeId);
-                resultType = typeof (BabysitterSearchResultDTO);
+                resultType = typeof (BabysitterSearchResultDTO[]);
                 break;
             case BadgeService.BadgeNames.BabysitterEmployer:
                 searchFilterTableSource = new BabysitterEmployerFilterTableSource (badgeService, badgeId);
-                resultType = typeof (BabysitterEmployerSearchResultDTO);
+                resultType = typeof (BabysitterEmployerSearchResultDTO[]);
                 break;
             case BadgeService.BadgeNames.Tennis:
                 searchFilterTableSource = new TennisFilterTableSource (badgeService, badgeId);
-                resultType = typeof (TennisSearchResultDTO);
+                resultType = typeof (TennisSearchResultDTO[]);
                 break;
             default:
                 return null;

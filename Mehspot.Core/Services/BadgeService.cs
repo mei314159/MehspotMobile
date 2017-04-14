@@ -7,6 +7,8 @@ using Mehspot.Core.Extensions;
 using mehspot.Core;
 using Mehspot.Core.DTO.Badges;
 using MehSpot.Models.ViewModels;
+using System.Collections;
+using System.Linq;
 
 namespace Mehspot.Core.Services
 {
@@ -40,13 +42,21 @@ namespace Mehspot.Core.Services
         {
             var result = await GetAsync($"Badges/SearchForApp?badgeId={filter.BadgeId}&skip={skip}&take={take}&" + filter.GetQueryString(), resultType).ConfigureAwait(false);
 
-            return new Result<ISearchResultDTO[]>
+            var dto = new Result<ISearchResultDTO[]>
             {
-                Data = (ISearchResultDTO[])result.Data,
                 ErrorMessage = result.ErrorMessage,
                 IsSuccess = result.IsSuccess,
                 ModelState = result.ModelState
             };
+            if (result.IsSuccess)
+            {
+                var data = result.Data as IEnumerable;
+                if (data != null) {
+                    dto.Data = data.Cast<ISearchResultDTO>().ToArray();
+                }
+            }
+
+            return dto;
         }
 
         public async Task<Result> ToggleBadgeEmploymentHistoryAsync(string userId, int badgeId, bool delete)
