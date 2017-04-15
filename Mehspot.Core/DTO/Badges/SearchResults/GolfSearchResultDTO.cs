@@ -23,4 +23,8 @@ namespace Mehspot.Core.DTO.Badges
             get { return "Handicap: " + (Handicap ?? 0).ToString(); }
         }
     }
+
+    
+
+
 }

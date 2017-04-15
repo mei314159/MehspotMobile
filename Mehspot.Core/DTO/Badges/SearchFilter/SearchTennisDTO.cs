@@ -1,6 +1,5 @@
 namespace Mehspot.Core.DTO.Search
 {
-
     public class SearchTennisDTO : SearchFilterDTOBase
     {
         public bool? HasCourt { get; set; }
@@ -11,6 +10,4 @@ namespace Mehspot.Core.DTO.Search
 
         public string AgeRange { get; set; }
     }
-
-    
 }

@@ -10,7 +10,8 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 {
     public class SearchModel
     {
-        readonly BadgeService badgeService;
+        private ViewBadgeProfileTableSource ViewBadgeProfileTableSource;
+        private readonly BadgeService badgeService;
 
         public string BadgeName { get; set; }
 
@@ -29,46 +30,45 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         public async Task<ViewBadgeProfileTableSource> GetViewProfileTableSource (string userId)
         {
-            ViewBadgeProfileTableSource result = null;
-
-            switch (BadgeName) {
-            case BadgeService.BadgeNames.Babysitter:
-                result = new ViewBabysitterTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
-                break;
-            case BadgeService.BadgeNames.BabysitterEmployer:
-                result = new ViewBabysitterEmployerTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
-                break;
-            case BadgeService.BadgeNames.Tennis:
-                result = new ViewTennisTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
-                break;
-            case BadgeService.BadgeNames.Golf:
-                result = new ViewGolfTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
-                break;
-            }
-            await result.LoadAsync (userId);
-            return result;
+            await ViewBadgeProfileTableSource.LoadAsync (userId);
+            return ViewBadgeProfileTableSource;
         }
 
         public static async Task<SearchModel> GetInstanceAsync (BadgeService badgeService, string badgeName, int badgeId)
         {
             FilterTableSource searchFilterTableSource;
+            ViewBadgeProfileTableSource viewBadgeProfileTableSource;
             Type resultType;
             switch (badgeName) {
             case BadgeService.BadgeNames.Babysitter:
                 searchFilterTableSource = new BabysitterFilterTableSource (badgeService, badgeId);
                 resultType = typeof (BabysitterSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewBabysitterTableSource (badgeId, badgeName, badgeService);
                 break;
             case BadgeService.BadgeNames.BabysitterEmployer:
                 searchFilterTableSource = new BabysitterEmployerFilterTableSource (badgeService, badgeId);
                 resultType = typeof (BabysitterEmployerSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewBabysitterEmployerTableSource (badgeId, badgeName, badgeService);
                 break;
             case BadgeService.BadgeNames.Tennis:
                 searchFilterTableSource = new TennisFilterTableSource (badgeService, badgeId);
                 resultType = typeof (TennisSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewTennisTableSource (badgeId, badgeName, badgeService);
                 break;
             case BadgeService.BadgeNames.Golf:
                 searchFilterTableSource = new GolfFilterTableSource (badgeService, badgeId);
+                viewBadgeProfileTableSource = new ViewGolfTableSource (badgeId, badgeName, badgeService);
                 resultType = typeof (GolfSearchResultDTO []);
+                break;
+            case BadgeService.BadgeNames.Tutor:
+                searchFilterTableSource = new TutorFilterTableSource (badgeService, badgeId);
+                resultType = typeof (TutorSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewTutorTableSource (badgeId, badgeName, badgeService);
+                break;
+            case BadgeService.BadgeNames.TutorEmployer:
+                searchFilterTableSource = new TutorEmployerFilterTableSource (badgeService, badgeId);
+                resultType = typeof (TutorEmployerSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewTutorEmployerTableSource (badgeId, badgeName, badgeService);
                 break;
             default:
                 return null;
@@ -78,6 +78,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             var model = new SearchModel (badgeService, badgeName, searchFilterTableSource.Filter);
             model.SearchFilterTableSource = searchFilterTableSource;
             model.SearchResultTableSource = new SearchResultTableSource (badgeService, searchFilterTableSource.Filter, resultType);
+            model.ViewBadgeProfileTableSource = viewBadgeProfileTableSource;
             return model;
         }
     }

@@ -299,6 +299,10 @@
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewTennisTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\SearchFilter\GolfFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewGolfTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\TutorFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\TutorEmployerFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorEmployerTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

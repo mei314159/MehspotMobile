@@ -11,18 +11,18 @@ namespace Mehspot.Core.Extensions
         {
             if (content != null)
             {
-                var parameters = new Dictionary<string, string>();
+                var parameters = new Dictionary<string, List<string>>();
                 ProcessObject(content, parameters);
                 if (parameters.Count > 0)
                 {
-                    return string.Join("&", parameters.Select(a => a.Key + "=" + a.Value));
+                    return string.Join("&", parameters.SelectMany(a => a.Value, (arg1, arg2) => new { arg1.Key, Value = arg2 }).Select(a => a.Key + "=" + a.Value));
                 }
             }
 
             return null;
         }
 
-        private static void ProcessObject(object content, Dictionary<string, string> parameters, string parentName = null)
+        private static void ProcessObject(object content, Dictionary<string, List<string>> parameters, string parentName = null)
         {
             if (content != null)
             {
@@ -35,7 +35,25 @@ namespace Mehspot.Core.Extensions
                     {
                         if (value is ValueType || value is string)
                         {
-                            parameters.Add(propertyName, value.ToString());
+                            if (!parameters.ContainsKey(propertyName))
+                            {
+                                parameters.Add(propertyName, new List<string>());
+                            }
+
+                            parameters[propertyName].Add(value.ToString());
+                        }
+                        else if (value is Array)
+                        {
+                            var arr = value as Array;
+                            foreach (var item in arr)
+                            {
+                                if (!parameters.ContainsKey(propertyName))
+                                {
+                                    parameters.Add(propertyName, new List<string>());
+                                }
+
+                                parameters[propertyName].Add(item.ToString());
+                            }
                         }
                         else
                         {

@@ -51,7 +51,8 @@ namespace Mehspot.Core.Services
             if (result.IsSuccess)
             {
                 var data = result.Data as IEnumerable;
-                if (data != null) {
+                if (data != null)
+                {
                     dto.Data = data.Cast<ISearchResultDTO>().ToArray();
                 }
             }
@@ -81,6 +82,8 @@ namespace Mehspot.Core.Services
             public const string Fitness = "Fitness";
             public const string Tennis = "Tennis";
             public const string Golf = "Golf";
+            public const string Tutor = "Tutor";
+            public const string TutorEmployer = "TutorEmployer";
         }
 
         public class BadgeKeys
@@ -90,6 +93,9 @@ namespace Mehspot.Core.Services
             public const string SkillLevel = "SkillLevel";
             public const string TennisAgeRange = "TennisAgeRange";
             public const string GolfAgeGroup = "GolfAgeGroup";
+            public const string TutorCanTravel = "TutorCanTravel";
+            public const string TutorGrade = "TutorGrade";
+            public const string TutorSubject = "TutorSubject";
         }
     }
 

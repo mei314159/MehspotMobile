@@ -101,6 +101,12 @@
     <Compile Include="DTO\Badges\SearchFilter\SearchGolfDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\GolfSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\Profile\GolfProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchTutorDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchTutorEmployerDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchFitnessDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\TutorSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\TutorProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\TutorEmployerProfileDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
