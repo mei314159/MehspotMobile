@@ -15,7 +15,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         public override Task InitializeAsync (BadgeProfileDTO<TennisProfileDTO> profile)
         {
             Cells.Add (TextViewCell.Create (profile.BadgeValues.Gender, "Gender"));
-            Cells.Add (BooleanEditCell.Create (profile.BadgeValues.HasCourt, v => { }, "HasCourt", true));
+            Cells.Add (BooleanEditCell.Create (profile.BadgeValues.HasCourtAccess, v => { }, "Has Court", true));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.SkillLevel, "Skill Level"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.PreferredSide, "Preferred Side"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.TennisZip, "Tennis Zip"));
@@ -29,5 +29,4 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             return Task.CompletedTask;
         }
     }
-
 }

@@ -297,6 +297,8 @@
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterEmployerTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\SearchFilter\TennisFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewTennisTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\GolfFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewGolfTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

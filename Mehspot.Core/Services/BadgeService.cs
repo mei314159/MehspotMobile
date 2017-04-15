@@ -88,6 +88,8 @@ namespace Mehspot.Core.Services
             public const string AgeRange = "AgeRange";
             public const string Gender = "Gender";
             public const string SkillLevel = "SkillLevel";
+            public const string TennisAgeRange = "TennisAgeRange";
+            public const string GolfAgeGroup = "GolfAgeGroup";
         }
     }
 

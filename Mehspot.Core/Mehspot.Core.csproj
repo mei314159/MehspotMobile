@@ -83,21 +83,24 @@
     <Compile Include="Services\SubdivisionService.cs" />
     <Compile Include="DTO\Subdivision\SubdivisionOptionModel.cs" />
     <Compile Include="DTO\Subdivision\SubdivisionDTO.cs" />
-    <Compile Include="DTO\Badges\ISearchResultDTO.cs" />
     <Compile Include="DTO\Badges\BaseFilterDTO.cs" />
-    <Compile Include="DTO\Badges\ISearchFilterDTO.cs" />
-    <Compile Include="DTO\Badges\SearchBabysitterDTO.cs" />
-    <Compile Include="DTO\Badges\IBadgeProfileValues.cs" />
-    <Compile Include="DTO\Badges\IBadgeProfileDTO.cs" />
     <Compile Include="DTO\Badges\IAdditionalInfo.cs" />
-    <Compile Include="DTO\Badges\SearchBabysitterEmployerDTO.cs" />
-    <Compile Include="DTO\Badges\SearchTennisDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\BabysitterSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\Profile\BabysitterProfileDTO.cs" />
     <Compile Include="DTO\Badges\Profile\BabysitterEmployerProfileDTO.cs" />
     <Compile Include="DTO\Badges\Profile\TennisProfileDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\TennisSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\BabysitterEmployerSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchBabysitterDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchBabysitterEmployerDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchTennisDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\ISearchFilterDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\ISearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\IBadgeProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\IBadgeProfileValues.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchGolfDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\GolfSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\GolfProfileDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -113,6 +116,7 @@
     <Folder Include="DTO\Subdivision\" />
     <Folder Include="DTO\Badges\SearchResults\" />
     <Folder Include="DTO\Badges\Profile\" />
+    <Folder Include="DTO\Badges\SearchFilter\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

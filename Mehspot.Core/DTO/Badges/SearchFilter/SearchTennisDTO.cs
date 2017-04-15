@@ -9,6 +9,8 @@ namespace Mehspot.Core.DTO.Search
 
         public string SkillLevel { get; set; }
 
-        public int? AgeRange { get; set; }
+        public string AgeRange { get; set; }
     }
+
+    
 }

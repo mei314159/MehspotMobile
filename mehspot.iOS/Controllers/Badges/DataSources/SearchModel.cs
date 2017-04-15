@@ -41,8 +41,10 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             case BadgeService.BadgeNames.Tennis:
                 result = new ViewTennisTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
                 break;
+            case BadgeService.BadgeNames.Golf:
+                result = new ViewGolfTableSource (this.Filter.BadgeId, this.BadgeName, badgeService);
+                break;
             }
-
             await result.LoadAsync (userId);
             return result;
         }
@@ -54,15 +56,19 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             switch (badgeName) {
             case BadgeService.BadgeNames.Babysitter:
                 searchFilterTableSource = new BabysitterFilterTableSource (badgeService, badgeId);
-                resultType = typeof (BabysitterSearchResultDTO[]);
+                resultType = typeof (BabysitterSearchResultDTO []);
                 break;
             case BadgeService.BadgeNames.BabysitterEmployer:
                 searchFilterTableSource = new BabysitterEmployerFilterTableSource (badgeService, badgeId);
-                resultType = typeof (BabysitterEmployerSearchResultDTO[]);
+                resultType = typeof (BabysitterEmployerSearchResultDTO []);
                 break;
             case BadgeService.BadgeNames.Tennis:
                 searchFilterTableSource = new TennisFilterTableSource (badgeService, badgeId);
-                resultType = typeof (TennisSearchResultDTO[]);
+                resultType = typeof (TennisSearchResultDTO []);
+                break;
+            case BadgeService.BadgeNames.Golf:
+                searchFilterTableSource = new GolfFilterTableSource (badgeService, badgeId);
+                resultType = typeof (GolfSearchResultDTO []);
                 break;
             default:
                 return null;
