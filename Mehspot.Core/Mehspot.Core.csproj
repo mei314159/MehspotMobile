@@ -107,6 +107,9 @@
     <Compile Include="DTO\Badges\SearchResults\TutorSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\Profile\TutorProfileDTO.cs" />
     <Compile Include="DTO\Badges\Profile\TutorEmployerProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\FitnessSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\TutorEmployerSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

@@ -70,6 +70,11 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
                 resultType = typeof (TutorEmployerSearchResultDTO []);
                 viewBadgeProfileTableSource = new ViewTutorEmployerTableSource (badgeId, badgeName, badgeService);
                 break;
+            case BadgeService.BadgeNames.Fitness:
+                searchFilterTableSource = new FitnessFilterTableSource (badgeService, badgeId);
+                resultType = typeof (FitnessSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewFitnessTableSource (badgeId, badgeName, badgeService);
+                break;
             default:
                 return null;
             }

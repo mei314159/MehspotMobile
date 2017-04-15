@@ -9,28 +9,29 @@ using Mehspot.Core.Services;
 namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 {
 
-    public class TutorEmployerFilterTableSource : SearchFilterTableSource<SearchTutorEmployerDTO>
+    public class FitnessFilterTableSource : SearchFilterTableSource<SearchFitnessDTO>
     {
-        public TutorEmployerFilterTableSource (BadgeService badgeService, int badgeId) : base (badgeService, badgeId)
+        public FitnessFilterTableSource (BadgeService badgeService, int badgeId) : base (badgeService, badgeId)
         {
         }
 
         public override async Task InitializeAsync ()
         {
-            var grades = await GetOptionsAsync (BadgeService.BadgeKeys.TutorGrade);
-            var subjects = await GetOptionsAsync (BadgeService.BadgeKeys.TutorSubject);
+            var fitnessTypes = await GetOptionsAsync (BadgeService.BadgeKeys.FitnessType);
+            var ageRanges = await GetOptionsAsync (BadgeService.BadgeKeys.FitnessAgeRange);
+            var genders = await GetOptionsAsync (BadgeService.BadgeKeys.Gender);
             this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");
             zipCell.Mask = "#####";
             this.Cells.Add (zipCell);
 
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.HourlyRate, "Max Hourly Rate ($)", 0, 200));
-            this.Cells.Add (PickerCell.CreateMultiselect<int?> (new int? [] { }, (property) => { TypedFilter.Subjects = property?.Select (a => a.ToString ()).ToArray (); }, "Subjects", subjects));
-            this.Cells.Add (PickerCell.Create (TypedFilter.Grade, (property) => { TypedFilter.Grade = property; }, "Min Grade", grades));
-            this.Cells.Add (PickerCell.Create (TypedFilter.MaxGrade, (property) => { TypedFilter.MaxGrade = property; }, "Max Grade", grades));
+            this.Cells.Add (PickerCell.CreateMultiselect<int?> (new int? [] { }, (property) => { TypedFilter.FitnessTypes = property?.Select (a => a.ToString ()).ToArray (); }, "Fitness Type", fitnessTypes));
+            this.Cells.Add (PickerCell.Create ((int?) null, (property) => { TypedFilter.Gender = property?.ToString(); }, "Gender", genders));
+            this.Cells.Add (PickerCell.Create ((int?) null, (property) => { TypedFilter.AgeRange = property?.ToString(); }, "Age Range", ageRanges));
 
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.Details.HasPicture == true, v => TypedFilter.Details.HasPicture = v == true ? v : (bool?)null, "Has Profile Picture"));
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.Details.HasReferences == true, v => TypedFilter.Details.HasReferences = v == true ? v : (bool?)null, "Has References"));
         }
     }
+
 }

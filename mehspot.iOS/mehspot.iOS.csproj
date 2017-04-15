@@ -303,6 +303,8 @@
     <Compile Include="Controllers\Badges\DataSources\SearchFilter\TutorEmployerFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorEmployerTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\FitnessFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewFitnessTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

@@ -15,15 +15,14 @@ namespace Mehspot.Core.DTO.Badges
         public string TutorPreferredLength { get; set; }
         public string AdditionalInfo { get; set; }
 
-    	public string InfoLabel1
-    	{
-    		get { return $"${(this.HourlyRate ?? "0")}/hr"; }
-    	}
+        public string InfoLabel1
+        {
+            get { return $"${(this.HourlyRate ?? "0")}/hr"; }
+        }
 
-    	public string InfoLabel2
-    	{
-    		get { return TutorCanTravel; }
+        public string InfoLabel2
+        {
+            get { return TutorCanTravel; }
         }
     }
-    
 }

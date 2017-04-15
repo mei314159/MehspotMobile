@@ -96,6 +96,8 @@ namespace Mehspot.Core.Services
             public const string TutorCanTravel = "TutorCanTravel";
             public const string TutorGrade = "TutorGrade";
             public const string TutorSubject = "TutorSubject";
+            public const string FitnessAgeRange = "FitnessAgeRange";
+            public const string FitnessType = "FitnessType";
         }
     }
 
