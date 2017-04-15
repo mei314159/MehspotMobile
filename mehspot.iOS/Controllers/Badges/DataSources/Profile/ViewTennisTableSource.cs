@@ -22,7 +22,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             Cells.Add (TextViewCell.Create (profile.BadgeValues.TennisSubdivision, "Tennis Subdivision"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.TennisAgeRange, "Tennis Age Range"));
 
-            Cells.Add (BooleanEditCell.Create (profile.Details.IsHired, v => { profile.Details.IsHired = v; IsHiredCell_ValueChanged (v); }, "Hired Before"));
+            Cells.Add (BooleanEditCell.Create (profile.Details.IsHired, v => { profile.Details.IsHired = v; IsHiredCell_ValueChanged (v); }, "Played Before"));
             Cells.Add (BooleanEditCell.Create (profile.Details.HasReference, v => { profile.Details.HasReference = v; AddReferenceCell_ValueChanged (v); }, "Add Reference"));
             Cells.Add (TextViewCell.Create (profile.Details.ReferenceCount.ToString (), "References Count"));
 
