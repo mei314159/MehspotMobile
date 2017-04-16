@@ -84,6 +84,11 @@ namespace Mehspot.Core.Services
             public const string Golf = "Golf";
             public const string Tutor = "Tutor";
             public const string TutorEmployer = "TutorEmployer";
+            public const string PetSitter = "PetSitter";
+            public const string PetSitterEmployer = "PetSitterEmployer";
+            public const string KidsPlayDate = "KidsPlayDate";
+            public const string Hobby = "Hobby";
+            public const string OtherJobs = "OtherJobs";
         }
 
         public class BadgeKeys
@@ -96,8 +101,16 @@ namespace Mehspot.Core.Services
             public const string TutorCanTravel = "TutorCanTravel";
             public const string TutorGrade = "TutorGrade";
             public const string TutorSubject = "TutorSubject";
+            public const string TutorEmployerSubject = "TutorEmployerSubject";
+            public const string TutorEmployerGrade = "TutorEmployerGrade";
             public const string FitnessAgeRange = "FitnessAgeRange";
             public const string FitnessType = "FitnessType";
+            public const string PetSitterPetType = "PetSitterPetType";
+            public const string PetSitterEmployerPetType = "PetSitterEmployerPetType";
+            public const string HobbyAgeRange = "HobbyAgeRange";
+            public const string HobbyType = "HobbyType";
+            public const string OtherJobsType = "OtherJobsType";
+            public const string OtherJobsAgeRange = "OtherJobsAgeRange";
         }
     }
 

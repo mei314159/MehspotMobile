@@ -305,6 +305,15 @@
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorEmployerTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\SearchFilter\FitnessFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewFitnessTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\PetSitterFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\PetSitterEmployerFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewPetSitterEmployerTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\KidsPlayDateFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewKidsPlayDateTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\OtherJobsFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\HobbyFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewOtherJobsTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewHobbyTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

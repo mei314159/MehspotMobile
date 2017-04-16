@@ -62,11 +62,12 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             return GetOptionsAsync (BadgeService.BadgeKeys.AgeRange);
         }
 
-        protected async Task<KeyValuePair<int?, string> []> GetOptionsAsync (string key)
+        protected async Task<KeyValuePair<int?, string> []> GetOptionsAsync (string key, bool skipFirst = false)
         {
-            var result = await badgeService.GetBadgeKeysAsync (this.TypedFilter.BadgeId, BadgeService.BadgeKeys.TutorSubject);
+            var result = await badgeService.GetBadgeKeysAsync (this.TypedFilter.BadgeId, key);
             if (result.IsSuccess) {
-                return result.Data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
+                var data = skipFirst ? result.Data.Skip (1) : result.Data;
+                return data.Select (a => new KeyValuePair<int?, string> (a.Id, a.Name)).ToArray ();
             }
 
             return null;

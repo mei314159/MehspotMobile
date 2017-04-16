@@ -68,7 +68,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         }
     }
 
-    public abstract class ViewBadgeProfileTableSource<TProfile> : ViewBadgeProfileTableSource where TProfile : IBadgeProfileValues
+    public abstract class ViewBadgeProfileTableSource<TProfile> : ViewBadgeProfileTableSource where TProfile : IBadgeProfileDTO
     {
 
         public ViewBadgeProfileTableSource (int badgeId, string badgeName, BadgeService badgeService) : base (badgeId, badgeName, badgeService)
@@ -77,14 +77,14 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         public override async Task LoadAsync (string userId)
         {
-            var result = await badgeService.GetBadgeProfileAsync<BadgeProfileDTO<TProfile>> (this.BadgeId, userId);
+            var result = await badgeService.GetBadgeProfileAsync<TProfile> (this.BadgeId, userId);
             if (result.IsSuccess) {
                 this.Profile = result.Data;
                 await InitializeAsync (result.Data);
             }
         }
 
-        public abstract Task InitializeAsync (BadgeProfileDTO<TProfile> profile);
+        public abstract Task InitializeAsync (TProfile profile);
 
     }
 

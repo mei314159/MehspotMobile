@@ -17,8 +17,8 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         public override async Task InitializeAsync ()
         {
-            var grades = await GetOptionsAsync (BadgeService.BadgeKeys.TutorGrade);
-            var subjects = await GetOptionsAsync (BadgeService.BadgeKeys.TutorSubject);
+            var grades = await GetOptionsAsync (BadgeService.BadgeKeys.TutorEmployerGrade);
+            var subjects = await GetOptionsAsync (BadgeService.BadgeKeys.TutorEmployerSubject, true);
             this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");
             zipCell.Mask = "#####";

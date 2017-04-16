@@ -6,7 +6,7 @@ using Mehspot.Core.Services;
 namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
 
-    public class ViewBabysitterEmployerTableSource : ViewBadgeProfileTableSource<BabysitterEmployerProfileDTO>
+    public class ViewBabysitterEmployerTableSource : ViewBadgeProfileTableSource<BadgeProfileDTO<BabysitterEmployerProfileDTO>>
     {
         public ViewBabysitterEmployerTableSource (int badgeId, string badgeName, BadgeService badgeService) : base (badgeId, badgeName, badgeService)
         {

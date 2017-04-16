@@ -110,6 +110,21 @@
     <Compile Include="DTO\Badges\SearchResults\FitnessSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\TutorEmployerSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterEmployerDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchKidsPlayDateDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchOtherJobsDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchHobbyDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\PetSitterEmployerSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\PetSitterSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\PetSitterProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\PetSitterEmployerProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\KidsPlayDateProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\KidsPlayDateSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\OtherJobsSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\HobbySearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\OtherJobsProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\HobbyProfileDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

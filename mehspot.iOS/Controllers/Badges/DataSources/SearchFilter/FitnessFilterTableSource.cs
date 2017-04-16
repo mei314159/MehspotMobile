@@ -8,7 +8,6 @@ using Mehspot.Core.Services;
 
 namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 {
-
     public class FitnessFilterTableSource : SearchFilterTableSource<SearchFitnessDTO>
     {
         public FitnessFilterTableSource (BadgeService badgeService, int badgeId) : base (badgeService, badgeId)
@@ -17,7 +16,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         public override async Task InitializeAsync ()
         {
-            var fitnessTypes = await GetOptionsAsync (BadgeService.BadgeKeys.FitnessType);
+            var fitnessTypes = await GetOptionsAsync (BadgeService.BadgeKeys.FitnessType, true);
             var ageRanges = await GetOptionsAsync (BadgeService.BadgeKeys.FitnessAgeRange);
             var genders = await GetOptionsAsync (BadgeService.BadgeKeys.Gender);
             this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
@@ -26,12 +25,11 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             this.Cells.Add (zipCell);
 
             this.Cells.Add (PickerCell.CreateMultiselect<int?> (new int? [] { }, (property) => { TypedFilter.FitnessTypes = property?.Select (a => a.ToString ()).ToArray (); }, "Fitness Type", fitnessTypes));
-            this.Cells.Add (PickerCell.Create ((int?) null, (property) => { TypedFilter.Gender = property?.ToString(); }, "Gender", genders));
-            this.Cells.Add (PickerCell.Create ((int?) null, (property) => { TypedFilter.AgeRange = property?.ToString(); }, "Age Range", ageRanges));
+            this.Cells.Add (PickerCell.Create ((int?)null, (property) => { TypedFilter.Gender = property?.ToString (); }, "Gender", genders));
+            this.Cells.Add (PickerCell.Create ((int?)null, (property) => { TypedFilter.AgeRange = property?.ToString (); }, "Age Range", ageRanges));
 
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.Details.HasPicture == true, v => TypedFilter.Details.HasPicture = v == true ? v : (bool?)null, "Has Profile Picture"));
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.Details.HasReferences == true, v => TypedFilter.Details.HasReferences = v == true ? v : (bool?)null, "Has References"));
         }
     }
-
 }

@@ -17,7 +17,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         public override async Task InitializeAsync ()
         {
-            var ageRanges = await GetAgeRangesAsync ();
+            var ageRanges = await GetOptionsAsync (BadgeService.BadgeKeys.AgeRange);
             this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
             this.Cells.Add (SliderCell.Create (TypedFilter, a => a.HourlyRate, "Max Hourly Rate ($)", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");

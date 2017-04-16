@@ -4,18 +4,23 @@ using MehSpot.Models.ViewModels;
 namespace Mehspot.Core.DTO.Badges
 {
 
-    public class FitnessSearchResultDTO : ISearchResultDTO
+    public class PetSitterEmployerSearchResultDTO : ISearchResultDTO
     {
         public BadgeUserDetailsFilterDTO Details { get; set; }
+
+        public double? HourlyRate { get; set; }
+
         public string Gender { get; set; }
-        public string GenderLabel { get; set; }
-        public bool IsTrained { get; set; }
-        public string AgeRange { get; set; }
-        public string FitnessTypes { get; set; }
+
+        public string PetType { get; set; }
+
+        public bool? CanTravel { get; set; }
+
+        public bool IsHired { get; set; }
 
         public string InfoLabel1
         {
-            get { return GenderLabel; }
+            get { return $"${(this.HourlyRate ?? 0)}/hr"; }
         }
 
         public string InfoLabel2

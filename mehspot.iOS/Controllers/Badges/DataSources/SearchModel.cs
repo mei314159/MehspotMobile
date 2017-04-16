@@ -11,13 +11,10 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
     public class SearchModel
     {
         private ViewBadgeProfileTableSource ViewBadgeProfileTableSource;
-        private readonly BadgeService badgeService;
-
         public string BadgeName { get; set; }
 
-        public SearchModel (BadgeService badgeService, string badgeName, ISearchFilterDTO filter)
+        public SearchModel (string badgeName, ISearchFilterDTO filter)
         {
-            this.badgeService = badgeService;
             this.BadgeName = badgeName;
             this.Filter = filter;
         }
@@ -75,12 +72,37 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
                 resultType = typeof (FitnessSearchResultDTO []);
                 viewBadgeProfileTableSource = new ViewFitnessTableSource (badgeId, badgeName, badgeService);
                 break;
+            case BadgeService.BadgeNames.PetSitter:
+                searchFilterTableSource = new PetSitterFilterTableSource (badgeService, badgeId);
+                resultType = typeof (PetSitterSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewPetSitterTableSource (badgeId, badgeName, badgeService);
+                break;
+            case BadgeService.BadgeNames.PetSitterEmployer:
+                searchFilterTableSource = new PetSitterEmployerFilterTableSource (badgeService, badgeId);
+                resultType = typeof (PetSitterEmployerSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewPetSitterEmployerTableSource (badgeId, badgeName, badgeService);
+                break;
+            case BadgeService.BadgeNames.KidsPlayDate:
+                searchFilterTableSource = new KidsPlayDateFilterTableSource (badgeService, badgeId);
+                resultType = typeof (KidsPlayDateSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewKidsPlayDateTableSource (badgeId, badgeName, badgeService);
+                break;
+            case BadgeService.BadgeNames.Hobby:
+                searchFilterTableSource = new HobbyFilterTableSource (badgeService, badgeId);
+                resultType = typeof (HobbySearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewHobbyTableSource (badgeId, badgeName, badgeService);
+                break;
+            case BadgeService.BadgeNames.OtherJobs:
+                searchFilterTableSource = new OtherJobsFilterTableSource (badgeService, badgeId);
+                resultType = typeof (OtherJobsSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewOtherJobsTableSource (badgeId, badgeName, badgeService);
+                break;
             default:
                 return null;
             }
 
             await searchFilterTableSource.InitializeAsync ();
-            var model = new SearchModel (badgeService, badgeName, searchFilterTableSource.Filter);
+            var model = new SearchModel (badgeName, searchFilterTableSource.Filter);
             model.SearchFilterTableSource = searchFilterTableSource;
             model.SearchResultTableSource = new SearchResultTableSource (badgeService, searchFilterTableSource.Filter, resultType);
             model.ViewBadgeProfileTableSource = viewBadgeProfileTableSource;

@@ -24,5 +24,4 @@ namespace Mehspot.Core.DTO.Badges
             get { return string.Empty; }
         }
     }
-
 }
