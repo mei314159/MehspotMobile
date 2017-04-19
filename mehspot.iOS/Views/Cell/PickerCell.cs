@@ -81,7 +81,7 @@ namespace mehspot.iOS.Views
             cell.RowValues = rowValues?.Select (a => new KeyValuePair<object, string> (a.Key, a.Value)).ToArray ();
 
             cell.GetPropertyString = (value) => {
-                return cell.RowValues.FirstOrDefault (a => Equals (a.Key, value)).Value;
+                return cell.RowValues?.FirstOrDefault (a => Equals (a.Key, value)).Value;
             };
             cell.SetProperty = (p) => {
                 cell.Value = p;

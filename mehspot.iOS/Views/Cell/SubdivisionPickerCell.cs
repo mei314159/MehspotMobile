@@ -45,7 +45,7 @@ namespace mehspot.iOS.Views
 
             set {
                 subdivisions = value;
-                this.SetSelectValueButtonTitle (value.FirstOrDefault (a => a.Id == this.SelectedSubdivisionId));
+                this.SetSelectValueButtonTitle (value?.FirstOrDefault (a => a.Id == this.SelectedSubdivisionId));
             }
         }
 
