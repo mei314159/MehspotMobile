@@ -521,7 +521,9 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="ActivityIndicator" destination="3872" id="name-outlet-3872"/>
                         <segue destination="87" kind="presentation" identifier="GoToMessagingSegue" id="3834"/>
                         <segue destination="4901" kind="presentation" identifier="ViewProfileSegue" id="4990"/>
+                        <outlet property="NavBar" destination="6010" id="name-outlet-6010"/>
                     </connections>
+                    <navigationItem title="Title" id="6010" key="navigationItem"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3726" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

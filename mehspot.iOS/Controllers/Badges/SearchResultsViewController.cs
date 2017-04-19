@@ -6,6 +6,8 @@ using CoreGraphics;
 using MehSpot.Models.ViewModels;
 using mehspot.iOS.Views.Cell;
 using mehspot.iOS.Controllers.Badges.DataSources.Search;
+using Mehspot.Core;
+using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {
@@ -33,6 +35,7 @@ namespace mehspot.iOS
 
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
             this.TableView.TableFooterView.Hidden = true;
+            SetTitle ();
         }
 
         public override async void ViewDidAppear (bool animated)
@@ -41,6 +44,13 @@ namespace mehspot.iOS
                 await RefreshResultsAsync ();
                 viewWasInitialized = true;
             }
+        }
+
+        private void SetTitle ()
+        {
+            var title = MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName + "_SearchResultsTitle") ??
+                                            ((MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName) ?? this.SearchModel.BadgeName) + "s");
+            this.NavBar.Title = title;
         }
 
         [Action ("UnwindToSearchResultsViewController:")]

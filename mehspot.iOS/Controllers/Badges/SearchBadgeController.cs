@@ -26,7 +26,6 @@ namespace mehspot.iOS
         public override void ViewDidLoad ()
         {
             viewHelper = new ViewHelper (this.View);
-            SetTitle ();
             this.TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
             this.TableView.TableFooterView.Hidden = true;
         }
@@ -40,6 +39,7 @@ namespace mehspot.iOS
 
         public override async void ViewWillAppear (bool animated)
         {
+            SetTitle ();
             if (viewWasInitialized)
                 return;
 
@@ -64,6 +64,7 @@ namespace mehspot.iOS
             if (segue.Identifier == "SearchResultsSegue") {
                 var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
                 destinationViewController.SearchModel = this.SearchModel;
+                this.NavBar.Title = "Filter";
             }
 
             base.PrepareForSegue (segue, sender);

@@ -23,7 +23,7 @@ namespace Mehspot.Core {
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MehspotResources() {
+        public MehspotResources() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1850,6 +1850,36 @@ namespace Mehspot.Core {
         public static string OtherJobsAgeRange_MiddleSchool {
             get {
                 return ResourceManager.GetString("OtherJobsAgeRange_MiddleSchool", resourceCulture);
+            }
+        }
+        
+        public static string Tennis_SearchResultsTitle {
+            get {
+                return ResourceManager.GetString("Tennis_SearchResultsTitle", resourceCulture);
+            }
+        }
+        
+        public static string Golf_SearchResultsTitle {
+            get {
+                return ResourceManager.GetString("Golf_SearchResultsTitle", resourceCulture);
+            }
+        }
+        
+        public static string Fitness_SearchResultsTitle {
+            get {
+                return ResourceManager.GetString("Fitness_SearchResultsTitle", resourceCulture);
+            }
+        }
+        
+        public static string Hobby_SearchResultsTitle {
+            get {
+                return ResourceManager.GetString("Hobby_SearchResultsTitle", resourceCulture);
+            }
+        }
+        
+        public static string OtherJobs_SearchResultsTitle {
+            get {
+                return ResourceManager.GetString("OtherJobs_SearchResultsTitle", resourceCulture);
             }
         }
     }
