@@ -11,15 +11,23 @@ using UIKit;
 
 namespace mehspot.iOS
 {
-    [Register ("SearchBabysitterController")]
-    partial class SearchBabysitterController
+    [Register ("SearchBadgeController")]
+    partial class SearchBadgeController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationItem NavBar { get; set; }
+
         [Action ("SearchButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SearchButtonTouched (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
+            if (NavBar != null) {
+                NavBar.Dispose ();
+                NavBar = null;
+            }
         }
     }
 }

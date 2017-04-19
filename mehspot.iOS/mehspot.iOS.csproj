@@ -22,8 +22,6 @@
     <CodesignKey>iPhone Developer: Vitaly Dubnovitsky (27Z797D283)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <IOSDebuggerPort>39696</IOSDebuggerPort>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
@@ -39,8 +37,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer: Dubnovitskiy Vitaliy (QDM2RDJUX7)</CodesignKey>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
@@ -57,8 +53,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer: Dubnovitskiy Vitaliy (QDM2RDJUX7)</CodesignKey>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -78,8 +72,6 @@
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>false</MtouchFastDev>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
@@ -163,11 +155,14 @@
     <Folder Include="Controllers\Messaging\" />
     <Folder Include="Assets.xcassets\star-yellow-icon.imageset\" />
     <Folder Include="Controllers\Badges\" />
-    <Folder Include="Controllers\Badges\BadgeProfileDataSource\" />
+    <Folder Include="Controllers\Badges\DataSources\" />
     <Folder Include="Views\MultiSelectPicker\" />
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Controllers\Subdivisions\" />
+    <Folder Include="Controllers\Badges\DataSources\SearchFilter\" />
+    <Folder Include="Controllers\Badges\DataSources\Profile\" />
+    <Folder Include="Controllers\Badges\DataSources\SearchResult\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -253,7 +248,6 @@
     <Compile Include="Controllers\Badges\ViewProfileViewController.designer.cs">
       <DependentUpon>ViewProfileViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\BadgeProfileDataSource\ViewBabysitterDataSource.cs" />
     <Compile Include="Views\Cell\TextViewCell.cs" />
     <Compile Include="BadgeProfileController.cs" />
     <Compile Include="BadgeProfileController.designer.cs">
@@ -263,10 +257,10 @@
     <Compile Include="Controllers\Badges\EditBadgeProfileController.designer.cs">
       <DependentUpon>EditBadgeProfileController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\BadgeProfileDataSource\EditBadgeTableSource.cs" />
-    <Compile Include="Controllers\Badges\SearchBabysitterController.cs" />
-    <Compile Include="Controllers\Badges\SearchBabysitterController.designer.cs">
-      <DependentUpon>..\Search\SearchBabysitterController.cs</DependentUpon>
+    <Compile Include="Controllers\Badges\DataSources\EditBadgeTableSource.cs" />
+    <Compile Include="Controllers\Badges\SearchBadgeController.cs" />
+    <Compile Include="Controllers\Badges\SearchBadgeController.designer.cs">
+      <DependentUpon>..\Search\SearchBadgeController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Badges\SearchResultsViewController.cs" />
     <Compile Include="Controllers\Badges\SearchResultsViewController.designer.cs">
@@ -293,6 +287,33 @@
       <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\FilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\BabysitterFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBadgeProfileTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchModel.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchResult\SearchResultTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\BabysitterEmployerFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterEmployerTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\TennisFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewTennisTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\GolfFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewGolfTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\TutorFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\TutorEmployerFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorEmployerTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\FitnessFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewFitnessTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\PetSitterFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\PetSitterEmployerFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewPetSitterEmployerTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\KidsPlayDateFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewKidsPlayDateTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\OtherJobsFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\HobbyFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewOtherJobsTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewHobbyTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.jpg" />

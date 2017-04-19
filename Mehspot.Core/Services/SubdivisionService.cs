@@ -14,9 +14,9 @@ namespace Mehspot.Core.Services
         {
         }
 
-        public Task<Result<StaticDataDto[]>> ListStatesAsync()
+        public Task<Result<StaticDataDTO[]>> ListStatesAsync()
         {
-            return this.GetAsync<StaticDataDto[]>("Subdivision/ListStates");
+            return this.GetAsync<StaticDataDTO[]>("Subdivision/ListStates");
         }
 
         public Task<Result<List<SubdivisionDTO>>> ListSubdivisionsAsync(string zip)

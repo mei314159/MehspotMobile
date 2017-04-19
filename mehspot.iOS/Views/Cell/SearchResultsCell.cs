@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Foundation;
 using MehSpot.Models.ViewModels;
 using SDWebImage;
@@ -35,28 +34,27 @@ namespace mehspot.iOS.Views.Cell
             ViewProfileButtonAction?.Invoke (sender);
         }
 
-        public void Configure (BabysitterSearchResultDTO item, KeyValuePair<int?, string> [] ageRanges)
+        public void Configure (ISearchResultDTO item)
         {
-            var cell = this;
             if (!string.IsNullOrEmpty (item.Details.ProfilePicturePath)) {
 
                 var url = NSUrl.FromString (item.Details.ProfilePicturePath);
                 if (url != null) {
-                    cell.ProfilePicture.SetImage (url);
+                    this.ProfilePicture.SetImage (url);
                 }
             }
 
-            cell.UserNameLabel.Text = item.Details.FirstName;
-            cell.DistanceLabel.Text = Math.Round (item.Details.DistanceFrom ?? 0, 2) + " miles";
-            cell.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace (item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
-            cell.HourlyRateLabel.Text = $"${item.HourlyRate}/hr";
-            cell.AgeRangeLabel.Text = item.AgeRange.HasValue ? ageRanges [item.AgeRange.Value].Value : string.Empty;
-            cell.FavoriteIcon.Hidden = !item.Details.Favourite;
-            cell.LikesLabel.Text = $"{item.Details.Likes} Likes / {item.Details.Recommendations} Recommendations";
+            this.UserNameLabel.Text = item.Details.FirstName;
+            this.DistanceLabel.Text = Math.Round (item.Details.DistanceFrom ?? 0, 2) + " miles";
+            this.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace (item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
+            this.FavoriteIcon.Hidden = !item.Details.Favourite;
+            this.LikesLabel.Text = $"{item.Details.Likes} Likes / {item.Details.Recommendations} Recommendations";
+            this.HourlyRateLabel.Text = item.InfoLabel1;
+            this.AgeRangeLabel.Text = item.InfoLabel2;
 
-            cell.SendMessageButton.Layer.BorderWidth = cell.ViewProfileButton.Layer.BorderWidth = 1;
-            cell.SendMessageButton.Layer.BorderColor = cell.SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
-            cell.ViewProfileButton.Layer.BorderColor = cell.ViewProfileButton.TitleColor (UIControlState.Normal).CGColor;
+            this.SendMessageButton.Layer.BorderWidth = this.ViewProfileButton.Layer.BorderWidth = 1;
+            this.SendMessageButton.Layer.BorderColor = this.SendMessageButton.TitleColor (UIControlState.Normal).CGColor;
+            this.ViewProfileButton.Layer.BorderColor = this.ViewProfileButton.TitleColor (UIControlState.Normal).CGColor;
         }
     }
 }

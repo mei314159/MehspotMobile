@@ -1,8 +1,9 @@
-﻿using Mehspot.Core.DTO.Profile;
+﻿using System;
+using Mehspot.Core.DTO.Profile;
 
 namespace Mehspot.Core.DTO.Badges
 {
-    public class BadgeProfileDTO<T> where T: IBadgeProfileValues
+    public class BadgeProfileDTO<T> : IBadgeProfileDTO where T : IBadgeProfileValues
     {
         public string UserId { get; set; }
         public int BadgeId { get; set; }
@@ -11,7 +12,7 @@ namespace Mehspot.Core.DTO.Badges
         public T BadgeValues { get; set; }
         public BadgeProfileDetailsDTO Details { get; set; }
         public ProfilePartialDTO Profile { get; set; }
-    }
 
-    
+        public IAdditionalInfo AdditionalInfo { get { return BadgeValues; } }
+    }
 }

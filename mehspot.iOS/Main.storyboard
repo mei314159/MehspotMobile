@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="1" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="457" id="458">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -423,7 +423,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
         <!--Search Babysitter-->
         <scene sceneID="3288">
             <objects>
-                <tableViewController id="3289" customClass="SearchBabysitterController" sceneMemberID="viewController">
+                <tableViewController id="3289" customClass="SearchBadgeController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="30" id="3290">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -463,9 +463,10 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Search Babysitter" id="3373"/>
+                    <navigationItem key="navigationItem" title="Search Badge" id="3373"/>
                     <connections>
                         <segue destination="3720" kind="show" identifier="SearchResultsSegue" id="3784"/>
+                        <outlet property="NavBar" destination="3373" id="name-outlet-3373"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3295" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -520,7 +521,9 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="ActivityIndicator" destination="3872" id="name-outlet-3872"/>
                         <segue destination="87" kind="presentation" identifier="GoToMessagingSegue" id="3834"/>
                         <segue destination="4901" kind="presentation" identifier="ViewProfileSegue" id="4990"/>
+                        <outlet property="NavBar" destination="6010" id="name-outlet-6010"/>
                     </connections>
+                    <navigationItem title="Title" id="6010" key="navigationItem"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3726" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -692,7 +695,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                 <rect key="frame" x="0.0" y="1" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4409" id="4410">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -827,7 +830,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                             <color key="textColor" red="0.36078431372549019" green="0.68235294117647061" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.5 miles" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="5432">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.5 miles" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="5432" misplaced="YES">
                                             <rect key="frame" x="313" y="24" width="49" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="5433"/>

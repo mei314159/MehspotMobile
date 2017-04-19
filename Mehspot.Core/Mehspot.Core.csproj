@@ -44,9 +44,8 @@
     </Compile>
     <Compile Include="DTO\ValidationModelBase.cs" />
     <Compile Include="DTO\Profile\ProfileDto.cs" />
-    <Compile Include="DTO\Profile\StaticDataDto.cs" />
+    <Compile Include="DTO\Profile\StaticDataDTO.cs" />
     <Compile Include="DTO\ModelStateDto.cs" />
-    <Compile Include="DTO\Search\SearchBabysitterDTO.cs" />
     <Compile Include="Services\PushService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\MessagesService.cs" />
@@ -59,15 +58,10 @@
     <Compile Include="DTO\Push\OsType.cs" />
     <Compile Include="DTO\Messaging\MessagingNotificationType.cs" />
     <Compile Include="DTO\AuthenticationResult.cs" />
-    <Compile Include="DTO\Search\BaseFilterDTO.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
-    <Compile Include="DTO\Badges\BabysitterSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\BadgeUserDetailsFilterDTO.cs" />
-    <Compile Include="DTO\Search\ISearchFilterDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDetailsDTO.cs" />
     <Compile Include="DTO\Badges\BadgeProfileDTO.cs" />
-    <Compile Include="DTO\Badges\IBadgeProfileValues.cs" />
-    <Compile Include="DTO\Badges\BabysitterProfileDTO.cs" />
     <Compile Include="DTO\Badges\BadgeUserDescriptionDTO.cs" />
     <Compile Include="DTO\Badges\BadgeDescriptionTypeEnum.cs" />
     <Compile Include="Services\BaseDataService.cs" />
@@ -89,6 +83,48 @@
     <Compile Include="Services\SubdivisionService.cs" />
     <Compile Include="DTO\Subdivision\SubdivisionOptionModel.cs" />
     <Compile Include="DTO\Subdivision\SubdivisionDTO.cs" />
+    <Compile Include="DTO\Badges\BaseFilterDTO.cs" />
+    <Compile Include="DTO\Badges\IAdditionalInfo.cs" />
+    <Compile Include="DTO\Badges\SearchResults\BabysitterSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\BabysitterProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\BabysitterEmployerProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\TennisProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\TennisSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\BabysitterEmployerSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchBabysitterDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchBabysitterEmployerDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchTennisDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\ISearchFilterDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\ISearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\IBadgeProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\IBadgeProfileValues.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchGolfDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\GolfSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\GolfProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchTutorDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchTutorEmployerDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchFitnessDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\TutorSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\TutorProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\TutorEmployerProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\FitnessSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\TutorEmployerSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterEmployerDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchKidsPlayDateDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchOtherJobsDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchHobbyDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\PetSitterEmployerSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\PetSitterSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\PetSitterProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\PetSitterEmployerProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\KidsPlayDateProfileDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\KidsPlayDateSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\OtherJobsSearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\HobbySearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\OtherJobsProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\HobbyProfileDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -96,13 +132,15 @@
     <Folder Include="DTO\" />
     <Folder Include="Contracts\ViewControllers\" />
     <Folder Include="DTO\Profile\" />
-    <Folder Include="DTO\Search\" />
     <Folder Include="Services\" />
     <Folder Include="DTO\Messaging\" />
     <Folder Include="DTO\Badges\" />
     <Folder Include="DTO\Push\" />
     <Folder Include="Extensions\" />
     <Folder Include="DTO\Subdivision\" />
+    <Folder Include="DTO\Badges\SearchResults\" />
+    <Folder Include="DTO\Badges\Profile\" />
+    <Folder Include="DTO\Badges\SearchFilter\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

@@ -1,15 +1,12 @@
 using Foundation;
 using System;
 using UIKit;
-using Mehspot.Core.DTO.Search;
-using Mehspot.Core.Messaging;
-using Mehspot.Core;
 using System.Threading.Tasks;
 using CoreGraphics;
 using MehSpot.Models.ViewModels;
 using mehspot.iOS.Views.Cell;
-using SDWebImage;
-using System.Collections.Generic;
+using mehspot.iOS.Controllers.Badges.DataSources.Search;
+using Mehspot.Core;
 using Mehspot.Core.Services;
 
 namespace mehspot.iOS
@@ -18,17 +15,9 @@ namespace mehspot.iOS
     {
         private volatile bool loading;
         private volatile bool viewWasInitialized;
-        private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
-        private List<BabysitterSearchResultDTO> items = new List<BabysitterSearchResultDTO> ();
-        private BadgeService badgeService;
-        private BabysitterSearchResultDTO SelectedItem;
 
-        private const int pageSize = 20;
-
-        public KeyValuePair<int?, string> [] AgeRanges { get; internal set; }
-        public ISearchFilterDTO Filter;
-        public string BadgeName;
-        public int BadgeId;
+        private ISearchResultDTO SelectedItem;
+        public SearchModel SearchModel;
 
 
         public SearchResultsViewController (IntPtr handle) : base (handle)
@@ -37,12 +26,16 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad ()
         {
-            badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
             this.TableView.RegisterNibForCellReuse (SearchResultsCell.Nib, SearchResultsCell.Key);
-            this.TableView.WeakDataSource = this;
-            this.TableView.Delegate = this;
+            SearchModel.SearchResultTableSource.SendMessageButtonTouched += SendMessageButtonTouched;
+            SearchModel.SearchResultTableSource.ViewProfileButtonTouched += ViewProfileButtonTouched;
+            SearchModel.SearchResultTableSource.LoadingStarted += LoadingStarted;
+            SearchModel.SearchResultTableSource.LoadingEnded += LoadingEnded;
+            this.TableView.Source = SearchModel.SearchResultTableSource;
+
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
             this.TableView.TableFooterView.Hidden = true;
+            SetTitle ();
         }
 
         public override async void ViewDidAppear (bool animated)
@@ -53,35 +46,28 @@ namespace mehspot.iOS
             }
         }
 
+        private void SetTitle ()
+        {
+            var title = MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName + "_SearchResultsTitle") ??
+                                            ((MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName) ?? this.SearchModel.BadgeName) + "s");
+            this.NavBar.Title = title;
+        }
+
         [Action ("UnwindToSearchResultsViewController:")]
         public void UnwindToSearchResultsViewController (UIStoryboardSegue segue)
         {
         }
 
-        [Export ("scrollViewDidScroll:")]
-        public void Scrolled (UIScrollView scrollView)
+        private void LoadingStarted ()
         {
-            var currentOffset = scrollView.ContentOffset.Y;
-            var maximumOffset = scrollView.ContentSize.Height - scrollView.Frame.Size.Height;
-            var deltaOffset = maximumOffset - currentOffset;
-
-            if (deltaOffset <= 0) {
-                LoadMoreAsync ();
-            }
+            this.ActivityIndicator.StartAnimating ();
+            this.TableView.TableFooterView.Hidden = false;
         }
 
-        private async void LoadMoreAsync ()
+        private void LoadingEnded ()
         {
-            if (!loading) {
-                this.loading = true;
-                this.ActivityIndicator.StartAnimating ();
-                this.TableView.TableFooterView.Hidden = false;
-
-                await LoadDataAsync ();
-                this.ActivityIndicator.StopAnimating ();
-                this.TableView.TableFooterView.Hidden = true;
-                loading = false;
-            }
+            this.ActivityIndicator.StopAnimating ();
+            this.TableView.TableFooterView.Hidden = true;
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -92,64 +78,23 @@ namespace mehspot.iOS
                 controller.ToUserId = this.SelectedItem.Details.UserId;
             } else if (segue.Identifier == "ViewProfileSegue") {
                 var controller = (ViewProfileViewController)segue.DestinationViewController;
+                controller.SearchModel = SearchModel;
                 controller.SearchResultDTO = this.SelectedItem;
-                controller.BadgeId = this.BadgeId;
             }
 
             base.PrepareForSegue (segue, sender);
         }
 
-        public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
-        {
-            if (expandedPaths.Contains (indexPath)) {
-                expandedPaths.Remove (indexPath);
-            } else {
-                expandedPaths.Add (indexPath);
-            }
-            tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Fade);
-        }
-
-        public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
-        {
-            if (expandedPaths.Contains (indexPath)) {
-                return 125;
-            } else {
-                return 84;
-            }
-        }
-
-        public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
-        {
-            var item = items [indexPath.Row];
-
-            var cell = TableView.DequeueReusableCell (SearchResultsCell.Key, indexPath);
-            ConfigureCell (cell as SearchResultsCell, item);
-            return cell;
-        }
-
-        private void ConfigureCell (SearchResultsCell cell, BabysitterSearchResultDTO item)
-        {
-            cell.Configure (item, AgeRanges);
-
-            cell.SendMessageButtonAction = (obj) => SendMessageButtonTouched (obj, item);
-            cell.ViewProfileButtonAction = (obj) => ViewProfileButtonTouched (obj, item);
-        }
-
-        void SendMessageButtonTouched (UIButton obj, BabysitterSearchResultDTO dto)
+        void SendMessageButtonTouched (UIButton obj, ISearchResultDTO dto)
         {
             this.SelectedItem = dto;
             PerformSegue ("GoToMessagingSegue", this);
         }
 
-        void ViewProfileButtonTouched (UIButton obj, BabysitterSearchResultDTO dto)
+        void ViewProfileButtonTouched (UIButton obj, ISearchResultDTO dto)
         {
             this.SelectedItem = dto;
             PerformSegue ("ViewProfileSegue", this);
-        }
-
-        public override nint RowsInSection (UITableView tableView, nint section)
-        {
-            return items?.Count ?? 0;
         }
 
         private async void RefreshControl_ValueChanged (object sender, EventArgs e)
@@ -165,22 +110,9 @@ namespace mehspot.iOS
             this.RefreshControl.BeginRefreshing ();
 
             this.TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
-            await LoadDataAsync (true);
+            await SearchModel.SearchResultTableSource.LoadDataAsync (this.TableView, true);
             this.RefreshControl.EndRefreshing ();
             loading = false;
-        }
-
-        private async Task LoadDataAsync (bool refresh = false)
-        {
-            var skip = refresh ? 0 : (items?.Count ?? 0);
-            var result = await badgeService.Search<BabysitterSearchResultDTO> (this.Filter, this.BadgeId, skip, pageSize);
-            if (result.IsSuccess) {
-                if (refresh) {
-                    this.items.Clear ();
-                }
-                this.items.AddRange (result.Data);
-                TableView.ReloadData ();
-            }
         }
     }
 }
