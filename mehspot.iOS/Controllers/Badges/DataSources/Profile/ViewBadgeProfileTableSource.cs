@@ -80,6 +80,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             var result = await badgeService.GetBadgeProfileAsync<TProfile> (this.BadgeId, userId);
             if (result.IsSuccess) {
                 this.Profile = result.Data;
+                Cells.Clear ();
                 await InitializeAsync (result.Data);
             }
         }
