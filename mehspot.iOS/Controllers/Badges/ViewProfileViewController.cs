@@ -87,9 +87,6 @@ namespace mehspot.iOS
             loading = true;
             TableView.UserInteractionEnabled = false;
             ActivityIndicator.StartAnimating ();
-
-
-
             source = await SearchModel.GetViewProfileTableSource (this.SearchResultDTO.Details.UserId);
             if (source != null) {
                 TableView.Source = source;
@@ -109,8 +106,6 @@ namespace mehspot.iOS
                 this.FirstNameLabel.Text = SearchResultDTO.Details.FirstName;
                 this.HourlyRateLabel.Text = source.Profile.AdditionalInfo.InfoLabel1;
                 this.AgeRangeLabel.Text = source.Profile.AdditionalInfo.InfoLabel2;
-
-
                 TableView.ReloadData ();
                 SendMessageButton.Enabled = true;
             } else {

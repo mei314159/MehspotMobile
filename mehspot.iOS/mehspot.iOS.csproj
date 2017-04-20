@@ -314,9 +314,12 @@
     <Compile Include="Controllers\Badges\DataSources\SearchFilter\HobbyFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewOtherJobsTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewHobbyTableSource.cs" />
+    <Compile Include="Controllers\FacebookAuthController.cs" />
+    <Compile Include="Controllers\FacebookAuthController.designer.cs">
+      <DependentUpon>FacebookAuthController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\logo.jpg" />
     <BundleResource Include="Resources\profile_image.png" />
     <BundleResource Include="Resources\badges\babysitter.png" />
     <BundleResource Include="Resources\badges\babysitteremployer.png" />
@@ -346,6 +349,8 @@
     <BundleResource Include="Resources\badges\hobbyb.png" />
     <BundleResource Include="Resources\badges\kidsplaydateb.png" />
     <BundleResource Include="Resources\badges\otherjobsb.png" />
+    <BundleResource Include="Resources\Logo.png" />
+    <BundleResource Include="Resources\signin-fb%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">
