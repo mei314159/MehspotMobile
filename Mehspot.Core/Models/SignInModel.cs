@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using mehspot.Core.Auth;
 using Mehspot.Core.Contracts.Wrappers;
@@ -8,13 +7,14 @@ namespace Mehspot.Core.Models
 {
     public class SignInModel
     {
-        private IViewHelper viewHelper;
-        readonly AccountService authManager;
+        private readonly AccountService authManager;
+        private readonly IViewHelper viewHelper;
 
-        public SignInModel(AccountService authManager, IViewHelper alertWrapper)
+
+        public SignInModel(AccountService authManager, IViewHelper viewHelper)
         {
             this.authManager = authManager;
-            this.viewHelper = alertWrapper;
+            this.viewHelper = viewHelper;
         }
 
         public event Action<AuthenticationResult> SignedIn;
@@ -48,26 +48,6 @@ namespace Mehspot.Core.Models
                     viewHelper.ShowAlert("Authentication error", authenticationResult.ErrorMessage);
                 }
             }
-        }
-
-        public async Task SignInExternalAsync(string token, string provider)
-        {
-            viewHelper.ShowOverlay("Sign In...");
-            var authenticationResult = await authManager.SignInExternalAsync(token, provider);
-            viewHelper.HideOverlay();
-
-            if (authenticationResult.IsSuccess)
-            {
-                if (SignedIn != null)
-                {
-                    SignedIn(authenticationResult);
-                }
-            }
-            else
-            {
-                viewHelper.ShowAlert("Authentication error", authenticationResult.ErrorMessage);
-            }
-
         }
     }
 }

@@ -37,7 +37,6 @@ namespace mehspot.iOS
 
         public override async void ViewDidAppear (bool animated)
         {
-            if (!dataLoaded)
                 await RefreshAsync ();
         }
 

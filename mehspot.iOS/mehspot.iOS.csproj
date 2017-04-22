@@ -41,10 +41,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
     <CodesignProvision>MehspotAppStore</CodesignProvision>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -349,8 +350,9 @@
     <BundleResource Include="Resources\badges\hobbyb.png" />
     <BundleResource Include="Resources\badges\kidsplaydateb.png" />
     <BundleResource Include="Resources\badges\otherjobsb.png" />
-    <BundleResource Include="Resources\Logo.png" />
     <BundleResource Include="Resources\signin-fb%402x.png" />
+    <BundleResource Include="Resources\Logo%402x.png" />
+    <BundleResource Include="Resources\Logo%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

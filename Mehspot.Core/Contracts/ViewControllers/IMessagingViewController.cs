@@ -14,10 +14,16 @@ namespace Mehspot.Core.Contracts.ViewControllers
 
         IViewHelper ViewHelper { get; }
 
-        void DisplayMessages (Result<CollectionDto<MessageDto>> messagesResult);
+        void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult);
 
-        void ToggleMessagingControls (bool enabled);
+        void ToggleMessagingControls(bool enabled);
 
-        void AddMessageBubbleToEnd (MessageDto messageDto);
+        void AddMessageBubbleToEnd(MessageDto messageDto);
+    }
+
+    public interface IExternalSignInController
+    {
+        IViewHelper ViewHelper { get; }
+        void LoadExternalSignInPage();
     }
 }
