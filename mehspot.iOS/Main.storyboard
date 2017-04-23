@@ -200,7 +200,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                     <action selector="SignInButtonTouched:" destination="8" eventType="touchUpInside" id="28"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="40">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="40" image="logo-small.jpg">
                                 <rect key="frame" x="0.0" y="64" width="375" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="2867"/>
@@ -1355,8 +1355,9 @@ If you are under age of 18, we recommend that you have your parents escort you t
         <image name="badges/kidsplaydateb.png" width="210" height="210"/>
         <image name="badges/otherjobsb.png" width="210" height="210"/>
         <image name="more-icon" width="25" height="25"/>
-        <image name="Logo.png" width="1242" height="795"/>
         <image name="signin-fb.png" width="220" height="40"/>
+        <image name="logo.jpg" width="1242" height="795"/>
+        <image name="logo-small.jpg" width="300" height="192"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>

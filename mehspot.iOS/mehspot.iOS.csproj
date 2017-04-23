@@ -31,7 +31,7 @@
     <CodesignProvision>Mehspot Dev</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType></DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -76,7 +76,7 @@
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
@@ -351,8 +351,8 @@
     <BundleResource Include="Resources\badges\kidsplaydateb.png" />
     <BundleResource Include="Resources\badges\otherjobsb.png" />
     <BundleResource Include="Resources\signin-fb%402x.png" />
-    <BundleResource Include="Resources\Logo%402x.png" />
-    <BundleResource Include="Resources\Logo%403x.png" />
+    <BundleResource Include="Resources\logo.jpg" />
+    <BundleResource Include="Resources\logo-small.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

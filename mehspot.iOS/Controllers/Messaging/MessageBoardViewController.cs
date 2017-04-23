@@ -124,13 +124,20 @@ namespace mehspot.iOS
 
         private void ConfigureCell (MessageBoardCell cell, MessageBoardItemDto item)
         {
+            NSUrl url = null;
             if (!string.IsNullOrEmpty (item.WithUser.ProfilePicturePath)) {
-
-                var url = NSUrl.FromString (item.WithUser.ProfilePicturePath);
-                if (url != null) {
-                    cell.ProfilePicture.SetImage (url);
-                }
+                url = NSUrl.FromString (item.WithUser.ProfilePicturePath);
             }
+
+            if (url != null) {
+
+                cell.ProfilePicture.SetImage (url);
+            } else {
+
+                cell.ProfilePicture.Image = UIImage.FromFile ("profile_image");
+            }
+
+
             cell.UserName.Text = item.WithUser.UserName;
             cell.Message.Text = item.LastMessage;
             cell.CountLabel.Hidden = item.UnreadMessagesCount == 0;
