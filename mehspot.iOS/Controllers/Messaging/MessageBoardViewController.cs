@@ -22,7 +22,7 @@ namespace mehspot.iOS
         private MessageBoardItemDto [] items;
         private string SelectedUserId;
         private string SelectedUserName;
-
+        private UIRefreshControl refreshControl;
 
         public MessageBoardViewController (IntPtr handle) : base (handle)
         {
@@ -40,8 +40,10 @@ namespace mehspot.iOS
             this.SearchBar.OnEditingStopped += SearchBar_OnEditingStopped;
             this.SearchBar.CancelButtonClicked += SearchBar_CancelButtonClicked;
             this.SearchBar.SearchButtonClicked += SearchBar_SearchButtonClicked;
-            this.MessageBoardTable.RefreshControl = new UIRefreshControl ();
-            this.MessageBoardTable.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
+
+            this.refreshControl = new UIRefreshControl ();
+            this.refreshControl.ValueChanged += RefreshControl_ValueChanged;
+            this.MessageBoardTable.AddSubview (refreshControl);
         }
 
         public override async void ViewDidAppear (bool animated)
@@ -103,8 +105,8 @@ namespace mehspot.iOS
             if (loading)
                 return;
             loading = true;
-            this.MessageBoardTable.RefreshControl.BeginRefreshing ();
-            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -this.MessageBoardTable.RefreshControl.Frame.Size.Height), true);
+            this.refreshControl.BeginRefreshing ();
+            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -this.refreshControl.Frame.Size.Height), true);
             var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
             if (messageBoardResult.IsSuccess) {
                 this.items = messageBoardResult.Data;
@@ -112,7 +114,8 @@ namespace mehspot.iOS
                 MessageBoardTable.ReloadData ();
             }
 
-            this.MessageBoardTable.RefreshControl.EndRefreshing ();
+            this.MessageBoardTable.SetContentOffset (CGPoint.Empty, true);
+            this.refreshControl.EndRefreshing ();
             loading = false;
         }
 

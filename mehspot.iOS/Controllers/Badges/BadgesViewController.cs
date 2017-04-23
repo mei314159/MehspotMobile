@@ -15,12 +15,10 @@ namespace mehspot.iOS
     public partial class BadgesViewController : UITableViewController, IUITableViewDataSource, IUITableViewDelegate
     {
         volatile bool loading;
-        volatile bool dataLoaded;
         private List<NSIndexPath> expandedPaths = new List<NSIndexPath> ();
         private BadgeSummaryDTO [] badgesList;
         private BadgeService badgeService;
         private BadgeSummaryDTO SelectedBadge;
-
 
         public BadgesViewController (IntPtr handle) : base (handle)
         {
@@ -32,12 +30,12 @@ namespace mehspot.iOS
             TableView.RegisterNibForCellReuse (BadgeItemCell.Nib, BadgeItemCell.Key);
             TableView.WeakDataSource = this;
             TableView.Delegate = this;
-            RefreshControl.ValueChanged += RefreshControl_ValueChanged;
+            this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
         public override async void ViewDidAppear (bool animated)
         {
-                await RefreshAsync ();
+            await RefreshAsync ();
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -67,7 +65,7 @@ namespace mehspot.iOS
                 return;
             loading = true;
             RefreshControl.BeginRefreshing ();
-            TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
+            TableView.SetContentOffset (new CGPoint (0, -this.RefreshControl.Frame.Size.Height), true);
             var badgesResult = await badgeService.GetBadgesSummaryAsync ();
             if (badgesResult.IsSuccess) {
                 SetBadges (badgesResult.Data);
@@ -75,8 +73,8 @@ namespace mehspot.iOS
                 new UIAlertView ("Error", "Can not load badges", null, "OK").Show ();
             }
 
+            this.TableView.SetContentOffset (CGPoint.Empty, true);
             RefreshControl.EndRefreshing ();
-            dataLoaded = badgesResult.IsSuccess;
             loading = false;
         }
 

@@ -15,7 +15,6 @@ namespace mehspot.iOS
     {
         private volatile bool loading;
         private volatile bool viewWasInitialized;
-
         private ISearchResultDTO SelectedItem;
         public SearchModel SearchModel;
 
@@ -49,7 +48,7 @@ namespace mehspot.iOS
         private void SetTitle ()
         {
             var title = MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName + "_SearchResultsTitle") ??
-                                            ((MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName) ?? this.SearchModel.BadgeName) + "s");
+            ((MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName) ?? this.SearchModel.BadgeName) + "s");
             this.NavBar.Title = title;
         }
 
@@ -109,8 +108,9 @@ namespace mehspot.iOS
             loading = true;
             this.RefreshControl.BeginRefreshing ();
 
-            this.TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
+            this.TableView.SetContentOffset (new CGPoint (0, -this.RefreshControl.Frame.Size.Height), true);
             await SearchModel.SearchResultTableSource.LoadDataAsync (this.TableView, true);
+            this.TableView.SetContentOffset (CGPoint.Empty, true);
             this.RefreshControl.EndRefreshing ();
             loading = false;
         }

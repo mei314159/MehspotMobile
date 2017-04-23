@@ -21,7 +21,6 @@ namespace mehspot.iOS
         private BadgeService badgeService;
         private SubdivisionService subdivisionService;
         private IViewHelper viewHelper;
-
         public int BadgeId;
         public string BadgeName;
         public bool BadgeIsRegistered;
@@ -40,7 +39,7 @@ namespace mehspot.iOS
             subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
             viewHelper = new ViewHelper (this.View);
             TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
-            RefreshControl.ValueChanged += RefreshControl_ValueChanged;
+            this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
         private void SetTitle () {
@@ -108,7 +107,7 @@ namespace mehspot.iOS
             loading = true;
             TableView.UserInteractionEnabled = this.SaveButton.Enabled = false;
             RefreshControl.BeginRefreshing ();
-            TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
+            TableView.SetContentOffset (new CGPoint (0, -this.RefreshControl.Frame.Size.Height), true);
             var profileResult = await badgeService.GetMyBadgeProfileAsync (this.BadgeId);
             dataLoaded = profileResult.IsSuccess;
             if (profileResult.IsSuccess) {
@@ -116,9 +115,11 @@ namespace mehspot.iOS
                 base.TableView.Source = await EditBadgeTableSource.Create (profileResult.Data, subdivisionService);
                 TableView.ReloadData ();
                 TableView.UserInteractionEnabled = this.SaveButton.Enabled = true;
+                TableView.SetContentOffset (CGPoint.Empty, true);
                 RefreshControl.EndRefreshing ();
             } else {
                 new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
+                TableView.SetContentOffset (CGPoint.Empty, true);
                 RefreshControl.EndRefreshing ();
                 return;
             }

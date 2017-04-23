@@ -63,7 +63,8 @@ namespace mehspot.iOS
             TableView.WeakDataSource = this;
             TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
             TableView.TableHeaderView.Hidden = TableView.TableFooterView.Hidden = true;
-            RefreshControl.ValueChanged += RefreshControl_ValueChanged;
+
+            this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
         public override async void ViewDidAppear (bool animated)
@@ -193,8 +194,8 @@ namespace mehspot.iOS
             loading = true;
             TableView.UserInteractionEnabled = false;
             this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = false;
-            RefreshControl.BeginRefreshing ();
-            TableView.SetContentOffset (new CGPoint (0, -this.TableView.RefreshControl.Frame.Size.Height), true);
+            this.RefreshControl.BeginRefreshing ();
+            TableView.SetContentOffset (new CGPoint (0, -this.RefreshControl.Frame.Size.Height), true);
 
             var profileResult = await profileService.GetProfileAsync ();
 
@@ -204,10 +205,11 @@ namespace mehspot.iOS
                 var subdivisions = await GetSubdivisions (profile.Zip);
                 InitializeTable (profile, states, subdivisions);
 
+                TableView.SetContentOffset (CGPoint.Empty, true);
                 RefreshControl.EndRefreshing ();
             } else {
                 new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
-
+                TableView.SetContentOffset (CGPoint.Empty, true);
                 RefreshControl.EndRefreshing ();
             }
 
