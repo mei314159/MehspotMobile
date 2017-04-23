@@ -36,12 +36,15 @@ namespace mehspot.iOS.Views.Cell
 
         public void Configure (ISearchResultDTO item)
         {
+            NSUrl url = null;
             if (!string.IsNullOrEmpty (item.Details.ProfilePicturePath)) {
+                url = NSUrl.FromString (item.Details.ProfilePicturePath);
+            }
 
-                var url = NSUrl.FromString (item.Details.ProfilePicturePath);
-                if (url != null) {
-                    this.ProfilePicture.SetImage (url);
-                }
+            if (url != null) {
+                this.ProfilePicture.SetImage (url);
+            } else {
+                this.ProfilePicture.Image = UIImage.FromFile ("profile_image");
             }
 
             this.UserNameLabel.Text = item.Details.FirstName;

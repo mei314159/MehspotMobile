@@ -18,7 +18,7 @@ namespace Mehspot.Core.DTO.Badges
 
         public string InfoLabel2
         {
-            get { return "Can Travel: " + MehspotResources.ResourceManager.GetString(CanTravelLabel) ?? CanTravelLabel; }
+            get { return "Can Travel: " + (!string.IsNullOrEmpty(CanTravelLabel) ? MehspotResources.ResourceManager.GetString(CanTravelLabel) ?? CanTravelLabel : "N/A"); }
         }
     }
 }

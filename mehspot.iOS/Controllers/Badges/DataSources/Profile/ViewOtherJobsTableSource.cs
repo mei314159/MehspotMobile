@@ -14,7 +14,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         public override Task InitializeAsync (BadgeProfileDTO<OtherJobsProfileDTO> profile)
         {
-            Cells.Add (TextViewCell.Create (profile.BadgeValues.FirstName, "Kid First Name"));
+            Cells.Add (TextViewCell.Create (profile.BadgeValues.FirstName, "First Name"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.OtherJobsType, "Job"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.Gender, "Gender"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.OtherJobsAgeRange, "Age Range"));

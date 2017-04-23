@@ -23,6 +23,7 @@ namespace mehspot.iOS.Wrappers
 
         public void ShowOverlay (string text)
         {
+            HideOverlay ();
             // show the loading overlay on the UI thread using the correct orientation sizing
             loadingOverlay = new LoadingOverlay (UIScreen.MainScreen.Bounds, text);
             view.Add (loadingOverlay);
