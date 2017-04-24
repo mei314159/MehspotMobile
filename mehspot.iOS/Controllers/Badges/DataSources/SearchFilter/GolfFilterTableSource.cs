@@ -23,13 +23,13 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             var ageGroups = await GetGolfAgeGroupsAsync ();
             var genders = await GetGendersAsync ();
 
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
+            this.Cells.Add (SliderCell.Create<int?> (20, a => TypedFilter.Details.DistanceFrom = a, "Max Distance", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");
             zipCell.Mask = "#####";
             this.Cells.Add (zipCell);
 
-            this.Cells.Add (SliderCell.Create (TypedFilter, (a) => a.Handicap, "Min Handicap", 0, 100));
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.MaxHandicap, "Max Handicap", 0, 100));
+            this.Cells.Add (SliderCell.Create<double?> (null, (a) => TypedFilter.Handicap = a, "Min Handicap", 0, 100));
+            this.Cells.Add (SliderCell.Create<double?> (null, a => TypedFilter.MaxHandicap = a, "Max Handicap", 0, 100));
             this.Cells.Add (PickerCell.Create (TypedFilter.Gender, (property) => { TypedFilter.Gender = property; }, "Gender", genders));
             this.Cells.Add (PickerCell.Create (TypedFilter.AgeRange, (property) => { TypedFilter.AgeRange = property; }, "Age Group", ageGroups));
 

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using mehspot.iOS.Views;
 using mehspot.iOS.Views.Cell;
@@ -18,8 +16,8 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         public override async Task InitializeAsync ()
         {
             var ageRanges = await GetOptionsAsync (BadgeService.BadgeKeys.AgeRange);
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.HourlyRate, "Max Hourly Rate ($)", 0, 200));
+            this.Cells.Add (SliderCell.Create<int?>(20, a => TypedFilter.Details.DistanceFrom = a, "Max Distance", 0, 200));
+            this.Cells.Add (SliderCell.Create<int?> (null, a => TypedFilter.HourlyRate = a, "Max Hourly Rate ($)", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");
             zipCell.Mask = "#####";
             this.Cells.Add (zipCell);
@@ -30,6 +28,4 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             this.Cells.Add (PickerCell.Create (TypedFilter.AgeRange, (property) => { TypedFilter.AgeRange = property; }, "Age Range", ageRanges));
         }
     }
-
-    
 }

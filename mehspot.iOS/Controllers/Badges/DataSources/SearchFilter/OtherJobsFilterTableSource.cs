@@ -18,7 +18,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         {
             var ageRanges = await GetOptionsAsync (BadgeService.BadgeKeys.OtherJobsAgeRange);
             var jobs = await GetOptionsAsync (BadgeService.BadgeKeys.OtherJobsType, true);
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
+            this.Cells.Add (SliderCell.Create<int?>  (20, a => TypedFilter.Details.DistanceFrom = a, "Max Distance", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");
             zipCell.Mask = "#####";
             this.Cells.Add (zipCell);

@@ -19,7 +19,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             var genders = await GetOptionsAsync (BadgeService.BadgeKeys.Gender);
             var skillLevels = await GetOptionsAsync (BadgeService.BadgeKeys.SkillLevel);
 
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
+            this.Cells.Add (SliderCell.Create<int?> (20, a => TypedFilter.Details.DistanceFrom = a, "Max Distance", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");
             zipCell.Mask = "#####";
             this.Cells.Add (zipCell);

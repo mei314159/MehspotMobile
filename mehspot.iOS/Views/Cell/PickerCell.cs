@@ -217,15 +217,13 @@ namespace mehspot.iOS.Views
 
         void SetSelectValueButtonTitle (object value)
         {
-            string title = null;
-            if (value != null) {
+            string title = GetPropertyString (value);
+            if (value != null && string.IsNullOrEmpty(title)) {
                 var val = value as IEnumerable;
                 if (!(val is string) && val != null) {
                     var count = val.Count ();
                     if (count > 0)
                         title = $"{count} items";
-                } else {
-                    title = GetPropertyString (value);
                 }
             }
 

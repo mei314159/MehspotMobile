@@ -21,7 +21,7 @@ namespace mehspot.iOS.Views.Cell
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public static SliderCell Create<T,TProperty> (T Model, Expression<Func<T, TProperty>> property, string placeholder, float? minValue, float? maxValue, bool isReadOnly = false) where T : class
+        public static SliderCell Create<TProperty> (int? defaultValue, Action<TProperty> setProperty, string placeholder, float? minValue, float? maxValue, bool isReadOnly = false)
         {
             var cell = (SliderCell)Nib.Instantiate (null, null) [0];
             cell.CellSlider.Enabled = !isReadOnly;
@@ -34,8 +34,7 @@ namespace mehspot.iOS.Views.Cell
                 cell.CellSlider.MaxValue = maxValue.Value - 1;
             }
 
-            var propertyValue = property.Compile ().Invoke (Model);
-            cell.CellSlider.Value = (float?)(object)propertyValue ?? cell.CellSlider.MinValue;
+            cell.CellSlider.Value = defaultValue ?? cell.CellSlider.MinValue;
             cell.SetValueLabel (cell.CellSlider.Value == cell.CellSlider.MinValue ? string.Empty : cell.CellSlider.Value.ToString ());
 
             var propertyType = Nullable.GetUnderlyingType (typeof (TProperty)) ?? typeof (TProperty);
@@ -50,7 +49,7 @@ namespace mehspot.iOS.Views.Cell
                 }
 
                 cell.SetValueLabel (clearValue ? string.Empty : val?.ToString ());
-                Model.SetProperty (property, val);
+                setProperty (val);
             };
 
             return cell;

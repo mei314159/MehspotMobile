@@ -19,12 +19,12 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         {
             var canTravelOptions = await GetOptionsAsync (BadgeService.BadgeKeys.TutorCanTravel);
             var subjects = await GetOptionsAsync (BadgeService.BadgeKeys.TutorSubject, true);
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.Details.DistanceFrom, "Max Distance", 0, 200));
+            this.Cells.Add (SliderCell.Create<int?> (20, a => TypedFilter.Details.DistanceFrom = a, "Max Distance", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");
             zipCell.Mask = "#####";
             this.Cells.Add (zipCell);
 
-            this.Cells.Add (SliderCell.Create (TypedFilter, a => a.HourlyRate, "Max Hourly Rate ($)", 0, 200));
+            this.Cells.Add (SliderCell.Create<int?> (null, a => TypedFilter.HourlyRate = a, "Max Hourly Rate ($)", 0, 200));
             this.Cells.Add (PickerCell.CreateMultiselect<int?> (new int? [] { }, (property) => { TypedFilter.Subjects = property.Select (a => a.ToString ()).ToArray (); }, "Subjects", subjects));
             this.Cells.Add (PickerCell.Create (TypedFilter.CanTravel, (property) => { TypedFilter.CanTravel = property; }, "Can travel to location", canTravelOptions));
 
