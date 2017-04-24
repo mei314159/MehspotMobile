@@ -18,8 +18,8 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             Cells.Add (BooleanEditCell.Create (profile.BadgeValues.HasCourtAccess, v => { }, "Has Court", true));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.SkillLevel, "Skill Level"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.PreferredSide, "Preferred Side"));
-            Cells.Add (TextViewCell.Create (profile.BadgeValues.TennisZip, "Tennis Zip"));
-            Cells.Add (TextViewCell.Create (profile.BadgeValues.TennisSubdivision, "Tennis Subdivision"));
+            Cells.Add (TextViewCell.Create (profile.BadgeValues.TennisZip, "Court Zip"));
+            Cells.Add (TextViewCell.Create (profile.BadgeValues.TennisSubdivision, "Court Subdivision"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.TennisAgeRange, "Tennis Age Range"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.Description, "Additional Information"));
 

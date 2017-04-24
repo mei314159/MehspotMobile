@@ -92,7 +92,7 @@ namespace mehspot.iOS
                 TableView.Source = source;
 
                 this.NavBar.TopItem.Title = $"{this.SearchModel.BadgeName} {source.Profile.Details.UserName}";
-                this.SubdivisionLabel.Text = source.Profile.Details.SubdivisionName.Trim ();
+                this.SubdivisionLabel.Text = source.Profile.Details.SubdivisionName?.Trim ();
                 if (!string.IsNullOrEmpty (source.Profile.Details.ProfilePicturePath)) {
                     var url = NSUrl.FromString (source.Profile.Details.ProfilePicturePath);
                     if (url != null) {
