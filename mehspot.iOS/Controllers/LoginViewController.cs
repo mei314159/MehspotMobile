@@ -46,18 +46,14 @@ namespace mehspot.iOS
 
             // Set the Read and Publish permissions you want to get
             loginView = new LoginButton (new CGRect (0, 0, 218, 46)) {
-                LoginBehavior = LoginBehavior.Browser,
+                LoginBehavior = LoginBehavior.Native,
                 ReadPermissions = readPermissions.ToArray ()
             };
 
             // Handle actions once the user is logged in
             loginView.Completed += async (sender, e) => {
-                if (e.Error != null) {
-
-                }
-
-                if (e.Result.IsCancelled) {
-                    // Handle if the user cancelled the login request
+                if (e.Error != null || e.Result.IsCancelled) {
+                    return;
                 }
 
                 await model.SignInExternalAsync (e.Result.Token.TokenString, "Facebook");
