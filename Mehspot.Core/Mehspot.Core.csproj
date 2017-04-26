@@ -125,7 +125,6 @@
     <Compile Include="DTO\Badges\SearchResults\HobbySearchResultDTO.cs" />
     <Compile Include="DTO\Badges\Profile\OtherJobsProfileDTO.cs" />
     <Compile Include="DTO\Badges\Profile\HobbyProfileDTO.cs" />
-    <Compile Include="Models\ExternalSignInModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

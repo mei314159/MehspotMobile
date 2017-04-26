@@ -20,6 +20,10 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView FbAuthButtonWrapper { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField PasswordField { get; set; }
 
         [Action ("SignInButtonTouched:")]
@@ -31,6 +35,11 @@ namespace mehspot.iOS
             if (EmailField != null) {
                 EmailField.Dispose ();
                 EmailField = null;
+            }
+
+            if (FbAuthButtonWrapper != null) {
+                FbAuthButtonWrapper.Dispose ();
+                FbAuthButtonWrapper = null;
             }
 
             if (PasswordField != null) {

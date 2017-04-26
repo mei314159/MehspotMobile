@@ -259,27 +259,6 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                     <constraint id="5896" firstItem="5890" firstAttribute="width" constant="200"/>
                                 </constraints>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6044">
-                                <rect key="frame" x="78" y="501" width="220" height="40"/>
-                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.95686274509803926" green="0.65490196078431373" blue="0.11372549019607843" alpha="1"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="FB" image="signin-fb.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="SignInButtonTouched:" destination="6046" eventType="touchUpInside" id="6045"/>
-                                    <segue id="6146" destination="6064" kind="presentation"/>
-                                </connections>
-                                <constraints>
-                                    <constraint id="6049" firstItem="6044" firstAttribute="width" constant="220"/>
-                                    <constraint id="6050" firstItem="6044" firstAttribute="height" constant="40"/>
-                                </constraints>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6051" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="127" y="473" width="122" height="19"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -289,6 +268,14 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                     <constraint id="6052" firstItem="6051" firstAttribute="width" constant="122"/>
                                 </constraints>
                             </label>
+                            <view contentMode="scaleToFill" id="6217" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="79" y="500" width="218" height="46"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint id="6222" firstItem="6217" firstAttribute="width" constant="218"/>
+                                    <constraint id="6223" firstItem="6217" firstAttribute="height" constant="46"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -319,13 +306,14 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                             <constraint id="6043" firstItem="14" firstAttribute="top" secondItem="40" secondAttribute="bottom" constant="49"/>
                             <constraint id="6053" firstItem="6051" firstAttribute="top" secondItem="5890" secondAttribute="bottom" constant="10"/>
                             <constraint id="6054" firstItem="6051" firstAttribute="centerX" secondItem="9" secondAttribute="centerX"/>
-                            <constraint id="6055" firstItem="6044" firstAttribute="top" secondItem="6051" secondAttribute="bottom" constant="10"/>
-                            <constraint id="6056" firstItem="6044" firstAttribute="centerX" secondItem="9" secondAttribute="centerX"/>
+                            <constraint id="6218" firstItem="6217" firstAttribute="centerX" secondItem="9" secondAttribute="centerX"/>
+                            <constraint id="6219" firstItem="6217" firstAttribute="top" secondItem="6051" secondAttribute="bottom" constant="8"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="EmailField" destination="14" id="name-outlet-14"/>
                         <outlet property="PasswordField" destination="19" id="name-outlet-19"/>
+                        <outlet property="FbAuthButtonWrapper" destination="6217" id="name-outlet-6217"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1256,67 +1244,6 @@ If you are under age of 18, we recommend that you have your parents escort you t
                 <exit id="5810" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2021" y="-2149"/>
-        </scene>
-        <scene sceneID="6063">
-            <objects>
-                <viewController id="6064" sceneMemberID="viewController" customClass="FacebookAuthController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6061"/>
-                        <viewControllerLayoutGuide type="bottom" id="6062"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6065">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" id="6148" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
-                            <navigationBar contentMode="scaleToFill" id="6149" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Sign In with Facebook" id="6150">
-                                        <barButtonItem key="leftBarButtonItem" id="6167" systemItem="stop">
-                                            <connections>
-                                                <segue id="6202" destination="6067" kind="unwind" unwindAction="UnwindToLoginViewController:"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                                <constraints>
-                                    <constraint id="6154" firstItem="6149" firstAttribute="height" constant="44"/>
-                                </constraints>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" id="6160" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1"/>
-                                <constraints>
-                                    <constraint id="6164" firstItem="6160" firstAttribute="height" constant="20"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <constraints>
-                            <constraint id="6151" firstItem="6149" firstAttribute="top" secondItem="6065" secondAttribute="top" constant="20"/>
-                            <constraint id="6152" firstItem="6149" firstAttribute="leading" secondItem="6065" secondAttribute="leading"/>
-                            <constraint id="6153" firstItem="6149" firstAttribute="trailing" secondItem="6065" secondAttribute="trailing"/>
-                            <constraint id="6155" firstItem="6148" firstAttribute="top" secondItem="6149" secondAttribute="bottom"/>
-                            <constraint id="6156" firstItem="6148" firstAttribute="leading" secondItem="6065" secondAttribute="leading"/>
-                            <constraint id="6157" firstItem="6148" firstAttribute="trailing" secondItem="6065" secondAttribute="trailing"/>
-                            <constraint id="6159" firstItem="6148" firstAttribute="bottom" secondItem="6065" secondAttribute="bottom"/>
-                            <constraint id="6161" firstItem="6160" firstAttribute="top" secondItem="6065" secondAttribute="top"/>
-                            <constraint id="6162" firstItem="6160" firstAttribute="leading" secondItem="6065" secondAttribute="leading"/>
-                            <constraint id="6163" firstItem="6160" firstAttribute="trailing" secondItem="6065" secondAttribute="trailing"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="WebView" destination="6148" id="name-outlet-6148"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6066" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="6067" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-1887" y="-490"/>
         </scene>
     </scenes>
     <resources>
