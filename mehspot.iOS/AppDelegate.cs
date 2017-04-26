@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Facebook.CoreKit;
 using Foundation;
 using Google.Maps;
 using HockeyApp.iOS;
@@ -22,7 +23,6 @@ namespace mehspot.iOS
 
         private const string MapsApiKey = "AIzaSyAqIup2dew1z_2_d1uTGcyArOboCWv2rN0";
 
-
         // class-level declarations
 
         public override UIWindow Window {
@@ -32,11 +32,13 @@ namespace mehspot.iOS
 
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
+            MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
+            MehspotAppContext.Instance.OnException += OnException;
             InitializeHockeyApp ();
             MapServices.ProvideAPIKey (MapsApiKey);
 
-            MehspotAppContext.Instance.Initialize (new ApplicationDataStorage ());
-            MehspotAppContext.Instance.OnException += OnException;
+            Profile.EnableUpdatesOnAccessTokenChange (true);
+
 
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
@@ -54,8 +56,16 @@ namespace mehspot.iOS
                     ProcessNotification (notification);
                 }
             }
-            return true;
+
+            return ApplicationDelegate.SharedInstance.FinishedLaunching (application, launchOptions);
         }
+
+        public override bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+        {
+            // We need to handle URLs by passing them to their own OpenUrl in order to make the SSO authentication works.
+            return ApplicationDelegate.SharedInstance.OpenUrl (application, url, sourceApplication, annotation);
+        }
+
 
         public override void OnResignActivation (UIApplication application)
         {
@@ -181,7 +191,7 @@ namespace mehspot.iOS
             UIApplication.SharedApplication.RegisterForRemoteNotifications ();
         }
 
-        private async Task SendPushTokenToServerAsync (string oldToken, string newToken)
+        private async System.Threading.Tasks.Task SendPushTokenToServerAsync (string oldToken, string newToken)
         {
             var pushService = new PushService (MehspotAppContext.Instance.DataStorage);
             var result = await pushService.RegisterAsync (oldToken, newToken);

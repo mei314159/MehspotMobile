@@ -15,6 +15,7 @@ using mehspot.iOS.Views;
 using System.Linq;
 using Mehspot.Core.Services;
 using MehSpot.Core.DTO.Subdivision;
+using Facebook.LoginKit;
 
 namespace mehspot.iOS
 {
@@ -178,7 +179,7 @@ namespace mehspot.iOS
                 if (e.ButtonIndex != alert.CancelButtonIndex) {
                     MehspotAppContext.Instance.AuthManager.SignOut ();
                     MehspotAppContext.Instance.DisconnectSignalR ();
-
+                    new LoginManager ().LogOut ();
                     var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateViewController ("LoginViewController");
 
                     this.View.Window.SwapController (targetViewController);
