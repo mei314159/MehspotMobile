@@ -11,6 +11,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
     public class SearchModel
     {
         private ViewBadgeProfileTableSource ViewBadgeProfileTableSource;
+        private RecommendationsTableSource RecommendationsTableSource;
         public string BadgeName { get; set; }
 
         public SearchModel (string badgeName, ISearchFilterDTO filter)
@@ -29,6 +30,12 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         {
             await ViewBadgeProfileTableSource.LoadAsync (userId);
             return ViewBadgeProfileTableSource;
+        }
+
+        public async Task<RecommendationsTableSource> GetRecommendationsTableSource (string userId)
+        {
+            await RecommendationsTableSource.LoadAsync (userId);
+            return RecommendationsTableSource;
         }
 
         public static async Task<SearchModel> GetInstanceAsync (BadgeService badgeService, string badgeName, int badgeId)
@@ -106,6 +113,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             model.SearchFilterTableSource = searchFilterTableSource;
             model.SearchResultTableSource = new SearchResultTableSource (badgeService, searchFilterTableSource.Filter, resultType);
             model.ViewBadgeProfileTableSource = viewBadgeProfileTableSource;
+            model.RecommendationsTableSource = new RecommendationsTableSource (badgeId, badgeName, badgeService);
             return model;
         }
     }

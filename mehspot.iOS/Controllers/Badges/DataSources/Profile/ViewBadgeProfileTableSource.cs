@@ -86,7 +86,5 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         }
 
         public abstract Task InitializeAsync (TProfile profile);
-
     }
-
 }

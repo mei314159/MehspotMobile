@@ -824,25 +824,6 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4940">
-                                            <rect key="frame" x="96" y="79" width="266" height="26"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="26" id="4945"/>
-                                            </constraints>
-                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <state key="normal" title="Send Message">
-                                                <color key="titleColor" red="0.42745098039215684" green="0.72156862745098038" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <segue destination="87" kind="show" identifier="GoToMessagingSegue" id="5248"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 Likes / 5 Recommedations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="61">
                                             <rect key="frame" x="96" y="31" width="154" height="13"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -886,6 +867,18 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6219">
+                                            <rect key="frame" x="96" y="79" width="267" height="29"/>
+                                            <segments>
+                                                <segment title="" image="details-icon"/>
+                                                <segment title="" image="review-icon"/>
+                                                <segment title="" image="chat-icon"/>
+                                            </segments>
+                                            <color key="tintColor" colorSpace="calibratedRGB" red="0.37647058823529411" green="0.68627450980392157" blue="0.13333333333333333" alpha="1"/>
+                                            <connections>
+                                                <action selector="SegmentControlChanged:" destination="4901" id="6610" eventType="valueChanged"/>
+                                            </connections>
+                                        </segmentedControl>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -893,7 +886,6 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                         <constraint firstItem="4934" firstAttribute="top" secondItem="4933" secondAttribute="top" constant="13" id="4947"/>
                                         <constraint firstItem="4937" firstAttribute="leading" secondItem="4934" secondAttribute="trailing" constant="13" id="4948"/>
                                         <constraint firstItem="4934" firstAttribute="top" secondItem="4937" secondAttribute="top" constant="3" id="4950"/>
-                                        <constraint firstAttribute="trailing" secondItem="4940" secondAttribute="trailing" constant="13" id="4956"/>
                                         <constraint firstItem="61" firstAttribute="leading" secondItem="4937" secondAttribute="leading" id="5419"/>
                                         <constraint firstItem="61" firstAttribute="top" secondItem="4937" secondAttribute="bottom" id="5422"/>
                                         <constraint firstItem="5423" firstAttribute="leading" secondItem="61" secondAttribute="leading" id="5426"/>
@@ -909,8 +901,9 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                         <constraint firstItem="5430" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4937" secondAttribute="trailing" constant="5" id="5454"/>
                                         <constraint firstItem="41" firstAttribute="top" secondItem="5423" secondAttribute="bottom" id="5461"/>
                                         <constraint firstItem="41" firstAttribute="leading" secondItem="5423" secondAttribute="leading" id="5462"/>
-                                        <constraint firstItem="4940" firstAttribute="top" secondItem="41" secondAttribute="bottom" constant="4" id="5466"/>
-                                        <constraint firstItem="4940" firstAttribute="leading" secondItem="41" secondAttribute="leading" id="5467"/>
+                                        <constraint id="6246" firstItem="4933" firstAttribute="trailing" secondItem="6219" secondAttribute="trailing" constant="13"/>
+                                        <constraint id="6247" firstItem="6219" firstAttribute="top" secondItem="41" secondAttribute="bottom" constant="4"/>
+                                        <constraint id="6248" firstItem="6219" firstAttribute="leading" secondItem="41" secondAttribute="leading"/>
                                     </constraints>
                                 </view>
                             </tableView>
@@ -943,9 +936,10 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="LikesLabel" destination="61" id="name-outlet-61"/>
                         <outlet property="NavBar" destination="4905" id="name-outlet-4905"/>
                         <outlet property="ProfilePicture" destination="4934" id="name-outlet-4934"/>
-                        <outlet property="SendMessageButton" destination="4940" id="name-outlet-4940"/>
                         <outlet property="SubdivisionLabel" destination="5423" id="name-outlet-5423"/>
                         <outlet property="TableView" destination="4925" id="name-outlet-4925"/>
+                        <segue id="6602" destination="87" kind="presentation" identifier="GoToMessagingSegue"/>
+                        <outlet property="SendMessageButton" destination="6219" id="name-outlet-6219"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4903" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1358,6 +1352,8 @@ If you are under age of 18, we recommend that you have your parents escort you t
         <image name="signin-fb.png" width="220" height="40"/>
         <image name="logo.jpg" width="1242" height="795"/>
         <image name="logo-small.jpg" width="300" height="192"/>
+        <image name="details-icon" width="25" height="25"/>
+        <image name="review-icon" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>

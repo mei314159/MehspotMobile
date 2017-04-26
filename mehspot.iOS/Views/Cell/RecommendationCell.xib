@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" customClass="RecommendationCell" id="cxk-wN-pdQ" rowHeight="70">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="2" translatesAutoresizingMaskIntoConstraints="NO" minimumScaleFactor="0.5">
+                        <rect key="frame" x="70" y="10" width="172" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" numberOfLines="0">
+                        <rect key="frame" x="70" y="30" width="240" height="19"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4" translatesAutoresizingMaskIntoConstraints="NO" clipsSubviews="YES">
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                        <constraints>
+                            <constraint id="5" firstItem="4" firstAttribute="height" constant="50"/>
+                            <constraint id="6" firstItem="4" firstAttribute="width" constant="50"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                <real key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="18" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="6" text="date">
+                        <rect key="frame" x="250" y="10" width="60" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                        <nil key="highlightedColor"/>
+                        <constraints>
+                            <constraint id="22" firstItem="18" firstAttribute="width" constant="60"/>
+                        </constraints>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint id="7" firstItem="4" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="10"/>
+                    <constraint id="8" firstItem="4" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="10"/>
+                    <constraint id="9" firstItem="2" firstAttribute="top" secondItem="4" secondAttribute="top"/>
+                    <constraint id="10" firstItem="2" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="10"/>
+                    <constraint id="11" firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading"/>
+                    <constraint id="12" firstItem="2" firstAttribute="bottom" secondItem="3" secondAttribute="top" constant="1"/>
+                    <constraint id="13" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="10"/>
+                    <constraint id="24" firstItem="18" firstAttribute="top" secondItem="2" secondAttribute="top"/>
+                    <constraint id="25" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="18" secondAttribute="trailing" constant="10"/>
+                    <constraint id="26" firstItem="18" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="DateField" destination="18" id="name-outlet-18"/>
+                <outlet property="UserName" destination="2" id="name-outlet-2"/>
+                <outlet property="Message" destination="3" id="name-outlet-3"/>
+                <outlet property="ProfilePicture" destination="4" id="name-outlet-4"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chat-icon" width="25" height="25"/>
+        <image name="profile-icon" width="25" height="25"/>
+        <image name="signout-icon" width="22" height="22"/>
+        <image name="search-icon" width="25" height="25"/>
+        <image name="star-yellow-icon" width="24" height="24"/>
+        <image name="more-icon" width="25" height="25"/>
+        <image name="details-icon" width="25" height="25"/>
+        <image name="review-icon" width="25" height="25"/>
+        <image name="profile_image.png" width="400" height="400"/>
+        <image name="badges/babysitter.png" width="70" height="69"/>
+        <image name="badges/babysitteremployer.png" width="70" height="70"/>
+        <image name="badges/fitness.png" width="210" height="210"/>
+        <image name="badges/friendship.png" width="70" height="70"/>
+        <image name="badges/golf.png" width="500" height="500"/>
+        <image name="badges/hobby.png" width="210" height="208"/>
+        <image name="badges/kidsplaydate.png" width="210" height="210"/>
+        <image name="badges/otherjobs.png" width="210" height="210"/>
+        <image name="badges/petsitter.png" width="500" height="500"/>
+        <image name="badges/petsitteremployer.png" width="500" height="500"/>
+        <image name="badges/sports.png" width="70" height="70"/>
+        <image name="badges/tennis.png" width="140" height="140"/>
+        <image name="badges/tutor.png" width="466" height="467"/>
+        <image name="badges/tutoremployer.png" width="494" height="489"/>
+        <image name="badges/babysitterb.png" width="70" height="69"/>
+        <image name="badges/babysitteremployerb.png" width="70" height="70"/>
+        <image name="badges/friendshipb.png" width="70" height="70"/>
+        <image name="badges/golfb.png" width="500" height="500"/>
+        <image name="badges/petsitterb.png" width="500" height="500"/>
+        <image name="badges/petsitteremployerb.png" width="500" height="500"/>
+        <image name="badges/sportsb.png" width="70" height="70"/>
+        <image name="badges/tennisb.png" width="140" height="140"/>
+        <image name="badges/tutorb.png" width="466" height="467"/>
+        <image name="badges/tutoremployerb.png" width="494" height="489"/>
+        <image name="badges/fitnessb.png" width="210" height="210"/>
+        <image name="badges/hobbyb.png" width="210" height="208"/>
+        <image name="badges/kidsplaydateb.png" width="210" height="210"/>
+        <image name="badges/otherjobsb.png" width="210" height="210"/>
+        <image name="signin-fb.png" width="220" height="40"/>
+        <image name="logo.jpg" width="1242" height="795"/>
+        <image name="logo-small.jpg" width="300" height="192"/>
+    </resources>
+</document>

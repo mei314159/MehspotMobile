@@ -33,6 +33,12 @@ namespace Mehspot.Core.Services
             return await GetAsync<T>($"Badges/Profile?badgeId={badgeId}&userId={userId}").ConfigureAwait(false);
         }
 
+        public async Task<Result<BadgeRecommendationDTO>> GetBadgeRecommendationsAsync(int badgeId, string userId)
+        {
+            return await GetAsync<BadgeRecommendationDTO>($"Badges/Recommendations?badgeId={badgeId}&userId={userId}").ConfigureAwait(false);
+        }
+
+
         public async Task<Result<BadgeProfileDTO<EditBadgeProfileDTO>>> GetMyBadgeProfileAsync(int badgeId)
         {
             return await GetAsync<BadgeProfileDTO<EditBadgeProfileDTO>>($"Badges/EditProfile?badgeId={badgeId}&userId={this.ApplicationDataStorage.AuthInfo.UserId}").ConfigureAwait(false);

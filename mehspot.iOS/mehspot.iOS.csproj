@@ -135,6 +135,12 @@
     <ImageAsset Include="Assets.xcassets\more-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\more-icon.imageset\more-icon%402x.png" />
     <ImageAsset Include="Assets.xcassets\more-icon.imageset\more-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\details-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\details-icon.imageset\details-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\details-icon.imageset\details-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\review-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -164,6 +170,8 @@
     <Folder Include="Controllers\Badges\DataSources\SearchFilter\" />
     <Folder Include="Controllers\Badges\DataSources\Profile\" />
     <Folder Include="Controllers\Badges\DataSources\SearchResult\" />
+    <Folder Include="Assets.xcassets\details-icon.imageset\" />
+    <Folder Include="Assets.xcassets\review-icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -182,6 +190,7 @@
     <InterfaceDefinition Include="Controllers\Subdivisions\SubdivisionController.xib" />
     <InterfaceDefinition Include="Controllers\Subdivisions\SubdivisionsListController.xib" />
     <InterfaceDefinition Include="Controllers\Subdivisions\VerifySubdivisionController.xib" />
+    <InterfaceDefinition Include="Views\Cell\RecommendationCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -318,6 +327,11 @@
     <Compile Include="Controllers\FacebookAuthController.cs" />
     <Compile Include="Controllers\FacebookAuthController.designer.cs">
       <DependentUpon>FacebookAuthController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\DataSources\Profile\RecommendationsTableSource.cs" />
+    <Compile Include="Views\Cell\RecommendationCell.cs" />
+    <Compile Include="Views\Cell\RecommendationCell.designer.cs">
+      <DependentUpon>RecommendationCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

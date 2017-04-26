@@ -52,7 +52,7 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton SendMessageButton { get; set; }
+        UIKit.UISegmentedControl SendMessageButton { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -65,6 +65,10 @@ namespace mehspot.iOS
         [Action ("CloseButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);
+
+        [Action ("SegmentControlChanged:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SegmentControlChanged (UIKit.UISegmentedControl sender);
 
         void ReleaseDesignerOutlets ()
         {
