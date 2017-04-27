@@ -13,6 +13,7 @@ using Mehspot.Core.Models;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Services;
+using mehspot.iOS.Extensions;
 
 namespace mehspot.iOS
 {
@@ -61,7 +62,7 @@ namespace mehspot.iOS
 
             refreshControl.ValueChanged += RefreshControl_ValueChanged;
             messagesScrollView.AddSubview (refreshControl);
-            messagesScrollView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            messagesScrollView.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
             messageField.ShouldReturn += MessageField_ShouldReturn;
             RegisterForKeyboardNotifications ();
         }
@@ -73,11 +74,6 @@ namespace mehspot.iOS
             } else {
                 PerformSegue ("UnwindToSearchResults", this);
             }
-        }
-
-        public void HideKeyboard ()
-        {
-            messageField.ResignFirstResponder ();
         }
 
         public override void ViewWillAppear (bool animated)

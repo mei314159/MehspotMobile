@@ -18,7 +18,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         private readonly List<UITableViewCell> cells = new List<UITableViewCell> ();
 
         ButtonCell createRecommendationCell;
-
+        string currentUserId;
 
         public event Action OnWriteReviewButtonTouched;
         public event GoToMessagingHandler OnGoToMessaging;
@@ -33,6 +33,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         public async Task LoadAsync (string userId, string currentUserId)
         {
+            this.currentUserId = currentUserId;
             cells.Clear ();
             var result = await badgeService.GetBadgeRecommendationsAsync (this.BadgeId, userId);
 
@@ -73,7 +74,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
         {
             var cell = tableView.CellAt (indexPath) as RecommendationCell;
-            if (cell != null) {
+            if (cell != null && this.currentUserId != cell.Dto.FromUserId) {
                 OnGoToMessaging?.Invoke (cell.Dto.FromUserId, cell.Dto.FromUserName);
             }
         }

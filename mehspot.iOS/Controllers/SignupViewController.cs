@@ -21,7 +21,7 @@ namespace mehspot.iOS
         {
             model = new SignUpModel (MehspotAppContext.Instance.AuthManager, new ViewHelper (this.View));
             model.SignedUp += Model_SignedUp;
-            this.View.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            this.View.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
             this.EmailField.ShouldReturn += TextFieldShouldReturn;
             this.UserNameField.ShouldReturn += TextFieldShouldReturn;
             this.PasswordField.ShouldReturn += TextFieldShouldReturn;
@@ -73,11 +73,6 @@ namespace mehspot.iOS
         {
             sender.BecomeFirstResponder ();
             SignUpAsync ();
-        }
-
-        public void HideKeyboard ()
-        {
-            this.View.FindFirstResponder ()?.ResignFirstResponder ();
         }
 
         protected virtual void RegisterForKeyboardNotifications ()

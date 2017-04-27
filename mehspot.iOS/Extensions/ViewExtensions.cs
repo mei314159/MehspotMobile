@@ -83,5 +83,10 @@ namespace mehspot.iOS.Extensions
 
             return (UIViewController)responder;
         }
+
+        public static void HideKeyboard (this UIViewController controller)
+        {
+            controller.View.FindFirstResponder ()?.ResignFirstResponder ();
+        }
     }
 }

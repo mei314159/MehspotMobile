@@ -338,10 +338,6 @@
       <DependentUpon>WriteReviewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtendedTextView.cs" />
-    <Compile Include="ExtendedTextView1.cs" />
-    <Compile Include="ExtendedTextView1.designer.cs">
-      <DependentUpon>ExtendedTextView1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\Badges\BadgeProfileController.cs" />
     <Compile Include="Controllers\Badges\BadgeProfileController.designer.cs">
       <DependentUpon>BadgeProfileController.cs</DependentUpon>
