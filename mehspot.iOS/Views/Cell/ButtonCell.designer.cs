@@ -13,11 +13,19 @@ namespace mehspot.iOS.Views.Cell
     [Register ("ButtonCell")]
     partial class ButtonCell
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton Button { get; set; }
+
+        [Action ("ButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ButtonTouched (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
-            if (CellButton != null) {
-                CellButton.Dispose ();
-                CellButton = null;
+            if (Button != null) {
+                Button.Dispose ();
+                Button = null;
             }
         }
     }

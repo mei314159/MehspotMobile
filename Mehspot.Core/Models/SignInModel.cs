@@ -18,6 +18,7 @@ namespace Mehspot.Core.Models
         }
 
         public event Action<AuthenticationResult> SignedIn;
+        public event Action<AuthenticationResult> SignInError;
 
         public async Task SignInAsync(string email, string password)
         {
@@ -49,5 +50,24 @@ namespace Mehspot.Core.Models
                 }
             }
         }
-    }
+
+        public async Task SignInExternalAsync(string token, string provider)
+        {
+            viewHelper.ShowOverlay("Sign In...");
+            var authenticationResult = await authManager.SignInExternalAsync(token, provider);
+            viewHelper.HideOverlay();
+
+            if (authenticationResult.IsSuccess)
+            {
+                SignedIn?.Invoke(authenticationResult);
+            }
+            else
+            {
+                SignInError?.Invoke(authenticationResult);
+                viewHelper.ShowAlert("Authentication error", authenticationResult.ErrorMessage);
+            }
+
+        }
+
+   }
 }

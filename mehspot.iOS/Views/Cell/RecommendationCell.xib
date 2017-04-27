@@ -66,6 +66,7 @@
                 <outlet property="Message" destination="3" id="name-outlet-3"/>
                 <outlet property="ProfilePicture" destination="4" id="name-outlet-4"/>
             </connections>
+            <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
         </tableViewCell>
     </objects>
     <resources>

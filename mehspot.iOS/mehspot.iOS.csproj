@@ -102,6 +102,9 @@
     <Reference Include="Google.Maps">
       <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.1.0.1\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Xamarin.Facebook.iOS.4.19.0\lib\Xamarin.iOS10\Facebook.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -191,6 +194,7 @@
     <InterfaceDefinition Include="Controllers\Subdivisions\SubdivisionsListController.xib" />
     <InterfaceDefinition Include="Controllers\Subdivisions\VerifySubdivisionController.xib" />
     <InterfaceDefinition Include="Views\Cell\RecommendationCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -259,10 +263,6 @@
       <DependentUpon>ViewProfileViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cell\TextViewCell.cs" />
-    <Compile Include="BadgeProfileController.cs" />
-    <Compile Include="BadgeProfileController.designer.cs">
-      <DependentUpon>BadgeProfileController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\Badges\EditBadgeProfileController.cs" />
     <Compile Include="Controllers\Badges\EditBadgeProfileController.designer.cs">
       <DependentUpon>EditBadgeProfileController.cs</DependentUpon>
@@ -324,14 +324,27 @@
     <Compile Include="Controllers\Badges\DataSources\SearchFilter\HobbyFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewOtherJobsTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewHobbyTableSource.cs" />
-    <Compile Include="Controllers\FacebookAuthController.cs" />
-    <Compile Include="Controllers\FacebookAuthController.designer.cs">
-      <DependentUpon>FacebookAuthController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\Badges\DataSources\Profile\RecommendationsTableSource.cs" />
+<Compile Include="Controllers\Badges\DataSources\Profile\RecommendationsTableSource.cs" />
     <Compile Include="Views\Cell\RecommendationCell.cs" />
     <Compile Include="Views\Cell\RecommendationCell.designer.cs">
       <DependentUpon>RecommendationCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\ButtonCell.cs" />
+    <Compile Include="Views\Cell\ButtonCell.designer.cs">
+      <DependentUpon>ButtonCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\WriteReviewController.cs" />
+    <Compile Include="Controllers\Badges\WriteReviewController.designer.cs">
+      <DependentUpon>WriteReviewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedTextView.cs" />
+    <Compile Include="ExtendedTextView1.cs" />
+    <Compile Include="ExtendedTextView1.designer.cs">
+      <DependentUpon>ExtendedTextView1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\BadgeProfileController.cs" />
+    <Compile Include="Controllers\Badges\BadgeProfileController.designer.cs">
+      <DependentUpon>BadgeProfileController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +394,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="googleiosmaps">
       <Version>2.1.0.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="facebookios">
+      <Version>4.19.0.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

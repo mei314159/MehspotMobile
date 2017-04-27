@@ -9,6 +9,8 @@ using Mehspot.Core.DTO.Badges;
 using mehspot.iOS.Controllers.Badges.DataSources.Search;
 using mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
 using mehspot.iOS.Views.Cell;
+using Mehspot.Core.Contracts.Wrappers;
+using mehspot.iOS.Wrappers;
 
 namespace mehspot.iOS
 {
@@ -18,39 +20,45 @@ namespace mehspot.iOS
         public ISearchResultDTO SearchResultDTO;
         public SearchModel SearchModel;
         ViewBadgeProfileTableSource profileDataSource;
+        RecommendationsTableSource recommendationsDataSource;
+        IViewHelper viewHelper;
+
+        private string MessageUserId;
+        private string MessageUserName;
 
         public ViewProfileViewController (IntPtr handle) : base (handle)
         {
         }
 
-        public override void ViewDidLoad ()
+        public override async void ViewDidLoad ()
         {
             this.NavBar.TopItem.Title =
                 (MehspotResources.ResourceManager.GetString (SearchModel.BadgeName) ?? SearchModel.BadgeName) + " Profile";
-
-            TableView.RegisterNibForCellReuse (RecommendationCell.Nib, RecommendationCell.Key);
+            this.viewHelper = new ViewHelper (this.View);
             TableView.TableHeaderView.Hidden = true;
             TableView.TableFooterView = new UIView ();
             this.ProfilePicture.UserInteractionEnabled = true;
             var tapGestureRecognizer = new UITapGestureRecognizer (ProfilePictureDoupleTapped);
             tapGestureRecognizer.NumberOfTapsRequired = 2;
             this.ProfilePicture.AddGestureRecognizer (tapGestureRecognizer);
-        }
-
-        public override async void ViewDidAppear (bool animated)
-        {
             await RefreshView ();
-            TableView.TableHeaderView.Hidden = false;
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
             if (segue.Identifier == "GoToMessagingSegue") {
                 var controller = (MessagingViewController)segue.DestinationViewController;
-                controller.ToUserId = profileDataSource.Profile.Details.UserId;
-                controller.ToUserName = profileDataSource.Profile.Details.UserName;
+                controller.ToUserId = MessageUserId;
+                controller.ToUserName = MessageUserName;
                 controller.ParentController = this;
+            } else if (segue.Identifier == "GoToWriteRecommendationSegue") {
+                var controller = (WriteReviewController)segue.DestinationViewController;
+                controller.BadgeService = SearchModel.BadgeService;
+                controller.BadgeId = SearchResultDTO.Details.BadgeId;
+                controller.UserId = SearchResultDTO.Details.UserId;
+                controller.OnSave += RecommendationAdded;
             }
+
 
             base.PrepareForSegue (segue, sender);
         }
@@ -67,7 +75,7 @@ namespace mehspot.iOS
                     break;
                 }
             case 2: {
-                    PerformSegue ("GoToMessagingSegue", this);
+                    GoToMessaging (profileDataSource.Profile.Details.UserId, profileDataSource.Profile.Details.UserName);
                     break;
                 }
             }
@@ -131,6 +139,7 @@ namespace mehspot.iOS
             ActivityIndicator.StopAnimating ();
             ActivityIndicator.RemoveFromSuperview ();
             TableView.UserInteractionEnabled = true;
+            TableView.TableHeaderView.Hidden = false;
             loading = false;
         }
 
@@ -142,14 +151,41 @@ namespace mehspot.iOS
 
         async Task SetRecommendationsDataSourceAsync ()
         {
-            var recommendationsDataSource = await this.SearchModel.GetRecommendationsTableSource (this.SearchResultDTO.Details.UserId);
+            if (recommendationsDataSource == null) {
+                viewHelper.ShowOverlay ("Wait...");
+                var result = await this.SearchModel.GetRecommendationsTableSource (this.SearchResultDTO.Details.UserId, MehspotAppContext.Instance.AuthManager.AuthInfo.UserId);
+                if (recommendationsDataSource == null) {
+                    recommendationsDataSource = result;
+                    recommendationsDataSource.OnWriteReviewButtonTouched += RecommendationsDataSource_OnWriteReviewButtonTouched;
+                    recommendationsDataSource.OnGoToMessaging += GoToMessaging;
+                }
+
+                viewHelper.HideOverlay ();
+            }
+
+            TableView.Hidden = true;
             TableView.Source = recommendationsDataSource;
+            TableView.ReloadData ();
+            TableView.Hidden = false;
+        }
+
+        void RecommendationAdded (BadgeUserRecommendationDTO recommendation)
+        {
+            recommendationsDataSource.AddRecommendation (recommendation);
+            recommendationsDataSource.HideCreateButton ();
             TableView.ReloadData ();
         }
 
-        void InitializeTable ()
+        void RecommendationsDataSource_OnWriteReviewButtonTouched ()
         {
+            PerformSegue ("GoToWriteRecommendationSegue", this);
+        }
 
+        void GoToMessaging (string userId, string userName)
+        {
+            MessageUserId = userId;
+            MessageUserName = userName;
+            PerformSegue ("GoToMessagingSegue", this);
         }
     }
 }
