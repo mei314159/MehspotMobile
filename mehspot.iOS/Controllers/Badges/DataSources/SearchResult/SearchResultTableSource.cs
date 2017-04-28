@@ -14,6 +14,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
     public delegate void SendMessageButtonTouched (UIButton obj, ISearchResultDTO item);
     public delegate void ViewProfileButtonTouched (UIButton obj, ISearchResultDTO item);
     public delegate void OnRegisterButtonTouched (int requiredBadgeId);
+    public delegate void OnLoadingError (Result result);
     public class SearchResultTableSource : UITableViewSource
     {
         private const int pageSize = 20;
@@ -40,6 +41,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         public event SendMessageButtonTouched SendMessageButtonTouched;
         public event ViewProfileButtonTouched ViewProfileButtonTouched;
         public event OnRegisterButtonTouched RegisterButtonTouched;
+        public event OnLoadingError OnLoadingError;
 
         public event Action LoadingMoreStarted;
         public event Action LoadingMoreEnded;
@@ -55,6 +57,8 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
                 this.Items.AddRange (result.Data);
                 tableView.ReloadData ();
+            } else {
+                OnLoadingError?.Invoke (result);
             }
         }
 

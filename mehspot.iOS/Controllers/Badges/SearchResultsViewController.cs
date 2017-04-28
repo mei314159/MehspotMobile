@@ -7,6 +7,7 @@ using MehSpot.Models.ViewModels;
 using mehspot.iOS.Views.Cell;
 using mehspot.iOS.Controllers.Badges.DataSources.Search;
 using Mehspot.Core;
+using mehspot.iOS.Wrappers;
 
 namespace mehspot.iOS
 {
@@ -29,8 +30,9 @@ namespace mehspot.iOS
             SearchModel.SearchResultTableSource.ViewProfileButtonTouched += ViewProfileButtonTouched;
             SearchModel.SearchResultTableSource.LoadingMoreStarted += LoadingMoreStarted;
             SearchModel.SearchResultTableSource.LoadingMoreEnded += LoadingMoreEnded;
-            this.TableView.Source = SearchModel.SearchResultTableSource;
             SearchModel.SearchResultTableSource.RegisterButtonTouched += SearchResultTableSource_RegisterButtonTouched;
+            SearchModel.SearchResultTableSource.OnLoadingError += SearchResultTableSource_OnLoadingError;
+            this.TableView.Source = SearchModel.SearchResultTableSource;
 
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
             this.TableView.TableFooterView.Hidden = true;
@@ -99,6 +101,11 @@ namespace mehspot.iOS
         private void SearchResultTableSource_RegisterButtonTouched (int requiredBadgeId)
         {
             PerformSegue ("RegisterRequiredBadgeSegue", this);
+        }
+
+        void SearchResultTableSource_OnLoadingError (Mehspot.Core.DTO.Result result)
+        {
+            new ViewHelper (this.View).ShowAlert ("Search Error", "Please check if you set your Zip Code and Subdivision in your profile.");
         }
 
         private void LoadingMoreStarted ()
