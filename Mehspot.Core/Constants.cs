@@ -6,5 +6,6 @@ namespace Mehspot.Core
         //public const string ApiHost = "http://mehspot-dev.mehspot.com";
         public const string ApiHost = "http://mehspot.com";
         //public const string ApiHost = "http://10.211.55.3";
+        //public const string ApiHost = "http://192.168.0.105";
     }
 }

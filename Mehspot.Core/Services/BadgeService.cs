@@ -33,6 +33,12 @@ namespace Mehspot.Core.Services
             return await GetAsync<T>($"Badges/Profile?badgeId={badgeId}&userId={userId}").ConfigureAwait(false);
         }
 
+        public async Task<Result<BadgeRecommendationDTO>> GetBadgeRecommendationsAsync(int badgeId, string userId)
+        {
+            return await GetAsync<BadgeRecommendationDTO>($"Badges/Recommendations?badgeId={badgeId}&userId={userId}").ConfigureAwait(false);
+        }
+
+
         public async Task<Result<BadgeProfileDTO<EditBadgeProfileDTO>>> GetMyBadgeProfileAsync(int badgeId)
         {
             return await GetAsync<BadgeProfileDTO<EditBadgeProfileDTO>>($"Badges/EditProfile?badgeId={badgeId}&userId={this.ApplicationDataStorage.AuthInfo.UserId}").ConfigureAwait(false);
@@ -62,17 +68,22 @@ namespace Mehspot.Core.Services
 
         public async Task<Result> ToggleBadgeEmploymentHistoryAsync(string userId, int badgeId, bool delete)
         {
-            return await PostAsync<object>($"Badges/ToggleBadgeEmploymentHistory", new { EmployeeId = userId, Delete = delete, BadgeId = badgeId }).ConfigureAwait(false);
+            return await PostAsync<object>("Badges/ToggleBadgeEmploymentHistory", new { EmployeeId = userId, Delete = delete, BadgeId = badgeId }).ConfigureAwait(false);
         }
 
         public async Task<Result> SaveBadgeProfileAsync(BadgeProfileDTO<EditBadgeProfileDTO> profile)
         {
-            return await PostAsync<object>($"Badges/SaveProfile", profile).ConfigureAwait(false);
+            return await PostAsync<object>("Badges/SaveProfile", profile).ConfigureAwait(false);
         }
 
         public async Task<Result> ToggleBadgeUserDescriptionAsync(BadgeUserDescriptionDTO dto)
         {
-            return await PostAsync<object>($"Badges/ToggleBadgeUserDescription", dto).ConfigureAwait(false);
+            return await PostAsync<object>("Badges/ToggleBadgeUserDescription", dto).ConfigureAwait(false);
+        }
+
+        public async Task<Result<BadgeUserRecommendationDTO>> WriteRecommendationAsync(int badgeId, string userId, string text)
+        {
+            return await PostAsync<BadgeUserRecommendationDTO>($"badges/{badgeId}/recommendations/{userId}", text).ConfigureAwait(false);
         }
 
         public class BadgeNames

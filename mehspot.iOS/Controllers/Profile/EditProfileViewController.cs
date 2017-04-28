@@ -62,7 +62,7 @@ namespace mehspot.iOS
             ChangePhotoButton.Layer.BorderColor = UIColor.LightGray.CGColor;
             TableView.Delegate = this;
             TableView.WeakDataSource = this;
-            TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            TableView.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
             TableView.TableHeaderView.Hidden = TableView.TableFooterView.Hidden = true;
 
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
@@ -79,11 +79,6 @@ namespace mehspot.iOS
         private async void RefreshControl_ValueChanged (object sender, EventArgs e)
         {
             await RefreshView ();
-        }
-
-        public void HideKeyboard ()
-        {
-            this.View.FindFirstResponder ()?.ResignFirstResponder ();
         }
 
         partial void ChangePhotoButtonTouched (UIButton sender)
@@ -142,7 +137,7 @@ namespace mehspot.iOS
         async partial void SaveButtonTouched (UIBarButtonItem sender)
         {
             sender.Enabled = false;
-            HideKeyboard ();
+            this.HideKeyboard ();
             viewHelper.ShowOverlay ("Saving...");
 
             if (profileImageChanged) {

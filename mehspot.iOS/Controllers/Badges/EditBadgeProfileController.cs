@@ -38,7 +38,7 @@ namespace mehspot.iOS
             badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
             subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
             viewHelper = new ViewHelper (this.View);
-            TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            TableView.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
@@ -65,16 +65,10 @@ namespace mehspot.iOS
             await RefreshView ();
         }
 
-        public void HideKeyboard ()
-        {
-            this.View.FindFirstResponder ()?.ResignFirstResponder ();
-        }
-
-
         async partial void SaveButtonTouched (UIBarButtonItem sender)
         {
             sender.Enabled = false;
-            HideKeyboard ();
+            this.HideKeyboard ();
             viewHelper.ShowOverlay ("Saving...");
 
             var result = await this.badgeService.SaveBadgeProfileAsync (profile);

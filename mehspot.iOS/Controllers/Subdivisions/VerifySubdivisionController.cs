@@ -47,7 +47,7 @@ namespace mehspot.iOS.Controllers
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
-            this.View.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            this.View.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
             this.MainTable.TableFooterView = new UIView ();
             viewHelper = new ViewHelper (this.View);
             subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
@@ -226,11 +226,6 @@ namespace mehspot.iOS.Controllers
 
             MapWrapperView.AddSubview (mapView);
             SetCamera (addressOptions [0].Key.Value);
-        }
-
-        public void HideKeyboard ()
-        {
-            this.View.FindFirstResponder ()?.ResignFirstResponder ();
         }
 
         void NameOptionChanged (int? value)

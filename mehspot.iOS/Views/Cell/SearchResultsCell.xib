@@ -26,13 +26,13 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alex Minski" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="7" translatesAutoresizingMaskIntoConstraints="NO" minimumScaleFactor="0.5" misplaced="YES">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="7" translatesAutoresizingMaskIntoConstraints="NO" minimumScaleFactor="0.5" misplaced="YES">
                         <rect key="frame" x="75" y="10" width="177" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17" weight="medium"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAMDEN POND (30005)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="10" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="10" misplaced="YES">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subdivision" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="10" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="10" misplaced="YES">
                         <rect key="frame" x="75" y="43" width="177" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
@@ -63,7 +63,7 @@
                             <constraint id="40" firstAttribute="width" secondItem="34" secondAttribute="height" multiplier="1:1"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Middle School" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="41" translatesAutoresizingMaskIntoConstraints="NO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Middle School" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="41" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                         <rect key="frame" x="75" y="59" width="81" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
@@ -159,7 +159,7 @@
         <image name="profile-icon" width="25" height="25"/>
         <image name="signout-icon" width="22" height="22"/>
         <image name="search-icon" width="25" height="25"/>
-        <image name="logo.jpg" width="350" height="350"/>
+        <image name="logo.jpg" width="1242" height="795"/>
         <image name="profile_image.png" width="400" height="400"/>
         <image name="badges/babysitter.png" width="70" height="69"/>
         <image name="badges/babysitteremployer.png" width="70" height="70"/>
@@ -190,5 +190,10 @@
         <image name="badges/kidsplaydateb.png" width="210" height="210"/>
         <image name="badges/otherjobsb.png" width="210" height="210"/>
         <image name="star-yellow-icon" width="24" height="24"/>
+        <image name="more-icon" width="25" height="25"/>
+        <image name="details-icon" width="25" height="25"/>
+        <image name="review-icon" width="25" height="25"/>
+        <image name="signin-fb.png" width="220" height="40"/>
+        <image name="logo-small.jpg" width="300" height="192"/>
     </resources>
 </document>

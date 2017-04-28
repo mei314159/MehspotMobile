@@ -11,10 +11,12 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
     public class SearchModel
     {
         private ViewBadgeProfileTableSource ViewBadgeProfileTableSource;
+        private RecommendationsTableSource RecommendationsTableSource;
         public string BadgeName { get; set; }
-
-        public SearchModel (string badgeName, ISearchFilterDTO filter)
+        public BadgeService BadgeService { get; private set; }
+        public SearchModel (BadgeService badgeService, string badgeName, ISearchFilterDTO filter)
         {
+            this.BadgeService = badgeService;
             this.BadgeName = badgeName;
             this.Filter = filter;
         }
@@ -29,6 +31,12 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         {
             await ViewBadgeProfileTableSource.LoadAsync (userId);
             return ViewBadgeProfileTableSource;
+        }
+
+        public async Task<RecommendationsTableSource> GetRecommendationsTableSource (string userId, string currentUserId)
+        {
+            await RecommendationsTableSource.LoadAsync (userId, currentUserId);
+            return RecommendationsTableSource;
         }
 
         public static async Task<SearchModel> GetInstanceAsync (BadgeService badgeService, string badgeName, int badgeId)
@@ -102,10 +110,11 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
             }
 
             await searchFilterTableSource.InitializeAsync ();
-            var model = new SearchModel (badgeName, searchFilterTableSource.Filter);
+            var model = new SearchModel (badgeService, badgeName, searchFilterTableSource.Filter);
             model.SearchFilterTableSource = searchFilterTableSource;
             model.SearchResultTableSource = new SearchResultTableSource (badgeService, searchFilterTableSource.Filter, resultType);
             model.ViewBadgeProfileTableSource = viewBadgeProfileTableSource;
+            model.RecommendationsTableSource = new RecommendationsTableSource (badgeId, badgeName, badgeService);
             return model;
         }
     }

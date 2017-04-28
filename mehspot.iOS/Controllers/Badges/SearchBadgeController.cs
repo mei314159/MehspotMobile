@@ -26,7 +26,7 @@ namespace mehspot.iOS
         public override void ViewDidLoad ()
         {
             viewHelper = new ViewHelper (this.View);
-            this.TableView.AddGestureRecognizer (new UITapGestureRecognizer (HideKeyboard));
+            this.TableView.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
             this.TableView.TableFooterView.Hidden = true;
         }
 
@@ -52,11 +52,6 @@ namespace mehspot.iOS
             viewHelper.HideOverlay ();
             viewWasInitialized = true;
             this.TableView.TableFooterView.Hidden = false;
-        }
-
-        public void HideKeyboard ()
-        {
-            this.View.FindFirstResponder ()?.ResignFirstResponder ();
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
