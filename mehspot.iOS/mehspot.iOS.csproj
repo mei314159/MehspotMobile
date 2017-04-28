@@ -195,6 +195,7 @@
     <InterfaceDefinition Include="Controllers\Subdivisions\VerifySubdivisionController.xib" />
     <InterfaceDefinition Include="Views\Cell\RecommendationCell.xib" />
     <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SearchLimitCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -338,9 +339,9 @@
       <DependentUpon>WriteReviewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtendedTextView.cs" />
-    <Compile Include="Controllers\Badges\BadgeProfileController.cs" />
-    <Compile Include="Controllers\Badges\BadgeProfileController.designer.cs">
-      <DependentUpon>BadgeProfileController.cs</DependentUpon>
+    <Compile Include="Views\Cell\SearchLimitCell.cs" />
+    <Compile Include="Views\Cell\SearchLimitCell.designer.cs">
+      <DependentUpon>SearchLimitCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

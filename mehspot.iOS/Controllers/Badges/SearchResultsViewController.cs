@@ -7,7 +7,6 @@ using MehSpot.Models.ViewModels;
 using mehspot.iOS.Views.Cell;
 using mehspot.iOS.Controllers.Badges.DataSources.Search;
 using Mehspot.Core;
-using Mehspot.Core.Services;
 
 namespace mehspot.iOS
 {
@@ -28,9 +27,10 @@ namespace mehspot.iOS
             this.TableView.RegisterNibForCellReuse (SearchResultsCell.Nib, SearchResultsCell.Key);
             SearchModel.SearchResultTableSource.SendMessageButtonTouched += SendMessageButtonTouched;
             SearchModel.SearchResultTableSource.ViewProfileButtonTouched += ViewProfileButtonTouched;
-            SearchModel.SearchResultTableSource.LoadingStarted += LoadingStarted;
-            SearchModel.SearchResultTableSource.LoadingEnded += LoadingEnded;
+            SearchModel.SearchResultTableSource.LoadingMoreStarted += LoadingMoreStarted;
+            SearchModel.SearchResultTableSource.LoadingMoreEnded += LoadingMoreEnded;
             this.TableView.Source = SearchModel.SearchResultTableSource;
+            SearchModel.SearchResultTableSource.RegisterButtonTouched += SearchResultTableSource_RegisterButtonTouched;
 
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
             this.TableView.TableFooterView.Hidden = true;
@@ -47,26 +47,20 @@ namespace mehspot.iOS
 
         private void SetTitle ()
         {
-            var title = MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName + "_SearchResultsTitle") ??
-            ((MehspotResources.ResourceManager.GetString (this.SearchModel.BadgeName) ?? this.SearchModel.BadgeName) + "s");
+            var title = MehspotResources.ResourceManager.GetString (this.SearchModel.SearchBadge.BadgeName + "_SearchResultsTitle") ??
+            ((MehspotResources.ResourceManager.GetString (this.SearchModel.SearchBadge.BadgeName) ?? this.SearchModel.SearchBadge.BadgeName) + "s");
             this.NavBar.Title = title;
+        }
+
+        internal void RegqiredBadgeWasRegistered ()
+        {
+            this.viewWasInitialized = false;
+            SearchModel.SearchBadge.RequiredBadgeIsRegistered = true;
         }
 
         [Action ("UnwindToSearchResultsViewController:")]
         public void UnwindToSearchResultsViewController (UIStoryboardSegue segue)
         {
-        }
-
-        private void LoadingStarted ()
-        {
-            this.ActivityIndicator.StartAnimating ();
-            this.TableView.TableFooterView.Hidden = false;
-        }
-
-        private void LoadingEnded ()
-        {
-            this.ActivityIndicator.StopAnimating ();
-            this.TableView.TableFooterView.Hidden = true;
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -79,21 +73,44 @@ namespace mehspot.iOS
                 var controller = (ViewProfileViewController)segue.DestinationViewController;
                 controller.SearchModel = SearchModel;
                 controller.SearchResultDTO = this.SelectedItem;
+            } else if (segue.Identifier == "RegisterRequiredBadgeSegue") {
+                var controller = (EditBadgeProfileController)segue.DestinationViewController;
+                controller.BadgeId = SearchModel.SearchBadge.RequiredBadgeId.Value;
+                controller.BadgeName = SearchModel.SearchBadge.RequiredBadgeName;
+                controller.BadgeIsRegistered = SearchModel.SearchBadge.RequiredBadgeIsRegistered;
+                controller.RedirectToSearchResults = true;
             }
 
             base.PrepareForSegue (segue, sender);
         }
 
-        void SendMessageButtonTouched (UIButton obj, ISearchResultDTO dto)
+        private void SendMessageButtonTouched (UIButton obj, ISearchResultDTO dto)
         {
             this.SelectedItem = dto;
             PerformSegue ("GoToMessagingSegue", this);
         }
 
-        void ViewProfileButtonTouched (UIButton obj, ISearchResultDTO dto)
+        private void ViewProfileButtonTouched (UIButton obj, ISearchResultDTO dto)
         {
             this.SelectedItem = dto;
             PerformSegue ("ViewProfileSegue", this);
+        }
+
+        private void SearchResultTableSource_RegisterButtonTouched (int requiredBadgeId)
+        {
+            PerformSegue ("RegisterRequiredBadgeSegue", this);
+        }
+
+        private void LoadingMoreStarted ()
+        {
+            this.ActivityIndicator.StartAnimating ();
+            this.TableView.TableFooterView.Hidden = false;
+        }
+
+        private void LoadingMoreEnded ()
+        {
+            this.ActivityIndicator.StopAnimating ();
+            this.TableView.TableFooterView.Hidden = true;
         }
 
         private async void RefreshControl_ValueChanged (object sender, EventArgs e)

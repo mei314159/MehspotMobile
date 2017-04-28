@@ -33,7 +33,7 @@ namespace mehspot.iOS
         public override async void ViewDidLoad ()
         {
             this.NavBar.TopItem.Title =
-                (MehspotResources.ResourceManager.GetString (SearchModel.BadgeName) ?? SearchModel.BadgeName) + " Profile";
+                    (MehspotResources.ResourceManager.GetString (SearchModel.SearchBadge.BadgeName) ?? SearchModel.SearchBadge.BadgeName) + " Profile";
             this.viewHelper = new ViewHelper (this.View);
             TableView.TableHeaderView.Hidden = true;
             TableView.TableFooterView = new UIView ();
@@ -84,7 +84,7 @@ namespace mehspot.iOS
         private async void ProfilePictureDoupleTapped ()
         {
             var dto = new BadgeUserDescriptionDTO {
-                BadgeName = this.SearchModel.BadgeName,
+                BadgeName = this.SearchModel.SearchBadge.BadgeName,
                 Delete = this.SearchResultDTO.Details.Favourite,
                 EmployeeId = this.SearchResultDTO.Details.UserId,
                 Type = BadgeDescriptionTypeEnum.Favourite
@@ -114,7 +114,7 @@ namespace mehspot.iOS
             ActivityIndicator.StartAnimating ();
             profileDataSource = await SearchModel.GetViewProfileTableSource (this.SearchResultDTO.Details.UserId);
             if (profileDataSource != null) {
-                this.NavBar.TopItem.Title = $"{this.SearchModel.BadgeName} {profileDataSource.Profile.Details.UserName}";
+                this.NavBar.TopItem.Title = $"{this.SearchModel.SearchBadge.BadgeName} {profileDataSource.Profile.Details.UserName}";
                 this.SubdivisionLabel.Text = profileDataSource.Profile.Details.SubdivisionName?.Trim ();
                 if (!string.IsNullOrEmpty (profileDataSource.Profile.Details.ProfilePicturePath)) {
                     var url = NSUrl.FromString (profileDataSource.Profile.Details.ProfilePicturePath);

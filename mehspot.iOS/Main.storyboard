@@ -59,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-825" y="-677"/>
+            <point key="canvasLocation" x="-1280" y="-93"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -145,7 +145,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2388" y="-37"/>
+            <point key="canvasLocation" x="-2343" y="317"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="7">
@@ -422,7 +422,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5285" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-132" y="-647"/>
+            <point key="canvasLocation" x="814" y="-35"/>
         </scene>
         <!--Messages-->
         <scene sceneID="192">
@@ -440,7 +440,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="196" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1304" y="-685"/>
+            <point key="canvasLocation" x="-1826" y="-94"/>
         </scene>
         <!--Search Babysitter-->
         <scene sceneID="3288">
@@ -493,7 +493,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3295" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-787" y="835"/>
+            <point key="canvasLocation" x="-804" y="1190"/>
         </scene>
         <!--Search Results View Controller-->
         <scene sceneID="3719">
@@ -544,12 +544,13 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <segue destination="87" kind="presentation" identifier="GoToMessagingSegue" id="3834"/>
                         <segue destination="4901" kind="presentation" identifier="ViewProfileSegue" id="4990"/>
                         <outlet property="NavBar" destination="6010" id="name-outlet-6010"/>
+                        <segue id="6867" destination="5496" kind="show" identifier="RegisterRequiredBadgeSegue"/>
                     </connections>
                     <navigationItem title="Title" id="6010" key="navigationItem"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3726" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-303" y="825"/>
+            <point key="canvasLocation" x="-260" y="1189"/>
         </scene>
         <!--Profile-->
         <scene sceneID="4053">
@@ -684,7 +685,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4060" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-831" y="78"/>
+            <point key="canvasLocation" x="-331" y="324"/>
         </scene>
         <!--Profile-->
         <scene sceneID="4246">
@@ -702,7 +703,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4250" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1348" y="73"/>
+            <point key="canvasLocation" x="-797" y="320"/>
         </scene>
         <!--Badges-->
         <scene sceneID="4403">
@@ -740,7 +741,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4411" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1312" y="832"/>
+            <point key="canvasLocation" x="-1318" y="821"/>
         </scene>
         <!--Badges-->
         <scene sceneID="4412">
@@ -933,7 +934,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4903" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="405"/>
+            <point key="canvasLocation" x="287" y="1566"/>
         </scene>
         <!--Badge-->
         <scene sceneID="5495">
@@ -990,11 +991,13 @@ If you are under age of 18, we recommend that you have your parents escort you t
                     <connections>
                         <outlet property="SaveButton" destination="5502" id="5501"/>
                         <outlet property="NavBar" destination="5507" id="name-outlet-5507"/>
+                        <segue id="6905" destination="6755" kind="unwind" identifier="UnwindToSearchResults" unwindAction="UnwindToSearchResultsViewController:"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5540" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6755" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="359" y="1223"/>
+            <point key="canvasLocation" x="998" y="739"/>
         </scene>
         <scene sceneID="5752">
             <objects>
@@ -1312,7 +1315,7 @@ If you are under age of 18, we recommend that you have your parents escort you t
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6652" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="975" y="434"/>
+            <point key="canvasLocation" x="1019" y="1576"/>
         </scene>
     </scenes>
     <resources>
