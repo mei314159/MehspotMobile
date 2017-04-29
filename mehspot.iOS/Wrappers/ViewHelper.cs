@@ -17,7 +17,7 @@ namespace mehspot.iOS.Wrappers
 
         public void ShowAlert (string title, string text)
         {
-            var avAlert = new UIAlertView (title, text, null, "OK", null);
+            var avAlert = new UIAlertView (title, text, (IUIAlertViewDelegate)null, "OK", null);
             avAlert.Show ();
         }
 

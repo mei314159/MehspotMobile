@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Foundation;
 using MehSpot.Models.ViewModels;
 using SDWebImage;
@@ -18,6 +18,9 @@ namespace mehspot.iOS.Views.Cell
 
         public Action<UIButton> SendMessageButtonAction;
         public Action<UIButton> ViewProfileButtonAction;
+
+        public static nfloat ExpandedHeight { get; } = 125;
+        public static nfloat CollapsedHeight { get; } = 84;
 
         protected SearchResultsCell (IntPtr handle) : base (handle)
         {

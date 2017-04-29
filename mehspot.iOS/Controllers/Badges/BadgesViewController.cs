@@ -42,8 +42,7 @@ namespace mehspot.iOS
         {
             if (segue.Identifier == "GoToSearchFilterSegue") {
                 var controller = ((SearchBadgeController)segue.DestinationViewController);
-                controller.BadgeId = this.SelectedBadge.BadgeId;
-                controller.BadgeName = this.SelectedBadge.BadgeName;
+                controller.BadgeSummary = this.SelectedBadge;
             } else if (segue.Identifier == "GoToEditBadgeSegue") {
                 var controller = ((EditBadgeProfileController)segue.DestinationViewController);
                 controller.BadgeId = this.SelectedBadge.BadgeId;
@@ -70,7 +69,7 @@ namespace mehspot.iOS
             if (badgesResult.IsSuccess) {
                 SetBadges (badgesResult.Data);
             } else {
-                new UIAlertView ("Error", "Can not load badges", null, "OK").Show ();
+                new UIAlertView ("Error", "Can not load badges", (IUIAlertViewDelegate)null, "OK").Show ();
             }
 
             this.TableView.SetContentOffset (CGPoint.Empty, true);

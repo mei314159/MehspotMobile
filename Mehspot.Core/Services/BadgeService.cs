@@ -46,7 +46,7 @@ namespace Mehspot.Core.Services
 
         public async Task<Result<ISearchResultDTO[]>> Search(ISearchFilterDTO filter, int skip, int take, Type resultType)
         {
-            var result = await GetAsync($"Badges/SearchForApp?badgeId={filter.BadgeId}&skip={skip}&take={take}&" + filter.GetQueryString(), resultType).ConfigureAwait(false);
+            var result = await GetAsync($"Badges/SearchForApp?skip={skip}&take={take}&" + filter.GetQueryString(), resultType).ConfigureAwait(false);
 
             var dto = new Result<ISearchResultDTO[]>
             {

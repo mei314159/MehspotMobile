@@ -24,6 +24,7 @@ namespace mehspot.iOS
         public int BadgeId;
         public string BadgeName;
         public bool BadgeIsRegistered;
+        public bool RedirectToSearchResults;
 
         BadgeProfileDTO<EditBadgeProfileDTO> profile;
 
@@ -42,13 +43,25 @@ namespace mehspot.iOS
             this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
         }
 
-        private void SetTitle () {
+        public override void PrepareForSegue (UIStoryboardSegue segue, Foundation.NSObject sender)
+        {
+            if (segue.Identifier == "UnwindToSearchResults") {
+                var controller = (SearchResultsViewController)segue.DestinationViewController;
+                controller.RegqiredBadgeWasRegistered ();
+            }
+
+            base.PrepareForSegue (segue, sender);
+        }
+
+        private void SetTitle ()
+        {
 
             var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
             var title =
                 BadgeIsRegistered ?
                 "Update " + (this.BadgeName == BadgeService.BadgeNames.BabysitterEmployer ? "babysitting (employer) page" : badgeName)
-                : "Sign up " + (this.BadgeName == BadgeService.BadgeNames.Fitness ? "for " : this.BadgeName == BadgeService.BadgeNames.Babysitter ? "as " : string.Empty) + badgeName;
+                : "Sign up " +
+                (this.BadgeName == BadgeService.BadgeNames.Fitness || this.BadgeName == BadgeService.BadgeNames.Golf || this.BadgeName == BadgeService.BadgeNames.OtherJobs ? "for " : "as ") + badgeName;
 
             this.NavBar.Title = title;
         }
@@ -83,11 +96,12 @@ namespace mehspot.iOS
                 var errors = result.ModelState.ModelState?.SelectMany (a => a.Value);
                 message = errors != null ? string.Join (Environment.NewLine, errors) : result.ErrorMessage;
             }
-            var alert = new UIAlertView (
-                                    result.IsSuccess ? "Success" : "Error",
-                                    message,
-                                    null,
-                                    "OK");
+            var alert = new UIAlertView (result.IsSuccess ? "Success" : "Error", message, (IUIAlertViewDelegate)null, "OK");
+            alert.Clicked += (object s, UIButtonEventArgs e) => {
+                if (result.IsSuccess && RedirectToSearchResults) {
+                    PerformSegue ("UnwindToSearchResults", this);
+                }
+            };
             alert.Show ();
 
             sender.Enabled = true;
@@ -112,7 +126,7 @@ namespace mehspot.iOS
                 TableView.SetContentOffset (CGPoint.Empty, true);
                 RefreshControl.EndRefreshing ();
             } else {
-                new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
+                viewHelper.ShowAlert ("Error", "Can not load profile data");
                 TableView.SetContentOffset (CGPoint.Empty, true);
                 RefreshControl.EndRefreshing ();
                 return;

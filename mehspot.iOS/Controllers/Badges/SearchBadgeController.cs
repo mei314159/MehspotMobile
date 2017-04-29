@@ -7,6 +7,7 @@ using mehspot.iOS.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Services;
 using mehspot.iOS.Controllers.Badges.DataSources.Search;
+using Mehspot.Core.DTO;
 
 namespace mehspot.iOS
 {
@@ -15,9 +16,7 @@ namespace mehspot.iOS
         volatile bool viewWasInitialized;
         private IViewHelper viewHelper;
         private SearchModel SearchModel;
-        public int BadgeId;
-        public string BadgeName;
-
+        public BadgeSummaryDTO BadgeSummary;
 
         public SearchBadgeController (IntPtr handle) : base (handle)
         {
@@ -32,7 +31,7 @@ namespace mehspot.iOS
 
         private void SetTitle ()
         {
-            var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
+            var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeSummary.BadgeName) ?? this.BadgeSummary.BadgeName;
             var title = "Search for " + badgeName;
             this.NavBar.Title = title;
         }
@@ -45,7 +44,7 @@ namespace mehspot.iOS
 
             viewHelper.ShowOverlay ("Loading...");
 
-            this.SearchModel = await SearchModel.GetInstanceAsync (new BadgeService (MehspotAppContext.Instance.DataStorage), this.BadgeName, this.BadgeId);
+            this.SearchModel = await SearchModel.GetInstanceAsync (new BadgeService (MehspotAppContext.Instance.DataStorage), this.BadgeSummary);
             this.TableView.Source = this.SearchModel.SearchFilterTableSource;
             this.TableView.ReloadData ();
 
