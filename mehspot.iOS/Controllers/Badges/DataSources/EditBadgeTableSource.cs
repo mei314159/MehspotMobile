@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
 using mehspot.iOS.Views;
+using mehspot.iOS.Views.Cell;
 using Mehspot.Core;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.Services;
@@ -18,6 +19,10 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         private readonly List<UITableViewCell> cells;
 
+        BooleanEditCell toggleEnabledStateCell;
+
+        ButtonCell deleteBadgeCell;
+
         private readonly BadgeProfileDTO<EditBadgeProfileDTO> badge;
         private readonly SubdivisionService subdivisionService;
 
@@ -27,6 +32,9 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             this.subdivisionService = subdivisionService;
             cells = new List<UITableViewCell> ();
         }
+
+        public Action<bool> OnEnabledStateChanged;
+        public Action OnDeleteBadgeButtonTouched;
 
         public static async Task<EditBadgeTableSource> Create (BadgeProfileDTO<EditBadgeProfileDTO> profile, SubdivisionService subdivisionService)
         {
@@ -51,6 +59,18 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             return cells [indexPath.Row].Frame.Height;
         }
 
+        public void ShowToggleEnabledCell ()
+        {
+            if (toggleEnabledStateCell == null) {
+                toggleEnabledStateCell = BooleanEditCell.Create (badge.IsEnabled, v => { badge.IsEnabled = v; IsEnabledCell_ValueChanged (v); }, "Enable Badge");
+                deleteBadgeCell = ButtonCell.Create ("Delete Badge");
+                deleteBadgeCell.OnButtonTouched += DeleteBadgeCell_OnButtonTouched;
+                cells.Add (toggleEnabledStateCell);
+                cells.Add (deleteBadgeCell);
+            }
+        }
+
+
         private async Task InitializeAsync ()
         {
             var subdivisionCellKey = "";
@@ -64,7 +84,8 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             cells.Add (zipCell);
 
             var subdivisionCell = SubdivisionPickerCell.Create (badge.Profile.SubdivisionId, (property) => {
-                badge.Profile.SubdivisionId = property?.Id; }, "Subdivision", profileSubdivisions, badge.Profile.Zip, string.IsNullOrWhiteSpace (badge.Profile.Zip) || !zipCell.IsValid);
+                badge.Profile.SubdivisionId = property?.Id;
+            }, "Subdivision", profileSubdivisions, badge.Profile.Zip, string.IsNullOrWhiteSpace (badge.Profile.Zip) || !zipCell.IsValid);
             subdivisionCell.FieldName = subdivisionCellKey;
             cells.Add (subdivisionCell);
 
@@ -87,7 +108,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                     var zipCode = badge.BadgeValues.FirstOrDefault (a => a.Value.BadgeBadgeItem.BadgeItem.Name == zipFieldName).Value?.Value;
                     var subdivisions = await GetSubdivisions (zipCode);
                     int value;
-                    var cell = SubdivisionPickerCell.Create (int.TryParse(badgeValue.Value.Value, out value) ? value : (int?)null, property => badgeValue.Value.Value = property.Id.ToString(), label, subdivisions, zipCode);
+                    var cell = SubdivisionPickerCell.Create (int.TryParse (badgeValue.Value.Value, out value) ? value : (int?)null, property => badgeValue.Value.Value = property.Id.ToString (), label, subdivisions, zipCode);
                     cell.FieldName = itemName;
                     cells.Add (cell);
                 } else if (itemName.EndsWith ("Zip", StringComparison.InvariantCultureIgnoreCase) && itemName.StartsWith (badge.BadgeName, StringComparison.InvariantCultureIgnoreCase)) {
@@ -121,6 +142,10 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                     cells.Add (MultilineTextEditCell.Create (badgeValue.Value.Value, (property) => badgeValue.Value.Value = property, label));
                 } else
                     cells.Add (TextEditCell.Create (badgeValue.Value.Value, a => badgeValue.Value.Value = a, label, placeholder));
+            }
+
+            if (badge.Id != default (int)) {
+                ShowToggleEnabledCell ();
             }
         }
 
@@ -159,6 +184,16 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             }
 
             return null;
+        }
+
+        void IsEnabledCell_ValueChanged (bool value)
+        {
+            this.OnEnabledStateChanged?.Invoke (value);
+        }
+
+        void DeleteBadgeCell_OnButtonTouched (Views.Cell.ButtonCell arg1, UIButton arg2)
+        {
+            this.OnDeleteBadgeButtonTouched?.Invoke ();
         }
     }
 }

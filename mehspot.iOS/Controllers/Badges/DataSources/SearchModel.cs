@@ -94,10 +94,10 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
                 resultType = typeof (KidsPlayDateSearchResultDTO []);
                 viewBadgeProfileTableSource = new ViewKidsPlayDateTableSource (searchBadge.BadgeId, searchBadge.BadgeName, badgeService);
                 break;
-            case BadgeService.BadgeNames.Hobby:
-                searchFilterTableSource = new HobbyFilterTableSource (badgeService, searchBadge.BadgeId);
-                resultType = typeof (HobbySearchResultDTO []);
-                viewBadgeProfileTableSource = new ViewHobbyTableSource (searchBadge.BadgeId, searchBadge.BadgeName, badgeService);
+            case BadgeService.BadgeNames.Friendship:
+                searchFilterTableSource = new FriendshipFilterTableSource (badgeService, searchBadge.BadgeId);
+                resultType = typeof (FriendshipSearchResultDTO []);
+                viewBadgeProfileTableSource = new ViewFriendshipTableSource (searchBadge.BadgeId, searchBadge.BadgeName, badgeService);
                 break;
             case BadgeService.BadgeNames.OtherJobs:
                 searchFilterTableSource = new OtherJobsFilterTableSource (badgeService, searchBadge.BadgeId);

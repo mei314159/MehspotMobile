@@ -4,7 +4,7 @@ using MehSpot.Models.ViewModels;
 namespace Mehspot.Core.DTO.Badges
 {
 
-    public class HobbySearchResultDTO : ISearchResultDTO
+    public class FriendshipSearchResultDTO : ISearchResultDTO
     {
         public BadgeUserDetailsFilterDTO Details { get; set; }
 

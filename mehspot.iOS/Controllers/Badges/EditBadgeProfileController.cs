@@ -88,8 +88,11 @@ namespace mehspot.iOS
             viewHelper.HideOverlay ();
             string message;
             if (result.IsSuccess) {
-                if (!BadgeIsRegistered)
-                    BadgeIsRegistered = true;
+                if (!BadgeIsRegistered) {
+                    BadgeIsRegistered = this.profile.IsEnabled = true;
+                    ((EditBadgeTableSource)TableView.Source).ShowToggleEnabledCell ();
+                    TableView.ReloadData ();
+                }
                 SetTitle ();
                 message = $"{BadgeName} badge profile successfully saved";
             } else {
@@ -120,7 +123,10 @@ namespace mehspot.iOS
             dataLoaded = profileResult.IsSuccess;
             if (profileResult.IsSuccess) {
                 this.profile = profileResult.Data;
-                base.TableView.Source = await EditBadgeTableSource.Create (profileResult.Data, subdivisionService);
+                var tableSource = await EditBadgeTableSource.Create (profileResult.Data, subdivisionService);
+                tableSource.OnEnabledStateChanged += TableSource_OnEnabledStateChanged;
+                tableSource.OnDeleteBadgeButtonTouched += TableSource_OnDeleteBadgeButtonTouched;
+                base.TableView.Source = tableSource;
                 TableView.ReloadData ();
                 TableView.UserInteractionEnabled = this.SaveButton.Enabled = true;
                 TableView.SetContentOffset (CGPoint.Empty, true);
@@ -133,6 +139,35 @@ namespace mehspot.iOS
             }
 
             loading = false;
+        }
+
+        async void TableSource_OnEnabledStateChanged (bool isEnabled)
+        {
+            await badgeService.ToggleEnabledState (this.BadgeId, isEnabled);
+        }
+
+        void TableSource_OnDeleteBadgeButtonTouched ()
+        {
+            UIAlertView alert = new UIAlertView (
+                                            "Delete Badge",
+                                            "Do you want to delete this badge registration?",
+                                            (IUIAlertViewDelegate)null,
+                                            "Cancel",
+                                            new string [] { "Yes, I do" });
+            alert.Clicked += async (object sender, UIButtonEventArgs e) => {
+                MehspotAppContext.Instance.DataStorage.PushIsEnabled = true;
+                if (e.ButtonIndex != alert.CancelButtonIndex) {
+
+                    var result = await badgeService.DeleteBadgeAsync (this.BadgeId);
+                    if (result.IsSuccess) {
+                        this.NavigationController.PopViewController (true);
+                    } else {
+                        viewHelper.ShowAlert ("Error", result.ErrorMessage);
+                    }
+                }
+            };
+
+            alert.Show ();
         }
     }
 }

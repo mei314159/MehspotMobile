@@ -6,20 +6,27 @@ using Mehspot.Core.Services;
 namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
 
-    public class ViewHobbyTableSource : ViewBadgeProfileTableSource<BadgeProfileDTO<HobbyProfileDTO>>
+    public class ViewFriendshipTableSource : ViewBadgeProfileTableSource<BadgeProfileDTO<FriendshipProfileDTO>>
     {
-        public ViewHobbyTableSource (int badgeId, string badgeName, BadgeService badgeService) : base (badgeId, badgeName, badgeService)
+        public ViewFriendshipTableSource (int badgeId, string badgeName, BadgeService badgeService) : base (badgeId, badgeName, badgeService)
         {
         }
 
-        public override Task InitializeAsync (BadgeProfileDTO<HobbyProfileDTO> profile)
+        public override Task InitializeAsync (BadgeProfileDTO<FriendshipProfileDTO> profile)
         {
-            Cells.Add (TextViewCell.Create (profile.BadgeValues.FirstName, "Kid First Name"));
+            if (profile.BadgeValues.HobbyType != null && !string.IsNullOrEmpty (profile.BadgeValues.HobbyOther)) {
+                profile.BadgeValues.HobbyType = profile.BadgeValues.HobbyType.Replace ("Other", profile.BadgeValues.HobbyOther);
+            }
+
+            Cells.Add (TextViewCell.Create (profile.BadgeValues.FirstName, "First Name"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.HobbyType, "Hobby"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.Gender, "Gender"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.HobbyAgeRange, "Age Range"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.HobbyPreferredDateTime, "Preferred Date and Time"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.HobbyPreferredLocation, "Preferred Location"));
+            Cells.Add (TextViewCell.Create (profile.BadgeValues.FriendshipFamilyComposition, "Family Composition"));
+            Cells.Add (TextViewCell.Create (profile.BadgeValues.FriendshipProfession, "Profession"));
+            Cells.Add (TextViewCell.Create (profile.BadgeValues.FriendshipLookingFor, "Looking For"));
             Cells.Add (TextViewCell.Create (profile.BadgeValues.HobbyAdditionalInformation, "Additional Information"));
 
             Cells.Add (BooleanEditCell.Create (profile.Details.IsHired, v => { profile.Details.IsHired = v; IsHiredCell_ValueChanged (v); }, "Played Before"));

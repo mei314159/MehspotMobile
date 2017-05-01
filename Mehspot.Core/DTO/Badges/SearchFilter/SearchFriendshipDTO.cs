@@ -1,7 +1,7 @@
 namespace Mehspot.Core.DTO.Search
 {
 
-    public class SearchHobbyDTO : SearchFilterDTOBase
+    public class SearchFriendshipDTO : SearchFilterDTOBase
     {
         public string Gender { get; set; }
 

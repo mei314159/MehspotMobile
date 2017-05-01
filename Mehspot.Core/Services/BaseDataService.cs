@@ -83,6 +83,11 @@ namespace mehspot.Core
             return SendDataAsync<TResult>(uri, data, HttpMethod.Put);
         }
 
+        public Task<Result<TResult>> DeleteAsync<TResult>(string uri, object data)
+        {
+            return SendDataAsync<TResult>(uri, data, HttpMethod.Delete);
+        }
+
         public Task<Result<TResult>> PostAsync<TResult>(string uri, object data, bool anonymously = false)
         {
             return SendDataAsync<TResult>(uri, data, HttpMethod.Post, anonymously);
@@ -116,6 +121,8 @@ namespace mehspot.Core
                         response = await webClient.PutAsync(requestUri, content).ConfigureAwait(false);
                     else if (method == HttpMethod.Post)
                         response = await webClient.PostAsync(requestUri, content).ConfigureAwait(false);
+                    else if (method == HttpMethod.Delete)
+                        response = await webClient.DeleteAsync(requestUri).ConfigureAwait(false);
                     else
                     {
                         throw new ArgumentException("HttpMethod is not supported", nameof(method));

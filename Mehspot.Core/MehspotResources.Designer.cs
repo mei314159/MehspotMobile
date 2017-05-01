@@ -23,7 +23,7 @@ namespace Mehspot.Core {
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public MehspotResources() {
+        internal MehspotResources() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -74,12 +74,6 @@ namespace Mehspot.Core {
         public static string Golf {
             get {
                 return ResourceManager.GetString("Golf", resourceCulture);
-            }
-        }
-        
-        public static string Hobby {
-            get {
-                return ResourceManager.GetString("Hobby", resourceCulture);
             }
         }
         
@@ -158,12 +152,6 @@ namespace Mehspot.Core {
         public static string Golf_Description {
             get {
                 return ResourceManager.GetString("Golf_Description", resourceCulture);
-            }
-        }
-        
-        public static string Hobby_Description {
-            get {
-                return ResourceManager.GetString("Hobby_Description", resourceCulture);
             }
         }
         
@@ -1871,15 +1859,45 @@ namespace Mehspot.Core {
             }
         }
         
-        public static string Hobby_SearchResultsTitle {
+        public static string Friendship_SearchResultsTitle {
             get {
-                return ResourceManager.GetString("Hobby_SearchResultsTitle", resourceCulture);
+                return ResourceManager.GetString("Friendship_SearchResultsTitle", resourceCulture);
             }
         }
         
         public static string OtherJobs_SearchResultsTitle {
             get {
                 return ResourceManager.GetString("OtherJobs_SearchResultsTitle", resourceCulture);
+            }
+        }
+        
+        public static string FriendshipFamilyComposition {
+            get {
+                return ResourceManager.GetString("FriendshipFamilyComposition", resourceCulture);
+            }
+        }
+        
+        public static string FriendshipLookingFor {
+            get {
+                return ResourceManager.GetString("FriendshipLookingFor", resourceCulture);
+            }
+        }
+        
+        public static string FriendshipLookingFor_CoupleFriends {
+            get {
+                return ResourceManager.GetString("FriendshipLookingFor_CoupleFriends", resourceCulture);
+            }
+        }
+        
+        public static string FriendshipLookingFor_FriendsJustForMe {
+            get {
+                return ResourceManager.GetString("FriendshipLookingFor_FriendsJustForMe", resourceCulture);
+            }
+        }
+        
+        public static string FriendshipProfession {
+            get {
+                return ResourceManager.GetString("FriendshipProfession", resourceCulture);
             }
         }
     }

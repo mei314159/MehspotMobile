@@ -31,7 +31,7 @@ namespace Mehspot.Core.Models
             {
                 viewHelper.ShowAlert("Validation error", "Please enter your email.");
             }
-            else if (!Regex.IsMatch(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$"))
+            else if (!Regex.IsMatch(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{6,}"))
             {
                 viewHelper.ShowAlert("Validation error", "Passwords must have at least: one digit ('0'-'9'), one uppercase ('A'-'Z'), one lowercase ('a'-'z')");
             }

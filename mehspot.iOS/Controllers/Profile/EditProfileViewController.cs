@@ -154,7 +154,7 @@ namespace mehspot.iOS
                 UIAlertView alert = new UIAlertView (
                                     result.ErrorMessage,
                                     error,
-                                    null,
+                                    (IUIAlertViewDelegate)null,
                                     "OK");
                 alert.Show ();
             }
@@ -167,7 +167,7 @@ namespace mehspot.iOS
             UIAlertView alert = new UIAlertView (
                                             "Sign Out",
                                             "Are you sure you want to sign out?",
-                                            null,
+                                            (IUIAlertViewDelegate)null,
                                             "Cancel",
                                             new string [] { "Yes, I do" });
             alert.Clicked += (object s, UIButtonEventArgs e) => {
@@ -204,7 +204,7 @@ namespace mehspot.iOS
                 TableView.SetContentOffset (CGPoint.Empty, true);
                 RefreshControl.EndRefreshing ();
             } else {
-                new UIAlertView ("Error", "Can not load profile data", null, "OK").Show ();
+                new UIAlertView ("Error", "Can not load profile data", (IUIAlertViewDelegate)null, "OK").Show ();
                 TableView.SetContentOffset (CGPoint.Empty, true);
                 RefreshControl.EndRefreshing ();
             }

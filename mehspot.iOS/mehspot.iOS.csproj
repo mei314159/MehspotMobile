@@ -322,9 +322,9 @@
     <Compile Include="Controllers\Badges\DataSources\SearchFilter\KidsPlayDateFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewKidsPlayDateTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\SearchFilter\OtherJobsFilterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\HobbyFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilter\FriendshipFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewOtherJobsTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewHobbyTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewFriendshipTableSource.cs" />
 <Compile Include="Controllers\Badges\DataSources\Profile\RecommendationsTableSource.cs" />
     <Compile Include="Views\Cell\RecommendationCell.cs" />
     <Compile Include="Views\Cell\RecommendationCell.designer.cs">
@@ -343,6 +343,7 @@
     <Compile Include="Views\Cell\SearchLimitCell.designer.cs">
       <DependentUpon>SearchLimitCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Badges\DataSources\Profile\ViewPetSitterTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />
