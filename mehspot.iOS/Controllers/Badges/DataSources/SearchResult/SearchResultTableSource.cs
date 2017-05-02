@@ -66,7 +66,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         {
             if (!this.searchBadge.RequiredBadgeIsRegistered)
                 return;
-            
+
             if (expandedPaths.Contains (indexPath)) {
                 expandedPaths.Remove (indexPath);
             } else {
@@ -78,13 +78,20 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         public override nint RowsInSection (UITableView tableview, nint section)
         {
             var rowsCount = Items?.Count ?? 0;
+            if (!this.searchBadge.RequiredBadgeIsRegistered) {
+                if (rowsCount > limitedResultsCount) {
+                    rowsCount = limitedResultsCount + 1;
+                } else {
+                    rowsCount++;
+                }
+            }
 
-            return !this.searchBadge.RequiredBadgeIsRegistered && rowsCount > limitedResultsCount ? limitedResultsCount + 1 : rowsCount;
+            return rowsCount;
         }
 
         public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
         {
-            if (!this.searchBadge.RequiredBadgeIsRegistered && indexPath.Row == limitedResultsCount) {
+            if (!this.searchBadge.RequiredBadgeIsRegistered && this.RowsInSection (tableView, indexPath.Section) == indexPath.Row + 1) {
                 return SearchLimitCell.Height;
             }
 
@@ -120,9 +127,8 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
         {
-            var rowNumber = indexPath.Row;
             UITableViewCell cell = null;
-            if (this.searchBadge.RequiredBadgeIsRegistered || rowNumber < limitedResultsCount) {
+            if (this.searchBadge.RequiredBadgeIsRegistered || indexPath.Row + 1 < this.RowsInSection (tableView, indexPath.Section)) {
                 var item = Items [indexPath.Row];
                 cell = tableView.DequeueReusableCell (SearchResultsCell.Key, indexPath);
                 ConfigureCell (cell as SearchResultsCell, item);
