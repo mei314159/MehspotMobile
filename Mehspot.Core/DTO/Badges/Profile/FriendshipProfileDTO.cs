@@ -1,7 +1,7 @@
 namespace Mehspot.Core.DTO.Badges
 {
     
-    public class HobbyProfileDTO : IBadgeProfileValues
+    public class FriendshipProfileDTO : IBadgeProfileValues
     {
         public string FirstName { get; set; }
         public string HobbyType { get; set; }
@@ -21,5 +21,9 @@ namespace Mehspot.Core.DTO.Badges
         {
             get { return HobbyType; }
         }
+
+        public string FriendshipFamilyComposition { get; set; }
+        public string FriendshipProfession { get; set; }
+        public string FriendshipLookingFor { get; set; }
     }
 }

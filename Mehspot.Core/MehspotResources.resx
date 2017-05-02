@@ -27,8 +27,8 @@
 	<data name="Golf" xml:space="preserve">
 	    <value>Golf</value>
 	</data>
-	<data name="Hobby" xml:space="preserve">
-	    <value>Hobby</value>
+	<data name="Friendship" xml:space="preserve">
+	    <value>Friendship</value>
 	</data>
 	<data name="KidsPlayDate" xml:space="preserve">
 	    <value>Kids Playdate</value>
@@ -64,13 +64,10 @@
 	    <value>Search for fitness partner</value>
 	</data>
 	<data name="Friendship_Description" xml:space="preserve">
-	    <value>Search for friend</value>
+	    <value>Search for friends</value>
 	</data>
 	<data name="Golf_Description" xml:space="preserve">
 	    <value>Search for golf partner</value>
-	</data>
-	<data name="Hobby_Description" xml:space="preserve">
-	    <value>Search for hobby partner</value>
 	</data>
 	<data name="KidsPlayDate_Description" xml:space="preserve">
 	    <value>Search playdates for your children</value>
@@ -927,13 +924,29 @@
 	<data name="Fitness_SearchResultsTitle" xml:space="preserve">
     <value>Fitness Partners</value>
   </data>
-	<data name="Hobby_SearchResultsTitle" xml:space="preserve">
-    <value>Hobby Partners</value>
-  </data>
-	<data name="Hobby_SearchResultsTitle" xml:space="preserve">
-    <value>Hobby Partners</value>
+	<data name="Friendship_SearchResultsTitle" xml:space="preserve">
+    <value>Friends</value>
   </data>
 	<data name="OtherJobs_SearchResultsTitle" xml:space="preserve">
     <value>Other Jobs</value>
   </data>
+  <data name="FriendshipFamilyComposition" xml:space="preserve">
+    <value>Family Composition</value>
+  </data>
+  <data name="FriendshipLookingFor" xml:space="preserve">
+    <value>Looking For</value>
+  </data>
+  <data name="FriendshipLookingFor_CoupleFriends" xml:space="preserve">
+    <value>Couple Friends</value>
+  </data>
+  <data name="FriendshipLookingFor_FriendsJustForMe" xml:space="preserve">
+    <value>Friends Just for Me</value>
+  </data>
+  <data name="FriendshipLookingFor_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="FriendshipProfession" xml:space="preserve">
+    <value>Profession</value>
+  </data>
+	
 </root>

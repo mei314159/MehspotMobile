@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using mehspot.Core.Auth;
@@ -8,15 +9,15 @@ using Mehspot.Core.DTO;
 namespace Mehspot.Core.Models
 {
 
-    public class SignUpModel
+    public class SignUpModel: SignInModel
     {
         public readonly IViewHelper viewHelper;
         private readonly AccountService authManager;
 
-        public SignUpModel(AccountService authManager, IViewHelper alertWrapper)
+        public SignUpModel(AccountService authManager, IViewHelper viewHelper): base( authManager, viewHelper)
         {
             this.authManager = authManager;
-            this.viewHelper = alertWrapper;
+            this.viewHelper = viewHelper;
         }
 
         public event Action<Result> SignedUp;
@@ -31,9 +32,9 @@ namespace Mehspot.Core.Models
             {
                 viewHelper.ShowAlert("Validation error", "Please enter your email.");
             }
-            else if (!Regex.IsMatch(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$"))
+            else if (!Regex.IsMatch(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{6,}$"))
             {
-                viewHelper.ShowAlert("Validation error", "Passwords must have at least: one digit ('0'-'9'), one uppercase ('A'-'Z'), one lowercase ('a'-'z')");
+                viewHelper.ShowAlert("Validation error", "Passwords must have at least: one digit ('0'-'9'), one uppercase ('A'-'Z'), one lowercase ('a'-'z'), one special character");
             }
             else if (password != confirmPassword)
             {
@@ -53,13 +54,13 @@ namespace Mehspot.Core.Models
                 {
                     if (SignedUp != null)
                     {
-                        viewHelper.ShowAlert("Sign Up", "You're successfully signed up. An email confirmation has been sent to your email address.");
                         SignedUp(result);
                     }
                 }
                 else
                 {
-                    viewHelper.ShowAlert("Sign Up error", result.ErrorMessage);
+                    var modelStateError = result.ModelState.ModelState.Count > 0 ? result.ModelState.ModelState.First().Value.FirstOrDefault() : null; 
+                    viewHelper.ShowAlert("Sign Up error", modelStateError ?? result.ErrorMessage);
                 }
             }
         }

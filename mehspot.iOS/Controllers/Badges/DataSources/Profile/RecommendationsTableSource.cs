@@ -17,7 +17,6 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
         protected readonly BadgeService badgeService;
         private readonly List<UITableViewCell> cells = new List<UITableViewCell> ();
 
-        ButtonCell createRecommendationCell;
         string currentUserId;
 
         public event Action OnWriteReviewButtonTouched;
@@ -51,12 +50,9 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                 }
 
                 if (!reviewed) {
-                    if (createRecommendationCell == null) {
-                        createRecommendationCell = ButtonCell.Create ("Write Recommendation");
-                        createRecommendationCell.OnButtonTouched += CreateRecommendationCell_OnButtonTouched;
-                    }
-
-                    cells.Add (createRecommendationCell);
+                    var createRecommendationCell = ButtonCell.Create ("Write Recommendation");
+                    createRecommendationCell.OnButtonTouched += CreateRecommendationCell_OnButtonTouched;
+                    cells.Insert (0, createRecommendationCell);
                 }
             }
         }
@@ -101,8 +97,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         public void HideCreateButton ()
         {
-            if (createRecommendationCell != null)
-                cells.Remove (createRecommendationCell);
+            cells.RemoveAll (a => a is ButtonCell);
         }
     }
 }

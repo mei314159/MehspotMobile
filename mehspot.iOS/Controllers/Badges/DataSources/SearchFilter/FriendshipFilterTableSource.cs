@@ -8,9 +8,9 @@ using System.Linq;
 namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 {
 
-    public class HobbyFilterTableSource : SearchFilterTableSource<SearchHobbyDTO>
+    public class FriendshipFilterTableSource : SearchFilterTableSource<SearchFriendshipDTO>
     {
-        public HobbyFilterTableSource (BadgeService badgeService, int badgeId) : base (badgeService, badgeId)
+        public FriendshipFilterTableSource (BadgeService badgeService, int badgeId) : base (badgeService, badgeId)
         {
         }
 

@@ -7,6 +7,7 @@ using mehspot.iOS.Wrappers;
 using Mehspot.Core.DTO;
 using mehspot.iOS.Extensions;
 using CoreGraphics;
+using mehspot.Core.Auth;
 
 namespace mehspot.iOS
 {
@@ -21,6 +22,7 @@ namespace mehspot.iOS
         {
             model = new SignUpModel (MehspotAppContext.Instance.AuthManager, new ViewHelper (this.View));
             model.SignedUp += Model_SignedUp;
+            model.SignedIn += Model_SignedIn;
             this.View.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
             this.EmailField.ShouldReturn += TextFieldShouldReturn;
             this.UserNameField.ShouldReturn += TextFieldShouldReturn;
@@ -29,9 +31,15 @@ namespace mehspot.iOS
             RegisterForKeyboardNotifications ();
         }
 
-        private void Model_SignedUp (Result result)
+        private async void Model_SignedUp (Result result)
         {
-            PerformSegue ("UnwindToLoginSegue", this);
+            await model.SignInAsync (this.EmailField.Text, this.PasswordField.Text);
+        }
+
+        void Model_SignedIn (AuthenticationResult obj)
+        {
+            var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateInitialViewController ();
+            this.View.Window.SwapController (targetViewController);
         }
 
         private async void SignUpAsync ()

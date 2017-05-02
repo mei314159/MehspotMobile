@@ -81,9 +81,19 @@ namespace Mehspot.Core.Services
             return await PostAsync<object>("Badges/ToggleBadgeUserDescription", dto).ConfigureAwait(false);
         }
 
+        public async Task<Result> ToggleEnabledState(int badgeId, bool isEnabled)
+        {
+            return await PostAsync<object>($"badges/{badgeId}/toggle", isEnabled).ConfigureAwait(false);
+        }
+
         public async Task<Result<BadgeUserRecommendationDTO>> WriteRecommendationAsync(int badgeId, string userId, string text)
         {
             return await PostAsync<BadgeUserRecommendationDTO>($"badges/{badgeId}/recommendations/{userId}", text).ConfigureAwait(false);
+        }
+
+        public async Task<Result> DeleteBadgeAsync(int badgeId)
+        {
+            return await DeleteAsync<object>($"badges/{badgeId}", null).ConfigureAwait(false);
         }
 
         public class BadgeNames
@@ -98,7 +108,7 @@ namespace Mehspot.Core.Services
             public const string PetSitter = "PetSitter";
             public const string PetSitterEmployer = "PetSitterEmployer";
             public const string KidsPlayDate = "KidsPlayDate";
-            public const string Hobby = "Hobby";
+            public const string Friendship = "Friendship";
             public const string OtherJobs = "OtherJobs";
         }
 
@@ -123,7 +133,8 @@ namespace Mehspot.Core.Services
             public const string OtherJobsType = "OtherJobsType";
             public const string OtherJobsAgeRange = "OtherJobsAgeRange";
         }
-    }
+
+   }
 
 
 }

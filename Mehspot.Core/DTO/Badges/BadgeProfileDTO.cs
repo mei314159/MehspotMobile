@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using Mehspot.Core.DTO.Profile;
 
 namespace Mehspot.Core.DTO.Badges
 {
     public class BadgeProfileDTO<T> : IBadgeProfileDTO where T : IBadgeProfileValues
     {
+        public int Id { get; set; }
         public string UserId { get; set; }
         public int BadgeId { get; set; }
         public string BadgeName { get; set; }

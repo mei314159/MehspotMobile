@@ -135,7 +135,7 @@ namespace mehspot.iOS
                 UIAlertView alert = new UIAlertView (
                                             "Enable push notifications",
                                             "Do you want to get notified about unread messages?",
-                                            null,
+                                            (IUIAlertViewDelegate)null,
                                             "Cancel",
                                             new string [] { "Yes, I do" });
                 alert.Clicked += (object sender, UIButtonEventArgs e) => {

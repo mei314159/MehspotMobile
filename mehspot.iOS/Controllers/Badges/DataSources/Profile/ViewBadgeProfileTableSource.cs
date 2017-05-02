@@ -50,6 +50,11 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
             badgeService.ToggleBadgeEmploymentHistoryAsync (Profile.Details.UserId, this.BadgeId, !value);
         }
 
+        public virtual void IsEnabledCell_ValueChanged (bool value)
+        {
+            badgeService.ToggleEnabledState (this.BadgeId, value);
+        }
+
         public virtual void AddReferenceCell_ValueChanged (bool value)
         {
             var dto = new BadgeUserDescriptionDTO {

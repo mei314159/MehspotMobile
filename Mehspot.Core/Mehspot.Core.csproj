@@ -114,7 +114,7 @@
     <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterEmployerDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchKidsPlayDateDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchOtherJobsDTO.cs" />
-    <Compile Include="DTO\Badges\SearchFilter\SearchHobbyDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\SearchFriendshipDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\PetSitterEmployerSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\PetSitterSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\Profile\PetSitterProfileDTO.cs" />
@@ -122,9 +122,9 @@
     <Compile Include="DTO\Badges\Profile\KidsPlayDateProfileDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\KidsPlayDateSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\OtherJobsSearchResultDTO.cs" />
-    <Compile Include="DTO\Badges\SearchResults\HobbySearchResultDTO.cs" />
+    <Compile Include="DTO\Badges\SearchResults\FriendshipSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\Profile\OtherJobsProfileDTO.cs" />
-    <Compile Include="DTO\Badges\Profile\HobbyProfileDTO.cs" />
+    <Compile Include="DTO\Badges\Profile\FriendshipProfileDTO.cs" />
     <Compile Include="DTO\Badges\BadgeRecommendationDTO.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -38,7 +38,7 @@
         <image name="badges/babysitter.png" width="70" height="69"/>
         <image name="badges/babysitteremployer.png" width="70" height="70"/>
         <image name="badges/fitness.png" width="210" height="210"/>
-        <image name="badges/friendship.png" width="70" height="70"/>
+        <image name="badges/friendship.png" width="210" height="210"/>
         <image name="badges/golf.png" width="500" height="500"/>
         <image name="badges/hobby.png" width="210" height="208"/>
         <image name="badges/kidsplaydate.png" width="210" height="210"/>
@@ -51,7 +51,7 @@
         <image name="badges/tutoremployer.png" width="494" height="489"/>
         <image name="badges/babysitterb.png" width="70" height="69"/>
         <image name="badges/babysitteremployerb.png" width="70" height="70"/>
-        <image name="badges/friendshipb.png" width="70" height="70"/>
+        <image name="badges/friendshipb.png" width="210" height="210"/>
         <image name="badges/golfb.png" width="500" height="500"/>
         <image name="badges/petsitterb.png" width="500" height="500"/>
         <image name="badges/petsitteremployerb.png" width="500" height="500"/>
@@ -65,5 +65,8 @@
         <image name="badges/otherjobsb.png" width="210" height="210"/>
         <image name="signin-fb.png" width="220" height="40"/>
         <image name="logo.jpg" width="1242" height="795"/>
+        <image name="details-icon" width="25" height="25"/>
+        <image name="review-icon" width="25" height="25"/>
+        <image name="logo-small.jpg" width="300" height="192"/>
     </resources>
 </document>

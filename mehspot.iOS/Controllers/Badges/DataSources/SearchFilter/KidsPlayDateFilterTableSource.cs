@@ -13,7 +13,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
         {
         }
 
-        public override async Task InitializeAsync ()
+        public override Task InitializeAsync ()
         {
             this.Cells.Add (SliderCell.Create<int?>  (20, a => TypedFilter.Details.DistanceFrom = a, "Max Distance", 0, 200));
             var zipCell = TextEditCell.Create (TypedFilter.Details.ZipCode, a => TypedFilter.Details.ZipCode = a, "Zip");
@@ -25,6 +25,8 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.Details.HasPicture == true, v => TypedFilter.Details.HasPicture = v == true ? v : (bool?)null, "Has Profile Picture"));
             this.Cells.Add (BooleanEditCell.Create (TypedFilter.Details.HasReferences == true, v => TypedFilter.Details.HasReferences = v == true ? v : (bool?)null, "Has References"));
+
+            return Task.CompletedTask;
         }
     }
 }
