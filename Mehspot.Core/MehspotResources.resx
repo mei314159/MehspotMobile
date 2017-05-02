@@ -942,7 +942,11 @@
   <data name="FriendshipLookingFor_FriendsJustForMe" xml:space="preserve">
     <value>Friends Just for Me</value>
   </data>
+  <data name="FriendshipLookingFor_All" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="FriendshipProfession" xml:space="preserve">
     <value>Profession</value>
   </data>
+	
 </root>
