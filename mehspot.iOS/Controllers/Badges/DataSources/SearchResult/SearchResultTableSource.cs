@@ -133,7 +133,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
                 cell = tableView.DequeueReusableCell (SearchResultsCell.Key, indexPath);
                 ConfigureCell (cell as SearchResultsCell, item);
             } else if (!this.searchBadge.RequiredBadgeIsRegistered) {
-                var searchLimitCell = SearchLimitCell.Create (searchBadge.RequiredBadgeName);
+                var searchLimitCell = SearchLimitCell.Create (searchBadge.RequiredBadgeName, searchBadge.BadgeName);
                 searchLimitCell.OnRegisterButtonTouched += SearchLimitCell_OnRegisterButtonTouched;
                 cell = searchLimitCell;
             }
