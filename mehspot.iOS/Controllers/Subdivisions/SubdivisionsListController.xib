@@ -34,7 +34,7 @@
                     </constraints>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="13"/>
-                        <barButtonItem id="21" systemItem="add">
+                        <barButtonItem id="21" title="Add">
                             <connections>
                                 <action selector="AddButtonTouched:" destination="-1" id="56"/>
                             </connections>

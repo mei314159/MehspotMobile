@@ -6,7 +6,6 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Widget;
-using mehspot.Android.Core;
 using Mehspot.Android.Resources.layout;
 using Mehspot.Android.Wrappers;
 using Mehspot.Core;

@@ -126,6 +126,9 @@
     <Compile Include="DTO\Badges\Profile\OtherJobsProfileDTO.cs" />
     <Compile Include="DTO\Badges\Profile\FriendshipProfileDTO.cs" />
     <Compile Include="DTO\Badges\BadgeRecommendationDTO.cs" />
+    <Compile Include="Contracts\ViewControllers\IMessageBoardViewController.cs" />
+    <Compile Include="Models\MessageBoardModel.cs" />
+    <Compile Include="DTO\Subdivision\CreateSubdivisionResultDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

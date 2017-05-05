@@ -20,10 +20,4 @@ namespace Mehspot.Core.Contracts.ViewControllers
 
         void AddMessageBubbleToEnd(MessageDto messageDto);
     }
-
-    public interface IExternalSignInController
-    {
-        IViewHelper ViewHelper { get; }
-        void LoadExternalSignInPage();
-    }
 }

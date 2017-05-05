@@ -2,40 +2,49 @@ using Foundation;
 using System;
 using UIKit;
 using Mehspot.Core.DTO;
-using Mehspot.Core.Messaging;
-using mehspot.iOS.Core;
 using Mehspot.Core;
-using System.Threading.Tasks;
 using SDWebImage;
-using System.Linq;
 using CoreGraphics;
 using Mehspot.Core.Services;
+using Mehspot.Core.Contracts.ViewControllers;
+using Mehspot.Core.Contracts.Wrappers;
+using Mehspot.Core.Models;
+using mehspot.iOS.Wrappers;
 
 namespace mehspot.iOS
 {
-    public partial class MessageBoardViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
+    public partial class MessageBoardViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate, IMessageBoardViewController
     {
-        private volatile bool loading;
+        private MessageBoardModel model;
         private volatile bool goToMessagesWhenAppear;
-        private readonly MessagesService messagingModel;
 
-        private MessageBoardItemDto [] items;
         private string SelectedUserId;
         private string SelectedUserName;
         private UIRefreshControl refreshControl;
 
+        public string Filter {
+            get {
+                return this.SearchBar.Text;
+            }
+        }
+
+        public IViewHelper ViewHelper { get; private set; }
+
         public MessageBoardViewController (IntPtr handle) : base (handle)
         {
-            messagingModel = new MessagesService (new ApplicationDataStorage ());
-
-            MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
         }
 
         public override void ViewDidLoad ()
         {
+            this.ViewHelper = new ViewHelper (this.View);
+            model = new MessageBoardModel (new MessagesService (MehspotAppContext.Instance.DataStorage), this);
+            model.LoadingStart += Model_LoadingStart;
+            model.LoadingEnd += Model_LoadingEnd;
+
             MessageBoardTable.RegisterNibForCellReuse (MessageBoardCell.Nib, MessageBoardCell.Key);
             MessageBoardTable.WeakDataSource = this;
             MessageBoardTable.Delegate = this;
+
             this.SearchBar.OnEditingStarted += SearchBar_OnEditingStarted;
             this.SearchBar.OnEditingStopped += SearchBar_OnEditingStopped;
             this.SearchBar.CancelButtonClicked += SearchBar_CancelButtonClicked;
@@ -48,12 +57,29 @@ namespace mehspot.iOS
 
         public override async void ViewDidAppear (bool animated)
         {
-            await LoadMessageBoardAsync ();
+            await model.LoadMessageBoardAsync ();
             AppDelegate.CheckPushNotificationsPermissions ();
             if (goToMessagesWhenAppear) {
                 goToMessagesWhenAppear = false;
                 PerformSegue ("GoToMessagingSegue", this);
             }
+        }
+
+        void Model_LoadingStart ()
+        {
+            this.refreshControl.BeginRefreshing ();
+            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -this.refreshControl.Frame.Size.Height), true);
+        }
+
+        void Model_LoadingEnd ()
+        {
+            this.MessageBoardTable.SetContentOffset (CGPoint.Empty, true);
+            this.refreshControl.EndRefreshing ();
+        }
+
+        public void DisplayMessageBoard ()
+        {
+            MessageBoardTable.ReloadData ();
         }
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -67,12 +93,12 @@ namespace mehspot.iOS
 
         public nint RowsInSection (UITableView tableView, nint section)
         {
-            return items?.Length ?? 0;
+            return model.Items?.Length ?? 0;
         }
 
         public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
         {
-            var item = items [indexPath.Row];
+            var item = model.Items [indexPath.Row];
 
             var cell = MessageBoardTable.DequeueReusableCell (MessageBoardCell.Key, indexPath);
             ConfigureCell (cell as MessageBoardCell, item);
@@ -82,7 +108,7 @@ namespace mehspot.iOS
         [Export ("tableView:didSelectRowAtIndexPath:")]
         public void RowSelected (UITableView tableView, NSIndexPath indexPath)
         {
-            var dto = items [indexPath.Row].WithUser;
+            var dto = model.Items [indexPath.Row].WithUser;
             this.SelectedUserId = dto.Id;
             this.SelectedUserName = dto.UserName;
             PerformSegue ("GoToMessagingSegue", this);
@@ -100,29 +126,9 @@ namespace mehspot.iOS
             }
         }
 
-        private async Task LoadMessageBoardAsync ()
+        public void UpdateApplicationBadge (int value)
         {
-            if (loading)
-                return;
-            loading = true;
-            this.refreshControl.BeginRefreshing ();
-            this.MessageBoardTable.SetContentOffset (new CGPoint (0, -this.refreshControl.Frame.Size.Height), true);
-            var messageBoardResult = await messagingModel.GetMessageBoard (this.SearchBar.Text);
-            if (messageBoardResult.IsSuccess) {
-                this.items = messageBoardResult.Data;
-                UpdateApplicationBadge ();
-                MessageBoardTable.ReloadData ();
-            }
-
-            this.MessageBoardTable.SetContentOffset (CGPoint.Empty, true);
-            this.refreshControl.EndRefreshing ();
-            loading = false;
-        }
-
-        void UpdateApplicationBadge ()
-        {
-            UIApplication.SharedApplication.ApplicationIconBadgeNumber =
-                 this.items.Length > 0 ? this.items.Sum (a => a.UnreadMessagesCount) : 0;
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = value;
         }
 
         private void ConfigureCell (MessageBoardCell cell, MessageBoardItemDto item)
@@ -147,30 +153,19 @@ namespace mehspot.iOS
             cell.CountLabel.Text = item.UnreadMessagesCount.ToString ();
         }
 
-        private void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
+        public void UpdateMessageBoardCell (MessageBoardItemDto dto, int index)
         {
-            if (notificationType == MessagingNotificationType.Message) {
-                InvokeOnMainThread (() => {
-
-                    for (int i = 0; i < items.Length; i++) {
-                        var item = items [i];
-                        if (item.WithUser.Id == data.FromUserId) {
-                            var cell = (MessageBoardCell)MessageBoardTable.CellAt (NSIndexPath.FromItemSection (i, 0));
-                            cell.CountLabel.Text = (int.Parse (cell.CountLabel.Text) + 1).ToString ();
-                            cell.Message.Text = data.Message;
-                            cell.CountLabel.Hidden = false;
-                            item.UnreadMessagesCount++;
-                            UpdateApplicationBadge ();
-                            break;
-                        }
-                    }
-                });
-            }
+            InvokeOnMainThread (() => {
+                var cell = (MessageBoardCell)MessageBoardTable.CellAt (NSIndexPath.FromItemSection (index, 0));
+                cell.CountLabel.Text = (int.Parse (cell.CountLabel.Text) + 1).ToString ();
+                cell.Message.Text = dto.LastMessage;
+                cell.CountLabel.Hidden = false;
+            });
         }
 
         private async void RefreshControl_ValueChanged (object sender, EventArgs e)
         {
-            await LoadMessageBoardAsync ();
+            await model.LoadMessageBoardAsync ();
         }
 
         private void SearchBar_OnEditingStarted (object sender, EventArgs e)
@@ -187,13 +182,13 @@ namespace mehspot.iOS
         private async void SearchBar_CancelButtonClicked (object sender, EventArgs e)
         {
             SearchBar.EndEditing (true);
-            await LoadMessageBoardAsync ();
+            await model.LoadMessageBoardAsync ();
         }
 
         private async void SearchBar_SearchButtonClicked (object sender, EventArgs e)
         {
             SearchBar.EndEditing (true);
-            await LoadMessageBoardAsync ();
+            await model.LoadMessageBoardAsync ();
         }
     }
 }

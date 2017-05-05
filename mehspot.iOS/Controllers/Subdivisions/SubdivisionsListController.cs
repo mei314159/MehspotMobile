@@ -185,6 +185,7 @@ namespace mehspot.iOS.Controllers
 
         private void UpdateDTO (SubdivisionDTO dto, EditSubdivisionDTO result, bool isVerified) {
             dto.Id = result.Id;
+            dto.OptionId = result.OptionId;
             dto.DisplayName = result.Name;
             dto.Latitude = result.Address.Latitude;
             dto.Longitude = result.Address.Longitude;
@@ -203,6 +204,7 @@ namespace mehspot.iOS.Controllers
                 dto.DisplayName = result.DisplayName;
             }
 
+            dto.OptionId = result.OptionId;
             dto.Latitude = result.Latitude;
             dto.Longitude = result.Longitude;
             dto.FormattedAddress = result.FormattedAddress;

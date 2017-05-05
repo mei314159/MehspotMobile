@@ -29,14 +29,14 @@ namespace Mehspot.Core.Services
             return this.GetAsync<List<SubdivisionOptionDTO>>("Subdivision/ListOptions?subdivisionId=" + subdivisionId);
         }
 
-        public async Task<Result> CreateAsync(EditSubdivisionDTO subdivision)
+        public async Task<Result<CreateSubdivisionResultDTO>> CreateAsync(EditSubdivisionDTO subdivision)
         {
-            return await PostAsync<object>($"Subdivision/Create", subdivision).ConfigureAwait(false);
+            return await PostAsync<CreateSubdivisionResultDTO>($"Subdivision/Create", subdivision).ConfigureAwait(false);
         }
 
-        public async Task<Result> OverrideAsync(EditSubdivisionDTO subdivision)
+        public async Task<Result<EditSubdivisionDTO>> OverrideAsync(EditSubdivisionDTO subdivision)
         {
-            return await PostAsync<object>($"Subdivision/Override", subdivision).ConfigureAwait(false);
+            return await PostAsync<EditSubdivisionDTO>($"Subdivision/Override", subdivision).ConfigureAwait(false);
         }
 
         public async Task<Result<SubdivisionDTO>> VerifyOptionAsync(int subdivisionOptionId)

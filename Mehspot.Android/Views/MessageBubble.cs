@@ -2,6 +2,7 @@
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
+using Mehspot.Core.DTO;
 
 namespace Mehspot.Android.Resources.layout
 {
@@ -20,6 +21,24 @@ namespace Mehspot.Android.Resources.layout
             parameters.AddRule (isMyMessage ? LayoutRules.AlignParentRight : LayoutRules.AlignParentLeft);
             textView.LayoutParameters = parameters; //causes layout update
             textView.SetBackgroundColor (isMyMessage ? new Color (58, 155, 252) : new Color (249, 217, 128));
+        }
+    }
+
+    public class MessageBoardItem : RelativeLayout
+    {
+        public MessageBoardItem (Context context, MessageBoardItemDto dto) :
+            base (context)
+        {
+            //LayoutInflater inflater = (LayoutInflater)Context.GetSystemService (Context.LayoutInflaterService);
+            //inflater.Inflate (Resource.Layout.MessageBoardItem, this);
+            //var textView = (TextView)FindViewById (Resource.Id.messageBubbleText);
+            //textView.Text = text;
+
+
+            //RelativeLayout.LayoutParams parameters = (RelativeLayout.LayoutParams)textView.LayoutParameters;
+            //parameters.AddRule (isMyMessage ? LayoutRules.AlignParentRight : LayoutRules.AlignParentLeft);
+            //textView.LayoutParameters = parameters; //causes layout update
+            //textView.SetBackgroundColor (isMyMessage ? new Color (58, 155, 252) : new Color (249, 217, 128));
         }
     }
 }

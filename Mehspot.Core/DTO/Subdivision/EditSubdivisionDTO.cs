@@ -1,4 +1,6 @@
-﻿namespace MehSpot.Core.DTO.Subdivision
+﻿using Newtonsoft.Json;
+
+namespace MehSpot.Core.DTO.Subdivision
 {
     public class EditSubdivisionDTO
     {
@@ -7,6 +9,9 @@
         public string SubdivisionIdentifier { get; set; }
 
         public string Name { get; set; }
+
+        [JsonIgnore]
+        public int? OptionId { get; set; }
 
         public int AddressId { get; set; }
 

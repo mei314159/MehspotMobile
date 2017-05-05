@@ -53,6 +53,4 @@ namespace Mehspot.Core.Models
             await messagesService.MarkMessagesReadAsync(viewController.ToUserId);
         }
     }
-
-
 }

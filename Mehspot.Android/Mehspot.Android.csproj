@@ -83,6 +83,7 @@
     <AndroidResource Include="Resources\layout\Messaging.axml" />
     <AndroidResource Include="Resources\layout\MessageBubble.axml" />
     <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\layout\MessageBoardItem.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

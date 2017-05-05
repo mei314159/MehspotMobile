@@ -109,6 +109,7 @@ namespace mehspot.iOS.Controllers
             var dto = new EditSubdivisionDTO {
                 Id = Subdivision?.Id ?? default(int),
                 Name = this.NameField.Text,
+                OptionId = Subdivision?.OptionId,
                 ZipCode = zip,
                 Address = new AddressDTO {
                     Latitude = Place.Coordinate.Latitude,
@@ -122,9 +123,14 @@ namespace mehspot.iOS.Controllers
 
             Result result;
             if (Subdivision != null) {
-                result = await this.subdivisionService.OverrideAsync (dto);
+                var overrideResult = await this.subdivisionService.OverrideAsync (dto);
+                dto.Id = overrideResult.Data.Id;
+                result = overrideResult;
             } else {
-                result = await this.subdivisionService.CreateAsync (dto);
+                var createResult = await this.subdivisionService.CreateAsync (dto);
+                dto.Id = createResult.Data.SubdivisionId;
+                dto.OptionId = createResult.Data.OptionId;
+                result = createResult;
             }
 
             viewHelper.HideOverlay ();
