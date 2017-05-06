@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreGraphics;
 using CoreLocation;
 using Foundation;
 using Google.Maps;
@@ -11,15 +12,21 @@ using UIKit;
 
 namespace mehspot.iOS.Controllers
 {
-    public partial class SubdivisionController : UIViewController
+    public partial class SubdivisionController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
         MapView mapView;
         Marker marker;
-        Address Place;
         Geocoder geocoder = new Geocoder ();
+        PlacesClient placesClient;
         SubdivisionService subdivisionService;
         ViewHelper viewHelper;
         private bool setPlaceOnly;
+        private UITableView autocompleteResultsView;
+
+        private string Country;
+        private CLLocationCoordinate2D Coordinate;
+        private AutocompletePrediction [] autocompleteResults;
+
 
         public event Action<EditSubdivisionDTO> OnDismissed;
 
@@ -36,10 +43,12 @@ namespace mehspot.iOS.Controllers
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
+            placesClient = PlacesClient.SharedClient ();
             viewHelper = new ViewHelper (this.View);
             subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
             LatitudeField.KeyboardType = LongitudeField.KeyboardType = UIKeyboardType.DecimalPad;
-
+            this.NameField.EditingChanged += NameField_EditingChanged;
+            this.NameField.TouchDown += (sender, e) => HideAutocompleteResults ();
             CameraPosition camera;
             if (Subdivision == null) {
                 camera = CameraPosition.FromCamera (33.7489954, -84.3879824, 15);
@@ -56,8 +65,8 @@ namespace mehspot.iOS.Controllers
 
             mapView = MapView.FromCamera (MapWrapperView.Bounds, camera);
             mapView.MyLocationEnabled = true;
-            mapView.DraggingMarkerStarted += MapView_DraggingMarkerStarted;;
-            mapView.DraggingMarkerEnded += MapView_DraggingMarkerEnded ;
+            mapView.DraggingMarkerStarted += MapView_DraggingMarkerStarted; ;
+            mapView.DraggingMarkerEnded += MapView_DraggingMarkerEnded;
 
             marker = Marker.FromPosition (camera.Target);
             marker.Map = mapView;
@@ -68,6 +77,9 @@ namespace mehspot.iOS.Controllers
             this.NameField.Enabled = this.AddressField.Enabled = LatitudeField.Enabled = LongitudeField.Enabled = marker.Draggable = AllowEdititng;
 
             MapWrapperView.AddSubview (mapView);
+
+            this.NameField.UserInteractionEnabled = true;
+            this.NameField.AddGestureRecognizer (new UITapGestureRecognizer (this.HideAutocompleteResults));
         }
 
         void MapView_DraggingMarkerStarted (object sender, GMSMarkerEventEventArgs e)
@@ -87,36 +99,36 @@ namespace mehspot.iOS.Controllers
 
             if (error != null)
                 return;
+            var address = response.FirstResult;
+            this.Coordinate = address.Coordinate;
+            this.Country = address.Country;
+            this.ZipCode = this.ZipCode ?? address.PostalCode;
 
-            this.Place = response.FirstResult;
             if (!setPlaceOnly) {
-                this.NameField.Text = this.Place.SubLocality;
-                this.AddressField.Text = Place.Lines != null ? string.Join (", ", response.FirstResult.Lines) : response.FirstResult.Thoroughfare;
-                this.LatitudeField.Text = response.FirstResult.Coordinate.Latitude.ToString ();
-                this.LongitudeField.Text = response.FirstResult.Coordinate.Longitude.ToString ();
+                this.NameField.Text = address.SubLocality;
+                this.AddressField.Text = address.Lines != null ? string.Join (", ", address.Lines) : address.Thoroughfare;
+                this.LatitudeField.Text = address.Coordinate.Latitude.ToString ();
+                this.LongitudeField.Text = address.Coordinate.Longitude.ToString ();
             }
 
             setPlaceOnly = false;
             viewHelper.HideOverlay ();
         }
 
-
         async partial void SaveButtonTouched (UIBarButtonItem sender)
         {
             viewHelper.ShowOverlay ("Saving...");
-
-            var zip = this.ZipCode ?? Place.PostalCode;
             var dto = new EditSubdivisionDTO {
-                Id = Subdivision?.Id ?? default(int),
+                Id = Subdivision?.Id ?? default (int),
                 Name = this.NameField.Text,
                 OptionId = Subdivision?.OptionId,
-                ZipCode = zip,
+                ZipCode = this.ZipCode,
                 Address = new AddressDTO {
-                    Latitude = Place.Coordinate.Latitude,
-                    Longitude = Place.Coordinate.Longitude,
-                    Country = Place.Country,
+                    Latitude = this.Coordinate.Latitude,
+                    Longitude = this.Coordinate.Longitude,
+                    Country = this.Country,
                     FormattedAddress = this.AddressField.Text,
-                    PostalCode = zip,
+                    PostalCode = this.ZipCode,
                     GoverningDistrictId = 1,
                 }
             };
@@ -150,6 +162,83 @@ namespace mehspot.iOS.Controllers
         void GetLocationByCoordinates (CLLocationCoordinate2D position)
         {
             geocoder.ReverseGeocodeCord (position, HandleReverseGeocodeCallback);
+        }
+
+        void NameField_EditingChanged (object sender, EventArgs e)
+        {
+            var coordinateBounds = new CoordinateBounds (mapView.Camera.Target, mapView.Camera.Target);
+            placesClient.AutocompleteQuery (NameField.Text, coordinateBounds, new AutocompleteFilter { }, HandleAutocompletePredictionsHandler);
+        }
+
+
+        void HandleAutocompletePredictionsHandler (AutocompletePrediction [] results, NSError error)
+        {
+            autocompleteResults = results;
+            if (autocompleteResultsView == null) {
+                const int rowHeight = 44;
+                const int resultsCount = 5;
+                autocompleteResultsView = new UITableView (new CGRect (0, NameField.Frame.Y + NameField.Frame.Height, this.View.Frame.Width, resultsCount * rowHeight));
+                autocompleteResultsView.RegisterClassForCellReuse (typeof (UITableViewCell), "autocompleteRow");
+                autocompleteResultsView.WeakDataSource = this;
+                autocompleteResultsView.Delegate = this;
+            }
+
+            if (autocompleteResultsView.Superview == null) {
+                this.View.AddSubview (autocompleteResultsView);
+            }
+            autocompleteResultsView.ReloadData ();
+        }
+
+        public nint RowsInSection (UITableView tableView, nint section)
+        {
+            return autocompleteResults?.Length ?? 0;
+        }
+
+        public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
+        {
+            var cell = tableView.DequeueReusableCell ("autocompleteRow");
+            var item = autocompleteResults [indexPath.Row];
+            cell.TextLabel.Text = item.AttributedFullText.Value;
+            return cell;
+        }
+
+        [Export ("tableView:didSelectRowAtIndexPath:")]
+        public void RowSelected (UITableView tableView, NSIndexPath indexPath)
+        {
+            HideAutocompleteResults ();
+            placesClient.LookUpPlaceID (autocompleteResults [indexPath.Row].PlaceID, HandlePlaceResultHandler);
+        }
+
+        void HandlePlaceResultHandler (Place result, NSError error)
+        {
+            this.NameField.Text = result.Name;
+            this.AddressField.Text = result.FormattedAddress;
+            this.LatitudeField.Text = result.Coordinate.Latitude.ToString ();
+            this.LongitudeField.Text = result.Coordinate.Longitude.ToString ();
+            this.Coordinate = result.Coordinate;
+            foreach (var item in result.AddressComponents) {
+                if (item.Type == "postal_code") {
+                    this.ZipCode = item.Name;
+                } else if (item.Type == "country") {
+                    this.Country = item.Name;
+                }
+            }
+
+            UpdateCamera ();
+        }
+
+        void HideAutocompleteResults ()
+        {
+            if (autocompleteResultsView != null) {
+                autocompleteResultsView.RemoveFromSuperview ();
+            }
+        }
+
+        void UpdateCamera ()
+        {
+            var camera = CameraPosition.FromCamera (this.Coordinate.Latitude, this.Coordinate.Longitude, 15);
+            mapView.Camera = camera;
+            marker.Position = camera.Target;
         }
     }
 }

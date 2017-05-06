@@ -22,6 +22,7 @@ namespace mehspot.iOS
         private const string HockeyAppId = "939417b83e9b41b6bbfe772dd8129ac3";
 
         private const string MapsApiKey = "AIzaSyAqIup2dew1z_2_d1uTGcyArOboCWv2rN0";
+        private const string PlacesApiKey = "AIzaSyBHCEcMfJQLhi_iTVhv1c_e_k_6wxDUCNY";
 
         // class-level declarations
 
@@ -36,7 +37,7 @@ namespace mehspot.iOS
             MehspotAppContext.Instance.OnException += OnException;
             InitializeHockeyApp ();
             MapServices.ProvideAPIKey (MapsApiKey);
-
+            PlacesClient.ProvideApiKey (PlacesApiKey);
             Profile.EnableUpdatesOnAccessTokenChange (true);
 
 
