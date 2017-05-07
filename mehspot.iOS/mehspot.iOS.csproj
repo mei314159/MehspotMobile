@@ -344,6 +344,10 @@
       <DependentUpon>SearchLimitCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewPetSitterTableSource.cs" />
+    <Compile Include="Controllers\ForgotPasswordViewController.cs" />
+    <Compile Include="Controllers\ForgotPasswordViewController.designer.cs">
+      <DependentUpon>ForgotPasswordViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

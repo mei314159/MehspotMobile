@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Facebook.CoreKit;
 using Foundation;
@@ -6,6 +7,7 @@ using Google.Maps;
 using HockeyApp.iOS;
 using mehspot.iOS.Core;
 using mehspot.iOS.Core.DTO;
+using mehspot.iOS.Extensions;
 using Mehspot.Core;
 using Mehspot.Core.Push;
 using Newtonsoft.Json;
@@ -61,10 +63,34 @@ namespace mehspot.iOS
             return ApplicationDelegate.SharedInstance.FinishedLaunching (application, launchOptions);
         }
 
+        public override bool ContinueUserActivity (UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
+        {
+            if (userActivity.ActivityType == NSUserActivityType.BrowsingWeb) {
+                var storyboard = UIStoryboard.FromName ("Main", null);
+                if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated ()) {
+                    var url = userActivity.WebPageUrl.RelativeString.ToLower ();
+                    if (url.StartsWith ("/account/forgotpassword", StringComparison.Ordinal)) {
+                        var controller = storyboard.InstantiateViewController ("ForgotPasswordViewController");
+                        Window.SwapController (controller);
+                    } else if (url.StartsWith ("/account/resetpassword", StringComparison.Ordinal)) {
+                        var controller = storyboard.InstantiateViewController ("ResetPasswordViewController");
+                        Window.SwapController (controller);
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public override bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
         {
             // We need to handle URLs by passing them to their own OpenUrl in order to make the SSO authentication works.
             return ApplicationDelegate.SharedInstance.OpenUrl (application, url, sourceApplication, annotation);
+        }
+
+        private void ShowPhoto (NSUrl uri)
+        {
+
         }
 
 

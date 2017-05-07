@@ -129,6 +129,7 @@
     <Compile Include="Contracts\ViewControllers\IMessageBoardViewController.cs" />
     <Compile Include="Models\MessageBoardModel.cs" />
     <Compile Include="DTO\Subdivision\CreateSubdivisionResultDTO.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

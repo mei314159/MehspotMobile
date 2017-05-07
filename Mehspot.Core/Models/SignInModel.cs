@@ -10,7 +10,6 @@ namespace Mehspot.Core.Models
         private readonly AccountService authManager;
         private readonly IViewHelper viewHelper;
 
-
         public SignInModel(AccountService authManager, IViewHelper viewHelper)
         {
             this.authManager = authManager;
@@ -68,6 +67,5 @@ namespace Mehspot.Core.Models
             }
 
         }
-
-   }
+    }
 }
