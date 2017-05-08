@@ -47,8 +47,8 @@ namespace mehspot.iOS.Controllers
             viewHelper = new ViewHelper (this.View);
             subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
             LatitudeField.KeyboardType = LongitudeField.KeyboardType = UIKeyboardType.DecimalPad;
-            this.NameField.EditingChanged += NameField_EditingChanged;
-            this.NameField.TouchDown += (sender, e) => HideAutocompleteResults ();
+            this.AddressField.EditingChanged += AddressField_EditingChanged;
+            this.AddressField.TouchDown += (sender, e) => HideAutocompleteResults ();
             CameraPosition camera;
             if (Subdivision == null) {
                 camera = CameraPosition.FromCamera (33.7489954, -84.3879824, 15);
@@ -164,10 +164,10 @@ namespace mehspot.iOS.Controllers
             geocoder.ReverseGeocodeCord (position, HandleReverseGeocodeCallback);
         }
 
-        void NameField_EditingChanged (object sender, EventArgs e)
+        void AddressField_EditingChanged (object sender, EventArgs e)
         {
             var coordinateBounds = new CoordinateBounds (mapView.Camera.Target, mapView.Camera.Target);
-            placesClient.AutocompleteQuery (NameField.Text, coordinateBounds, new AutocompleteFilter { }, HandleAutocompletePredictionsHandler);
+            placesClient.AutocompleteQuery (AddressField.Text, coordinateBounds, new AutocompleteFilter { }, HandleAutocompletePredictionsHandler);
         }
 
 
@@ -177,7 +177,7 @@ namespace mehspot.iOS.Controllers
             if (autocompleteResultsView == null) {
                 const int rowHeight = 44;
                 const int resultsCount = 5;
-                autocompleteResultsView = new UITableView (new CGRect (0, NameField.Frame.Y + NameField.Frame.Height, this.View.Frame.Width, resultsCount * rowHeight));
+                autocompleteResultsView = new UITableView (new CGRect (0, AddressField.Frame.Y + AddressField.Frame.Height, this.View.Frame.Width, resultsCount * rowHeight));
                 autocompleteResultsView.RegisterClassForCellReuse (typeof (UITableViewCell), "autocompleteRow");
                 autocompleteResultsView.WeakDataSource = this;
                 autocompleteResultsView.Delegate = this;

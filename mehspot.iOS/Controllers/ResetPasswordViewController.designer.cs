@@ -26,6 +26,10 @@ namespace mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField PasswordField { get; set; }
 
+        [Action ("BackButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BackButtonTouched (UIKit.UIBarButtonItem sender);
+
         [Action ("ResetPasswordButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void ResetPasswordButtonTouched (UIKit.UIButton sender);

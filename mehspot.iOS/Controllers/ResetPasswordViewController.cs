@@ -65,5 +65,11 @@ namespace mehspot.iOS
 
             return false; // We do not want UITextField to insereaks.
         }
+
+        partial void BackButtonTouched (UIBarButtonItem sender)
+        {
+            var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateViewController ("LoginViewController");
+            this.View.Window.SwapController (targetViewController);
+        }
     }
 }

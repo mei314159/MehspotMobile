@@ -1460,10 +1460,10 @@ If you are under age of 18, we recommend that you have your parents escort you t
                                 </constraints>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <navigationItem title="Sign Up" id="7313">
+                                    <navigationItem title="Reset Password" id="7313">
                                         <barButtonItem key="leftBarButtonItem" id="7314" title="Back">
                                             <connections>
-                                                <segue id="7315" destination="7316" kind="unwind" unwindAction="UnwindToLoginViewController:" identifier="UnwindToLoginSegue"/>
+                                                <action selector="BackButtonTouched:" destination="7296" id="7474"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
