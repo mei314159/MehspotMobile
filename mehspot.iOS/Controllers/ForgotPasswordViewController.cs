@@ -11,17 +11,16 @@ namespace mehspot.iOS
 {
     public partial class ForgotPasswordViewController : UIViewController
     {
-        private AccountService accountService;
-
-        ResetPasswordModel model;
+        ForgotPasswordModel model;
         public ForgotPasswordViewController (IntPtr handle) : base (handle)
         {
-            model = new ResetPasswordModel (MehspotAppContext.Instance.AuthManager, new ViewHelper (this.View));
-            model.OnSuccess += Model_OnSuccess;
+
         }
 
         public override void ViewDidLoad ()
         {
+            model = new ForgotPasswordModel (MehspotAppContext.Instance.AuthManager, new ViewHelper (this.View));
+            model.OnSuccess += Model_OnSuccess;
             this.View.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
             this.EmailField.ShouldReturn += TextFieldShouldReturn;
         }
@@ -29,28 +28,25 @@ namespace mehspot.iOS
         partial void ResetPasswordButtonTouched (UIButton sender)
         {
             sender.BecomeFirstResponder ();
-            ResetPasswordAsync ();
+            ForgotPasswordAsync ();
         }
 
         private void Model_OnSuccess (Result result)
         {
-            var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateInitialViewController ();
-            this.View.Window.SwapController (targetViewController);
+            var alert = new UIAlertView ("Success", "Please check your email to reset your password", (IUIAlertViewDelegate)null, "OK");
+            alert.Clicked += (s, e) => this.PerformSegue ("UnwindToLoginSegue", this);
+            alert.Show ();
         }
 
-        void Model_OnError (AuthenticationResult obj)
+        private async void ForgotPasswordAsync ()
         {
-        }
-
-        private async void ResetPasswordAsync ()
-        {
-            await model.ResetPasswordAsync (this.EmailField.Text);
+            await model.ForgotPasswordAsync (this.EmailField.Text);
         }
 
         private bool TextFieldShouldReturn (UITextField textField)
         {
             textField.ResignFirstResponder ();
-            ResetPasswordAsync ();
+            ForgotPasswordAsync ();
 
             return false; // We do not want UITextField to insert line-breaks.
         }

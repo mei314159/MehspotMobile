@@ -81,9 +81,14 @@ namespace mehspot.Core.Auth
             }
         }
 
-        public async Task<Result> ResetPasswordAsync(string email)
+        public async Task<Result> ResetPasswordAsync(ResetPasswordDto dto)
         {
-            return await PostAsync<object>("Account/ResetPassword", email, true);
+            return await PostAsync<object>("Account/ResetPassword", dto, true);
+        }
+
+        public async Task<Result> ForgotPasswordAsync(string email)
+        {
+            return await PostAsync<object>("Account/ForgotPassword", new { email }, true);
         }
 
         public async Task<AuthenticationResult> SignInExternalAsync(string accessToken, string provider)
