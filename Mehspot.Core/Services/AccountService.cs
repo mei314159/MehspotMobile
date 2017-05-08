@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -79,6 +79,16 @@ namespace mehspot.Core.Auth
                     };
                 }
             }
+        }
+
+        public async Task<Result> ResetPasswordAsync(ResetPasswordDto dto)
+        {
+            return await PostAsync<object>("Account/ResetPassword", dto, true);
+        }
+
+        public async Task<Result> ForgotPasswordAsync(string email)
+        {
+            return await PostAsync<object>("Account/ForgotPassword", new { email }, true);
         }
 
         public async Task<AuthenticationResult> SignInExternalAsync(string accessToken, string provider)

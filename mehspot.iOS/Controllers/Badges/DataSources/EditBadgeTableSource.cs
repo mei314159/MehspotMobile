@@ -118,7 +118,9 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                     cells.Add (cell);
                 } else if (valueType == BadgeDataType.Boolean) {
                     bool value;
-                    value = bool.TryParse (badgeValue.Value.Value, out value) && value;
+                    if (!bool.TryParse (badgeValue.Value.Value, out value)) {
+                        badgeValue.Value.Value = bool.FalseString;
+                    }
                     cells.Add (BooleanEditCell.Create (value, a => badgeValue.Value.Value = a.ToString (), label));
                 } else if (valueType == BadgeDataType.List) {
                     var listData = badgeItem.BadgeItemOptions.Select (a => new KeyValuePair<string, string> (a.Id.ToString (), MehspotResources.ResourceManager.GetString (a.Name) ?? a.Name)).ToArray ();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Facebook.CoreKit;
 using Foundation;
@@ -6,6 +7,7 @@ using Google.Maps;
 using HockeyApp.iOS;
 using mehspot.iOS.Core;
 using mehspot.iOS.Core.DTO;
+using mehspot.iOS.Extensions;
 using Mehspot.Core;
 using Mehspot.Core.Push;
 using Newtonsoft.Json;
@@ -39,18 +41,15 @@ namespace mehspot.iOS
             MapServices.ProvideAPIKey (MapsApiKey);
             PlacesClient.ProvideApiKey (PlacesApiKey);
             Profile.EnableUpdatesOnAccessTokenChange (true);
-
-
-            // Override point for customization after application launch.
-            // If not required for your application you can safely delete this method
-            this.Window = new UIWindow (UIScreen.MainScreen.Bounds);
-            this.Window.RootViewController = GetInitialViewController (MehspotAppContext.Instance.AuthManager.IsAuthenticated ());
-            this.Window.MakeKeyAndVisible ();
-            this.Window.BackgroundColor = UIColor.White;
-
             SDWebImageManager.SharedManager.ImageDownloader.MaxConcurrentDownloads = 3;
             SDWebImageManager.SharedManager.ImageCache.ShouldCacheImagesInMemory = false;
             SDImageCache.SharedImageCache.ShouldCacheImagesInMemory = false;
+
+            this.Window = new UIWindow (UIScreen.MainScreen.Bounds);
+            this.Window.RootViewController = GetInitialViewController (launchOptions);
+            this.Window.MakeKeyAndVisible ();
+            this.Window.BackgroundColor = UIColor.White;
+
             if (launchOptions != null) {
                 var notification = (NSDictionary)launchOptions.ObjectForKey (UIApplication.LaunchOptionsRemoteNotificationKey);
                 if (notification != null) {
@@ -61,12 +60,41 @@ namespace mehspot.iOS
             return ApplicationDelegate.SharedInstance.FinishedLaunching (application, launchOptions);
         }
 
+        public override bool ContinueUserActivity (UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
+        {
+            if (userActivity.ActivityType == NSUserActivityType.BrowsingWeb && !MehspotAppContext.Instance.AuthManager.IsAuthenticated ()) {
+                var url = userActivity.WebPageUrl.RelativePath.ToLower ();
+
+                if (url.StartsWith ("/account/forgotpassword", StringComparison.Ordinal)) {
+                    var storyboard = UIStoryboard.FromName ("Main", null);
+                    var controller = storyboard.InstantiateViewController ("ForgotPasswordViewController");
+                    Window.SwapController (controller);
+                    return true;
+                } else if (url.StartsWith ("/account/resetpassword", StringComparison.Ordinal)) {
+                    var controller = GetResetPasswordController (userActivity);
+                    Window.SwapController (controller);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private ResetPasswordViewController GetResetPasswordController (NSUserActivity userActivity)
+        {
+            var storyboard = UIStoryboard.FromName ("Main", null);
+            var controller = (ResetPasswordViewController)storyboard.InstantiateViewController ("ResetPasswordViewController");
+            var keyValueChunks = userActivity.WebPageUrl.Query.Split ('&').Select (a => a.Split ('=')).ToDictionary (a => a [0], a => a [1]);
+            controller.Email = System.Net.WebUtility.UrlDecode (keyValueChunks ["email"]);
+            controller.Code = System.Net.WebUtility.UrlDecode (keyValueChunks ["code"]);
+            return controller;
+        }
+
         public override bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
         {
             // We need to handle URLs by passing them to their own OpenUrl in order to make the SSO authentication works.
             return ApplicationDelegate.SharedInstance.OpenUrl (application, url, sourceApplication, annotation);
         }
-
 
         public override void OnResignActivation (UIApplication application)
         {
@@ -209,11 +237,24 @@ namespace mehspot.iOS
             manager.Authenticator.AuthenticateInstallation ();
         }
 
-        private UIViewController GetInitialViewController (bool isAuthenticated)
+        private UIViewController GetInitialViewController (NSDictionary launchOptions)
         {
             var storyboard = UIStoryboard.FromName ("Main", null);
-            if (!isAuthenticated) {
+            if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated ()) {
+                if (launchOptions != null) {
+                    NSDictionary dict = (NSDictionary)launchOptions.ObjectForKey (UIApplication.LaunchOptionsUserActivityDictionaryKey);
+                    if (dict != null) {
+                        var userActivity = (NSUserActivity)dict.ObjectForKey (new NSString ("UIApplicationLaunchOptionsUserActivityKey"));
+                        if (userActivity != null) {
+
+                            var controller = GetResetPasswordController (userActivity);
+                            return controller;
+                        }
+                    }
+                }
+
                 return storyboard.InstantiateViewController ("LoginViewController");
+
             }
 
             return storyboard.InstantiateInitialViewController ();
