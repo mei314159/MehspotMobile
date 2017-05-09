@@ -55,7 +55,6 @@ namespace mehspot.iOS
 
         private void SetTitle ()
         {
-
             var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
             var title =
                 BadgeIsRegistered ?

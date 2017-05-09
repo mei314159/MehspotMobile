@@ -211,7 +211,11 @@ namespace mehspot.iOS.Controllers
 
         void HandlePlaceResultHandler (Place result, NSError error)
         {
-            this.NameField.Text = result.Name;
+            if (string.IsNullOrWhiteSpace (this.NameField.Text))
+            {
+                this.NameField.Text = result.Name;
+            }
+                
             this.AddressField.Text = result.FormattedAddress;
             this.LatitudeField.Text = result.Coordinate.Latitude.ToString ();
             this.LongitudeField.Text = result.Coordinate.Longitude.ToString ();
