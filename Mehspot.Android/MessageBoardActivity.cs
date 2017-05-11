@@ -84,6 +84,7 @@ namespace Mehspot.Android
         public void UpdateMessageBoardCell (MessageBoardItemDto dto, int index)
         {
             var wrapper = this.FindViewById<LinearLayout> (Resource.Id.messageBoardWrapper);
+            wrapper.RemoveAllViews ();
             var item = (MessageBoardItem)wrapper.FindViewWithTag (dto.WithUser.Id);
 
             item.UnreadMessagesCount.Text = (int.Parse (item.UnreadMessagesCount.Text) + 1).ToString ();
