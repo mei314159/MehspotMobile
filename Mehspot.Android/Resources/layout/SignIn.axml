@@ -68,7 +68,7 @@
                 android:text="Sign In"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/SignInButton"
+                android:id="@+id/SignIn_Button"
                 android:background="#ff39ec34"
                 android:textColor="#ffffffff"
                 android:clickable="true"

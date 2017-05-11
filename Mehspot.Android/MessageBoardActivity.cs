@@ -1,9 +1,9 @@
-﻿using System;
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.OS;
-using Android.Views.InputMethods;
+using Android.Support.V4.Widget;
+using Android.Views;
 using Android.Widget;
+using Mehspot.Android.Resources.layout;
 using Mehspot.Android.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Contracts.ViewControllers;
@@ -26,78 +26,95 @@ namespace Mehspot.Android
 
         public IViewHelper ViewHelper { get; private set; }
 
-        protected override void OnCreate (Bundle savedInstanceState)
+        protected override async void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.MessageBoard);
+
+            //if (IsPlayServicesAvailable ()) {
+            //    var intent = new Intent (this, typeof (RegistrationIntentService));
+
+            //    StartService (intent);
+            //}
 
             this.ViewHelper = new ActivityHelper (this);
             model = new MessageBoardModel (new MessagesService (MehspotAppContext.Instance.DataStorage), this);
             model.LoadingStart += Model_LoadingStart;
             model.LoadingEnd += Model_LoadingEnd;
 
-            //Button button = FindViewById<Button> (Resource.Id.submitButton);
-            //button.Click += SubmitButtonClicked;
+            var refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+            refresher.SetColorSchemeColors (Resource.Color.xam_dark_blue,
+                                                        Resource.Color.xam_purple,
+                                                        Resource.Color.xam_gray,
+                                                        Resource.Color.xam_green);
+            refresher.Refresh += async (sender, e) => {
+                await model.LoadMessageBoardAsync ();
+                refresher.Refreshing = false;
+            };
 
-
-            //TextView toUserName = FindViewById<TextView> (Resource.Id.toUserNameField);
-            //toUserName.EditorAction += ToUserName_EditorAction;
-        }
-
-        protected override void OnStart ()
-        {
-            base.OnStart ();
-
-        }
-
-
-
-        void SubmitButtonClicked (object sender, EventArgs e)
-        {
-            GoToMessaging ();
-        }
-
-        void ToUserName_EditorAction (object sender, TextView.EditorActionEventArgs e)
-        {
-            if (e.ActionId == ImeAction.Done) {
-                GoToMessaging ();
-            } else {
-                e.Handled = false;
-            }
-        }
-
-        void GoToMessaging ()
-        {
-            int toUserId = 0;
-            var messagingActivity = new Intent (Application.Context, typeof (MessagingActivity));
-            messagingActivity.PutExtra ("toUserId", toUserId);
-            this.StartActivity (messagingActivity);
+            await this.model.LoadMessageBoardAsync ();
         }
 
         void Model_LoadingStart ()
         {
-            throw new NotImplementedException ();
+            ViewHelper.ShowOverlay ("Loading");
         }
 
         void Model_LoadingEnd ()
         {
-            throw new NotImplementedException ();
+            ViewHelper.HideOverlay ();
         }
 
         public void DisplayMessageBoard ()
         {
-            throw new NotImplementedException ();
+            var wrapper = this.FindViewById<LinearLayout> (Resource.Id.messageBoardWrapper);
+
+            foreach (var item in model.Items) {
+                var bubble = CreateMessageBoardItem (item);
+                wrapper.AddView (bubble);
+            }
         }
 
         public void UpdateApplicationBadge (int value)
         {
-            
+
         }
 
         public void UpdateMessageBoardCell (MessageBoardItemDto dto, int index)
         {
-            throw new NotImplementedException ();
+            var wrapper = this.FindViewById<LinearLayout> (Resource.Id.messageBoardWrapper);
+            var item = (MessageBoardItem)wrapper.FindViewWithTag (dto.WithUser.Id);
+
+            item.UnreadMessagesCount.Text = (int.Parse (item.UnreadMessagesCount.Text) + 1).ToString ();
+            item.Message.Text = dto.LastMessage;
+            item.UnreadMessagesCount.Visibility = ViewStates.Visible;
         }
+
+
+        private MessageBoardItem CreateMessageBoardItem (MessageBoardItemDto dto)
+        {
+            var item = new MessageBoardItem (this, dto);
+            item.Tag = dto.WithUser.Id;
+            return item;
+        }
+
+
+        //public bool IsPlayServicesAvailable ()
+        //{
+        //    int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
+        //    if (resultCode != ConnectionResult.Success) {
+        //        if (GoogleApiAvailability.Instance.IsUserResolvableError (resultCode))
+        //            Console.WriteLine (GoogleApiAvailability.Instance.GetErrorString (resultCode));
+        //        else {
+        //            Console.WriteLine ("Sorry, this device is not supported");
+        //            Finish ();
+        //        }
+        //        return false;
+        //    } else {
+        //        Console.WriteLine ("Google Play Services is available.");
+        //        return true;
+        //    }
+        //}
     }
 }

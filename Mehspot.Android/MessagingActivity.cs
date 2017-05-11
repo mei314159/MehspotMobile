@@ -24,6 +24,7 @@ namespace Mehspot.Android
         private MessagingModel messagingModel;
 
         public string ToUserName => Intent.GetStringExtra ("toUserName");
+        public string ToUserId => Intent.GetStringExtra ("toUserId");
 
         public string MessageFieldValue {
             get {
@@ -34,8 +35,6 @@ namespace Mehspot.Android
                 FindViewById<TextView> (Resource.Id.messageField).Text = value;
             }
         }
-
-        public string ToUserId { get; set; } = null;
 
         public IViewHelper ViewHelper { get; private set; }
 

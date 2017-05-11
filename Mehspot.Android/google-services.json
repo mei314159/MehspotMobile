@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "222307601025",
+    "firebase_url": "https://mehspot-163814.firebaseio.com",
+    "project_id": "mehspot-163814",
+    "storage_bucket": "mehspot-163814.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222307601025:android:57048847a02de491",
+        "android_client_info": {
+          "package_name": "com.mehspot.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222307601025-tjkfc110r5hqcat5pf27pli5lg5lk5tm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl__a88N17MucG4x0pZbUuGxZsJvEadco"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

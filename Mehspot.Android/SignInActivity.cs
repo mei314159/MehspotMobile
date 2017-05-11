@@ -26,7 +26,7 @@ namespace Mehspot.Android
 
             SetContentView (Resource.Layout.SignIn);
 
-            var signInButton = FindViewById<Button> (Resource.Id.SignInButton);
+            var signInButton = FindViewById<Button> (Resource.Id.SignIn_Button);
             signInButton.Click += SignInButton_Click;
         }
 

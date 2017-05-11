@@ -21,25 +21,16 @@ namespace Mehspot.Core.Services
             return GetAsync<MessageBoardItemDto[]>("Badges/MessageBoard?filter=" + filter);
         }
 
-        public Task<Result<CollectionDto<MessageDto>>> GetMessages (int pageNumber, string toUserId = null, string toUserName = null)
+        public Task<Result<CollectionDto<MessageDto>>> GetMessages (int pageNumber, string toUserId)
         {
-            var uri = toUserId != null
-                ? $"Badges/GetMessages?toUserId={toUserId}&pageNumber={pageNumber}"
-                : $"Badges/GetMessagesByUserName?toUserName={toUserName}&pageNumber={pageNumber}";
-
-            return GetAsync<CollectionDto<MessageDto>>(uri);
+            return GetAsync<CollectionDto<MessageDto>>($"Badges/GetMessages?toUserId={toUserId}&pageNumber={pageNumber}");
         }
 
-        public Task<Result<MessageDto>> SendMessageAsync (string message, string toUserId = null, string toUserName = null)
+        public Task<Result<MessageDto>> SendMessageAsync (string message, string toUserId)
         {
             var data = new Dictionary<string, string> ();
             data.Add ("Message", message);
-            if (toUserId != null) {
-                data.Add ("ToUserId", toUserId);
-            } else {
-                data.Add ("ToUserName", toUserName);
-            }
-
+            data.Add ("ToUserId", toUserId);
             data.Add ("FromUserId", this.ApplicationDataStorage.AuthInfo.UserId);
 
             return SendDataAsync<MessageDto> ("Badges/Send", HttpMethod.Post, new FormUrlEncodedContent (data));
