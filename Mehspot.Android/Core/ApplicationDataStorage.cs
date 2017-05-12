@@ -6,7 +6,7 @@ using Mehspot.Core.DTO;
 using System;
 using Mehspot.Core.Push;
 
-namespace mehspot.Android.Core
+namespace Mehspot.AndroidApp.Core
 {
     public class ApplicationDataStorage : IApplicationDataStorage
     {

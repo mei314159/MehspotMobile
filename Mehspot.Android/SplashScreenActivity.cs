@@ -5,13 +5,13 @@ using Android.App;
 using Android.Content;
 using Android.Gms.Common;
 using Android.OS;
-using mehspot.Android.Core;
+using Mehspot.AndroidApp.Core;
 using Mehspot.Core;
 
-namespace Mehspot.Android
+namespace Mehspot.AndroidApp
 {
     [Activity (MainLauncher = true, NoHistory = true)]
-    public class SplashScreen : Activity
+    public class SplashScreenActivity : Activity
     {
         protected override void OnCreate (Bundle savedInstanceState)
         {

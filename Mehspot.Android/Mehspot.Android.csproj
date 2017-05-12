@@ -7,7 +7,7 @@
     <ProjectGuid>{9B0B43AD-AEC1-4AF9-9F5D-47DF7746CB8F}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Mehspot.Android</RootNamespace>
+    <RootNamespace>Mehspot.AndroidApp</RootNamespace>
     <AssemblyName>Mehspot.Android</AssemblyName>
     <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
@@ -89,16 +89,17 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SplashScreen.cs" />
     <Compile Include="Core\ApplicationDataStorage.cs" />
-    <Compile Include="SignInActivity.cs" />
     <Compile Include="Wrappers\ActivityHelper.cs" />
-    <Compile Include="MessageBoardActivity.cs" />
-    <Compile Include="MessagingActivity.cs" />
     <Compile Include="Views\MessageBubble.cs" />
     <Compile Include="Views\MessageBoardItem.cs" />
     <Compile Include="RegistrationIntentService.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Activities\MessageBoardActivity.cs" />
+    <Compile Include="Activities\MessagingActivity.cs" />
+    <Compile Include="Activities\SignInActivity.cs" />
+    <Compile Include="Activities\SignUpActivity.cs" />
+    <Compile Include="SplashScreenActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -122,6 +123,7 @@
     <AndroidResource Include="Resources\layout\MessageBoardItem.axml" />
     <AndroidResource Include="Resources\layout\MessageBoard.axml" />
     <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\layout\SignUp.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -129,6 +131,7 @@
     <Folder Include="Core\" />
     <Folder Include="Wrappers\" />
     <Folder Include="Views\" />
+    <Folder Include="Activities\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

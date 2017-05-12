@@ -3,8 +3,8 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
-using Mehspot.Android.Resources.layout;
-using Mehspot.Android.Wrappers;
+using Mehspot.AndroidApp.Resources.layout;
+using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Contracts.Wrappers;
@@ -12,7 +12,7 @@ using Mehspot.Core.DTO;
 using Mehspot.Core.Models;
 using Mehspot.Core.Services;
 
-namespace Mehspot.Android
+namespace Mehspot.AndroidApp
 {
     [Activity (Label = "Message Board")]
     public class MessageBoardActivity : Activity, IMessageBoardViewController
@@ -54,6 +54,10 @@ namespace Mehspot.Android
             };
 
             await this.model.LoadMessageBoardAsync ();
+        }
+
+        public override void OnBackPressed()
+        {
         }
 
         void Model_LoadingStart ()

@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -6,7 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Mehspot.Core.DTO;
 
-namespace Mehspot.Android.Resources.layout
+namespace Mehspot.AndroidApp.Resources.layout
 {
 
     public class MessageBoardItem : RelativeLayout
