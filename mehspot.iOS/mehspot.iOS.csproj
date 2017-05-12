@@ -84,6 +84,9 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodesignProvision>Mehspot Dev</CodesignProvision>
   </PropertyGroup>
+  <PropertyGroup>
+      <CscToolExe>mcs.exe</CscToolExe>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

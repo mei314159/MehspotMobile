@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/relativeLayout1"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:background="#ffffffff">
         <ImageView
             android:src="@drawable/logo"
@@ -21,13 +21,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView1" />
     </RelativeLayout>
-    <RelativeLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/relativeLayout3"
-        android:layout_weight="0.65" />
     <RelativeLayout
         android:minWidth="25px"
         android:minHeight="25px"
@@ -45,34 +38,70 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView1" />
+                android:id="@+id/textView1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
             <EditText
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/EmailField"
-                android:tag="1" />
+                android:tag="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
             <TextView
                 android:text="Password:"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView2" />
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
             <EditText
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/PasswordField"
-                android:tag="2" />
+                android:tag="2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
             <Button
                 android:text="Sign In"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/SignIn_Button"
-                android:background="#ff39ec34"
+                android:background="#ffc6d881"
                 android:textColor="#ffffffff"
                 android:clickable="true"
-                android:tag="3" />
+                android:tag="3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_horizontal"
+                android:text="New to Mehspot?"
+                android:textColor="#ff5e5e5e" />
+            <Button
+                android:text="Sign Up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/GoToSignUp_Button"
+                android:background="#ffeeb848"
+                android:textColor="#ffffffff"
+                android:clickable="true"
+                android:tag="3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

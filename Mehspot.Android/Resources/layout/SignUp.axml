@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:gravity="center"
+    android:background="#ffffffff">
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout1"
+        android:layout_weight="1.5"
+        android:background="#ffffffff">
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView1" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout2"
+        android:layout_weight="0.3">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout1">
+            <TextView
+                android:text="Username:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/userNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/UserNameField"
+                android:tag="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+            <TextView
+                android:text="Email:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EmailField"
+                android:tag="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+            <TextView
+                android:text="Password:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PasswordField"
+                android:tag="2"
+                android:password="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+            <TextView
+                android:text="Confirm Password:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ConfirmationPasswordField"
+                android:tag="2"
+                android:password="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AgreeWithTerms"
+                android:text="By checking this box you agree to our"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="17dp" />
+            <RelativeLayout
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/relative"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="10dp">
+                <TextView
+                    android:id="@+id/TermsOfUseLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:text="Terms Of Use"
+                    android:textColor="#ff1973f6" />
+                <TextView
+                    android:id="@+id/Comma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:layout_toRightOf="@+id/TermsOfUseLabel"
+                    android:text=", " />
+                <TextView
+                    android:id="@+id/PrivacyPolicyLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:textColor="#ff1973f6"
+                    android:text="Privacy Policy"
+                    android:layout_toRightOf="@+id/Comma" />
+                <TextView
+                    android:id="@+id/And"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:text=" and "
+                    android:layout_toRightOf="@+id/PrivacyPolicyLabel" />
+                <TextView
+                    android:id="@+id/CommunityGuidelinesLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:text="Community Guidelines"
+                    android:textColor="#ff1973f6"
+                    android:layout_below="@+id/TermsOfUseLabel" />
+            </RelativeLayout>
+            <Button
+                android:text="Sign Up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SignUpButton"
+                android:background="#ffc6d881"
+                android:textColor="#ffffffff"
+                android:clickable="true"
+                android:tag="3"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

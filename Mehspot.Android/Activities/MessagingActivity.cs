@@ -6,8 +6,8 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Widget;
-using Mehspot.Android.Resources.layout;
-using Mehspot.Android.Wrappers;
+using Mehspot.AndroidApp.Resources.layout;
+using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Contracts.Wrappers;
@@ -16,7 +16,7 @@ using Mehspot.Core.Messaging;
 using Mehspot.Core.Models;
 using Mehspot.Core.Services;
 
-namespace Mehspot.Android
+namespace Mehspot.AndroidApp
 {
     [Activity (Label = "Messaging")]
     public class MessagingActivity : Activity, IMessagingViewController

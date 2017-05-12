@@ -4,7 +4,7 @@ using Android.Content;
 using Android.Widget;
 using Mehspot.Core.Contracts.Wrappers;
 
-namespace Mehspot.Android.Wrappers
+namespace Mehspot.AndroidApp.Wrappers
 {
     public class ActivityHelper: IViewHelper
     {

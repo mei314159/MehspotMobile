@@ -6,11 +6,11 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using mehspot.Core.Auth;
-using Mehspot.Android.Wrappers;
+using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Models;
 
-namespace Mehspot.Android
+namespace Mehspot.AndroidApp
 {
     [Activity (Label = "Sign In")]
     public class SignInActivity : Activity
@@ -26,8 +26,13 @@ namespace Mehspot.Android
 
             SetContentView (Resource.Layout.SignIn);
 
-            var signInButton = FindViewById<Button> (Resource.Id.SignIn_Button);
-            signInButton.Click += SignInButton_Click;
+            FindViewById<Button>(Resource.Id.SignIn_Button).Click += SignInButton_Click;
+            FindViewById<Button>(Resource.Id.GoToSignUp_Button).Click += GoToSignUpButton_Click;
+        }
+
+        private void GoToSignUpButton_Click(object sender, EventArgs e)
+        {
+            this.StartActivity(new Intent(Application.Context, typeof(SignUpActivity)));
         }
 
         void SignInButton_Click (object sender, EventArgs e)

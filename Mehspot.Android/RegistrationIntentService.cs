@@ -1,9 +1,9 @@
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Util;
 using Firebase.Iid;
 
-namespace Mehspot.Android
+namespace Mehspot.AndroidApp
 {
 
     [Service]
@@ -33,7 +33,7 @@ namespace Mehspot.Android
     //            Log.Info ("RegistrationIntentService", "Calling InstanceID.GetToken");
     //            lock (locker) {
     //                var instanceID = InstanceID.GetInstance (this);
-    //                var token = instanceID.GetToken (Mehspot.Android.Constants.SenderId, GoogleCloudMessaging.InstanceIdScope, null);
+    //                var token = instanceID.GetToken (Mehspot.AndroidApp.Constants.SenderId, GoogleCloudMessaging.InstanceIdScope, null);
 
     //                Log.Info ("RegistrationIntentService", $"GCM Registration Token: {token}");
     //                SendRegistrationToAppServer (token);

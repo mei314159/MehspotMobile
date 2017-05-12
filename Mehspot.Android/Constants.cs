@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Mehspot.Android
+namespace Mehspot.AndroidApp
 {
     public class Constants
     {
