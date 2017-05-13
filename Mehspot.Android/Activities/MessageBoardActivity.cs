@@ -73,7 +73,7 @@ namespace Mehspot.AndroidApp
         public void DisplayMessageBoard ()
         {
             var wrapper = this.FindViewById<LinearLayout> (Resource.Id.messageBoardWrapper);
-
+            wrapper.RemoveAllViews();
             foreach (var item in model.Items) {
                 var bubble = CreateMessageBoardItem (item);
                 wrapper.AddView (bubble);
@@ -88,7 +88,6 @@ namespace Mehspot.AndroidApp
         public void UpdateMessageBoardCell (MessageBoardItemDto dto, int index)
         {
             var wrapper = this.FindViewById<LinearLayout> (Resource.Id.messageBoardWrapper);
-            wrapper.RemoveAllViews ();
             var item = (MessageBoardItem)wrapper.FindViewWithTag (dto.WithUser.Id);
 
             item.UnreadMessagesCount.Text = (int.Parse (item.UnreadMessagesCount.Text) + 1).ToString ();
