@@ -214,7 +214,6 @@
     <Compile Include="Views\LoadingOverlay.cs" />
     <Compile Include="Wrappers\ViewHelper.cs" />
     <Compile Include="Extensions\ViewExtensions.cs" />
-    <Compile Include="Core\DTO\IosNotification.cs" />
     <Compile Include="Views\MessageBubble.cs" />
     <Compile Include="Views\MessageBubble.designer.cs">
       <DependentUpon>MessageBubble.cs</DependentUpon>

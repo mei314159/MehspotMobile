@@ -1,9 +1,8 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace mehspot.iOS.Core.DTO
+namespace Mehspot.Core.DTO.Push
 {
-    public class IosNotification
+    public class PushNotification
     {
         [JsonProperty (PropertyName = "aps")]
         public NotificationData Data { get; set; }

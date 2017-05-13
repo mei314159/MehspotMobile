@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Facebook.CoreKit;
 using Foundation;
 using Google.Maps;
 using HockeyApp.iOS;
 using mehspot.iOS.Core;
-using mehspot.iOS.Core.DTO;
 using mehspot.iOS.Extensions;
 using Mehspot.Core;
+using Mehspot.Core.DTO.Push;
 using Mehspot.Core.Push;
 using Newtonsoft.Json;
 using SDWebImage;
@@ -182,7 +181,7 @@ namespace mehspot.iOS
         {
             NSError error = new NSError ();
             var pushJson = new NSString (NSJsonSerialization.Serialize (userInfo, 0, out error), NSStringEncoding.UTF8).ToString ();
-            var notification = JsonConvert.DeserializeObject<IosNotification> (pushJson);
+            var notification = JsonConvert.DeserializeObject<PushNotification> (pushJson);
 
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = notification.Data.Badge ?? 1;
             var controller = Window.RootViewController as UITabBarController;

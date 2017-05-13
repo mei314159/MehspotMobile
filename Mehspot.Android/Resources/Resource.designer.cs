@@ -193,10 +193,13 @@ namespace Mehspot.AndroidApp
 			public const int googleg_standard_color_18 = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int icon = 2130837525;
+			public const int ic_stat_ic_notification = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int logo = 2130837526;
+			public const int icon = 2130837526;
+			
+			// aapt resource value: 0x7f020017
+			public const int logo = 2130837527;
 			
 			static Drawable()
 			{
@@ -416,8 +419,8 @@ namespace Mehspot.AndroidApp
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060019
-			public const int app_name = 2131099673;
+			// aapt resource value: 0x7f060012
+			public const int app_name = 2131099666;
 			
 			// aapt resource value: 0x7f060000
 			public const int common_google_play_services_enable_button = 2131099648;
@@ -470,29 +473,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f06000f
 			public const int common_signin_button_text_long = 2131099663;
 			
-			// aapt resource value: 0x7f060013
-			public const int default_web_client_id = 2131099667;
-			
-			// aapt resource value: 0x7f060014
-			public const int firebase_database_url = 2131099668;
-			
 			// aapt resource value: 0x7f060011
-			public const int gcm_defaultSenderId = 2131099665;
-			
-			// aapt resource value: 0x7f060015
-			public const int google_api_key = 2131099669;
-			
-			// aapt resource value: 0x7f060012
-			public const int google_app_id = 2131099666;
-			
-			// aapt resource value: 0x7f060016
-			public const int google_crash_reporting_api_key = 2131099670;
-			
-			// aapt resource value: 0x7f060017
-			public const int google_storage_bucket = 2131099671;
-			
-			// aapt resource value: 0x7f060018
-			public const int hello = 2131099672;
+			public const int hello = 2131099665;
 			
 			static String()
 			{

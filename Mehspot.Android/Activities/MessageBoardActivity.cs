@@ -1,4 +1,7 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
+using Android.Content;
+using Android.Gms.Common;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
@@ -32,11 +35,11 @@ namespace Mehspot.AndroidApp
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.MessageBoard);
 
-            //if (IsPlayServicesAvailable ()) {
-            //    var intent = new Intent (this, typeof (RegistrationIntentService));
+            if (IsPlayServicesAvailable ()) {
+                var intent = new Intent (this, typeof (RegistrationIntentService));
 
-            //    StartService (intent);
-            //}
+                StartService (intent);
+            }
 
             this.ViewHelper = new ActivityHelper (this);
             model = new MessageBoardModel (new MessagesService (MehspotAppContext.Instance.DataStorage), this);
@@ -104,21 +107,21 @@ namespace Mehspot.AndroidApp
         }
 
 
-        //public bool IsPlayServicesAvailable ()
-        //{
-        //    int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
-        //    if (resultCode != ConnectionResult.Success) {
-        //        if (GoogleApiAvailability.Instance.IsUserResolvableError (resultCode))
-        //            Console.WriteLine (GoogleApiAvailability.Instance.GetErrorString (resultCode));
-        //        else {
-        //            Console.WriteLine ("Sorry, this device is not supported");
-        //            Finish ();
-        //        }
-        //        return false;
-        //    } else {
-        //        Console.WriteLine ("Google Play Services is available.");
-        //        return true;
-        //    }
-        //}
+        public bool IsPlayServicesAvailable ()
+        {
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
+            if (resultCode != ConnectionResult.Success) {
+                if (GoogleApiAvailability.Instance.IsUserResolvableError (resultCode))
+                    Console.WriteLine (GoogleApiAvailability.Instance.GetErrorString (resultCode));
+                else {
+                    Console.WriteLine ("Sorry, this device is not supported");
+                    Finish ();
+                }
+                return false;
+            } else {
+                Console.WriteLine ("Google Play Services is available.");
+                return true;
+            }
+        }
     }
 }
