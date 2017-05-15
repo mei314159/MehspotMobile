@@ -4,18 +4,27 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="com.mehspot.application.permission.C2D_MESSAGE" />
-    <permission android:name="com.mehspot.application.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-	<application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:theme="@android:style/Theme.Holo.Light.NoActionBar">
-		<receiver android:name="com.google.android.gms.gcm.GcmReceiver" 
-              android:exported="true" 
-              android:permission="com.google.android.c2dm.permission.SEND">
-	        <intent-filter>
-	            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-	            <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-	            <category android:name="com.mehspot.application" />
-	        </intent-filter>
-	    </receiver>
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<uses-permission android:name="com.mehspot.application.permission.C2D_MESSAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<permission android:name="com.mehspot.application.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:theme="@android:style/Theme.Holo.Light">
+		<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
+		<receiver android:name="com.google.android.gms.gcm.GcmReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+				<category android:name="com.mehspot.application" />
+			</intent-filter>
+		</receiver>
+		<activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:label="@string/app_name" />
+		<activity android:name="com.facebook.CustomTabActivity" android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="@string/fb_login_protocol_scheme" />
+			</intent-filter>
+		</activity>
 	</application>
 </manifest>

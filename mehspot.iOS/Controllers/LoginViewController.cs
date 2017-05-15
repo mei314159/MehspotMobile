@@ -9,13 +9,11 @@ using Foundation;
 using Facebook.CoreKit;
 using Facebook.LoginKit;
 using CoreGraphics;
-using System.Collections.Generic;
 
 namespace mehspot.iOS
 {
     public partial class LoginViewController : UIViewController
     {
-        List<string> readPermissions = new List<string> { "public_profile", "email" };
 
         SignInModel model;
         LoginButton loginView;
@@ -47,7 +45,7 @@ namespace mehspot.iOS
             // Set the Read and Publish permissions you want to get
             loginView = new LoginButton (new CGRect (0, 0, 218, 46)) {
                 LoginBehavior = LoginBehavior.Native,
-                ReadPermissions = readPermissions.ToArray ()
+                ReadPermissions = SignInModel.FbReadPermissions
             };
 
             // Handle actions once the user is logged in

@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using Android.App;
 using Android.Content;
 using Android.Gms.Common;
@@ -32,8 +32,19 @@ namespace Mehspot.AndroidApp
         protected override async void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-            // Set our view from the "main" layout resource
-            SetContentView (Resource.Layout.MessageBoard);
+
+			ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+			SetContentView (Resource.Layout.MessageBoard);
+
+			var tab = ActionBar.NewTab();
+			tab.SetText("Messages");
+			//tab.SetIcon(Resource.Drawable.tab1_icon);
+            tab.TabSelected += (sender, args) =>
+            {
+                // Do something when tab is selected
+            };
+
+            ActionBar.AddTab(tab);
 
             if (IsPlayServicesAvailable ()) {
                 var intent = new Intent (this, typeof (RegistrationIntentService));

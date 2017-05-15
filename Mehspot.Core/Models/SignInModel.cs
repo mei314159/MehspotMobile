@@ -9,7 +9,7 @@ namespace Mehspot.Core.Models
     {
         private readonly AccountService authManager;
         private readonly IViewHelper viewHelper;
-
+        public static string[] FbReadPermissions = { "public_profile", "email" };
         public SignInModel(AccountService authManager, IViewHelper viewHelper)
         {
             this.authManager = authManager;
