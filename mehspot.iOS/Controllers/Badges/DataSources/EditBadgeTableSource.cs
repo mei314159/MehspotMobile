@@ -175,7 +175,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
                 }
             }
 
-            return null;
+            return new List<SubdivisionDTO>();
         }
 
         private async Task<KeyValuePair<int?, string> []> GetStates ()

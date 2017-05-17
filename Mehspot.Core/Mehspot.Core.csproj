@@ -133,6 +133,7 @@
     <Compile Include="DTO\ResetPasswordDto.cs" />
     <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="DTO\Push\PushNotification.cs" />
+    <Compile Include="Models\BadgesModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

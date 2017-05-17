@@ -31,6 +31,11 @@ namespace mehspot.iOS
             RegisterForKeyboardNotifications ();
         }
 
+		public override void ViewDidAppear(bool animated)
+		{
+            this.ScrollView.ContentSize = new CGSize(ScrollView.ContentSize.Width, ScrollView.ContentSize.Height + 170);
+		}
+
         private async void Model_SignedUp (Result result)
         {
             await model.SignInAsync (this.EmailField.Text, this.PasswordField.Text);
@@ -119,9 +124,9 @@ namespace mehspot.iOS
             }
 
             if (visible) {
-                this.ContentWrapper.Frame = new CGRect (new CGPoint (this.ContentWrapper.Frame.X, 64), this.ContentWrapper.Frame.Size);
+				this.ScrollView.ContentOffset = new CGPoint(0, 170);
             } else {
-                this.ContentWrapper.Frame = new CGRect (new CGPoint (this.ContentWrapper.Frame.X, 234), this.ContentWrapper.Frame.Size);
+                this.ScrollView.ContentOffset = new CGPoint(0, 0);
             }
         }
     }

@@ -241,9 +241,9 @@ namespace mehspot.iOS
             var storyboard = UIStoryboard.FromName ("Main", null);
             if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated ()) {
                 if (launchOptions != null) {
-                    NSDictionary dict = (NSDictionary)launchOptions.ObjectForKey (UIApplication.LaunchOptionsUserActivityDictionaryKey);
+                    var dict = launchOptions.ObjectForKey (UIApplication.LaunchOptionsUserActivityDictionaryKey) as NSDictionary;
                     if (dict != null) {
-                        var userActivity = (NSUserActivity)dict.ObjectForKey (new NSString ("UIApplicationLaunchOptionsUserActivityKey"));
+                        var userActivity = dict.ObjectForKey (new NSString ("UIApplicationLaunchOptionsUserActivityKey")) as NSUserActivity;
                         if (userActivity != null) {
 
                             var controller = GetResetPasswordController (userActivity);

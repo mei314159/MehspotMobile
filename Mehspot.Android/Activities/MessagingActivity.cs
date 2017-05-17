@@ -47,12 +47,11 @@ namespace Mehspot.AndroidApp
 
 			var tab = ActionBar.NewTab();
 			tab.SetText("Messages");
-			//tab.SetIcon(Resource.Drawable.tab1_icon);
-			tab.TabSelected += (sender, args) =>
-			{
-				// Do something when tab is selected
-			};
-
+			tab.TabSelected += (sender, args) => this.StartActivity(new Intent(Application.Context, typeof(MessageBoardActivity)));
+			ActionBar.AddTab(tab);
+			tab = ActionBar.NewTab();
+			tab.SetText("Badges");
+			tab.TabSelected += (sender, args) => this.StartActivity(new Intent(Application.Context, typeof(BadgesActivity)));
 			ActionBar.AddTab(tab);
 
             this.ViewHelper = new ActivityHelper (this);

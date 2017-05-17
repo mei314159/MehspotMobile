@@ -31,8 +31,7 @@ namespace mehspot.iOS.Controllers
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
-            nint selectedRow = 0;
-
+            var selectedRow = 0;
             if (Subdivisions != null) {
                 for (int i = 0; i < Subdivisions.Count; i++) {
                     var item = Subdivisions [i];
@@ -41,6 +40,9 @@ namespace mehspot.iOS.Controllers
                         selectedSubdivision = item;
                         break;
                     }
+                }
+                if (selectedSubdivision == null){
+                    selectedSubdivision = Subdivisions[selectedRow];
                 }
                 var model = new CustomPickerModel (Subdivisions.Select (a => a.DisplayName).ToList ());
                 this.PickerView.Model = model;
@@ -84,7 +86,7 @@ namespace mehspot.iOS.Controllers
 
         partial void SaveButtonTouched (UIBarButtonItem sender)
         {
-            this.OnDismissed (selectedSubdivision);
+            this.OnDismissed?.Invoke (selectedSubdivision);
             DismissViewController (true, null);
         }
 
@@ -126,7 +128,7 @@ namespace mehspot.iOS.Controllers
         partial void MoreButtonTouched (UIBarButtonItem sender)
         {
             var subdivisionOptionsActionSheet = new UIActionSheet ("Options");
-            if (!selectedSubdivision.IsVerified && !selectedSubdivision.IsVerifiedByCurrentUser) {
+            if (selectedSubdivision != null && !selectedSubdivision.IsVerified && !selectedSubdivision.IsVerifiedByCurrentUser) {
                 subdivisionOptionsActionSheet.AddButton ("Verify or Change Subdivision");
             } else {
                 subdivisionOptionsActionSheet.AddButton (MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin ? "Edit Subdivision" : "View Details");

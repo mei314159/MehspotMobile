@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -11,13 +12,13 @@ namespace Mehspot.AndroidApp.Resources.layout
 
     public class MessageBoardItem : RelativeLayout
     {
-        readonly Context context;
         readonly MessageBoardItemDto dto;
+
+        public event Action<MessageBoardItemDto> Clicked;
 
         public MessageBoardItem (Context context, MessageBoardItemDto dto) : base (context)
         {
             this.dto = dto;
-            this.context = context;
             LayoutInflater inflater = (LayoutInflater)Context.GetSystemService (Context.LayoutInflaterService);
             inflater.Inflate (Resource.Layout.MessageBoardItem, this);
             var userNameView = (TextView)FindViewById (Resource.Id.userName);
@@ -54,16 +55,9 @@ namespace Mehspot.AndroidApp.Resources.layout
             }
         }
 
-        void Handle_Click (object sender, System.EventArgs e)
+        void Handle_Click (object sender, EventArgs e)
         {
-            var item = (MessageBoardItem)sender;
-
-            var toUserId = item.dto.WithUser.Id;
-            var toUserName = item.dto.WithUser.UserName;
-            var messagingActivity = new Intent (Application.Context, typeof (MessagingActivity));
-            messagingActivity.PutExtra ("toUserId", toUserId);
-            messagingActivity.PutExtra ("toUserName", toUserName);
-            context.StartActivity (messagingActivity);
+            this.Clicked?.Invoke(this.dto);
         }
 
         private Bitmap GetImageBitmapFromUrl (string url)

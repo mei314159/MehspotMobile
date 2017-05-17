@@ -36,6 +36,10 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIScrollView ScrollView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField UserNameField { get; set; }
 
         [Action ("CommunityGuidelinesButtonTouched:")]
@@ -79,6 +83,11 @@ namespace mehspot.iOS
             if (PasswordField != null) {
                 PasswordField.Dispose ();
                 PasswordField = null;
+            }
+
+            if (ScrollView != null) {
+                ScrollView.Dispose ();
+                ScrollView = null;
             }
 
             if (UserNameField != null) {

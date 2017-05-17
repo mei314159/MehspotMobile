@@ -143,6 +143,8 @@
     <Compile Include="Activities\SignInActivity.cs" />
     <Compile Include="Activities\SignUpActivity.cs" />
     <Compile Include="SplashScreenActivity.cs" />
+    <Compile Include="Activities\BadgesActivity.cs" />
+    <Compile Include="Views\BadgeSummaryItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -168,6 +170,8 @@
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\layout\SignUp.axml" />
     <AndroidResource Include="Resources\drawable\ic_stat_ic_notification.png" />
+    <AndroidResource Include="Resources\layout\BadgesActivity.axml" />
+    <AndroidResource Include="Resources\layout\BadgeSummaryItem.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
