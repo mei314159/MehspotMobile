@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.DTO;
@@ -20,7 +21,7 @@ namespace Mehspot.Core.Models
         private List<int> expandedRows = new List<int>();
 
 
-		public event Action LoadingStart;
+        public event Action LoadingStart;
         public event Action LoadingEnd;
 
         public BadgesModel(BadgeService messagesService, IBadgesViewController viewController)
@@ -43,27 +44,38 @@ namespace Mehspot.Core.Models
             {
                 this.Items = result.Data;
                 viewController.DisplayBadges();
-			}
-			else
-			{
+            }
+            else
+            {
                 viewController.ViewHelper.ShowAlert("Error", "Can not load badges");
-			}
+            }
 
             LoadingEnd?.Invoke();
             loading = false;
         }
 
+        public void SelectBadge(BadgeSummaryDTO dto)
+        {
+            for (int i = 0; i < Items.Length; i++)
+            {
+                if (Items[i] == dto) {
+                    SelectRow(i);
+                    break;
+                }
+            }
+        }
+
         public void SelectRow(int row)
         {
             this.selectedBadgeIndex = row;
-			if (expandedRows.Contains(row))
-			{
-				expandedRows.Remove(row);
-			}
-			else
-			{
-				expandedRows.Add(row);
-			}
+            if (expandedRows.Contains(row))
+            {
+                expandedRows.Remove(row);
+            }
+            else
+            {
+                expandedRows.Add(row);
+            }
         }
 
         public bool IsRowExpanded(int row)

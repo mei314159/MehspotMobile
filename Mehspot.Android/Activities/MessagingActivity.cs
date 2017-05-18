@@ -42,18 +42,7 @@ namespace Mehspot.AndroidApp
         protected override async void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             SetContentView (Resource.Layout.Messaging);
-
-			var tab = ActionBar.NewTab();
-			tab.SetText("Messages");
-			tab.TabSelected += (sender, args) => this.StartActivity(new Intent(Application.Context, typeof(MessageBoardActivity)));
-			ActionBar.AddTab(tab);
-			tab = ActionBar.NewTab();
-			tab.SetText("Badges");
-			tab.TabSelected += (sender, args) => this.StartActivity(new Intent(Application.Context, typeof(BadgesActivity)));
-			ActionBar.AddTab(tab);
-
             this.ViewHelper = new ActivityHelper (this);
             this.messagingModel = new MessagingModel (new MessagesService (MehspotAppContext.Instance.DataStorage), this);
             MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;

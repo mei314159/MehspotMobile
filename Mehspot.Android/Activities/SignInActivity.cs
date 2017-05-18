@@ -59,7 +59,7 @@ namespace Mehspot.AndroidApp
 
         private void Model_SignedIn (AuthenticationResult result)
         {
-            this.StartActivity (new Intent (Application.Context, typeof (MessageBoardActivity)));
+			this.StartActivity (new Intent (Application.Context, typeof (MainActivity)));
         }
 
         public void OnCancel()

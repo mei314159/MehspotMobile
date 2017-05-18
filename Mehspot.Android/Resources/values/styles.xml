@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  	<style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+	    <item name="windowNoTitle">true</item>
+	    <item name="windowActionBar">false</item>
+	     <item name="colorControlNormal">#ffeeb848</item>
+	    <item name="colorPrimary">#ffc6d881</item>
+	    <item name="colorPrimaryDark">#ffc6d881</item>
+	    <item name="colorAccent">#ffeeb848</item> 
+  	</style>     
+  	<style name="MyTheme" parent="MyTheme.Base">
+  	</style>
+  	 <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light"> 
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+  </style>
+</resources>

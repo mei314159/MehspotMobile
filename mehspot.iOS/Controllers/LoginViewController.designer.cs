@@ -26,6 +26,10 @@ namespace mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField PasswordField { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIScrollView ScrollView { get; set; }
+
         [Action ("SignInButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SignInButtonTouched (UIKit.UIButton sender);
@@ -45,6 +49,11 @@ namespace mehspot.iOS
             if (PasswordField != null) {
                 PasswordField.Dispose ();
                 PasswordField = null;
+            }
+
+            if (ScrollView != null) {
+                ScrollView.Dispose ();
+                ScrollView = null;
             }
         }
     }

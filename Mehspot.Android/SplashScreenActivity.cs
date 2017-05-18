@@ -3,14 +3,13 @@ using System;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
-using Android.Gms.Common;
 using Android.OS;
 using Mehspot.AndroidApp.Core;
 using Mehspot.Core;
 
 namespace Mehspot.AndroidApp
 {
-    [Activity (MainLauncher = true, NoHistory = true)]
+	[Activity (MainLauncher = true, NoHistory = true, Theme = "@android:style/Theme.Holo.NoActionBar")]
     public class SplashScreenActivity : Activity
     {
         protected override void OnCreate (Bundle savedInstanceState)
@@ -29,7 +28,7 @@ namespace Mehspot.AndroidApp
                 if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated ()) {
                     targetActivityType = typeof (SignInActivity);
                 } else {
-                    targetActivityType = typeof (MessageBoardActivity);
+					targetActivityType = typeof (MainActivity);
                 }
                 base.StartActivity (new Intent (Application.Context, targetActivityType));
 
