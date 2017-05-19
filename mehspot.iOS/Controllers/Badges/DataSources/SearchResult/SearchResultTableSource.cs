@@ -64,7 +64,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
         {
-            if (!this.searchBadge.RequiredBadgeIsRegistered)
+			if (this.searchBadge.RequiredBadgeId.HasValue && !this.searchBadge.RequiredBadgeIsRegistered)
                 return;
 
             if (expandedPaths.Contains (indexPath)) {
@@ -151,9 +151,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 
         void SearchLimitCell_OnRegisterButtonTouched ()
         {
-            if (searchBadge.RequiredBadgeId.HasValue) {
-                this.RegisterButtonTouched?.Invoke (searchBadge.RequiredBadgeId.Value);
-            }
+			this.RegisterButtonTouched?.Invoke(searchBadge.RequiredBadgeId ?? searchBadge.BadgeId);
         }
     }
 }
