@@ -4,8 +4,24 @@ namespace Mehspot.Core.DTO.Badges
 public class OtherJobsProfileDTO : IBadgeProfileValues
 {
         public string FirstName { get; set; }
-        public string OtherJobsType { get; set; }
+        string otherJobsType;
+
+        public string OtherJobsType
+        {
+            get
+            {
+                var jobs = otherJobsType.Replace(",Other", string.Empty);
+                return $"{jobs},{OtherJobsOther ?? string.Empty}".Trim(',');
+            }
+
+            set
+            {
+                otherJobsType = value;
+            }
+        }
+
         public string OtherJobsOther { get; set; }
+
         public string Gender { get; set; }
         public string OtherJobsAgeRange { get; set; }
         public string OtherJobsLicense { get; set; }
