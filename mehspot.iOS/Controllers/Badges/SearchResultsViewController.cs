@@ -58,7 +58,11 @@ namespace mehspot.iOS
 		internal void RegqiredBadgeWasRegistered()
 		{
 			this.viewWasInitialized = false;
-			SearchModel.SearchBadge.RequiredBadgeIsRegistered = true;
+			if (SearchModel.SearchBadge.RequiredBadgeId.HasValue)
+				SearchModel.SearchBadge.RequiredBadgeIsRegistered = true;
+			else {
+				SearchModel.SearchBadge.IsRegistered = true;
+			}
 		}
 
 		[Action("UnwindToSearchResultsViewController:")]
