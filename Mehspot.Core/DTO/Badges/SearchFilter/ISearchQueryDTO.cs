@@ -1,14 +1,16 @@
 namespace Mehspot.Core.DTO.Search
 {
-    public interface ISearchFilterDTO
+    public interface ISearchQueryDTO
     {
         int BadgeId { get; set; }
         BaseFilterDTO Details { get; set; }
     }
 
-    public class SearchFilterDTOBase : ISearchFilterDTO
+    public class SearchFilterDTOBase : ISearchQueryDTO
     {
         public int BadgeId { get; set; }
+
+        [SearchProperty(CellType = CellType.Complex, Order = 0)]
         public BaseFilterDTO Details { get; set; } = new BaseFilterDTO();
     }
 }

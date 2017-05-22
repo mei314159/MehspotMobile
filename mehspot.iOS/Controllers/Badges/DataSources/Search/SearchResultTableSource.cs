@@ -21,13 +21,13 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 		private const int limitedResultsCount = 5;
 		private volatile bool loading;
 		private readonly BadgeService badgeService;
-		private readonly ISearchFilterDTO filter;
+		private readonly ISearchQueryDTO filter;
 		private readonly BadgeSummaryDTO searchBadge;
 		private List<NSIndexPath> expandedPaths = new List<NSIndexPath>();
 
 		public readonly Type ResultType;
 
-		public SearchResultTableSource(BadgeService badgeService, ISearchFilterDTO filter, Type resultType, BadgeSummaryDTO searchBadge)
+		public SearchResultTableSource(BadgeService badgeService, ISearchQueryDTO filter, BadgeSummaryDTO searchBadge, Type resultType)
 		{
 			this.searchBadge = searchBadge;
 			this.badgeService = badgeService;

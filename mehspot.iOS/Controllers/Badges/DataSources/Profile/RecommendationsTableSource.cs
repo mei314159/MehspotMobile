@@ -21,7 +21,7 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
         public event Action OnWriteReviewButtonTouched;
         public event GoToMessagingHandler OnGoToMessaging;
-        public RecommendationsTableSource (int badgeId, string badgeName, BadgeService badgeService)
+        public RecommendationsTableSource (BadgeService badgeService, int badgeId, string badgeName)
         {
             BadgeId = badgeId;
             BadgeName = badgeName;

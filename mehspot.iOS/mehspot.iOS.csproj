@@ -175,9 +175,8 @@
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Controllers\Subdivisions\" />
-    <Folder Include="Controllers\Badges\DataSources\SearchFilter\" />
+    <Folder Include="Controllers\Badges\DataSources\Search\" />
     <Folder Include="Controllers\Badges\DataSources\Profile\" />
-    <Folder Include="Controllers\Badges\DataSources\SearchResult\" />
     <Folder Include="Assets.xcassets\details-icon.imageset\" />
     <Folder Include="Assets.xcassets\review-icon.imageset\" />
   </ItemGroup>
@@ -302,31 +301,18 @@
       <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\FilterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\BabysitterFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewBadgeProfileTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchModel.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchResult\SearchResultTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\BabysitterEmployerFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchContext.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterEmployerTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\TennisFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Search\SearchFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewTennisTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\GolfFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewGolfTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\TutorFilterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\TutorEmployerFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorEmployerTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\FitnessFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewFitnessTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\PetSitterFilterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\PetSitterEmployerFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewPetSitterEmployerTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\KidsPlayDateFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewKidsPlayDateTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\OtherJobsFilterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchFilter\FriendshipFilterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewOtherJobsTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\Profile\ViewFriendshipTableSource.cs" />
 <Compile Include="Controllers\Badges\DataSources\Profile\RecommendationsTableSource.cs" />
@@ -356,6 +342,8 @@
     <Compile Include="Controllers\ResetPasswordViewController.designer.cs">
       <DependentUpon>ResetPasswordViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Badges\DataSources\Search\CellsSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\Search\SearchResultTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

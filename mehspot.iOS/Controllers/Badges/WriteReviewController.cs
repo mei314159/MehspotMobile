@@ -1,5 +1,6 @@
 using System;
 using mehspot.iOS.Wrappers;
+using Mehspot.Core;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.Services;
 using UIKit;
@@ -16,13 +17,14 @@ namespace mehspot.iOS
 
         public int BadgeId { get; internal set; }
         public string UserId { get; internal set; }
-        public BadgeService BadgeService { get; internal set; }
+		private BadgeService badgeService;
 
         public event Action<BadgeUserRecommendationDTO> OnSave;
 
         public override void ViewDidLoad ()
         {
             this.viewHelper = new ViewHelper (this.View);
+			this.badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
             base.ViewDidLoad ();
         }
 
@@ -34,7 +36,7 @@ namespace mehspot.iOS
         async partial void SendButtonTouched (UIBarButtonItem sender)
         {
             viewHelper.ShowOverlay ("Wait...");
-            var result = await this.BadgeService.WriteRecommendationAsync (BadgeId, UserId, this.CommentView.Text);
+            var result = await this.badgeService.WriteRecommendationAsync (BadgeId, UserId, this.CommentView.Text);
             if (result.IsSuccess) {
                 this.OnSave?.Invoke (result.Data);
             } else {

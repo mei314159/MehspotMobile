@@ -125,7 +125,6 @@ namespace Mehspot.AndroidApp
 			var messagingActivity = new Intent(this.Context, typeof(MessagingActivity));
 			messagingActivity.PutExtra("toUserId", toUserId);
 			messagingActivity.PutExtra("toUserName", toUserName);
-
 			this.StartActivity(messagingActivity);
 		}
 

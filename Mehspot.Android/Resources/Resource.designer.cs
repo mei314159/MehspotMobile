@@ -3819,25 +3819,28 @@ namespace Mehspot.AndroidApp
 			public const int notification_template_part_time = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int select_dialog_item_material = 2130968653;
+			public const int SearchBadgeActivity = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int select_dialog_multichoice_material = 2130968654;
+			public const int select_dialog_item_material = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int select_dialog_singlechoice_material = 2130968655;
+			public const int select_dialog_multichoice_material = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int SignIn = 2130968656;
+			public const int select_dialog_singlechoice_material = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int SignUp = 2130968657;
+			public const int SignIn = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int SplashScreen = 2130968658;
+			public const int SignUp = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int support_simple_spinner_dropdown_item = 2130968659;
+			public const int SplashScreen = 2130968659;
+			
+			// aapt resource value: 0x7f040054
+			public const int support_simple_spinner_dropdown_item = 2130968660;
 			
 			static Layout()
 			{
@@ -3861,6 +3864,22 @@ namespace Mehspot.AndroidApp
 			}
 			
 			private Mipmap()
+			{
+			}
+		}
+		
+		public partial class SearchFilter
+		{
+			
+			// aapt resource value: 0x7f0f0000
+			public const int toolbar = 2131689472;
+			
+			static SearchFilter()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private SearchFilter()
 			{
 			}
 		}

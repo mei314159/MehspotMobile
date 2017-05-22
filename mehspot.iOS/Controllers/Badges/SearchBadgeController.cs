@@ -11,62 +11,68 @@ using Mehspot.Core.DTO;
 
 namespace mehspot.iOS
 {
-    public partial class SearchBadgeController : UITableViewController
-    {
-        volatile bool viewWasInitialized;
-        private IViewHelper viewHelper;
-        private SearchModel SearchModel;
-        public BadgeSummaryDTO BadgeSummary;
+	public partial class SearchBadgeController : UITableViewController, ISearchFilterController
+	{
+		volatile bool viewWasInitialized;
+		private SearchContext model;
+		public BadgeSummaryDTO BadgeSummary;
 
-        public SearchBadgeController (IntPtr handle) : base (handle)
-        {
-        }
 
-        public override void ViewDidLoad ()
-        {
-            viewHelper = new ViewHelper (this.View);
-            this.TableView.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
-            this.TableView.TableFooterView.Hidden = true;
-        }
+		public IViewHelper ViewHelper { get; private set; }
+		SearchFilterTableSource source;
 
-        private void SetTitle ()
-        {
-            var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeSummary.BadgeName) ?? this.BadgeSummary.BadgeName;
-            var title = "Search for " + badgeName;
-            this.NavBar.Title = title;
-        }
+		public SearchBadgeController(IntPtr handle) : base(handle)
+		{
+		}
 
-        public override async void ViewWillAppear (bool animated)
-        {
-            SetTitle ();
-            if (viewWasInitialized)
-                return;
+		public override void ViewDidLoad()
+		{
+			this.TableView.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
+			this.TableView.TableFooterView.Hidden = true;
+			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
+			this.ViewHelper = new ViewHelper(this.View);
+			this.model = new SearchContext(badgeService, this.BadgeSummary);
+			source = new SearchFilterTableSource(badgeService, BadgeSummary.BadgeId);
+			this.TableView.Source = source;
+			this.NavBar.Title = this.GetTitle();
+		}
 
-            viewHelper.ShowOverlay ("Loading...");
+		public override async void ViewWillAppear(bool animated)
+		{
+			if (viewWasInitialized)
+				return;
 
-            this.SearchModel = await SearchModel.GetInstanceAsync (new BadgeService (MehspotAppContext.Instance.DataStorage), this.BadgeSummary);
-            this.TableView.Source = this.SearchModel.SearchFilterTableSource;
-            this.TableView.ReloadData ();
+			ViewHelper.ShowOverlay("Wait...");
+			await source.Initialize(model.SearchQuery);
+			this.TableView.ReloadData();
 
-            viewHelper.HideOverlay ();
-            viewWasInitialized = true;
-            this.TableView.TableFooterView.Hidden = false;
-        }
+			ViewHelper.HideOverlay();
+			viewWasInitialized = true;
+			this.TableView.TableFooterView.Hidden = false;
+		}
 
-        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
-        {
-            if (segue.Identifier == "SearchResultsSegue") {
-                var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
-                destinationViewController.SearchModel = this.SearchModel;
-                this.NavBar.Title = "Filter";
-            }
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+			if (segue.Identifier == "SearchResultsSegue")
+			{
+				var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
+				destinationViewController.SearchContext = this.model;
+				this.NavBar.Title = "Filter";
+			}
 
-            base.PrepareForSegue (segue, sender);
-        }
+			base.PrepareForSegue(segue, sender);
+		}
 
-        partial void SearchButtonTouched (UIButton sender)
-        {
-            this.PerformSegue ("SearchResultsSegue", this);
-        }
-    }
+		partial void SearchButtonTouched(UIButton sender)
+		{
+			this.PerformSegue("SearchResultsSegue", this);
+		}
+
+		public string GetTitle()
+		{
+			var badgeName = MehspotResources.ResourceManager.GetString(this.BadgeSummary.BadgeName) ?? this.BadgeSummary.BadgeName;
+			var title = "Search for " + badgeName;
+			return title;
+		}
+	}
 }

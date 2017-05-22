@@ -1,3 +1,5 @@
+using Mehspot.Core.Services;
+
 namespace Mehspot.Core.DTO.Search
 {
 
@@ -7,6 +9,7 @@ namespace Mehspot.Core.DTO.Search
 
         public string Gender { get; set; }
 
+        [SearchProperty(Label = "Pet Types", CellType = CellType.Multiselect, Order = 0, OptionsKey = BadgeService.BadgeKeys.PetSitterEmployerPetType)]
         public string[] PetType { get; set; }
 
         public bool? CanTravel { get; set; }

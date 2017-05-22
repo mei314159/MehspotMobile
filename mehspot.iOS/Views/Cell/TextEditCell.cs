@@ -51,7 +51,7 @@ namespace mehspot.iOS.Views
         public Action<string> SetModelProperty;
         public event Action<TextEditCell, string> ValueChanged;
 
-        public static TextEditCell Create(string initialValue, Action<string> setProperty, string label, string placeholder = null, bool isReadOnly = false)
+		public static TextEditCell Create(string initialValue, Action<string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null)
         {
             var cell = (TextEditCell)Nib.Instantiate (null, null) [0];
             cell.SelectionStyle = UITableViewCellSelectionStyle.None;
@@ -62,6 +62,7 @@ namespace mehspot.iOS.Views
             cell.TextInput.EditingChanged += cell.TextInput_EditingChanged;
             cell.TextInput.ShouldChangeCharacters += (textField, range, replacementString) => cell.TextInput_ShouldChangeCharacters (textField, range, replacementString);
             cell.SetModelProperty = setProperty;
+			cell.Mask = mask;
             return cell;
         }
 

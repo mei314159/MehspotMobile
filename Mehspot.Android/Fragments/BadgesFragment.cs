@@ -65,7 +65,21 @@ namespace Mehspot.AndroidApp
 			var item = new BadgeSummaryItem(this.Activity, dto);
 			item.Tag = dto.BadgeId;
 			item.Clicked += Item_Clicked;
+			item.SearchButtonClicked += Item_SearchButtonClicked;
+			item.RegisterButtonClicked += Item_RegisterButtonClicked;
 			return item;
+		}
+
+		void Item_RegisterButtonClicked(BadgeSummaryDTO dto)
+		{
+			var target = new Intent(this.Context, typeof(SearchBadgeActivity));
+			target.PutExtra("badgeSummary", dto);
+			this.StartActivity(target);
+		}
+
+		void Item_SearchButtonClicked(BadgeSummaryDTO obj)
+		{
+
 		}
 
 		private void Item_Clicked(BadgeSummaryDTO dto, BadgeSummaryItem sender)

@@ -157,6 +157,8 @@
     <Compile Include="Fragments\MessageBoardFragment.cs" />
     <Compile Include="Fragments\BadgesFragment.cs" />
     <Compile Include="Activities\MessagingActivity.cs" />
+    <Compile Include="Activities\SearchBadgeActivity.cs" />
+    <Compile Include="Extensions\IntentExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -216,6 +218,7 @@
     <AndroidResource Include="Resources\drawable\tutorb.png" />
     <AndroidResource Include="Resources\drawable\tutoremployer.png" />
     <AndroidResource Include="Resources\drawable\tutoremployerb.png" />
+    <AndroidResource Include="Resources\layout\SearchBadgeActivity.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -226,6 +229,7 @@
     <Folder Include="Activities\" />
     <Folder Include="Resources\values-v21\" />
     <Folder Include="Fragments\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">
