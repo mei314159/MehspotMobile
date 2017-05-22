@@ -15,7 +15,7 @@ namespace Mehspot.Core.Models
             this.messagesService = messagesService;
         }
 
-        public int Page { get; private set; } = 1;
+        public int Page { get; set; } = 1;
 
         public async Task LoadMessagesAsync()
         {

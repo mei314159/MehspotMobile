@@ -184,7 +184,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="Views\MessageBubble.xib" />
     <InterfaceDefinition Include="Views\Cell\BooleanEditCell.xib" />
     <InterfaceDefinition Include="Views\Cell\PickerCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
@@ -201,6 +200,7 @@
     <InterfaceDefinition Include="Views\Cell\RecommendationCell.xib" />
     <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SearchLimitCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\MessageCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -214,10 +214,6 @@
     <Compile Include="Views\LoadingOverlay.cs" />
     <Compile Include="Wrappers\ViewHelper.cs" />
     <Compile Include="Extensions\ViewExtensions.cs" />
-    <Compile Include="Views\MessageBubble.cs" />
-    <Compile Include="Views\MessageBubble.designer.cs">
-      <DependentUpon>MessageBubble.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Views\Cell\BooleanEditCell.cs" />
     <Compile Include="Views\Cell\BooleanEditCell.designer.cs">
@@ -355,6 +351,10 @@
     <Compile Include="Controllers\ResetPasswordViewController.cs" />
     <Compile Include="Controllers\ResetPasswordViewController.designer.cs">
       <DependentUpon>ResetPasswordViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\MessageCell.cs" />
+    <Compile Include="Views\Cell\MessageCell.designer.cs">
+      <DependentUpon>MessageCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
