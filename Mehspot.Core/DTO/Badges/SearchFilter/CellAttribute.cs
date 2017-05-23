@@ -3,8 +3,19 @@ using System;
 namespace Mehspot.Core.DTO.Search
 {
 
-    public class SearchPropertyAttribute : Attribute
+    public class CellAttribute : Attribute
     {
+        public CellAttribute()
+        {
+        }
+
+        public CellAttribute(string label, int order, CellType cellType)
+        {
+            Label = label;
+            Order = order;
+            CellType = cellType;
+        }
+
         public string Label { get; set; }
 
         public string Mask { get; set; }
@@ -15,16 +26,22 @@ namespace Mehspot.Core.DTO.Search
 
         public string OptionsKey { get; set; }
 
+        public bool SkipFirstOption { get; set; }
+
         public object DefaultValue { get; set; }
 
         public int Order { get; set; }
+
+        public bool ReadOnly { get; set; }
+
 
         public CellType CellType { get; set; }
     }
 
     public enum CellType
     {
-        Text,
+        TextEdit,
+        TextView,
         Boolean,
         Range,
         Select,

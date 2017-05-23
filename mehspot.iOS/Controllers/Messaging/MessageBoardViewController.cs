@@ -165,13 +165,19 @@ namespace mehspot.iOS
 
 		public void UpdateMessageBoardCell(MessageBoardItemDto dto, int index)
 		{
-			InvokeOnMainThread(() =>
+			if (dto != null)
 			{
-				var cell = (MessageBoardCell)MessageBoardTable.CellAt(NSIndexPath.FromItemSection(index, 0));
-				cell.CountLabel.Text = (int.Parse(cell.CountLabel.Text) + 1).ToString();
-				cell.Message.Text = dto.LastMessage;
-				cell.CountLabel.Hidden = false;
-			});
+				InvokeOnMainThread(() =>
+				{
+					var cell = MessageBoardTable.CellAt(NSIndexPath.FromItemSection(index, 0)) as MessageBoardCell;
+					if (cell != null)
+					{
+						cell.CountLabel.Text = (int.Parse(cell.CountLabel.Text) + 1).ToString();
+						cell.Message.Text = dto.LastMessage;
+						cell.CountLabel.Hidden = false;
+					}
+				});
+			}
 		}
 
 		private async void RefreshControl_ValueChanged(object sender, EventArgs e)

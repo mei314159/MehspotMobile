@@ -8,10 +8,10 @@ namespace Mehspot.Core.DTO.Search
 
         public bool? IsPlayed { get; set; }
 
-        [SearchProperty(Label = "Min Age", CellType = CellType.Range, Order = 0, MinValue = 1, MaxValue = 21, DefaultValue = 1)]
+        [Cell(Label = "Min Age", CellType = CellType.Range, Order = 0, MinValue = 1, MaxValue = 21, DefaultValue = 1)]
         public int? Age { get; set; }
 
-        [SearchProperty(Label = "Max Age", CellType = CellType.Range, Order = 1, MinValue = 1, MaxValue = 21, DefaultValue = 21)]
+        [Cell(Label = "Max Age", CellType = CellType.Range, Order = 1, MinValue = 1, MaxValue = 21, DefaultValue = 21)]
         public int? MaxAge { get; set; }
     }
 }

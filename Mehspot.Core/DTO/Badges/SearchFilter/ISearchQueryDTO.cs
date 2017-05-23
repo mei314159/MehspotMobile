@@ -10,7 +10,7 @@ namespace Mehspot.Core.DTO.Search
     {
         public int BadgeId { get; set; }
 
-        [SearchProperty(CellType = CellType.Complex, Order = 0)]
+        [Cell(CellType = CellType.Complex, Order = 0)]
         public BaseFilterDTO Details { get; set; } = new BaseFilterDTO();
     }
 }

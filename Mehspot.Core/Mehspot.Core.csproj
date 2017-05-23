@@ -136,7 +136,7 @@
     <Compile Include="Models\BadgesModel.cs" />
     <Compile Include="Contracts\ViewControllers\ISearchFilterController.cs" />
     <Compile Include="Search\Filter\FilterTableSource.cs" />
-    <Compile Include="DTO\Badges\SearchFilter\SearchPropertyAttribute.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\CellAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

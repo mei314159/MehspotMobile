@@ -15,17 +15,17 @@ namespace Mehspot.Core.Models
             this.messagesService = messagesService;
         }
 
-        public int Page { get; private set; } = 1;
+        public int Page { get; set; } = 1;
 
         public async Task LoadMessagesAsync()
         {
-            viewController.ViewHelper.ShowOverlay("Loading messages...");
+            //viewController.ViewHelper.ShowOverlay("Loading messages...");
             var messagesResult = await messagesService.GetMessages(Page++, viewController.ToUserId);
             if (messagesResult.IsSuccess)
             {
                 viewController.DisplayMessages(messagesResult);
             }
-            viewController.ViewHelper.HideOverlay();
+            //viewController.ViewHelper.HideOverlay();
         }
 
         public async Task SendMessageAsync()

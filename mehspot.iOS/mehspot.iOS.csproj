@@ -175,15 +175,12 @@
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Assets.xcassets\more-icon.imageset\" />
     <Folder Include="Controllers\Subdivisions\" />
-    <Folder Include="Controllers\Badges\DataSources\Search\" />
-    <Folder Include="Controllers\Badges\DataSources\Profile\" />
     <Folder Include="Assets.xcassets\details-icon.imageset\" />
     <Folder Include="Assets.xcassets\review-icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="Views\MessageBubble.xib" />
     <InterfaceDefinition Include="Views\Cell\BooleanEditCell.xib" />
     <InterfaceDefinition Include="Views\Cell\PickerCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
@@ -200,6 +197,7 @@
     <InterfaceDefinition Include="Views\Cell\RecommendationCell.xib" />
     <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SearchLimitCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\MessageCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -213,10 +211,6 @@
     <Compile Include="Views\LoadingOverlay.cs" />
     <Compile Include="Wrappers\ViewHelper.cs" />
     <Compile Include="Extensions\ViewExtensions.cs" />
-    <Compile Include="Views\MessageBubble.cs" />
-    <Compile Include="Views\MessageBubble.designer.cs">
-      <DependentUpon>MessageBubble.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Views\Cell\BooleanEditCell.cs" />
     <Compile Include="Views\Cell\BooleanEditCell.designer.cs">
@@ -301,21 +295,7 @@
       <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBadgeProfileTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterTableSource.cs" />
     <Compile Include="Controllers\Badges\DataSources\SearchContext.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewBabysitterEmployerTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Search\SearchFilterTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewTennisTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewGolfTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewTutorEmployerTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewFitnessTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewPetSitterEmployerTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewKidsPlayDateTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewOtherJobsTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewFriendshipTableSource.cs" />
-<Compile Include="Controllers\Badges\DataSources\Profile\RecommendationsTableSource.cs" />
     <Compile Include="Views\Cell\RecommendationCell.cs" />
     <Compile Include="Views\Cell\RecommendationCell.designer.cs">
       <DependentUpon>RecommendationCell.cs</DependentUpon>
@@ -333,7 +313,6 @@
     <Compile Include="Views\Cell\SearchLimitCell.designer.cs">
       <DependentUpon>SearchLimitCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\DataSources\Profile\ViewPetSitterTableSource.cs" />
     <Compile Include="Controllers\ForgotPasswordViewController.cs" />
     <Compile Include="Controllers\ForgotPasswordViewController.designer.cs">
       <DependentUpon>ForgotPasswordViewController.cs</DependentUpon>
@@ -342,8 +321,15 @@
     <Compile Include="Controllers\ResetPasswordViewController.designer.cs">
       <DependentUpon>ResetPasswordViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\DataSources\Search\CellsSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\Search\SearchResultTableSource.cs" />
+    <Compile Include="Views\Cell\MessageCell.cs" />
+    <Compile Include="Views\Cell\MessageCell.designer.cs">
+      <DependentUpon>MessageCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\DataSources\CellsSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchFilterTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\SearchResultTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\RecommendationsTableSource.cs" />
+    <Compile Include="Controllers\Badges\DataSources\ViewBadgeProfileTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

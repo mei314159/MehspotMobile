@@ -2,9 +2,6 @@ using System;
 using UIKit;
 using mehspot.iOS.Wrappers;
 using Mehspot.Core.Messaging;
-using mehspot.iOS.Core;
-using CoreGraphics;
-using System.Linq;
 using System.Collections.Generic;
 using Mehspot.Core.DTO;
 using Foundation;
@@ -14,208 +11,219 @@ using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Services;
 using mehspot.iOS.Extensions;
+using CoreGraphics;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace mehspot.iOS
 {
-    public partial class MessagingViewController : UIViewController, IMessagingViewController
-    {
-        private readonly MessagingModel messagingModel;
-        private readonly UIRefreshControl refreshControl;
-        private const int spacing = 20;
+	public partial class MessagingViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate, IMessagingViewController
+	{
+		private readonly List<MessageDto> messages = new List<MessageDto>();
 
-        public MessagingViewController (IntPtr handle) : base (handle)
-        {
-            refreshControl = new UIRefreshControl ();
-            messagingModel = new MessagingModel (new MessagesService (MehspotAppContext.Instance.DataStorage), this);
-        }
+		private readonly MessagingModel messagingModel;
+		private readonly UIRefreshControl refreshControl;
+		private const int spacing = 20;
 
-        public string ToUserName { get; set; }
-        public string ToUserId { get; set; }
-        public UIViewController ParentController { get; set; }
+		public MessagingViewController(IntPtr handle) : base(handle)
+		{
+			refreshControl = new UIRefreshControl();
+			messagingModel = new MessagingModel(new MessagesService(MehspotAppContext.Instance.DataStorage), this);
+		}
 
-        public event Action Appeared;
+		public string ToUserName { get; set; }
+		public string ToUserId { get; set; }
+		public UIViewController ParentController { get; set; }
 
-        public string MessageFieldValue {
-            get {
-                return this.messageField.Text;
-            }
-            set {
-                this.messageField.Text = value;
-            }
-        }
+		public event Action Appeared;
 
-        public IViewHelper ViewHelper { get; private set; }
+		public string MessageFieldValue
+		{
+			get
+			{
+				return this.textField.Text;
+			}
+			set
+			{
+				this.textField.Text = value;
+				LayoutTextInput();
+			}
+		}
 
-        protected virtual void RegisterForKeyboardNotifications ()
-        {
-            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillHideNotification, OnKeyboardNotification);
-            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, OnKeyboardNotification);
-        }
+		public IViewHelper ViewHelper { get; private set; }
 
-        public override void ViewDidLoad ()
-        {
-            ViewHelper = new ViewHelper (this.messagesScrollView);
-            MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
-            View.BringSubviewToFront (messageFieldWrapper);
-            this.View.BackgroundColor = UIColor.White;
+		public override async void ViewDidLoad()
+		{
+			ViewHelper = new ViewHelper(this.messagesList);
+			MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
+			View.BringSubviewToFront(messageFieldWrapper);
+			messagesList.RegisterNibForCellReuse(MessageCell.Nib, MessageCell.Key);
+			this.View.BackgroundColor = UIColor.White;
+			refreshControl.ValueChanged += RefreshControl_ValueChanged;
+			messagesList.DataSource = this;
+			messagesList.Delegate = this;
+			messagesList.AddSubview(refreshControl);
+			messagesList.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
+			messagesList.RowHeight = UITableView.AutomaticDimension;
+			messagesList.EstimatedRowHeight = 50;
+			textField.Changed += (sender, e) =>
+			{
+				LayoutTextInput();
+			};
+			textField.Layer.BorderWidth = 1;
+			textField.Layer.BorderColor = UIColor.LightGray.CGColor;
+			RegisterForKeyboardNotifications();
 
+			await ReloadAsync();
+		}
 
-            refreshControl.ValueChanged += RefreshControl_ValueChanged;
-            messagesScrollView.AddSubview (refreshControl);
-            messagesScrollView.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
-            messageField.ShouldReturn += MessageField_ShouldReturn;
-            RegisterForKeyboardNotifications ();
-        }
+		void LayoutTextInput()
+		{
+			var sizeThatFitsTextView = textField.SizeThatFits(new CGSize(textField.Frame.Size.Width, int.MaxValue));
+			TextViewHeightConstraint.Constant = sizeThatFitsTextView.Height > 100 ? 100 : sizeThatFitsTextView.Height;
+			textField.LayoutIfNeeded();
+		}
 
-        partial void CloseButtonTouched (UIBarButtonItem sender)
-        {
-            if (ParentController is MessageBoardViewController) {
-                DismissViewController (true, null);
-            } else {
-                PerformSegue ("UnwindToSearchResults", this);
-            }
-        }
+		partial void CloseButtonTouched(UIBarButtonItem sender)
+		{
+			if (ParentController is MessageBoardViewController)
+			{
+				DismissViewController(true, null);
+			}
+			else
+			{
+				PerformSegue("UnwindToSearchResults", this);
+			}
+		}
 
-        public override void ViewWillAppear (bool animated)
-        {
-            this.Title = ToUserName;
-            this.NavBar.TopItem.Title = ToUserName;
-        }
+		public override void ViewWillAppear(bool animated)
+		{
+			this.Title = ToUserName;
+			this.NavBar.TopItem.Title = ToUserName;
+		}
 
-        public override async void ViewDidAppear (bool animated)
-        {
-            Appeared?.Invoke ();
-            await this.messagingModel.LoadMessagesAsync ();
-            await this.messagingModel.MarkMessagesReadAsync ();
-        }
+		public override void ViewDidAppear(bool animated)
+		{
+			Appeared?.Invoke();
+		}
 
-        async void RefreshControl_ValueChanged (object sender, EventArgs e)
-        {
-            await this.messagingModel.LoadMessagesAsync ();
-            refreshControl.EndRefreshing ();
-        }
+		async void RefreshControl_ValueChanged(object sender, EventArgs e)
+		{
+			await this.messagingModel.LoadMessagesAsync();
+			refreshControl.EndRefreshing();
+		}
 
-        async partial void SendButtonTouched (UIButton sender)
-        {
-            await messagingModel.SendMessageAsync ();
-        }
+		async partial void SendButtonTouched(UIButton sender)
+		{
+			await messagingModel.SendMessageAsync();
+		}
 
-        async void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
-        {
-            if (notificationType == MessagingNotificationType.Message && string.Equals (data.FromUserId, ToUserId, StringComparison.InvariantCultureIgnoreCase)) {
-                InvokeOnMainThread (() => {
-                    AddMessageBubbleToEnd (data);
-                });
+		async void OnSendNotification(MessagingNotificationType notificationType, MessageDto data)
+		{
+			if (notificationType == MessagingNotificationType.Message && string.Equals(data.FromUserId, ToUserId, StringComparison.InvariantCultureIgnoreCase))
+			{
+				InvokeOnMainThread(() =>
+				{
+					AddMessageBubbleToEnd(data);
+				});
 
-                await this.messagingModel.MarkMessagesReadAsync ();
-            }
-        }
+				await this.messagingModel.MarkMessagesReadAsync();
+			}
+		}
 
-        public void DisplayMessages (Result<CollectionDto<MessageDto>> messagesResult)
-        {
-            var existingMessages = messagesScrollView.Subviews.OfType<MessageBubble> ().ToList ();
+		public async Task ReloadAsync()
+		{
+			refreshControl.BeginRefreshing();
+			this.messages.Clear();
+			this.messagingModel.Page = 1;
+			await this.messagingModel.LoadMessagesAsync();
+			await this.messagingModel.MarkMessagesReadAsync();
+			refreshControl.EndRefreshing();
+		}
 
-            nfloat shiftHeight = 0;
-            var newMessages = new List<MessageBubble> ();
-            foreach (var messageDto in messagesResult.Data.Data.Reverse ()) {
-                var bubble = CreateMessageBubble (messageDto, shiftHeight);
-                shiftHeight = bubble.Frame.Y + bubble.Frame.Height;
-                newMessages.Add (bubble);
-            }
+		public void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult)
+		{
+			messages.AddRange(messagesResult.Data.Data);
+			var rows = messagesResult.Data.Data.Select((a, i) => NSIndexPath.FromRowSection(i, 0)).Reverse().ToArray();
+			messagesList.InsertRows(rows, UITableViewRowAnimation.Top);
+		}
 
-            foreach (var messageBubble in existingMessages) {
-                messageBubble.Frame = new CGRect (new CGPoint (messageBubble.Frame.X, messageBubble.Frame.Y + shiftHeight), messageBubble.Frame.Size);
-            }
+		public void ToggleMessagingControls(bool enabled)
+		{
+			this.sendButton.Enabled = enabled;
+		}
 
-            foreach (var messageBubble in newMessages) {
-                messagesScrollView.AddSubview (messageBubble);
-            }
+		public void AddMessageBubbleToEnd(MessageDto messageDto)
+		{
+			messages.Insert(0, messageDto);
+			var row = NSIndexPath.FromRowSection(messages.Count - 1, 0);
+			messagesList.InsertRows(new[] { row }, UITableViewRowAnimation.Top);
+			messagesList.ScrollToRow(row, UITableViewScrollPosition.Bottom, true);
+		}
 
-            var contentHeight = messagesScrollView.ContentSize.Height + shiftHeight;
-            messagesScrollView.ContentSize = new CGSize (messagesScrollView.Bounds.Width, contentHeight > messagesScrollView.Frame.Height ? contentHeight : messagesScrollView.Frame.Height);
-            messagesScrollView.ContentOffset = new CGPoint (messagesScrollView.ContentOffset.X, this.messagingModel.Page > 2 ? shiftHeight : 0);
-        }
+		public nint RowsInSection(UITableView tableView, nint section)
+		{
+			return messages?.Count ?? 0;
+		}
 
-        public void ToggleMessagingControls (bool enabled)
-        {
-            this.sendButton.Enabled = this.messageField.Enabled = enabled;
-        }
+		public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+		{
+			var itemNumber = (messages.Count - 1) - indexPath.Row; // messages order is ascending
+			var cell = tableView.DequeueReusableCell(MessageCell.Key, indexPath) as MessageCell ?? MessageCell.Create();
 
-        public void AddMessageBubbleToEnd (MessageDto messageDto)
-        {
-            var shiftY = messagesScrollView.Subviews.OfType<MessageBubble> ().OrderByDescending (a => a.Frame.Y).Select (a => a.Frame.Y + a.Frame.Height).FirstOrDefault ();
-            var bubble = this.CreateMessageBubble (messageDto, shiftY);
-            this.messagesScrollView.AddSubview (bubble);
-            messagesScrollView.ContentSize = new CGSize (messagesScrollView.Bounds.Width, bubble.Frame.Y + bubble.Frame.Height);
-            messagesScrollView.ScrollRectToVisible (new CGRect (messagesScrollView.ContentSize.Width - 1, messagesScrollView.ContentSize.Height - 1, 1, 1), true); //scroll to end programmatically
-        }
+			var item = messages[itemNumber];
+			if (item != null)
+				cell.Initialize(item);
+			return cell;
+		}
 
-        bool MessageField_ShouldReturn (UITextField textField)
-        {
-            var nextTag = textField.Tag + 1;
-            UIResponder nextResponder = this.View.ViewWithTag (nextTag);
-            if (nextResponder != null) {
-                nextResponder.BecomeFirstResponder ();
-            } else {
-                // Not found, so remove keyboard.
-                textField.ResignFirstResponder ();
-                messagingModel.SendMessageAsync ();
-            }
+		protected virtual void RegisterForKeyboardNotifications()
+		{
+			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
+			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
+		}
 
-            return false; // We do not want UITextField to insert line-breaks.
-        }
+		public void OnKeyboardNotification(NSNotification notification)
+		{
+			if (!IsViewLoaded)
+				return;
 
-        public void OnKeyboardNotification (NSNotification notification)
-        {
-            if (!IsViewLoaded)
-                return;
+			//Check if the keyboard is becoming visible
+			var visible = notification.Name == UIKeyboard.WillShowNotification;
 
-            //Check if the keyboard is becoming visible
-            var visible = notification.Name == UIKeyboard.WillShowNotification;
+			//Start an animation, using values from the keyboard
+			UIView.BeginAnimations("AnimateForKeyboard");
+			UIView.SetAnimationBeginsFromCurrentState(true);
+			UIView.SetAnimationDuration(UIKeyboard.AnimationDurationFromNotification(notification));
+			UIView.SetAnimationCurve((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification(notification));
 
-            //Start an animation, using values from the keyboard
-            UIView.BeginAnimations ("AnimateForKeyboard");
-            UIView.SetAnimationBeginsFromCurrentState (true);
-            UIView.SetAnimationDuration (UIKeyboard.AnimationDurationFromNotification (notification));
-            UIView.SetAnimationCurve ((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification (notification));
+			//Pass the notification, calculating keyboard height, etc.
+			var keyboardFrame = visible
+									? UIKeyboard.FrameEndFromNotification(notification)
+									: UIKeyboard.FrameBeginFromNotification(notification);
+			OnKeyboardChanged(visible, keyboardFrame);
+			//Commit the animation
+			UIView.CommitAnimations();
+		}
 
-            //Pass the notification, calculating keyboard height, etc.
-            var keyboardFrame = visible
-                                    ? UIKeyboard.FrameEndFromNotification (notification)
-                                    : UIKeyboard.FrameBeginFromNotification (notification);
-            OnKeyboardChanged (visible, keyboardFrame);
-            //Commit the animation
-            UIView.CommitAnimations ();
-        }
+		public virtual void OnKeyboardChanged(bool visible, CGRect keyboardFrame)
+		{
+			if (View.Superview == null)
+				return;
 
-        public virtual void OnKeyboardChanged (bool visible, CGRect keyboardFrame)
-        {
-            if (View.Superview == null) {
-                return;
-            }
+			if (visible)
+			{
+				MessageWrapperBottomConstraint.Constant = -keyboardFrame.Height;
+				var newY = messagesList.ContentOffset.X + keyboardFrame.Height;
+				newY = newY > messagesList.ContentSize.Height ? messagesList.ContentSize.Height : newY;
+				messagesList.SetContentOffset(new CGPoint(messagesList.ContentOffset.X, newY), true);
+			}
+			else
+			{
+				MessageWrapperBottomConstraint.Constant = 0;
+			}
 
-            if (visible) {
-                var relativeLocation = View.Superview.ConvertPointToView (keyboardFrame.Location, View);
-                var y = relativeLocation.Y - messageFieldWrapper.Frame.Height;
-                var deltaY = messageFieldWrapper.Frame.Y - y;
-                messageFieldWrapper.Frame = new CGRect (new CGPoint (messageFieldWrapper.Frame.X, y), messageFieldWrapper.Frame.Size);
-                messagesScrollView.Frame = new CGRect (new CGPoint (messagesScrollView.Frame.X, messagesScrollView.Frame.Y - deltaY), messagesScrollView.Frame.Size);
-            } else {
-                messagesScrollView.Frame = new CGRect (CGPoint.Empty, messagesScrollView.Frame.Size);
-                var y = messagesScrollView.Frame.Y + messagesScrollView.Frame.Height;
-                messageFieldWrapper.Frame = new CGRect (new CGPoint (messageFieldWrapper.Frame.X, y), messageFieldWrapper.Frame.Size);
-            }
-        }
-
-        private MessageBubble CreateMessageBubble (MessageDto messageDto, nfloat shiftHeight)
-        {
-            var isMyMessage = messageDto.FromUserId == MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
-            var bubble = MessageBubble.Create (new CGSize (200, nfloat.MaxValue), messageDto.Message, isMyMessage);
-            var x = isMyMessage ? messagesScrollView.Bounds.Width - bubble.Frame.Width : 0;
-            var y = shiftHeight + spacing;
-            bubble.Frame = new CGRect (new CGPoint (x, y), bubble.Frame.Size);
-
-            return bubble;
-        }
-    }
+			this.View.LayoutIfNeeded();
+		}
+	}
 }

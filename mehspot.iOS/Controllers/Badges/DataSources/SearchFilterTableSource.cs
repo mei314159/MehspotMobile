@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
-using mehspot.iOS.Views;
-using mehspot.iOS.Views.Cell;
 using Mehspot.Core.DTO.Search;
-using Mehspot.Core.Filter.Search;
 using Mehspot.Core.Services;
 using UIKit;
 
@@ -43,9 +39,10 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 			return string.Empty;
 		}
 
-		public async Task Initialize(object filter) {
+		public async Task Initialize(ISearchQueryDTO searchQuery)
+		{
 			this.Cells.Clear();
-			this.Cells.AddRange(await cellsSource.CreateCells(filter));
+			this.Cells.AddRange(await cellsSource.CreateCells(searchQuery));
 		}
 	}
 }

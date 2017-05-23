@@ -44,6 +44,8 @@ namespace mehspot.iOS
             var tapGestureRecognizer = new UITapGestureRecognizer (ProfilePictureDoupleTapped);
             tapGestureRecognizer.NumberOfTapsRequired = 2;
             this.ProfilePicture.AddGestureRecognizer (tapGestureRecognizer);
+
+			profileDataSource = new ViewBadgeProfileTableSource(SearchContext.BadgeSummary.BadgeId, SearchContext.BadgeSummary.BadgeName, badgeService);
             await RefreshView ();
         }
 
@@ -114,8 +116,9 @@ namespace mehspot.iOS
             loading = true;
             TableView.UserInteractionEnabled = false;
             ActivityIndicator.StartAnimating ();
-            profileDataSource = await SearchContext.GetViewProfileTableSource (this.SearchResultDTO.Details.UserId);
-            if (profileDataSource != null) {
+
+			var success = await profileDataSource.LoadAsync(SearchResultDTO.Details.UserId, SearchContext.ViewProfileDtoType);
+            if (success) {
                 this.NavBar.TopItem.Title = $"{this.SearchContext.BadgeSummary.BadgeName} {profileDataSource.Profile.Details.UserName}";
                 this.SubdivisionLabel.Text = profileDataSource.Profile.Details.SubdivisionName?.Trim ();
                 if (!string.IsNullOrEmpty (profileDataSource.Profile.Details.ProfilePicturePath)) {

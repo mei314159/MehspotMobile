@@ -28,9 +28,23 @@ namespace Mehspot.Core.Services
             return await GetAsync<StaticDataDTO[]>("Badges/GetBadgeKeys?badgeId=" + badgeId + "&key=" + key).ConfigureAwait(false);
         }
 
-        public async Task<Result<T>> GetBadgeProfileAsync<T>(int badgeId, string userId) where T : IBadgeProfileDTO
+        public async Task<Result<IBadgeProfileDTO>> GetBadgeProfileAsync(int badgeId, string userId, Type resultType)
         {
-            return await GetAsync<T>($"Badges/Profile?badgeId={badgeId}&userId={userId}").ConfigureAwait(false);
+            var result = await GetAsync($"Badges/Profile?badgeId={badgeId}&userId={userId}", resultType).ConfigureAwait(false);
+
+            var dto = new Result<IBadgeProfileDTO>
+            {
+                ErrorMessage = result.ErrorMessage,
+                IsSuccess = result.IsSuccess,
+                ModelState = result.ModelState
+            };
+
+            if (result.IsSuccess)
+            {
+                dto.Data = result.Data as IBadgeProfileDTO;
+            }
+
+            return dto;
         }
 
         public async Task<Result<BadgeRecommendationDTO>> GetBadgeRecommendationsAsync(int badgeId, string userId)
@@ -134,7 +148,7 @@ namespace Mehspot.Core.Services
             public const string OtherJobsAgeRange = "OtherJobsAgeRange";
         }
 
-   }
+    }
 
 
 }
