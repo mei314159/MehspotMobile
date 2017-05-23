@@ -13,6 +13,7 @@ using Mehspot.Core.Services;
 using mehspot.iOS.Extensions;
 using CoreGraphics;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace mehspot.iOS
 {
@@ -72,6 +73,7 @@ namespace mehspot.iOS
 			textField.Layer.BorderWidth = 1;
 			textField.Layer.BorderColor = UIColor.LightGray.CGColor;
 			RegisterForKeyboardNotifications();
+
 			await ReloadAsync();
 		}
 
@@ -100,7 +102,7 @@ namespace mehspot.iOS
 			this.NavBar.TopItem.Title = ToUserName;
 		}
 
-		public override async void ViewDidAppear(bool animated)
+		public override void ViewDidAppear(bool animated)
 		{
 			Appeared?.Invoke();
 		}
@@ -131,16 +133,19 @@ namespace mehspot.iOS
 
 		public async Task ReloadAsync()
 		{
+			refreshControl.BeginRefreshing();
 			this.messages.Clear();
 			this.messagingModel.Page = 1;
 			await this.messagingModel.LoadMessagesAsync();
 			await this.messagingModel.MarkMessagesReadAsync();
+			refreshControl.EndRefreshing();
 		}
 
 		public void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult)
 		{
 			messages.AddRange(messagesResult.Data.Data);
-			messagesList.ReloadData();
+			var rows = messagesResult.Data.Data.Select((a, i) => NSIndexPath.FromRowSection(i, 0)).Reverse().ToArray();
+			messagesList.InsertRows(rows, UITableViewRowAnimation.Top);
 		}
 
 		public void ToggleMessagingControls(bool enabled)
@@ -151,8 +156,9 @@ namespace mehspot.iOS
 		public void AddMessageBubbleToEnd(MessageDto messageDto)
 		{
 			messages.Insert(0, messageDto);
-			messagesList.ReloadData();
-			messagesList.ScrollToRow(NSIndexPath.FromRowSection(messages.Count - 1, 0), UITableViewScrollPosition.Bottom, true);
+			var row = NSIndexPath.FromRowSection(messages.Count - 1, 0);
+			messagesList.InsertRows(new[] { row }, UITableViewRowAnimation.Top);
+			messagesList.ScrollToRow(row, UITableViewScrollPosition.Bottom, true);
 		}
 
 		public nint RowsInSection(UITableView tableView, nint section)
@@ -203,9 +209,7 @@ namespace mehspot.iOS
 		public virtual void OnKeyboardChanged(bool visible, CGRect keyboardFrame)
 		{
 			if (View.Superview == null)
-			{
 				return;
-			}
 
 			if (visible)
 			{
@@ -218,9 +222,8 @@ namespace mehspot.iOS
 			{
 				MessageWrapperBottomConstraint.Constant = 0;
 			}
+
 			this.View.LayoutIfNeeded();
 		}
-
 	}
-
 }

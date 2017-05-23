@@ -221,7 +221,7 @@ namespace mehspot.iOS
 
 					if (rootController.VisibleViewController is MessagingViewController)
 					{
-						var messagingViewController = ((MessagingViewController)rootController.TopViewController);
+						var messagingViewController = ((MessagingViewController)rootController.VisibleViewController);
 						messagingViewController.ReloadAsync();
 						break;
 					}
