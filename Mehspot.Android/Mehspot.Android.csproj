@@ -163,6 +163,7 @@
     <Compile Include="Views\Cells\BooleanCell.cs" />
     <Compile Include="Views\Cells\SliderCell.cs" />
     <Compile Include="Views\Cells\TextViewCell.cs" />
+    <Compile Include="Views\Cells\TextEditCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

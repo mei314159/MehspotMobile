@@ -1262,32 +1262,32 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0e0002
 			public const int InfoWrapper = 2131623938;
 			
-			// aapt resource value: 0x7f0e0005
-			public const int LikesCount = 2131623941;
+			// aapt resource value: 0x7f0e0006
+			public const int LikesCount = 2131623942;
 			
-			// aapt resource value: 0x7f0e0004
-			public const int LikesCountLabel = 2131623940;
+			// aapt resource value: 0x7f0e0005
+			public const int LikesCountLabel = 2131623941;
 			
 			// aapt resource value: 0x7f0e0000
 			public const int Picture = 2131623936;
 			
-			// aapt resource value: 0x7f0e0007
-			public const int RecommendationsCount = 2131623943;
-			
-			// aapt resource value: 0x7f0e0006
-			public const int RecommendationsCountLabel = 2131623942;
-			
-			// aapt resource value: 0x7f0e0009
-			public const int ReferencesCount = 2131623945;
-			
 			// aapt resource value: 0x7f0e0008
-			public const int ReferencesCountLabel = 2131623944;
+			public const int RecommendationsCount = 2131623944;
 			
-			// aapt resource value: 0x7f0e000b
-			public const int RegisterButton = 2131623947;
+			// aapt resource value: 0x7f0e0007
+			public const int RecommendationsCountLabel = 2131623943;
 			
 			// aapt resource value: 0x7f0e000a
-			public const int SearchButton = 2131623946;
+			public const int ReferencesCount = 2131623946;
+			
+			// aapt resource value: 0x7f0e0009
+			public const int ReferencesCountLabel = 2131623945;
+			
+			// aapt resource value: 0x7f0e0004
+			public const int RegisterButton = 2131623940;
+			
+			// aapt resource value: 0x7f0e000b
+			public const int SearchButton = 2131623947;
 			
 			static BadgeSummary()
 			{
