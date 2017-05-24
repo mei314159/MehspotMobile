@@ -3,13 +3,13 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using mehspot.Core.Contracts;
-using mehspot.Core.Dto;
+using Mehspot.Core.Contracts;
+using Mehspot.Core.Dto;
 using Mehspot.Core;
 using Mehspot.Core.DTO;
 using Newtonsoft.Json;
 
-namespace mehspot.Core
+namespace Mehspot.Core
 {
     public class BaseDataService
     {

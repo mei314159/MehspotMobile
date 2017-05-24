@@ -2,7 +2,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Search
 {
-
+    [SearchFilterDto(Constants.BadgeNames.Fitness)]
     public class SearchFitnessDTO : SearchFilterDTOBase
     {
 

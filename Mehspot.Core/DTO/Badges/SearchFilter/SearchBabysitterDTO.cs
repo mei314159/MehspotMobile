@@ -2,6 +2,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Search
 {
+    [SearchFilterDto(Constants.BadgeNames.Babysitter)]
     public class SearchBabysitterDTO : SearchFilterDTOBase
     {
         [Cell(Label = "Max Hourly Rate ($)", CellType = CellType.Range, Order = 0, MinValue = 0, MaxValue = 200)]

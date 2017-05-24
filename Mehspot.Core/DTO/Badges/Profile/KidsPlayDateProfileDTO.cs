@@ -1,8 +1,10 @@
 using Mehspot.Core.DTO.Search;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Badges
 {
 
+    [ViewProfileDto(Constants.BadgeNames.KidsPlayDate)]
     public class KidsPlayDateProfileDTO : IBadgeProfileValues
     {
         [Cell("First Name", 0, CellType.TextView)]

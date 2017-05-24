@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
-using mehspot.iOS.Controllers;
-using mehspot.iOS.Extensions;
-using MehSpot.Core.DTO.Subdivision;
+using Mehspot.iOS.Controllers;
+using Mehspot.iOS.Extensions;
+using Mehspot.Core.DTO.Subdivision;
 using UIKit;
 
-namespace mehspot.iOS.Views
+namespace Mehspot.iOS.Views
 {
     [Register ("SubdivisionPickerCell")]
     public class SubdivisionPickerCell : UITableViewCell

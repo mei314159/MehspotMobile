@@ -3,16 +3,16 @@ using System;
 using UIKit;
 using Mehspot.Core.DTO;
 using Mehspot.Core;
-using mehspot.iOS.Views;
+using Mehspot.iOS.Views;
 using CoreGraphics;
 using Mehspot.Core.Services;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 using Mehspot.Core.Contracts.ViewControllers;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core.Models;
 using Mehspot.Core.Contracts.Wrappers;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     public partial class BadgesViewController : UITableViewController, IUITableViewDataSource, IUITableViewDelegate, IBadgesViewController
     {

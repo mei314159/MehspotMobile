@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Foundation;
-using mehspot.iOS.Controllers.Badges.DataSources.Search;
+using Mehspot.iOS.Controllers.Badges.DataSources.Search;
 using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Badges;
+using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
 using UIKit;
 
-namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
+namespace Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
 	public class ViewBadgeProfileTableSource : UITableViewSource
 	{
@@ -16,10 +19,10 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 
 		protected readonly List<UITableViewCell> Cells = new List<UITableViewCell>();
 
+		private readonly Type resultType;
 		protected readonly int BadgeId;
 		protected readonly string BadgeName;
 		protected readonly BadgeService badgeService;
-
 
 		public ViewBadgeProfileTableSource(int badgeId, string badgeName, BadgeService badgeService)
 		{
@@ -28,12 +31,18 @@ namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 			this.badgeService = badgeService;
 			cellsSource = new CellsSource(badgeService, badgeId);
 			cellsSource.CellChanged += CellsSource_CellChanged;
+
+			var genericParameter = Assembly.GetAssembly(typeof(IBadgeProfileValues))
+									 .GetTypes()
+									 .FirstOrDefault(a => a
+                                     .GetCustomAttribute<ViewProfileDtoAttribute>()?.BadgeName == BadgeName);
+			resultType = typeof(BadgeProfileDTO<>).MakeGenericType(genericParameter);
 		}
 
 		public IBadgeProfileDTO Profile { get; protected set; }
 
 
-		public async Task<bool> LoadAsync(string userId, Type resultType)
+		public async Task<bool> LoadAsync(string userId)
 		{
 			var result = await badgeService.GetBadgeProfileAsync(this.BadgeId, userId, resultType);
 			if (result.IsSuccess)

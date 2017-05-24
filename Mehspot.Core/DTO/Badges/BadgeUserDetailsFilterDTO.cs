@@ -1,4 +1,4 @@
-﻿namespace MehSpot.Models.ViewModels
+﻿namespace Mehspot.Models.ViewModels
 {
     public class BadgeUserDetailsFilterDTO
     {

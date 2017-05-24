@@ -1,16 +1,16 @@
 using System;
 using UIKit;
 using Mehspot.Core.Models;
-using mehspot.iOS.Wrappers;
-using mehspot.Core.Auth;
+using Mehspot.iOS.Wrappers;
+using Mehspot.Core.Auth;
 using Mehspot.Core;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 using Foundation;
 using Facebook.CoreKit;
 using Facebook.LoginKit;
 using CoreGraphics;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 	public partial class LoginViewController : UIViewController
 	{

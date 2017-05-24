@@ -2,7 +2,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Search
 {
-
+    [SearchFilterDto(Constants.BadgeNames.OtherJobs)]
     public class SearchOtherJobsDTO : SearchFilterDTOBase
     {
         public double? HourlyRate { get; set; }

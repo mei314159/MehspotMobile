@@ -1,17 +1,17 @@
 using System;
 using UIKit;
 using Mehspot.Core.Contracts.Wrappers;
-using mehspot.iOS.Wrappers;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Wrappers;
+using Mehspot.iOS.Extensions;
 using System.Threading.Tasks;
 using CoreGraphics;
-using mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
+using Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
 using Mehspot.Core;
 using Mehspot.Core.Services;
 using Mehspot.Core.DTO.Badges;
 using System.Linq;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 
     public partial class EditBadgeProfileController : UITableViewController
@@ -58,9 +58,9 @@ namespace mehspot.iOS
             var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
             var title =
                 BadgeIsRegistered ?
-                "Update " + (this.BadgeName == BadgeService.BadgeNames.BabysitterEmployer ? "babysitting (employer) page" : badgeName)
+                "Update " + (this.BadgeName == Constants.BadgeNames.BabysitterEmployer ? "babysitting (employer) page" : badgeName)
                 : "Sign up " +
-                (this.BadgeName == BadgeService.BadgeNames.Fitness || this.BadgeName == BadgeService.BadgeNames.Golf || this.BadgeName == BadgeService.BadgeNames.OtherJobs ? "for " : "as ") + badgeName;
+                (this.BadgeName == Constants.BadgeNames.Fitness || this.BadgeName == Constants.BadgeNames.Golf || this.BadgeName == Constants.BadgeNames.OtherJobs ? "for " : "as ") + badgeName;
 
             this.NavBar.Title = title;
         }

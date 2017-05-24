@@ -1,8 +1,9 @@
 using Mehspot.Core.DTO.Search;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Badges
 {
-
+    [ViewProfileDto(Constants.BadgeNames.PetSitter)]
     public class PetSitterProfileDTO : IBadgeProfileValues
     {
         [Cell("First Name", 0, CellType.TextView)]

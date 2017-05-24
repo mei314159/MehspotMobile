@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foundation;
-using mehspot.iOS.Views.Cell;
+using Mehspot.iOS.Views.Cell;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.Services;
 using UIKit;
 
-namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
+namespace Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
     public delegate void GoToMessagingHandler (string userId, string userName);
     public class RecommendationsTableSource : UITableViewSource

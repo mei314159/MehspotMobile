@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using mehspot.iOS.Views;
-using mehspot.iOS.Views.Cell;
+using Mehspot.iOS.Views;
+using Mehspot.iOS.Views.Cell;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Filter.Search;
 using Mehspot.Core.Services;
 using UIKit;
 
-namespace mehspot.iOS.Controllers.Badges.DataSources.Search
+namespace Mehspot.iOS.Controllers.Badges.DataSources.Search
 {
 	public delegate void CellChanged(object obj, string propertyName, object value);
 

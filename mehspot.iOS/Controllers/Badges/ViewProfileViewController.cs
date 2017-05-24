@@ -4,21 +4,23 @@ using UIKit;
 using Mehspot.Core;
 using System.Threading.Tasks;
 using SDWebImage;
-using MehSpot.Models.ViewModels;
+using Mehspot.Models.ViewModels;
 using Mehspot.Core.DTO.Badges;
-using mehspot.iOS.Controllers.Badges.DataSources.Search;
-using mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
+using Mehspot.iOS.Controllers.Badges.DataSources.Search;
+using Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
 using Mehspot.Core.Contracts.Wrappers;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core.Services;
+using Mehspot.Core.DTO;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     public partial class ViewProfileViewController : UIViewController
     {
         private volatile bool loading;
         public ISearchResultDTO SearchResultDTO;
-        public SearchContext SearchContext;
+        public BadgeSummaryDTO BadgeSummary;
+
         ViewBadgeProfileTableSource profileDataSource;
         RecommendationsTableSource recommendationsDataSource;
         IViewHelper viewHelper;
@@ -29,13 +31,13 @@ namespace mehspot.iOS
         private string MessageUserName;
 
         public ViewProfileViewController (IntPtr handle) : base (handle)
-        {
+		{
         }
 
         public override async void ViewDidLoad ()
         {
             this.NavBar.TopItem.Title =
-                    (MehspotResources.ResourceManager.GetString (SearchContext.BadgeSummary.BadgeName) ?? SearchContext.BadgeSummary.BadgeName) + " Profile";
+                    (MehspotResources.ResourceManager.GetString (BadgeSummary.BadgeName) ?? BadgeSummary.BadgeName) + " Profile";
             this.viewHelper = new ViewHelper (this.View);
 			this.badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
 			TableView.TableHeaderView.Hidden = true;
@@ -45,7 +47,7 @@ namespace mehspot.iOS
             tapGestureRecognizer.NumberOfTapsRequired = 2;
             this.ProfilePicture.AddGestureRecognizer (tapGestureRecognizer);
 
-			profileDataSource = new ViewBadgeProfileTableSource(SearchContext.BadgeSummary.BadgeId, SearchContext.BadgeSummary.BadgeName, badgeService);
+			profileDataSource = new ViewBadgeProfileTableSource(BadgeSummary.BadgeId, BadgeSummary.BadgeName, badgeService);
             await RefreshView ();
         }
 
@@ -88,7 +90,7 @@ namespace mehspot.iOS
         private async void ProfilePictureDoupleTapped ()
         {
             var dto = new BadgeUserDescriptionDTO {
-                BadgeName = this.SearchContext.BadgeSummary.BadgeName,
+                BadgeName = this.BadgeSummary.BadgeName,
                 Delete = this.SearchResultDTO.Details.Favourite,
                 EmployeeId = this.SearchResultDTO.Details.UserId,
                 Type = BadgeDescriptionTypeEnum.Favourite
@@ -117,9 +119,9 @@ namespace mehspot.iOS
             TableView.UserInteractionEnabled = false;
             ActivityIndicator.StartAnimating ();
 
-			var success = await profileDataSource.LoadAsync(SearchResultDTO.Details.UserId, SearchContext.ViewProfileDtoType);
+			var success = await profileDataSource.LoadAsync(SearchResultDTO.Details.UserId);
             if (success) {
-                this.NavBar.TopItem.Title = $"{this.SearchContext.BadgeSummary.BadgeName} {profileDataSource.Profile.Details.UserName}";
+                this.NavBar.TopItem.Title = $"{this.BadgeSummary.BadgeName} {profileDataSource.Profile.Details.UserName}";
                 this.SubdivisionLabel.Text = profileDataSource.Profile.Details.SubdivisionName?.Trim ();
                 if (!string.IsNullOrEmpty (profileDataSource.Profile.Details.ProfilePicturePath)) {
                     var url = NSUrl.FromString (profileDataSource.Profile.Details.ProfilePicturePath);
@@ -158,7 +160,7 @@ namespace mehspot.iOS
         {
             if (recommendationsDataSource == null) {
                 viewHelper.ShowOverlay ("Wait...");
-				var result = new RecommendationsTableSource(this.badgeService, this.SearchContext.BadgeSummary.BadgeId, SearchContext.BadgeSummary.BadgeName);
+				var result = new RecommendationsTableSource(this.badgeService, this.BadgeSummary.BadgeId, BadgeSummary.BadgeName);
 				await result.LoadAsync(this.SearchResultDTO.Details.UserId, MehspotAppContext.Instance.AuthManager.AuthInfo.UserId);
                 if (recommendationsDataSource == null) {
                     recommendationsDataSource = result;

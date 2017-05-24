@@ -2,7 +2,7 @@
 using Foundation;
 using UIKit;
 
-namespace mehspot.iOS.Views.Cell
+namespace Mehspot.iOS.Views.Cell
 {
 	public partial class SliderCell : UITableViewCell
 	{

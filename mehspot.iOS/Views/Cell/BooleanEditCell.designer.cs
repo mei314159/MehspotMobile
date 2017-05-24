@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace mehspot.iOS.Views
+namespace Mehspot.iOS.Views
 {
     [Register ("BooleanEditCell")]
     partial class BooleanEditCell

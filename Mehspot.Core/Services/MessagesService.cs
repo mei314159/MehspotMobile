@@ -1,10 +1,10 @@
 using System;
 using System.Net.Http;
-using mehspot.Core.Contracts;
+using Mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using mehspot.Core;
+using Mehspot.Core;
 
 namespace Mehspot.Core.Services
 {

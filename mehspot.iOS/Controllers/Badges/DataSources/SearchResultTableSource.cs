@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Foundation;
-using mehspot.iOS.Views.Cell;
+using Mehspot.iOS.Views.Cell;
 using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
-using MehSpot.Models.ViewModels;
+using Mehspot.Models.ViewModels;
 using UIKit;
 
-namespace mehspot.iOS.Controllers.Badges.DataSources.Search
+namespace Mehspot.iOS.Controllers.Badges.DataSources.Search
 {
 	public delegate void SendMessageButtonTouched(UIButton obj, ISearchResultDTO item);
 	public delegate void ViewProfileButtonTouched(UIButton obj, ISearchResultDTO item);
@@ -23,16 +25,21 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 		private readonly BadgeService badgeService;
 		private readonly ISearchQueryDTO filter;
 		private readonly BadgeSummaryDTO searchBadge;
+		private readonly Type resultType;
 		private List<NSIndexPath> expandedPaths = new List<NSIndexPath>();
 
-		public readonly Type ResultType;
 
-		public SearchResultTableSource(BadgeService badgeService, ISearchQueryDTO filter, BadgeSummaryDTO searchBadge, Type resultType)
+		public SearchResultTableSource(BadgeService badgeService, ISearchQueryDTO filter, BadgeSummaryDTO searchBadge)
 		{
 			this.searchBadge = searchBadge;
 			this.badgeService = badgeService;
 			this.filter = filter;
-			this.ResultType = resultType;
+
+			var type = Assembly.GetAssembly(typeof(ISearchResultDTO))
+									 .GetTypes()
+									 .FirstOrDefault(a => a
+                                     .GetCustomAttribute<SearchResultDtoAttribute>()?.BadgeName == searchBadge.BadgeName);
+			resultType = typeof(List<>).MakeGenericType(type);
 		}
 
 		public List<ISearchResultDTO> Items { get; } = new List<ISearchResultDTO>();
@@ -58,7 +65,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources.Search
 		public async Task LoadDataAsync(UITableView tableView, bool refresh = false)
 		{
 			var skip = refresh ? 0 : (this.Items?.Count ?? 0);
-			var result = await badgeService.Search(this.filter, skip, pageSize, this.ResultType);
+			var result = await badgeService.Search(this.filter, skip, pageSize, this.resultType);
 			if (result.IsSuccess)
 			{
 				if (refresh)

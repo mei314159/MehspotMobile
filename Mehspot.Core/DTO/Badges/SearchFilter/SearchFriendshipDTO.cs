@@ -2,7 +2,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Search
 {
-
+    [SearchFilterDto(Constants.BadgeNames.Friendship)]
     public class SearchFriendshipDTO : SearchFilterDTOBase
     {
         [Cell(Label = "Gender", CellType = CellType.Select, Order = 2, OptionsKey = BadgeService.BadgeKeys.Gender)]

@@ -9,9 +9,9 @@ using Mehspot.Core.Services;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.Models;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 	public partial class MessageBoardViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate, IMessageBoardViewController
 	{

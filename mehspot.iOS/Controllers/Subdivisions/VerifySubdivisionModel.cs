@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
-using mehspot.iOS.Views;
+using Mehspot.iOS.Views;
 using Mehspot.Core.Extensions;
-using MehSpot.Core.DTO.Subdivision;
+using Mehspot.Core.DTO.Subdivision;
 using UIKit;
 
-namespace mehspot.iOS.Controllers.Subdivisions
+namespace Mehspot.iOS.Controllers.Subdivisions
 {
 
     public class VerifySubdivisionModel

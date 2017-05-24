@@ -2,11 +2,11 @@ using System;
 using UIKit;
 using Mehspot.Core.Models;
 using Mehspot.Core;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core.DTO;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     public partial class ResetPasswordViewController : UIViewController
     {
@@ -40,7 +40,7 @@ namespace mehspot.iOS
             await model.SignInAsync (this.Email, this.PasswordField.Text);
         }
 
-        void Model_SignedIn (mehspot.Core.Auth.AuthenticationResult obj)
+        void Model_SignedIn (Mehspot.Core.Auth.AuthenticationResult obj)
         {
             var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateInitialViewController ();
             this.View.Window.SwapController (targetViewController);

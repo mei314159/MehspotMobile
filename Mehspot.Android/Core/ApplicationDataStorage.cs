@@ -1,6 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
-using mehspot.Core.Contracts;
+using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
 using System;

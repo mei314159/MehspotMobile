@@ -1,10 +1,10 @@
 ﻿using Foundation;
-using mehspot.Core.Contracts;
+using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Push;
 
-namespace mehspot.iOS.Core
+namespace Mehspot.iOS.Core
 {
     public class ApplicationDataStorage : IApplicationDataStorage
     {

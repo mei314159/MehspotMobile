@@ -6,7 +6,7 @@ using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
 using UIKit;
 
-namespace mehspot.iOS.Controllers.Badges.DataSources.Search
+namespace Mehspot.iOS.Controllers.Badges.DataSources.Search
 {
 	public class SearchFilterTableSource : UITableViewSource
 	{

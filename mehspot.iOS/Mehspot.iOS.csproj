@@ -30,6 +30,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodesignProvision>Mehspot Dev</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+<AssemblyName>Mehspot.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType></DebugType>
@@ -62,6 +63,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodesignProvision>MehspotAppStore</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+<AssemblyName>Mehspot.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -295,7 +297,6 @@
       <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
-    <Compile Include="Controllers\Badges\DataSources\SearchContext.cs" />
     <Compile Include="Views\Cell\RecommendationCell.cs" />
     <Compile Include="Views\Cell\RecommendationCell.designer.cs">
       <DependentUpon>RecommendationCell.cs</DependentUpon>

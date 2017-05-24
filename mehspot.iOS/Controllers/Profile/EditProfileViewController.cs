@@ -5,19 +5,19 @@ using Mehspot.Core.Contracts.Wrappers;
 using System.Collections.Generic;
 using Mehspot.Core.DTO;
 using Mehspot.Core;
-using mehspot.iOS.Wrappers;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Wrappers;
+using Mehspot.iOS.Extensions;
 using System.Runtime.InteropServices;
 using CoreGraphics;
 using System.Threading.Tasks;
 using SDWebImage;
-using mehspot.iOS.Views;
+using Mehspot.iOS.Views;
 using System.Linq;
 using Mehspot.Core.Services;
-using MehSpot.Core.DTO.Subdivision;
+using Mehspot.Core.DTO.Subdivision;
 using Facebook.LoginKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     public partial class EditProfileViewController : UITableViewController, IUITableViewDataSource, IUITableViewDelegate
     {

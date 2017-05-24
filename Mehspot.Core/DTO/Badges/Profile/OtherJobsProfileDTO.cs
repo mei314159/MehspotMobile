@@ -1,8 +1,10 @@
 using Mehspot.Core.DTO.Search;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Badges
 {
 
+    [ViewProfileDto(Constants.BadgeNames.OtherJobs)]
     public class OtherJobsProfileDTO : IBadgeProfileValues
     {
         string otherJobsType;

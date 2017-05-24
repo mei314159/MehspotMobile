@@ -9,14 +9,14 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     [Register ("WriteReviewController")]
     partial class WriteReviewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        mehspot.iOS.ExtendedTextView CommentView { get; set; }
+        Mehspot.iOS.ExtendedTextView CommentView { get; set; }
 
         [Action ("CancelButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]

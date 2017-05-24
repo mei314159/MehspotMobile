@@ -5,7 +5,7 @@ using Mehspot.Core;
 using Mehspot.Core.Services;
 using UIKit;
 
-namespace mehspot.iOS.Views.Cell
+namespace Mehspot.iOS.Views.Cell
 {
     public partial class SearchLimitCell : UITableViewCell
     {
@@ -43,7 +43,7 @@ namespace mehspot.iOS.Views.Cell
                 badgeNameLocalized = MehspotResources.ResourceManager.GetString (searchBadgeName);
                 badgeNameLocalized = badgeNameLocalized ?? searchBadgeName;
             }
-            string badgeNamePart = (requiredBadgeName == BadgeService.BadgeNames.Fitness || searchBadgeName == BadgeService.BadgeNames.Golf || requiredBadgeName == BadgeService.BadgeNames.OtherJobs ? "for " : "as ") + badgeNameLocalized;
+            string badgeNamePart = (requiredBadgeName == Constants.BadgeNames.Fitness || searchBadgeName == Constants.BadgeNames.Golf || requiredBadgeName == Constants.BadgeNames.OtherJobs ? "for " : "as ") + badgeNameLocalized;
             cell.Message.Text = string.Format (MessageTemplate, badgeNamePart);
             return cell;
         }

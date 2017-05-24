@@ -3,7 +3,7 @@ using System.CodeDom.Compiler;
 using Foundation;
 using UIKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     [Register ("MessageBoardCell")]
     public class MessageBoardCell : UITableViewCell

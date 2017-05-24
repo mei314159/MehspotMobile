@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using mehspot.Core.Auth;
+using Mehspot.Core.Auth;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
 

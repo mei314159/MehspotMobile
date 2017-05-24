@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using Foundation;
 using UIKit;
 
-namespace mehspot.iOS.Views
+namespace Mehspot.iOS.Views
 {
     [Register ("MultilineTextEditCell")]
     public class MultilineTextEditCell : UITableViewCell

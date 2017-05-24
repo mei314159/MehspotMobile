@@ -1,4 +1,4 @@
-namespace MehSpot.Core.DTO.Subdivision
+namespace Mehspot.Core.DTO.Subdivision
 {
 
     public class CountryDTO

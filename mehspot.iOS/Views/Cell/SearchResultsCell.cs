@@ -1,10 +1,10 @@
 using System;
 using Foundation;
-using MehSpot.Models.ViewModels;
+using Mehspot.Models.ViewModels;
 using SDWebImage;
 using UIKit;
 
-namespace mehspot.iOS.Views.Cell
+namespace Mehspot.iOS.Views.Cell
 {
     public partial class SearchResultsCell : UITableViewCell
     {

@@ -3,6 +3,7 @@ using Mehspot.Core.DTO.Search;
 namespace Mehspot.Core.DTO.Badges
 {
 
+    [ViewProfileDto(Constants.BadgeNames.BabysitterEmployer)]
     public class BabysitterEmployerProfileDTO : IBadgeProfileValues
     {
         public string FirstName { get; set; }

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
-using mehspot.iOS.Views;
-using mehspot.iOS.Views.Cell;
+using Mehspot.iOS.Views;
+using Mehspot.iOS.Views.Cell;
 using Mehspot.Core;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.Services;
-using MehSpot.Core.DTO.Subdivision;
+using Mehspot.Core.DTO.Subdivision;
 using UIKit;
 
-namespace mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
+namespace Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
     public class EditBadgeTableSource : UITableViewSource
     {

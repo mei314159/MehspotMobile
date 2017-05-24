@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     [Register ("BadgesViewController")]
     partial class BadgesViewController

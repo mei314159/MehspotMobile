@@ -1,9 +1,8 @@
 namespace Mehspot.Core.DTO.Search
 {
-
+    [SearchFilterDto(Constants.BadgeNames.KidsPlayDate)]
     public class SearchKidsPlayDateDTO : SearchFilterDTOBase
     {
-
         public string Gender { get; set; }
 
         public bool? IsPlayed { get; set; }

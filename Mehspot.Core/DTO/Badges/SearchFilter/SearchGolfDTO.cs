@@ -2,7 +2,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Search
 {
-
+    [SearchFilterDto(Constants.BadgeNames.Golf)]
     public class SearchGolfDTO : SearchFilterDTOBase
     {
         [Cell(Label = "Min Handicap", CellType = CellType.Range, Order = 0, MinValue = 0, MaxValue = 100)]

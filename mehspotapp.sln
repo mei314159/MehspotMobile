@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mehspot.iOS", "mehspot.iOS\mehspot.iOS.csproj", "{CC76BD80-CC7E-4658-8FD1-FF18F524CC15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehspot.iOS", "mehspot.iOS\mehspot.iOS.csproj", "{CC76BD80-CC7E-4658-8FD1-FF18F524CC15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehspot.Android", "Mehspot.Android\Mehspot.Android.csproj", "{9B0B43AD-AEC1-4AF9-9F5D-47DF7746CB8F}"
 EndProject

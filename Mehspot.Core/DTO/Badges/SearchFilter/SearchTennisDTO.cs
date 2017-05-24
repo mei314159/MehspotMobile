@@ -3,6 +3,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Search
 {
+    [SearchFilterDto(Constants.BadgeNames.Tennis)]
     public class SearchTennisDTO : SearchFilterDTOBase
     {
         [Cell(Label = "Has Court Access", CellType = CellType.Boolean, Order = 0)]

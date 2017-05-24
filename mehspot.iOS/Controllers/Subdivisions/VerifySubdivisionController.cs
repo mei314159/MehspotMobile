@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using CoreLocation;
 using Foundation;
 using Google.Maps;
-using mehspot.iOS.Controllers.Subdivisions;
-using mehspot.iOS.Views;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Controllers.Subdivisions;
+using Mehspot.iOS.Views;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Services;
-using MehSpot.Core.DTO.Subdivision;
+using Mehspot.Core.DTO.Subdivision;
 using UIKit;
 using Mehspot.Core.Extensions;
 using System.Linq;
 using Mehspot.Core.DTO;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 
-namespace mehspot.iOS.Controllers
+namespace Mehspot.iOS.Controllers
 {
     public partial class VerifySubdivisionController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {

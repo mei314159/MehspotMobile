@@ -1,12 +1,12 @@
 using System;
-using mehspot.Core.Contracts;
+using Mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Extensions;
-using mehspot.Core;
+using Mehspot.Core;
 using Mehspot.Core.DTO.Badges;
-using MehSpot.Models.ViewModels;
+using Mehspot.Models.ViewModels;
 using System.Collections;
 using System.Linq;
 
@@ -110,22 +110,6 @@ namespace Mehspot.Core.Services
             return await DeleteAsync<object>($"badges/{badgeId}", null).ConfigureAwait(false);
         }
 
-        public class BadgeNames
-        {
-            public const string Babysitter = "Babysitter";
-            public const string BabysitterEmployer = "BabysitterEmployer";
-            public const string Fitness = "Fitness";
-            public const string Tennis = "Tennis";
-            public const string Golf = "Golf";
-            public const string Tutor = "Tutor";
-            public const string TutorEmployer = "TutorEmployer";
-            public const string PetSitter = "PetSitter";
-            public const string PetSitterEmployer = "PetSitterEmployer";
-            public const string KidsPlayDate = "KidsPlayDate";
-            public const string Friendship = "Friendship";
-            public const string OtherJobs = "OtherJobs";
-        }
-
         public class BadgeKeys
         {
             public const string AgeRange = "AgeRange";
@@ -149,6 +133,4 @@ namespace Mehspot.Core.Services
         }
 
     }
-
-
 }

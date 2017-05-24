@@ -3,21 +3,24 @@ using System;
 using UIKit;
 using System.Threading.Tasks;
 using CoreGraphics;
-using MehSpot.Models.ViewModels;
-using mehspot.iOS.Views.Cell;
-using mehspot.iOS.Controllers.Badges.DataSources.Search;
+using Mehspot.Models.ViewModels;
+using Mehspot.iOS.Views.Cell;
+using Mehspot.iOS.Controllers.Badges.DataSources.Search;
 using Mehspot.Core;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core.Services;
+using Mehspot.Core.DTO;
+using Mehspot.Core.DTO.Search;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 	public partial class SearchResultsViewController : UITableViewController
 	{
 		private volatile bool loading;
 		private volatile bool viewWasInitialized;
 		private ISearchResultDTO SelectedItem;
-		public SearchContext SearchContext;
+		public BadgeSummaryDTO BadgeSummary;
+		public ISearchQueryDTO SearchQuery;
 		SearchResultTableSource tableSource;
 
 		public SearchResultsViewController(IntPtr handle) : base(handle)
@@ -29,7 +32,7 @@ namespace mehspot.iOS
 			this.TableView.RegisterNibForCellReuse(SearchResultsCell.Nib, SearchResultsCell.Key);
 			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
 
-			tableSource = new SearchResultTableSource(badgeService, this.SearchContext.SearchQuery, this.SearchContext.BadgeSummary, this.SearchContext.SearchResultDtoType);
+			tableSource = new SearchResultTableSource(badgeService, this.SearchQuery, this.BadgeSummary);
 			tableSource.SendMessageButtonTouched += SendMessageButtonTouched;
 			tableSource.ViewProfileButtonTouched += ViewProfileButtonTouched;
 			tableSource.LoadingMoreStarted += LoadingMoreStarted;
@@ -54,19 +57,19 @@ namespace mehspot.iOS
 
 		private void SetTitle()
 		{
-			var title = MehspotResources.ResourceManager.GetString(this.SearchContext.BadgeSummary.BadgeName + "_SearchResultsTitle") ??
-			((MehspotResources.ResourceManager.GetString(this.SearchContext.BadgeSummary.BadgeName) ?? this.SearchContext.BadgeSummary.BadgeName) + "s");
+			var title = MehspotResources.ResourceManager.GetString(this.BadgeSummary.BadgeName + "_SearchResultsTitle") ??
+			((MehspotResources.ResourceManager.GetString(this.BadgeSummary.BadgeName) ?? this.BadgeSummary.BadgeName) + "s");
 			this.NavBar.Title = title;
 		}
 
 		internal void RegqiredBadgeWasRegistered()
 		{
 			this.viewWasInitialized = false;
-			if (SearchContext.BadgeSummary.RequiredBadgeId.HasValue)
-				SearchContext.BadgeSummary.RequiredBadgeIsRegistered = true;
+			if (BadgeSummary.RequiredBadgeId.HasValue)
+				BadgeSummary.RequiredBadgeIsRegistered = true;
 			else
 			{
-				SearchContext.BadgeSummary.IsRegistered = true;
+				BadgeSummary.IsRegistered = true;
 			}
 		}
 
@@ -86,23 +89,23 @@ namespace mehspot.iOS
 			else if (segue.Identifier == "ViewProfileSegue")
 			{
 				var controller = (ViewProfileViewController)segue.DestinationViewController;
-				controller.SearchContext = SearchContext;
+				controller.BadgeSummary = BadgeSummary;
 				controller.SearchResultDTO = this.SelectedItem;
 			}
 			else if (segue.Identifier == "RegisterRequiredBadgeSegue")
 			{
 				var controller = (EditBadgeProfileController)segue.DestinationViewController;
 
-				if (SearchContext.BadgeSummary.RequiredBadgeId.HasValue)
+				if (BadgeSummary.RequiredBadgeId.HasValue)
 				{
-					controller.BadgeId = SearchContext.BadgeSummary.RequiredBadgeId.Value;
-					controller.BadgeName = SearchContext.BadgeSummary.RequiredBadgeName;
-					controller.BadgeIsRegistered = SearchContext.BadgeSummary.RequiredBadgeIsRegistered;
+					controller.BadgeId = BadgeSummary.RequiredBadgeId.Value;
+					controller.BadgeName = BadgeSummary.RequiredBadgeName;
+					controller.BadgeIsRegistered = BadgeSummary.RequiredBadgeIsRegistered;
 				}
 				else
 				{
-					controller.BadgeId = SearchContext.BadgeSummary.BadgeId;
-					controller.BadgeName = SearchContext.BadgeSummary.BadgeName;
+					controller.BadgeId = BadgeSummary.BadgeId;
+					controller.BadgeName = BadgeSummary.BadgeName;
 					controller.BadgeIsRegistered = false;
 				}
 

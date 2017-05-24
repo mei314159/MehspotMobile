@@ -1,22 +1,24 @@
 using Foundation;
 using System;
 using UIKit;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 using Mehspot.Core.Contracts.Wrappers;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Services;
-using mehspot.iOS.Controllers.Badges.DataSources.Search;
+using Mehspot.iOS.Controllers.Badges.DataSources.Search;
 using Mehspot.Core.DTO;
+using Mehspot.Core.DTO.Search;
+using System.Reflection;
+using System.Linq;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 	public partial class SearchBadgeController : UITableViewController, ISearchFilterController
 	{
 		volatile bool viewWasInitialized;
-		private SearchContext model;
 		public BadgeSummaryDTO BadgeSummary;
-
+		private ISearchQueryDTO SearchQuery;
 
 		public IViewHelper ViewHelper { get; private set; }
 		SearchFilterTableSource source;
@@ -27,14 +29,24 @@ namespace mehspot.iOS
 
 		public override void ViewDidLoad()
 		{
+			this.InstantiateQueryDTO(BadgeSummary.BadgeId, BadgeSummary.BadgeName);
 			this.TableView.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			this.TableView.TableFooterView.Hidden = true;
 			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
 			this.ViewHelper = new ViewHelper(this.View);
-			this.model = new SearchContext(badgeService, this.BadgeSummary);
 			source = new SearchFilterTableSource(badgeService, BadgeSummary.BadgeId);
 			this.TableView.Source = source;
 			this.NavBar.Title = this.GetTitle();
+		}
+
+		void InstantiateQueryDTO(int badgeId, string badgeName)
+		{
+			var queryDtoType = Assembly.GetAssembly(typeof(SearchFilterDTOBase))
+									 .GetTypes()
+									 .FirstOrDefault(a => a
+			                                         .GetCustomAttribute<SearchFilterDtoAttribute>()?.BadgeName == badgeName);
+			SearchQuery = (ISearchQueryDTO)Activator.CreateInstance(queryDtoType);
+			SearchQuery.BadgeId = badgeId;
 		}
 
 		public override async void ViewWillAppear(bool animated)
@@ -43,7 +55,7 @@ namespace mehspot.iOS
 				return;
 
 			ViewHelper.ShowOverlay("Wait...");
-			await source.Initialize(model.SearchQuery);
+			await source.Initialize(this.SearchQuery);
 			this.TableView.ReloadData();
 
 			ViewHelper.HideOverlay();
@@ -56,7 +68,8 @@ namespace mehspot.iOS
 			if (segue.Identifier == "SearchResultsSegue")
 			{
 				var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
-				destinationViewController.SearchContext = this.model;
+				destinationViewController.SearchQuery = this.SearchQuery;
+				destinationViewController.BadgeSummary = this.BadgeSummary;
 				this.NavBar.Title = "Filter";
 			}
 

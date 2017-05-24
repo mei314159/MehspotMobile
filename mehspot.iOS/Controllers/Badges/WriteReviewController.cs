@@ -1,11 +1,11 @@
 using System;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.Services;
 using UIKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     public partial class WriteReviewController : UIViewController
     {

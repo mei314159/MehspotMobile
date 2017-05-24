@@ -6,7 +6,7 @@ using Mehspot.Core.DTO;
 using ObjCRuntime;
 using UIKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 	public partial class MessageCell : UITableViewCell
 	{

@@ -34,8 +34,37 @@ namespace Mehspot.Core.DTO.Search
 
         public bool ReadOnly { get; set; }
 
-
         public CellType CellType { get; set; }
+    }
+
+    public class ViewProfileDtoAttribute : Attribute
+    {
+        public ViewProfileDtoAttribute(string badgeName)
+        {
+            BadgeName = badgeName;
+        }
+
+        public string BadgeName { get; set; }
+    }
+
+    public class SearchResultDtoAttribute : Attribute
+    {
+        public SearchResultDtoAttribute(string badgeName)
+        {
+            BadgeName = badgeName;
+        }
+
+        public string BadgeName { get; set; }
+    }
+
+    public class SearchFilterDtoAttribute : Attribute
+    {
+        public SearchFilterDtoAttribute(string badgeName)
+        {
+            BadgeName = badgeName;
+        }
+
+        public string BadgeName { get; set; }
     }
 
     public enum CellType

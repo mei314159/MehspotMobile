@@ -3,13 +3,13 @@ using System;
 using UIKit;
 using Mehspot.Core;
 using Mehspot.Core.Models;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core.DTO;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 using CoreGraphics;
-using mehspot.Core.Auth;
+using Mehspot.Core.Auth;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     public partial class SignupViewController : UIViewController
     {

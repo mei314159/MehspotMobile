@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using CoreGraphics;
 using Foundation;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 using Mehspot.iOS.Views.CustomPicker;
 using Mehspot.iOS.Views.MultiSelectPicker;
 using SharpMobileCode.ModalPicker;
 using UIKit;
 
-namespace mehspot.iOS.Views
+namespace Mehspot.iOS.Views
 {
     [Register ("PickerCell")]
     public class PickerCell : UITableViewCell

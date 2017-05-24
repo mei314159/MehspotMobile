@@ -4,7 +4,7 @@ using UIKit;
 using System.ComponentModel;
 using CoreGraphics;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     [Register ("ExtendedTextView"), DesignTimeVisible (true)]
     public class ExtendedTextView : UITextView

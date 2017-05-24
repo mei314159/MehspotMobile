@@ -1,11 +1,13 @@
 using Mehspot.Core.DTO.Search;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.DTO.Badges
 {
 
+    [ViewProfileDto(Constants.BadgeNames.Fitness)]
     public class FitnessProfileDTO : IBadgeProfileValues
     {
-		string fitnessType;
+        string fitnessType;
 
         [Cell("First Name", 0, CellType.TextView)]
         public string FirstName { get; set; }
