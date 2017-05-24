@@ -5,12 +5,14 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.Core.Filter.Search
 {
-    public abstract class FilterTableSource
+    public delegate void CellChanged(object obj, string propertyName, object value);
+    public abstract class CellsFactoryBase<TCell>
     {
         protected readonly BadgeService badgeService;
         protected readonly int badgeId;
+        public event CellChanged CellChanged;
 
-        public FilterTableSource(BadgeService badgeService, int badgeId)
+        public CellsFactoryBase(BadgeService badgeService, int badgeId)
         {
             this.badgeId = badgeId;
             this.badgeService = badgeService;
@@ -26,6 +28,13 @@ namespace Mehspot.Core.Filter.Search
             }
 
             return null;
+        }
+
+        public abstract Task<List<TCell>> CreateCells(object filter);
+
+        public void OnCellChanged(object obj, string propertyName, object value)
+        {
+            CellChanged?.Invoke(obj, propertyName, value);
         }
     }
 }

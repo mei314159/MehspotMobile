@@ -20,9 +20,9 @@ namespace Mehspot.Core.DTO.Search
 
         public string Mask { get; set; }
 
-        public float MinValue { get; set; }
+        public int MinValue { get; set; }
 
-        public float MaxValue { get; set; }
+        public int MaxValue { get; set; }
 
         public string OptionsKey { get; set; }
 

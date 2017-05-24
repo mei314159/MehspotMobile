@@ -1,32 +1,50 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Mehspot.AndroidApp.Wrappers;
+using Mehspot.Core;
+using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
+using Mehspot.Core.Services;
+using Mehspot.iOS.Views.Cell;
 
 namespace Mehspot.AndroidApp
 {
 	[Activity(Label = "Search Badge")]
-	public class SearchBadgeActivity : Activity
+	public class SearchBadgeActivity : Activity, ISearchFilterController
 	{
-		//private SearchModel model;
-
+		private SearchBadgeModel<View> model;
 		public BadgeSummaryDTO BadgeSummary => Intent.GetExtra<BadgeSummaryDTO>("badgeSummary");
+
+		public IViewHelper ViewHelper { get; private set; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.SearchBadgeActivity);
-			//this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.SearchFilter.toolbar).Title =
-			//	    this.model.GetSearchFilterTitle();
+
+			this.ViewHelper = new ActivityHelper(this);
+			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
+			this.model = new SearchBadgeModel<View>(this, badgeService, new CellFactory(this, badgeService, BadgeSummary.BadgeId));
+			this.Title = this.model.GetTitle();
+		}
+
+		protected override async void OnStart()
+		{
+			base.OnStart();
+			await this.model.LoadCellsAsync();
+		}
+
+		public void ReloadData()
+		{
+			var messagesWrapper = this.FindViewById<LinearLayout>(Resource.Id.messagesWrapper);
+			foreach (var cell in model.Cells)
+			{
+				messagesWrapper.AddView(cell);
+			}
 		}
 	}
 }

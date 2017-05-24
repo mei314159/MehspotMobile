@@ -4,18 +4,18 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Foundation;
-using Mehspot.iOS.Controllers.Badges.DataSources.Search;
 using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
 using UIKit;
+using Mehspot.iOS.Views.Cell;
 
 namespace Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 {
 	public class ViewBadgeProfileTableSource : UITableViewSource
 	{
-		private readonly CellsSource cellsSource;
+		private readonly CellFactory cellsSource;
 
 		protected readonly List<UITableViewCell> Cells = new List<UITableViewCell>();
 
@@ -29,7 +29,7 @@ namespace Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource
 			BadgeId = badgeId;
 			BadgeName = badgeName;
 			this.badgeService = badgeService;
-			cellsSource = new CellsSource(badgeService, badgeId);
+			cellsSource = new CellFactory(badgeService, badgeId);
 			cellsSource.CellChanged += CellsSource_CellChanged;
 
 			var genericParameter = Assembly.GetAssembly(typeof(IBadgeProfileValues))

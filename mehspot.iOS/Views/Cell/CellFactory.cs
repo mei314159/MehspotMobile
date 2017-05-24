@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Mehspot.iOS.Views;
 using Mehspot.iOS.Views.Cell;
@@ -10,19 +9,16 @@ using Mehspot.Core.Filter.Search;
 using Mehspot.Core.Services;
 using UIKit;
 
-namespace Mehspot.iOS.Controllers.Badges.DataSources.Search
+namespace Mehspot.iOS.Views.Cell
 {
-	public delegate void CellChanged(object obj, string propertyName, object value);
-
-	public class CellsSource : FilterTableSource
+	public class CellFactory : CellsFactoryBase<UITableViewCell>
 	{
-		public event CellChanged CellChanged;
 
-		public CellsSource(BadgeService badgeService, int badgeId) : base(badgeService, badgeId)
+		public CellFactory(BadgeService badgeService, int badgeId) : base(badgeService, badgeId)
 		{
 		}
 
-		public async Task<List<UITableViewCell>> CreateCells(object filter)
+		public override async Task<List<UITableViewCell>> CreateCells(object filter)
 		{
 			return (await CreateCellsInternal(filter)).OrderBy(a => a.Item1).Select(a => a.Item2).ToList();
 		}
@@ -46,14 +42,14 @@ namespace Mehspot.iOS.Controllers.Badges.DataSources.Search
 						targetCell = SliderCell.Create<int?>(prop.attr.DefaultValue as int?, v =>
 						{
 							prop.prop.SetValue(filter, v);
-							CellChanged?.Invoke(filter, prop.prop.Name, v);
+							OnCellChanged(filter, prop.prop.Name, v);
 						}, prop.attr.Label, prop.attr.MinValue, prop.attr.MaxValue, isReadOnly: prop.attr.ReadOnly);
 						break;
 					case CellType.Boolean:
 						targetCell = BooleanEditCell.Create(value as bool? == true, v =>
 						{
 							prop.prop.SetValue(filter, v == true ? v : (bool?)null);
-							CellChanged?.Invoke(filter, prop.prop.Name, v);
+							OnCellChanged(filter, prop.prop.Name, v);
 						}, prop.attr.Label, isReadOnly: prop.attr.ReadOnly);
 						break;
 					case CellType.Select:
@@ -61,7 +57,7 @@ namespace Mehspot.iOS.Controllers.Badges.DataSources.Search
 						targetCell = PickerCell.Create(prop.attr.DefaultValue as int?, (v) =>
 						{
 							prop.prop.SetValue(filter, v);
-							CellChanged?.Invoke(filter, prop.prop.Name, v);
+							OnCellChanged(filter, prop.prop.Name, v);
 						}, prop.attr.Label, options, isReadOnly: prop.attr.ReadOnly);
 						break;
 					case CellType.Multiselect:
@@ -69,7 +65,7 @@ namespace Mehspot.iOS.Controllers.Badges.DataSources.Search
 						targetCell = PickerCell.CreateMultiselect(new int?[] { }, (v) =>
 						{
 							prop.prop.SetValue(filter, v?.Select(a => a.ToString()).ToArray());
-							CellChanged?.Invoke(filter, prop.prop.Name, v);
+							OnCellChanged(filter, prop.prop.Name, v);
 						}, prop.attr.Label, multiselectOptions, isReadOnly: prop.attr.ReadOnly);
 						break;
 					case CellType.Complex:

@@ -135,8 +135,9 @@
     <Compile Include="DTO\Push\PushNotification.cs" />
     <Compile Include="Models\BadgesModel.cs" />
     <Compile Include="Contracts\ViewControllers\ISearchFilterController.cs" />
-    <Compile Include="Search\Filter\FilterTableSource.cs" />
+    <Compile Include="Search\Filter\CellsFactoryBase.cs" />
     <Compile Include="DTO\Badges\CellAttribute.cs" />
+    <Compile Include="Models\SearchBadgeModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
