@@ -20,6 +20,6 @@ namespace Mehspot.AndroidApp
 			this.Switch.CheckedChange += (sender, e) => setValue(((Switch)sender).Checked);
 		}
 
-		public Switch Switch => this.FindViewById<Switch>(Resource.BooleanCell.FieldLabel);
+		public Switch Switch => this.FindViewById<Switch>(Resource.BooleanCell.Switch);
 	}
 }
