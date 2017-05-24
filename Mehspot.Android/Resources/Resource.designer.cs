@@ -3963,7 +3963,10 @@ namespace Mehspot.AndroidApp
 		{
 			
 			// aapt resource value: 0x7f100000
-			public const int toolbar = 2131755008;
+			public const int FieldsWrapper = 2131755008;
+			
+			// aapt resource value: 0x7f100001
+			public const int toolbar = 2131755009;
 			
 			static SearchFilter()
 			{

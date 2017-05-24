@@ -40,7 +40,7 @@ namespace Mehspot.AndroidApp
 
 		public void ReloadData()
 		{
-			var messagesWrapper = this.FindViewById<LinearLayout>(Resource.Id.messagesWrapper);
+			var messagesWrapper = this.FindViewById<LinearLayout>(Resource.SearchFilter.FieldsWrapper);
 			foreach (var cell in model.Cells)
 			{
 				messagesWrapper.AddView(cell);
