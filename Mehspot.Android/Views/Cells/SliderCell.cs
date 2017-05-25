@@ -31,9 +31,9 @@ namespace Mehspot.AndroidApp
 			this.SetValue(setProperty);
 		}
 
-		private int ValueToProgress(int value)
+		private int ValueToProgress(float value)
 		{
-			return value / (maxValue - minValue) * 100;
+			return (int) (value / (float)(maxValue - minValue) * 100);
 		}
 
 		private int ProgressToValue(int progress)
