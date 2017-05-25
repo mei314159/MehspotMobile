@@ -55,12 +55,12 @@ namespace Mehspot.iOS.Views.Cell
 						}, prop.attr.Label, isReadOnly: prop.attr.ReadOnly);
 						break;
 					case CellType.Select:
-						//var options = await this.GetOptionsAsync(prop.attr.OptionsKey, prop.attr.SkipFirstOption);
-						//targetCell = PickerCell.Create(prop.attr.DefaultValue as int?, (v) =>
-						//{
-						//	prop.prop.SetValue(filter, v);
-						//	OnCellChanged(filter, prop.prop.Name, v);
-						//}, prop.attr.Label, options, isReadOnly: prop.attr.ReadOnly);
+						var options = await this.GetOptionsAsync(prop.attr.OptionsKey, prop.attr.SkipFirstOption);
+						targetCell = new PickerCell<int?>(context, prop.attr.DefaultValue as int?, (v) =>
+						{
+							prop.prop.SetValue(filter, Convert.ChangeType(v, prop.prop.PropertyType));
+							OnCellChanged(filter, prop.prop.Name, v);
+						}, prop.attr.Label, options, isReadOnly: prop.attr.ReadOnly);
 						break;
 					case CellType.Multiselect:
 						//var multiselectOptions = await this.GetOptionsAsync(prop.attr.OptionsKey, prop.attr.SkipFirstOption);

@@ -47,11 +47,10 @@ namespace Mehspot.AndroidApp
 
 		void SetValue(Action<TProperty> setProperty)
 		{
-			var slider = this.CellSlider;
-			var value = slider.Progress;
+			var value = ProgressToValue(this.CellSlider.Progress);
 			var propertyType = Nullable.GetUnderlyingType(typeof(TProperty)) ?? typeof(TProperty);
 			var val = (TProperty)Convert.ChangeType(value, propertyType);
-			var clearValue = ProgressToValue(this.CellSlider.Progress) == this.minValue;
+			var clearValue = value == this.minValue;
 			if (clearValue)
 			{
 				val = default(TProperty);
