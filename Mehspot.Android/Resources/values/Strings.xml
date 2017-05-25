@@ -4,4 +4,5 @@
 	<string name="app_name">Mehspot</string>
 	<string name="facebook_app_id">1429090000437670</string>
 	<string name="fb_login_protocol_scheme">1429090000437670</string>
+	<string name="LabelNone">None</string>
 </resources>

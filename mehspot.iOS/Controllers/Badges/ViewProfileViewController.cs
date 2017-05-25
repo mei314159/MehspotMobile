@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using SDWebImage;
 using Mehspot.Models.ViewModels;
 using Mehspot.Core.DTO.Badges;
-using Mehspot.iOS.Controllers.Badges.DataSources.Search;
 using Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.iOS.Wrappers;

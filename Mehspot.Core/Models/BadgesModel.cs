@@ -20,7 +20,6 @@ namespace Mehspot.Core.Models
         private int selectedBadgeIndex;
         private List<int> expandedRows = new List<int>();
 
-
         public event Action LoadingStart;
         public event Action LoadingEnd;
 

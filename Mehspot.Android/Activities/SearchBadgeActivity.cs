@@ -8,6 +8,7 @@ using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
+using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
 using Mehspot.iOS.Views.Cell;
 
@@ -21,6 +22,8 @@ namespace Mehspot.AndroidApp
 
 		public IViewHelper ViewHelper { get; private set; }
 
+		public Button SearchButton => this.FindViewById<Button>(Resource.SearchFilter.SearchButton);
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -30,6 +33,7 @@ namespace Mehspot.AndroidApp
 			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
 			this.model = new SearchBadgeModel<View>(this, badgeService, new CellFactory(this, badgeService, BadgeSummary.BadgeId));
 			this.Title = this.model.GetTitle();
+			SearchButton.Click += SearchButton_Click;
 		}
 
 		protected override async void OnStart()
@@ -46,5 +50,15 @@ namespace Mehspot.AndroidApp
 				messagesWrapper.AddView(cell);
 			}
 		}
+
+		void SearchButton_Click(object sender, System.EventArgs e)
+		{
+			var target = new Intent(this, typeof(SearchResultsActivity));
+			target.PutExtra("badgeSummary", this.BadgeSummary);
+			target.PutExtra("searchQuery", this.model.SearchQuery);
+			this.StartActivity(target);
+		}
 	}
+
+	
 }

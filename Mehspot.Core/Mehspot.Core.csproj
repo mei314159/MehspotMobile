@@ -138,6 +138,8 @@
     <Compile Include="Search\Filter\CellsFactoryBase.cs" />
     <Compile Include="DTO\Badges\CellAttribute.cs" />
     <Compile Include="Models\SearchBadgeModel.cs" />
+    <Compile Include="Contracts\ViewControllers\ISearchResultsController.cs" />
+    <Compile Include="Models\SearchResultsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

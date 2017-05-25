@@ -47,7 +47,7 @@ namespace Mehspot.AndroidApp
 			}
 		}
 		
-		public partial class PickerCell
+		public partial class MultiselectCell
 		{
 			
 			// aapt resource value: 0x7f100001
@@ -55,6 +55,25 @@ namespace Mehspot.AndroidApp
 			
 			// aapt resource value: 0x7f100000
 			public const int FieldLabel = 2131755008;
+			
+			static MultiselectCell()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private MultiselectCell()
+			{
+			}
+		}
+		
+		public partial class PickerCell
+		{
+			
+			// aapt resource value: 0x7f110001
+			public const int Dropdown = 2131820545;
+			
+			// aapt resource value: 0x7f110000
+			public const int FieldLabel = 2131820544;
 			
 			static PickerCell()
 			{
@@ -66,17 +85,36 @@ namespace Mehspot.AndroidApp
 			}
 		}
 		
+		public partial class SearchResults
+		{
+			
+			// aapt resource value: 0x7f130001
+			public const int ItemsWrapper = 2131951617;
+			
+			// aapt resource value: 0x7f130000
+			public const int ScrollView = 2131951616;
+			
+			static SearchResults()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private SearchResults()
+			{
+			}
+		}
+		
 		public partial class SliderCell
 		{
 			
-			// aapt resource value: 0x7f120000
-			public const int FieldLabel = 2131886080;
+			// aapt resource value: 0x7f140000
+			public const int FieldLabel = 2132017152;
 			
-			// aapt resource value: 0x7f120002
-			public const int Slider = 2131886082;
+			// aapt resource value: 0x7f140002
+			public const int Slider = 2132017154;
 			
-			// aapt resource value: 0x7f120001
-			public const int ValueLabel = 2131886081;
+			// aapt resource value: 0x7f140001
+			public const int ValueLabel = 2132017153;
 			
 			static SliderCell()
 			{
@@ -91,11 +129,11 @@ namespace Mehspot.AndroidApp
 		public partial class TextEditCell
 		{
 			
-			// aapt resource value: 0x7f130000
-			public const int FieldLabel = 2131951616;
+			// aapt resource value: 0x7f150000
+			public const int FieldLabel = 2132082688;
 			
-			// aapt resource value: 0x7f130001
-			public const int TextInput = 2131951617;
+			// aapt resource value: 0x7f150001
+			public const int TextInput = 2132082689;
 			
 			static TextEditCell()
 			{
@@ -110,11 +148,11 @@ namespace Mehspot.AndroidApp
 		public partial class TextViewCell
 		{
 			
-			// aapt resource value: 0x7f140000
-			public const int FieldLabel = 2132017152;
+			// aapt resource value: 0x7f160000
+			public const int FieldLabel = 2132148224;
 			
-			// aapt resource value: 0x7f140001
-			public const int Text = 2132017153;
+			// aapt resource value: 0x7f160001
+			public const int Text = 2132148225;
 			
 			static TextViewCell()
 			{
@@ -3878,88 +3916,94 @@ namespace Mehspot.AndroidApp
 			public const int messenger_button_send_white_small = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int notification_action = 2130968639;
+			public const int MultiselectCell = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int notification_action_tombstone = 2130968640;
+			public const int notification_action = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int notification_media_action = 2130968641;
+			public const int notification_action_tombstone = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int notification_media_cancel_action = 2130968642;
+			public const int notification_media_action = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int notification_template_big_media = 2130968643;
+			public const int notification_media_cancel_action = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int notification_template_big_media_custom = 2130968644;
+			public const int notification_template_big_media = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int notification_template_big_media_narrow = 2130968645;
+			public const int notification_template_big_media_custom = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int notification_template_big_media_narrow_custom = 2130968646;
+			public const int notification_template_big_media_narrow = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int notification_template_custom_big = 2130968647;
+			public const int notification_template_big_media_narrow_custom = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int notification_template_icon_group = 2130968648;
+			public const int notification_template_custom_big = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int notification_template_lines_media = 2130968649;
+			public const int notification_template_icon_group = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int notification_template_media = 2130968650;
+			public const int notification_template_lines_media = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int notification_template_media_custom = 2130968651;
+			public const int notification_template_media = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int notification_template_part_chronometer = 2130968652;
+			public const int notification_template_media_custom = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int notification_template_part_time = 2130968653;
+			public const int notification_template_part_chronometer = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int PickerCell = 2130968654;
+			public const int notification_template_part_time = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int SearchBadgeActivity = 2130968655;
+			public const int PickerCell = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int select_dialog_item_material = 2130968656;
+			public const int SearchBadgeActivity = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int select_dialog_multichoice_material = 2130968657;
+			public const int SearchResultsActivity = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int select_dialog_singlechoice_material = 2130968658;
+			public const int select_dialog_item_material = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int SignIn = 2130968659;
+			public const int select_dialog_multichoice_material = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int SignUp = 2130968660;
+			public const int select_dialog_singlechoice_material = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int SliderCell = 2130968661;
+			public const int SignIn = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int SplashScreen = 2130968662;
+			public const int SignUp = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int support_simple_spinner_dropdown_item = 2130968663;
+			public const int SliderCell = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int TextEditCell = 2130968664;
+			public const int SplashScreen = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int TextViewCell = 2130968665;
+			public const int support_simple_spinner_dropdown_item = 2130968665;
 			
 			// aapt resource value: 0x7f04005a
-			public const int TextViewItem = 2130968666;
+			public const int TextEditCell = 2130968666;
+			
+			// aapt resource value: 0x7f04005b
+			public const int TextViewCell = 2130968667;
+			
+			// aapt resource value: 0x7f04005c
+			public const int TextViewItem = 2130968668;
 			
 			static Layout()
 			{
@@ -3990,11 +4034,14 @@ namespace Mehspot.AndroidApp
 		public partial class SearchFilter
 		{
 			
-			// aapt resource value: 0x7f110000
-			public const int FieldsWrapper = 2131820544;
+			// aapt resource value: 0x7f120001
+			public const int FieldsWrapper = 2131886081;
 			
-			// aapt resource value: 0x7f110001
-			public const int toolbar = 2131820545;
+			// aapt resource value: 0x7f120002
+			public const int SearchButton = 2131886082;
+			
+			// aapt resource value: 0x7f120000
+			public const int toolbar = 2131886080;
 			
 			static SearchFilter()
 			{
@@ -4008,6 +4055,9 @@ namespace Mehspot.AndroidApp
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f0c0067
+			public const int LabelNone = 2131492967;
 			
 			// aapt resource value: 0x7f0c0008
 			public const int abc_action_bar_home_description = 2131492872;

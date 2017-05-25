@@ -47,7 +47,7 @@ namespace Mehspot.iOS
         {
             if (segue.Identifier == "UnwindToSearchResults") {
                 var controller = (SearchResultsViewController)segue.DestinationViewController;
-                controller.RegqiredBadgeWasRegistered ();
+                controller.ReqiredBadgeWasRegistered ();
             }
 
             base.PrepareForSegue (segue, sender);
