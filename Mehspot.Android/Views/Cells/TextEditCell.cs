@@ -10,6 +10,8 @@ namespace Mehspot.AndroidApp
 
 	public class TextEditCell : RelativeLayout
 	{
+		string previousText;
+
 		private string mask;
 		public Action<string> SetModelProperty;
 		public event Action<TextEditCell, string> ValueChanged;
@@ -43,7 +45,7 @@ namespace Mehspot.AndroidApp
 			this.TextInput.Hint = placeholder ?? label;
 			this.TextInput.Enabled = !isReadOnly;
 			this.TextInput.Text = initialValue;
-			this.TextInput.TextChanged += TextInput_TextChanged; ;
+			this.TextInput.TextChanged += TextInput_TextChanged;
 			this.TextInput.BeforeTextChanged += TextInput_BeforeTextChanged;
 			this.SetModelProperty = setProperty;
 			this.Mask = mask;
@@ -55,35 +57,46 @@ namespace Mehspot.AndroidApp
 
 		void TextInput_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
 		{
-			var text = ((EditText)sender).Text;
-			this.SetModelProperty(text);
-			this.ValueChanged?.Invoke(this, text);
+			var text = TextInput.Text;
+
+			if (this.MaxLength.HasValue && text.Length > this.MaxLength.Value)
+			{
+				TextInput.Text = text.Substring(0, this.MaxLength.Value);
+				return;
+			}
+
+
+			if (ValidationRegex != null && !Regex.IsMatch(text, ValidationRegex))
+			{
+				TextInput.Text = previousText;
+				return;
+			}
+
+
+			if (this.Mask != null && !this.ValidateMask(text))
+			{
+				if (Mask.Length > text.Length)
+				{
+					var maskSymbol = Mask[text.Length];
+					if (maskSymbol != '#' && maskSymbol != '*')
+					{
+						TextInput.Text = text + maskSymbol;
+					}
+					else
+					{
+						TextInput.Text = previousText;
+					}
+				}
+			}
+
+			this.SetModelProperty(TextInput.Text);
+			this.ValueChanged?.Invoke(this, TextInput.Text);
+			previousText = TextInput.Text;
 		}
 
 		void TextInput_BeforeTextChanged(object sender, Android.Text.TextChangedEventArgs e)
 		{
-			//string text = TextInput.Text;
-			//string newText = text.Substring(0, (int)range.Location) + replacementString + text.Substring((int)(range.Location + range.Length));
-
-			//if (this.MaxLength.HasValue && newText.Length > this.MaxLength.Value)
-			//	return;
-
-			//if (ValidationRegex != null && !Regex.IsMatch(newText, ValidationRegex))
-			//{
-			//	return;
-			//}
-
-			//if (this.Mask == null || this.ValidateMask(newText))
-			//	return true;
-
-			//if (text.Length == range.Location && Mask.Length > range.Location)
-			//{
-			//	var maskSymbol = Mask[(int)range.Location];
-			//	if (maskSymbol != '#' && maskSymbol != '*')
-			//		TextInput.Text = TextInput.Text + maskSymbol;
-			//}
-
-			//return;
+			this.previousText = ((EditText)sender).Text;
 		}
 
 		bool ValidateMask(string text, bool fullMatch = false)
