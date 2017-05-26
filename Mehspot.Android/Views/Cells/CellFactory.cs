@@ -58,7 +58,14 @@ namespace Mehspot.iOS.Views.Cell
 						var options = await this.GetOptionsAsync(prop.attr.OptionsKey, prop.attr.SkipFirstOption);
 						targetCell = new PickerCell<int?>(context, prop.attr.DefaultValue as int?, (v) =>
 						{
-							prop.prop.SetValue(filter, v != null ? Convert.ChangeType(v, prop.prop.PropertyType) : null);
+							object val = null;
+							if (v != null)
+							{
+								var propertyType = Nullable.GetUnderlyingType(prop.prop.PropertyType) ?? prop.prop.PropertyType;
+								val = Convert.ChangeType(v, propertyType);
+							}
+
+							prop.prop.SetValue(filter, val);
 							OnCellChanged(filter, prop.prop.Name, v);
 						}, prop.attr.Label, options, isReadOnly: prop.attr.ReadOnly);
 						break;

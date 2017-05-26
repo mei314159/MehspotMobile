@@ -51,8 +51,8 @@ namespace Mehspot.AndroidApp
 			searchResultsAdapter = new SearchResultsAdapter(this);
 			searchResultsAdapter.MessageButtonClicked += Item_MessageButtonClicked;
 			searchResultsAdapter.ViewProfileButtonClicked += Item_ViewProfileButtonClicked;
+			searchResultsAdapter.Clicked+= Item_Clicked;
 			ListView.Adapter = searchResultsAdapter;
-			ListView.ItemClick += ListView_ItemClick;
 
 			Refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 											Resource.Color.xam_purple,
@@ -87,9 +87,8 @@ namespace Mehspot.AndroidApp
 			Task.Run(async () => await this.model.LoadDataAsync(true));
 		}
 
-		void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		void Item_Clicked(ISearchResultDTO dto, Views.SearchResultItem view)
 		{
-			var view = (SearchResultItem)e.View;
 			var wrapper = view.FindViewById(Resource.SearchResultItem.InfoWrapper);
 			if (wrapper.Visibility.Equals(ViewStates.Gone) && !this.model.RegisterButtonVisible)
 			{
@@ -116,7 +115,7 @@ namespace Mehspot.AndroidApp
 
 			}
 
-			this.model.SelectItem(view.Dto);
+			this.model.SelectItem(dto);
 		}
 
 		void Handle_ScrollChange(object sender, View.ScrollChangeEventArgs e)
@@ -176,6 +175,7 @@ namespace Mehspot.AndroidApp
 	{
 		public event Action<ISearchResultDTO> MessageButtonClicked;
 		public event Action<ISearchResultDTO> ViewProfileButtonClicked;
+		public event Action<ISearchResultDTO, SearchResultItem> Clicked;
 
 		public readonly List<ISearchResultDTO> Items;
 		Activity context;
@@ -203,6 +203,7 @@ namespace Mehspot.AndroidApp
 			if (view == null) // otherwise create a new one
 			{
 				view = new SearchResultItem(context);
+				view.Clicked += (sender, e) => Clicked?.Invoke(sender, e);
 				view.ViewProfileButtonClicked += (arg1) => ViewProfileButtonClicked?.Invoke(arg1);
 				view.MessageButtonClicked += (arg1) => MessageButtonClicked?.Invoke(arg1);
 			}
