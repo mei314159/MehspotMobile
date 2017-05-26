@@ -237,6 +237,10 @@
     <AndroidResource Include="Resources\layout\TextViewItem.xml" />
     <AndroidResource Include="Resources\layout\MultiselectCell.axml" />
     <AndroidResource Include="Resources\layout\SearchResultsActivity.axml" />
+    <AndroidResource Include="Resources\layout\SearchResultItem.axml" />
+    <AndroidResource Include="Resources\drawable\roundedFrame.xml" />
+    <AndroidResource Include="Resources\drawable\staryellow.png" />
+    <AndroidResource Include="Resources\drawable\profile_image.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

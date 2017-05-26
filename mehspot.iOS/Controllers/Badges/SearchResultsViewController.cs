@@ -46,8 +46,6 @@ namespace Mehspot.iOS
 			this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
 			this.TableView.TableFooterView.Hidden = true;
 			this.NavBar.Title = model.GetTitle();
-
-			this.TableView.Scrolled += TableView_Scrolled;
 		}
 
 		public override async void ViewDidAppear(bool animated)
@@ -88,7 +86,8 @@ namespace Mehspot.iOS
 			return SearchResultsCell.CollapsedHeight;
 		}
 
-		void TableView_Scrolled(object sender, EventArgs e)
+		[Export("scrollViewDidScroll:")]
+		public void Scrolled(UIScrollView scrollView)
 		{
 			var currentOffset = TableView.ContentOffset.Y;
 			var maximumOffset = TableView.ContentSize.Height - TableView.Frame.Size.Height;

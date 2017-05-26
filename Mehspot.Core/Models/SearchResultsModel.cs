@@ -21,7 +21,6 @@ namespace Mehspot.Core
         private readonly ISearchResultsController controller;
         private readonly BadgeService badgeService;
         private readonly Type resultType;
-        public readonly ISearchQueryDTO SearchQuery;
         private List<int> expandedRows = new List<int>();
 
         public event OnLoadingError OnLoadingError;
@@ -81,7 +80,7 @@ namespace Mehspot.Core
             
             loading = true;
             var skip = refresh ? 0 : (this.Items?.Count ?? 0);
-            var result = await badgeService.Search(this.SearchQuery, skip, pageSize, this.resultType);
+            var result = await badgeService.Search(this.controller.SearchQuery, skip, pageSize, this.resultType);
             if (result.IsSuccess)
             {
                 if (refresh)
@@ -96,10 +95,11 @@ namespace Mehspot.Core
             {
                 OnLoadingError?.Invoke(result);
             }
+            loading = false;
         }
 
 
-        public async void LoadMoreAsync()
+        public async Task LoadMoreAsync()
         {
             if (!loading && !this.RegisterButtonVisible)
             {

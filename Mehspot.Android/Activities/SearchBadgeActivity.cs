@@ -32,7 +32,8 @@ namespace Mehspot.AndroidApp
 			this.ViewHelper = new ActivityHelper(this);
 			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
 			this.model = new SearchBadgeModel<View>(this, badgeService, new CellFactory(this, badgeService, BadgeSummary.BadgeId));
-			this.Title = this.model.GetTitle();
+			this.Title = this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.SearchFilter.toolbar).Title = this.model.GetTitle();
+
 			SearchButton.Click += SearchButton_Click;
 		}
 

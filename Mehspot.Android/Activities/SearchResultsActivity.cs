@@ -1,11 +1,15 @@
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Mehspot.AndroidApp.Views;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Contracts.Wrappers;
@@ -13,6 +17,8 @@ using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
 using Mehspot.Models.ViewModels;
+using System.Collections.Generic;
+using System;
 
 namespace Mehspot.AndroidApp
 {
@@ -21,6 +27,7 @@ namespace Mehspot.AndroidApp
 	public class SearchResultsActivity : Activity, ISearchResultsController
 	{
 		private SearchResultsModel model;
+		private SearchResultsAdapter searchResultsAdapter;
 		public BadgeSummaryDTO BadgeSummary => Intent.GetExtra<BadgeSummaryDTO>("badgeSummary");
 		public ISearchQueryDTO SearchQuery => Intent.GetExtra<ISearchQueryDTO>("searchQuery");
 
@@ -39,61 +46,52 @@ namespace Mehspot.AndroidApp
 			model.LoadingMoreEnded += LoadingMoreEnded;
 			model.OnLoadingError += OnLoadingError;
 
-			this.FindViewById<ScrollView>(Resource.SearchResults.ScrollView).ScrollChange += Handle_ScrollChange; ;
+			ListView.ScrollChange += Handle_ScrollChange;
 
+			searchResultsAdapter = new SearchResultsAdapter(this);
+			searchResultsAdapter.MessageButtonClicked += Item_MessageButtonClicked;
+			searchResultsAdapter.ViewProfileButtonClicked += Item_ViewProfileButtonClicked;
+			ListView.Adapter = searchResultsAdapter;
+			ListView.ItemClick += ListView_ItemClick;
 
-			var refresher = this.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
-			refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
-																	Resource.Color.xam_purple,
-																	Resource.Color.xam_gray,
-																	Resource.Color.xam_green);
-			refresher.Refresh += async (sender, e) =>
-			{
-				await RefreshResultsAsync();
-				refresher.Refreshing = false;
-			};
+			Refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
+											Resource.Color.xam_purple,
+											Resource.Color.xam_gray,
+										   	Resource.Color.xam_green);
+			Refresher.Refresh += (sender, e) => RefreshResults();
 		}
 
-		protected override async void OnStart()
+		private ListView ListView => this.FindViewById<ListView>(Resource.SearchResults.ListView);
+		private SwipeRefreshLayout Refresher => this.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
+
+		protected override void OnStart()
 		{
 			base.OnStart();
-			await RefreshResultsAsync();
+			Refresher.Refreshing = true;
+			RefreshResults();
 		}
 
 		public void ReloadData()
 		{
-			var wrapper = this.FindViewById<LinearLayout>(Resource.SearchResults.ItemsWrapper);
-			wrapper.RemoveAllViews();
-			foreach (var item in model.Items)
+			searchResultsAdapter.Items.Clear();
+			searchResultsAdapter.Items.AddRange(model.Items);
+			RunOnUiThread(() =>
 			{
-				var bubble = CreateItem(item);
-				wrapper.AddView(bubble);
-			}
+				searchResultsAdapter.NotifyDataSetChanged();
+				Refresher.Refreshing = false;
+			});
 		}
 
-		private async Task RefreshResultsAsync()
+		private void RefreshResults()
 		{
-			await this.model.LoadDataAsync(true);
+			Task.Run(async () => await this.model.LoadDataAsync(true));
 		}
 
-		private SearchResultItem CreateItem(BadgeSummaryDTO dto)
+		void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			var item = new SearchResultItem(this.Activity, dto);
-			item.Tag = dto.BadgeId;
-			item.Clicked += Item_Clicked;
-			item.SearchButtonClicked += Item_SearchButtonClicked;
-			item.RegisterButtonClicked += Item_RegisterButtonClicked;
-			return item;
-		}
-
-
-		private void Item_Clicked(ISearchResultDTO dto, SearchResultItem sender)
-		{
-			this.model.SelectItem(dto);
-
-			var wrapper = sender.FindViewById(Resource.SearchResultItem.InfoWrapper);
-
-			if (wrapper.Visibility.Equals(ViewStates.Gone))
+			var view = (SearchResultItem)e.View;
+			var wrapper = view.FindViewById(Resource.SearchResultItem.InfoWrapper);
+			if (wrapper.Visibility.Equals(ViewStates.Gone) && !this.model.RegisterButtonVisible)
 			{
 				//set Visible
 				wrapper.Visibility = ViewStates.Visible;
@@ -103,31 +101,33 @@ namespace Mehspot.AndroidApp
 
 				ValueAnimator mAnimator = SlideAnimator(wrapper, 0, wrapper.MeasuredHeight);
 				mAnimator.Start();
-
 			}
 			else
 			{
-				//collapse();
+				//collapse()
 				int finalHeight = wrapper.Height;
 				ValueAnimator mAnimator = SlideAnimator(wrapper, finalHeight, 0);
 				mAnimator.Start();
-				mAnimator.AnimationEnd += (s, e) =>
+				mAnimator.AnimationEnd += (s, ev) =>
 				{
 					wrapper.Visibility = ViewStates.Gone;
 				};
 
+
 			}
+
+			this.model.SelectItem(view.Dto);
 		}
 
 		void Handle_ScrollChange(object sender, View.ScrollChangeEventArgs e)
 		{
-			var scrollView = (ScrollView)sender;
+			var scrollView = (ListView)sender;
 			var currentOffset = e.ScrollY;
-			var maximumOffset = scrollView.GetChildAt(0).Height - scrollView.Height;
+			var maximumOffset = (scrollView.GetChildAt(0)?.Height ?? 0) - scrollView.Height;
 			var deltaOffset = maximumOffset - currentOffset;
 			if (currentOffset > 0 && deltaOffset <= 0)
 			{
-				model.LoadMoreAsync();
+				Task.Run(async () => await this.model.LoadMoreAsync());
 			}
 		}
 
@@ -148,6 +148,16 @@ namespace Mehspot.AndroidApp
 			//this.TableView.TableFooterView.Hidden = true;
 		}
 
+		void Item_ViewProfileButtonClicked(ISearchResultDTO obj)
+		{
+
+		}
+
+		void Item_MessageButtonClicked(ISearchResultDTO obj)
+		{
+
+		}
+
 		private ValueAnimator SlideAnimator(View view, int start, int end)
 		{
 			var animator = ValueAnimator.OfInt(start, end);
@@ -159,6 +169,47 @@ namespace Mehspot.AndroidApp
 					view.LayoutParameters = layoutParams;
 				};
 			return animator;
+		}
+	}
+
+	public class SearchResultsAdapter : BaseAdapter<ISearchResultDTO>
+	{
+		public event Action<ISearchResultDTO> MessageButtonClicked;
+		public event Action<ISearchResultDTO> ViewProfileButtonClicked;
+
+		public readonly List<ISearchResultDTO> Items;
+		Activity context;
+		public SearchResultsAdapter(Activity context)
+		{
+			this.context = context;
+			this.Items = new List<ISearchResultDTO>();
+		}
+		public override long GetItemId(int position)
+		{
+			return position;
+		}
+		public override ISearchResultDTO this[int position]
+		{
+			get { return Items[position]; }
+		}
+		public override int Count
+		{
+			get { return Items.Count; }
+		}
+
+		public override View GetView(int position, View convertView, ViewGroup parent)
+		{
+			var view = convertView as SearchResultItem; // re-use an existing view, if one is available
+			if (view == null) // otherwise create a new one
+			{
+				view = new SearchResultItem(context);
+				view.ViewProfileButtonClicked += (arg1) => ViewProfileButtonClicked?.Invoke(arg1);
+				view.MessageButtonClicked += (arg1) => MessageButtonClicked?.Invoke(arg1);
+			}
+
+			view.Init(Items[position]);
+
+			return view;
 		}
 	}
 }
