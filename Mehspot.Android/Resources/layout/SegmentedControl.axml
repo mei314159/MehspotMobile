@@ -11,27 +11,27 @@
         android:src="@drawable/detailsicon"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/imageButton1"
+        android:id="@+SegmentedControl/DetailsButton"
         android:layout_weight="1"
         android:scaleType="fitCenter"
         android:background="#fff"
-        android:tint="#ffc6d881" />
+        android:tint="@color/dark_green" />
     <ImageButton
         android:src="@drawable/reviewicon"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/imageButton1"
+        android:id="@+SegmentedControl/RecommendationsButton"
         android:layout_weight="1"
         android:scaleType="fitCenter"
         android:background="#fff"
-        android:tint="#ffc6d881" />
+        android:tint="@color/dark_green" />
     <ImageButton
         android:src="@drawable/chaticon"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/imageButton1"
+        android:id="@+SegmentedControl/MessageButton"
         android:layout_weight="1"
         android:scaleType="fitCenter"
         android:background="#fff"
-        android:tint="#ffc6d881" />
+        android:tint="@color/dark_green" />
 </LinearLayout>

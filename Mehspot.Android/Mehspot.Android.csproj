@@ -176,6 +176,7 @@
     <Compile Include="Activities\SearchResultsActivity.cs" />
     <Compile Include="Views\SearchResultItem.cs" />
     <Compile Include="Activities\ViewBadgeProfileActivity.cs" />
+    <Compile Include="Views\SegmentedControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

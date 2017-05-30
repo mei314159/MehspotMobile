@@ -41,4 +41,5 @@ namespace Mehspot.AndroidApp
 			return imageBitmap;
 		}
 	}
+}
 

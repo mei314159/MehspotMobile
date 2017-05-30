@@ -285,17 +285,39 @@ namespace Mehspot.AndroidApp
 			}
 		}
 		
-		public partial class SliderCell
+		public partial class SegmentedControl
 		{
 			
 			// aapt resource value: 0x7f150000
-			public const int FieldLabel = 2132082688;
+			public const int DetailsButton = 2132082688;
 			
 			// aapt resource value: 0x7f150002
-			public const int Slider = 2132082690;
+			public const int MessageButton = 2132082690;
 			
 			// aapt resource value: 0x7f150001
-			public const int ValueLabel = 2132082689;
+			public const int RecommendationsButton = 2132082689;
+			
+			static SegmentedControl()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private SegmentedControl()
+			{
+			}
+		}
+		
+		public partial class SliderCell
+		{
+			
+			// aapt resource value: 0x7f160000
+			public const int FieldLabel = 2132148224;
+			
+			// aapt resource value: 0x7f160002
+			public const int Slider = 2132148226;
+			
+			// aapt resource value: 0x7f160001
+			public const int ValueLabel = 2132148225;
 			
 			static SliderCell()
 			{
@@ -310,11 +332,11 @@ namespace Mehspot.AndroidApp
 		public partial class TextEditCell
 		{
 			
-			// aapt resource value: 0x7f160000
-			public const int FieldLabel = 2132148224;
+			// aapt resource value: 0x7f170000
+			public const int FieldLabel = 2132213760;
 			
-			// aapt resource value: 0x7f160001
-			public const int TextInput = 2132148225;
+			// aapt resource value: 0x7f170001
+			public const int TextInput = 2132213761;
 			
 			static TextEditCell()
 			{
@@ -329,11 +351,11 @@ namespace Mehspot.AndroidApp
 		public partial class TextViewCell
 		{
 			
-			// aapt resource value: 0x7f170000
-			public const int FieldLabel = 2132213760;
+			// aapt resource value: 0x7f180000
+			public const int FieldLabel = 2132279296;
 			
-			// aapt resource value: 0x7f170001
-			public const int Text = 2132213761;
+			// aapt resource value: 0x7f180001
+			public const int Text = 2132279297;
 			
 			static TextViewCell()
 			{
@@ -348,44 +370,47 @@ namespace Mehspot.AndroidApp
 		public partial class ViewBadgeProfileActivity
 		{
 			
-			// aapt resource value: 0x7f18000a
-			public const int DistanceLabel = 2132279306;
+			// aapt resource value: 0x7f19000a
+			public const int DistanceLabel = 2132344842;
 			
-			// aapt resource value: 0x7f180002
-			public const int FavoriteIcon = 2132279298;
+			// aapt resource value: 0x7f190002
+			public const int FavoriteIcon = 2132344834;
 			
-			// aapt resource value: 0x7f180009
-			public const int InfoLabel1 = 2132279305;
+			// aapt resource value: 0x7f190009
+			public const int InfoLabel1 = 2132344841;
 			
-			// aapt resource value: 0x7f18000b
-			public const int InfoLabel2 = 2132279307;
+			// aapt resource value: 0x7f19000b
+			public const int InfoLabel2 = 2132344843;
 			
-			// aapt resource value: 0x7f18000c
-			public const int InfoWrapper = 2132279308;
+			// aapt resource value: 0x7f190004
+			public const int LikesCount = 2132344836;
 			
-			// aapt resource value: 0x7f180004
-			public const int LikesCount = 2132279300;
+			// aapt resource value: 0x7f190005
+			public const int LikesCountText = 2132344837;
 			
-			// aapt resource value: 0x7f180005
-			public const int LikesCountText = 2132279301;
+			// aapt resource value: 0x7f19000d
+			public const int ListView = 2132344845;
 			
-			// aapt resource value: 0x7f180001
-			public const int Picture = 2132279297;
+			// aapt resource value: 0x7f190001
+			public const int Picture = 2132344833;
 			
-			// aapt resource value: 0x7f180000
-			public const int PictureFrame = 2132279296;
+			// aapt resource value: 0x7f190000
+			public const int PictureFrame = 2132344832;
 			
-			// aapt resource value: 0x7f180006
-			public const int RecommendationsCount = 2132279302;
+			// aapt resource value: 0x7f190006
+			public const int RecommendationsCount = 2132344838;
 			
-			// aapt resource value: 0x7f180007
-			public const int RecommendationsCountText = 2132279303;
+			// aapt resource value: 0x7f190007
+			public const int RecommendationsCountText = 2132344839;
 			
-			// aapt resource value: 0x7f180008
-			public const int SubdivisionLabel = 2132279304;
+			// aapt resource value: 0x7f19000c
+			public const int Segments = 2132344844;
 			
-			// aapt resource value: 0x7f180003
-			public const int UserNameLabel = 2132279299;
+			// aapt resource value: 0x7f190008
+			public const int SubdivisionLabel = 2132344840;
+			
+			// aapt resource value: 0x7f190003
+			public const int UserNameLabel = 2132344835;
 			
 			static ViewBadgeProfileActivity()
 			{
@@ -3249,44 +3274,44 @@ namespace Mehspot.AndroidApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0c0100
-			public const int AgreeWithTerms = 2131493120;
-			
-			// aapt resource value: 0x7f0c0105
-			public const int And = 2131493125;
-			
-			// aapt resource value: 0x7f0c0103
-			public const int Comma = 2131493123;
-			
-			// aapt resource value: 0x7f0c0106
-			public const int CommunityGuidelinesLabel = 2131493126;
-			
 			// aapt resource value: 0x7f0c00ff
-			public const int ConfirmationPasswordField = 2131493119;
-			
-			// aapt resource value: 0x7f0c00f7
-			public const int EmailField = 2131493111;
-			
-			// aapt resource value: 0x7f0c00fb
-			public const int GoToSignUp_Button = 2131493115;
-			
-			// aapt resource value: 0x7f0c00f9
-			public const int PasswordField = 2131493113;
+			public const int AgreeWithTerms = 2131493119;
 			
 			// aapt resource value: 0x7f0c0104
-			public const int PrivacyPolicyLabel = 2131493124;
-			
-			// aapt resource value: 0x7f0c00fa
-			public const int SignIn_Button = 2131493114;
-			
-			// aapt resource value: 0x7f0c0107
-			public const int SignUpButton = 2131493127;
+			public const int And = 2131493124;
 			
 			// aapt resource value: 0x7f0c0102
-			public const int TermsOfUseLabel = 2131493122;
+			public const int Comma = 2131493122;
+			
+			// aapt resource value: 0x7f0c0105
+			public const int CommunityGuidelinesLabel = 2131493125;
 			
 			// aapt resource value: 0x7f0c00fe
-			public const int UserNameField = 2131493118;
+			public const int ConfirmationPasswordField = 2131493118;
+			
+			// aapt resource value: 0x7f0c00f6
+			public const int EmailField = 2131493110;
+			
+			// aapt resource value: 0x7f0c00fa
+			public const int GoToSignUp_Button = 2131493114;
+			
+			// aapt resource value: 0x7f0c00f8
+			public const int PasswordField = 2131493112;
+			
+			// aapt resource value: 0x7f0c0103
+			public const int PrivacyPolicyLabel = 2131493123;
+			
+			// aapt resource value: 0x7f0c00f9
+			public const int SignIn_Button = 2131493113;
+			
+			// aapt resource value: 0x7f0c0106
+			public const int SignUpButton = 2131493126;
+			
+			// aapt resource value: 0x7f0c0101
+			public const int TermsOfUseLabel = 2131493121;
+			
+			// aapt resource value: 0x7f0c00fd
+			public const int UserNameField = 2131493117;
 			
 			// aapt resource value: 0x7f0c00de
 			public const int action0 = 2131493086;
@@ -3540,8 +3565,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c006f
 			public const int expanded_menu = 2131492975;
 			
-			// aapt resource value: 0x7f0c00fc
-			public const int fb_login_button = 2131493116;
+			// aapt resource value: 0x7f0c00fb
+			public const int fb_login_button = 2131493115;
 			
 			// aapt resource value: 0x7f0c00a8
 			public const int ffwd = 2131493032;
@@ -3588,11 +3613,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c005b
 			public const int image = 2131492955;
 			
-			// aapt resource value: 0x7f0c00f1
-			public const int imageButton1 = 2131493105;
-			
-			// aapt resource value: 0x7f0c00f3
-			public const int imageView1 = 2131493107;
+			// aapt resource value: 0x7f0c00f2
+			public const int imageView1 = 2131493106;
 			
 			// aapt resource value: 0x7f0c00e7
 			public const int info = 2131493095;
@@ -3660,8 +3682,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c00ee
 			public const int line3 = 2131493102;
 			
-			// aapt resource value: 0x7f0c00f5
-			public const int linearLayout1 = 2131493109;
+			// aapt resource value: 0x7f0c00f4
+			public const int linearLayout1 = 2131493108;
 			
 			// aapt resource value: 0x7f0c0030
 			public const int listMode = 2131492912;
@@ -3675,8 +3697,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c005d
 			public const int list_item = 2131492957;
 			
-			// aapt resource value: 0x7f0c010a
-			public const int masked = 2131493130;
+			// aapt resource value: 0x7f0c0109
+			public const int masked = 2131493129;
 			
 			// aapt resource value: 0x7f0c00e1
 			public const int media_actions = 2131493089;
@@ -3780,14 +3802,14 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c0089
 			public const int refresher = 2131493001;
 			
-			// aapt resource value: 0x7f0c0101
-			public const int relative = 2131493121;
+			// aapt resource value: 0x7f0c0100
+			public const int relative = 2131493120;
 			
-			// aapt resource value: 0x7f0c00f2
-			public const int relativeLayout1 = 2131493106;
+			// aapt resource value: 0x7f0c00f1
+			public const int relativeLayout1 = 2131493105;
 			
-			// aapt resource value: 0x7f0c00f4
-			public const int relativeLayout2 = 2131493108;
+			// aapt resource value: 0x7f0c00f3
+			public const int relativeLayout2 = 2131493107;
 			
 			// aapt resource value: 0x7f0c00a6
 			public const int rew = 2131493030;
@@ -3933,8 +3955,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c00ed
 			public const int text2 = 2131493101;
 			
-			// aapt resource value: 0x7f0c0108
-			public const int textItem = 2131493128;
+			// aapt resource value: 0x7f0c0107
+			public const int textItem = 2131493127;
 			
 			// aapt resource value: 0x7f0c0067
 			public const int textSpacerNoButtons = 2131492967;
@@ -3942,11 +3964,11 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c0066
 			public const int textSpacerNoTitle = 2131492966;
 			
-			// aapt resource value: 0x7f0c00f6
-			public const int textView1 = 2131493110;
+			// aapt resource value: 0x7f0c00f5
+			public const int textView1 = 2131493109;
 			
-			// aapt resource value: 0x7f0c00f8
-			public const int textView2 = 2131493112;
+			// aapt resource value: 0x7f0c00f7
+			public const int textView2 = 2131493111;
 			
 			// aapt resource value: 0x7f0c00c1
 			public const int text_headline = 2131493057;
@@ -4005,8 +4027,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c00d2
 			public const int userName = 2131493074;
 			
-			// aapt resource value: 0x7f0c00fd
-			public const int userNameLabel = 2131493117;
+			// aapt resource value: 0x7f0c00fc
+			public const int userNameLabel = 2131493116;
 			
 			// aapt resource value: 0x7f0c00ad
 			public const int video_frame = 2131493037;
@@ -4020,8 +4042,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0c00cf
 			public const int viewpager = 2131493071;
 			
-			// aapt resource value: 0x7f0c0109
-			public const int visible = 2131493129;
+			// aapt resource value: 0x7f0c0108
+			public const int visible = 2131493128;
 			
 			// aapt resource value: 0x7f0c00c8
 			public const int web_update_details = 2131493064;

@@ -6,6 +6,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Mehspot.AndroidApp.Views;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Contracts.Wrappers;
@@ -27,7 +28,18 @@ namespace Mehspot.AndroidApp
 
 		public IViewHelper ViewHelper { get; private set; }
 
-		public Button SearchButton => this.FindViewById<Button>(Resource.SearchFilter.SearchButton);
+		public TextView UserNameLabel => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.UserNameLabel);
+		public TextView LikesCount => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.LikesCount);
+		public TextView RecommendationsCount => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.RecommendationsCount);
+		public TextView DistanceLabel => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.DistanceLabel);
+		public TextView InfoLabel1View => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.InfoLabel1);
+		public TextView InfoLabel2View => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.InfoLabel2);
+		public TextView SubdivisionLabel => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.SubdivisionLabel);
+
+		public ImageView Picture => (ImageView)FindViewById(Resource.ViewBadgeProfileActivity.Picture);
+		public ImageView FavoriteIcon => (ImageView)FindViewById(Resource.ViewBadgeProfileActivity.FavoriteIcon);
+		public SegmentedControl Segments => (SegmentedControl)FindViewById(Resource.ViewBadgeProfileActivity.Segments);
+
 
 		#region IViewBadgeProfileController
 
@@ -35,12 +47,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.Title;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				this.Title = value;
 			}
 		}
 
@@ -48,12 +60,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.SubdivisionLabel.Text;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				this.SubdivisionLabel.Text = value;
 			}
 		}
 
@@ -61,12 +73,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.DistanceLabel.Text;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				this.DistanceLabel.Text = value;
 			}
 		}
 
@@ -74,12 +86,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.LikesCount.Text;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				this.LikesCount.Text = value;
 			}
 		}
 
@@ -87,12 +99,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.UserNameLabel.Text;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				this.UserNameLabel.Text = value;
 			}
 		}
 
@@ -100,12 +112,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.InfoLabel1View.Text;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				this.InfoLabel1View.Text = value;
 			}
 		}
 
@@ -113,12 +125,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.InfoLabel2View.Text;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				this.InfoLabel2View.Text = value;
 			}
 		}
 
@@ -126,12 +138,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return Segments.MessageButton.Visibility == ViewStates.Gone;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				Segments.MessageButton.Visibility = value ? ViewStates.Gone : ViewStates.Visible;
 			}
 		}
 
@@ -139,12 +151,12 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return Segments.MessageButton.Enabled;
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				Segments.MessageButton.Enabled = value;
 			}
 		}
 		#endregion
@@ -213,7 +225,7 @@ namespace Mehspot.AndroidApp
 		{
 			model.AddRecommendation(recommendation);
 			model.HideCreateButton();
-			//Reload recommendations;
+			ReloadCells();
 		}
 
 		void RecommendationsDataSource_OnWriteReviewButtonTouched()
