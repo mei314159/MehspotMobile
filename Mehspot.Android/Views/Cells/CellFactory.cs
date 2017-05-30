@@ -11,7 +11,7 @@ using Android.Content;
 
 namespace Mehspot.iOS.Views.Cell
 {
-	public class CellFactory : CellsFactoryBase<View>
+	public class CellFactory : CellsFactoryBase<View, ButtonCell, RecommendationCell>
 	{
 		readonly Context context;
 
@@ -20,7 +20,7 @@ namespace Mehspot.iOS.Views.Cell
 			this.context = context;
 		}
 
-		public override async Task<List<View>> CreateCells(object filter)
+		public override async Task<List<View>> CreateCellsForObject(object filter)
 		{
 			return (await CreateCellsInternal(filter)).OrderBy(a => a.Item1).Select(a => a.Item2).ToList();
 		}
@@ -95,6 +95,16 @@ namespace Mehspot.iOS.Views.Cell
 			}
 
 			return cells.ToList();
+		}
+
+		public override ButtonCell CreateButtonCellTyped(string title)
+		{
+			throw new NotImplementedException();
+		}
+
+		public override RecommendationCell CreateRecommendationCellTyped(Core.DTO.Badges.BadgeUserRecommendationDTO item)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

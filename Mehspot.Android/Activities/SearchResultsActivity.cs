@@ -1,12 +1,9 @@
-using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Mehspot.AndroidApp.Views;
@@ -51,7 +48,7 @@ namespace Mehspot.AndroidApp
 			searchResultsAdapter = new SearchResultsAdapter(this);
 			searchResultsAdapter.MessageButtonClicked += Item_MessageButtonClicked;
 			searchResultsAdapter.ViewProfileButtonClicked += Item_ViewProfileButtonClicked;
-			searchResultsAdapter.Clicked+= Item_Clicked;
+			searchResultsAdapter.Clicked += Item_Clicked;
 			ListView.Adapter = searchResultsAdapter;
 
 			Refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
@@ -147,14 +144,20 @@ namespace Mehspot.AndroidApp
 			//this.TableView.TableFooterView.Hidden = true;
 		}
 
-		void Item_ViewProfileButtonClicked(ISearchResultDTO obj)
+		void Item_ViewProfileButtonClicked(ISearchResultDTO dto)
 		{
-
+			var target = new Intent(this, typeof(ViewBadgeProfileActivity));
+			target.PutExtra("badgeSummary", this.BadgeSummary);
+			target.PutExtra("searchResult", dto);
+			this.StartActivity(target);
 		}
 
-		void Item_MessageButtonClicked(ISearchResultDTO obj)
+		void Item_MessageButtonClicked(ISearchResultDTO dto)
 		{
-
+			var messagingActivity = new Intent(this, typeof(MessagingActivity));
+			messagingActivity.PutExtra("toUserId", dto.Details.UserId);
+			messagingActivity.PutExtra("toUserName", dto.Details.FirstName);
+			this.StartActivity(messagingActivity);
 		}
 
 		private ValueAnimator SlideAnimator(View view, int start, int end)

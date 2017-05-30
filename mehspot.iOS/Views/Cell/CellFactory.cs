@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Mehspot.iOS.Views;
-using Mehspot.iOS.Views.Cell;
+using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Filter.Search;
 using Mehspot.Core.Services;
@@ -11,16 +10,26 @@ using UIKit;
 
 namespace Mehspot.iOS.Views.Cell
 {
-	public class CellFactory : CellsFactoryBase<UITableViewCell>
+	public class CellFactory : CellsFactoryBase<UITableViewCell, ButtonCell, RecommendationCell>
 	{
 
 		public CellFactory(BadgeService badgeService, int badgeId) : base(badgeService, badgeId)
 		{
 		}
 
-		public override async Task<List<UITableViewCell>> CreateCells(object filter)
+		public override ButtonCell CreateButtonCellTyped(string title)
+		{
+			return ButtonCell.Create(title);
+		}
+
+		public override async Task<List<UITableViewCell>> CreateCellsForObject(object filter)
 		{
 			return (await CreateCellsInternal(filter)).OrderBy(a => a.Item1).Select(a => a.Item2).ToList();
+		}
+
+		public override RecommendationCell CreateRecommendationCellTyped(BadgeUserRecommendationDTO item)
+		{
+			return RecommendationCell.Create(item);
 		}
 
 		private async Task<List<Tuple<int, UITableViewCell>>> CreateCellsInternal(object filter)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -55,7 +55,7 @@ namespace Mehspot.Core
             controller.ViewHelper.ShowOverlay("Wait...");
 
             this.Cells.Clear();
-            this.Cells.AddRange(await this.cellFactory.CreateCells(this.SearchQuery));
+            this.Cells.AddRange(await this.cellFactory.CreateCellsForObject(this.SearchQuery));
 
             this.controller.ReloadData();
 

@@ -31,12 +31,12 @@ namespace Mehspot.AndroidApp.Resources.layout
 			RecommendationsCount.Text = dto.Recommendations.ToString();
 			ReferencesCount.Text = dto.References.ToString();
 			RegisterButton.Text = dto.IsRegistered ? "Update" : "Register";
-            
+
 			var identifier = Resources.GetIdentifier(dto.BadgeName.ToLower() + (dto.IsRegistered ? string.Empty : "b"), "drawable", context.PackageName);
 			Picture.SetImageResource(identifier);
 			this.Click += Handle_Click;
 			this.RegisterButton.Click += (sender, e) => RegisterButtonClicked(dto);
-            this.SearchButton.Click += (sender, e) => SearchButtonClicked(dto);
+			this.SearchButton.Click += (sender, e) => SearchButtonClicked(dto);
 		}
 
 		public TextView BadgeName => (TextView)FindViewById(Resource.BadgeSummary.BadgeName);
@@ -51,22 +51,6 @@ namespace Mehspot.AndroidApp.Resources.layout
 		void Handle_Click(object sender, EventArgs e)
 		{
 			this.Clicked?.Invoke(this.dto, this);
-		}
-
-		private Bitmap GetImageBitmapFromUrl(string url)
-		{
-			Bitmap imageBitmap = null;
-
-			using (var webClient = new WebClient())
-			{
-				var imageBytes = webClient.DownloadData(url);
-				if (imageBytes != null && imageBytes.Length > 0)
-				{
-					imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-				}
-			}
-
-			return imageBitmap;
 		}
 	}
 }

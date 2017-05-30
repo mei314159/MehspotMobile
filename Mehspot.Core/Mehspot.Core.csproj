@@ -109,7 +109,6 @@
     <Compile Include="DTO\Badges\Profile\TutorEmployerProfileDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\FitnessSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\TutorEmployerSearchResultDTO.cs" />
-    <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterEmployerDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchKidsPlayDateDTO.cs" />
@@ -135,11 +134,14 @@
     <Compile Include="DTO\Push\PushNotification.cs" />
     <Compile Include="Models\BadgesModel.cs" />
     <Compile Include="Contracts\ViewControllers\ISearchFilterController.cs" />
-    <Compile Include="Search\Filter\CellsFactoryBase.cs" />
     <Compile Include="DTO\Badges\CellAttribute.cs" />
     <Compile Include="Models\SearchBadgeModel.cs" />
     <Compile Include="Contracts\ViewControllers\ISearchResultsController.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
+    <Compile Include="Models\ViewBadgeProfileModel.cs" />
+    <Compile Include="Contracts\ViewControllers\IViewBadgeProfileController.cs" />
+    <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
+    <Compile Include="CellsFactoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

@@ -48,8 +48,6 @@ namespace Mehspot.AndroidApp.Views
 		public void Init(ISearchResultDTO item)
 		{
 			this.Dto = item;
-
-			Picture.ClipToOutline = true;
 			this.UserNameLabel.Text = item.Details.FirstName;
 			this.DistanceLabel.Text = Math.Round(item.Details.DistanceFrom ?? 0, 2) + " miles";
 			this.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace(item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
@@ -58,15 +56,16 @@ namespace Mehspot.AndroidApp.Views
 			this.RecommendationsCount.Text = item.Details.Recommendations.ToString();
 			this.InfoLabel1.Text = item.InfoLabel1;
 			this.InfoLabel2.Text = item.InfoLabel2;
-
+			Picture.ClipToOutline = true;
 			Task.Run(() =>
 			{
 				if (!string.IsNullOrWhiteSpace(item.Details.ProfilePicturePath))
 				{
-					var imageBitmap = GetImageBitmapFromUrl(item.Details.ProfilePicturePath);
+					var imageBitmap = this.activity.GetImageBitmapFromUrl(item.Details.ProfilePicturePath);
 					activity.RunOnUiThread(() => Picture.SetImageBitmap(imageBitmap));
 				}
-				else {
+				else
+				{
 					var identifier = Resources.GetIdentifier("profile_image", "drawable", this.activity.PackageName);
 					activity.RunOnUiThread(() => Picture.SetImageResource(identifier));
 				}
@@ -76,22 +75,6 @@ namespace Mehspot.AndroidApp.Views
 		void Handle_Click(object sender, EventArgs e)
 		{
 			this.Clicked?.Invoke(this.Dto, this);
-		}
-
-		private Bitmap GetImageBitmapFromUrl(string url)
-		{
-			Bitmap imageBitmap = null;
-
-			using (var webClient = new WebClient())
-			{
-				var imageBytes = webClient.DownloadData(url);
-				if (imageBytes != null && imageBytes.Length > 0)
-				{
-					imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-				}
-			}
-
-			return imageBitmap;
 		}
 	}
 }

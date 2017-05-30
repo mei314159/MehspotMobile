@@ -326,8 +326,6 @@
     <Compile Include="Views\Cell\MessageCell.designer.cs">
       <DependentUpon>MessageCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\DataSources\RecommendationsTableSource.cs" />
-    <Compile Include="Controllers\Badges\DataSources\ViewBadgeProfileTableSource.cs" />
     <Compile Include="Views\Cell\CellFactory.cs" />
   </ItemGroup>
   <ItemGroup>

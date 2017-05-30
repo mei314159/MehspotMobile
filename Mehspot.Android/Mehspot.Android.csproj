@@ -175,6 +175,7 @@
     <Compile Include="Views\Cells\MultiselectCell.cs" />
     <Compile Include="Activities\SearchResultsActivity.cs" />
     <Compile Include="Views\SearchResultItem.cs" />
+    <Compile Include="Activities\ViewBadgeProfileActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -247,6 +248,12 @@
     <AndroidResource Include="Resources\drawable\roundedFrame.xml" />
     <AndroidResource Include="Resources\drawable\staryellow.png" />
     <AndroidResource Include="Resources\drawable\profile_image.png" />
+    <AndroidResource Include="Resources\layout\ViewBadgeProfileActivity.axml" />
+    <AndroidResource Include="Resources\layout\SegmentedControl.axml" />
+    <AndroidResource Include="Resources\drawable\shape.xml" />
+    <AndroidResource Include="Resources\drawable\chaticon.png" />
+    <AndroidResource Include="Resources\drawable\detailsicon.png" />
+    <AndroidResource Include="Resources\drawable\reviewicon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
