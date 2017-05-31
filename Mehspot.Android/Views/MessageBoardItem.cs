@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -16,7 +17,7 @@ namespace Mehspot.AndroidApp.Resources.layout
 
 		public event Action<MessageBoardItemDto> Clicked;
 
-		public MessageBoardItem(Context context, MessageBoardItemDto dto) : base(context)
+		public MessageBoardItem(Activity activity, MessageBoardItemDto dto) : base(activity)
 		{
 			this.dto = dto;
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
@@ -30,12 +31,16 @@ namespace Mehspot.AndroidApp.Resources.layout
 			{
 				UnreadMessagesCount.Visibility = ViewStates.Invisible;
 			}
-
-			if (!string.IsNullOrWhiteSpace(dto.WithUser.ProfilePicturePath))
+			ProfilePicture.ClipToOutline = true;
+			Task.Run(() =>
 			{
-				var imageBitmap = context.GetImageBitmapFromUrl(dto.WithUser.ProfilePicturePath);
-				ProfilePicture.SetImageBitmap(imageBitmap);
-			}
+				if (!string.IsNullOrWhiteSpace(dto.WithUser.ProfilePicturePath))
+				{
+					var imageBitmap = activity.GetImageBitmapFromUrl(dto.WithUser.ProfilePicturePath);
+					activity.RunOnUiThread(() => ProfilePicture.SetImageBitmap(imageBitmap));
+				}
+			});
+
 			this.Click += Handle_Click;
 		}
 

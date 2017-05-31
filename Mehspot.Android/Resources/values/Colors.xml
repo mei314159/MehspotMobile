@@ -9,4 +9,6 @@
 	<color name="xam_medium_blue">#2980B9</color>
 	<color name="dark_green">#7EB643</color>
 	<color name="light_green">#ffc6d881</color>
+	<color name="dark_orange">#ffeeb848</color>
+	<color name="white">#ffffffff</color>
 </resources>

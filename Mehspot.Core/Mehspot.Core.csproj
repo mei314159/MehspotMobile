@@ -142,6 +142,8 @@
     <Compile Include="Contracts\ViewControllers\IViewBadgeProfileController.cs" />
     <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
     <Compile Include="CellsFactoryBase.cs" />
+    <Compile Include="Models\WriteReviewModel.cs" />
+    <Compile Include="Contracts\ViewControllers\IWriteReviewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

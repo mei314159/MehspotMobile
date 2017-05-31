@@ -8,16 +8,17 @@ using Mehspot.Core.Services;
 using Android.Views;
 using Mehspot.AndroidApp;
 using Android.Content;
+using Android.App;
 
 namespace Mehspot.iOS.Views.Cell
 {
 	public class CellFactory : CellsFactoryBase<View, ButtonCell, RecommendationCell>
 	{
-		readonly Context context;
+		readonly Activity activity;
 
-		public CellFactory(Context context, BadgeService badgeService, int badgeId) : base(badgeService, badgeId)
+		public CellFactory(Activity context, BadgeService badgeService, int badgeId) : base(badgeService, badgeId)
 		{
-			this.context = context;
+			this.activity = context;
 		}
 
 		public override async Task<List<View>> CreateCellsForObject(object filter)
@@ -41,14 +42,14 @@ namespace Mehspot.iOS.Views.Cell
 				switch (prop.attr.CellType)
 				{
 					case CellType.Range:
-						targetCell = new SliderCell<int?>(context, prop.attr.DefaultValue as int?, v =>
+						targetCell = new SliderCell<int?>(activity, prop.attr.DefaultValue as int?, v =>
 						{
 							prop.prop.SetValue(filter, v);
 							OnCellChanged(filter, prop.prop.Name, v);
 						}, prop.attr.Label, prop.attr.MinValue, prop.attr.MaxValue, isReadOnly: prop.attr.ReadOnly);
 						break;
 					case CellType.Boolean:
-						targetCell = new BooleanCell(context, value as bool? == true, v =>
+						targetCell = new BooleanCell(activity, value as bool? == true, v =>
 						{
 							prop.prop.SetValue(filter, v == true ? v : (bool?)null);
 							OnCellChanged(filter, prop.prop.Name, v);
@@ -56,7 +57,7 @@ namespace Mehspot.iOS.Views.Cell
 						break;
 					case CellType.Select:
 						var options = await this.GetOptionsAsync(prop.attr.OptionsKey, prop.attr.SkipFirstOption);
-						targetCell = new PickerCell<int?>(context, prop.attr.DefaultValue as int?, (v) =>
+						targetCell = new PickerCell<int?>(activity, prop.attr.DefaultValue as int?, (v) =>
 						{
 							object val = null;
 							if (v != null)
@@ -71,7 +72,7 @@ namespace Mehspot.iOS.Views.Cell
 						break;
 					case CellType.Multiselect:
 						var multiselectOptions = await this.GetOptionsAsync(prop.attr.OptionsKey, prop.attr.SkipFirstOption);
-						targetCell = new MultiselectCell<int?>(context, new int?[] { }, (v) =>
+						targetCell = new MultiselectCell<int?>(activity, new int?[] { }, (v) =>
 						{
 							prop.prop.SetValue(filter, v?.Select(a => a.ToString()).ToArray());
 							OnCellChanged(filter, prop.prop.Name, v);
@@ -82,10 +83,10 @@ namespace Mehspot.iOS.Views.Cell
 						cells.AddRange(childCells);
 						break;
 					case CellType.TextView:
-						targetCell = new TextViewCell(context, value as string ?? string.Empty, prop.attr.Label);
+						targetCell = new TextViewCell(activity, value as string ?? string.Empty, prop.attr.Label);
 						break;
 					default:
-						targetCell = new TextEditCell(context, value as string, (v) => prop.prop.SetValue(filter, v), prop.attr.Label, mask: prop.attr.Mask, isReadOnly: prop.attr.ReadOnly);
+						targetCell = new TextEditCell(activity, value as string, (v) => prop.prop.SetValue(filter, v), prop.attr.Label, mask: prop.attr.Mask, isReadOnly: prop.attr.ReadOnly);
 						break;
 				}
 				if (targetCell != null)
@@ -99,12 +100,14 @@ namespace Mehspot.iOS.Views.Cell
 
 		public override ButtonCell CreateButtonCellTyped(string title)
 		{
-			throw new NotImplementedException();
+			var cell = new ButtonCell(activity, title);
+			return cell;
 		}
 
 		public override RecommendationCell CreateRecommendationCellTyped(Core.DTO.Badges.BadgeUserRecommendationDTO item)
 		{
-			throw new NotImplementedException();
+			var cell = new RecommendationCell(activity, item);
+			return cell;
 		}
 	}
 }

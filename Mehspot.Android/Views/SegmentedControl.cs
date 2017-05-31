@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Support.V4.Content;
+using Android.Support.V4.Content.Res;
 using Android.Views;
 using Android.Widget;
 
@@ -8,11 +10,11 @@ namespace Mehspot.AndroidApp.Views
 {
 	public class SegmentedControl : LinearLayout
 	{
-		readonly Activity activity;
+		readonly Context context;
 
-		public SegmentedControl(Activity context) : base(context)
+		public SegmentedControl(Context context, Android.Util.IAttributeSet attrs) : base(context, attrs)
 		{
-			this.activity = context;
+			this.context = context;
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.SegmentedControl, this);
 
@@ -20,6 +22,7 @@ namespace Mehspot.AndroidApp.Views
 			this.MessageButton.Click += Button_Click;
 			this.RecommendationsButton.Click += Button_Click;
 			Buttons = new[] { DetailsButton, RecommendationsButton, MessageButton };
+			HighlightSelectedButton(DetailsButton);
 		}
 
 		public ImageButton DetailsButton => (ImageButton)FindViewById(Resource.SegmentedControl.DetailsButton);
@@ -32,21 +35,19 @@ namespace Mehspot.AndroidApp.Views
 		void Button_Click(object sender, System.EventArgs e)
 		{
 			var button = (ImageButton)sender;
+			HighlightSelectedButton(button);
+		}
 
-			var darkGreenColor = Resources.GetColor(Resource.Color.dark_green);
+		public void HighlightSelectedButton(ImageButton button)
+		{
 			foreach (var item in Buttons)
 			{
-				if (button == item)
-				{
-					button.SetBackgroundColor(darkGreenColor);
-					button.SetColorFilter(Color.White);
-				}
-				else
-				{
-					button.SetBackgroundColor(Color.White);
-					button.SetColorFilter(darkGreenColor);
-				}
+				item.SetBackgroundResource(Resource.Color.white);
+				item.SetColorFilter(new Android.Graphics.Color(ContextCompat.GetColor(context, Resource.Color.dark_green)));
 			}
+
+			button.SetBackgroundResource(Resource.Color.dark_green);
+			button.SetColorFilter(Color.White);
 		}
 	}
 }

@@ -177,6 +177,12 @@
     <Compile Include="Views\SearchResultItem.cs" />
     <Compile Include="Activities\ViewBadgeProfileActivity.cs" />
     <Compile Include="Views\SegmentedControl.cs" />
+    <Compile Include="Adapters\BadgeProfileListAdapter.cs" />
+    <Compile Include="Adapters\SearchResultsAdapter.cs" />
+    <Compile Include="Views\Cells\ButtonCell.cs" />
+    <Compile Include="Extensions\ContextExtensions.cs" />
+    <Compile Include="Views\Cells\RecommendationCell.cs" />
+    <Compile Include="Activities\WriteReviewActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -255,6 +261,10 @@
     <AndroidResource Include="Resources\drawable\chaticon.png" />
     <AndroidResource Include="Resources\drawable\detailsicon.png" />
     <AndroidResource Include="Resources\drawable\reviewicon.png" />
+    <AndroidResource Include="Resources\layout\ButtonCell.axml" />
+    <AndroidResource Include="Resources\layout\RecommendationCell.axml" />
+    <AndroidResource Include="Resources\drawable\roundedFrame25.xml" />
+    <AndroidResource Include="Resources\layout\WriteReviewActivity.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -267,6 +277,7 @@
     <Folder Include="Fragments\" />
     <Folder Include="Extensions\" />
     <Folder Include="Views\Cells\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

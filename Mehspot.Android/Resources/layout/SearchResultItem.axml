@@ -16,7 +16,7 @@
             android:src="@drawable/profile_image"
             android:scaleType="centerCrop"
             android:layout_height="50dp"
-            android:background="@drawable/roundedframe"
+            android:background="@drawable/roundedframe25"
             android:padding="0dp" />
     </FrameLayout>
     <ImageView
