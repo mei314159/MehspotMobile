@@ -165,6 +165,8 @@ namespace Mehspot.iOS
 		{
 			TableView.TableHeaderView.Hidden = true;
 			TableView.TableFooterView = new UIView();
+			TableView.DataSource = this;
+			TableView.Delegate = this;
 			this.ProfilePicture.UserInteractionEnabled = true;
 			this.ProfilePicture.AddGestureRecognizer(new UITapGestureRecognizer(ProfilePictureDoupleTapped) { NumberOfTapsRequired = 2 });
 
@@ -204,6 +206,7 @@ namespace Mehspot.iOS
 		public void ReloadCells()
 		{
 			TableView.ReloadData();
+			TableView.LayoutIfNeeded();
 		}
 
 		async partial void SegmentControlChanged(UISegmentedControl sender)
@@ -253,6 +256,7 @@ namespace Mehspot.iOS
 			model.AddRecommendation(recommendation);
 			model.HideCreateButton();
 			TableView.ReloadData();
+			TableView.LayoutIfNeeded();
 		}
 
 		void RecommendationsDataSource_OnWriteReviewButtonTouched()
@@ -284,6 +288,7 @@ namespace Mehspot.iOS
 			return this.model.Cells.Count;
 		}
 
+		[Export("tableView:heightForRowAtIndexPath:")]
 		public nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
 			if (model.ShowRecommendations)

@@ -37,9 +37,9 @@
                             <constraint id="29" firstItem="7" firstAttribute="height" constant="21"/>
                         </constraints>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="4" numberOfLines="4">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2" misplaced="YES" adjustsFontSizeToFit="NO">
                         <rect key="frame" x="75" y="28" width="189" height="38"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <string key="text">dfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfg</string>
@@ -84,9 +84,45 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="logo.jpg" width="350" height="350"/>
+        <image name="logo.jpg" width="1242" height="795"/>
         <image name="profile_image.png" width="400" height="400"/>
         <image name="chat-icon" width="25" height="25"/>
-        <image name="about-icon" width="25" height="25"/>
+        <image name="profile-icon" width="25" height="25"/>
+        <image name="signout-icon" width="22" height="22"/>
+        <image name="search-icon" width="25" height="25"/>
+        <image name="star-yellow-icon" width="24" height="24"/>
+        <image name="more-icon" width="25" height="25"/>
+        <image name="details-icon" width="25" height="25"/>
+        <image name="review-icon" width="25" height="25"/>
+        <image name="badges/babysitter.png" width="70" height="69"/>
+        <image name="badges/babysitteremployer.png" width="70" height="70"/>
+        <image name="badges/fitness.png" width="210" height="210"/>
+        <image name="badges/friendship.png" width="210" height="210"/>
+        <image name="badges/golf.png" width="500" height="500"/>
+        <image name="badges/hobby.png" width="210" height="208"/>
+        <image name="badges/kidsplaydate.png" width="210" height="210"/>
+        <image name="badges/otherjobs.png" width="210" height="210"/>
+        <image name="badges/petsitter.png" width="500" height="500"/>
+        <image name="badges/petsitteremployer.png" width="500" height="500"/>
+        <image name="badges/sports.png" width="70" height="70"/>
+        <image name="badges/tennis.png" width="140" height="140"/>
+        <image name="badges/tutor.png" width="466" height="467"/>
+        <image name="badges/tutoremployer.png" width="494" height="489"/>
+        <image name="badges/babysitterb.png" width="70" height="69"/>
+        <image name="badges/babysitteremployerb.png" width="70" height="70"/>
+        <image name="badges/friendshipb.png" width="210" height="210"/>
+        <image name="badges/golfb.png" width="500" height="500"/>
+        <image name="badges/petsitterb.png" width="500" height="500"/>
+        <image name="badges/petsitteremployerb.png" width="500" height="500"/>
+        <image name="badges/sportsb.png" width="70" height="70"/>
+        <image name="badges/tennisb.png" width="140" height="140"/>
+        <image name="badges/tutorb.png" width="466" height="467"/>
+        <image name="badges/tutoremployerb.png" width="494" height="489"/>
+        <image name="badges/fitnessb.png" width="210" height="210"/>
+        <image name="badges/hobbyb.png" width="210" height="208"/>
+        <image name="badges/kidsplaydateb.png" width="210" height="210"/>
+        <image name="badges/otherjobsb.png" width="210" height="210"/>
+        <image name="signin-fb.png" width="220" height="40"/>
+        <image name="logo-small.jpg" width="300" height="192"/>
     </resources>
 </document>
