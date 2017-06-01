@@ -2,7 +2,7 @@
 using Foundation;
 using UIKit;
 
-namespace mehspot.iOS.Views
+namespace Mehspot.iOS.Views
 {
     public partial class BooleanEditCell : UITableViewCell
     {

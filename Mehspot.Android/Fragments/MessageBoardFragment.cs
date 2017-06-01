@@ -120,12 +120,9 @@ namespace Mehspot.AndroidApp
 			var toUserId = dto.WithUser.Id;
 			var toUserName = dto.WithUser.UserName;
 
-			var transaction = this.FragmentManager.BeginTransaction();
-
 			var messagingActivity = new Intent(this.Context, typeof(MessagingActivity));
 			messagingActivity.PutExtra("toUserId", toUserId);
 			messagingActivity.PutExtra("toUserName", toUserName);
-
 			this.StartActivity(messagingActivity);
 		}
 

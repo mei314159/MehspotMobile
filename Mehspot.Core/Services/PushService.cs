@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using mehspot.Core.Contracts;
-using mehspot.Core.Dto;
+using Mehspot.Core.Contracts;
+using Mehspot.Core.Dto;
 using Mehspot.Core.DTO;
 using Newtonsoft.Json;
 

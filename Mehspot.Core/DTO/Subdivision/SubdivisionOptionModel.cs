@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MehSpot.Core.DTO.Subdivision
+namespace Mehspot.Core.DTO.Subdivision
 {
     public class SubdivisionOptionDTO
     {

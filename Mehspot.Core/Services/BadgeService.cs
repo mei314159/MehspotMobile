@@ -1,12 +1,12 @@
 using System;
-using mehspot.Core.Contracts;
+using Mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Extensions;
-using mehspot.Core;
+using Mehspot.Core;
 using Mehspot.Core.DTO.Badges;
-using MehSpot.Models.ViewModels;
+using Mehspot.Models.ViewModels;
 using System.Collections;
 using System.Linq;
 
@@ -28,9 +28,23 @@ namespace Mehspot.Core.Services
             return await GetAsync<StaticDataDTO[]>("Badges/GetBadgeKeys?badgeId=" + badgeId + "&key=" + key).ConfigureAwait(false);
         }
 
-        public async Task<Result<T>> GetBadgeProfileAsync<T>(int badgeId, string userId) where T : IBadgeProfileDTO
+        public async Task<Result<IBadgeProfileDTO>> GetBadgeProfileAsync(int badgeId, string userId, Type resultType)
         {
-            return await GetAsync<T>($"Badges/Profile?badgeId={badgeId}&userId={userId}").ConfigureAwait(false);
+            var result = await GetAsync($"Badges/Profile?badgeId={badgeId}&userId={userId}", resultType).ConfigureAwait(false);
+
+            var dto = new Result<IBadgeProfileDTO>
+            {
+                ErrorMessage = result.ErrorMessage,
+                IsSuccess = result.IsSuccess,
+                ModelState = result.ModelState
+            };
+
+            if (result.IsSuccess)
+            {
+                dto.Data = result.Data as IBadgeProfileDTO;
+            }
+
+            return dto;
         }
 
         public async Task<Result<BadgeRecommendationDTO>> GetBadgeRecommendationsAsync(int badgeId, string userId)
@@ -44,7 +58,7 @@ namespace Mehspot.Core.Services
             return await GetAsync<BadgeProfileDTO<EditBadgeProfileDTO>>($"Badges/EditProfile?badgeId={badgeId}&userId={this.ApplicationDataStorage.AuthInfo.UserId}").ConfigureAwait(false);
         }
 
-        public async Task<Result<ISearchResultDTO[]>> Search(ISearchFilterDTO filter, int skip, int take, Type resultType)
+        public async Task<Result<ISearchResultDTO[]>> Search(ISearchQueryDTO filter, int skip, int take, Type resultType)
         {
             var result = await GetAsync($"Badges/SearchForApp?skip={skip}&take={take}&" + filter.GetQueryString(), resultType).ConfigureAwait(false);
 
@@ -96,22 +110,6 @@ namespace Mehspot.Core.Services
             return await DeleteAsync<object>($"badges/{badgeId}", null).ConfigureAwait(false);
         }
 
-        public class BadgeNames
-        {
-            public const string Babysitter = "Babysitter";
-            public const string BabysitterEmployer = "BabysitterEmployer";
-            public const string Fitness = "Fitness";
-            public const string Tennis = "Tennis";
-            public const string Golf = "Golf";
-            public const string Tutor = "Tutor";
-            public const string TutorEmployer = "TutorEmployer";
-            public const string PetSitter = "PetSitter";
-            public const string PetSitterEmployer = "PetSitterEmployer";
-            public const string KidsPlayDate = "KidsPlayDate";
-            public const string Friendship = "Friendship";
-            public const string OtherJobs = "OtherJobs";
-        }
-
         public class BadgeKeys
         {
             public const string AgeRange = "AgeRange";
@@ -134,7 +132,5 @@ namespace Mehspot.Core.Services
             public const string OtherJobsAgeRange = "OtherJobsAgeRange";
         }
 
-   }
-
-
+    }
 }

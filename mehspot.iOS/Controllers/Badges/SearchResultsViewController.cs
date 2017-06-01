@@ -3,21 +3,30 @@ using System;
 using UIKit;
 using System.Threading.Tasks;
 using CoreGraphics;
-using MehSpot.Models.ViewModels;
-using mehspot.iOS.Views.Cell;
-using mehspot.iOS.Controllers.Badges.DataSources.Search;
+using Mehspot.Models.ViewModels;
+using Mehspot.iOS.Views.Cell;
 using Mehspot.Core;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
+using Mehspot.Core.Services;
+using Mehspot.Core.DTO;
+using Mehspot.Core.DTO.Search;
+using Mehspot.Core.Contracts.Wrappers;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
-	public partial class SearchResultsViewController : UITableViewController
+
+	public delegate void SendMessageButtonTouched(UIButton obj, ISearchResultDTO item);
+	public delegate void ViewProfileButtonTouched(UIButton obj, ISearchResultDTO item);
+	public delegate void OnRegisterButtonTouched(int requiredBadgeId);
+	public partial class SearchResultsViewController : UITableViewController, ISearchResultsController
 	{
 		private volatile bool loading;
 		private volatile bool viewWasInitialized;
-		private ISearchResultDTO SelectedItem;
-		public SearchModel SearchModel;
+		SearchResultsModel model;
 
+		public IViewHelper ViewHelper { get; set; }
+		public BadgeSummaryDTO BadgeSummary { get; set; }
+		public ISearchQueryDTO SearchQuery { get; set; }
 
 		public SearchResultsViewController(IntPtr handle) : base(handle)
 		{
@@ -26,17 +35,17 @@ namespace mehspot.iOS
 		public override void ViewDidLoad()
 		{
 			this.TableView.RegisterNibForCellReuse(SearchResultsCell.Nib, SearchResultsCell.Key);
-			SearchModel.SearchResultTableSource.SendMessageButtonTouched += SendMessageButtonTouched;
-			SearchModel.SearchResultTableSource.ViewProfileButtonTouched += ViewProfileButtonTouched;
-			SearchModel.SearchResultTableSource.LoadingMoreStarted += LoadingMoreStarted;
-			SearchModel.SearchResultTableSource.LoadingMoreEnded += LoadingMoreEnded;
-			SearchModel.SearchResultTableSource.RegisterButtonTouched += SearchResultTableSource_RegisterButtonTouched;
-			SearchModel.SearchResultTableSource.OnLoadingError += SearchResultTableSource_OnLoadingError;
-			this.TableView.Source = SearchModel.SearchResultTableSource;
+			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
+
+			this.ViewHelper = new ViewHelper(this.View);
+			model = new SearchResultsModel(this, badgeService);
+			model.LoadingMoreStarted += LoadingMoreStarted;
+			model.LoadingMoreEnded += LoadingMoreEnded;
+			model.OnLoadingError += OnLoadingError;
 
 			this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
 			this.TableView.TableFooterView.Hidden = true;
-			SetTitle();
+			this.NavBar.Title = model.GetTitle();
 		}
 
 		public override async void ViewDidAppear(bool animated)
@@ -48,20 +57,83 @@ namespace mehspot.iOS
 			}
 		}
 
-		private void SetTitle()
+		public void ReloadData()
 		{
-			var title = MehspotResources.ResourceManager.GetString(this.SearchModel.SearchBadge.BadgeName + "_SearchResultsTitle") ??
-			((MehspotResources.ResourceManager.GetString(this.SearchModel.SearchBadge.BadgeName) ?? this.SearchModel.SearchBadge.BadgeName) + "s");
-			this.NavBar.Title = title;
+			TableView.ReloadData();
 		}
 
-		internal void RegqiredBadgeWasRegistered()
+		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+		{
+			model.SelectRow(indexPath.Row);
+			tableView.ReloadRows(new[] { indexPath }, UITableViewRowAnimation.Fade);
+		}
+
+		public override nint RowsInSection(UITableView tableView, nint section)
+		{
+			return model.GetRowsCount();
+		}
+
+		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			if (this.model.RegisterButtonVisible && this.RowsInSection(tableView, indexPath.Section) == indexPath.Row + 1)
+			{
+				return SearchLimitCell.Height;
+			}
+
+			if (model.IsRowExpanded(indexPath.Row))
+				return SearchResultsCell.ExpandedHeight;
+
+			return SearchResultsCell.CollapsedHeight;
+		}
+
+		[Export("scrollViewDidScroll:")]
+		public void Scrolled(UIScrollView scrollView)
+		{
+			var currentOffset = TableView.ContentOffset.Y;
+			var maximumOffset = TableView.ContentSize.Height - TableView.Frame.Size.Height;
+			var deltaOffset = maximumOffset - currentOffset;
+
+			if (currentOffset > 0 && deltaOffset <= 0)
+			{
+				model.LoadMoreAsync();
+			}
+		}
+
+		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+		{
+			UITableViewCell cell = null;
+			if (!this.model.RegisterButtonVisible || indexPath.Row + 1 < this.RowsInSection(tableView, indexPath.Section))
+			{
+				var item = model.Items[indexPath.Row];
+				cell = tableView.DequeueReusableCell(SearchResultsCell.Key, indexPath);
+				ConfigureCell(cell as SearchResultsCell, item);
+			}
+			else if (this.model.RegisterButtonVisible)
+			{
+				var searchLimitCell = SearchLimitCell.Create(BadgeSummary.RequiredBadgeName, BadgeSummary.BadgeName);
+				searchLimitCell.OnRegisterButtonTouched += OnRegisterButtonTouched;
+				cell = searchLimitCell;
+			}
+
+			return cell;
+		}
+
+		private void ConfigureCell(SearchResultsCell cell, ISearchResultDTO item)
+		{
+			cell.Configure(item);
+
+			cell.SendMessageButtonAction = (obj) => SendMessageButtonTouched(obj, item);
+			cell.ViewProfileButtonAction = (obj) => ViewProfileButtonTouched(obj, item);
+		}
+
+		internal void ReqiredBadgeWasRegistered()
 		{
 			this.viewWasInitialized = false;
-			if (SearchModel.SearchBadge.RequiredBadgeId.HasValue)
-				SearchModel.SearchBadge.RequiredBadgeIsRegistered = true;
-			else {
-				SearchModel.SearchBadge.IsRegistered = true;
+			if (BadgeSummary.RequiredBadgeId.HasValue)
+				BadgeSummary.RequiredBadgeIsRegistered = true;
+			else
+			{
+				BadgeSummary.IsRegistered = true;
 			}
 		}
 
@@ -75,29 +147,29 @@ namespace mehspot.iOS
 			if (segue.Identifier == "GoToMessagingSegue")
 			{
 				var controller = (MessagingViewController)segue.DestinationViewController;
-				controller.ToUserName = this.SelectedItem.Details.FirstName;
-				controller.ToUserId = this.SelectedItem.Details.UserId;
+				controller.ToUserName = this.model.SelectedItem.Details.FirstName;
+				controller.ToUserId = this.model.SelectedItem.Details.UserId;
 			}
 			else if (segue.Identifier == "ViewProfileSegue")
 			{
 				var controller = (ViewProfileViewController)segue.DestinationViewController;
-				controller.SearchModel = SearchModel;
-				controller.SearchResultDTO = this.SelectedItem;
+				controller.BadgeSummary = BadgeSummary;
+				controller.SearchResultDTO = this.model.SelectedItem;
 			}
 			else if (segue.Identifier == "RegisterRequiredBadgeSegue")
 			{
 				var controller = (EditBadgeProfileController)segue.DestinationViewController;
 
-				if (SearchModel.SearchBadge.RequiredBadgeId.HasValue)
+				if (BadgeSummary.RequiredBadgeId.HasValue)
 				{
-					controller.BadgeId = SearchModel.SearchBadge.RequiredBadgeId.Value;
-					controller.BadgeName = SearchModel.SearchBadge.RequiredBadgeName;
-					controller.BadgeIsRegistered = SearchModel.SearchBadge.RequiredBadgeIsRegistered;
+					controller.BadgeId = BadgeSummary.RequiredBadgeId.Value;
+					controller.BadgeName = BadgeSummary.RequiredBadgeName;
+					controller.BadgeIsRegistered = BadgeSummary.RequiredBadgeIsRegistered;
 				}
 				else
 				{
-					controller.BadgeId = SearchModel.SearchBadge.BadgeId;
-					controller.BadgeName = SearchModel.SearchBadge.BadgeName;
+					controller.BadgeId = BadgeSummary.BadgeId;
+					controller.BadgeName = BadgeSummary.BadgeName;
 					controller.BadgeIsRegistered = false;
 				}
 
@@ -109,22 +181,22 @@ namespace mehspot.iOS
 
 		private void SendMessageButtonTouched(UIButton obj, ISearchResultDTO dto)
 		{
-			this.SelectedItem = dto;
+			this.model.SelectItem(dto);
 			PerformSegue("GoToMessagingSegue", this);
 		}
 
 		private void ViewProfileButtonTouched(UIButton obj, ISearchResultDTO dto)
 		{
-			this.SelectedItem = dto;
+			this.model.SelectItem(dto);
 			PerformSegue("ViewProfileSegue", this);
 		}
 
-		private void SearchResultTableSource_RegisterButtonTouched(int requiredBadgeId)
+		void OnRegisterButtonTouched()
 		{
 			PerformSegue("RegisterRequiredBadgeSegue", this);
 		}
 
-		void SearchResultTableSource_OnLoadingError(Mehspot.Core.DTO.Result result)
+		void OnLoadingError(Result result)
 		{
 			new ViewHelper(this.View).ShowAlert("Search Error", "Please check if you set your Zip Code and Subdivision in your profile.");
 		}
@@ -152,9 +224,8 @@ namespace mehspot.iOS
 				return;
 			loading = true;
 			this.RefreshControl.BeginRefreshing();
-
 			this.TableView.SetContentOffset(new CGPoint(0, -this.RefreshControl.Frame.Size.Height), true);
-			await SearchModel.SearchResultTableSource.LoadDataAsync(this.TableView, true);
+			await this.model.LoadDataAsync(true);
 			this.TableView.SetContentOffset(CGPoint.Empty, true);
 			this.RefreshControl.EndRefreshing();
 			loading = false;

@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace mehspot.iOS.Views.Cell
+namespace Mehspot.iOS.Views.Cell
 {
     [Register ("ButtonCell")]
     partial class ButtonCell

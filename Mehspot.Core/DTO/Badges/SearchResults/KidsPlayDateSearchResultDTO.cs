@@ -1,9 +1,10 @@
 using System;
-using MehSpot.Models.ViewModels;
+using Mehspot.Core.DTO.Search;
+using Mehspot.Models.ViewModels;
 
 namespace Mehspot.Core.DTO.Badges
 {
-
+    [SearchResultDto(Constants.BadgeNames.KidsPlayDate)]
     public class KidsPlayDateSearchResultDTO : ISearchResultDTO
     {
         public BadgeUserDetailsFilterDTO Details { get; set; }

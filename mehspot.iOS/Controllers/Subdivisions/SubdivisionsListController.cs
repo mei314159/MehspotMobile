@@ -5,10 +5,10 @@ using Foundation;
 using Google.Maps;
 using Mehspot.Core;
 using Mehspot.iOS.Views.CustomPicker;
-using MehSpot.Core.DTO.Subdivision;
+using Mehspot.Core.DTO.Subdivision;
 using UIKit;
 
-namespace mehspot.iOS.Controllers
+namespace Mehspot.iOS.Controllers
 {
     public partial class SubdivisionsListController : UIViewController
     {

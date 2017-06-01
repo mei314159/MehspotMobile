@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace mehspot.Core.Dto
+namespace Mehspot.Core.Dto
 {
 
     public class ModelStateDto

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using mehspot.Core.Auth;
+using Mehspot.Core.Auth;
 using Mehspot.Core.Contracts.Wrappers;
 
 namespace Mehspot.Core.Models

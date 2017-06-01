@@ -94,7 +94,7 @@
     <Compile Include="DTO\Badges\SearchFilter\SearchBabysitterDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchBabysitterEmployerDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchTennisDTO.cs" />
-    <Compile Include="DTO\Badges\SearchFilter\ISearchFilterDTO.cs" />
+    <Compile Include="DTO\Badges\SearchFilter\ISearchQueryDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\ISearchResultDTO.cs" />
     <Compile Include="DTO\Badges\Profile\IBadgeProfileDTO.cs" />
     <Compile Include="DTO\Badges\Profile\IBadgeProfileValues.cs" />
@@ -109,7 +109,6 @@
     <Compile Include="DTO\Badges\Profile\TutorEmployerProfileDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\FitnessSearchResultDTO.cs" />
     <Compile Include="DTO\Badges\SearchResults\TutorEmployerSearchResultDTO.cs" />
-    <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchPetSitterEmployerDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchKidsPlayDateDTO.cs" />
@@ -134,6 +133,17 @@
     <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="DTO\Push\PushNotification.cs" />
     <Compile Include="Models\BadgesModel.cs" />
+    <Compile Include="Contracts\ViewControllers\ISearchFilterController.cs" />
+    <Compile Include="DTO\Badges\CellAttribute.cs" />
+    <Compile Include="Models\SearchBadgeModel.cs" />
+    <Compile Include="Contracts\ViewControllers\ISearchResultsController.cs" />
+    <Compile Include="Models\SearchResultsModel.cs" />
+    <Compile Include="Models\ViewBadgeProfileModel.cs" />
+    <Compile Include="Contracts\ViewControllers\IViewBadgeProfileController.cs" />
+    <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
+    <Compile Include="CellsFactoryBase.cs" />
+    <Compile Include="Models\WriteReviewModel.cs" />
+    <Compile Include="Contracts\ViewControllers\IWriteReviewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -150,6 +160,8 @@
     <Folder Include="DTO\Badges\SearchResults\" />
     <Folder Include="DTO\Badges\Profile\" />
     <Folder Include="DTO\Badges\SearchFilter\" />
+    <Folder Include="Search\" />
+    <Folder Include="Search\Filter\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

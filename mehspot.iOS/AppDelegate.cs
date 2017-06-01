@@ -4,8 +4,8 @@ using Facebook.CoreKit;
 using Foundation;
 using Google.Maps;
 using HockeyApp.iOS;
-using mehspot.iOS.Core;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Core;
+using Mehspot.iOS.Extensions;
 using Mehspot.Core;
 using Mehspot.Core.DTO.Push;
 using Mehspot.Core.Push;
@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using SDWebImage;
 using UIKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.

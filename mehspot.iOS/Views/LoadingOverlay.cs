@@ -3,7 +3,7 @@ using System;
 using CoreGraphics;
 using UIKit;
 
-namespace mehspot.iOS.Views
+namespace Mehspot.iOS.Views
 {
     public class LoadingOverlay : UIView
     {

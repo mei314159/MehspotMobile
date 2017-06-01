@@ -63,8 +63,9 @@
             tools:text="Search for Babysitter"
             android:textStyle="normal"
             android:textColor="#ff616161"
-            android:layout_width="wrap_content"
-            android:layout_alignParentTop="true" />
+            android:layout_width="130.0dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+badgeSummary/RegisterButton" />
         <TextView
             android:layout_width="35.0dp"
             android:layout_height="wrap_content"

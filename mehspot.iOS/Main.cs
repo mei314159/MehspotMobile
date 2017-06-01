@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     public class Application
     {

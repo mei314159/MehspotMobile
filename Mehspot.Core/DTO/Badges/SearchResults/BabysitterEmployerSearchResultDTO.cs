@@ -1,8 +1,10 @@
 using System;
+using Mehspot.Core;
+using Mehspot.Core.DTO.Search;
 
-namespace MehSpot.Models.ViewModels
+namespace Mehspot.Models.ViewModels
 {
-
+    [SearchResultDto(Constants.BadgeNames.BabysitterEmployer)]
     public class BabysitterEmployerSearchResultDTO : ISearchResultDTO
     {
         public BadgeUserDetailsFilterDTO Details { get; set; }

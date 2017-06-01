@@ -1,8 +1,8 @@
-using mehspot.Core.Contracts;
+using Mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
-using mehspot.Core;
-using MehSpot.Core.DTO.Subdivision;
+using Mehspot.Core;
+using Mehspot.Core.DTO.Subdivision;
 using System.Collections.Generic;
 
 namespace Mehspot.Core.Services

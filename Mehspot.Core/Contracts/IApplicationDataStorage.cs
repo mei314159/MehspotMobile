@@ -1,7 +1,7 @@
 ﻿using Mehspot.Core.DTO;
 using Mehspot.Core.Push;
 
-namespace mehspot.Core.Contracts
+namespace Mehspot.Core.Contracts
 {
     public interface IApplicationDataStorage
     {

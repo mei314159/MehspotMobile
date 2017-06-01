@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using mehspot.Core.Auth;
-using mehspot.Core.Contracts;
+using Mehspot.Core.Auth;
+using Mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Messaging;
 using Microsoft.AspNet.SignalR.Client;

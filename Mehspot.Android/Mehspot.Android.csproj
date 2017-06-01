@@ -138,6 +138,12 @@
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>..\packages\Xamarin.Android.Support.Design.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
+    <Reference Include="HockeySDK.AndroidBindings">
+      <HintPath>..\packages\HockeySDK.Xamarin.4.1.4\lib\MonoAndroid403\HockeySDK.AndroidBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK">
+      <HintPath>..\packages\HockeySDK.Xamarin.4.1.4\lib\MonoAndroid403\HockeySDK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -157,6 +163,26 @@
     <Compile Include="Fragments\MessageBoardFragment.cs" />
     <Compile Include="Fragments\BadgesFragment.cs" />
     <Compile Include="Activities\MessagingActivity.cs" />
+    <Compile Include="Activities\SearchBadgeActivity.cs" />
+    <Compile Include="Extensions\IntentExtensions.cs" />
+    <Compile Include="Views\Cells\CellFactory.cs" />
+    <Compile Include="Views\Cells\BooleanCell.cs" />
+    <Compile Include="Views\Cells\SliderCell.cs" />
+    <Compile Include="Views\Cells\TextViewCell.cs" />
+    <Compile Include="Views\Cells\TextEditCell.cs" />
+    <Compile Include="Views\Cells\PickerCell.cs" />
+    <Compile Include="Views\Cells\MultiSpinner.cs" />
+    <Compile Include="Views\Cells\MultiselectCell.cs" />
+    <Compile Include="Activities\SearchResultsActivity.cs" />
+    <Compile Include="Views\SearchResultItem.cs" />
+    <Compile Include="Activities\ViewBadgeProfileActivity.cs" />
+    <Compile Include="Views\SegmentedControl.cs" />
+    <Compile Include="Adapters\BadgeProfileListAdapter.cs" />
+    <Compile Include="Adapters\SearchResultsAdapter.cs" />
+    <Compile Include="Views\Cells\ButtonCell.cs" />
+    <Compile Include="Extensions\ContextExtensions.cs" />
+    <Compile Include="Views\Cells\RecommendationCell.cs" />
+    <Compile Include="Activities\WriteReviewActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -216,6 +242,29 @@
     <AndroidResource Include="Resources\drawable\tutorb.png" />
     <AndroidResource Include="Resources\drawable\tutoremployer.png" />
     <AndroidResource Include="Resources\drawable\tutoremployerb.png" />
+    <AndroidResource Include="Resources\layout\SearchBadgeActivity.axml" />
+    <AndroidResource Include="Resources\layout\BooleanCell.axml" />
+    <AndroidResource Include="Resources\layout\SliderCell.axml" />
+    <AndroidResource Include="Resources\layout\TextViewCell.axml" />
+    <AndroidResource Include="Resources\layout\TextEditCell.axml" />
+    <AndroidResource Include="Resources\layout\PickerCell.axml" />
+    <AndroidResource Include="Resources\layout\TextViewItem.xml" />
+    <AndroidResource Include="Resources\layout\MultiselectCell.axml" />
+    <AndroidResource Include="Resources\layout\SearchResultsActivity.axml" />
+    <AndroidResource Include="Resources\layout\SearchResultItem.axml" />
+    <AndroidResource Include="Resources\drawable\roundedFrame.xml" />
+    <AndroidResource Include="Resources\drawable\staryellow.png" />
+    <AndroidResource Include="Resources\drawable\profile_image.png" />
+    <AndroidResource Include="Resources\layout\ViewBadgeProfileActivity.axml" />
+    <AndroidResource Include="Resources\layout\SegmentedControl.axml" />
+    <AndroidResource Include="Resources\drawable\shape.xml" />
+    <AndroidResource Include="Resources\drawable\chaticon.png" />
+    <AndroidResource Include="Resources\drawable\detailsicon.png" />
+    <AndroidResource Include="Resources\drawable\reviewicon.png" />
+    <AndroidResource Include="Resources\layout\ButtonCell.axml" />
+    <AndroidResource Include="Resources\layout\RecommendationCell.axml" />
+    <AndroidResource Include="Resources\drawable\roundedFrame25.xml" />
+    <AndroidResource Include="Resources\layout\WriteReviewActivity.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -226,6 +275,9 @@
     <Folder Include="Activities\" />
     <Folder Include="Resources\values-v21\" />
     <Folder Include="Fragments\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Views\Cells\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

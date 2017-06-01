@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using mehspot.Core.Dto;
-using mehspot.Core.Contracts;
-using Mehspot.Core;
+using Mehspot.Core.Dto;
+using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
 
-namespace mehspot.Core.Auth
+namespace Mehspot.Core.Auth
 {
     public class AccountService : BaseDataService
     {

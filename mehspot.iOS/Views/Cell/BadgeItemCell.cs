@@ -5,7 +5,7 @@ using Mehspot.Core;
 using Mehspot.Core.DTO;
 using UIKit;
 
-namespace mehspot.iOS.Views
+namespace Mehspot.iOS.Views
 {
     public partial class BadgeItemCell : UITableViewCell
     {

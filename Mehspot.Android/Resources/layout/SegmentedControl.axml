@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:background="@drawable/shape"
+    android:clipChildren="true">
+    <ImageButton
+        android:src="@drawable/detailsicon"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+SegmentedControl/DetailsButton"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:background="#fff"
+        android:tint="@color/dark_green"
+        android:padding="5dp" />
+    <ImageButton
+        android:src="@drawable/reviewicon"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+SegmentedControl/RecommendationsButton"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:background="#fff"
+        android:tint="@color/dark_green"
+        android:padding="5dp" />
+    <ImageButton
+        android:src="@drawable/chaticon"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+SegmentedControl/MessageButton"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:background="#fff"
+        android:tint="@color/dark_green"
+        android:padding="5dp" />
+</LinearLayout>

@@ -8,7 +8,7 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace mehspot.iOS.Extensions
+namespace Mehspot.iOS.Extensions
 {
     public static class Extensions
     {

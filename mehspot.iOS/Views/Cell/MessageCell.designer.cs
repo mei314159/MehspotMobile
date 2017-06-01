@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     [Register ("MessageCell")]
     partial class MessageCell

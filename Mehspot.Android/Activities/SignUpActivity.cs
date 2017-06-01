@@ -5,7 +5,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using mehspot.Core.Auth;
+using Mehspot.Core.Auth;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Models;

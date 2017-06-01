@@ -3,14 +3,14 @@ using CoreGraphics;
 using CoreLocation;
 using Foundation;
 using Google.Maps;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Services;
-using MehSpot.Core.DTO.Subdivision;
+using Mehspot.Core.DTO.Subdivision;
 using UIKit;
 
-namespace mehspot.iOS.Controllers
+namespace Mehspot.iOS.Controllers
 {
     public partial class SubdivisionController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {

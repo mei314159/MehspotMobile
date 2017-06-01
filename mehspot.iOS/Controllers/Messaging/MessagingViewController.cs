@@ -1,6 +1,6 @@
 using System;
 using UIKit;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core.Messaging;
 using System.Collections.Generic;
 using Mehspot.Core.DTO;
@@ -10,12 +10,12 @@ using Mehspot.Core.Models;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Services;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 using CoreGraphics;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 	public partial class MessagingViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate, IMessagingViewController
 	{

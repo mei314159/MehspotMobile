@@ -1,48 +1,50 @@
 using System;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
+using Mehspot.Core;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.Services;
 using UIKit;
+using Mehspot.Core.Contracts.Wrappers;
+using Mehspot.Core.Models;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
-    public partial class WriteReviewController : UIViewController
-    {
-        ViewHelper viewHelper;
+	public partial class WriteReviewController : UIViewController, IWriteReviewController
+	{
+		private WriteReviewModel model;
+		public IViewHelper ViewHelper { get; private set; }
 
-        public WriteReviewController (IntPtr handle) : base (handle)
-        {
-        }
+		public int BadgeId { get; set; }
+		public string UserId { get; set; }
 
-        public int BadgeId { get; internal set; }
-        public string UserId { get; internal set; }
-        public BadgeService BadgeService { get; internal set; }
+		public event Action<BadgeUserRecommendationDTO> OnSave;
 
-        public event Action<BadgeUserRecommendationDTO> OnSave;
+		public WriteReviewController(IntPtr handle) : base(handle)
+		{
+		}
 
-        public override void ViewDidLoad ()
-        {
-            this.viewHelper = new ViewHelper (this.View);
-            base.ViewDidLoad ();
-        }
+		public override void ViewDidLoad()
+		{
+			this.ViewHelper = new ViewHelper(this.View);
+			this.model = new WriteReviewModel(new BadgeService(MehspotAppContext.Instance.DataStorage), this);
 
-        partial void CancelButtonTouched (UIBarButtonItem sender)
-        {
-            this.DismissViewController (true, null);
-        }
+			base.ViewDidLoad();
+		}
 
-        async partial void SendButtonTouched (UIBarButtonItem sender)
-        {
-            viewHelper.ShowOverlay ("Wait...");
-            var result = await this.BadgeService.WriteRecommendationAsync (BadgeId, UserId, this.CommentView.Text);
-            if (result.IsSuccess) {
-                this.OnSave?.Invoke (result.Data);
-            } else {
-                viewHelper.ShowAlert ("Meh...  Sorry for the trouble.", "Mehspot support has been notified of this issue." + Environment.NewLine + "Please try again in a later time.");    
-            }
+		partial void CancelButtonTouched(UIBarButtonItem sender)
+		{
+			this.DismissViewController(true, null);
+		}
 
-            viewHelper.HideOverlay ();
-            this.DismissViewController (true, null);
-        }
-    }
+		async partial void SendButtonTouched(UIBarButtonItem sender)
+		{
+			await model.SaveAsync(this.CommentView.Text);
+			this.DismissViewController(true, null);
+		}
+
+		public void NotifySaved(BadgeUserRecommendationDTO data)
+		{
+			this.OnSave?.Invoke(data);
+		}
+	}
 }

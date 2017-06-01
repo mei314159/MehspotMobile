@@ -5,7 +5,7 @@ using Mehspot.Core.DTO.Badges;
 using SDWebImage;
 using UIKit;
 
-namespace mehspot.iOS.Views.Cell
+namespace Mehspot.iOS.Views.Cell
 {
     public partial class RecommendationCell : UITableViewCell
     {

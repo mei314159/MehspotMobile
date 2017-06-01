@@ -1,6 +1,6 @@
 using Mehspot.Core.DTO.Badges;
 
-namespace MehSpot.Models.ViewModels
+namespace Mehspot.Models.ViewModels
 {
     public interface ISearchResultDTO: IAdditionalInfo
     {

@@ -1,9 +1,9 @@
 ﻿using System;
-using mehspot.iOS.Views;
+using Mehspot.iOS.Views;
 using Mehspot.Core.Contracts.Wrappers;
 using UIKit;
 
-namespace mehspot.iOS.Wrappers
+namespace Mehspot.iOS.Wrappers
 {
     public class ViewHelper:IViewHelper
     {

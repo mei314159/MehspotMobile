@@ -1,6 +1,6 @@
 ﻿using Mehspot.Core.DTO;
 
-namespace mehspot.Core.Auth
+namespace Mehspot.Core.Auth
 {
     public class AuthenticationResult
     {

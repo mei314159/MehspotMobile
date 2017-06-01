@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.3\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.3\build\Xamarin.Build.Download.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{CC76BD80-CC7E-4658-8FD1-FF18F524CC15}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>mehspot.iOS</RootNamespace>
+    <AssemblyName>mehspot.iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer: Vitaly Dubnovitsky (27Z797D283)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>39696</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>Mehspot Dev</CodesignProvision>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+<AssemblyName>Mehspot.iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType></DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution: Mehspot LLC (KUF3AK4246)</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>MehspotAppStore</CodesignProvision>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution: Mehspot LLC (KUF3AK4246)</CodesignKey>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>MehspotAppStore</CodesignProvision>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+<AssemblyName>Mehspot.iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer: Vitaly Dubnovitsky (27Z797D283)</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>false</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>Mehspot Dev</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup>
+      <CscToolExe>mcs.exe</CscToolExe>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="HockeySDK">
+      <HintPath>..\packages\HockeySDK.Xamarin.4.1.1\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK.iOSBindings">
+      <HintPath>..\packages\HockeySDK.Xamarin.4.1.1\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SDWebImage">
+      <HintPath>..\packages\Xamarin.SDWebImage.3.7.5\lib\Xamarin.iOS\SDWebImage.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Maps">
+      <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.1.0.1\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Xamarin.Facebook.iOS.4.19.0\lib\Xamarin.iOS10\Facebook.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\chat-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\chat-icon.imageset\chat-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\chat-icon.imageset\chat-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\profile-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\profile-icon.imageset\profile%403x.png" />
+    <ImageAsset Include="Assets.xcassets\profile-icon.imageset\profile%402x.png" />
+    <ImageAsset Include="Assets.xcassets\signout-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\signout-icon.imageset\signout%402x.png" />
+    <ImageAsset Include="Assets.xcassets\signout-icon.imageset\signout%403x.png" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\search%402x.png" />
+    <ImageAsset Include="Assets.xcassets\search-icon.imageset\search%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Notification%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\star-yellow%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star-yellow-icon.imageset\star-yellow%403x.png" />
+    <ImageAsset Include="Assets.xcassets\more-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\more-icon.imageset\more-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\more-icon.imageset\more-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\details-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\details-icon.imageset\details-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\details-icon.imageset\details-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\review-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Core\" />
+    <Folder Include="Views\" />
+    <Folder Include="Wrappers\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Assets.xcassets\chat-icon.imageset\" />
+    <Folder Include="Assets.xcassets\about-icon.imageset\" />
+    <Folder Include="Core\DTO\" />
+    <Folder Include="Assets.xcassets\profile-icon.imageset\" />
+    <Folder Include="Resources\badges\" />
+    <Folder Include="Assets.xcassets\signout-icon.imageset\" />
+    <Folder Include="Views\Cell\" />
+    <Folder Include="Views\CustomPicker\" />
+    <Folder Include="Assets.xcassets\search-icon.imageset\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Profile\" />
+    <Folder Include="Controllers\Messaging\" />
+    <Folder Include="Assets.xcassets\star-yellow-icon.imageset\" />
+    <Folder Include="Controllers\Badges\" />
+    <Folder Include="Controllers\Badges\DataSources\" />
+    <Folder Include="Views\MultiSelectPicker\" />
+    <Folder Include="Assets.xcassets\more-icon.imageset\" />
+    <Folder Include="Assets.xcassets\more-icon.imageset\" />
+    <Folder Include="Controllers\Subdivisions\" />
+    <Folder Include="Assets.xcassets\details-icon.imageset\" />
+    <Folder Include="Assets.xcassets\review-icon.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Views\Cell\BooleanEditCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\PickerCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\MessageBoardCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SliderCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SearchResultsCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\BadgeItemCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\TextViewCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\MultilineTextEditCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SubdivisionPickerCell.xib" />
+    <InterfaceDefinition Include="Controllers\Subdivisions\SubdivisionController.xib" />
+    <InterfaceDefinition Include="Controllers\Subdivisions\SubdivisionsListController.xib" />
+    <InterfaceDefinition Include="Controllers\Subdivisions\VerifySubdivisionController.xib" />
+    <InterfaceDefinition Include="Views\Cell\RecommendationCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\ButtonCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\SearchLimitCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\MessageCell.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Core\ApplicationDataStorage.cs" />
+    <Compile Include="Views\LoadingOverlay.cs" />
+    <Compile Include="Wrappers\ViewHelper.cs" />
+    <Compile Include="Extensions\ViewExtensions.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Views\Cell\BooleanEditCell.cs" />
+    <Compile Include="Views\Cell\BooleanEditCell.designer.cs">
+      <DependentUpon>BooleanEditCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\PickerCell.cs" />
+    <Compile Include="Views\Cell\MessageBoardCell.cs" />
+    <Compile Include="Views\CustomPicker\ModalPickerAnimatedDismissed.cs" />
+    <Compile Include="Views\CustomPicker\ModalPickerAnimatedTransitioning.cs" />
+    <Compile Include="Views\CustomPicker\ModalPickerTransitionDelegate.cs" />
+    <Compile Include="Views\CustomPicker\ModalPickerViewController.cs" />
+    <Compile Include="Views\CustomPicker\CustomPickerModel.cs" />
+    <Compile Include="Views\Cell\TextEditCell.cs" />
+    <Compile Include="Controllers\LoginViewController.cs" />
+    <Compile Include="Controllers\LoginViewController.designer.cs">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Messaging\MessageBoardViewController.cs" />
+    <Compile Include="Controllers\Messaging\MessageBoardViewController.designer.cs">
+      <DependentUpon>MessageBoardViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Messaging\MessagingViewController.cs" />
+    <Compile Include="Controllers\Messaging\MessagingViewController.designer.cs">
+      <DependentUpon>MessagingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\SliderCell.cs" />
+    <Compile Include="Views\Cell\SliderCell.designer.cs">
+      <DependentUpon>SliderCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\SearchResultsCell.cs" />
+    <Compile Include="Views\Cell\SearchResultsCell.designer.cs">
+      <DependentUpon>SearchResultsCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Profile\EditProfileViewController.cs" />
+    <Compile Include="Controllers\Profile\EditProfileViewController.designer.cs">
+      <DependentUpon>EditProfileViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\BadgeItemCell.cs" />
+    <Compile Include="Views\Cell\BadgeItemCell.designer.cs">
+      <DependentUpon>BadgeItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\BadgesViewController.cs" />
+    <Compile Include="Controllers\Badges\BadgesViewController.designer.cs">
+      <DependentUpon>BadgesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\ViewProfileViewController.cs" />
+    <Compile Include="Controllers\Badges\ViewProfileViewController.designer.cs">
+      <DependentUpon>ViewProfileViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\TextViewCell.cs" />
+    <Compile Include="Controllers\Badges\EditBadgeProfileController.cs" />
+    <Compile Include="Controllers\Badges\EditBadgeProfileController.designer.cs">
+      <DependentUpon>EditBadgeProfileController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\DataSources\EditBadgeTableSource.cs" />
+    <Compile Include="Controllers\Badges\SearchBadgeController.cs" />
+    <Compile Include="Controllers\Badges\SearchBadgeController.designer.cs">
+      <DependentUpon>..\Search\SearchBadgeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\SearchResultsViewController.cs" />
+    <Compile Include="Controllers\Badges\SearchResultsViewController.designer.cs">
+      <DependentUpon>..\Search\SearchResultsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MultiSelectPicker\MultiSelectPickerViewController.cs" />
+    <Compile Include="Views\MultiSelectPicker\SourceItem.cs" />
+    <Compile Include="Controllers\SignupViewController.cs" />
+    <Compile Include="Controllers\SignupViewController.designer.cs">
+      <DependentUpon>SignupViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\MultilineTextEditCell.cs" />
+    <Compile Include="Views\Cell\SubdivisionPickerCell.cs" />
+    <Compile Include="Controllers\Subdivisions\SubdivisionController.cs" />
+    <Compile Include="Controllers\Subdivisions\SubdivisionController.designer.cs">
+      <DependentUpon>SubdivisionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Subdivisions\SubdivisionsListController.cs" />
+    <Compile Include="Controllers\Subdivisions\SubdivisionsListController.designer.cs">
+      <DependentUpon>SubdivisionsListController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Subdivisions\VerifySubdivisionController.cs" />
+    <Compile Include="Controllers\Subdivisions\VerifySubdivisionController.designer.cs">
+      <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
+    <Compile Include="Views\Cell\RecommendationCell.cs" />
+    <Compile Include="Views\Cell\RecommendationCell.designer.cs">
+      <DependentUpon>RecommendationCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\ButtonCell.cs" />
+    <Compile Include="Views\Cell\ButtonCell.designer.cs">
+      <DependentUpon>ButtonCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\WriteReviewController.cs" />
+    <Compile Include="Controllers\Badges\WriteReviewController.designer.cs">
+      <DependentUpon>WriteReviewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedTextView.cs" />
+    <Compile Include="Views\Cell\SearchLimitCell.cs" />
+    <Compile Include="Views\Cell\SearchLimitCell.designer.cs">
+      <DependentUpon>SearchLimitCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ForgotPasswordViewController.cs" />
+    <Compile Include="Controllers\ForgotPasswordViewController.designer.cs">
+      <DependentUpon>ForgotPasswordViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ResetPasswordViewController.cs" />
+    <Compile Include="Controllers\ResetPasswordViewController.designer.cs">
+      <DependentUpon>ResetPasswordViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\MessageCell.cs" />
+    <Compile Include="Views\Cell\MessageCell.designer.cs">
+      <DependentUpon>MessageCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\CellFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile_image.png" />
+    <BundleResource Include="Resources\badges\babysitter.png" />
+    <BundleResource Include="Resources\badges\babysitteremployer.png" />
+    <BundleResource Include="Resources\badges\fitness.png" />
+    <BundleResource Include="Resources\badges\friendship.png" />
+    <BundleResource Include="Resources\badges\golf.png" />
+    <BundleResource Include="Resources\badges\hobby.png" />
+    <BundleResource Include="Resources\badges\kidsplaydate.png" />
+    <BundleResource Include="Resources\badges\otherjobs.png" />
+    <BundleResource Include="Resources\badges\petsitter.png" />
+    <BundleResource Include="Resources\badges\petsitteremployer.png" />
+    <BundleResource Include="Resources\badges\sports.png" />
+    <BundleResource Include="Resources\badges\tennis.png" />
+    <BundleResource Include="Resources\badges\tutor.png" />
+    <BundleResource Include="Resources\badges\tutoremployer.png" />
+    <BundleResource Include="Resources\badges\babysitterb.png" />
+    <BundleResource Include="Resources\badges\babysitteremployerb.png" />
+    <BundleResource Include="Resources\badges\friendshipb.png" />
+    <BundleResource Include="Resources\badges\golfb.png" />
+    <BundleResource Include="Resources\badges\petsitterb.png" />
+    <BundleResource Include="Resources\badges\petsitteremployerb.png" />
+    <BundleResource Include="Resources\badges\sportsb.png" />
+    <BundleResource Include="Resources\badges\tennisb.png" />
+    <BundleResource Include="Resources\badges\tutorb.png" />
+    <BundleResource Include="Resources\badges\tutoremployerb.png" />
+    <BundleResource Include="Resources\badges\fitnessb.png" />
+    <BundleResource Include="Resources\badges\hobbyb.png" />
+    <BundleResource Include="Resources\badges\kidsplaydateb.png" />
+    <BundleResource Include="Resources\badges\otherjobsb.png" />
+    <BundleResource Include="Resources\signin-fb%402x.png" />
+    <BundleResource Include="Resources\logo.jpg" />
+    <BundleResource Include="Resources\logo-small.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">
+      <Project>{0AF925F0-1DF8-4BFB-8FB7-9A3ECB7B3267}</Project>
+      <Name>Mehspot.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="sdwebimage">
+      <Version>3.7.5</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="googleiosmaps">
+      <Version>2.1.0.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="facebookios">
+      <Version>4.19.0.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.3\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.3\build\Xamarin.Build.Download.targets')" />
+  <Import Project="..\packages\Xamarin.Google.iOS.Maps.2.1.0.1\build\Xamarin.Google.iOS.Maps.targets" Condition="Exists('..\packages\Xamarin.Google.iOS.Maps.2.1.0.1\build\Xamarin.Google.iOS.Maps.targets')" />
+</Project>

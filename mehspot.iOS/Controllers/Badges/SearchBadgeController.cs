@@ -1,72 +1,85 @@
 using Foundation;
 using System;
 using UIKit;
-using mehspot.iOS.Extensions;
+using Mehspot.iOS.Extensions;
 using Mehspot.Core.Contracts.Wrappers;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Services;
-using mehspot.iOS.Controllers.Badges.DataSources.Search;
 using Mehspot.Core.DTO;
+using Mehspot.iOS.Views.Cell;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
-    public partial class SearchBadgeController : UITableViewController
-    {
-        volatile bool viewWasInitialized;
-        private IViewHelper viewHelper;
-        private SearchModel SearchModel;
-        public BadgeSummaryDTO BadgeSummary;
+	public partial class SearchBadgeController : UITableViewController, ISearchFilterController
+	{
+		private SearchBadgeModel<UITableViewCell> model;
+		public BadgeSummaryDTO BadgeSummary { get; set; }
+		public IViewHelper ViewHelper { get; private set; }
 
-        public SearchBadgeController (IntPtr handle) : base (handle)
-        {
-        }
+		public SearchBadgeController(IntPtr handle) : base(handle)
+		{
+		}
 
-        public override void ViewDidLoad ()
-        {
-            viewHelper = new ViewHelper (this.View);
-            this.TableView.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
-            this.TableView.TableFooterView.Hidden = true;
-        }
+		public override void ViewDidLoad()
+		{
+			this.TableView.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 
-        private void SetTitle ()
-        {
-            var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeSummary.BadgeName) ?? this.BadgeSummary.BadgeName;
-            var title = "Search for " + badgeName;
-            this.NavBar.Title = title;
-        }
+			this.ViewHelper = new ViewHelper(this.View);
+			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
+			this.model = new SearchBadgeModel<UITableViewCell>(this, badgeService, new CellFactory(badgeService, BadgeSummary.BadgeId));
+			this.NavBar.Title = this.model.GetTitle();
+		}
 
-        public override async void ViewWillAppear (bool animated)
-        {
-            SetTitle ();
-            if (viewWasInitialized)
-                return;
+		public override async void ViewWillAppear(bool animated)
+		{
+			this.TableView.TableFooterView.Hidden = true;
+			await this.model.LoadCellsAsync();
+			this.TableView.TableFooterView.Hidden = false;
+		}
 
-            viewHelper.ShowOverlay ("Loading...");
+		public void ReloadData()
+		{
+			this.TableView.ReloadData();
+		}
 
-            this.SearchModel = await SearchModel.GetInstanceAsync (new BadgeService (MehspotAppContext.Instance.DataStorage), this.BadgeSummary);
-            this.TableView.Source = this.SearchModel.SearchFilterTableSource;
-            this.TableView.ReloadData ();
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+			if (segue.Identifier == "SearchResultsSegue")
+			{
+				var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
+				destinationViewController.SearchQuery = this.model.SearchQuery;
+				destinationViewController.BadgeSummary = this.BadgeSummary;
+				this.NavBar.Title = "Filter";
+			}
 
-            viewHelper.HideOverlay ();
-            viewWasInitialized = true;
-            this.TableView.TableFooterView.Hidden = false;
-        }
+			base.PrepareForSegue(segue, sender);
+		}
 
-        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
-        {
-            if (segue.Identifier == "SearchResultsSegue") {
-                var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
-                destinationViewController.SearchModel = this.SearchModel;
-                this.NavBar.Title = "Filter";
-            }
+		partial void SearchButtonTouched(UIButton sender)
+		{
+			this.PerformSegue("SearchResultsSegue", this);
+		}
 
-            base.PrepareForSegue (segue, sender);
-        }
+		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+		{
+			var item = model.Cells[indexPath.Row];
+			return item;
+		}
 
-        partial void SearchButtonTouched (UIButton sender)
-        {
-            this.PerformSegue ("SearchResultsSegue", this);
-        }
-    }
+		public override nint RowsInSection(UITableView tableView, nint section)
+		{
+			return model.Cells.Count;
+		}
+
+		public override string TitleForHeader(UITableView tableView, nint section)
+		{
+			if (section == 0)
+			{
+				return "Filter";
+			}
+
+			return string.Empty;
+		}
+	}
 }

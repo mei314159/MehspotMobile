@@ -2,190 +2,310 @@ using Foundation;
 using System;
 using UIKit;
 using Mehspot.Core;
-using System.Threading.Tasks;
 using SDWebImage;
-using MehSpot.Models.ViewModels;
+using Mehspot.Models.ViewModels;
 using Mehspot.Core.DTO.Badges;
-using mehspot.iOS.Controllers.Badges.DataSources.Search;
-using mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
-using mehspot.iOS.Views.Cell;
 using Mehspot.Core.Contracts.Wrappers;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Wrappers;
+using Mehspot.Core.Services;
+using Mehspot.Core.DTO;
+using Mehspot.Core.Models;
+using Mehspot.iOS.Views.Cell;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
-    public partial class ViewProfileViewController : UIViewController
-    {
-        private volatile bool loading;
-        public ISearchResultDTO SearchResultDTO;
-        public SearchModel SearchModel;
-        ViewBadgeProfileTableSource profileDataSource;
-        RecommendationsTableSource recommendationsDataSource;
-        IViewHelper viewHelper;
+	public partial class ViewProfileViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate,
+	IViewBadgeProfileController
+	{
+		private ViewBadgeProfileModel<UITableViewCell> model;
+		private string MessageUserId;
+		private string MessageUserName;
 
-        private string MessageUserId;
-        private string MessageUserName;
+		public IViewHelper ViewHelper { get; private set; }
+		public ISearchResultDTO SearchResultDTO { get; set; }
+		public BadgeSummaryDTO BadgeSummary { get; set; }
 
-        public ViewProfileViewController (IntPtr handle) : base (handle)
-        {
-        }
+		#region IViewBadgeProfileController
+		public string WindowTitle
+		{
+			get
+			{
+				return this.NavBar.TopItem.Title;
+			}
 
-        public override async void ViewDidLoad ()
-        {
-            this.NavBar.TopItem.Title =
-                    (MehspotResources.ResourceManager.GetString (SearchModel.SearchBadge.BadgeName) ?? SearchModel.SearchBadge.BadgeName) + " Profile";
-            this.viewHelper = new ViewHelper (this.View);
-            TableView.TableHeaderView.Hidden = true;
-            TableView.TableFooterView = new UIView ();
-            this.ProfilePicture.UserInteractionEnabled = true;
-            var tapGestureRecognizer = new UITapGestureRecognizer (ProfilePictureDoupleTapped);
-            tapGestureRecognizer.NumberOfTapsRequired = 2;
-            this.ProfilePicture.AddGestureRecognizer (tapGestureRecognizer);
-            await RefreshView ();
-        }
+			set
+			{
+				this.NavBar.TopItem.Title = value;
+			}
+		}
 
-        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
-        {
-            if (segue.Identifier == "GoToMessagingSegue") {
-                var controller = (MessagingViewController)segue.DestinationViewController;
-                controller.ToUserId = MessageUserId;
-                controller.ToUserName = MessageUserName;
-                controller.ParentController = this;
-            } else if (segue.Identifier == "GoToWriteRecommendationSegue") {
-                var controller = (WriteReviewController)segue.DestinationViewController;
-                controller.BadgeService = SearchModel.BadgeService;
-                controller.BadgeId = SearchResultDTO.Details.BadgeId;
-                controller.UserId = SearchResultDTO.Details.UserId;
-                controller.OnSave += RecommendationAdded;
-            }
+		public string Subdivision
+		{
+			get
+			{
+				return SubdivisionLabel.Text;
+			}
 
+			set
+			{
+				SubdivisionLabel.Text = value;
+			}
+		}
 
-            base.PrepareForSegue (segue, sender);
-        }
+		public string Distance
+		{
+			get
+			{
+				return DistanceLabel.Text;
+			}
 
-        async partial void SegmentControlChanged (UISegmentedControl sender)
-        {
-            switch (sender.SelectedSegment) {
-            case 0: {
-                    SetProfileDataSource ();
-                    break;
-                }
-            case 1: {
-                    await SetRecommendationsDataSourceAsync ();
-                    break;
-                }
-            case 2: {
-                    GoToMessaging (profileDataSource.Profile.Details.UserId, profileDataSource.Profile.Details.UserName);
-                    break;
-                }
-            }
-        }
+			set
+			{
+				DistanceLabel.Text = value;
+			}
+		}
 
-        private async void ProfilePictureDoupleTapped ()
-        {
-            var dto = new BadgeUserDescriptionDTO {
-                BadgeName = this.SearchModel.SearchBadge.BadgeName,
-                Delete = this.SearchResultDTO.Details.Favourite,
-                EmployeeId = this.SearchResultDTO.Details.UserId,
-                Type = BadgeDescriptionTypeEnum.Favourite
-            };
+		public string Likes
+		{
+			get
+			{
+				return LikesLabel.Text;
+			}
 
-            this.FavoriteIcon.Hidden = this.SearchResultDTO.Details.Favourite;
-            var result = await profileDataSource.ToggleBadgeUserDescriptionAsync (dto);
-            if (result.IsSuccess) {
-                this.SearchResultDTO.Details.Favourite = !this.SearchResultDTO.Details.Favourite;
-            } else {
-                this.FavoriteIcon.Hidden = !this.SearchResultDTO.Details.Favourite;
-            }
+			set
+			{
+				LikesLabel.Text = value;
+			}
+		}
 
-        }
+		public string InfoLabel1
+		{
+			get
+			{
+				return HourlyRateLabel.Text;
+			}
 
-        partial void CloseButtonTouched (UIBarButtonItem sender)
-        {
-            this.DismissViewController (true, null);
-        }
+			set
+			{
+				HourlyRateLabel.Text = value;
+			}
+		}
 
-        private async Task RefreshView ()
-        {
-            if (loading)
-                return;
-            loading = true;
-            TableView.UserInteractionEnabled = false;
-            ActivityIndicator.StartAnimating ();
-            profileDataSource = await SearchModel.GetViewProfileTableSource (this.SearchResultDTO.Details.UserId);
-            if (profileDataSource != null) {
-                this.NavBar.TopItem.Title = $"{this.SearchModel.SearchBadge.BadgeName} {profileDataSource.Profile.Details.UserName}";
-                this.SubdivisionLabel.Text = profileDataSource.Profile.Details.SubdivisionName?.Trim ();
-                if (!string.IsNullOrEmpty (profileDataSource.Profile.Details.ProfilePicturePath)) {
-                    var url = NSUrl.FromString (profileDataSource.Profile.Details.ProfilePicturePath);
-                    if (url != null) {
-                        this.ProfilePicture.SetImage (url);
-                    }
-                }
+		public string InfoLabel2
+		{
+			get
+			{
+				return AgeRangeLabel.Text;
+			}
 
-                this.DistanceLabel.Text = Math.Round (SearchResultDTO.Details.DistanceFrom ?? 0, 2) + " miles";
-                this.LikesLabel.Text = $"{SearchResultDTO.Details.Likes} Likes / {SearchResultDTO.Details.Recommendations} Recommendations";
-                this.FavoriteIcon.Hidden = !SearchResultDTO.Details.Favourite;
-                this.FirstNameLabel.Text = SearchResultDTO.Details.FirstName;
-                this.HourlyRateLabel.Text = profileDataSource.Profile.AdditionalInfo.InfoLabel1;
-                this.AgeRangeLabel.Text = profileDataSource.Profile.AdditionalInfo.InfoLabel2;
-                SetProfileDataSource ();
-                SendMessageButton.Enabled = true;
-            } else {
-                new UIAlertView ("Error", "Can not load profile data", (IUIAlertViewDelegate)null, "OK").Show ();
-                return;
-            }
+			set
+			{
+				AgeRangeLabel.Text = value;
+			}
+		}
 
-            ActivityIndicator.StopAnimating ();
-            ActivityIndicator.RemoveFromSuperview ();
-            TableView.UserInteractionEnabled = true;
-            TableView.TableHeaderView.Hidden = false;
-            loading = false;
-        }
+		public string FirstName
+		{
+			get
+			{
+				return FirstNameLabel.Text;
+			}
 
-        void SetProfileDataSource ()
-        {
-            TableView.Source = profileDataSource;
-            TableView.ReloadData ();
-        }
+			set
+			{
+				FirstNameLabel.Text = value;
+			}
+		}
 
-        async Task SetRecommendationsDataSourceAsync ()
-        {
-            if (recommendationsDataSource == null) {
-                viewHelper.ShowOverlay ("Wait...");
-                var result = await this.SearchModel.GetRecommendationsTableSource (this.SearchResultDTO.Details.UserId, MehspotAppContext.Instance.AuthManager.AuthInfo.UserId);
-                if (recommendationsDataSource == null) {
-                    recommendationsDataSource = result;
-                    recommendationsDataSource.OnWriteReviewButtonTouched += RecommendationsDataSource_OnWriteReviewButtonTouched;
-                    recommendationsDataSource.OnGoToMessaging += GoToMessaging;
-                }
+		public bool HideFavoriteIcon
+		{
+			get
+			{
+				return FavoriteIcon.Hidden;
+			}
 
-                viewHelper.HideOverlay ();
-            }
+			set
+			{
+				FavoriteIcon.Hidden = value;
+			}
+		}
 
-            TableView.Hidden = true;
-            TableView.Source = recommendationsDataSource;
-            TableView.ReloadData ();
-            TableView.Hidden = false;
-        }
+		public bool EnableSendMessageButton
+		{
+			get
+			{
+				return SendMessageButton.Enabled;
+			}
 
-        void RecommendationAdded (BadgeUserRecommendationDTO recommendation)
-        {
-            recommendationsDataSource.AddRecommendation (recommendation);
-            recommendationsDataSource.HideCreateButton ();
-            TableView.ReloadData ();
-        }
+			set
+			{
+				SendMessageButton.Enabled = value;
+			}
+		}
 
-        void RecommendationsDataSource_OnWriteReviewButtonTouched ()
-        {
-            PerformSegue ("GoToWriteRecommendationSegue", this);
-        }
+		public void SetProfilePictureUrl(string value)
+		{
 
-        void GoToMessaging (string userId, string userName)
-        {
-            MessageUserId = userId;
-            MessageUserName = userName;
-            PerformSegue ("GoToMessagingSegue", this);
-        }
-    }
+			if (!string.IsNullOrEmpty(value))
+			{
+				var url = NSUrl.FromString(value);
+				if (url != null)
+				{
+					this.ProfilePicture.SetImage(url);
+				}
+			}
+		}
+		#endregion
+
+		public ViewProfileViewController(IntPtr handle) : base(handle)
+		{
+		}
+
+		public override void ViewDidLoad()
+		{
+			TableView.TableHeaderView.Hidden = true;
+			TableView.TableFooterView = new UIView();
+			this.ProfilePicture.UserInteractionEnabled = true;
+			this.ProfilePicture.AddGestureRecognizer(new UITapGestureRecognizer(ProfilePictureDoupleTapped) { NumberOfTapsRequired = 2 });
+
+			this.ViewHelper = new ViewHelper(this.View);
+			model = new ViewBadgeProfileModel<UITableViewCell>(new CellFactory(new BadgeService(MehspotAppContext.Instance.DataStorage), BadgeSummary.BadgeId), this);
+			model.OnRefreshing += Model_OnRefreshing;
+			model.OnRefreshed += Model_OnRefreshed;
+			model.OnWriteReviewButtonTouched += RecommendationsDataSource_OnWriteReviewButtonTouched;
+			model.OnGoToMessaging += GoToMessaging;
+		}
+
+		public override async void ViewDidAppear(bool animated)
+		{
+			await model.RefreshView();
+		}
+
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+			if (segue.Identifier == "GoToMessagingSegue")
+			{
+				var controller = (MessagingViewController)segue.DestinationViewController;
+				controller.ToUserId = MessageUserId;
+				controller.ToUserName = MessageUserName;
+				controller.ParentController = this;
+			}
+			else if (segue.Identifier == "GoToWriteRecommendationSegue")
+			{
+				var controller = (WriteReviewController)segue.DestinationViewController;
+				controller.BadgeId = SearchResultDTO.Details.BadgeId;
+				controller.UserId = SearchResultDTO.Details.UserId;
+				controller.OnSave += RecommendationAdded;
+			}
+
+			base.PrepareForSegue(segue, sender);
+		}
+
+		public void ReloadCells()
+		{
+			TableView.ReloadData();
+		}
+
+		async partial void SegmentControlChanged(UISegmentedControl sender)
+		{
+			switch (sender.SelectedSegment)
+			{
+				case 0:
+					{
+						model.LoadProfile();
+						break;
+					}
+				case 1:
+					{
+						await model.LoadRecommendations();
+						break;
+					}
+				case 2:
+					{
+						GoToMessaging(this.SearchResultDTO.Details.UserId, this.SearchResultDTO.Details.FirstName);
+						break;
+					}
+			}
+		}
+
+		partial void CloseButtonTouched(UIBarButtonItem sender)
+		{
+			this.DismissViewController(true, null);
+		}
+
+		void Model_OnRefreshing()
+		{
+			TableView.UserInteractionEnabled = false;
+			ActivityIndicator.StartAnimating();
+
+		}
+
+		void Model_OnRefreshed()
+		{
+			ActivityIndicator.StopAnimating();
+			ActivityIndicator.RemoveFromSuperview();
+			TableView.UserInteractionEnabled = true;
+			TableView.TableHeaderView.Hidden = false;
+		}
+
+		void RecommendationAdded(BadgeUserRecommendationDTO recommendation)
+		{
+			model.AddRecommendation(recommendation);
+			model.HideCreateButton();
+			TableView.ReloadData();
+		}
+
+		void RecommendationsDataSource_OnWriteReviewButtonTouched()
+		{
+			PerformSegue("GoToWriteRecommendationSegue", this);
+		}
+
+		void GoToMessaging(string userId, string userName)
+		{
+			MessageUserId = userId;
+			MessageUserName = userName;
+			PerformSegue("GoToMessagingSegue", this);
+		}
+
+		private async void ProfilePictureDoupleTapped()
+		{
+			await model.ToggleFavoriteAsync();
+		}
+
+		#region IUITableViewDataSource, IUITableViewDelegate
+		public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+		{
+			var item = model.Cells.Count > indexPath.Row ? this.model.Cells[indexPath.Row] : null;
+			return item;
+		}
+
+		public nint RowsInSection(UITableView tableview, nint section)
+		{
+			return this.model.Cells.Count;
+		}
+
+		public nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			if (model.ShowRecommendations)
+			{
+				if (model.Cells.Count > 0)
+				{
+					var cell = model.Cells[indexPath.Row];
+					return cell.Frame.Height;
+				}
+
+				return 70;
+			}
+
+			return this.model.Cells[indexPath.Row]?.Frame.Height ?? 0;
+		}
+
+		[Export("tableView:didSelectRowAtIndexPath:")]
+		public void RowSelected(UITableView tableView, NSIndexPath indexPath)
+		{
+			model.RowSelected(indexPath.Row);
+		}
+		#endregion
+
+	}
 }

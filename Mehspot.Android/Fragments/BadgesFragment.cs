@@ -28,7 +28,7 @@ namespace Mehspot.AndroidApp
 			return inflater.Inflate(Resource.Layout.BadgesActivity, container, false);
 		}
 
-		public override async void OnViewCreated(Android.Views.View view, Bundle savedInstanceState)
+		public override void OnViewCreated(Android.Views.View view, Bundle savedInstanceState)
 		{
 			base.OnViewCreated(view, savedInstanceState);
 			this.ViewHelper = new ActivityHelper(this.Activity);
@@ -46,7 +46,11 @@ namespace Mehspot.AndroidApp
 				await model.RefreshAsync();
 				refresher.Refreshing = false;
 			};
+		}
 
+		public override async void OnStart()
+		{
+			base.OnStart();
 			await this.model.RefreshAsync();
 		}
 
@@ -60,12 +64,26 @@ namespace Mehspot.AndroidApp
 			ViewHelper.HideOverlay();
 		}
 
-		private BadgeSummaryItem CreateMessageBoardItem(BadgeSummaryDTO dto)
+		private BadgeSummaryItem CreateItem(BadgeSummaryDTO dto)
 		{
 			var item = new BadgeSummaryItem(this.Activity, dto);
 			item.Tag = dto.BadgeId;
 			item.Clicked += Item_Clicked;
+			item.SearchButtonClicked += Item_SearchButtonClicked;
+			item.RegisterButtonClicked += Item_RegisterButtonClicked;
 			return item;
+		}
+
+		void Item_RegisterButtonClicked(BadgeSummaryDTO dto)
+		{
+		}
+
+		void Item_SearchButtonClicked(BadgeSummaryDTO dto)
+		{
+
+			var target = new Intent(this.Context, typeof(SearchBadgeActivity));
+			target.PutExtra("badgeSummary", dto);
+			this.StartActivity(target);
 		}
 
 		private void Item_Clicked(BadgeSummaryDTO dto, BadgeSummaryItem sender)
@@ -102,12 +120,11 @@ namespace Mehspot.AndroidApp
 
 		public void DisplayBadges()
 		{
-
 			var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.badgesWrapper);
 			wrapper.RemoveAllViews();
 			foreach (var item in model.Items)
 			{
-				var bubble = CreateMessageBoardItem(item);
+				var bubble = CreateItem(item);
 				wrapper.AddView(bubble);
 			}
 		}

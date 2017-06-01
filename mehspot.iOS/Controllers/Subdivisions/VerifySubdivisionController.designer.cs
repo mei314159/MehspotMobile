@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace mehspot.iOS.Controllers
+namespace Mehspot.iOS.Controllers
 {
     [Register ("VerifySubdivisionController")]
     partial class VerifySubdivisionController

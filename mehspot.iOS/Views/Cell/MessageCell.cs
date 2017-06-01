@@ -6,7 +6,7 @@ using Mehspot.Core.DTO;
 using ObjCRuntime;
 using UIKit;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
 	public partial class MessageCell : UITableViewCell
 	{
@@ -33,6 +33,9 @@ namespace mehspot.iOS
 
 		public void Initialize(MessageDto dto)
 		{
+			if (dto == null)
+				return;
+			
 			var isMyMessage = dto.FromUserId == MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
 			this.messageWrapper.BackgroundColor = isMyMessage ? UIColor.FromRGB(58, 155, 252) : UIColor.FromRGB(249, 217, 128);
 			this.message.TextColor = isMyMessage ? UIColor.White : UIColor.DarkTextColor;

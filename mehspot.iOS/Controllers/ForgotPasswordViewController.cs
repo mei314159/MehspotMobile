@@ -1,13 +1,13 @@
 using System;
 using UIKit;
-using mehspot.Core.Auth;
+using Mehspot.Core.Auth;
 using Mehspot.Core.Models;
 using Mehspot.Core;
-using mehspot.iOS.Extensions;
-using mehspot.iOS.Wrappers;
+using Mehspot.iOS.Extensions;
+using Mehspot.iOS.Wrappers;
 using Mehspot.Core.DTO;
 
-namespace mehspot.iOS
+namespace Mehspot.iOS
 {
     public partial class ForgotPasswordViewController : UIViewController
     {

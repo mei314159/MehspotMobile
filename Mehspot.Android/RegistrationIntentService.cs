@@ -57,7 +57,7 @@ namespace Mehspot.AndroidApp
                     Subscribe(token);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Log.Debug("RegistrationIntentService", "Failed to get a registration token");
                 return;
