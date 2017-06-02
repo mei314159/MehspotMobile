@@ -3,8 +3,7 @@ using System;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using Mehspot.Core.DTO.Badges;
-using Mehspot.Core.Filter.Search;
+using Mehspot.Core.Builders;
 
 namespace Mehspot.AndroidApp
 {

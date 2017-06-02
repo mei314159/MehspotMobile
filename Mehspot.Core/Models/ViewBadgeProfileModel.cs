@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Mehspot.Core.Builders;
 using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.DTO.Search;
-using Mehspot.Core.Filter.Search;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.Models
 {
@@ -20,7 +21,7 @@ namespace Mehspot.Core.Models
         private List<BadgeUserRecommendationDTO> recommendations;
 
         private readonly string currentUserId;
-        private readonly CellsFactoryBase<TCell> cellFactory;
+        private readonly AttributeCellFactory<TCell> cellFactory;
         private readonly IViewBadgeProfileController controller;
         private readonly Type resultType;
 
@@ -49,9 +50,9 @@ namespace Mehspot.Core.Models
             }
         }
 
-        public ViewBadgeProfileModel(CellsFactoryBase<TCell> cellFactory, IViewBadgeProfileController controller)
+        public ViewBadgeProfileModel(IViewBadgeProfileController controller, BadgeService badgeService, CellBuilder<TCell> cellBuilder)
         {
-            this.cellFactory = cellFactory;
+            this.cellFactory = new AttributeCellFactory<TCell>(badgeService, controller.BadgeSummary.BadgeId, cellBuilder);
             this.cellFactory.CellChanged += CellsSource_CellChanged;
             this.controller = controller;
             this.currentUserId = MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
@@ -145,8 +146,8 @@ namespace Mehspot.Core.Models
                     if (!reviewed)
                     {
                         var createRecommendationCell = cellFactory.CreateButtonCell("Write Recommendation");
-                        ((IButtonCell)createRecommendationCell).OnButtonTouched += a => OnWriteReviewButtonTouched?.Invoke();
-                        recommendationCells.Insert(0, createRecommendationCell);
+                        createRecommendationCell.OnButtonTouched += a => OnWriteReviewButtonTouched?.Invoke();
+                        recommendationCells.Insert(0, (TCell)createRecommendationCell);
                     }
                 }
 

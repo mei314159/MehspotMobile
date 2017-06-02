@@ -8,6 +8,8 @@ using Mehspot.Core;
 using Mehspot.Core.Services;
 using Mehspot.Core.DTO;
 using Mehspot.iOS.Views.Cell;
+using Mehspot.Core.Builders;
+using Mehspot.iOS.Core.Builders;
 
 namespace Mehspot.iOS
 {
@@ -27,7 +29,7 @@ namespace Mehspot.iOS
 
 			this.ViewHelper = new ViewHelper(this.View);
 			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
-			this.model = new SearchBadgeModel<UITableViewCell>(this, badgeService, new CellFactory(badgeService, BadgeSummary.BadgeId));
+			this.model = new SearchBadgeModel<UITableViewCell>(this, badgeService, new IosCellBuilder());
 			this.NavBar.Title = this.model.GetTitle();
 		}
 

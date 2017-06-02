@@ -1,12 +1,9 @@
-
-using System;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
 using Mehspot.Core.DTO.Badges;
-using Mehspot.Core.Filter.Search;
 
 namespace Mehspot.AndroidApp
 {

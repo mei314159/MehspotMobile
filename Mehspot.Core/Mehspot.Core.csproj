@@ -141,9 +141,19 @@
     <Compile Include="Models\ViewBadgeProfileModel.cs" />
     <Compile Include="Contracts\ViewControllers\IViewBadgeProfileController.cs" />
     <Compile Include="DTO\Badges\Profile\FitnessProfileDTO.cs" />
-    <Compile Include="CellsFactoryBase.cs" />
     <Compile Include="Models\WriteReviewModel.cs" />
     <Compile Include="Contracts\ViewControllers\IWriteReviewController.cs" />
+    <Compile Include="Contracts\ViewControllers\IEditBadgeProfileController.cs" />
+    <Compile Include="Contracts\ViewControllers\IBadgesViewController.cs" />
+    <Compile Include="Models\EditBadgeProfileModel.cs" />
+    <Compile Include="Builders\CellBuilder.cs" />
+    <Compile Include="Builders\AttributeCellFactory.cs" />
+    <Compile Include="Contracts\Cells\IBooleanEditCell.cs" />
+    <Compile Include="Contracts\Cells\IButtonCell.cs" />
+    <Compile Include="Contracts\Cells\IViewCell.cs" />
+    <Compile Include="Contracts\Cells\ITextEditCell.cs" />
+    <Compile Include="Contracts\Cells\ISubdivisionPickerCell.cs" />
+    <Compile Include="Contracts\Cells\KeyboardType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -162,6 +172,8 @@
     <Folder Include="DTO\Badges\SearchFilter\" />
     <Folder Include="Search\" />
     <Folder Include="Search\Filter\" />
+    <Folder Include="Builders\" />
+    <Folder Include="Contracts\Cells\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

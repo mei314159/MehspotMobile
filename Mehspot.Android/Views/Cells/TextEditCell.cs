@@ -4,16 +4,17 @@ using System.Text.RegularExpressions;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
+using Mehspot.Core.Builders;
 
 namespace Mehspot.AndroidApp
 {
 
-	public class TextEditCell : RelativeLayout
+	public class TextEditCell : RelativeLayout, ITextEditCell
 	{
 		string previousText;
 
 		private string mask;
-		public Action<string> SetModelProperty;
+		public Action<ITextEditCell, string> SetModelProperty;
 		public event Action<TextEditCell, string> ValueChanged;
 		public int? MaxLength { get; set; }
 
@@ -36,7 +37,7 @@ namespace Mehspot.AndroidApp
 
 		public bool IsValid => ValidateMask(TextInput.Text, true);
 
-		public TextEditCell(Context context, string initialValue, Action<string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null) : base(context)
+		public TextEditCell(Context context, string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null) : base(context)
 		{
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.TextEditCell, this);
@@ -49,6 +50,7 @@ namespace Mehspot.AndroidApp
 			this.TextInput.BeforeTextChanged += TextInput_BeforeTextChanged;
 			this.SetModelProperty = setProperty;
 			this.Mask = mask;
+			this.ValidationRegex = validationRegex;
 		}
 
 		public TextView FieldLabel => this.FindViewById<TextView>(Resource.TextEditCell.FieldLabel);
@@ -89,7 +91,7 @@ namespace Mehspot.AndroidApp
 				}
 			}
 
-			this.SetModelProperty(TextInput.Text);
+			this.SetModelProperty(this, TextInput.Text);
 			this.ValueChanged?.Invoke(this, TextInput.Text);
 			previousText = TextInput.Text;
 		}
@@ -121,6 +123,21 @@ namespace Mehspot.AndroidApp
 			return result;
 		}
 
+		public void SetKeyboardType(Mehspot.Core.Builders.KeyboardType type)
+		{
+			switch (type)
+			{
+				case Mehspot.Core.Builders.KeyboardType.Decimal:
+					this.TextInput.InputType = Android.Text.InputTypes.NumberFlagDecimal;
+					break;
+				case Mehspot.Core.Builders.KeyboardType.Numeric:
+					this.TextInput.InputType = Android.Text.InputTypes.NumberVariationNormal;
+					break;
+				default:
+					this.TextInput.InputType = Android.Text.InputTypes.TextVariationNormal;
+					break;
+			}
+		}
 	}
 
 }

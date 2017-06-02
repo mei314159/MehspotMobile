@@ -1,11 +1,15 @@
-﻿namespace Mehspot.Core.Contracts.Wrappers
+﻿using System;
+
+namespace Mehspot.Core.Contracts.Wrappers
 {
     public interface IViewHelper
     {
-        void ShowAlert (string title, string text);
+        void ShowAlert(string title, string text);
 
-        void ShowOverlay (string text);
+        void ShowPrompt(string title, string text, string positiveButtonTitle, Action positiveAction);
 
-        void HideOverlay ();
+        void ShowOverlay(string text);
+
+        void HideOverlay();
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -13,10 +13,10 @@ using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.Models;
 using Mehspot.Core.Services;
-using Mehspot.iOS.Views.Cell;
 using Mehspot.Models.ViewModels;
 using Mehspot.AndroidApp.Adapters;
 using Mehspot.AndroidApp.Activities;
+using Mehspot.AndroidApp.Core.Builders;
 
 namespace Mehspot.AndroidApp
 {
@@ -167,7 +167,7 @@ namespace Mehspot.AndroidApp
 			SetContentView(Resource.Layout.ViewBadgeProfileActivity);
 
 			this.ViewHelper = new ActivityHelper(this);
-			model = new ViewBadgeProfileModel<View>(new CellFactory(this, new BadgeService(MehspotAppContext.Instance.DataStorage), BadgeSummary.BadgeId), this);
+			model = new ViewBadgeProfileModel<View>(this, new BadgeService(MehspotAppContext.Instance.DataStorage), new AndroidCellBuilder(this));
 			model.OnRefreshing += Model_OnRefreshing;
 			model.OnRefreshed += Model_OnRefreshed;
 			model.OnWriteReviewButtonTouched += RecommendationsDataSource_OnWriteReviewButtonTouched;

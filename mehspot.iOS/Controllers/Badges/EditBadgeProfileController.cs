@@ -3,170 +3,141 @@ using UIKit;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.iOS.Wrappers;
 using Mehspot.iOS.Extensions;
-using System.Threading.Tasks;
 using CoreGraphics;
-using Mehspot.iOS.Controllers.Badges.BadgeProfileDataSource;
 using Mehspot.Core;
 using Mehspot.Core.Services;
-using Mehspot.Core.DTO.Badges;
-using System.Linq;
+using Mehspot.Core.Contracts.ViewControllers;
+using Foundation;
+using Mehspot.iOS.Core.Builders;
 
 namespace Mehspot.iOS
 {
+	public partial class EditBadgeProfileController : UITableViewController, IEditBadgeProfileController
+	{
+		private EditBadgeProfileModel<UITableViewCell> model;
 
-    public partial class EditBadgeProfileController : UITableViewController
-    {
-        volatile bool loading;
-        volatile bool dataLoaded;
-        private BadgeService badgeService;
-        private SubdivisionService subdivisionService;
-        private IViewHelper viewHelper;
-        public int BadgeId;
-        public string BadgeName;
-        public bool BadgeIsRegistered;
-        public bool RedirectToSearchResults;
+		public EditBadgeProfileController(IntPtr handle) : base(handle)
+		{
+		}
 
-        BadgeProfileDTO<EditBadgeProfileDTO> profile;
+		public IViewHelper ViewHelper { get; set; }
+		public int BadgeId { get; set; }
+		public string BadgeName { get; set; }
+		public bool BadgeIsRegistered { get; set; }
+		public bool RedirectToSearchResults { get; set; }
+		public bool SaveButtonEnabled
+		{
+			get
+			{
+				return this.SaveButton.Enabled;
+			}
+			set
+			{
+				this.SaveButton.Enabled = value;
+			}
+		}
 
+		public string WindowTitle
+		{
+			get
+			{
+				return this.NavBar.Title;
+			}
+			set
+			{
+				this.NavBar.Title = value;
+			}
+		}
 
-        public EditBadgeProfileController (IntPtr handle) : base (handle)
-        {
-        }
+		public override void ViewDidLoad()
+		{
 
-        public override void ViewDidLoad ()
-        {
-            SetTitle ();
-            badgeService = new BadgeService (MehspotAppContext.Instance.DataStorage);
-            subdivisionService = new SubdivisionService (MehspotAppContext.Instance.DataStorage);
-            viewHelper = new ViewHelper (this.View);
-            TableView.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
-            this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
-        }
+			ViewHelper = new ViewHelper(this.View);
 
-        public override void PrepareForSegue (UIStoryboardSegue segue, Foundation.NSObject sender)
-        {
-            if (segue.Identifier == "UnwindToSearchResults") {
-                var controller = (SearchResultsViewController)segue.DestinationViewController;
-                controller.ReqiredBadgeWasRegistered ();
-            }
+			model = new EditBadgeProfileModel<UITableViewCell>(
+				this,
+				new BadgeService(MehspotAppContext.Instance.DataStorage),
+				new SubdivisionService(MehspotAppContext.Instance.DataStorage),
+				new IosCellBuilder());
+			model.LoadingStarted += Model_LoadingStarted;
+			model.LoadingEnded += Model_LoadingEnded;
+			TableView.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
+			this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
+		}
 
-            base.PrepareForSegue (segue, sender);
-        }
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+			if (segue.Identifier == "UnwindToSearchResults")
+			{
+				var controller = (SearchResultsViewController)segue.DestinationViewController;
+				controller.ReqiredBadgeWasRegistered();
+			}
 
-        private void SetTitle ()
-        {
-            var badgeName = MehspotResources.ResourceManager.GetString (this.BadgeName) ?? this.BadgeName;
-            var title =
-                BadgeIsRegistered ?
-                "Update " + (this.BadgeName == Constants.BadgeNames.BabysitterEmployer ? "babysitting (employer) page" : badgeName)
-                : "Sign up " +
-                (this.BadgeName == Constants.BadgeNames.Fitness || this.BadgeName == Constants.BadgeNames.Golf || this.BadgeName == Constants.BadgeNames.OtherJobs ? "for " : "as ") + badgeName;
+			base.PrepareForSegue(segue, sender);
+		}
 
-            this.NavBar.Title = title;
-        }
+		public override async void ViewDidAppear(bool animated)
+		{
+			await model.LoadAsync();
+		}
 
-        public override async void ViewDidAppear (bool animated)
-        {
-            if (!dataLoaded) {
-                await RefreshView ();
-            }
-        }
+		private async void RefreshControl_ValueChanged(object sender, EventArgs e)
+		{
+			await model.ReloadAsync();
+		}
 
-        private async void RefreshControl_ValueChanged (object sender, EventArgs e)
-        {
-            await RefreshView ();
-        }
+		async partial void SaveButtonTouched(UIBarButtonItem sender)
+		{
+			await model.SaveAsync();
+		}
 
-        async partial void SaveButtonTouched (UIBarButtonItem sender)
-        {
-            sender.Enabled = false;
-            this.HideKeyboard ();
-            viewHelper.ShowOverlay ("Saving...");
+		public void ReloadData()
+		{
+			TableView.ReloadData();
+		}
 
-            var result = await this.badgeService.SaveBadgeProfileAsync (profile);
-            viewHelper.HideOverlay ();
-            string message;
-            if (result.IsSuccess) {
-                if (!BadgeIsRegistered) {
-                    BadgeIsRegistered = this.profile.IsEnabled = true;
-                    ((EditBadgeTableSource)TableView.Source).ShowToggleEnabledCell ();
-                    TableView.ReloadData ();
-                }
-                SetTitle ();
-                message = $"{BadgeName} badge profile successfully saved";
-            } else {
-                var errors = result.ModelState.ModelState?.SelectMany (a => a.Value);
-                message = errors != null ? string.Join (Environment.NewLine, errors) : result.ErrorMessage;
-            }
-            var alert = new UIAlertView (result.IsSuccess ? "Success" : "Error", message, (IUIAlertViewDelegate)null, "OK");
-            alert.Clicked += (object s, UIButtonEventArgs e) => {
-                if (result.IsSuccess && RedirectToSearchResults) {
-                    PerformSegue ("UnwindToSearchResults", this);
-                }
-            };
-            alert.Show ();
+		public void HideKeyboard()
+		{
+			ViewExtensions.HideKeyboard(this);
+		}
 
-            sender.Enabled = true;
-        }
+		public void GoToSearchResults()
+		{
+			PerformSegue("UnwindToSearchResults", this);
+		}
 
+		public void Dismiss()
+		{
+			this.NavigationController.PopViewController(true);
+		}
 
-        private async Task RefreshView ()
-        {
-            if (loading)
-                return;
-            loading = true;
-            TableView.UserInteractionEnabled = this.SaveButton.Enabled = false;
-            RefreshControl.BeginRefreshing ();
-            TableView.SetContentOffset (new CGPoint (0, -this.RefreshControl.Frame.Size.Height), true);
-            var profileResult = await badgeService.GetMyBadgeProfileAsync (this.BadgeId);
-            dataLoaded = profileResult.IsSuccess;
-            if (profileResult.IsSuccess) {
-                this.profile = profileResult.Data;
-                var tableSource = await EditBadgeTableSource.Create (profileResult.Data, subdivisionService);
-                tableSource.OnEnabledStateChanged += TableSource_OnEnabledStateChanged;
-                tableSource.OnDeleteBadgeButtonTouched += TableSource_OnDeleteBadgeButtonTouched;
-                base.TableView.Source = tableSource;
-                TableView.ReloadData ();
-                TableView.UserInteractionEnabled = this.SaveButton.Enabled = true;
-                TableView.SetContentOffset (CGPoint.Empty, true);
-                RefreshControl.EndRefreshing ();
-            } else {
-                viewHelper.ShowAlert ("Error", "Can not load profile data");
-                TableView.SetContentOffset (CGPoint.Empty, true);
-                RefreshControl.EndRefreshing ();
-                return;
-            }
+		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+		{
+			return model.Cells[indexPath.Row];
+		}
 
-            loading = false;
-        }
+		public override nint RowsInSection(UITableView tableView, nint section)
+		{
+			return model.Cells.Count;
+		}
 
-        async void TableSource_OnEnabledStateChanged (bool isEnabled)
-        {
-            await badgeService.ToggleEnabledState (this.BadgeId, isEnabled);
-        }
+		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			return model.Cells[indexPath.Row].Frame.Height;
+		}
 
-        void TableSource_OnDeleteBadgeButtonTouched ()
-        {
-            UIAlertView alert = new UIAlertView (
-                                            "Delete Badge",
-                                            "Do you want to delete this badge registration?",
-                                            (IUIAlertViewDelegate)null,
-                                            "Cancel",
-                                            new string [] { "Yes, I do" });
-            alert.Clicked += async (object sender, UIButtonEventArgs e) => {
-                MehspotAppContext.Instance.DataStorage.PushIsEnabled = true;
-                if (e.ButtonIndex != alert.CancelButtonIndex) {
+		private void Model_LoadingStarted()
+		{
+			TableView.UserInteractionEnabled = this.SaveButton.Enabled = false;
+			RefreshControl.BeginRefreshing();
+			TableView.SetContentOffset(new CGPoint(0, -this.RefreshControl.Frame.Size.Height), true);
+		}
 
-                    var result = await badgeService.DeleteBadgeAsync (this.BadgeId);
-                    if (result.IsSuccess) {
-                        this.NavigationController.PopViewController (true);
-                    } else {
-                        viewHelper.ShowAlert ("Error", result.ErrorMessage);
-                    }
-                }
-            };
-
-            alert.Show ();
-        }
-    }
+		private void Model_LoadingEnded()
+		{
+			TableView.UserInteractionEnabled = this.SaveButton.Enabled = true;
+			TableView.SetContentOffset(CGPoint.Empty, true);
+			RefreshControl.EndRefreshing();
+		}
+	}
 }

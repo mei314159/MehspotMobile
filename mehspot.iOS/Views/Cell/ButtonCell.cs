@@ -1,7 +1,7 @@
 ﻿using System;
 
 using Foundation;
-using Mehspot.Core.Filter.Search;
+using Mehspot.Core.Builders;
 using UIKit;
 
 namespace Mehspot.iOS.Views.Cell
