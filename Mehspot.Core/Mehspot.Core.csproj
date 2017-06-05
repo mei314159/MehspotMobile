@@ -155,6 +155,7 @@
     <Compile Include="Contracts\Cells\ISubdivisionPickerCell.cs" />
     <Compile Include="Contracts\Cells\KeyboardType.cs" />
     <Compile Include="Extensions\TypeInfoAllMemberExtensions.cs" />
+    <Compile Include="Models\IListModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

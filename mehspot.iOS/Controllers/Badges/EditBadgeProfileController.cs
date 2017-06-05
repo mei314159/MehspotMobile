@@ -128,14 +128,14 @@ namespace Mehspot.iOS
 
 		private void Model_LoadingStarted()
 		{
-			TableView.UserInteractionEnabled = this.SaveButton.Enabled = false;
+			TableView.UserInteractionEnabled = this.SaveButtonEnabled = false;
 			RefreshControl.BeginRefreshing();
 			TableView.SetContentOffset(new CGPoint(0, -this.RefreshControl.Frame.Size.Height), true);
 		}
 
 		private void Model_LoadingEnded()
 		{
-			TableView.UserInteractionEnabled = this.SaveButton.Enabled = true;
+			TableView.UserInteractionEnabled = this.SaveButtonEnabled = true;
 			TableView.SetContentOffset(CGPoint.Empty, true);
 			RefreshControl.EndRefreshing();
 		}

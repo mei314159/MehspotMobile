@@ -13,7 +13,7 @@ namespace Mehspot.Core.Models
 {
     public delegate void GoToMessagingHandler(string userId, string userName);
 
-    public class ViewBadgeProfileModel<TCell>
+    public class ViewBadgeProfileModel<TCell> : IListModel<TCell>
     {
         private volatile bool loading;
         private bool showRecommendations;
@@ -34,7 +34,7 @@ namespace Mehspot.Core.Models
         public event GoToMessagingHandler OnGoToMessaging;
 
 
-        public IReadOnlyList<TCell> Cells => ShowRecommendations ? recommendationCells : profileDataCells;
+        public IList<TCell> Cells => ShowRecommendations ? recommendationCells : profileDataCells;
 
         public bool ShowRecommendations
         {

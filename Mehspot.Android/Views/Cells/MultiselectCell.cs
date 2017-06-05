@@ -32,7 +32,7 @@ namespace Mehspot.AndroidApp
 
 			this.RowValues = rowValues;
 			this.Dropdown.Adapter = new ArrayAdapter(context, Resource.Layout.TextViewItem, this.RowValues.Select(a => a.Value).ToArray());
-			this.Dropdown.ItemsSelected += Dropdown_ItemsSelected;;
+			this.Dropdown.ItemsSelected += Dropdown_ItemsSelected; ;
 			this.Dropdown.SetSelection(this.RowValues.Select((a, i) => new { a, i }).FirstOrDefault(a => Equals(a.a.Key, initialValue))?.i ?? 0);
 
 			this.GetPropertyString = (value) => this.RowValues?.FirstOrDefault(a => Equals(a.Key, value)).Value;

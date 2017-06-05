@@ -175,7 +175,7 @@ namespace Mehspot.AndroidApp
 			Segments.DetailsButton.Click += DetailsButton_Click;
 			Segments.RecommendationsButton.Click += RecommendationsButton_Click;
 			Segments.MessageButton.Click += MessageButton_Click;
-			ListView.Adapter = new BadgeProfileListAdapter(this, model);
+			ListView.Adapter = new ViewListAdapter(this, model);
 			await model.RefreshView();
 		}
 
@@ -224,7 +224,7 @@ namespace Mehspot.AndroidApp
 		public void ReloadCells()
 		{
 			Segments.HighlightSelectedButton(Segments.DetailsButton);
-			((BadgeProfileListAdapter)ListView.Adapter).NotifyDataSetChanged();
+			((ViewListAdapter)ListView.Adapter).NotifyDataSetChanged();
 		}
 
 		void Model_OnRefreshing()

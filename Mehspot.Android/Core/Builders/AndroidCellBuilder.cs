@@ -29,12 +29,25 @@ namespace Mehspot.AndroidApp.Core.Builders
 
 		public override View GetDatePickerCell<T>(T initialValue, Action<T> setProperty, string label, bool isReadOnly = false)
 		{
-			throw new NotImplementedException();
+			var cell = new DateTimePickerCell(activity);
+			cell.Enabled = !isReadOnly;
+
+			var val = (object)initialValue;
+			cell.Value = val is DateTime ? (DateTime)val : val is DateTime? ? (DateTime?)val ?? DateTime.Now : DateTime.Now;
+			cell.DateChanged += (sender, args) =>
+			{
+				var typedValue = typeof(T) == typeof(string) ? (T)(object)args.Value.ToString() : (T)(object)args.Value;
+				setProperty(typedValue);
+			};
+
+			return cell;
 		}
 
 		public override View GetMultilineTextEditCell(string initialValue, Action<string> setValue, string label, bool isReadOnly = false)
 		{
-			throw new NotImplementedException();
+			var cell = new TextEditCell(activity, initialValue, (arg1, arg2) => setValue(arg2), label, isReadOnly: isReadOnly);
+			cell.Multiline = true;
+			return cell;
 		}
 
 		public override View GetMultiselectCell<T>(IEnumerable<T> initialValue, Action<IEnumerable<T>> setProperty, string label, KeyValuePair<T, string>[] rowValues, bool isReadOnly = false)
@@ -59,7 +72,7 @@ namespace Mehspot.AndroidApp.Core.Builders
 
 		public override ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
 		{
-			throw new NotImplementedException();
+			return null;
 		}
 
 		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)

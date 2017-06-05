@@ -5,7 +5,6 @@ using Mehspot.AndroidApp.Views;
 using Mehspot.Models.ViewModels;
 using System.Collections.Generic;
 using System;
-using Mehspot.Core.Models;
 
 namespace Mehspot.AndroidApp.Adapters
 {

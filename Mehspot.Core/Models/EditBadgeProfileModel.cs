@@ -6,11 +6,12 @@ using Mehspot.Core.Builders;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.DTO.Subdivision;
+using Mehspot.Core.Models;
 using Mehspot.Core.Services;
 
 namespace Mehspot.Core
 {
-    public class EditBadgeProfileModel<TCell>
+    public class EditBadgeProfileModel<TCell> : IListModel<TCell>
     {
         private volatile bool loading;
         private volatile bool dataLoaded;
@@ -24,13 +25,14 @@ namespace Mehspot.Core
 
         private readonly CellBuilder<TCell> cellBuilder;
 
-        public readonly List<TCell> Cells = new List<TCell>();
+        public IList<TCell> Cells { get; }
         public event Action LoadingStarted;
         public event Action LoadingEnded;
 
         readonly BadgeService badgeService;
         public EditBadgeProfileModel(IEditBadgeProfileController controller, BadgeService badgeService, SubdivisionService subdivisionService, CellBuilder<TCell> cellBuilder)
         {
+            Cells = new List<TCell>();
             this.badgeService = badgeService;
             this.controller = controller;
             this.cellBuilder = cellBuilder;
@@ -166,12 +168,12 @@ namespace Mehspot.Core
             var zipCell = cellBuilder.GetTextEditCell(profile.Profile.Zip, (c, a) => { profile.Profile.Zip = a; ZipCell_ValueChanged(c, a, subdivisionCellKey); }, "Zip", mask: "#####");
             Cells.Add((TCell)zipCell);
 
-            var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.Profile.SubdivisionId, (property) =>
-            {
-                profile.Profile.SubdivisionId = property?.Id;
-            }, "Subdivision", profileSubdivisions, profile.Profile.Zip, string.IsNullOrWhiteSpace(profile.Profile.Zip) || !zipCell.IsValid);
-            subdivisionCell.FieldName = subdivisionCellKey;
-            Cells.Add((TCell)subdivisionCell);
+            //var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.Profile.SubdivisionId, (property) =>
+            //{
+            //    profile.Profile.SubdivisionId = property?.Id;
+            //}, "Subdivision", profileSubdivisions, profile.Profile.Zip, string.IsNullOrWhiteSpace(profile.Profile.Zip) || !zipCell.IsValid);
+            //subdivisionCell.FieldName = subdivisionCellKey;
+            //Cells.Add((TCell)subdivisionCell);
 
             foreach (var badgeValue in profile.BadgeValues)
             {

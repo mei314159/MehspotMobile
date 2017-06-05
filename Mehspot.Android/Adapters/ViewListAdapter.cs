@@ -1,20 +1,16 @@
 using Android.App;
 using Android.Views;
 using Android.Widget;
-using Mehspot.AndroidApp.Views;
-using Mehspot.Models.ViewModels;
-using System.Collections.Generic;
-using System;
 using Mehspot.Core.Models;
 
 namespace Mehspot.AndroidApp.Adapters
 {
-	public class BadgeProfileListAdapter : BaseAdapter<View>
+	public class ViewListAdapter : BaseAdapter<View>
 	{
 		private readonly Activity context;
-		private readonly ViewBadgeProfileModel<View> model;
+		private readonly IListModel<View> model;
 
-		public BadgeProfileListAdapter(Activity context, ViewBadgeProfileModel<View> model)
+		public ViewListAdapter(Activity context, IListModel<View> model)
 		{
 			this.model = model;
 			this.context = context;

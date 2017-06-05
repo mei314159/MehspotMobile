@@ -76,11 +76,15 @@ namespace Mehspot.AndroidApp
 
 		void Item_RegisterButtonClicked(BadgeSummaryDTO dto)
 		{
+			var target = new Intent(this.Context, typeof(EditBadgeProfileActivity));
+			target.PutExtra("badgeId", dto.BadgeId);
+			target.PutExtra("badgeName", dto.BadgeName);
+			target.PutExtra("badgeIsRegistered", dto.IsRegistered);
+			this.StartActivity(target);
 		}
 
 		void Item_SearchButtonClicked(BadgeSummaryDTO dto)
 		{
-
 			var target = new Intent(this.Context, typeof(SearchBadgeActivity));
 			target.PutExtra("badgeSummary", dto);
 			this.StartActivity(target);

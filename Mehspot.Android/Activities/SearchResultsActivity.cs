@@ -6,7 +6,6 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
-using Mehspot.AndroidApp.Views;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.AndroidApp.Adapters;
 using Mehspot.Core;
@@ -15,8 +14,6 @@ using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
 using Mehspot.Models.ViewModels;
-using System.Collections.Generic;
-using System;
 
 namespace Mehspot.AndroidApp
 {
