@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.DTO.Search;
+using Mehspot.Core.Extensions;
 using Mehspot.Core.Services;
 namespace Mehspot.Core.Builders
 {
@@ -57,7 +58,7 @@ namespace Mehspot.Core.Builders
         private async Task<List<Tuple<int, TCell>>> CreateCellsInternal(object filter)
         {
             var type = filter.GetType();
-            var properties = type.GetTypeInfo().DeclaredProperties
+            var properties = type.GetTypeInfo().GetAllProperties()
                                  .Select(prop => new { prop = prop, attr = prop.GetCustomAttributes(true).OfType<CellAttribute>().FirstOrDefault() })
                                  .Where(a => a.attr != null)
                                  .OrderBy(a => a.attr.Order);
