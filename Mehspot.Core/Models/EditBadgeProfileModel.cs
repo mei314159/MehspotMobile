@@ -163,6 +163,7 @@ namespace Mehspot.Core
             var subdivisionCellKey = Guid.NewGuid().ToString();
             this.states = await GetStates();
             var profileSubdivisions = await GetSubdivisions(profile.Profile.Zip);
+            Cells.Clear();
             Cells.Add(cellBuilder.GetPickerCell(profile.Profile.State, (property) => { profile.Profile.State = property; }, "State", states));
             Cells.Add((TCell)cellBuilder.GetTextEditCell(profile.Profile.City, (cell, a) => profile.Profile.City = a, "City"));
             var zipCell = cellBuilder.GetTextEditCell(profile.Profile.Zip, (c, a) => { profile.Profile.Zip = a; ZipCell_ValueChanged(c, a, subdivisionCellKey); }, "Zip", mask: "#####");

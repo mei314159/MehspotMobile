@@ -76,9 +76,11 @@ namespace Mehspot.iOS.Views
 			cell.TextView.ShowPlaceholder();
 			cell.TextView.Changed += cell.TextInput_EditingChanged;
 			cell.TextView.ShouldChangeText += cell.TextInput_ShouldChangeCharacters;
+			cell.TextView.ShouldEndEditing += (textView) => { cell.UpdateSize(); return true; };
 			cell.SetModelProperty = setProperty;
 
 			cell.ValidationRegex = validationRegex;
+			cell.UpdateSize();
 			return cell;
 		}
 
@@ -105,15 +107,7 @@ namespace Mehspot.iOS.Views
 			var textView = ((UITextView)sender);
 			var text = textView.Text;
 			this.SetModelProperty(this, text);
-
-			var sizeThatFitsTextView = textView.SizeThatFits(new CGSize(textView.Frame.Size.Width, int.MaxValue));
-			var height = sizeThatFitsTextView.Height > 100 ? 100 : sizeThatFitsTextView.Height < 43 ? 43 : sizeThatFitsTextView.Height;
-			TextViewHeight.Constant = height;
-			this.TextView.Frame = new CGRect(this.TextView.Frame.Location, new CGSize(this.TextView.Frame.Width, height));
-			this.Frame = new CGRect(this.Frame.Location, new CGSize(this.Frame.Width, height + 1));
-			var table = (UITableView)this.FindSuperviewOfType(null, typeof(UITableView));
-			table.BeginUpdates();
-			table.EndUpdates();
+			UpdateSize();
 		}
 
 		bool TextInput_ShouldChangeCharacters(UITextView textField, NSRange range, string replacementString)
@@ -141,6 +135,21 @@ namespace Mehspot.iOS.Views
 			}
 
 			return false;
+		}
+
+		void UpdateSize()
+		{
+			var sizeThatFitsTextView = this.TextView.SizeThatFits(new CGSize(this.TextView.Frame.Size.Width, int.MaxValue));
+			var height = sizeThatFitsTextView.Height > 100 ? 100 : sizeThatFitsTextView.Height < 43 ? 43 : sizeThatFitsTextView.Height;
+			TextViewHeight.Constant = height;
+			this.TextView.Frame = new CGRect(this.TextView.Frame.Location, new CGSize(this.TextView.Frame.Width, height));
+			this.Frame = new CGRect(this.Frame.Location, new CGSize(this.Frame.Width, height + 1));
+			var table = this.FindSuperviewOfType(null, typeof(UITableView)) as UITableView;
+			if (table != null)
+			{
+				table.BeginUpdates();
+				table.EndUpdates();
+			}
 		}
 
 		bool ValidateMask(string text, bool fullMatch = false)
