@@ -20,9 +20,14 @@ namespace Mehspot.iOS.Views
                 FieldLabel = null;
             }
 
-            if (TextInput != null) {
-                TextInput.Dispose ();
-                TextInput = null;
+            if (TextView != null) {
+                TextView.Dispose ();
+                TextView = null;
+            }
+
+            if (TextViewHeight != null) {
+                TextViewHeight.Dispose ();
+                TextViewHeight = null;
             }
         }
     }

@@ -2,76 +2,108 @@ using Foundation;
 using System;
 using UIKit;
 using System.ComponentModel;
-using CoreGraphics;
 
 namespace Mehspot.iOS
 {
-    [Register ("ExtendedTextView"), DesignTimeVisible (true)]
-    public class ExtendedTextView : UITextView
-    {
-        string placeholder;
+	[Register("ExtendedTextView"), DesignTimeVisible(true)]
+	public class ExtendedTextView : UITextView
+	{
+		string placeholder;
 
-        [Export ("Placeholder"), Browsable (true)]
-        public string Placeholder {
-            get {
-                return placeholder;
-            }
+		public bool Multiline { get; set; } = true;
 
-            set {
-                placeholder = value;
-                SetNeedsDisplay();
-            }
-        }
+		[Export("Placeholder"), Browsable(true)]
+		public string Placeholder
+		{
+			get
+			{
+				return placeholder;
+			}
 
-        public ExtendedTextView (IntPtr handle)
-            : base (handle)
-        {
-        }
+			set
+			{
+				placeholder = value;
+				SetNeedsDisplay();
+			}
+		}
 
-        public override void AwakeFromNib ()
-        {
-            base.AwakeFromNib ();
-            
-            Initialize ();
-        }
 
-        void Initialize ()
-        {
-            ShouldBeginEditing = t => {
-                HidePlaceholder ();
+		public override string Text
+		{
+			get
+			{
+				return base.Text;
+			}
+			set
+			{
+				if (value != placeholder)
+				{
+					this.TextColor = UIColor.DarkTextColor;
+				}
 
-                return true;
-            };
-            ShouldEndEditing = t => {
-                ShowPlaceholder ();
+				base.Text = value;
+			}
+		}
 
-                return true;
-            };
+		public ExtendedTextView(IntPtr handle)
+			: base(handle)
+		{
+		}
 
-            ShowPlaceholder ();
-        }
+		public override void AwakeFromNib()
+		{
+			base.AwakeFromNib();
 
-        public override bool BecomeFirstResponder ()
-        {
-            HidePlaceholder ();
+			Initialize();
+		}
 
-            return base.BecomeFirstResponder ();
-        }
+		void Initialize()
+		{
+			ShouldBeginEditing = t =>
+			{
+				HidePlaceholder();
 
-        void HidePlaceholder ()
-        {
-            if (Text == Placeholder) {
-                Text = string.Empty;
-                this.TextColor = UIColor.DarkTextColor;
-            }
-        }
+				return true;
+			};
+			ShouldEndEditing = t =>
+			{
+				ShowPlaceholder();
 
-        void ShowPlaceholder ()
-        {
-            if (string.IsNullOrEmpty (Text)) {
-                Text = Placeholder;
-                this.TextColor = UIColor.LightGray;
-            }
-        }
-   }
+				return true;
+			};
+
+			EnablesReturnKeyAutomatically = true;
+			this.ShouldChangeText += (textView, range, text) =>
+			{
+				return text != Environment.NewLine || this.Multiline;
+			};
+
+			ShowPlaceholder();
+		}
+
+		public override bool BecomeFirstResponder()
+		{
+			HidePlaceholder();
+
+			return base.BecomeFirstResponder();
+		}
+
+		void HidePlaceholder()
+		{
+			if (Text == Placeholder)
+			{
+				Text = string.Empty;
+				this.TextColor = UIColor.DarkTextColor;
+			}
+		}
+
+		public void ShowPlaceholder()
+		{
+			if (string.IsNullOrEmpty(Text))
+			{
+				Text = Placeholder;
+				this.TextColor = UIColor.LightGray;
+			}
+		}
+	}
 }

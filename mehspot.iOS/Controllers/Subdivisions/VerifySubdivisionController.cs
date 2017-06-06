@@ -78,7 +78,7 @@ namespace Mehspot.iOS.Controllers
 
 		void MapView_DraggingMarkerStarted(object sender, GMSMarkerEventEventArgs e)
 		{
-			this.otherAddressCell.TextInput.Enabled = false;
+			this.otherAddressCell.TextView.Editable = false;
 		}
 
 		void MapView_DraggingMarkerEnded(object sender, GMSMarkerEventEventArgs e)
@@ -89,13 +89,13 @@ namespace Mehspot.iOS.Controllers
 
 		void HandleReverseGeocodeCallback(ReverseGeocodeResponse response, NSError error)
 		{
-			this.otherAddressCell.TextInput.Enabled = true;
+			this.otherAddressCell.TextView.Editable = true;
 
 			if (error != null)
 				return;
 
 			this.Place = response.FirstResult;
-			otherAddressCell.TextInput.Text = Place.Lines != null ? string.Join(", ", response.FirstResult.Lines) : response.FirstResult.Thoroughfare;
+			otherAddressCell.TextView.Text = Place.Lines != null ? string.Join(", ", response.FirstResult.Lines) : response.FirstResult.Thoroughfare;
 			viewHelper.HideOverlay();
 		}
 
@@ -148,7 +148,7 @@ namespace Mehspot.iOS.Controllers
 						Latitude = Place.Coordinate.Latitude,
 						Longitude = Place.Coordinate.Longitude,
 						Country = Place.Country,
-						FormattedAddress = this.otherAddressCell.TextInput.Text,
+						FormattedAddress = this.otherAddressCell.TextView.Text,
 						PostalCode = zip,
 						GoverningDistrictId = 1,
 					};
