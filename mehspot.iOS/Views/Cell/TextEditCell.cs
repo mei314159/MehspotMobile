@@ -2,132 +2,160 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Foundation;
+using Mehspot.Core.Builders;
 using UIKit;
 
 namespace Mehspot.iOS.Views
 {
-    [Register ("TextEditCell")]
-    public class TextEditCell : UITableViewCell
-    {
-        private string mask;
-        public static readonly NSString Key = new NSString ("TextEditCell");
-        public static readonly UINib Nib;
+	[Register("TextEditCell")]
+	public class TextEditCell : UITableViewCell, ITextEditCell
+	{
+		private string mask;
+		public static readonly NSString Key = new NSString("TextEditCell");
+		public static readonly UINib Nib;
 
-        static TextEditCell ()
-        {
-            Nib = UINib.FromName ("TextEditCell", NSBundle.MainBundle);
-        }
+		static TextEditCell()
+		{
+			Nib = UINib.FromName("TextEditCell", NSBundle.MainBundle);
+		}
 
-        protected TextEditCell (IntPtr handle) : base (handle)
-        {
-            // Note: this .ctor should not contain any initialization logic.
-        }
+		protected TextEditCell(IntPtr handle) : base(handle)
+		{
+			// Note: this .ctor should not contain any initialization logic.
+		}
 
-        [Outlet]
-        UILabel FieldLabel { get; set; }
+		[Outlet]
+		UILabel FieldLabel { get; set; }
 
-        [Outlet]
-        public UITextField TextInput { get; set; }
+		[Outlet]
+		public UITextField TextInput { get; set; }
 
 
-        public int? MaxLength { get; set; }
+		public int? MaxLength { get; set; }
 
-        public string Mask {
-            get {
-                return mask;
-            }
+		public string Mask
+		{
+			get
+			{
+				return mask;
+			}
 
-            set {
-                mask = value;
-                this.MaxLength = mask?.Length;
-                this.TextInput.Placeholder = mask;
-            }
-        }
+			set
+			{
+				mask = value;
+				this.MaxLength = mask?.Length;
+				this.TextInput.Placeholder = mask;
+			}
+		}
 
-        public string ValidationRegex { get; set; }
+		public string ValidationRegex { get; set; }
 
-        public bool IsValid => ValidateMask (TextInput.Text, true);
+		public bool IsValid => ValidateMask(TextInput.Text, true);
 
-        public Action<string> SetModelProperty;
-        public event Action<TextEditCell, string> ValueChanged;
+		public Action<ITextEditCell, string> SetModelProperty;
 
-		public static TextEditCell Create(string initialValue, Action<string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null)
-        {
-            var cell = (TextEditCell)Nib.Instantiate (null, null) [0];
-            cell.SelectionStyle = UITableViewCellSelectionStyle.None;
-            cell.FieldLabel.Text = label;
-            cell.TextInput.Placeholder = placeholder ?? label;
-            cell.TextInput.Enabled = !isReadOnly;
-            cell.TextInput.Text = initialValue;
-            cell.TextInput.EditingChanged += cell.TextInput_EditingChanged;
-            cell.TextInput.ShouldChangeCharacters += (textField, range, replacementString) => cell.TextInput_ShouldChangeCharacters (textField, range, replacementString);
-            cell.SetModelProperty = setProperty;
+		public static TextEditCell Create(string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)
+		{
+			var cell = (TextEditCell)Nib.Instantiate(null, null)[0];
+			cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+			cell.FieldLabel.Text = label;
+			cell.TextInput.Placeholder = placeholder ?? label;
+			cell.TextInput.Enabled = !isReadOnly;
+			cell.TextInput.Text = initialValue;
+			cell.TextInput.EditingChanged += cell.TextInput_EditingChanged;
+			cell.TextInput.ShouldChangeCharacters += (textField, range, replacementString) => cell.TextInput_ShouldChangeCharacters(textField, range, replacementString);
+			cell.SetModelProperty = setProperty;
 			cell.Mask = mask;
-            return cell;
-        }
-
-        void TextInput_EditingChanged (object sender, EventArgs e)
-        {
-            var text = ((UITextField)sender).Text;
-            this.SetModelProperty (text);
-            this.ValueChanged?.Invoke (this, text);
-        }
-
-        bool TextInput_ShouldChangeCharacters (UITextField textField, NSRange range, string replacementString)
-        {
-            string text = textField.Text;
-            string newText = text.Substring (0, (int)range.Location) + replacementString + text.Substring ((int)(range.Location + range.Length));
-
-            if (this.MaxLength.HasValue && newText.Length > this.MaxLength.Value)
-                return false;
+			cell.ValidationRegex = validationRegex;
+			return cell;
+		}
 
 
-            if (ValidationRegex != null && !Regex.IsMatch (newText, ValidationRegex)) {
-                return false;
-            }
+		public void SetKeyboardType(KeyboardType type)
+		{
+			switch (type)
+			{
+				case KeyboardType.Decimal:
+					TextInput.KeyboardType = UIKeyboardType.DecimalPad;
+					break;
+				case KeyboardType.Numeric:
+					TextInput.KeyboardType = UIKeyboardType.NumberPad;
+					break;
+				default:
+					TextInput.KeyboardType = UIKeyboardType.Default;
+					break;
+			}
+		}
 
-            if (this.Mask == null || this.ValidateMask (newText))
-                return true;
 
-            if (text.Length == range.Location && Mask.Length > range.Location) {
-                var maskSymbol = Mask [(int)range.Location];
-                if (maskSymbol != '#' && maskSymbol != '*')
-                    textField.Text = textField.Text + maskSymbol;
-            }
+		void TextInput_EditingChanged(object sender, EventArgs e)
+		{
+			var text = ((UITextField)sender).Text;
+			this.SetModelProperty(this, text);
+		}
 
-            return false;
-        }
+		bool TextInput_ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
+		{
+			string text = textField.Text;
+			string newText = text.Substring(0, (int)range.Location) + replacementString + text.Substring((int)(range.Location + range.Length));
 
-        bool ValidateMask (string text, bool fullMatch = false)
-        {
-            var maskedValue = Regex.Replace (text, "\\d", "#");
-            maskedValue = Regex.Replace (maskedValue, "\\w", "*");
+			if (this.MaxLength.HasValue && newText.Length > this.MaxLength.Value)
+				return false;
 
-            string notAllowedSymbolsRegex;
-            var allowedSymbols = Regex.Matches (mask, "[^\\#\\*]");
-            if (allowedSymbols.Count > 0) {
-                notAllowedSymbolsRegex = string.Format ("[^\\#\\*\\{0}]", string.Join ("\\", allowedSymbols.Cast<Match> ().Select (a => a.Value).Distinct ()));
-            } else {
-                notAllowedSymbolsRegex = "[^\\#\\*]";
-            }
 
-            maskedValue = Regex.Replace (maskedValue, notAllowedSymbolsRegex, "_");
+			if (ValidationRegex != null && !Regex.IsMatch(newText, ValidationRegex))
+			{
+				return false;
+			}
 
-            var result = fullMatch ? string.Equals (maskedValue, Mask, StringComparison.InvariantCultureIgnoreCase) : this.Mask.StartsWith (maskedValue, StringComparison.InvariantCultureIgnoreCase);
-            return result;
-        }
+			if (this.Mask == null || this.ValidateMask(newText))
+				return true;
 
-        void ReleaseDesignerOutlets ()
-        {
-            if (FieldLabel != null) {
-                FieldLabel.Dispose ();
-                FieldLabel = null;
-            }
+			if (text.Length == range.Location && Mask.Length > range.Location)
+			{
+				var maskSymbol = Mask[(int)range.Location];
+				if (maskSymbol != '#' && maskSymbol != '*')
+					textField.Text = textField.Text + maskSymbol;
+			}
 
-            if (TextInput != null) {
-                TextInput.Dispose ();
-                TextInput = null;
-            }
-        }
-    }
+			return false;
+		}
+
+		bool ValidateMask(string text, bool fullMatch = false)
+		{
+			var maskedValue = Regex.Replace(text, "\\d", "#");
+			maskedValue = Regex.Replace(maskedValue, "\\w", "*");
+
+			string notAllowedSymbolsRegex;
+			var allowedSymbols = Regex.Matches(mask, "[^\\#\\*]");
+			if (allowedSymbols.Count > 0)
+			{
+				notAllowedSymbolsRegex = string.Format("[^\\#\\*\\{0}]", string.Join("\\", allowedSymbols.Cast<Match>().Select(a => a.Value).Distinct()));
+			}
+			else
+			{
+				notAllowedSymbolsRegex = "[^\\#\\*]";
+			}
+
+			maskedValue = Regex.Replace(maskedValue, notAllowedSymbolsRegex, "_");
+
+			var result = fullMatch ? string.Equals(maskedValue, Mask, StringComparison.InvariantCultureIgnoreCase) : this.Mask.StartsWith(maskedValue, StringComparison.InvariantCultureIgnoreCase);
+			return result;
+		}
+
+		void ReleaseDesignerOutlets()
+		{
+			if (FieldLabel != null)
+			{
+				FieldLabel.Dispose();
+				FieldLabel = null;
+			}
+
+			if (TextInput != null)
+			{
+				TextInput.Dispose();
+				TextInput = null;
+			}
+		}
+	}
 }

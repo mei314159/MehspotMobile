@@ -10,7 +10,7 @@ using Mehspot.iOS.Wrappers;
 using Mehspot.Core.Services;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Models;
-using Mehspot.iOS.Views.Cell;
+using Mehspot.iOS.Core.Builders;
 
 namespace Mehspot.iOS
 {
@@ -171,7 +171,7 @@ namespace Mehspot.iOS
 			this.ProfilePicture.AddGestureRecognizer(new UITapGestureRecognizer(ProfilePictureDoupleTapped) { NumberOfTapsRequired = 2 });
 
 			this.ViewHelper = new ViewHelper(this.View);
-			model = new ViewBadgeProfileModel<UITableViewCell>(new CellFactory(new BadgeService(MehspotAppContext.Instance.DataStorage), BadgeSummary.BadgeId), this);
+			model = new ViewBadgeProfileModel<UITableViewCell>(this, new BadgeService(MehspotAppContext.Instance.DataStorage), new IosCellBuilder());
 			model.OnRefreshing += Model_OnRefreshing;
 			model.OnRefreshed += Model_OnRefreshed;
 			model.OnWriteReviewButtonTouched += RecommendationsDataSource_OnWriteReviewButtonTouched;

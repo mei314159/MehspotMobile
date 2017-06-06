@@ -2,10 +2,11 @@
 using Android.Content;
 using Android.Views;
 using Android.Widget;
+using Mehspot.Core.Builders;
 
 namespace Mehspot.AndroidApp
 {
-	public class BooleanCell : RelativeLayout
+	public class BooleanCell : RelativeLayout, IBooleanEditCell
 	{
 		public BooleanCell(Context context, bool initialValue, Action<bool> setValue, string placeholder, bool isReadOnly = false) :
 							base(context)

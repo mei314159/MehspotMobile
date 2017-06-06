@@ -179,6 +179,7 @@
     <Folder Include="Controllers\Subdivisions\" />
     <Folder Include="Assets.xcassets\details-icon.imageset\" />
     <Folder Include="Assets.xcassets\review-icon.imageset\" />
+    <Folder Include="Core\Builders\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -267,7 +268,6 @@
     <Compile Include="Controllers\Badges\EditBadgeProfileController.designer.cs">
       <DependentUpon>EditBadgeProfileController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Badges\DataSources\EditBadgeTableSource.cs" />
     <Compile Include="Controllers\Badges\SearchBadgeController.cs" />
     <Compile Include="Controllers\Badges\SearchBadgeController.designer.cs">
       <DependentUpon>..\Search\SearchBadgeController.cs</DependentUpon>
@@ -326,7 +326,7 @@
     <Compile Include="Views\Cell\MessageCell.designer.cs">
       <DependentUpon>MessageCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cell\CellFactory.cs" />
+    <Compile Include="Core\Builders\iOSCellBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

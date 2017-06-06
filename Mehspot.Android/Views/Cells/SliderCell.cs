@@ -9,10 +9,10 @@ namespace Mehspot.AndroidApp
 
 	public class SliderCell<TProperty> : RelativeLayout
 	{
-		readonly int minValue;
-		readonly int maxValue;
+		readonly float minValue;
+		readonly float maxValue;
 
-		public SliderCell(Context context, int? defaultValue, Action<TProperty> setProperty, string placeholder, int? minValue, int? maxValue, bool isReadOnly = false) :
+		public SliderCell(Context context, int? defaultValue, Action<TProperty> setProperty, string placeholder, float? minValue, float? maxValue, bool isReadOnly = false) :
 								base(context)
 		{
 			this.minValue = minValue ?? 0;
@@ -33,12 +33,12 @@ namespace Mehspot.AndroidApp
 
 		private int ValueToProgress(float value)
 		{
-			return (int) (value / (float)(maxValue - minValue) * 100);
+			return (int)(value / (float)(maxValue - minValue) * 100);
 		}
 
 		private int ProgressToValue(int progress)
 		{
-			return (maxValue - minValue) * progress / 100;
+			return (int)((maxValue - minValue) * progress / 100);
 		}
 
 		public SeekBar CellSlider => this.FindViewById<SeekBar>(Resource.SliderCell.Slider);

@@ -1,16 +1,15 @@
-﻿
+
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Mehspot.AndroidApp.Core.Builders;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
-using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
-using Mehspot.iOS.Views.Cell;
 
 namespace Mehspot.AndroidApp
 {
@@ -31,7 +30,7 @@ namespace Mehspot.AndroidApp
 
 			this.ViewHelper = new ActivityHelper(this);
 			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
-			this.model = new SearchBadgeModel<View>(this, badgeService, new CellFactory(this, badgeService, BadgeSummary.BadgeId));
+			this.model = new SearchBadgeModel<View>(this, badgeService, new AndroidCellBuilder(this));
 			this.Title = this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.SearchFilter.toolbar).Title = this.model.GetTitle();
 
 			SearchButton.Click += SearchButton_Click;
@@ -61,5 +60,5 @@ namespace Mehspot.AndroidApp
 		}
 	}
 
-	
+
 }
