@@ -20,7 +20,7 @@ using Mehspot.Core.Builders;
 
 namespace Mehspot.iOS
 {
-	public partial class EditProfileViewController : UITableViewController, IUITableViewDataSource, IUITableViewDelegate
+	public partial class EditProfileViewController : UITableViewController
 	{
 		volatile bool loading;
 		volatile bool dataLoaded;
@@ -49,6 +49,12 @@ namespace Mehspot.iOS
 			return item;
 		}
 
+		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			var item = cells[indexPath.Row];
+			return item.Frame.Height;
+		}
+
 		public override nint RowsInSection(UITableView tableView, nint section)
 		{
 			return cells.Count;
@@ -61,11 +67,10 @@ namespace Mehspot.iOS
 			viewHelper = new ViewHelper(this.View);
 			ChangePhotoButton.Layer.BorderWidth = 1;
 			ChangePhotoButton.Layer.BorderColor = UIColor.LightGray.CGColor;
-			TableView.Delegate = this;
-			TableView.WeakDataSource = this;
 			TableView.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			TableView.TableHeaderView.Hidden = TableView.TableFooterView.Hidden = true;
-
+			TableView.RowHeight = UITableView.AutomaticDimension;
+			TableView.EstimatedRowHeight = 44;
 			this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
 		}
 
@@ -246,8 +251,7 @@ namespace Mehspot.iOS
 			cells.Clear();
 			cells.Add(TextEditCell.Create(profile.UserName, (c, a) => profile.UserName = a, "User Name"));
 			cells.Add(TextEditCell.Create(profile.Email, (c, a) => profile.Email = a, "Email", null, true));
-			var phoneNumberCell = TextEditCell.Create(profile.PhoneNumber, (c, a) => profile.PhoneNumber = a, "Phone Number");
-			phoneNumberCell.Mask = "(###)###-####";
+			var phoneNumberCell = TextEditCell.Create(profile.PhoneNumber, (c, a) => profile.PhoneNumber = a, "Phone Number", mask: "(###)###-####");
 			cells.Add(phoneNumberCell);
 			cells.Add(PickerCell.CreateDatePicker(profile.DateOfBirth, (property) => { profile.DateOfBirth = property; }, "Date Of Birth"));
 			cells.Add(PickerCell.Create(profile.Gender, (property) => { profile.Gender = property; }, "Gender", genders));

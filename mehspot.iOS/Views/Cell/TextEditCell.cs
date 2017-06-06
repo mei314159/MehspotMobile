@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using CoreGraphics;
 using Foundation;
 using Mehspot.Core.Builders;
+using Mehspot.iOS.Extensions;
 using UIKit;
 
 namespace Mehspot.iOS.Views
@@ -25,11 +27,13 @@ namespace Mehspot.iOS.Views
 		}
 
 		[Outlet]
-		UILabel FieldLabel { get; set; }
+		public UILabel FieldLabel { get; set; }
 
 		[Outlet]
-		public UITextField TextInput { get; set; }
+		public ExtendedTextView TextView { get; set; }
 
+		[Outlet]
+		public NSLayoutConstraint TextViewHeight { get; set; }
 
 		public int? MaxLength { get; set; }
 
@@ -40,17 +44,17 @@ namespace Mehspot.iOS.Views
 				return mask;
 			}
 
-			set
+			private set
 			{
 				mask = value;
 				this.MaxLength = mask?.Length;
-				this.TextInput.Placeholder = mask;
+				this.TextView.Placeholder = mask;
 			}
 		}
 
 		public string ValidationRegex { get; set; }
 
-		public bool IsValid => ValidateMask(TextInput.Text, true);
+		public bool IsValid => ValidateMask(TextView.Text, true);
 
 		public Action<ITextEditCell, string> SetModelProperty;
 
@@ -59,13 +63,21 @@ namespace Mehspot.iOS.Views
 			var cell = (TextEditCell)Nib.Instantiate(null, null)[0];
 			cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 			cell.FieldLabel.Text = label;
-			cell.TextInput.Placeholder = placeholder ?? label;
-			cell.TextInput.Enabled = !isReadOnly;
-			cell.TextInput.Text = initialValue;
-			cell.TextInput.EditingChanged += cell.TextInput_EditingChanged;
-			cell.TextInput.ShouldChangeCharacters += (textField, range, replacementString) => cell.TextInput_ShouldChangeCharacters(textField, range, replacementString);
+			if (string.IsNullOrWhiteSpace(mask))
+			{
+				cell.TextView.Placeholder = placeholder ?? label;
+			}
+			else
+			{
+				cell.Mask = mask;
+			}
+			cell.TextView.Editable = !isReadOnly;
+			cell.TextView.Text = initialValue;
+			cell.TextView.ShowPlaceholder();
+			cell.TextView.Changed += cell.TextInput_EditingChanged;
+			cell.TextView.ShouldChangeText += cell.TextInput_ShouldChangeCharacters;
 			cell.SetModelProperty = setProperty;
-			cell.Mask = mask;
+
 			cell.ValidationRegex = validationRegex;
 			return cell;
 		}
@@ -76,13 +88,13 @@ namespace Mehspot.iOS.Views
 			switch (type)
 			{
 				case KeyboardType.Decimal:
-					TextInput.KeyboardType = UIKeyboardType.DecimalPad;
+					TextView.KeyboardType = UIKeyboardType.DecimalPad;
 					break;
 				case KeyboardType.Numeric:
-					TextInput.KeyboardType = UIKeyboardType.NumberPad;
+					TextView.KeyboardType = UIKeyboardType.NumberPad;
 					break;
 				default:
-					TextInput.KeyboardType = UIKeyboardType.Default;
+					TextView.KeyboardType = UIKeyboardType.Default;
 					break;
 			}
 		}
@@ -90,11 +102,21 @@ namespace Mehspot.iOS.Views
 
 		void TextInput_EditingChanged(object sender, EventArgs e)
 		{
-			var text = ((UITextField)sender).Text;
+			var textView = ((UITextView)sender);
+			var text = textView.Text;
 			this.SetModelProperty(this, text);
+
+			var sizeThatFitsTextView = textView.SizeThatFits(new CGSize(textView.Frame.Size.Width, int.MaxValue));
+			var height = sizeThatFitsTextView.Height > 100 ? 100 : sizeThatFitsTextView.Height < 43 ? 43 : sizeThatFitsTextView.Height;
+			TextViewHeight.Constant = height;
+			this.TextView.Frame = new CGRect(this.TextView.Frame.Location, new CGSize(this.TextView.Frame.Width, height));
+			this.Frame = new CGRect(this.Frame.Location, new CGSize(this.Frame.Width, height + 1));
+			var table = (UITableView)this.FindSuperviewOfType(null, typeof(UITableView));
+			table.BeginUpdates();
+			table.EndUpdates();
 		}
 
-		bool TextInput_ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
+		bool TextInput_ShouldChangeCharacters(UITextView textField, NSRange range, string replacementString)
 		{
 			string text = textField.Text;
 			string newText = text.Substring(0, (int)range.Location) + replacementString + text.Substring((int)(range.Location + range.Length));
@@ -151,10 +173,10 @@ namespace Mehspot.iOS.Views
 				FieldLabel = null;
 			}
 
-			if (TextInput != null)
+			if (TextView != null)
 			{
-				TextInput.Dispose();
-				TextInput = null;
+				TextView.Dispose();
+				TextView = null;
 			}
 		}
 	}

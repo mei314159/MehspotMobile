@@ -62,6 +62,8 @@ namespace Mehspot.iOS
 			model.LoadingStarted += Model_LoadingStarted;
 			model.LoadingEnded += Model_LoadingEnded;
 			TableView.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
+			//TableView.RowHeight = UITableView.AutomaticDimension;
+			//TableView.EstimatedRowHeight = 44;
 			this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
 		}
 
@@ -123,7 +125,8 @@ namespace Mehspot.iOS
 
 		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
-			return model.Cells[indexPath.Row].Frame.Height;
+			var cell = model.Cells[indexPath.Row];
+			return cell.Frame.Height;
 		}
 
 		private void Model_LoadingStarted()

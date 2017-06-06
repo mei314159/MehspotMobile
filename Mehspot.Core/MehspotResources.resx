@@ -55,10 +55,10 @@
 	    <value>Tutor Employer</value>
 	</data>
 	<data name="Babysitter_Description" xml:space="preserve">
-	    <value>Search for for families in need of a babysitter</value>
+	    <value>Search for babysitters</value>
 	</data>
 	<data name="BabysitterEmployer_Description" xml:space="preserve">
-	    <value>Search for babysitters</value>
+	    <value>Search for for families in need of a babysitter</value>
 	</data>
 	<data name="Fitness_Description" xml:space="preserve">
 	    <value>Search for fitness partner</value>
@@ -88,10 +88,10 @@
 	    <value>Search for other tennis players</value>
 	</data>
 	<data name="Tutor_Description" xml:space="preserve">
-	    <value>Search for students in needs of SAT, math, languages and other tutoring</value>
+	    <value>Search for tutors who teach SAT prep, math, languages, etc.</value>
 	</data>
 	<data name="TutorEmployer_Description" xml:space="preserve">
-	    <value>Search for tutors who teach SAT prep, math, languages, etc.</value>
+        <value>Search for students in needs of SAT, math, languages and other tutoring</value>
 	</data>
 	<data name="FirstName" xml:space="preserve">
         <value>First Name</value>
@@ -915,7 +915,7 @@
 	<data name="OtherJobsAgeRange_MiddleSchool" xml:space="preserve">
     <value>Middle School</value>
   </data>
-  <data name="Tennis_SearchResultsTitle" xml:space="preserve">
+	<data name="Tennis_SearchResultsTitle" xml:space="preserve">
     <value>Tennis Players</value>
   </data>
 	<data name="Golf_SearchResultsTitle" xml:space="preserve">
@@ -930,23 +930,22 @@
 	<data name="OtherJobs_SearchResultsTitle" xml:space="preserve">
     <value>Other Jobs</value>
   </data>
-  <data name="FriendshipFamilyComposition" xml:space="preserve">
+	<data name="FriendshipFamilyComposition" xml:space="preserve">
     <value>Family Composition</value>
   </data>
-  <data name="FriendshipLookingFor" xml:space="preserve">
+	<data name="FriendshipLookingFor" xml:space="preserve">
     <value>Looking For</value>
   </data>
-  <data name="FriendshipLookingFor_CoupleFriends" xml:space="preserve">
+	<data name="FriendshipLookingFor_CoupleFriends" xml:space="preserve">
     <value>Couple Friends</value>
   </data>
-  <data name="FriendshipLookingFor_FriendsJustForMe" xml:space="preserve">
+	<data name="FriendshipLookingFor_FriendsJustForMe" xml:space="preserve">
     <value>Friends Just for Me</value>
   </data>
-  <data name="FriendshipLookingFor_All" xml:space="preserve">
+	<data name="FriendshipLookingFor_All" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="FriendshipProfession" xml:space="preserve">
+	<data name="FriendshipProfession" xml:space="preserve">
     <value>Profession</value>
   </data>
-	
 </root>
