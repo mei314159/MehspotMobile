@@ -62,17 +62,18 @@ namespace Mehspot.iOS.Controllers
 			CameraPosition camera;
 			if (selectedSubdivision == null)
 			{
-				camera = CameraPosition.FromCamera(37.79, 32.40, 6);
+				camera = CameraPosition.FromCamera(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude, 6);
 			}
 			else
 			{
 				camera = CameraPosition.FromCamera(selectedSubdivision.Latitude, selectedSubdivision.Longitude, 15);
 			}
 			mapView = MapView.FromCamera(MapWrapperView.Bounds, camera);
-			mapView.MyLocationEnabled = true;
+			//mapView.MyLocationEnabled = true;
 
 			marker = Marker.FromPosition(camera.Target);
 			marker.Map = mapView;
+			marker.Position = camera.Target;
 
 			MapWrapperView.AddSubview(mapView);
 		}
@@ -80,8 +81,7 @@ namespace Mehspot.iOS.Controllers
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-			if (this.selectedSubdivision != null)
-				RefreshMap(this.selectedSubdivision);
+			RefreshMap(this.selectedSubdivision);
 		}
 
 		public void Selected(UIPickerView pickerView, nint row, nint component)
@@ -92,9 +92,12 @@ namespace Mehspot.iOS.Controllers
 
 		private void RefreshMap(SubdivisionDTO subdivision)
 		{
-			var camera = CameraPosition.FromCamera(subdivision.Latitude, subdivision.Longitude, 15);
-			mapView.Camera = camera;
-			marker.Position = camera.Target;
+			if (subdivision != null)
+			{
+				var camera = CameraPosition.FromCamera(subdivision.Latitude, subdivision.Longitude, 15);
+				mapView.Camera = camera;
+				marker.Position = camera.Target;
+			}
 		}
 
 		partial void SaveButtonTouched(UIBarButtonItem sender)

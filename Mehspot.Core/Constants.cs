@@ -23,5 +23,11 @@ namespace Mehspot.Core
             public const string Friendship = "Friendship";
             public const string OtherJobs = "OtherJobs";
         }
+
+        public class Location
+        {
+            public const double DefaultLatitude = 33.748995;
+            public const double DefaultLongitude = -84.387982;
+        }
     }
 }
