@@ -7,15 +7,16 @@ using Mehspot.Core;
 using Mehspot.iOS.Views.CustomPicker;
 using Mehspot.Core.DTO.Subdivision;
 using UIKit;
+using CoreLocation;
 
 namespace Mehspot.iOS.Controllers
 {
-	public partial class SubdivisionsListController : UIViewController
+	public partial class SubdivisionsListController : UIViewController, ICLLocationManagerDelegate
 	{
 		MapView mapView;
 		Marker marker;
 		SubdivisionDTO selectedSubdivision;
-
+		private CLLocationManager locationManager;
 		public event Action<SubdivisionDTO> OnDismissed;
 
 		public SubdivisionsListController() : base("SubdivisionsListController", NSBundle.MainBundle)
@@ -31,6 +32,7 @@ namespace Mehspot.iOS.Controllers
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
 			int? selectedRow = null;
 			if (Subdivisions != null)
 			{
@@ -44,9 +46,13 @@ namespace Mehspot.iOS.Controllers
 						break;
 					}
 				}
-				if (selectedSubdivision == null && selectedRow.HasValue)
+				if (selectedSubdivision == null)
 				{
-					selectedSubdivision = Subdivisions[selectedRow.Value];
+					if (Subdivisions.Count > 0)
+					{
+						selectedSubdivision = Subdivisions[0];
+						selectedRow = 0;
+					}
 				}
 
 				var model = new CustomPickerModel(Subdivisions.Select(a => a.DisplayName).ToList());
@@ -59,21 +65,34 @@ namespace Mehspot.iOS.Controllers
 				model.ItemSelected += Selected;
 			}
 
-			CameraPosition camera;
+			mapView = new MapView(MapWrapperView.Bounds);
+			marker = new Marker();
+			marker.Map = mapView;
 			if (selectedSubdivision == null)
 			{
-				camera = CameraPosition.FromCamera(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude, 6);
+				locationManager = new CLLocationManager();
+				locationManager.DistanceFilter = 100;
+				locationManager.LocationsUpdated += (sender, e) =>
+				{
+					var location = e.Locations?.FirstOrDefault();
+					if (location != null)
+					{
+						locationManager.StopUpdatingLocation();
+						SetLocation(location.Coordinate.Latitude, location.Coordinate.Longitude);
+					}
+				};
+				locationManager.Failed += (sender, e) =>
+				{
+					SetLocation(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+				};
+				locationManager.StartUpdatingLocation();
+
 			}
 			else
 			{
-				camera = CameraPosition.FromCamera(selectedSubdivision.Latitude, selectedSubdivision.Longitude, 15);
+				SetLocation(selectedSubdivision.Latitude, selectedSubdivision.Longitude);
 			}
-			mapView = MapView.FromCamera(MapWrapperView.Bounds, camera);
-			//mapView.MyLocationEnabled = true;
 
-			marker = Marker.FromPosition(camera.Target);
-			marker.Map = mapView;
-			marker.Position = camera.Target;
 
 			MapWrapperView.AddSubview(mapView);
 		}
@@ -94,9 +113,7 @@ namespace Mehspot.iOS.Controllers
 		{
 			if (subdivision != null)
 			{
-				var camera = CameraPosition.FromCamera(subdivision.Latitude, subdivision.Longitude, 15);
-				mapView.Camera = camera;
-				marker.Position = camera.Target;
+				SetLocation(subdivision.Latitude, subdivision.Longitude);
 			}
 		}
 
@@ -142,6 +159,13 @@ namespace Mehspot.iOS.Controllers
 				controller.OnDismissed += SubdivisionUpdated;
 				this.PresentViewController(controller, true, null);
 			}
+		}
+
+		void SetLocation(double latitude, double longitude)
+		{
+			var camera = CameraPosition.FromCamera(latitude, longitude, 15);
+			mapView.Camera = camera;
+			marker.Position = camera.Target;
 		}
 
 		partial void MoreButtonTouched(UIBarButtonItem sender)

@@ -9,17 +9,20 @@ using Mehspot.Core.DTO;
 using Mehspot.Core.Services;
 using Mehspot.Core.DTO.Subdivision;
 using UIKit;
+using System.Linq;
 
 namespace Mehspot.iOS.Controllers
 {
 	public partial class SubdivisionController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
 	{
-		MapView mapView;
-		Marker marker;
-		Geocoder geocoder = new Geocoder();
-		PlacesClient placesClient;
-		SubdivisionService subdivisionService;
-		ViewHelper viewHelper;
+		private MapView mapView;
+		private Marker marker;
+		private Geocoder geocoder = new Geocoder();
+		private PlacesClient placesClient;
+
+		private CLLocationManager locationManager;
+		private SubdivisionService subdivisionService;
+		private ViewHelper viewHelper;
 		private bool setPlaceOnly;
 		private UITableView autocompleteResultsView;
 
@@ -49,31 +52,47 @@ namespace Mehspot.iOS.Controllers
 			LatitudeField.KeyboardType = LongitudeField.KeyboardType = UIKeyboardType.DecimalPad;
 			this.AddressField.EditingChanged += AddressField_EditingChanged;
 			this.AddressField.TouchDown += (sender, e) => HideAutocompleteResults();
-			CameraPosition camera;
+
+			mapView = new MapView(MapWrapperView.Bounds);
+			mapView.DraggingMarkerStarted += MapView_DraggingMarkerStarted;
+			mapView.DraggingMarkerEnded += MapView_DraggingMarkerEnded;
+			marker = new Marker();
+			marker.Map = mapView;
+			marker.Draggable = true;
+
+
 			if (Subdivision == null)
 			{
-				camera = CameraPosition.FromCamera(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude, 15);
+				locationManager = new CLLocationManager();
+				locationManager.DistanceFilter = 100;
+				locationManager.LocationsUpdated += (sender, e) =>
+				{
+					var location = e.Locations?.FirstOrDefault();
+					if (location != null)
+					{
+						locationManager.StopUpdatingLocation();
+						SetLocation(location.Coordinate.Latitude, location.Coordinate.Longitude);
+						GetLocationByCoordinates(mapView.Camera.Target);
+					}
+				};
+				locationManager.Failed += (sender, e) =>
+				{
+					SetLocation(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+					GetLocationByCoordinates(mapView.Camera.Target);
+				};
+				locationManager.StartUpdatingLocation();
 			}
 			else
 			{
 				setPlaceOnly = true;
-				camera = CameraPosition.FromCamera(Subdivision.Latitude, Subdivision.Longitude, 15);
 				this.NameField.Text = Subdivision.DisplayName;
 				this.AddressField.Text = Subdivision.FormattedAddress;
 				this.LatitudeField.Text = Subdivision.Latitude.ToString();
 				this.LongitudeField.Text = Subdivision.Longitude.ToString();
+
+				SetLocation(Subdivision.Latitude, Subdivision.Longitude);
+				GetLocationByCoordinates(mapView.Camera.Target);
 			}
-
-			GetLocationByCoordinates(camera.Target);
-
-			mapView = MapView.FromCamera(MapWrapperView.Bounds, camera);
-			mapView.MyLocationEnabled = true;
-			mapView.DraggingMarkerStarted += MapView_DraggingMarkerStarted; ;
-			mapView.DraggingMarkerEnded += MapView_DraggingMarkerEnded;
-
-			marker = Marker.FromPosition(camera.Target);
-			marker.Map = mapView;
-			marker.Draggable = true;
 
 			if (!AllowEdititng)
 				this.NavBarItem.RightBarButtonItems = new UIBarButtonItem[] { };
@@ -246,7 +265,7 @@ namespace Mehspot.iOS.Controllers
 				}
 			}
 
-			UpdateCamera();
+			SetLocation(this.Coordinate.Latitude, this.Coordinate.Longitude);
 		}
 
 		void HideAutocompleteResults()
@@ -257,9 +276,9 @@ namespace Mehspot.iOS.Controllers
 			}
 		}
 
-		void UpdateCamera()
+		void SetLocation(double latitude, double longitude)
 		{
-			var camera = CameraPosition.FromCamera(this.Coordinate.Latitude, this.Coordinate.Longitude, 15);
+			var camera = CameraPosition.FromCamera(latitude, longitude, 15);
 			mapView.Camera = camera;
 			marker.Position = camera.Target;
 		}
