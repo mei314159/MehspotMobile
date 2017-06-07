@@ -165,13 +165,17 @@ namespace Mehspot.iOS
 			viewHelper.HideOverlay();
 			if (!result.IsSuccess)
 			{
-				var error = string.Join(Environment.NewLine, result.ModelState.ModelState.SelectMany(a => a.Value));
-				UIAlertView alert = new UIAlertView(
-									result.ErrorMessage,
-									error,
-									(IUIAlertViewDelegate)null,
-									"OK");
-				alert.Show();
+				var modelState = result.ModelState?.ModelState;
+				if (modelState != null)
+				{
+					var error = string.Join(Environment.NewLine, modelState.SelectMany(a => a.Value));
+					UIAlertView alert = new UIAlertView(
+										result.ErrorMessage,
+										error,
+										(IUIAlertViewDelegate)null,
+										"OK");
+					alert.Show();
+				}
 			}
 
 			this.SaveButton.Enabled = true;
