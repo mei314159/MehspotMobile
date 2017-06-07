@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Net;
 using Android.Content;
-using Android.Graphics;
-using Android.Graphics.Drawables;
 using Android.Views;
 using Android.Widget;
 using Mehspot.Core;

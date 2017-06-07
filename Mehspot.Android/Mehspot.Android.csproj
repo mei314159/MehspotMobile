@@ -185,6 +185,7 @@
     <Compile Include="Core\Builders\AndroidCellBuilder.cs" />
     <Compile Include="Activities\EditBadgeProfileActivity.cs" />
     <Compile Include="Views\Cells\DateTimePickerCell.cs" />
+    <Compile Include="Views\SearchLimitCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -268,6 +269,7 @@
     <AndroidResource Include="Resources\drawable\roundedFrame25.xml" />
     <AndroidResource Include="Resources\layout\WriteReviewActivity.axml" />
     <AndroidResource Include="Resources\layout\EditBadgeProfileActivity.axml" />
+    <AndroidResource Include="Resources\layout\SearchLimitCell.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

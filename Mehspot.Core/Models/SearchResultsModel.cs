@@ -18,15 +18,22 @@ namespace Mehspot.Core
         private volatile bool loading;
         private volatile int selectedItemIndex;
 
-        private readonly ISearchResultsController controller;
         private readonly BadgeService badgeService;
         private readonly Type resultType;
-        private List<int> expandedRows = new List<int>();
+        private readonly List<int> expandedRows = new List<int>();
+        public readonly ISearchResultsController controller;
 
         public event OnLoadingError OnLoadingError;
         public event Action LoadingMoreStarted;
         public event Action LoadingMoreEnded;
 
+        public readonly List<ISearchResultDTO> Items = new List<ISearchResultDTO>();
+        public ISearchResultDTO SelectedItem => Items?[selectedItemIndex];
+
+        public bool RegisterButtonVisible =>
+        controller.BadgeSummary.RequiredBadgeId.HasValue
+         ? !this.controller.BadgeSummary.RequiredBadgeIsRegistered
+         : !this.controller.BadgeSummary.IsRegistered;
 
         public SearchResultsModel(ISearchResultsController controller, BadgeService badgeService)
         {
@@ -40,14 +47,6 @@ namespace Mehspot.Core
             resultType = typeof(List<>).MakeGenericType(type);
         }
 
-        public List<ISearchResultDTO> Items { get; } = new List<ISearchResultDTO>();
-        public ISearchResultDTO SelectedItem => Items?[selectedItemIndex];
-
-        public bool RegisterButtonVisible =>
-        controller.BadgeSummary.RequiredBadgeId.HasValue
-         ? !this.controller.BadgeSummary.RequiredBadgeIsRegistered
-         : !this.controller.BadgeSummary.IsRegistered;
-
         public string GetTitle()
         {
             var title = MehspotResources.ResourceManager.GetString(this.controller.BadgeSummary.BadgeName + "_SearchResultsTitle") ??
@@ -57,27 +56,14 @@ namespace Mehspot.Core
 
         public int GetRowsCount()
         {
-            var rowsCount = this.Items?.Count ?? 0;
-            if (RegisterButtonVisible)
-            {
-                if (rowsCount > limitedResultsCount)
-                {
-                    rowsCount = limitedResultsCount + 1;
-                }
-                else
-                {
-                    rowsCount++;
-                }
-            }
-
-            return rowsCount;
+            return RegisterButtonVisible ? this.Items.Count + 1 : this.Items.Count;
         }
 
         public async Task LoadDataAsync(bool refresh = false)
         {
             if (loading)
                 return;
-            
+
             loading = true;
             var skip = refresh ? 0 : (this.Items?.Count ?? 0);
             var result = await badgeService.Search(this.controller.SearchQuery, skip, pageSize, this.resultType);
@@ -88,7 +74,13 @@ namespace Mehspot.Core
                     this.Items.Clear();
                 }
 
-                this.Items.AddRange(result.Data);
+                IEnumerable<ISearchResultDTO> data = result.Data;
+                if (RegisterButtonVisible)
+                {
+                    data = data.Take(limitedResultsCount);
+                }
+
+                this.Items.AddRange(data);
                 this.controller.ReloadData();
             }
             else

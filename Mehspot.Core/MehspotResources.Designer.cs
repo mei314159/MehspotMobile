@@ -2535,5 +2535,13 @@ namespace Mehspot.Core
                 return ResourceManager.GetString("FriendshipProfession", resourceCulture);
             }
         }
+
+        public static string SearchLimitMessageTemplate
+        {
+            get
+            {
+                return ResourceManager.GetString("SearchLimitMessageTemplate", resourceCulture);
+            }
+        }
     }
 }

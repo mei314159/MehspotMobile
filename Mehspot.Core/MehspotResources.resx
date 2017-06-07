@@ -948,4 +948,7 @@
 	<data name="FriendshipProfession" xml:space="preserve">
     <value>Profession</value>
   </data>
+	<data name="SearchLimitMessageTemplate" xml:space="preserve">
+    <value>If you want to see more results please click Register button below to sign up {0}</value>
+  </data>
 </root>
