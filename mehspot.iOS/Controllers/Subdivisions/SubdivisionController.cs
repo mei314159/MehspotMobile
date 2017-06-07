@@ -64,23 +64,15 @@ namespace Mehspot.iOS.Controllers
 			if (Subdivision == null)
 			{
 				locationManager = new CLLocationManager();
-				locationManager.DistanceFilter = 100;
-				locationManager.LocationsUpdated += (sender, e) =>
+				if (CLLocationManager.Status == CLAuthorizationStatus.NotDetermined)
 				{
-					var location = e.Locations?.FirstOrDefault();
-					if (location != null)
-					{
-						locationManager.StopUpdatingLocation();
-						SetLocation(location.Coordinate.Latitude, location.Coordinate.Longitude);
-						GetLocationByCoordinates(mapView.Camera.Target);
-					}
-				};
-				locationManager.Failed += (sender, e) =>
+					locationManager.RequestWhenInUseAuthorization();
+					locationManager.AuthorizationChanged += (sender, e) => DetectUserPosition(e.Status);
+				}
+				else
 				{
-					SetLocation(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
-					GetLocationByCoordinates(mapView.Camera.Target);
-				};
-				locationManager.StartUpdatingLocation();
+					DetectUserPosition(CLLocationManager.Status);
+				}
 			}
 			else
 			{
@@ -102,6 +94,37 @@ namespace Mehspot.iOS.Controllers
 
 			this.NameField.UserInteractionEnabled = true;
 			this.NameField.AddGestureRecognizer(new UITapGestureRecognizer(this.HideAutocompleteResults));
+		}
+
+		void DetectUserPosition(CLAuthorizationStatus status)
+		{
+			if (status == CLAuthorizationStatus.NotDetermined)
+				return;
+
+			if (status == CLAuthorizationStatus.Denied || status == CLAuthorizationStatus.Restricted)
+			{
+				SetLocation(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+			}
+			else
+			{
+				locationManager.DistanceFilter = 100;
+				locationManager.LocationsUpdated += (sender, e) =>
+				{
+					var location = e.Locations?.FirstOrDefault();
+					if (location != null)
+					{
+						locationManager.StopUpdatingLocation();
+						SetLocation(location.Coordinate.Latitude, location.Coordinate.Longitude);
+						GetLocationByCoordinates(mapView.Camera.Target);
+					}
+				};
+				locationManager.Failed += (sender, e) =>
+				{
+					SetLocation(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+					GetLocationByCoordinates(mapView.Camera.Target);
+				};
+				locationManager.StartUpdatingLocation();
+			}
 		}
 
 		void MapView_DraggingMarkerStarted(object sender, GMSMarkerEventEventArgs e)

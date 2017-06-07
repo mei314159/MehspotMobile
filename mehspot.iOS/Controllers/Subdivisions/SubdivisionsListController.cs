@@ -8,6 +8,7 @@ using Mehspot.iOS.Views.CustomPicker;
 using Mehspot.Core.DTO.Subdivision;
 using UIKit;
 using CoreLocation;
+using Mehspot.iOS.Wrappers;
 
 namespace Mehspot.iOS.Controllers
 {
@@ -71,6 +72,36 @@ namespace Mehspot.iOS.Controllers
 			if (selectedSubdivision == null)
 			{
 				locationManager = new CLLocationManager();
+				if (CLLocationManager.Status == CLAuthorizationStatus.NotDetermined)
+				{
+					locationManager.RequestWhenInUseAuthorization();
+					locationManager.AuthorizationChanged += (sender, e) => DetectUserPosition(e.Status);
+				}
+				else
+				{
+					DetectUserPosition(CLLocationManager.Status);
+				}
+			}
+			else
+			{
+				SetLocation(selectedSubdivision.Latitude, selectedSubdivision.Longitude);
+			}
+
+
+			MapWrapperView.AddSubview(mapView);
+		}
+
+		void DetectUserPosition(CLAuthorizationStatus status)
+		{
+			if (status == CLAuthorizationStatus.NotDetermined)
+				return;
+
+			if (status == CLAuthorizationStatus.Denied || status == CLAuthorizationStatus.Restricted)
+			{
+				SetLocation(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+			}
+			else
+			{
 				locationManager.DistanceFilter = 100;
 				locationManager.LocationsUpdated += (sender, e) =>
 				{
@@ -86,15 +117,23 @@ namespace Mehspot.iOS.Controllers
 					SetLocation(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
 				};
 				locationManager.StartUpdatingLocation();
-
 			}
-			else
+
+			locationManager.DistanceFilter = 100;
+			locationManager.LocationsUpdated += (sender, e) =>
 			{
-				SetLocation(selectedSubdivision.Latitude, selectedSubdivision.Longitude);
-			}
-
-
-			MapWrapperView.AddSubview(mapView);
+				var location = e.Locations?.FirstOrDefault();
+				if (location != null)
+				{
+					locationManager.StopUpdatingLocation();
+					SetLocation(location.Coordinate.Latitude, location.Coordinate.Longitude);
+				}
+			};
+			locationManager.Failed += (sender, e) =>
+			{
+				SetLocation(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+			};
+			locationManager.StartUpdatingLocation();
 		}
 
 		public override void ViewDidAppear(bool animated)
