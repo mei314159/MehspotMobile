@@ -9,6 +9,8 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Locations;
 using Android.OS;
+using Android.Runtime;
+using Android.Support.V7.App;
 using Android.Util;
 using Android.Widget;
 using Mehspot.AndroidApp.Adapters;
@@ -19,11 +21,10 @@ using Mehspot.Core.Models.Subdivisions;
 namespace Mehspot.AndroidApp.Activities
 {
 	[Activity(Label = "SubdivisionsListActivity")]
-	public class SubdivisionsListActivity : Activity, ISubdivisionsListController, IOnMapReadyCallback, ILocationListener
+	public class SubdivisionsListActivity : ActionBarActivity, ISubdivisionsListController, IOnMapReadyCallback, ILocationListener
 	{
 		static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
 		SubdivisionsListModel model;
-		private MapView mapView;
 		private Marker marker;
 		private GoogleMap map;
 
@@ -43,11 +44,11 @@ namespace Mehspot.AndroidApp.Activities
 		{
 			base.OnCreate(savedInstanceState);
 			this.SetContentView(Resource.Layout.SubdivisionsListActivity);
+			var menu = FindViewById<ActionMenuView>(Resource.SubdivisionListActivity.Menu);
+			menu.Menu.Add(new Java.Lang.String("hello"));
+
 			model = new SubdivisionsListModel(this);
-
-
-			this.mapView = FindViewById<MapView>(Resource.SubdivisionListActivity.MapView);
-			mapView.GetMapAsync(this);
+			model.Initialize();
 		}
 
 		public void DetectUserPosition(SetPositionDelegate onSuccess, Action onError)
@@ -76,15 +77,32 @@ namespace Mehspot.AndroidApp.Activities
 		public void SetMapLocation(double latitude, double longitude)
 		{
 			camera = CameraPosition.FromLatLngZoom(new LatLng(latitude, longitude), 15);
-			marker.Position = camera.Target;
-			map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(camera));
+			if (map == null)
+			{
+				FindViewById<MapView>(Resource.SubdivisionListActivity.MapView).GetMapAsync(this);
+			}
+			else
+			{
+				ApplyLocation();
+			}
 		}
 
 		public void OnMapReady(GoogleMap googleMap)
 		{
 			map = googleMap;
 			marker = map.AddMarker(new MarkerOptions());
-			model.Initialize();
+
+			ApplyLocation();
+		}
+
+		void ApplyLocation()
+		{
+			if (camera != null)
+			{
+				marker.Position = camera.Target;
+				map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(camera));
+				camera = null;
+			}
 		}
 
 		void InitializeLocationManager()

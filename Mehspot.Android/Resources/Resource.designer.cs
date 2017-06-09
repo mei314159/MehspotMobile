@@ -417,11 +417,14 @@ namespace Mehspot.AndroidApp
 		public partial class SubdivisionListActivity
 		{
 			
-			// aapt resource value: 0x7f1c0000
-			public const int MapView = 2132541440;
-			
 			// aapt resource value: 0x7f1c0001
-			public const int SubdivisionsList = 2132541441;
+			public const int MapView = 2132541441;
+			
+			// aapt resource value: 0x7f1c0000
+			public const int Menu = 2132541440;
+			
+			// aapt resource value: 0x7f1c0002
+			public const int SubdivisionsList = 2132541442;
 			
 			static SubdivisionListActivity()
 			{
