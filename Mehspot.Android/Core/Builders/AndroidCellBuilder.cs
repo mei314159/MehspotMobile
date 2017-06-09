@@ -72,7 +72,7 @@ namespace Mehspot.AndroidApp.Core.Builders
 
 		public override ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
 		{
-			return null;
+			return new SubdivisionPickerCell(activity, selectedId, setProperty, label, list, zipCode, isReadOnly);
 		}
 
 		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)

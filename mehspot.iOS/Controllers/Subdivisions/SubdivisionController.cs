@@ -13,7 +13,8 @@ using System.Linq;
 
 namespace Mehspot.iOS.Controllers
 {
-	public partial class SubdivisionController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
+	public partial class SubdivisionController :
+			UIViewController, IUITableViewDataSource, IUITableViewDelegate
 	{
 		private MapView mapView;
 		private Marker marker;

@@ -156,6 +156,8 @@
     <Compile Include="Contracts\Cells\KeyboardType.cs" />
     <Compile Include="Extensions\TypeInfoAllMemberExtensions.cs" />
     <Compile Include="Models\IListModel.cs" />
+    <Compile Include="Contracts\ViewControllers\ISubdivisionsListController.cs" />
+    <Compile Include="Models\Subdivisions\SubdivisionsListModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -176,6 +178,7 @@
     <Folder Include="Search\Filter\" />
     <Folder Include="Builders\" />
     <Folder Include="Contracts\Cells\" />
+    <Folder Include="Models\Subdivisions\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
