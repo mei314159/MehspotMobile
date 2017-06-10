@@ -24,5 +24,3 @@ using Android.App;
 
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
-
-[assembly: MetaData("com.google.android.maps.v2.API_KEY", Value = Mehspot.Core.Constants.MapsApiKey)]

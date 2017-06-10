@@ -418,7 +418,7 @@ namespace Mehspot.AndroidApp
 		{
 			
 			// aapt resource value: 0x7f1c0001
-			public const int MapView = 2132541441;
+			public const int MapViewWrapper = 2132541441;
 			
 			// aapt resource value: 0x7f1c0000
 			public const int Menu = 2132541440;
@@ -4735,8 +4735,8 @@ namespace Mehspot.AndroidApp
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f0700b5
-			public const int LabelNone = 2131165365;
+			// aapt resource value: 0x7f0700b6
+			public const int LabelNone = 2131165366;
 			
 			// aapt resource value: 0x7f070056
 			public const int abc_action_bar_home_description = 2131165270;
@@ -5011,8 +5011,11 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0700b3
 			public const int facebook_app_id = 2131165363;
 			
+			// aapt resource value: 0x7f0700b5
+			public const int fb_login_protocol_scheme = 2131165365;
+			
 			// aapt resource value: 0x7f0700b4
-			public const int fb_login_protocol_scheme = 2131165364;
+			public const int google_maps_api = 2131165364;
 			
 			// aapt resource value: 0x7f0700b1
 			public const int hello = 2131165361;

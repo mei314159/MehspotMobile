@@ -12,6 +12,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Util;
+using Android.Views;
 using Android.Widget;
 using Mehspot.AndroidApp.Adapters;
 using Mehspot.Core.Contracts.ViewControllers;
@@ -44,8 +45,8 @@ namespace Mehspot.AndroidApp.Activities
 		{
 			base.OnCreate(savedInstanceState);
 			this.SetContentView(Resource.Layout.SubdivisionsListActivity);
-			var menu = FindViewById<ActionMenuView>(Resource.SubdivisionListActivity.Menu);
-			menu.Menu.Add(new Java.Lang.String("hello"));
+			//var menu = FindViewById<ActionMenuView>(Resource.SubdivisionListActivity.Menu);
+			//menu.Menu.Add(new Java.Lang.String("hello"));
 
 			model = new SubdivisionsListModel(this);
 			model.Initialize();
@@ -64,7 +65,9 @@ namespace Mehspot.AndroidApp.Activities
 
 			if (listView.Adapter == null)
 			{
-				listView.Adapter = new SubdivisionsListAdapter(this, subdivisions);
+				var subdivisionsListAdapter = new SubdivisionsListAdapter(this, subdivisions);
+				subdivisionsListAdapter.Clicked += SubdivisionsListAdapter_Clicked;
+				listView.Adapter = subdivisionsListAdapter;
 			}
 			else
 			{
@@ -79,7 +82,16 @@ namespace Mehspot.AndroidApp.Activities
 			camera = CameraPosition.FromLatLngZoom(new LatLng(latitude, longitude), 15);
 			if (map == null)
 			{
-				FindViewById<MapView>(Resource.SubdivisionListActivity.MapView).GetMapAsync(this);
+
+				var mapOptions = new GoogleMapOptions()
+							.InvokeMapType(GoogleMap.MapTypeNormal)
+							.InvokeZoomControlsEnabled(true);
+
+				var fragTx = FragmentManager.BeginTransaction();
+				var mapFragment = MapFragment.NewInstance(mapOptions);
+				fragTx.Add(Resource.SubdivisionListActivity.MapViewWrapper, mapFragment, "map");
+				fragTx.Commit();
+				mapFragment.GetMapAsync(this);
 			}
 			else
 			{
@@ -90,7 +102,9 @@ namespace Mehspot.AndroidApp.Activities
 		public void OnMapReady(GoogleMap googleMap)
 		{
 			map = googleMap;
-			marker = map.AddMarker(new MarkerOptions());
+			var options = new MarkerOptions();
+			options.SetPosition(camera.Target);
+			marker = map.AddMarker(options);
 
 			ApplyLocation();
 		}
@@ -140,5 +154,11 @@ namespace Mehspot.AndroidApp.Activities
 		public void OnProviderEnabled(string provider) { }
 
 		public void OnStatusChanged(string provider, Availability status, Bundle extras) { }
+
+		void SubdivisionsListAdapter_Clicked(SubdivisionDTO obj)
+		{
+			camera = CameraPosition.FromLatLngZoom(new LatLng(obj.Latitude, obj.Longitude), 15);
+			ApplyLocation();
+		}
 	}
 }
