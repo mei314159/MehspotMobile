@@ -15,6 +15,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Mehspot.AndroidApp.Adapters;
+using Mehspot.AndroidApp.Resources.layout;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.DTO.Subdivision;
 using Mehspot.Core.Models.Subdivisions;
@@ -22,7 +23,8 @@ using Mehspot.Core.Models.Subdivisions;
 namespace Mehspot.AndroidApp.Activities
 {
 	[Activity(Label = "SubdivisionsListActivity")]
-	public class SubdivisionsListActivity : ActionBarActivity, ISubdivisionsListController, IOnMapReadyCallback, ILocationListener
+	public class SubdivisionsListActivity : AppCompatActivity, ISubdivisionsListController, IOnMapReadyCallback, ILocationListener,
+	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener
 	{
 		static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
 		SubdivisionsListModel model;
@@ -38,7 +40,7 @@ namespace Mehspot.AndroidApp.Activities
 		public int? SelectedSubdivisionId => Intent.GetExtra<int?>("selectedSubdivisionId");
 
 		public List<SubdivisionDTO> Subdivisions => Intent.GetExtra<List<SubdivisionDTO>>("subdivisions");
-
+		public Android.Support.V7.Widget.Toolbar Toolbar => FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.SubdivisionListActivity.Menu);
 		public string ZipCode => Intent.GetStringExtra("zipCode");
 		public Action<SubdivisionDTO> OnDismissed => Intent.GetExtra<Action<SubdivisionDTO>>("onDismissed");
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -47,7 +49,7 @@ namespace Mehspot.AndroidApp.Activities
 			this.SetContentView(Resource.Layout.SubdivisionsListActivity);
 			//var menu = FindViewById<ActionMenuView>(Resource.SubdivisionListActivity.Menu);
 			//menu.Menu.Add(new Java.Lang.String("hello"));
-
+			this.Toolbar.SetOnMenuItemClickListener(this);
 			model = new SubdivisionsListModel(this);
 			model.Initialize();
 		}
@@ -65,9 +67,13 @@ namespace Mehspot.AndroidApp.Activities
 
 			if (listView.Adapter == null)
 			{
-				var subdivisionsListAdapter = new SubdivisionsListAdapter(this, subdivisions);
-				subdivisionsListAdapter.Clicked += SubdivisionsListAdapter_Clicked;
+				var subdivisionsListAdapter = new SubdivisionsListAdapter(this, subdivisions, model.SelectedSubdivision);
 				listView.Adapter = subdivisionsListAdapter;
+				listView.ItemClick += ListView_ItemClick;
+				if (model.SelectedSubdivision != null)
+				{
+					listView.SetSelection(subdivisions.IndexOf(model.SelectedSubdivision));
+				}
 			}
 			else
 			{
@@ -97,6 +103,8 @@ namespace Mehspot.AndroidApp.Activities
 			{
 				ApplyLocation();
 			}
+
+			UpdateToolbar(model.SelectedSubdivision);
 		}
 
 		public void OnMapReady(GoogleMap googleMap)
@@ -155,10 +163,51 @@ namespace Mehspot.AndroidApp.Activities
 
 		public void OnStatusChanged(string provider, Availability status, Bundle extras) { }
 
-		void SubdivisionsListAdapter_Clicked(SubdivisionDTO obj)
+		void SubdivisionsListAdapter_Clicked(SubdivisionDTO dto)
 		{
-			camera = CameraPosition.FromLatLngZoom(new LatLng(obj.Latitude, obj.Longitude), 15);
-			ApplyLocation();
+			model.SelectItem(dto);
+		}
+
+		void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+			var item = e.View as SubdivisionsListItem;
+			if (item != null)
+			{
+				item.Selected = true;
+				model.SelectItem(item.SubdivisionDTO);
+			}
+		}
+
+		void UpdateToolbar(SubdivisionDTO dto)
+		{
+			Toolbar.Menu.Clear();
+			if (dto == null)
+			{
+				Toolbar.InflateMenu(Resource.Menu.add_menu);
+			}
+			if (dto.IsVerified && !model.SelectedSubdivision.IsVerifiedByCurrentUser)
+			{
+				Toolbar.InflateMenu(Resource.Menu.view_menu);
+			}
+			else
+			{
+				Toolbar.InflateMenu(Resource.Menu.verify_menu);
+			}
+		}
+
+		public bool OnMenuItemClick(IMenuItem item)
+		{
+			switch (item.ItemId)
+			{
+				case Resource.Id.view_subdivision:
+					//Do stuff for item1
+					return true;
+				case Resource.Id.verify_subdivision:
+					//Do stuff for item2
+					return true;
+				default:
+					return false;
+			}
 		}
 	}
 }

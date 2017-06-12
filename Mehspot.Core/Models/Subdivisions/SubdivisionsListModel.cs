@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.DTO.Subdivision;
@@ -7,7 +7,7 @@ namespace Mehspot.Core.Models.Subdivisions
 {
     public class SubdivisionsListModel
     {
-        public SubdivisionDTO selectedSubdivision;
+        public SubdivisionDTO SelectedSubdivision;
         private readonly ISubdivisionsListController controller;
 
         public SubdivisionsListModel(ISubdivisionsListController controller)
@@ -19,14 +19,14 @@ namespace Mehspot.Core.Models.Subdivisions
         {
             if (this.controller.Subdivisions != null && this.controller.Subdivisions.Count > 0)
             {
-                selectedSubdivision =
+                SelectedSubdivision =
                     this.controller.Subdivisions?.FirstOrDefault(a => a.Id == this.controller.SelectedSubdivisionId) ??
                     this.controller.Subdivisions?.FirstOrDefault();
 
-                if (selectedSubdivision != null)
+                if (SelectedSubdivision != null)
                 {
-                    controller.InitializeList(this.controller.Subdivisions, selectedSubdivision);
-                    controller.SetMapLocation(selectedSubdivision.Latitude, selectedSubdivision.Longitude);
+                    controller.InitializeList(this.controller.Subdivisions, SelectedSubdivision);
+                    controller.SetMapLocation(SelectedSubdivision.Latitude, SelectedSubdivision.Longitude);
                 }
             }
             else
@@ -39,44 +39,50 @@ namespace Mehspot.Core.Models.Subdivisions
 
         public void RefreshMap()
         {
-            if (selectedSubdivision != null)
+            if (SelectedSubdivision != null)
             {
-                controller.SetMapLocation(selectedSubdivision.Latitude, selectedSubdivision.Longitude);
+                controller.SetMapLocation(SelectedSubdivision.Latitude, SelectedSubdivision.Longitude);
             }
         }
 
         public void SelectItem(int row)
         {
-            selectedSubdivision = controller.Subdivisions.ElementAtOrDefault(row);
+            SelectedSubdivision = controller.Subdivisions.ElementAtOrDefault(row);
             this.RefreshMap();
+        }
+
+        public void SelectItem(SubdivisionDTO dto)
+        {
+            var index = controller.Subdivisions.IndexOf(dto);
+            this.SelectItem(index);
         }
 
         public void OnSubdivisionCreated(EditSubdivisionDTO result)
         {
-            selectedSubdivision = new SubdivisionDTO();
-            UpdateDTO(selectedSubdivision, result, false);
-            this.controller.Subdivisions.Add(selectedSubdivision);
+            SelectedSubdivision = new SubdivisionDTO();
+            UpdateDTO(SelectedSubdivision, result, false);
+            this.controller.Subdivisions.Add(SelectedSubdivision);
 
-            controller.InitializeList(this.controller.Subdivisions, selectedSubdivision);
+            controller.InitializeList(this.controller.Subdivisions, SelectedSubdivision);
         }
 
         public void OnSubdivisionUpdated(EditSubdivisionDTO result)
         {
-            UpdateDTO(selectedSubdivision, result, true);
-            controller.InitializeList(this.controller.Subdivisions, selectedSubdivision);
+            UpdateDTO(SelectedSubdivision, result, true);
+            controller.InitializeList(this.controller.Subdivisions, SelectedSubdivision);
         }
 
         public void OnSubdivisionVerified(SubdivisionDTO result, bool isNewOption)
         {
-            selectedSubdivision.IsVerifiedByCurrentUser = true;
+            SelectedSubdivision.IsVerifiedByCurrentUser = true;
             if (isNewOption)
             {
-                selectedSubdivision = new SubdivisionDTO();
-                this.controller.Subdivisions.Add(selectedSubdivision);
+                SelectedSubdivision = new SubdivisionDTO();
+                this.controller.Subdivisions.Add(SelectedSubdivision);
             }
 
-            UpdateDTO(selectedSubdivision, result);
-            controller.InitializeList(this.controller.Subdivisions, selectedSubdivision);
+            UpdateDTO(SelectedSubdivision, result);
+            controller.InitializeList(this.controller.Subdivisions, SelectedSubdivision);
         }
 
         private void UpdateDTO(SubdivisionDTO dto, EditSubdivisionDTO result, bool isVerified)

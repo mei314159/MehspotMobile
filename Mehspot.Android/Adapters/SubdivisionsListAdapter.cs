@@ -9,19 +9,20 @@ using Android.Content;
 using Mehspot.Core.DTO.Subdivision;
 using System.Collections.Generic;
 using Android.Support.V4.Content;
+using Mehspot.AndroidApp.Resources.layout;
 
 namespace Mehspot.AndroidApp.Adapters
 {
 
 	public class SubdivisionsListAdapter : BaseAdapter<SubdivisionDTO>
 	{
-		public event Action<SubdivisionDTO> Clicked;
-
 		private readonly Activity context;
 		private readonly List<SubdivisionDTO> items;
+		private readonly SubdivisionDTO initiallySelectedItem;
 
-		public SubdivisionsListAdapter(Activity context, List<SubdivisionDTO> items)
+		public SubdivisionsListAdapter(Activity context, List<SubdivisionDTO> items, SubdivisionDTO selectedItem)
 		{
+			this.initiallySelectedItem = selectedItem;
 			this.items = items;
 			this.context = context;
 		}
@@ -42,20 +43,15 @@ namespace Mehspot.AndroidApp.Adapters
 
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView as TaggedTextView<SubdivisionDTO>; // re-use an existing view, if one is available
+			var subdivisionDTO = items[position];
+			var view = convertView as SubdivisionsListItem; // re-use an existing view, if one is available
 			if (view == null) // otherwise create a new one
 			{
-				view = new TaggedTextView<SubdivisionDTO>(context);
-				view.Click += (sender, e) =>
-				{
-					//view.SetBackgroundResource(Resource.Color.dark_green);
-					//view.SetTextColor(new Android.Graphics.Color(ContextCompat.GetColor(context, Resource.Color.white)));
-					Clicked?.Invoke(view.Data);
-				};
+				view = new SubdivisionsListItem(context);
 			}
 
-			view.Data = items[position];
-			view.Text = view.Data.DisplayName;
+			view.SubdivisionDTO = subdivisionDTO;
+			view.TextLabel.Text = view.SubdivisionDTO.DisplayName;
 
 			return view;
 

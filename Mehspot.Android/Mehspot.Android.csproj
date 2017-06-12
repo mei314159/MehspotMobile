@@ -193,6 +193,7 @@
     <Compile Include="Views\Cells\SubdivisionPickerCell.cs" />
     <Compile Include="Adapters\SubdivisionsListAdapter.cs" />
     <Compile Include="Views\TaggedTextView.cs" />
+    <Compile Include="Views\SubdivisionsListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -279,6 +280,11 @@
     <AndroidResource Include="Resources\layout\SearchLimitCell.axml" />
     <AndroidResource Include="Resources\layout\SubdivisionsListActivity.axml" />
     <AndroidResource Include="Resources\layout\SubdivisionPickerCell.axml" />
+    <AndroidResource Include="Resources\menu\verify_menu.xml" />
+    <AndroidResource Include="Resources\drawable\plusicon.png" />
+    <AndroidResource Include="Resources\menu\view_menu.xml" />
+    <AndroidResource Include="Resources\menu\add_menu.xml" />
+    <AndroidResource Include="Resources\layout\SubdivisionsListItem.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -293,6 +299,7 @@
     <Folder Include="Core\Builders\" />
     <Folder Include="Core\Extensions\" />
     <Folder Include="Core\Wrappers\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

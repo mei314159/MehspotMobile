@@ -6,4 +6,7 @@
 	<string name="google_maps_api">AIzaSyAxb5sCRGLPr_Ns4WwvsET3juwgVrznGKc</string>
 	<string name="fb_login_protocol_scheme">1429090000437670</string>
 	<string name="LabelNone">None</string>
+	<string name="new_subdivision">Add Subdivision</string>
+	<string name="verify_subdivision">Verify or Change Subdivision</string>
+	<string name="view_subdivision">View Subdivision</string>
 </resources>

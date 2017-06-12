@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
@@ -109,7 +109,7 @@ namespace Mehspot.iOS.Controllers
 
 		partial void SaveButtonTouched(UIBarButtonItem sender)
 		{
-			this.OnDismissed?.Invoke(model.selectedSubdivision);
+			this.OnDismissed?.Invoke(model.SelectedSubdivision);
 			DismissViewController(true, null);
 		}
 
@@ -132,10 +132,10 @@ namespace Mehspot.iOS.Controllers
 			if (e.ButtonIndex != 0)
 				return;
 
-			if (!model.selectedSubdivision.IsVerified && !model.selectedSubdivision.IsVerifiedByCurrentUser)
+			if (!model.SelectedSubdivision.IsVerified && !model.SelectedSubdivision.IsVerifiedByCurrentUser)
 			{
 				var controller = new VerifySubdivisionController();
-				controller.Subdivision = model.selectedSubdivision;
+				controller.Subdivision = model.SelectedSubdivision;
 				controller.ZipCode = this.ZipCode;
 				controller.SubdivisionVerified += model.OnSubdivisionVerified;
 				this.PresentViewController(controller, true, null);
@@ -143,7 +143,7 @@ namespace Mehspot.iOS.Controllers
 			else
 			{
 				var controller = new SubdivisionController();
-				controller.Subdivision = this.model.selectedSubdivision;
+				controller.Subdivision = this.model.SelectedSubdivision;
 				controller.ZipCode = this.ZipCode;
 				controller.AllowEdititng = MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin;
 				controller.OnDismissed += model.OnSubdivisionUpdated;
@@ -153,10 +153,10 @@ namespace Mehspot.iOS.Controllers
 
 		partial void MoreButtonTouched(UIBarButtonItem sender)
 		{
-			if (model.selectedSubdivision != null)
+			if (model.SelectedSubdivision != null)
 			{
 				var subdivisionOptionsActionSheet = new UIActionSheet("Options");
-				if (model.selectedSubdivision != null && !model.selectedSubdivision.IsVerified && !model.selectedSubdivision.IsVerifiedByCurrentUser)
+				if (model.SelectedSubdivision != null && !model.SelectedSubdivision.IsVerified && !model.SelectedSubdivision.IsVerifiedByCurrentUser)
 				{
 					subdivisionOptionsActionSheet.AddButton("Verify or Change Subdivision");
 				}
