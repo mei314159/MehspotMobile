@@ -194,6 +194,7 @@
     <Compile Include="Adapters\SubdivisionsListAdapter.cs" />
     <Compile Include="Views\TaggedTextView.cs" />
     <Compile Include="Views\SubdivisionsListItem.cs" />
+    <Compile Include="Activities\SubdivisionActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -285,6 +286,8 @@
     <AndroidResource Include="Resources\menu\view_menu.xml" />
     <AndroidResource Include="Resources\menu\add_menu.xml" />
     <AndroidResource Include="Resources\layout\SubdivisionsListItem.axml" />
+    <AndroidResource Include="Resources\layout\SubdivisionActivity.axml" />
+    <AndroidResource Include="Resources\menu\save_subdivision_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

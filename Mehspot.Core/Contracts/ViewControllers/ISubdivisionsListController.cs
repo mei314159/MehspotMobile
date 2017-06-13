@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO.Subdivision;
 
 namespace Mehspot.Core.Contracts.ViewControllers
@@ -16,6 +17,5 @@ namespace Mehspot.Core.Contracts.ViewControllers
         void InitializeList(List<SubdivisionDTO> subdivisions, SubdivisionDTO selectedSubdivision);
 
         void DetectUserPosition(SetPositionDelegate onSuccess, Action onError);
-
     }
 }

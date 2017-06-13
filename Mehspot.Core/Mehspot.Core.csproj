@@ -158,6 +158,8 @@
     <Compile Include="Models\IListModel.cs" />
     <Compile Include="Contracts\ViewControllers\ISubdivisionsListController.cs" />
     <Compile Include="Models\Subdivisions\SubdivisionsListModel.cs" />
+    <Compile Include="Models\Subdivisions\SubdivisionModel.cs" />
+    <Compile Include="Contracts\ViewControllers\ISubdivisionController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

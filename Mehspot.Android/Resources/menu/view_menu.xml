@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:mehspot="http://schemas.android.com/apk/res-auto">
 	<item android:id="@+id/new_subdivision" android:icon="@drawable/plusicon" android:title="@string/new_subdivision" mehspot:showAsAction="always" />
+	<item android:id="@+id/save_subdivision" android:title="@string/save_subdivision" mehspot:showAsAction="always|withText" />
 	<item android:id="@+id/view_subdivision" android:title="@string/view_subdivision" mehspot:showAsAction="never" />
 </menu>

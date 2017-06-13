@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+SubdivisionActivity/Menu"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:elevation="4dp"
+        android:background="@color/light_green"
+        titleTextColor="@color/white"
+        android:minWidth="50dp"
+        android:minHeight="50dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:title="Subdivision" />
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+SubdivisionActivity/NameField"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView1" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+SubdivisionActivity/NameField"
+        android:layout_toRightOf="@+id/textView1"
+        android:layout_below="@+SubdivisionActivity/Menu"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="00dp"
+        android:layout_marginLeft="50dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:text="Subdivision Name"
+        android:elegantTextHeight="true" />
+    <TextView
+        android:text="Address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+SubdivisionActivity/AddressField"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView2" />
+    <EditText
+        android:layout_height="wrap_content"
+        android:id="@+SubdivisionActivity/AddressField"
+        android:layout_toRightOf="@+id/textView1"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="00dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+SubdivisionActivity/NameField"
+        android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:text="Subdivision Location" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+SubdivisionActivity/LinearLayout"
+        android:layout_below="@+SubdivisionActivity/AddressField"
+        android:minHeight="50dp">
+        <TextView
+            android:text="Latitude:"
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.25" />
+        <EditText
+            android:id="@+SubdivisionActivity/LatitudeField"
+            android:minWidth="50dp"
+            android:width="50dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.25"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:text="53.90888"
+            android:textSize="15dp"
+            android:minHeight="50dp"
+            android:maxHeight="50dp"
+            android:elegantTextHeight="true" />
+        <TextView
+            android:text="Longitude:"
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.25" />
+        <EditText
+            android:id="@+SubdivisionActivity/LongitudeField"
+            android:minWidth="50dp"
+            android:width="50dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.25"
+            android:textSize="15dp"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:text="27.522191"
+            android:maxHeight="50dp"
+            android:minHeight="50dp"
+            android:elegantTextHeight="true" />
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+SubdivisionActivity/LinearLayout"
+        android:id="@+SubdivisionActivity/MapViewWrapper" />
+</RelativeLayout>

@@ -5,17 +5,21 @@ using System.Linq;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Locations;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Mehspot.AndroidApp.Adapters;
 using Mehspot.AndroidApp.Resources.layout;
+using Mehspot.Core;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.DTO.Subdivision;
 using Mehspot.Core.Models.Subdivisions;
@@ -43,6 +47,7 @@ namespace Mehspot.AndroidApp.Activities
 		public Android.Support.V7.Widget.Toolbar Toolbar => FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.SubdivisionListActivity.Menu);
 		public string ZipCode => Intent.GetStringExtra("zipCode");
 		public Action<SubdivisionDTO> OnDismissed => Intent.GetExtra<Action<SubdivisionDTO>>("onDismissed");
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -58,7 +63,23 @@ namespace Mehspot.AndroidApp.Activities
 		{
 			this.locationDetected = onSuccess;
 			this.locationDetectionError = onError;
-			locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+
+			if (ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessFineLocation) ==
+				Permission.Granted &&
+				ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessCoarseLocation) ==
+				Permission.Granted)
+			{
+				DetectUserPosition();
+			}
+			else
+			{
+				if (ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessFineLocation) != Permission.Granted || ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessCoarseLocation) != Permission.Granted)
+				{
+					ActivityCompat.RequestPermissions(this, new string[] {
+					Android.Manifest.Permission.AccessFineLocation,
+					Android.Manifest.Permission.AccessCoarseLocation }, 2);
+				}
+			}
 		}
 
 		public void InitializeList(List<SubdivisionDTO> subdivisions, SubdivisionDTO selectedSubdivision)
@@ -127,14 +148,14 @@ namespace Mehspot.AndroidApp.Activities
 			}
 		}
 
-		void InitializeLocationManager()
+		void DetectUserPosition()
 		{
 			locationManager = (LocationManager)GetSystemService(LocationService);
 			Criteria criteriaForLocationService = new Criteria
 			{
 				Accuracy = Accuracy.Fine
 			};
-			IList<string> acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
+			var acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
 
 			if (acceptableLocationProviders.Any())
 			{
@@ -146,6 +167,25 @@ namespace Mehspot.AndroidApp.Activities
 			}
 
 			Log.Debug(TAG, "Using " + locationProvider + ".");
+
+			locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+		}
+
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+		{
+			switch (requestCode)
+			{
+				case 2:
+					{
+						if (grantResults.FirstOrDefault() == Permission.Granted)
+						{
+							DetectUserPosition();
+						}
+						break;
+					}
+				default:
+					break;
+			}
 		}
 
 		public void OnLocationChanged(Location location)
@@ -197,17 +237,40 @@ namespace Mehspot.AndroidApp.Activities
 
 		public bool OnMenuItemClick(IMenuItem item)
 		{
+			var target = new Intent(this, typeof(SubdivisionActivity));
 			switch (item.ItemId)
 			{
+				case Resource.Id.new_subdivision:
+					target.PutExtra("zipCode", this.ZipCode);
+					target.PutExtra("allowEdititng", MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin);
+					target.PutExtra("onDismissed", new Action<EditSubdivisionDTO>(model.OnSubdivisionCreated));
+					this.StartActivity(target);
+					return true;
 				case Resource.Id.view_subdivision:
-					//Do stuff for item1
+					target.PutExtra("subdivision", this.model.SelectedSubdivision);
+					target.PutExtra("zipCode", this.ZipCode);
+					target.PutExtra("allowEdititng", MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin);
+					target.PutExtra("onDismissed", new Action<EditSubdivisionDTO>(model.OnSubdivisionUpdated));
+					this.StartActivity(target);
 					return true;
 				case Resource.Id.verify_subdivision:
+					//Do stuff for item2
+					return true;
+				case Resource.Id.save_subdivision:
+					DismissViewController(this.model.SelectedSubdivision);
 					//Do stuff for item2
 					return true;
 				default:
 					return false;
 			}
+		}
+
+
+
+		public void DismissViewController(SubdivisionDTO dto)
+		{
+			this.Finish();
+			OnDismissed(dto);
 		}
 	}
 }

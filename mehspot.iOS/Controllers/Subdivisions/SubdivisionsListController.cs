@@ -17,7 +17,6 @@ namespace Mehspot.iOS.Controllers
 	UIViewController, ICLLocationManagerDelegate, ISubdivisionsListController
 	{
 		private SubdivisionsListModel model;
-
 		private MapView mapView;
 		private Marker marker;
 		private CLLocationManager locationManager;
