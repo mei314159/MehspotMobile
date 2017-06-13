@@ -6,6 +6,9 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Gms.Common;
+using Android.Gms.Common.Apis;
+using Android.Gms.Location.Places.UI;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Locations;
@@ -28,12 +31,15 @@ namespace Mehspot.AndroidApp.Activities
 {
 	[Activity(Label = "Subdivision Activity")]
 	public class SubdivisionActivity : AppCompatActivity, ISubdivisionController, IOnMapReadyCallback, ILocationListener,
-	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener
+	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener, GoogleApiClient.IOnConnectionFailedListener
 	{
+
+		int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 		static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
 		SubdivisionModel model;
 		private Marker marker;
 		private GoogleMap map;
+		private Geocoder geocoder;
 		CameraPosition camera;
 		LocationManager locationManager;
 		string locationProvider;
@@ -207,6 +213,8 @@ namespace Mehspot.AndroidApp.Activities
 			this.SetContentView(Resource.Layout.SubdivisionActivity);
 			this.Toolbar.SetOnMenuItemClickListener(this);
 			ViewHelper = new ActivityHelper(this);
+			AddressField.FocusChange += AddressField_FocusChange; ;
+			geocoder = new Geocoder(this);
 			model = new SubdivisionModel(this, new SubdivisionService(MehspotAppContext.Instance.DataStorage));
 			model.Initialize();
 		}
@@ -219,6 +227,8 @@ namespace Mehspot.AndroidApp.Activities
 			if (ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessFineLocation) ==
 				Permission.Granted &&
 				ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessCoarseLocation) ==
+				Permission.Granted &&
+				ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessMockLocation) ==
 				Permission.Granted)
 			{
 				DetectUserPosition();
@@ -229,7 +239,8 @@ namespace Mehspot.AndroidApp.Activities
 				{
 					ActivityCompat.RequestPermissions(this, new string[] {
 					Android.Manifest.Permission.AccessFineLocation,
-					Android.Manifest.Permission.AccessCoarseLocation }, 1);
+					Android.Manifest.Permission.AccessCoarseLocation,
+						Android.Manifest.Permission.AccessMockLocation}, 1);
 				}
 			}
 		}
@@ -277,11 +288,23 @@ namespace Mehspot.AndroidApp.Activities
 		public void OnMapReady(GoogleMap googleMap)
 		{
 			map = googleMap;
+			map.MarkerDragStart += Map_MarkerDragStart;
+			map.MarkerDragEnd += Map_MarkerDragEnd;
 			var options = new MarkerOptions();
 			options.SetPosition(camera.Target);
 			marker = map.AddMarker(options);
 			marker.Draggable = MarkerDraggable;
 			ApplyLocation();
+		}
+
+		void Map_MarkerDragStart(object sender, GoogleMap.MarkerDragStartEventArgs e)
+		{
+			model.MarkerDraggingStarted();
+		}
+
+		void Map_MarkerDragEnd(object sender, GoogleMap.MarkerDragEndEventArgs e)
+		{
+			model.MarkerDraggingEnded(e.Marker.Position.Latitude, e.Marker.Position.Longitude);
 		}
 
 		void ApplyLocation(bool setMapOnly = false)
@@ -290,17 +313,18 @@ namespace Mehspot.AndroidApp.Activities
 			{
 				marker.Position = camera.Target;
 				map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(camera));
-				camera = null;
 				if (!setMapOnly)
 				{
 					LoadPlaceByCoordinates(camera.Target.Latitude, camera.Target.Longitude);
 				}
+
+				camera = null;
 			}
 		}
 
 		public void OnLocationChanged(Location location)
 		{
-			locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+			locationManager.RemoveUpdates(this);
 			this.locationDetected(location.Latitude, location.Longitude);
 		}
 
@@ -309,9 +333,15 @@ namespace Mehspot.AndroidApp.Activities
 			locationDetectionError();
 		}
 
-		public void OnProviderEnabled(string provider) { }
+		public void OnProviderEnabled(string provider)
+		{
 
-		public void OnStatusChanged(string provider, Availability status, Bundle extras) { }
+		}
+
+		public void OnStatusChanged(string provider, Availability status, Bundle extras)
+		{
+
+		}
 
 		public bool OnMenuItemClick(IMenuItem item)
 		{
@@ -340,15 +370,88 @@ namespace Mehspot.AndroidApp.Activities
 			}
 		}
 
-		public void LoadPlaceByCoordinates(double latitude, double longitude)
+		public async void LoadPlaceByCoordinates(double latitude, double longitude)
 		{
-			throw new NotImplementedException();
+			var addresses = await geocoder.GetFromLocationAsync(latitude, longitude, 1);
+			Address address = addresses.FirstOrDefault();
+
+			List<string> addressLines = new List<string>();
+			for (int i = 0; i < address.MaxAddressLineIndex; i++)
+			{
+				addressLines.Add(address.GetAddressLine(i));
+			}
+
+			model.ReverseGeocodeCallback(address.Latitude,
+										address.Longitude,
+										 address.CountryCode,
+										address.SubLocality,
+										 addressLines.ToArray());
 		}
 
 		public void DismissViewController(EditSubdivisionDTO dto)
 		{
 			this.Finish();
 			OnDismissed(dto);
+		}
+
+
+		void AddressField_FocusChange(object sender, View.FocusChangeEventArgs e)
+		{
+			if (!e.HasFocus)
+				return;
+			try
+			{
+				LatLngBounds bounds;
+				if (map?.CameraPosition != null)
+				{
+					bounds = new LatLngBounds(this.map.CameraPosition.Target, this.map.CameraPosition.Target);
+				}
+				else
+				{
+					var coords = new LatLng(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+					bounds = new LatLngBounds(coords, coords);
+				}
+
+				var intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.ModeFullscreen)
+													 .SetBoundsBias(bounds).Build(this);
+
+				StartActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+			}
+			catch (GooglePlayServicesRepairableException ex)
+			{
+				// TODO: Handle the error.
+			}
+			catch (GooglePlayServicesNotAvailableException ex)
+			{
+				// TODO: Handle the error.
+			}
+		}
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE && resultCode == Result.Ok)
+			{
+				var place = PlaceAutocomplete.GetPlace(this, data);
+				string country = null;
+				//foreach (var item in place.)
+				//{
+				//	if (item.Type == "country")
+				//	{
+				//		country = item.Name;
+				//	}
+				//}
+
+				model.ReverseGeocodeCallback(
+						place.LatLng.Latitude,
+						place.LatLng.Longitude,
+						country, place.NameFormatted.ToString(), place.AddressFormatted.ToString());
+				SetMapLocation(place.LatLng.Latitude, place.LatLng.Longitude, true);
+			}
+		}
+
+		public void OnConnectionFailed(ConnectionResult result)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

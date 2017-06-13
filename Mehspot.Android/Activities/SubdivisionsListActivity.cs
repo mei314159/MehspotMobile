@@ -190,7 +190,7 @@ namespace Mehspot.AndroidApp.Activities
 
 		public void OnLocationChanged(Location location)
 		{
-			locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+			locationManager.RemoveUpdates(this);
 			this.locationDetected(location.Latitude, location.Longitude);
 		}
 
