@@ -176,7 +176,6 @@ namespace Mehspot.AndroidApp
 			Segments.RecommendationsButton.Click += RecommendationsButton_Click;
 			Segments.MessageButton.Click += MessageButton_Click;
 			ListView.Adapter = new ViewListAdapter(this, model);
-			await model.RefreshView();
 		}
 
 		void DetailsButton_Click(object sender, EventArgs e)
@@ -197,10 +196,10 @@ namespace Mehspot.AndroidApp
 			this.StartActivity(messagingActivity);
 		}
 
-		protected override async void OnStart()
+		protected override void OnStart()
 		{
 			base.OnStart();
-			await model.RefreshView();
+			model.RefreshView();
 		}
 
 		public void SetProfilePictureUrl(string value)

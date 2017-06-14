@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using Android.Content;
-using Android.Graphics;
 
 namespace Mehspot.AndroidApp
 {
@@ -19,6 +17,9 @@ namespace Mehspot.AndroidApp
 		public static T GetExtra<T>(this Intent intent, string key)
 		{
 			var uniqueKey = intent.GetStringExtra(key);
+			if (uniqueKey == null)
+				return default(T);
+
 			return (T)storage[uniqueKey];
 		}
 	}

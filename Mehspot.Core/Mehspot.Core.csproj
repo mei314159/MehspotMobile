@@ -156,6 +156,14 @@
     <Compile Include="Contracts\Cells\KeyboardType.cs" />
     <Compile Include="Extensions\TypeInfoAllMemberExtensions.cs" />
     <Compile Include="Models\IListModel.cs" />
+    <Compile Include="Contracts\ViewControllers\ISubdivisionsListController.cs" />
+    <Compile Include="Models\Subdivisions\SubdivisionsListModel.cs" />
+    <Compile Include="Models\Subdivisions\SubdivisionModel.cs" />
+    <Compile Include="Contracts\ViewControllers\ISubdivisionController.cs" />
+    <Compile Include="Contracts\ViewControllers\IVerifySubdivisionController.cs" />
+    <Compile Include="DTO\Subdivision\VerifySubdivisionResult.cs" />
+    <Compile Include="Models\Subdivisions\VerifySubdivisionModel.cs" />
+    <Compile Include="Models\Subdivisions\SectionModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -176,6 +184,7 @@
     <Folder Include="Search\Filter\" />
     <Folder Include="Builders\" />
     <Folder Include="Contracts\Cells\" />
+    <Folder Include="Models\Subdivisions\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

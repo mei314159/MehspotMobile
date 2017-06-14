@@ -169,12 +169,12 @@ namespace Mehspot.Core
             var zipCell = cellBuilder.GetTextEditCell(profile.Profile.Zip, (c, a) => { profile.Profile.Zip = a; ZipCell_ValueChanged(c, a, subdivisionCellKey); }, "Zip", mask: "#####");
             Cells.Add((TCell)zipCell);
 
-            //var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.Profile.SubdivisionId, (property) =>
-            //{
-            //    profile.Profile.SubdivisionId = property?.Id;
-            //}, "Subdivision", profileSubdivisions, profile.Profile.Zip, string.IsNullOrWhiteSpace(profile.Profile.Zip) || !zipCell.IsValid);
-            //subdivisionCell.FieldName = subdivisionCellKey;
-            //Cells.Add((TCell)subdivisionCell);
+            var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.Profile.SubdivisionId, (property) =>
+            {
+                profile.Profile.SubdivisionId = property?.Id;
+            }, "Subdivision", profileSubdivisions, profile.Profile.Zip, string.IsNullOrWhiteSpace(profile.Profile.Zip) || !zipCell.IsValid);
+            subdivisionCell.FieldName = subdivisionCellKey;
+            Cells.Add((TCell)subdivisionCell);
 
             foreach (var badgeValue in profile.BadgeValues)
             {
