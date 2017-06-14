@@ -543,41 +543,72 @@ namespace Mehspot.AndroidApp
 			}
 		}
 		
+		public partial class VerifySubdivisionActivity
+		{
+			
+			// aapt resource value: 0x7f220004
+			public const int AddressSection = 2132934660;
+			
+			// aapt resource value: 0x7f220003
+			public const int AddressSectionLabel = 2132934659;
+			
+			// aapt resource value: 0x7f220005
+			public const int MapViewWrapper = 2132934661;
+			
+			// aapt resource value: 0x7f220000
+			public const int Menu = 2132934656;
+			
+			// aapt resource value: 0x7f220002
+			public const int NameSection = 2132934658;
+			
+			// aapt resource value: 0x7f220001
+			public const int NameSectionLabel = 2132934657;
+			
+			static VerifySubdivisionActivity()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private VerifySubdivisionActivity()
+			{
+			}
+		}
+		
 		public partial class ViewBadgeProfileActivity
 		{
 			
-			// aapt resource value: 0x7f220005
-			public const int DistanceLabel = 2132934661;
+			// aapt resource value: 0x7f230005
+			public const int DistanceLabel = 2133000197;
 			
-			// aapt resource value: 0x7f220002
-			public const int FavoriteIcon = 2132934658;
+			// aapt resource value: 0x7f230002
+			public const int FavoriteIcon = 2133000194;
 			
-			// aapt resource value: 0x7f220007
-			public const int InfoLabel1 = 2132934663;
+			// aapt resource value: 0x7f230007
+			public const int InfoLabel1 = 2133000199;
 			
-			// aapt resource value: 0x7f220008
-			public const int InfoLabel2 = 2132934664;
+			// aapt resource value: 0x7f230008
+			public const int InfoLabel2 = 2133000200;
 			
-			// aapt resource value: 0x7f220004
-			public const int LikesCount = 2132934660;
+			// aapt resource value: 0x7f230004
+			public const int LikesCount = 2133000196;
 			
-			// aapt resource value: 0x7f22000a
-			public const int ListView = 2132934666;
+			// aapt resource value: 0x7f23000a
+			public const int ListView = 2133000202;
 			
-			// aapt resource value: 0x7f220001
-			public const int Picture = 2132934657;
+			// aapt resource value: 0x7f230001
+			public const int Picture = 2133000193;
 			
-			// aapt resource value: 0x7f220000
-			public const int PictureFrame = 2132934656;
+			// aapt resource value: 0x7f230000
+			public const int PictureFrame = 2133000192;
 			
-			// aapt resource value: 0x7f220009
-			public const int Segments = 2132934665;
+			// aapt resource value: 0x7f230009
+			public const int Segments = 2133000201;
 			
-			// aapt resource value: 0x7f220006
-			public const int SubdivisionLabel = 2132934662;
+			// aapt resource value: 0x7f230006
+			public const int SubdivisionLabel = 2133000198;
 			
-			// aapt resource value: 0x7f220003
-			public const int UserNameLabel = 2132934659;
+			// aapt resource value: 0x7f230003
+			public const int UserNameLabel = 2133000195;
 			
 			static ViewBadgeProfileActivity()
 			{
@@ -592,11 +623,11 @@ namespace Mehspot.AndroidApp
 		public partial class WriteReviewActivity
 		{
 			
-			// aapt resource value: 0x7f230001
-			public const int CommentView = 2133000193;
+			// aapt resource value: 0x7f240001
+			public const int CommentView = 2133065729;
 			
-			// aapt resource value: 0x7f230000
-			public const int SaveButton = 2133000192;
+			// aapt resource value: 0x7f240000
+			public const int SaveButton = 2133065728;
 			
 			static WriteReviewActivity()
 			{
@@ -1903,44 +1934,44 @@ namespace Mehspot.AndroidApp
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f070082
-			public const int abc_background_cache_hint_selector_material_dark = 2131165314;
-			
 			// aapt resource value: 0x7f070083
-			public const int abc_background_cache_hint_selector_material_light = 2131165315;
+			public const int abc_background_cache_hint_selector_material_dark = 2131165315;
 			
 			// aapt resource value: 0x7f070084
-			public const int abc_btn_colored_borderless_text_material = 2131165316;
+			public const int abc_background_cache_hint_selector_material_light = 2131165316;
 			
 			// aapt resource value: 0x7f070085
-			public const int abc_btn_colored_text_material = 2131165317;
+			public const int abc_btn_colored_borderless_text_material = 2131165317;
 			
 			// aapt resource value: 0x7f070086
-			public const int abc_color_highlight_material = 2131165318;
+			public const int abc_btn_colored_text_material = 2131165318;
 			
 			// aapt resource value: 0x7f070087
-			public const int abc_hint_foreground_material_dark = 2131165319;
+			public const int abc_color_highlight_material = 2131165319;
 			
 			// aapt resource value: 0x7f070088
-			public const int abc_hint_foreground_material_light = 2131165320;
+			public const int abc_hint_foreground_material_dark = 2131165320;
+			
+			// aapt resource value: 0x7f070089
+			public const int abc_hint_foreground_material_light = 2131165321;
 			
 			// aapt resource value: 0x7f07001c
 			public const int abc_input_method_navigation_guard = 2131165212;
 			
-			// aapt resource value: 0x7f070089
-			public const int abc_primary_text_disable_only_material_dark = 2131165321;
-			
 			// aapt resource value: 0x7f07008a
-			public const int abc_primary_text_disable_only_material_light = 2131165322;
+			public const int abc_primary_text_disable_only_material_dark = 2131165322;
 			
 			// aapt resource value: 0x7f07008b
-			public const int abc_primary_text_material_dark = 2131165323;
+			public const int abc_primary_text_disable_only_material_light = 2131165323;
 			
 			// aapt resource value: 0x7f07008c
-			public const int abc_primary_text_material_light = 2131165324;
+			public const int abc_primary_text_material_dark = 2131165324;
 			
 			// aapt resource value: 0x7f07008d
-			public const int abc_search_url_text = 2131165325;
+			public const int abc_primary_text_material_light = 2131165325;
+			
+			// aapt resource value: 0x7f07008e
+			public const int abc_search_url_text = 2131165326;
 			
 			// aapt resource value: 0x7f07001d
 			public const int abc_search_url_text_normal = 2131165213;
@@ -1951,32 +1982,32 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f07001f
 			public const int abc_search_url_text_selected = 2131165215;
 			
-			// aapt resource value: 0x7f07008e
-			public const int abc_secondary_text_material_dark = 2131165326;
-			
 			// aapt resource value: 0x7f07008f
-			public const int abc_secondary_text_material_light = 2131165327;
+			public const int abc_secondary_text_material_dark = 2131165327;
 			
 			// aapt resource value: 0x7f070090
-			public const int abc_tint_btn_checkable = 2131165328;
+			public const int abc_secondary_text_material_light = 2131165328;
 			
 			// aapt resource value: 0x7f070091
-			public const int abc_tint_default = 2131165329;
+			public const int abc_tint_btn_checkable = 2131165329;
 			
 			// aapt resource value: 0x7f070092
-			public const int abc_tint_edittext = 2131165330;
+			public const int abc_tint_default = 2131165330;
 			
 			// aapt resource value: 0x7f070093
-			public const int abc_tint_seek_thumb = 2131165331;
+			public const int abc_tint_edittext = 2131165331;
 			
 			// aapt resource value: 0x7f070094
-			public const int abc_tint_spinner = 2131165332;
+			public const int abc_tint_seek_thumb = 2131165332;
 			
 			// aapt resource value: 0x7f070095
-			public const int abc_tint_switch_thumb = 2131165333;
+			public const int abc_tint_spinner = 2131165333;
 			
 			// aapt resource value: 0x7f070096
-			public const int abc_tint_switch_track = 2131165334;
+			public const int abc_tint_switch_thumb = 2131165334;
+			
+			// aapt resource value: 0x7f070097
+			public const int abc_tint_switch_track = 2131165335;
 			
 			// aapt resource value: 0x7f070020
 			public const int accent_material_dark = 2131165216;
@@ -1995,6 +2026,9 @@ namespace Mehspot.AndroidApp
 			
 			// aapt resource value: 0x7f070025
 			public const int background_material_light = 2131165221;
+			
+			// aapt resource value: 0x7f070082
+			public const int black = 2131165314;
 			
 			// aapt resource value: 0x7f070026
 			public const int bright_foreground_disabled_material_dark = 2131165222;
@@ -2071,8 +2105,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f070062
 			public const int com_facebook_button_send_background_color_pressed = 2131165282;
 			
-			// aapt resource value: 0x7f070097
-			public const int com_facebook_button_text_color = 2131165335;
+			// aapt resource value: 0x7f070098
+			public const int com_facebook_button_text_color = 2131165336;
 			
 			// aapt resource value: 0x7f070063
 			public const int com_facebook_device_auth_text = 2131165283;
@@ -2089,8 +2123,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f070067
 			public const int com_facebook_messenger_blue = 2131165287;
 			
-			// aapt resource value: 0x7f070098
-			public const int com_facebook_send_button_text_color = 2131165336;
+			// aapt resource value: 0x7f070099
+			public const int com_facebook_send_button_text_color = 2131165337;
 			
 			// aapt resource value: 0x7f070068
 			public const int com_facebook_share_button_text_color = 2131165288;
@@ -2098,8 +2132,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f070069
 			public const int com_smart_login_code = 2131165289;
 			
-			// aapt resource value: 0x7f070099
-			public const int common_google_signin_btn_text_dark = 2131165337;
+			// aapt resource value: 0x7f07009a
+			public const int common_google_signin_btn_text_dark = 2131165338;
 			
 			// aapt resource value: 0x7f07006e
 			public const int common_google_signin_btn_text_dark_default = 2131165294;
@@ -2113,8 +2147,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f070071
 			public const int common_google_signin_btn_text_dark_pressed = 2131165297;
 			
-			// aapt resource value: 0x7f07009a
-			public const int common_google_signin_btn_text_light = 2131165338;
+			// aapt resource value: 0x7f07009b
+			public const int common_google_signin_btn_text_light = 2131165339;
 			
 			// aapt resource value: 0x7f070072
 			public const int common_google_signin_btn_text_light_default = 2131165298;
@@ -2128,8 +2162,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f070075
 			public const int common_google_signin_btn_text_light_pressed = 2131165301;
 			
-			// aapt resource value: 0x7f07009b
-			public const int common_google_signin_btn_tint = 2131165339;
+			// aapt resource value: 0x7f07009c
+			public const int common_google_signin_btn_tint = 2131165340;
 			
 			// aapt resource value: 0x7f07007d
 			public const int dark_green = 2131165309;
@@ -2140,8 +2174,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f070010
 			public const int design_bottom_navigation_shadow_color = 2131165200;
 			
-			// aapt resource value: 0x7f07009c
-			public const int design_error = 2131165340;
+			// aapt resource value: 0x7f07009d
+			public const int design_error = 2131165341;
 			
 			// aapt resource value: 0x7f070011
 			public const int design_fab_shadow_end_color = 2131165201;
@@ -2173,8 +2207,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f07001a
 			public const int design_textinput_error_color_light = 2131165210;
 			
-			// aapt resource value: 0x7f07009d
-			public const int design_tint_password_toggle = 2131165341;
+			// aapt resource value: 0x7f07009e
+			public const int design_tint_password_toggle = 2131165342;
 			
 			// aapt resource value: 0x7f07002e
 			public const int dim_foreground_disabled_material_dark = 2131165230;
@@ -2347,11 +2381,11 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f070053
 			public const int switch_thumb_disabled_material_light = 2131165267;
 			
-			// aapt resource value: 0x7f07009e
-			public const int switch_thumb_material_dark = 2131165342;
-			
 			// aapt resource value: 0x7f07009f
-			public const int switch_thumb_material_light = 2131165343;
+			public const int switch_thumb_material_dark = 2131165343;
+			
+			// aapt resource value: 0x7f0700a0
+			public const int switch_thumb_material_light = 2131165344;
 			
 			// aapt resource value: 0x7f070054
 			public const int switch_thumb_normal_material_dark = 2131165268;
@@ -4187,7 +4221,7 @@ namespace Mehspot.AndroidApp
 			public const int satellite = 2131492882;
 			
 			// aapt resource value: 0x7f0c0118
-			public const int save_subdivision = 2131493144;
+			public const int save_button = 2131493144;
 			
 			// aapt resource value: 0x7f0c002f
 			public const int screen = 2131492911;
@@ -4849,10 +4883,13 @@ namespace Mehspot.AndroidApp
 			public const int TextViewItem = 2130968688;
 			
 			// aapt resource value: 0x7f040071
-			public const int ViewBadgeProfileActivity = 2130968689;
+			public const int VerifySubdivisionActivity = 2130968689;
 			
 			// aapt resource value: 0x7f040072
-			public const int WriteReviewActivity = 2130968690;
+			public const int ViewBadgeProfileActivity = 2130968690;
+			
+			// aapt resource value: 0x7f040073
+			public const int WriteReviewActivity = 2130968691;
 			
 			static Layout()
 			{
@@ -4871,7 +4908,7 @@ namespace Mehspot.AndroidApp
 			public const int add_menu = 2131623936;
 			
 			// aapt resource value: 0x7f0e0001
-			public const int save_subdivision_menu = 2131623937;
+			public const int save_button = 2131623937;
 			
 			// aapt resource value: 0x7f0e0002
 			public const int verify_menu = 2131623938;
@@ -5480,7 +5517,7 @@ namespace Mehspot.AndroidApp
 			public const int place_autocomplete_search_hint = 2131296257;
 			
 			// aapt resource value: 0x7f0900bd
-			public const int save_subdivision = 2131296445;
+			public const int save_button_label = 2131296445;
 			
 			// aapt resource value: 0x7f09006b
 			public const int search_menu_title = 2131296363;

@@ -237,16 +237,18 @@ namespace Mehspot.AndroidApp.Activities
 
 		public bool OnMenuItemClick(IMenuItem item)
 		{
-			var target = new Intent(this, typeof(SubdivisionActivity));
+			Intent target;
 			switch (item.ItemId)
 			{
 				case Resource.Id.new_subdivision:
+					target = new Intent(this, typeof(SubdivisionActivity));
 					target.PutExtra("zipCode", this.ZipCode);
 					target.PutExtra("allowEdititng", MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin);
 					target.PutExtra("onDismissed", new Action<EditSubdivisionDTO>(model.OnSubdivisionCreated));
 					this.StartActivity(target);
 					return true;
 				case Resource.Id.view_subdivision:
+					target = new Intent(this, typeof(SubdivisionActivity));
 					target.PutExtra("subdivision", this.model.SelectedSubdivision);
 					target.PutExtra("zipCode", this.ZipCode);
 					target.PutExtra("allowEdititng", MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin);
@@ -254,9 +256,13 @@ namespace Mehspot.AndroidApp.Activities
 					this.StartActivity(target);
 					return true;
 				case Resource.Id.verify_subdivision:
-					//Do stuff for item2
+					target = new Intent(this, typeof(VerifySubdivisionActivity));
+					target.PutExtra("subdivision", this.model.SelectedSubdivision);
+					target.PutExtra("zipCode", this.ZipCode);
+					target.PutExtra("onDismissed", new Action<SubdivisionDTO, bool>(model.OnSubdivisionVerified));
+					this.StartActivity(target);
 					return true;
-				case Resource.Id.save_subdivision:
+				case Resource.Id.save_button:
 					DismissViewController(this.model.SelectedSubdivision);
 					//Do stuff for item2
 					return true;

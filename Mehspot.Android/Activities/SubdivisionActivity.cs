@@ -33,7 +33,6 @@ namespace Mehspot.AndroidApp.Activities
 	public class SubdivisionActivity : AppCompatActivity, ISubdivisionController, IOnMapReadyCallback, ILocationListener,
 	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener, GoogleApiClient.IOnConnectionFailedListener
 	{
-
 		int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 		static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
 		SubdivisionModel model;
@@ -179,7 +178,7 @@ namespace Mehspot.AndroidApp.Activities
 					return;
 				}
 
-				Toolbar.InflateMenu(Resource.Menu.save_subdivision_menu);
+				Toolbar.InflateMenu(Resource.Menu.save_button);
 			}
 		}
 
@@ -345,7 +344,13 @@ namespace Mehspot.AndroidApp.Activities
 
 		public bool OnMenuItemClick(IMenuItem item)
 		{
-			return true;
+			if (item.ItemId == Resource.Id.save_button)
+			{
+				model.SaveAsync();
+				return true;
+			}
+
+			return false;
 		}
 
 		public void SetMapLocation(double latitude, double longitude, bool setMapOnly = false)
@@ -451,7 +456,7 @@ namespace Mehspot.AndroidApp.Activities
 
 		public void OnConnectionFailed(ConnectionResult result)
 		{
-			throw new NotImplementedException();
+			Log.Error(TAG, result.ErrorMessage);
 		}
 	}
 }

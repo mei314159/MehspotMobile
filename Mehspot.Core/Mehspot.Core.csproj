@@ -160,6 +160,10 @@
     <Compile Include="Models\Subdivisions\SubdivisionsListModel.cs" />
     <Compile Include="Models\Subdivisions\SubdivisionModel.cs" />
     <Compile Include="Contracts\ViewControllers\ISubdivisionController.cs" />
+    <Compile Include="Contracts\ViewControllers\IVerifySubdivisionController.cs" />
+    <Compile Include="DTO\Subdivision\VerifySubdivisionResult.cs" />
+    <Compile Include="Models\Subdivisions\VerifySubdivisionModel.cs" />
+    <Compile Include="Models\Subdivisions\SectionModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

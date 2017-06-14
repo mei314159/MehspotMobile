@@ -3,10 +3,10 @@
 	<style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="windowNoTitle">true</item>
 		<item name="windowActionBar">false</item>
-		<item name="colorControlNormal">#ffffffff</item>
-		<item name="colorPrimary">#ffc6d881</item>
-		<item name="colorPrimaryDark">#ffc6d881</item>
-		<item name="colorAccent">#ffffffff</item>
+		<item name="colorControlNormal">@color/white</item>
+		<item name="colorPrimary">@color/light_green</item>
+		<item name="colorPrimaryDark">@color/light_green</item>
+		<item name="colorAccent">@color/light_orange</item>
 	</style>
 	<style name="MyTheme" parent="MyTheme.Base">
 	</style>

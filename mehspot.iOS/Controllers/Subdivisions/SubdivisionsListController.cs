@@ -136,7 +136,7 @@ namespace Mehspot.iOS.Controllers
 				var controller = new VerifySubdivisionController();
 				controller.Subdivision = model.SelectedSubdivision;
 				controller.ZipCode = this.ZipCode;
-				controller.SubdivisionVerified += model.OnSubdivisionVerified;
+				controller.OnDismissed += model.OnSubdivisionVerified;
 				this.PresentViewController(controller, true, null);
 			}
 			else

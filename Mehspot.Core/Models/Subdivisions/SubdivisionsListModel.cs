@@ -102,12 +102,12 @@ namespace Mehspot.Core.Models.Subdivisions
 
         private void UpdateDTO(SubdivisionDTO dto, SubdivisionDTO result)
         {
-            dto.Id = result.Id;
-            if (result.IsVerified)
+            if (result.IsVerified || dto.Id == default(int))
             {
                 dto.DisplayName = result.DisplayName;
             }
 
+            dto.Id = result.Id;
             dto.OptionId = result.OptionId;
             dto.Latitude = result.Latitude;
             dto.Longitude = result.Longitude;

@@ -56,6 +56,31 @@ namespace Mehspot.iOS.Views
 
 		public bool IsValid => ValidateMask(TextView.Text, true);
 
+		public string Text
+		{
+			get
+			{
+				return TextView?.Text;
+			}
+			set
+			{
+				TextView.Text = value;
+			}
+		}
+
+		public bool Editable
+		{
+			get
+			{
+				return TextView.Editable;
+			}
+
+			set
+			{
+				TextView.Editable = value;
+			}
+		}
+
 		public Action<ITextEditCell, string> SetModelProperty;
 
 		public static TextEditCell Create(string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)

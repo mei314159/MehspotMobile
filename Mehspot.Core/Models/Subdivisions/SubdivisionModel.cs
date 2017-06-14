@@ -9,7 +9,7 @@ namespace Mehspot.Core.Models.Subdivisions
 {
     public class SubdivisionModel
     {
-        EditSubdivisionDTO DTO;
+        private readonly EditSubdivisionDTO DTO;
         private readonly ISubdivisionController controller;
         private readonly SubdivisionService subdivisionService;
 
@@ -95,6 +95,12 @@ namespace Mehspot.Core.Models.Subdivisions
         public async Task SaveAsync()
         {
             controller.ViewHelper.ShowOverlay("Saving...");
+
+            DTO.Name = controller.NameFieldText;
+            DTO.Address.FormattedAddress = controller.AddressFieldText;
+            double latitude, longitude;
+            DTO.Address.Latitude = double.TryParse(controller.LatitudeFieldText, out latitude) ? latitude : DTO.Address.Latitude;
+            DTO.Address.Longitude = double.TryParse(controller.LongitudeFieldText, out longitude) ? longitude : DTO.Address.Longitude;
 
             Result result;
             if (controller.Subdivision != null)

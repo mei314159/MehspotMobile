@@ -10,5 +10,5 @@
 	<string name="new_subdivision">Add Subdivision</string>
 	<string name="verify_subdivision">Verify or Change Subdivision</string>
 	<string name="view_subdivision">View Subdivision</string>
-	<string name="save_subdivision">Save</string>
+	<string name="save_button_label">Save</string>
 </resources>

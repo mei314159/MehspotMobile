@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO.Subdivision;
 
 namespace Mehspot.Core.Contracts.ViewControllers
