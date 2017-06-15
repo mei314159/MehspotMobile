@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace Mehspot.AndroidApp
 		}
 		void FnInitTabLayout()
 		{
-			tabLayout.SetTabTextColors(ContextCompat.GetColor(this, Resource.Color.white), ContextCompat.GetColor(this, Resource.Color.dark_orange));
+			tabLayout.SetTabTextColors(ContextCompat.GetColor(this, Resource.Color.black), ContextCompat.GetColor(this, Resource.Color.dark_orange));
 			//Fragment array
 			var fragments = new Android.Support.V4.App.Fragment[]
 			{

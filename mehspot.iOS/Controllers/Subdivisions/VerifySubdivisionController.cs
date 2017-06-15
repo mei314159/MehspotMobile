@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CoreLocation;
 using Foundation;
 using Google.Maps;
