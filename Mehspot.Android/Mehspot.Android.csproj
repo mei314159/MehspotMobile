@@ -191,9 +191,11 @@
     <Compile Include="Core\Builders\AndroidCellBuilder.cs" />
     <Compile Include="Activities\EditBadgeProfileActivity.cs" />
     <Compile Include="Views\Cells\DateTimePickerCell.cs" />
+    <Compile Include="Fragments\ProfileFragment.cs" />
     <Compile Include="Views\SearchLimitCell.cs" />
     <Compile Include="Activities\SubdivisionsListActivity.cs" />
     <Compile Include="Views\Cells\SubdivisionPickerCell.cs" />
+    <Compile Include="Views\ListProfileElement.cs" />
     <Compile Include="Adapters\SubdivisionsListAdapter.cs" />
     <Compile Include="Views\TaggedTextView.cs" />
     <Compile Include="Views\SubdivisionsListItem.cs" />
@@ -216,7 +218,7 @@
     <AndroidResource Include="Resources\layout\SplashScreen.axml" />
     <AndroidResource Include="Resources\drawable\logo.png" />
     <AndroidResource Include="Resources\layout\SignIn.axml" />
-    <AndroidResource Include="Resources\layout\Messaging.axml" />
+    <AndroidResource Include="Resources\layout\MessagingActivity.axml" />
     <AndroidResource Include="Resources\layout\MessageBubble.axml" />
     <AndroidResource Include="Resources\values\Colors.xml" />
     <AndroidResource Include="Resources\layout\MessageBoardItem.axml" />
@@ -282,15 +284,20 @@
     <AndroidResource Include="Resources\drawable\roundedFrame25.xml" />
     <AndroidResource Include="Resources\layout\WriteReviewActivity.axml" />
     <AndroidResource Include="Resources\layout\EditBadgeProfileActivity.axml" />
+    <AndroidResource Include="Resources\layout\ProfileViewActivity.axml" />
+    <AndroidResource Include="Resources\layout\ProfileDemo.axml" />
     <AndroidResource Include="Resources\layout\SearchLimitCell.axml" />
     <AndroidResource Include="Resources\layout\SubdivisionsListActivity.axml" />
     <AndroidResource Include="Resources\layout\SubdivisionPickerCell.axml" />
+    <AndroidResource Include="Resources\layout\DialogView.axml" />
     <AndroidResource Include="Resources\menu\verify_menu.xml" />
     <AndroidResource Include="Resources\drawable\plusicon.png" />
     <AndroidResource Include="Resources\menu\view_menu.xml" />
     <AndroidResource Include="Resources\menu\add_menu.xml" />
     <AndroidResource Include="Resources\layout\SubdivisionsListItem.axml" />
     <AndroidResource Include="Resources\layout\SubdivisionActivity.axml" />
+    <AndroidResource Include="Resources\drawable\roundedFrame50.xml" />
+    <AndroidResource Include="Resources\layout\DateViewCell.axml" />
     <AndroidResource Include="Resources\menu\save_button.xml" />
     <AndroidResource Include="Resources\layout\VerifySubdivisionActivity.axml" />
   </ItemGroup>

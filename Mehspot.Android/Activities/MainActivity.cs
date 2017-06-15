@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +35,8 @@ namespace Mehspot.AndroidApp
 			var fragments = new Android.Support.V4.App.Fragment[]
 			{
 				new MessageBoardFragment(),
-				new BadgesFragment()
+				new BadgesFragment(),
+				new ProfileFragment()
 			};
 			//Tab title array
 			var titles = CharSequence.ArrayFromStringArray(new[] { "Messages", "Badges", "Profile" });

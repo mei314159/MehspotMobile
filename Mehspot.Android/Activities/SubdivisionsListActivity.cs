@@ -181,6 +181,9 @@ namespace Mehspot.AndroidApp.Activities
 						{
 							DetectUserPosition();
 						}
+						else{
+                            this.locationDetected(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+						}
 						break;
 					}
 				default:

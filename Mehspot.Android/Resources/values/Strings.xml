@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">Mehspot</string>
@@ -7,6 +7,7 @@
 	<string name="google_places_api">AIzaSyAS8tyuYxb5dC6K08sMmD7mn0WnBS6AxEw</string>
 	<string name="fb_login_protocol_scheme">1429090000437670</string>
 	<string name="LabelNone">None</string>
+	<string name="take_photo_dialog">Take a photo from</string>
 	<string name="new_subdivision">Add Subdivision</string>
 	<string name="verify_subdivision">Verify or Change Subdivision</string>
 	<string name="view_subdivision">View Subdivision</string>

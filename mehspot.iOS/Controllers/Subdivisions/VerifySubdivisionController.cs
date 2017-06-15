@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CoreLocation;
 using Foundation;
 using Google.Maps;
@@ -44,6 +44,22 @@ namespace Mehspot.iOS.Controllers
 			set
 			{
 				marker.Draggable = value;
+			}
+		}
+
+		public bool SaveButtonEnabled
+		{
+			get
+			{
+				return (this.NavBarItem.RightBarButtonItems?.Count() ?? 0) > 0;
+			}
+
+			set
+			{
+				if (!value)
+				{
+					this.NavBarItem.RightBarButtonItems = new UIBarButtonItem[] { };
+				}
 			}
 		}
 

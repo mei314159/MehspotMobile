@@ -156,6 +156,8 @@
     <Compile Include="Contracts\Cells\KeyboardType.cs" />
     <Compile Include="Extensions\TypeInfoAllMemberExtensions.cs" />
     <Compile Include="Models\IListModel.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Contracts\ViewControllers\IProfileViewController.cs" />
     <Compile Include="Contracts\ViewControllers\ISubdivisionsListController.cs" />
     <Compile Include="Models\Subdivisions\SubdivisionsListModel.cs" />
     <Compile Include="Models\Subdivisions\SubdivisionModel.cs" />
