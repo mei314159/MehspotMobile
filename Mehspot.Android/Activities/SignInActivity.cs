@@ -81,5 +81,10 @@ namespace Mehspot.AndroidApp
 			base.OnActivityResult(requestCode, resultCode, data);
 			callbackManager.OnActivityResult(requestCode, (int)resultCode, data);
 		}
+
+		public override void OnBackPressed()
+		{
+			Finish();
+		}
 	}
 }

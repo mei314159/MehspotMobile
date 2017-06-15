@@ -1,4 +1,3 @@
-using System;
 namespace Mehspot.Core
 {
     public class Constants
@@ -23,5 +22,14 @@ namespace Mehspot.Core
             public const string Friendship = "Friendship";
             public const string OtherJobs = "OtherJobs";
         }
+
+        public class Location
+        {
+            public const double DefaultLatitude = 33.748995;
+            public const double DefaultLongitude = -84.387982;
+        }
+
+        public const string MapsApiKey = "AIzaSyAqIup2dew1z_2_d1uTGcyArOboCWv2rN0";
+        public const string PlacesApiKey = "AIzaSyBHCEcMfJQLhi_iTVhv1c_e_k_6wxDUCNY";
     }
 }

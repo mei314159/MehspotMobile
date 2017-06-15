@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
@@ -29,12 +30,13 @@ namespace Mehspot.AndroidApp
 		}
 		void FnInitTabLayout()
 		{
-			tabLayout.SetTabTextColors(Android.Graphics.Color.Aqua, Android.Graphics.Color.AntiqueWhite);
+			tabLayout.SetTabTextColors(ContextCompat.GetColor(this, Resource.Color.white), ContextCompat.GetColor(this, Resource.Color.dark_orange));
 			//Fragment array
 			var fragments = new Android.Support.V4.App.Fragment[]
 			{
 				new MessageBoardFragment(),
-				new BadgesFragment()
+				new BadgesFragment(),
+				new ProfileFragment()
 			};
 			//Tab title array
 			var titles = CharSequence.ArrayFromStringArray(new[] { "Messages", "Badges", "Profile" });

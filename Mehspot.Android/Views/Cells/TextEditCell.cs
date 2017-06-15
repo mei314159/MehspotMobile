@@ -69,12 +69,52 @@ namespace Mehspot.AndroidApp
 				{
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextFlagMultiLine);
 					TextInput.SetMinLines(5);
+					TextInput.SetMaxLines(100);
 				}
 				else
 				{
-					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextVariationNormal);
+					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText);
 					TextInput.SetMinLines(1);
+					TextInput.SetMaxLines(1);
 				}
+			}
+		}
+
+		public bool Hidden
+		{
+			get
+			{
+				return this.Visibility == ViewStates.Gone;
+			}
+
+			set
+			{
+				this.Visibility = value ? ViewStates.Gone : ViewStates.Visible;
+			}
+		}
+
+		public string Text
+		{
+			get
+			{
+				return this.TextInput?.Text;
+			}
+			set
+			{
+				this.TextInput.Text = value;
+			}
+		}
+
+		public bool Editable
+		{
+			get
+			{
+				return this.TextInput.Enabled;
+			}
+
+			set
+			{
+				this.TextInput.Enabled = value;
 			}
 		}
 

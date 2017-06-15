@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+VerifySubdivisionActivity/Menu"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:elevation="4dp"
+        android:background="@color/light_green"
+        titleTextColor="@color/white"
+        app:title="Verify Subdivision"
+        android:minWidth="25px"
+        android:minHeight="50dp" />
+    <TextView
+        android:text="Verify SubdivisionName"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+VerifySubdivisionActivity/Menu"
+        android:id="@+VerifySubdivisionActivity/NameSectionLabel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="5dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@+VerifySubdivisionActivity/NameSectionLabel"
+        android:id="@+VerifySubdivisionActivity/NameSection"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="50dp" />
+    <TextView
+        android:text="Verify SubdivisionName"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+VerifySubdivisionActivity/NameSection"
+        android:id="@+VerifySubdivisionActivity/AddressSectionLabel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="5dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@+VerifySubdivisionActivity/AddressSectionLabel"
+        android:id="@+VerifySubdivisionActivity/AddressSection"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="50dp" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+VerifySubdivisionActivity/MapViewWrapper"
+        android:layout_below="@+VerifySubdivisionActivity/AddressSection"
+        android:minWidth="25px"
+        android:minHeight="25px" />
+</RelativeLayout>

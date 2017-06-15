@@ -61,7 +61,6 @@ namespace Mehspot.Core.Models
                         break;
                     }
                 }
-
             }
         }
     }

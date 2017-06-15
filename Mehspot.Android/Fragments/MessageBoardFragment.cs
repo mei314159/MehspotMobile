@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Gms.Common;
@@ -6,6 +7,7 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
+using Mehspot.AndroidApp.Adapters;
 using Mehspot.AndroidApp.Resources.layout;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
@@ -24,11 +26,14 @@ namespace Mehspot.AndroidApp
 		{
 			get
 			{
-				return null;
+				return SearchBar.Text;
 			}
 		}
 
 		public IViewHelper ViewHelper { get; private set; }
+
+		public EditText SearchBar => Activity.FindViewById<EditText>(Resource.MessageBoard.SearchBar);
+		public Button SearchButton => Activity.FindViewById<Button>(Resource.MessageBoard.SearchButton);
 
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
@@ -45,7 +50,9 @@ namespace Mehspot.AndroidApp
 				this.Activity.StartService(intent);
 			}
 
-
+			SearchBar.BeforeTextChanged += SearchBar_BeforeTextChanged;
+			SearchBar.TextChanged += SearchBar_TextChanged;
+			SearchButton.Click += SearchButton_Click;
 			this.ViewHelper = new ActivityHelper(this.Activity);
 
 			model = new MessageBoardModel(new MessagesService(MehspotAppContext.Instance.DataStorage), this);
@@ -146,5 +153,29 @@ namespace Mehspot.AndroidApp
 				return true;
 			}
 		}
+
+		void SearchBar_BeforeTextChanged(object sender, Android.Text.TextChangedEventArgs e)
+		{
+			SearchButton.Visibility = ViewStates.Visible;
+		}
+
+		void SearchBar_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+		{
+			if (e.Text.Count() == 0)
+			{
+				SearchButton.Text = "Cancel";
+			}
+			else
+			{
+				SearchButton.Text = "Search";
+			}
+		}
+
+		void SearchButton_Click(object sender, EventArgs e)
+		{
+			SearchButton.Visibility = ViewStates.Gone;
+			model.LoadMessageBoardAsync();
+		}
+
 	}
 }

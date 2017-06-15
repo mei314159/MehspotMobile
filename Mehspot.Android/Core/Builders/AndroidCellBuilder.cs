@@ -29,17 +29,7 @@ namespace Mehspot.AndroidApp.Core.Builders
 
 		public override View GetDatePickerCell<T>(T initialValue, Action<T> setProperty, string label, bool isReadOnly = false)
 		{
-			var cell = new DateTimePickerCell(activity);
-			cell.Enabled = !isReadOnly;
-
-			var val = (object)initialValue;
-			cell.Value = val is DateTime ? (DateTime)val : val is DateTime? ? (DateTime?)val ?? DateTime.Now : DateTime.Now;
-			cell.DateChanged += (sender, args) =>
-			{
-				var typedValue = typeof(T) == typeof(string) ? (T)(object)args.Value.ToString() : (T)(object)args.Value;
-				setProperty(typedValue);
-			};
-
+			var cell = new DateTimePickerCell<T>(activity,initialValue, setProperty, label, isReadOnly);
 			return cell;
 		}
 
@@ -72,7 +62,7 @@ namespace Mehspot.AndroidApp.Core.Builders
 
 		public override ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
 		{
-			return null;
+			return new SubdivisionPickerCell(activity, selectedId, setProperty, label, list, zipCode, isReadOnly);
 		}
 
 		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)

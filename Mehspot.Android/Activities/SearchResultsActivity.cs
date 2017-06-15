@@ -43,7 +43,7 @@ namespace Mehspot.AndroidApp
 
 			ListView.ScrollChange += Handle_ScrollChange;
 
-			searchResultsAdapter = new SearchResultsAdapter(this);
+			searchResultsAdapter = new SearchResultsAdapter(this, model);
 			searchResultsAdapter.MessageButtonClicked += Item_MessageButtonClicked;
 			searchResultsAdapter.ViewProfileButtonClicked += Item_ViewProfileButtonClicked;
 			searchResultsAdapter.Clicked += Item_Clicked;
@@ -68,8 +68,6 @@ namespace Mehspot.AndroidApp
 
 		public void ReloadData()
 		{
-			searchResultsAdapter.Items.Clear();
-			searchResultsAdapter.Items.AddRange(model.Items);
 			RunOnUiThread(() =>
 			{
 				searchResultsAdapter.NotifyDataSetChanged();
