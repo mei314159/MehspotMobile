@@ -147,9 +147,6 @@
     <Reference Include="Xamarin.GooglePlayServices.Maps">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Maps.42.1021.1\lib\MonoAndroid70\Xamarin.GooglePlayServices.Maps.dll</HintPath>
     </Reference>
-    <Reference Include="ActionSheet">
-      <HintPath>..\packages\ActionSheet.2.0.0\lib\ActionSheet.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Places">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Places.42.1021.1\lib\MonoAndroid70\Xamarin.GooglePlayServices.Places.dll</HintPath>
     </Reference>
