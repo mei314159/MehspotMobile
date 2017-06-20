@@ -14,12 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="2" translatesAutoresizingMaskIntoConstraints="NO" clearButtonMode="whileEditing">
-                        <rect key="frame" x="165" y="0.0" width="155" height="44"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <textInputTraits key="textInputTraits"/>
-                        <connections/>
-                    </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="9" numberOfLines="2">
                         <rect key="frame" x="15" y="0.0" width="145" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -27,22 +21,33 @@
                         <nil key="highlightedColor"/>
                         <constraints>
                             <constraint id="19" firstItem="16" firstAttribute="width" constant="145"/>
+                            <constraint id="42" firstItem="16" firstAttribute="height" constant="44"/>
                         </constraints>
                     </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="30" translatesAutoresizingMaskIntoConstraints="NO" customClass="ExtendedTextView">
+                        <rect key="frame" x="165" y="0.0" width="155" height="44"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <constraints>
+                            <constraint id="35" firstItem="30" firstAttribute="height" constant="44"/>
+                        </constraints>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </textView>
                 </subviews>
                 <constraints>
-                    <constraint id="4" firstItem="2" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
-                    <constraint id="7" firstItem="2" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
-                    <constraint id="13" firstItem="2" firstAttribute="trailing" secondItem="YTl-1W-gDM" secondAttribute="trailing"/>
                     <constraint id="17" firstItem="16" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
-                    <constraint id="18" firstItem="16" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
-                    <constraint id="20" firstItem="2" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="5"/>
-                    <constraint id="27" firstItem="16" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
+                    <constraint id="31" firstItem="30" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
+                    <constraint id="32" firstItem="30" firstAttribute="trailing" secondItem="YTl-1W-gDM" secondAttribute="trailing"/>
+                    <constraint id="34" firstItem="30" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="5"/>
+                    <constraint id="38" firstItem="30" firstAttribute="bottom" secondItem="YTl-1W-gDM" secondAttribute="bottom" constant="1"/>
+                    <constraint id="41" firstItem="16" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="TextInput" destination="2" id="name-outlet-2"/>
                 <outlet property="FieldLabel" destination="16" id="name-outlet-16"/>
+                <outlet property="TextViewHeight" destination="35" id="name-outlet-35"/>
+                <outlet property="TextView" destination="30" id="name-outlet-30"/>
             </connections>
             <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
         </tableViewCell>

@@ -89,10 +89,10 @@ namespace Mehspot.AndroidApp
 			Refresher.Refresh += async (sender, e) => await model.ReloadAsync();
 		}
 
-		protected override async void OnStart()
+		protected override void OnStart()
 		{
 			base.OnStart();
-			await this.model.ReloadAsync();
+			this.model.ReloadAsync();
 		}
 
 		public void ReloadData()

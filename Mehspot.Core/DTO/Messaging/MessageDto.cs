@@ -11,7 +11,7 @@ namespace Mehspot.Core.DTO
 
         public string ToUserName { get; set; }
 
-        public DateTime SendDate { get; set; }
+        public DateTime SentDate { get; set; }
 
         public bool IsRead { get; set; }
 

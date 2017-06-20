@@ -44,6 +44,7 @@ namespace Mehspot.AndroidApp.Wrappers
 			var alert = new AlertDialog.Builder(context);
 			alert.SetTitle(title);
 			alert.SetMessage(text);
+			alert.SetNegativeButton("Cancel", (sender, e) => { });
 			alert.SetPositiveButton(positiveButtonTitle, (senderAlert, args) => positiveAction());
 			alert.Create().Show();
 		}

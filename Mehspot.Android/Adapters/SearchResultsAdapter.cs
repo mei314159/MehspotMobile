@@ -5,6 +5,8 @@ using Mehspot.AndroidApp.Views;
 using Mehspot.Models.ViewModels;
 using System.Collections.Generic;
 using System;
+using Mehspot.Core;
+using Android.Content;
 
 namespace Mehspot.AndroidApp.Adapters
 {
@@ -14,12 +16,13 @@ namespace Mehspot.AndroidApp.Adapters
 		public event Action<ISearchResultDTO> ViewProfileButtonClicked;
 		public event Action<ISearchResultDTO, SearchResultItem> Clicked;
 
-		public readonly List<ISearchResultDTO> Items;
-		Activity context;
-		public SearchResultsAdapter(Activity context)
+		private readonly Activity context;
+		private readonly SearchResultsModel model;
+
+		public SearchResultsAdapter(Activity context, SearchResultsModel model)
 		{
+			this.model = model;
 			this.context = context;
-			this.Items = new List<ISearchResultDTO>();
 		}
 		public override long GetItemId(int position)
 		{
@@ -27,27 +30,63 @@ namespace Mehspot.AndroidApp.Adapters
 		}
 		public override ISearchResultDTO this[int position]
 		{
-			get { return Items[position]; }
+			get { return model.Items[position]; }
 		}
+
 		public override int Count
 		{
-			get { return Items.Count; }
+			get { return model.GetRowsCount(); }
 		}
 
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView as SearchResultItem; // re-use an existing view, if one is available
-			if (view == null) // otherwise create a new one
+			View cell = null;
+			if (!this.model.RegisterButtonVisible || position + 1 < model.GetRowsCount())
 			{
-				view = new SearchResultItem(context);
-				view.Clicked += (sender, e) => Clicked?.Invoke(sender, e);
-				view.ViewProfileButtonClicked += (arg1) => ViewProfileButtonClicked?.Invoke(arg1);
-				view.MessageButtonClicked += (arg1) => MessageButtonClicked?.Invoke(arg1);
+				var view = convertView as SearchResultItem; // re-use an existing view, if one is available
+				if (view == null) // otherwise create a new one
+				{
+					view = new SearchResultItem(context);
+					view.Clicked += (sender, e) => Clicked?.Invoke(sender, e);
+					view.ViewProfileButtonClicked += (arg1) => ViewProfileButtonClicked?.Invoke(arg1);
+					view.MessageButtonClicked += (arg1) => MessageButtonClicked?.Invoke(arg1);
+				}
+
+				view.Init(model.Items[position]);
+				cell = view;
+
+			}
+			else if (this.model.RegisterButtonVisible)
+			{
+				var searchLimitCell = new SearchLimitCell(context, model.controller.BadgeSummary.RequiredBadgeName, model.controller.BadgeSummary.BadgeName);
+				searchLimitCell.OnRegisterButtonTouched += OnRegisterButtonTouched;
+				cell = searchLimitCell;
 			}
 
-			view.Init(Items[position]);
+			return cell;
 
-			return view;
+
+		}
+
+		void OnRegisterButtonTouched()
+		{
+			var target = new Intent(this.context, typeof(EditBadgeProfileActivity));
+			if (model.controller.BadgeSummary.RequiredBadgeId.HasValue)
+			{
+				target.PutExtra("badgeId", model.controller.BadgeSummary.RequiredBadgeId.Value);
+				target.PutExtra("badgeName", model.controller.BadgeSummary.RequiredBadgeName);
+				target.PutExtra("badgeIsRegistered", model.controller.BadgeSummary.RequiredBadgeIsRegistered);
+			}
+			else
+			{
+				target.PutExtra("badgeId", model.controller.BadgeSummary.BadgeId);
+				target.PutExtra("badgeName", model.controller.BadgeSummary.BadgeName);
+				target.PutExtra("badgeIsRegistered", false);
+			}
+
+			target.PutExtra("redirectToSearchResults", true);
+
+			this.context.StartActivity(target);
 		}
 	}
 }

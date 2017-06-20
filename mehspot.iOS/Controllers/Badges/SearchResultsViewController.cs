@@ -75,34 +75,23 @@ namespace Mehspot.iOS
 
 		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
-			if (this.model.RegisterButtonVisible && this.RowsInSection(tableView, indexPath.Section) == indexPath.Row + 1)
+			if (this.model.RegisterButtonVisible && model.GetRowsCount() == indexPath.Row + 1)
 			{
 				return SearchLimitCell.Height;
 			}
 
 			if (model.IsRowExpanded(indexPath.Row))
+			{
 				return SearchResultsCell.ExpandedHeight;
+			}
 
 			return SearchResultsCell.CollapsedHeight;
-		}
-
-		[Export("scrollViewDidScroll:")]
-		public void Scrolled(UIScrollView scrollView)
-		{
-			var currentOffset = TableView.ContentOffset.Y;
-			var maximumOffset = TableView.ContentSize.Height - TableView.Frame.Size.Height;
-			var deltaOffset = maximumOffset - currentOffset;
-
-			if (currentOffset > 0 && deltaOffset <= 0)
-			{
-				model.LoadMoreAsync();
-			}
 		}
 
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = null;
-			if (!this.model.RegisterButtonVisible || indexPath.Row + 1 < this.RowsInSection(tableView, indexPath.Section))
+			if (!this.model.RegisterButtonVisible || indexPath.Row + 1 < model.GetRowsCount())
 			{
 				var item = model.Items[indexPath.Row];
 				cell = tableView.DequeueReusableCell(SearchResultsCell.Key, indexPath);
@@ -116,6 +105,19 @@ namespace Mehspot.iOS
 			}
 
 			return cell;
+		}
+
+		[Export("scrollViewDidScroll:")]
+		public void Scrolled(UIScrollView scrollView)
+		{
+			var currentOffset = TableView.ContentOffset.Y;
+			var maximumOffset = TableView.ContentSize.Height - TableView.Frame.Size.Height;
+			var deltaOffset = maximumOffset - currentOffset;
+
+			if (currentOffset > 0 && deltaOffset <= 0)
+			{
+				model.LoadMoreAsync();
+			}
 		}
 
 		private void ConfigureCell(SearchResultsCell cell, ISearchResultDTO item)

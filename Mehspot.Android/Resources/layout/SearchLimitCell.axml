@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+SearchLimitCell/Message"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentRight="true"
+        tools:text="If you want to see more results please click Register button below to sign up as Babysitter Employer"
+        android:textSize="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:textColor="@color/dark_orange" />
+    <Button
+        android:text="Register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+SearchLimitCell/RegisterButton"
+        android:textColor="@color/white"
+        android:background="@color/dark_green"
+        android:layout_below="@+SearchLimitCell/Message"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp" />
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:gravity="center_horizontal"
+        android:background="#ffc6d881"
+        android:textColor="#ffffffff"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/take_photo_dialog" />
+    <Button
+        android:text="Camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffffff"
+        android:id="@+DialogView/openCamera" />
+    <Button
+        android:text="Photo Gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffffff"
+        android:id="@+DialogView/openPhotoGallery" />
+    <Button
+        android:text="Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffffff"
+        android:id="@+DialogView/closeView" />
+</LinearLayout>

@@ -296,7 +296,6 @@
     <Compile Include="Controllers\Subdivisions\VerifySubdivisionController.designer.cs">
       <DependentUpon>VerifySubdivisionController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Subdivisions\VerifySubdivisionModel.cs" />
     <Compile Include="Views\Cell\RecommendationCell.cs" />
     <Compile Include="Views\Cell\RecommendationCell.designer.cs">
       <DependentUpon>RecommendationCell.cs</DependentUpon>

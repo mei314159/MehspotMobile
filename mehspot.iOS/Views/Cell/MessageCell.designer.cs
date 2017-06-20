@@ -15,11 +15,15 @@ namespace Mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel DateLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel message { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIView messageWrapper { get; set; }
+        UIKit.UIView MessageWrapper { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -27,14 +31,19 @@ namespace Mehspot.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (DateLabel != null) {
+                DateLabel.Dispose ();
+                DateLabel = null;
+            }
+
             if (message != null) {
                 message.Dispose ();
                 message = null;
             }
 
-            if (messageWrapper != null) {
-                messageWrapper.Dispose ();
-                messageWrapper = null;
+            if (MessageWrapper != null) {
+                MessageWrapper.Dispose ();
+                MessageWrapper = null;
             }
 
             if (XConstraint != null) {
