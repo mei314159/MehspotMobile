@@ -234,7 +234,7 @@ namespace Mehspot.AndroidApp
 		{
 			
 			// aapt resource value: 0x7f140002
-			public const int ListView = 2132017154;
+			public const int ContentWrapper = 2132017154;
 			
 			// aapt resource value: 0x7f140001
 			public const int Refresher = 2132017153;
@@ -258,11 +258,11 @@ namespace Mehspot.AndroidApp
 		public partial class MessageBoard
 		{
 			
-			// aapt resource value: 0x7f150000
-			public const int SearchBar = 2132082688;
+			// aapt resource value: 0x7f160000
+			public const int SearchBar = 2132148224;
 			
-			// aapt resource value: 0x7f150001
-			public const int SearchButton = 2132082689;
+			// aapt resource value: 0x7f160001
+			public const int SearchButton = 2132148225;
 			
 			static MessageBoard()
 			{
@@ -277,8 +277,8 @@ namespace Mehspot.AndroidApp
 		public partial class MessagingActivity
 		{
 			
-			// aapt resource value: 0x7f160000
-			public const int Menu = 2132148224;
+			// aapt resource value: 0x7f170000
+			public const int Menu = 2132213760;
 			
 			static MessagingActivity()
 			{
@@ -293,11 +293,11 @@ namespace Mehspot.AndroidApp
 		public partial class MultiselectCell
 		{
 			
-			// aapt resource value: 0x7f170001
-			public const int Dropdown = 2132213761;
+			// aapt resource value: 0x7f180001
+			public const int Dropdown = 2132279297;
 			
-			// aapt resource value: 0x7f170000
-			public const int FieldLabel = 2132213760;
+			// aapt resource value: 0x7f180000
+			public const int FieldLabel = 2132279296;
 			
 			static MultiselectCell()
 			{
@@ -312,11 +312,11 @@ namespace Mehspot.AndroidApp
 		public partial class PickerCell
 		{
 			
-			// aapt resource value: 0x7f180001
-			public const int Dropdown = 2132279297;
+			// aapt resource value: 0x7f190001
+			public const int Dropdown = 2132344833;
 			
-			// aapt resource value: 0x7f180000
-			public const int FieldLabel = 2132279296;
+			// aapt resource value: 0x7f190000
+			public const int FieldLabel = 2132344832;
 			
 			static PickerCell()
 			{
@@ -331,41 +331,41 @@ namespace Mehspot.AndroidApp
 		public partial class ProfileViewActivity
 		{
 			
-			// aapt resource value: 0x7f190004
-			public const int cardViewFrame = 2132344836;
+			// aapt resource value: 0x7f150004
+			public const int cardViewFrame = 2132082692;
 			
-			// aapt resource value: 0x7f190008
-			public const int changePhotoButton = 2132344840;
+			// aapt resource value: 0x7f150008
+			public const int changePhotoButton = 2132082696;
 			
-			// aapt resource value: 0x7f190003
-			public const int container = 2132344835;
+			// aapt resource value: 0x7f150003
+			public const int container = 2132082691;
 			
-			// aapt resource value: 0x7f190009
-			public const int profileContentWrapper = 2132344841;
+			// aapt resource value: 0x7f150009
+			public const int profileContentWrapper = 2132082697;
 			
-			// aapt resource value: 0x7f190005
-			public const int profilePhoto = 2132344837;
+			// aapt resource value: 0x7f150005
+			public const int profilePhoto = 2132082693;
 			
-			// aapt resource value: 0x7f190001
-			public const int profileRefresher = 2132344833;
+			// aapt resource value: 0x7f150002
+			public const int profileRefresher = 2132082690;
 			
-			// aapt resource value: 0x7f190002
-			public const int profileScrollView = 2132344834;
+			// aapt resource value: 0x7f150000
+			public const int profileScrollView = 2132082688;
 			
-			// aapt resource value: 0x7f190000
-			public const int profileViewLayout = 2132344832;
+			// aapt resource value: 0x7f150001
+			public const int profileViewLayout = 2132082689;
 			
-			// aapt resource value: 0x7f19000a
-			public const int saveProfileButton = 2132344842;
+			// aapt resource value: 0x7f15000a
+			public const int saveProfileButton = 2132082698;
 			
-			// aapt resource value: 0x7f19000b
-			public const int signoutButton = 2132344843;
+			// aapt resource value: 0x7f15000b
+			public const int signoutButton = 2132082699;
 			
-			// aapt resource value: 0x7f190007
-			public const int userFullNameLabel = 2132344839;
+			// aapt resource value: 0x7f150007
+			public const int userFullNameLabel = 2132082695;
 			
-			// aapt resource value: 0x7f190006
-			public const int userNameLabel = 2132344838;
+			// aapt resource value: 0x7f150006
+			public const int userNameLabel = 2132082694;
 			
 			static ProfileViewActivity()
 			{

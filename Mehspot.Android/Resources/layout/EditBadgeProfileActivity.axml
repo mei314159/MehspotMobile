@@ -18,22 +18,35 @@
         android:layout_below="@+EditBadgeProfileActivity/toolbar"
         android:layout_alignParentRight="true"
         android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_marginBottom="60dp">
-        <ListView
+        android:minHeight="25px">
+        <ScrollView
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+EditBadgeProfileActivity/ListView" />
+            android:id="@+ProfileViewActivity/profileScrollView">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+EditBadgeProfileActivity/ContentWrapper" />
+                <Button
+                    android:id="@+EditBadgeProfileActivity/SaveButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:text="Save"
+                    android:textColor="@color/white"
+                    android:background="@color/light_green" />
+            </LinearLayout>
+        </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
-    <Button
-        android:id="@+EditBadgeProfileActivity/SaveButton"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:text="Save"
-        android:textColor="@color/white"
-        android:background="@color/dark_green"
-        android:layout_alignParentBottom="true" />
 </RelativeLayout>

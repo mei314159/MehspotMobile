@@ -73,7 +73,7 @@ namespace Mehspot.Core.Builders
                     case CellType.Range:
                         targetCell = cellBuilder.GetRangeCell<int?>(prop.attr.DefaultValue as int?, v =>
                         {
-                            prop.prop.SetValue(filter, v);
+                            prop.prop.SetValue(filter, v);                      // TODO Object of type 'System.Int32' cannot be converted to type 'System.Nullable`1[System.Double]'.
                             OnCellChanged(filter, prop.prop.Name, v);
                         }, prop.attr.Label, prop.attr.MinValue, prop.attr.MaxValue, isReadOnly: prop.attr.ReadOnly);
                         break;
