@@ -166,6 +166,7 @@ namespace Mehspot.Core.Models
         {
             var dto = new BadgeUserDescriptionDTO
             {
+                BadgeId = this.controller.BadgeSummary.BadgeId,
                 BadgeName = this.controller.BadgeSummary.BadgeName,
                 Delete = this.controller.SearchResultDTO.Details.Favourite,
                 EmployeeId = this.controller.SearchResultDTO.Details.UserId,
@@ -207,6 +208,7 @@ namespace Mehspot.Core.Models
                 {
                     var dto = new BadgeUserDescriptionDTO
                     {
+                        BadgeId = controller.BadgeSummary.BadgeId,
                         EmployeeId = Profile.Details.UserId,
                         BadgeName = controller.BadgeSummary.BadgeName,
                         Delete = !(bool)value,
