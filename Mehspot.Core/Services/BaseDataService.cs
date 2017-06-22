@@ -98,7 +98,7 @@ namespace Mehspot.Core
 
             var serializedData = JsonConvert.SerializeObject(data);
             var stringContent = new StringContent(serializedData, System.Text.Encoding.UTF8, "application/json");
-            stringContent.Headers.ContentLength = serializedData.Length;
+            //stringContent.Headers.ContentLength = serializedData.Length;
 
             return SendDataAsync<TResult>(uri, method, stringContent, anonymously);
         }
