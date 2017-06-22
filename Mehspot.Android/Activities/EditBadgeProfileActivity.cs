@@ -81,7 +81,7 @@ namespace Mehspot.AndroidApp
 			model.LoadingEnded += Model_LoadingEnded;
 
 			ListView.Adapter = new ViewListAdapter(this, model);
-
+			SaveButton.Click += SaveButton_Click;
 			Refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 											Resource.Color.xam_purple,
 											Resource.Color.xam_gray,
@@ -125,6 +125,11 @@ namespace Mehspot.AndroidApp
 		{
 			ViewHelper.HideOverlay();
 			this.SaveButtonEnabled = true;
+		}
+
+		async void SaveButton_Click(object sender, EventArgs e)
+		{
+			await model.SaveAsync();
 		}
 	}
 }

@@ -198,7 +198,7 @@ namespace Mehspot.AndroidApp
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextVariationNormal);
 					break;
 			}
-		}
+			}
 	}
 
 }

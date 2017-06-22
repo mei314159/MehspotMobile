@@ -8,7 +8,7 @@ using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.DTO.Subdivision;
 using Mehspot.Core.Models;
 using Mehspot.Core.Services;
-
+using Mehspot.Core.Extensions;
 namespace Mehspot.Core
 {
     public class EditBadgeProfileModel<TCell> : IListModel<TCell>
@@ -96,7 +96,7 @@ namespace Mehspot.Core
             }
             else
             {
-                var errors = result.ModelState.ModelState?.SelectMany(a => a.Value);
+                var errors = result.ModelState.ModelState?.Select(a => a.Value?.FirstOrDefault());
                 message = errors != null ? string.Join(Environment.NewLine, errors) : result.ErrorMessage;
             }
 

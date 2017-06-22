@@ -12,13 +12,14 @@
     <TextView
         android:text="Text"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/messageBubbleText"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:width=" 200dp"
         android:minWidth="200dp"
@@ -26,7 +27,15 @@
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
-        android:maxWidth="200dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="false" />
+        android:maxWidth="200dp" />
+    <TextView
+        android:text="Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+MessageBubble/MessageDateText"
+        android:layout_below="@+id/messageBubbleText"
+        android:textSize="11dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20.0dp" />
 </RelativeLayout>
