@@ -59,8 +59,7 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
-		public ListView ListView => (ListView)FindViewById(Resource.EditBadgeProfileActivity.ListView);
-
+		public LinearLayout ContentWrapper => FindViewById<LinearLayout>(Resource.EditBadgeProfileActivity.ContentWrapper);
 		public Button SaveButton => (Button)FindViewById(Resource.EditBadgeProfileActivity.SaveButton);
 
 		public Android.Support.V7.Widget.Toolbar Toolbar => this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.EditBadgeProfileActivity.toolbar);
@@ -97,7 +96,11 @@ namespace Mehspot.AndroidApp
 
 		public void ReloadData()
 		{
-			((ViewListAdapter)ListView.Adapter).NotifyDataSetChanged();
+			ContentWrapper.RemoveAllViews();
+			foreach (var item in model.Cells)
+			{
+				ContentWrapper.AddView(item);
+			}
 		}
 
 		public void Dismiss()
