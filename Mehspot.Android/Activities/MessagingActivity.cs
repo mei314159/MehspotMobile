@@ -1,4 +1,4 @@
-﻿
+
 using System;
 
 using Android.App;
@@ -108,11 +108,11 @@ namespace Mehspot.AndroidApp
 			messageField.Enabled = sendButton.Enabled = enabled;
 		}
 
-		private MessageBubble CreateMessageBubble(MessageDto messageDto)
-		{
-			var isMyMessage = messageDto.FromUserId == MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
-			var bubble = new MessageBubble(this, messageDto.Message, isMyMessage);
-			return bubble;
-		}
-	}
+        private MessageBubble CreateMessageBubble (MessageDto messageDto)
+        {
+            var isMyMessage = messageDto.FromUserId == MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
+			var bubble = new MessageBubble (this, messageDto.Message, messageDto.SentDate, isMyMessage);
+            return bubble;
+        }
+    }
 }

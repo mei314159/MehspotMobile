@@ -60,7 +60,7 @@ namespace Mehspot.Core.Auth
                     }
                     else
                     {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto>(responseString);
+                        var errorResponse = JsonConvert.DeserializeObject<AuthenticationErrorDto>(responseString);
                         return new AuthenticationResult
                         {
                             IsSuccess = false,
@@ -68,6 +68,14 @@ namespace Mehspot.Core.Auth
                         };
                     }
 
+                }
+                catch (HttpRequestException)
+                {
+                    return new AuthenticationResult
+                    {
+                        IsSuccess = false,
+                        ErrorMessage = "No internet connection." // NameResolutionFailure
+                    };
                 }
                 catch (Exception ex)
                 {
@@ -118,7 +126,7 @@ namespace Mehspot.Core.Auth
                     }
                     else
                     {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto>(responseString);
+                        var errorResponse = JsonConvert.DeserializeObject<AuthenticationErrorDto>(responseString);
                         return new AuthenticationResult
                         {
                             IsSuccess = false,
@@ -126,6 +134,14 @@ namespace Mehspot.Core.Auth
                         };
                     }
 
+                }
+                catch (HttpRequestException)
+                {
+                    return new AuthenticationResult
+                    {
+                        IsSuccess = false,
+                        ErrorMessage = "No internet connection."
+                    };
                 }
                 catch (Exception ex)
                 {
