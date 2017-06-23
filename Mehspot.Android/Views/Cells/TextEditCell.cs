@@ -8,7 +8,6 @@ using Mehspot.Core.Builders;
 
 namespace Mehspot.AndroidApp
 {
-
 	public class TextEditCell : RelativeLayout, ITextEditCell
 	{
 		string previousText;
@@ -118,16 +117,22 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
+		void TextInput_BeforeTextChanged(object sender, Android.Text.TextChangedEventArgs e)
+		{
+			this.previousText = ((EditText)sender).Text;
+		}
+
 		void TextInput_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
 		{
+			var cursor = TextInput.SelectionStart;
 			var text = TextInput.Text;
 
 			if (this.MaxLength.HasValue && text.Length > this.MaxLength.Value)
 			{
 				TextInput.Text = text.Substring(0, this.MaxLength.Value);
+				TextInput.SetSelection(TextInput.Text.Length);
 				return;
 			}
-
 
 			if (ValidationRegex != null && !Regex.IsMatch(text, ValidationRegex))
 			{
@@ -135,31 +140,27 @@ namespace Mehspot.AndroidApp
 				return;
 			}
 
-
 			if (this.Mask != null && !this.ValidateMask(text))
 			{
 				if (Mask.Length > text.Length)
 				{
-					var maskSymbol = Mask[text.Length];
+					var maskSymbol = Mask[cursor - 1];
 					if (maskSymbol != '#' && maskSymbol != '*')
 					{
-						TextInput.Text = text + maskSymbol;
+						TextInput.Text = previousText + maskSymbol + text.Substring(text.Length - 1, 1);
 					}
 					else
 					{
 						TextInput.Text = previousText;
 					}
 				}
+
+				TextInput.SetSelection(TextInput.Text.Length);
 			}
 
 			this.SetModelProperty(this, TextInput.Text);
 			this.ValueChanged?.Invoke(this, TextInput.Text);
 			previousText = TextInput.Text;
-		}
-
-		void TextInput_BeforeTextChanged(object sender, Android.Text.TextChangedEventArgs e)
-		{
-			this.previousText = ((EditText)sender).Text;
 		}
 
 		bool ValidateMask(string text, bool fullMatch = false)
@@ -198,7 +199,7 @@ namespace Mehspot.AndroidApp
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextVariationNormal);
 					break;
 			}
-			}
+		}
 	}
 
 }
