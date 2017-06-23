@@ -103,7 +103,7 @@
                 android:password="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
-            <CheckBox
+            <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/AgreeWithTerms"
@@ -111,7 +111,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:textSize="17dp" />
+                android:textSize="17dp"
+                app:buttonTint="#ffeeb848" />
             <RelativeLayout
                 android:minWidth="25px"
                 android:minHeight="25px"

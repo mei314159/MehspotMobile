@@ -38,8 +38,21 @@ namespace Mehspot.iOS.Wrappers
 		{
 			HideOverlay();
 			// show the loading overlay on the UI thread using the correct orientation sizing
-			loadingOverlay = new LoadingOverlay(UIScreen.MainScreen.Bounds, text);
+			CoreGraphics.CGRect frame;
+
+			if (view is UIScrollView)
+			{
+				var scrollView = (UIScrollView)view;
+				frame = new CoreGraphics.CGRect(new CoreGraphics.CGPoint(0, scrollView.ContentOffset.Y), UIScreen.MainScreen.Bounds.Size);
+			}
+			else
+			{
+				frame = UIScreen.MainScreen.Bounds;
+			}
+
+			loadingOverlay = new LoadingOverlay(frame, text);
 			view.Add(loadingOverlay);
+			view.UserInteractionEnabled = false;
 			view.BringSubviewToFront(loadingOverlay);
 		}
 
@@ -47,6 +60,7 @@ namespace Mehspot.iOS.Wrappers
 		{
 			if (loadingOverlay != null)
 			{
+				view.UserInteractionEnabled = true;
 				loadingOverlay.Hide();
 				loadingOverlay.Dispose();
 				loadingOverlay = null;

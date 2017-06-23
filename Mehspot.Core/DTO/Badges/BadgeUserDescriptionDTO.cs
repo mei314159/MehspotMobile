@@ -2,6 +2,7 @@
 {
     public class BadgeUserDescriptionDTO
     {
+        public int BadgeId { get; set; }
         public string BadgeName { get; set; }
         public string EmployeeId { get; set; }
         public bool Delete { get; set; }
