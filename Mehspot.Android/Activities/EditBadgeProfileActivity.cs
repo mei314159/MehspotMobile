@@ -90,7 +90,8 @@ namespace Mehspot.AndroidApp
 		protected override void OnStart()
 		{
 			base.OnStart();
-			this.model.ReloadAsync();
+
+			this.model.LoadAsync();
 		}
 
 		public void ReloadData()
