@@ -201,6 +201,7 @@
     <Compile Include="Views\SubdivisionsListItem.cs" />
     <Compile Include="Activities\SubdivisionActivity.cs" />
     <Compile Include="Activities\VerifySubdivisionActivity.cs" />
+    <Compile Include="Views\NoResultsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -300,6 +301,7 @@
     <AndroidResource Include="Resources\layout\DateViewCell.axml" />
     <AndroidResource Include="Resources\menu\save_button.xml" />
     <AndroidResource Include="Resources\layout\VerifySubdivisionActivity.axml" />
+    <AndroidResource Include="Resources\layout\NoResultsView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

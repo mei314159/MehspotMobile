@@ -79,7 +79,6 @@ namespace Mehspot.AndroidApp
 			model.LoadingStarted += Model_LoadingStarted;
 			model.LoadingEnded += Model_LoadingEnded;
 
-			ListView.Adapter = new ViewListAdapter(this, model);
 			SaveButton.Click += SaveButton_Click;
 			Refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 											Resource.Color.xam_purple,
