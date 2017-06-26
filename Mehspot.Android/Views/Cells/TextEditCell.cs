@@ -127,6 +127,11 @@ namespace Mehspot.AndroidApp
 			var cursor = TextInput.SelectionStart;
 			var text = TextInput.Text;
 
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
+
 			if (this.MaxLength.HasValue && text.Length > this.MaxLength.Value)
 			{
 				TextInput.Text = text.Substring(0, this.MaxLength.Value);
