@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+RangeSliderCell/FieldLabel"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        tools:text="Text" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+RangeSliderCell/MinValueLabel"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        tools:text="Text" />
+    <Xamarin.RangeSlider.RangeSliderControl xmlns:app="http://schemas.android.com/apk/res/com.mehspot.app"
+        android:id="@+RangeSliderCell/RangeSlider"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:showRangeLabels="false"
+        app:barHeight="3dp"
+        app:valuesAboveThumbs="false"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="2" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:minWidth="30dp"
+        android:id="@+RangeSliderCell/MaxValueLabel"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        tools:text="Text" />
+</LinearLayout>

@@ -41,9 +41,14 @@ namespace Mehspot.iOS.Core.Builders
 			return PickerCell.Create(initialValue, setProperty, label, rowValues, placeholder, isReadOnly);
 		}
 
-		public override UITableViewCell GetRangeCell<T>(int? defaultValue, Action<T> setProperty, string placeholder, float? minValue, float? maxValue, bool isReadOnly = false)
+		public override UITableViewCell GetRangeCell<T>(int? defaultValue, Action<T> setProperty, string placeholder, int minValue, int maxValue, bool isReadOnly = false)
 		{
 			return SliderCell.Create(defaultValue, setProperty, placeholder, minValue, maxValue, isReadOnly);
+		}
+
+		public override UITableViewCell GetMaxMinRangeCell<T>(int? defaultMinValue, int? defaultMaxValue, Action<T> setMinProperty, Action<T> setMaxProperty, string placeholder, int minValue, int maxValue, bool isReadOnly = false)
+		{
+			return RangeSliderCell.Create(defaultMinValue, defaultMaxValue, setMinProperty, setMaxProperty, placeholder, minValue, maxValue, isReadOnly);
 		}
 
 		public override UITableViewCell GetRecommendationCell(BadgeUserRecommendationDTO item)

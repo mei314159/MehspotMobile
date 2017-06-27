@@ -29,7 +29,7 @@ namespace Mehspot.AndroidApp.Core.Builders
 
 		public override View GetDatePickerCell<T>(T initialValue, Action<T> setProperty, string label, bool isReadOnly = false)
 		{
-			var cell = new DateTimePickerCell<T>(activity,initialValue, setProperty, label, isReadOnly);
+			var cell = new DateTimePickerCell<T>(activity, initialValue, setProperty, label, isReadOnly);
 			return cell;
 		}
 
@@ -50,9 +50,14 @@ namespace Mehspot.AndroidApp.Core.Builders
 			return new PickerCell<T>(activity, initialValue, setProperty, label, rowValues, placeholder, isReadOnly);
 		}
 
-		public override View GetRangeCell<T>(int? defaultValue, Action<T> setProperty, string placeholder, float? minValue, float? maxValue, bool isReadOnly = false)
+		public override View GetRangeCell<T>(int? defaultValue, Action<T> setProperty, string placeholder, int minValue, int maxValue, bool isReadOnly = false)
 		{
 			return new SliderCell<T>(activity, defaultValue, setProperty, placeholder, minValue, maxValue, isReadOnly);
+		}
+
+		public override View GetMaxMinRangeCell<T>(int? defaultMinValue, int? defaultMaxValue, Action<T> setMinProperty, Action<T> setMaxProperty, string placeholder, int minValue, int maxValue, bool isReadOnly = false)
+		{
+			return new RangeSliderCell<T>(activity, defaultMinValue, defaultMaxValue, setMinProperty, setMaxProperty, placeholder, minValue, maxValue, isReadOnly);
 		}
 
 		public override View GetRecommendationCell(BadgeUserRecommendationDTO item)

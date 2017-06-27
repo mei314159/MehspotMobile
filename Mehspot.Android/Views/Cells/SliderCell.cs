@@ -1,4 +1,3 @@
-
 using System;
 using Android.Content;
 using Android.Views;
@@ -9,14 +8,18 @@ namespace Mehspot.AndroidApp
 
 	public class SliderCell<TProperty> : RelativeLayout
 	{
-		readonly float minValue;
-		readonly float maxValue;
+		public SeekBar CellSlider => this.FindViewById<SeekBar>(Resource.SliderCell.Slider);
+		public TextView FieldLabel => this.FindViewById<TextView>(Resource.SliderCell.FieldLabel);
+		public TextView ValueLabel => this.FindViewById<TextView>(Resource.SliderCell.ValueLabel);
 
-		public SliderCell(Context context, int? defaultValue, Action<TProperty> setProperty, string placeholder, float? minValue, float? maxValue, bool isReadOnly = false) :
+		int minValue;
+		int maxValue;
+
+		public SliderCell(Context context, int? defaultValue, Action<TProperty> setProperty, string placeholder, int minValue, int maxValue, bool isReadOnly = false) :
 								base(context)
 		{
-			this.minValue = minValue ?? 0;
-			this.maxValue = maxValue ?? 100;
+			this.minValue = minValue;
+			this.maxValue = maxValue;
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.SliderCell, this);
 			this.CellSlider.Enabled = !isReadOnly;
@@ -27,23 +30,18 @@ namespace Mehspot.AndroidApp
 			this.SetValueLabel(value == this.minValue ? string.Empty : value.ToString());
 
 			this.CellSlider.ProgressChanged += (sender, e) => SetValue(setProperty);
-
 			this.SetValue(setProperty);
 		}
 
 		private int ValueToProgress(float value)
 		{
-			return (int)(value / (float)(maxValue - minValue) * 100);
+			return (int)((value - minValue) / (float)(maxValue - minValue) * 100);
 		}
 
-		private int ProgressToValue(int progress)
+		private int ProgressToValue(float progress)
 		{
-			return (int)((maxValue - minValue) * progress / 100);
+			return (int)(minValue + (maxValue - minValue) * progress / 100);
 		}
-
-		public SeekBar CellSlider => this.FindViewById<SeekBar>(Resource.SliderCell.Slider);
-		public TextView FieldLabel => this.FindViewById<TextView>(Resource.SliderCell.FieldLabel);
-		public TextView ValueLabel => this.FindViewById<TextView>(Resource.SliderCell.ValueLabel);
 
 		void SetValue(Action<TProperty> setProperty)
 		{
