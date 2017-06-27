@@ -9,8 +9,8 @@ namespace Mehspot.iOS.Views.Cell
 		public static readonly NSString Key = new NSString("SliderCell");
 		public static readonly UINib Nib;
 
-		private int minValue;
-		private int maxValue;
+		private int? minValue;
+		private int? maxValue;
 
 		static SliderCell()
 		{
@@ -22,13 +22,17 @@ namespace Mehspot.iOS.Views.Cell
 			// Note: this .ctor should not contain any initialization logic.
 		}
 
-		public static SliderCell Create<TProperty>(int? defaultValue, Action<TProperty> setProperty, string placeholder, int minValue, int maxValue, bool isReadOnly = false)
+		public static SliderCell Create<TProperty>(int? defaultValue, Action<TProperty> setProperty, string placeholder, int? minValue, int? maxValue, bool isReadOnly = false)
 		{
 			var cell = (SliderCell)Nib.Instantiate(null, null)[0];
 			cell.CellSlider.Enabled = !isReadOnly;
 			cell.FieldLabel.Text = placeholder;
 			cell.minValue = minValue;
 			cell.maxValue = maxValue;
+			if (minValue.HasValue)
+			{
+				cell.CellSlider.MinValue = minValue.Value - 1;
+			}
 
 			cell.CellSlider.MinValue = 0;
 			cell.CellSlider.MaxValue = 100;
@@ -65,11 +69,6 @@ namespace Mehspot.iOS.Views.Cell
 		private void SetValueLabel(string value)
 		{
 			this.ValueLabel.Text = value;
-		}
-
-		private int ValueToProgress(float value)
-		{
-			return (int)((value - minValue) / (float)(maxValue - minValue) * 100);
 		}
 
 		private int ProgressToValue(float progress)

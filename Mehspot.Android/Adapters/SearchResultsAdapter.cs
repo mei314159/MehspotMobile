@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using Mehspot.Core;
 using Android.Content;
+using Mehspot.AndroidApp.Resources.layout;
 
 namespace Mehspot.AndroidApp.Adapters
 {
@@ -15,6 +16,9 @@ namespace Mehspot.AndroidApp.Adapters
 		public event Action<ISearchResultDTO> MessageButtonClicked;
 		public event Action<ISearchResultDTO> ViewProfileButtonClicked;
 		public event Action<ISearchResultDTO, SearchResultItem> Clicked;
+
+		bool NoResults;
+		NoResultsView noResultsView;
 
 		private readonly Activity context;
 		private readonly SearchResultsModel model;
@@ -28,20 +32,33 @@ namespace Mehspot.AndroidApp.Adapters
 		{
 			return position;
 		}
+
 		public override ISearchResultDTO this[int position]
 		{
-			get { return model.Items[position]; }
+			get { return NoResults ? null : model.Items[position]; }
 		}
 
 		public override int Count
 		{
-			get { return model.GetRowsCount(); }
+			get
+			{
+				var count = model.GetRowsCount();
+				this.NoResults = count == 0;
+				return count == 0 ? 1 : count;
+			}
 		}
 
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
 			View cell = null;
-			if (!this.model.RegisterButtonVisible || position + 1 < model.GetRowsCount())
+
+			if (NoResults)
+			{
+				cell = this.noResultsView ?? (this.noResultsView = new NoResultsView(this.context));
+				cell.LayoutParameters = new ViewGroup.LayoutParams(parent.Width, parent.Height);
+				cell.RequestLayout();
+			}
+			else if (!this.model.RegisterButtonVisible || position + 1 < model.GetRowsCount())
 			{
 				var view = convertView as SearchResultItem; // re-use an existing view, if one is available
 				if (view == null) // otherwise create a new one

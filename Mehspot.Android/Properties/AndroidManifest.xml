@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.6" package="com.mehspot.app" android:versionCode="6">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.8" package="com.mehspot.app" android:versionCode="8">
 	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="25" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -13,6 +13,7 @@
 	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
 	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<permission android:name="com.mehspot.app.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:theme="@style/MyTheme">
 		<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />

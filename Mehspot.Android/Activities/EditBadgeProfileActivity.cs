@@ -59,8 +59,7 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
-		public ListView ListView => (ListView)FindViewById(Resource.EditBadgeProfileActivity.ListView);
-
+		public LinearLayout ContentWrapper => FindViewById<LinearLayout>(Resource.EditBadgeProfileActivity.ContentWrapper);
 		public Button SaveButton => (Button)FindViewById(Resource.EditBadgeProfileActivity.SaveButton);
 
 		public Android.Support.V7.Widget.Toolbar Toolbar => this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.EditBadgeProfileActivity.toolbar);
@@ -80,7 +79,6 @@ namespace Mehspot.AndroidApp
 			model.LoadingStarted += Model_LoadingStarted;
 			model.LoadingEnded += Model_LoadingEnded;
 
-			ListView.Adapter = new ViewListAdapter(this, model);
 			SaveButton.Click += SaveButton_Click;
 			Refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 											Resource.Color.xam_purple,
@@ -92,12 +90,17 @@ namespace Mehspot.AndroidApp
 		protected override void OnStart()
 		{
 			base.OnStart();
-			this.model.ReloadAsync();
+
+			this.model.LoadAsync();
 		}
 
 		public void ReloadData()
 		{
-			((ViewListAdapter)ListView.Adapter).NotifyDataSetChanged();
+			ContentWrapper.RemoveAllViews();
+			foreach (var item in model.Cells)
+			{
+				ContentWrapper.AddView(item);
+			}
 		}
 
 		public void Dismiss()
