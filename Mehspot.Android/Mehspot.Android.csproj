@@ -235,6 +235,7 @@
     <Compile Include="Activities\SubdivisionActivity.cs" />
     <Compile Include="Activities\VerifySubdivisionActivity.cs" />
     <Compile Include="RangeSliderInitialization.cs" />
+    <Compile Include="Views\NoResultsView.cs" />
     <Compile Include="Views\Cells\RangeSliderCell.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +337,7 @@
     <AndroidResource Include="Resources\menu\save_button.xml" />
     <AndroidResource Include="Resources\layout\VerifySubdivisionActivity.axml" />
     <AndroidResource Include="Resources\layout\RangeSliderCell.axml" />
+    <AndroidResource Include="Resources\layout\NoResultsView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

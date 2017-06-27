@@ -84,7 +84,11 @@ namespace Mehspot.AndroidApp
 											Resource.Color.xam_purple,
 											Resource.Color.xam_gray,
 										   	Resource.Color.xam_green);
-			Refresher.Refresh += async (sender, e) => await model.ReloadAsync();
+			Refresher.Refresh += async (sender, e) =>
+			{
+				await model.ReloadAsync();
+				Refresher.Refreshing = false;
+			};
 		}
 
 		protected override void OnStart()
