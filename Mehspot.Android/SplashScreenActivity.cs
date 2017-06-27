@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using HockeyApp.Android;
 using Mehspot.AndroidApp.Core;
 using Mehspot.Core;
 
@@ -44,11 +43,5 @@ namespace Mehspot.AndroidApp
 
 			base.OnCreate(savedInstanceState);
 		}
-
-		protected override void OnResume()
-		{
-			base.OnResume();
-			CrashManager.Register(this, Constants.HockeyAppId);
-      	}
 	}
 }

@@ -1,9 +1,3 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -12,8 +6,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Support.V4.View;
-using Android.Views;
-using Android.Widget;
+using HockeyApp.Android;
 
 namespace Mehspot.AndroidApp
 {
@@ -34,12 +27,12 @@ namespace Mehspot.AndroidApp
 			//Fragment array
 			var fragments = new Android.Support.V4.App.Fragment[]
 			{
-				new MessageBoardFragment(),
 				new BadgesFragment(),
+				new MessageBoardFragment(),
 				new ProfileFragment()
 			};
 			//Tab title array
-			var titles = CharSequence.ArrayFromStringArray(new[] { "Messages", "Badges", "Profile" });
+			var titles = CharSequence.ArrayFromStringArray(new[] { "Badges", "Messages", "Profile" });
 			var viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
 			//viewpager holding fragment array and tab title text
 			viewPager.Adapter = new TabsFragmentPagerAdapter(SupportFragmentManager, fragments, titles);
@@ -52,7 +45,11 @@ namespace Mehspot.AndroidApp
 			dialog.Dismiss();
 		}
 
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+			CrashManager.Register(this, Constants.HockeyAppId);
+		}
 	}
-
-
 }
