@@ -148,14 +148,11 @@ namespace Mehspot.Core
 
         private void ShowToggleEnabledCell()
         {
-            if (toggleEnabledStateCell == null)
-            {
-                toggleEnabledStateCell = cellBuilder.GetBooleanCell(profile.IsEnabled, v => { profile.IsEnabled = v; IsEnabledCell_ValueChanged(v); }, "Enable Badge");
-                deleteBadgeCell = cellBuilder.GetButtonCell("Delete Badge");
-                deleteBadgeCell.OnButtonTouched += DeleteBadgeCell_OnButtonTouched;
-                Cells.Add((TCell)toggleEnabledStateCell);
-                Cells.Add((TCell)deleteBadgeCell);
-            }
+            toggleEnabledStateCell = cellBuilder.GetBooleanCell(profile.IsEnabled, v => { profile.IsEnabled = v; IsEnabledCell_ValueChanged(v); }, "Enable Badge");
+            deleteBadgeCell = cellBuilder.GetButtonCell("Delete Badge");
+            deleteBadgeCell.OnButtonTouched += DeleteBadgeCell_OnButtonTouched;
+            Cells.Add((TCell)toggleEnabledStateCell);
+            Cells.Add((TCell)deleteBadgeCell);
         }
 
         private async Task LoadCellsAsync()
