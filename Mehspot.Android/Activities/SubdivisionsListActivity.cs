@@ -181,8 +181,9 @@ namespace Mehspot.AndroidApp.Activities
 						{
 							DetectUserPosition();
 						}
-						else{
-                            this.locationDetected(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+						else
+						{
+							this.locationDetected(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
 						}
 						break;
 					}
@@ -228,7 +229,7 @@ namespace Mehspot.AndroidApp.Activities
 			{
 				Toolbar.InflateMenu(Resource.Menu.add_menu);
 			}
-			if (dto.IsVerified && !model.SelectedSubdivision.IsVerifiedByCurrentUser)
+			else if (dto.IsVerified && !model.SelectedSubdivision.IsVerifiedByCurrentUser)
 			{
 				Toolbar.InflateMenu(Resource.Menu.view_menu);
 			}

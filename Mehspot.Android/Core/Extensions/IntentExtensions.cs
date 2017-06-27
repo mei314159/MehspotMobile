@@ -20,7 +20,7 @@ namespace Mehspot.AndroidApp
 			if (uniqueKey == null)
 				return default(T);
 
-			return (T)storage[uniqueKey];
+			return storage.ContainsKey(uniqueKey) ? (T)storage[uniqueKey] : default(T);
 		}
 	}
 }
