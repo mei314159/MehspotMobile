@@ -149,10 +149,10 @@ namespace Mehspot.AndroidApp
 			{
 				if (Mask.Length > text.Length)
 				{
-					var maskSymbol = Mask[cursor - 1];
+					var maskSymbol = Mask[e.Start];
 					if (maskSymbol != '#' && maskSymbol != '*')
 					{
-						TextInput.Text = previousText + maskSymbol + text.Substring(text.Length - 1, 1);
+						TextInput.Text = previousText + maskSymbol;
 					}
 					else
 					{
