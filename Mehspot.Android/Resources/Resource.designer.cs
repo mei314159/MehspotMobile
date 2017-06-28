@@ -152,7 +152,6 @@ namespace Mehspot.AndroidApp
 			global::HockeyApp.Resource.Style.HockeyApp_ButtonStyle = global::Mehspot.AndroidApp.Resource.Style.HockeyApp_ButtonStyle;
 			global::HockeyApp.Resource.Style.HockeyApp_EditTextStyle = global::Mehspot.AndroidApp.Resource.Style.HockeyApp_EditTextStyle;
 			global::HockeyApp.Resource.Style.HockeyApp_SingleLineInputStyle = global::Mehspot.AndroidApp.Resource.Style.HockeyApp_SingleLineInputStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Mehspot.AndroidApp.Resource.Attribute.actionBarSize;
 			global::Xamarin.RangeSlider.Resource.Attribute.absoluteMaxValue = global::Mehspot.AndroidApp.Resource.Attribute.absoluteMaxValue;
 			global::Xamarin.RangeSlider.Resource.Attribute.absoluteMinValue = global::Mehspot.AndroidApp.Resource.Attribute.absoluteMinValue;
 			global::Xamarin.RangeSlider.Resource.Attribute.activateOnDefaultValues = global::Mehspot.AndroidApp.Resource.Attribute.activateOnDefaultValues;
@@ -208,1698 +207,6 @@ namespace Mehspot.AndroidApp
 			global::Xamarin.RangeSlider.Resource.Styleable.RangeSliderControl_thumbShadowXOffset = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbShadowXOffset;
 			global::Xamarin.RangeSlider.Resource.Styleable.RangeSliderControl_thumbShadowYOffset = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbShadowYOffset;
 			global::Xamarin.RangeSlider.Resource.Styleable.RangeSliderControl_valuesAboveThumbs = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_valuesAboveThumbs;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_fade_in = global::Mehspot.AndroidApp.Resource.Animation.abc_fade_in;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_fade_out = global::Mehspot.AndroidApp.Resource.Animation.abc_fade_out;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_grow_fade_in_from_bottom = global::Mehspot.AndroidApp.Resource.Animation.abc_grow_fade_in_from_bottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_popup_enter = global::Mehspot.AndroidApp.Resource.Animation.abc_popup_enter;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_popup_exit = global::Mehspot.AndroidApp.Resource.Animation.abc_popup_exit;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_shrink_fade_out_from_bottom = global::Mehspot.AndroidApp.Resource.Animation.abc_shrink_fade_out_from_bottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_slide_in_bottom = global::Mehspot.AndroidApp.Resource.Animation.abc_slide_in_bottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_slide_in_top = global::Mehspot.AndroidApp.Resource.Animation.abc_slide_in_top;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_slide_out_bottom = global::Mehspot.AndroidApp.Resource.Animation.abc_slide_out_bottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.abc_slide_out_top = global::Mehspot.AndroidApp.Resource.Animation.abc_slide_out_top;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.design_bottom_sheet_slide_in = global::Mehspot.AndroidApp.Resource.Animation.design_bottom_sheet_slide_in;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.design_bottom_sheet_slide_out = global::Mehspot.AndroidApp.Resource.Animation.design_bottom_sheet_slide_out;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.design_fab_in = global::Mehspot.AndroidApp.Resource.Animation.design_fab_in;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.design_fab_out = global::Mehspot.AndroidApp.Resource.Animation.design_fab_out;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.design_snackbar_in = global::Mehspot.AndroidApp.Resource.Animation.design_snackbar_in;
-			global::Xamarin.RangeSlider.Forms.Resource.Animation.design_snackbar_out = global::Mehspot.AndroidApp.Resource.Animation.design_snackbar_out;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.absoluteMaxValue = global::Mehspot.AndroidApp.Resource.Attribute.absoluteMaxValue;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.absoluteMinValue = global::Mehspot.AndroidApp.Resource.Attribute.absoluteMinValue;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarDivider = global::Mehspot.AndroidApp.Resource.Attribute.actionBarDivider;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarItemBackground = global::Mehspot.AndroidApp.Resource.Attribute.actionBarItemBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarPopupTheme = global::Mehspot.AndroidApp.Resource.Attribute.actionBarPopupTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarSize = global::Mehspot.AndroidApp.Resource.Attribute.actionBarSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarSplitStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionBarSplitStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarTabBarStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionBarTabBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarTabStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionBarTabStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarTabTextStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionBarTabTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarTheme = global::Mehspot.AndroidApp.Resource.Attribute.actionBarTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionBarWidgetTheme = global::Mehspot.AndroidApp.Resource.Attribute.actionBarWidgetTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionDropDownStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionDropDownStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionLayout = global::Mehspot.AndroidApp.Resource.Attribute.actionLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionMenuTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.actionMenuTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionMenuTextColor = global::Mehspot.AndroidApp.Resource.Attribute.actionMenuTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeBackground = global::Mehspot.AndroidApp.Resource.Attribute.actionModeBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeCloseButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionModeCloseButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeCloseDrawable = global::Mehspot.AndroidApp.Resource.Attribute.actionModeCloseDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeCopyDrawable = global::Mehspot.AndroidApp.Resource.Attribute.actionModeCopyDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeCutDrawable = global::Mehspot.AndroidApp.Resource.Attribute.actionModeCutDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeFindDrawable = global::Mehspot.AndroidApp.Resource.Attribute.actionModeFindDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModePasteDrawable = global::Mehspot.AndroidApp.Resource.Attribute.actionModePasteDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModePopupWindowStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionModePopupWindowStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeSelectAllDrawable = global::Mehspot.AndroidApp.Resource.Attribute.actionModeSelectAllDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeShareDrawable = global::Mehspot.AndroidApp.Resource.Attribute.actionModeShareDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeSplitBackground = global::Mehspot.AndroidApp.Resource.Attribute.actionModeSplitBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionModeStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionModeWebSearchDrawable = global::Mehspot.AndroidApp.Resource.Attribute.actionModeWebSearchDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionOverflowButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionOverflowButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionOverflowMenuStyle = global::Mehspot.AndroidApp.Resource.Attribute.actionOverflowMenuStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionProviderClass = global::Mehspot.AndroidApp.Resource.Attribute.actionProviderClass;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.actionViewClass = global::Mehspot.AndroidApp.Resource.Attribute.actionViewClass;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.activateOnDefaultValues = global::Mehspot.AndroidApp.Resource.Attribute.activateOnDefaultValues;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.activeColor = global::Mehspot.AndroidApp.Resource.Attribute.activeColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.activityChooserViewStyle = global::Mehspot.AndroidApp.Resource.Attribute.activityChooserViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.alertDialogButtonGroupStyle = global::Mehspot.AndroidApp.Resource.Attribute.alertDialogButtonGroupStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.alertDialogCenterButtons = global::Mehspot.AndroidApp.Resource.Attribute.alertDialogCenterButtons;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.alertDialogStyle = global::Mehspot.AndroidApp.Resource.Attribute.alertDialogStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.alertDialogTheme = global::Mehspot.AndroidApp.Resource.Attribute.alertDialogTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.allowStacking = global::Mehspot.AndroidApp.Resource.Attribute.allowStacking;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.alwaysActive = global::Mehspot.AndroidApp.Resource.Attribute.alwaysActive;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.arrowHeadLength = global::Mehspot.AndroidApp.Resource.Attribute.arrowHeadLength;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.arrowShaftLength = global::Mehspot.AndroidApp.Resource.Attribute.arrowShaftLength;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.autoCompleteTextViewStyle = global::Mehspot.AndroidApp.Resource.Attribute.autoCompleteTextViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.background = global::Mehspot.AndroidApp.Resource.Attribute.background;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.backgroundSplit = global::Mehspot.AndroidApp.Resource.Attribute.backgroundSplit;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.backgroundStacked = global::Mehspot.AndroidApp.Resource.Attribute.backgroundStacked;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.backgroundTint = global::Mehspot.AndroidApp.Resource.Attribute.backgroundTint;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.backgroundTintMode = global::Mehspot.AndroidApp.Resource.Attribute.backgroundTintMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.barHeight = global::Mehspot.AndroidApp.Resource.Attribute.barHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.barLength = global::Mehspot.AndroidApp.Resource.Attribute.barLength;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.behavior_hideable = global::Mehspot.AndroidApp.Resource.Attribute.behavior_hideable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.behavior_overlapTop = global::Mehspot.AndroidApp.Resource.Attribute.behavior_overlapTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.behavior_peekHeight = global::Mehspot.AndroidApp.Resource.Attribute.behavior_peekHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.borderWidth = global::Mehspot.AndroidApp.Resource.Attribute.borderWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.borderlessButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.borderlessButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.bottomSheetDialogTheme = global::Mehspot.AndroidApp.Resource.Attribute.bottomSheetDialogTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.bottomSheetStyle = global::Mehspot.AndroidApp.Resource.Attribute.bottomSheetStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonBarButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.buttonBarButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonBarNegativeButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.buttonBarNegativeButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonBarNeutralButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.buttonBarNeutralButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonBarPositiveButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.buttonBarPositiveButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonBarStyle = global::Mehspot.AndroidApp.Resource.Attribute.buttonBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonPanelSideLayout = global::Mehspot.AndroidApp.Resource.Attribute.buttonPanelSideLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonStyle = global::Mehspot.AndroidApp.Resource.Attribute.buttonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonStyleSmall = global::Mehspot.AndroidApp.Resource.Attribute.buttonStyleSmall;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonTint = global::Mehspot.AndroidApp.Resource.Attribute.buttonTint;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.buttonTintMode = global::Mehspot.AndroidApp.Resource.Attribute.buttonTintMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.cardBackgroundColor = global::Mehspot.AndroidApp.Resource.Attribute.cardBackgroundColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.cardCornerRadius = global::Mehspot.AndroidApp.Resource.Attribute.cardCornerRadius;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.cardElevation = global::Mehspot.AndroidApp.Resource.Attribute.cardElevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.cardMaxElevation = global::Mehspot.AndroidApp.Resource.Attribute.cardMaxElevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.cardPreventCornerOverlap = global::Mehspot.AndroidApp.Resource.Attribute.cardPreventCornerOverlap;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.cardUseCompatPadding = global::Mehspot.AndroidApp.Resource.Attribute.cardUseCompatPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.checkboxStyle = global::Mehspot.AndroidApp.Resource.Attribute.checkboxStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.checkedTextViewStyle = global::Mehspot.AndroidApp.Resource.Attribute.checkedTextViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.closeIcon = global::Mehspot.AndroidApp.Resource.Attribute.closeIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.closeItemLayout = global::Mehspot.AndroidApp.Resource.Attribute.closeItemLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.collapseContentDescription = global::Mehspot.AndroidApp.Resource.Attribute.collapseContentDescription;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.collapseIcon = global::Mehspot.AndroidApp.Resource.Attribute.collapseIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.collapsedTitleGravity = global::Mehspot.AndroidApp.Resource.Attribute.collapsedTitleGravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.collapsedTitleTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.collapsedTitleTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.color = global::Mehspot.AndroidApp.Resource.Attribute.color;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.colorAccent = global::Mehspot.AndroidApp.Resource.Attribute.colorAccent;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.colorButtonNormal = global::Mehspot.AndroidApp.Resource.Attribute.colorButtonNormal;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.colorControlActivated = global::Mehspot.AndroidApp.Resource.Attribute.colorControlActivated;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.colorControlHighlight = global::Mehspot.AndroidApp.Resource.Attribute.colorControlHighlight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.colorControlNormal = global::Mehspot.AndroidApp.Resource.Attribute.colorControlNormal;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.colorPrimary = global::Mehspot.AndroidApp.Resource.Attribute.colorPrimary;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.colorPrimaryDark = global::Mehspot.AndroidApp.Resource.Attribute.colorPrimaryDark;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.colorSwitchThumbNormal = global::Mehspot.AndroidApp.Resource.Attribute.colorSwitchThumbNormal;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.commitIcon = global::Mehspot.AndroidApp.Resource.Attribute.commitIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentInsetEnd = global::Mehspot.AndroidApp.Resource.Attribute.contentInsetEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentInsetLeft = global::Mehspot.AndroidApp.Resource.Attribute.contentInsetLeft;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentInsetRight = global::Mehspot.AndroidApp.Resource.Attribute.contentInsetRight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentInsetStart = global::Mehspot.AndroidApp.Resource.Attribute.contentInsetStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentPadding = global::Mehspot.AndroidApp.Resource.Attribute.contentPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentPaddingBottom = global::Mehspot.AndroidApp.Resource.Attribute.contentPaddingBottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentPaddingLeft = global::Mehspot.AndroidApp.Resource.Attribute.contentPaddingLeft;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentPaddingRight = global::Mehspot.AndroidApp.Resource.Attribute.contentPaddingRight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentPaddingTop = global::Mehspot.AndroidApp.Resource.Attribute.contentPaddingTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.contentScrim = global::Mehspot.AndroidApp.Resource.Attribute.contentScrim;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.controlBackground = global::Mehspot.AndroidApp.Resource.Attribute.controlBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.counterEnabled = global::Mehspot.AndroidApp.Resource.Attribute.counterEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.counterMaxLength = global::Mehspot.AndroidApp.Resource.Attribute.counterMaxLength;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.counterOverflowTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.counterOverflowTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.counterTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.counterTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.customNavigationLayout = global::Mehspot.AndroidApp.Resource.Attribute.customNavigationLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.defaultColor = global::Mehspot.AndroidApp.Resource.Attribute.defaultColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.defaultQueryHint = global::Mehspot.AndroidApp.Resource.Attribute.defaultQueryHint;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.dialogPreferredPadding = global::Mehspot.AndroidApp.Resource.Attribute.dialogPreferredPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.dialogTheme = global::Mehspot.AndroidApp.Resource.Attribute.dialogTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.displayOptions = global::Mehspot.AndroidApp.Resource.Attribute.displayOptions;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.divider = global::Mehspot.AndroidApp.Resource.Attribute.divider;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.dividerHorizontal = global::Mehspot.AndroidApp.Resource.Attribute.dividerHorizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.dividerPadding = global::Mehspot.AndroidApp.Resource.Attribute.dividerPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.dividerVertical = global::Mehspot.AndroidApp.Resource.Attribute.dividerVertical;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.drawableSize = global::Mehspot.AndroidApp.Resource.Attribute.drawableSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.drawerArrowStyle = global::Mehspot.AndroidApp.Resource.Attribute.drawerArrowStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.dropDownListViewStyle = global::Mehspot.AndroidApp.Resource.Attribute.dropDownListViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.dropdownListPreferredItemHeight = global::Mehspot.AndroidApp.Resource.Attribute.dropdownListPreferredItemHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.editTextBackground = global::Mehspot.AndroidApp.Resource.Attribute.editTextBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.editTextColor = global::Mehspot.AndroidApp.Resource.Attribute.editTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.editTextStyle = global::Mehspot.AndroidApp.Resource.Attribute.editTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.elevation = global::Mehspot.AndroidApp.Resource.Attribute.elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.errorEnabled = global::Mehspot.AndroidApp.Resource.Attribute.errorEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.errorTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.errorTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expandActivityOverflowButtonDrawable = global::Mehspot.AndroidApp.Resource.Attribute.expandActivityOverflowButtonDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expanded = global::Mehspot.AndroidApp.Resource.Attribute.expanded;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expandedTitleGravity = global::Mehspot.AndroidApp.Resource.Attribute.expandedTitleGravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expandedTitleMargin = global::Mehspot.AndroidApp.Resource.Attribute.expandedTitleMargin;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expandedTitleMarginBottom = global::Mehspot.AndroidApp.Resource.Attribute.expandedTitleMarginBottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expandedTitleMarginEnd = global::Mehspot.AndroidApp.Resource.Attribute.expandedTitleMarginEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expandedTitleMarginStart = global::Mehspot.AndroidApp.Resource.Attribute.expandedTitleMarginStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expandedTitleMarginTop = global::Mehspot.AndroidApp.Resource.Attribute.expandedTitleMarginTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.expandedTitleTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.expandedTitleTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.externalRouteEnabledDrawable = global::Mehspot.AndroidApp.Resource.Attribute.externalRouteEnabledDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.fabSize = global::Mehspot.AndroidApp.Resource.Attribute.fabSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.foregroundInsidePadding = global::Mehspot.AndroidApp.Resource.Attribute.foregroundInsidePadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.gapBetweenBars = global::Mehspot.AndroidApp.Resource.Attribute.gapBetweenBars;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.goIcon = global::Mehspot.AndroidApp.Resource.Attribute.goIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.headerLayout = global::Mehspot.AndroidApp.Resource.Attribute.headerLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.height = global::Mehspot.AndroidApp.Resource.Attribute.height;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.hideOnContentScroll = global::Mehspot.AndroidApp.Resource.Attribute.hideOnContentScroll;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.hintAnimationEnabled = global::Mehspot.AndroidApp.Resource.Attribute.hintAnimationEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.hintEnabled = global::Mehspot.AndroidApp.Resource.Attribute.hintEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.hintTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.hintTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.homeAsUpIndicator = global::Mehspot.AndroidApp.Resource.Attribute.homeAsUpIndicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.homeLayout = global::Mehspot.AndroidApp.Resource.Attribute.homeLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.icon = global::Mehspot.AndroidApp.Resource.Attribute.icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.iconifiedByDefault = global::Mehspot.AndroidApp.Resource.Attribute.iconifiedByDefault;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.imageButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.imageButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.indeterminateProgressStyle = global::Mehspot.AndroidApp.Resource.Attribute.indeterminateProgressStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.initialActivityCount = global::Mehspot.AndroidApp.Resource.Attribute.initialActivityCount;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.insetForeground = global::Mehspot.AndroidApp.Resource.Attribute.insetForeground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.internalPadding = global::Mehspot.AndroidApp.Resource.Attribute.internalPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.isLightTheme = global::Mehspot.AndroidApp.Resource.Attribute.isLightTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.itemBackground = global::Mehspot.AndroidApp.Resource.Attribute.itemBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.itemIconTint = global::Mehspot.AndroidApp.Resource.Attribute.itemIconTint;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.itemPadding = global::Mehspot.AndroidApp.Resource.Attribute.itemPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.itemTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.itemTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.itemTextColor = global::Mehspot.AndroidApp.Resource.Attribute.itemTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.keylines = global::Mehspot.AndroidApp.Resource.Attribute.keylines;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout = global::Mehspot.AndroidApp.Resource.Attribute.layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layoutManager = global::Mehspot.AndroidApp.Resource.Attribute.layoutManager;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout_anchor = global::Mehspot.AndroidApp.Resource.Attribute.layout_anchor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout_anchorGravity = global::Mehspot.AndroidApp.Resource.Attribute.layout_anchorGravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout_behavior = global::Mehspot.AndroidApp.Resource.Attribute.layout_behavior;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout_collapseMode = global::Mehspot.AndroidApp.Resource.Attribute.layout_collapseMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout_collapseParallaxMultiplier = global::Mehspot.AndroidApp.Resource.Attribute.layout_collapseParallaxMultiplier;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout_keyline = global::Mehspot.AndroidApp.Resource.Attribute.layout_keyline;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout_scrollFlags = global::Mehspot.AndroidApp.Resource.Attribute.layout_scrollFlags;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.layout_scrollInterpolator = global::Mehspot.AndroidApp.Resource.Attribute.layout_scrollInterpolator;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listChoiceBackgroundIndicator = global::Mehspot.AndroidApp.Resource.Attribute.listChoiceBackgroundIndicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listDividerAlertDialog = global::Mehspot.AndroidApp.Resource.Attribute.listDividerAlertDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listItemLayout = global::Mehspot.AndroidApp.Resource.Attribute.listItemLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listLayout = global::Mehspot.AndroidApp.Resource.Attribute.listLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listPopupWindowStyle = global::Mehspot.AndroidApp.Resource.Attribute.listPopupWindowStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listPreferredItemHeight = global::Mehspot.AndroidApp.Resource.Attribute.listPreferredItemHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listPreferredItemHeightLarge = global::Mehspot.AndroidApp.Resource.Attribute.listPreferredItemHeightLarge;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listPreferredItemHeightSmall = global::Mehspot.AndroidApp.Resource.Attribute.listPreferredItemHeightSmall;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listPreferredItemPaddingLeft = global::Mehspot.AndroidApp.Resource.Attribute.listPreferredItemPaddingLeft;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.listPreferredItemPaddingRight = global::Mehspot.AndroidApp.Resource.Attribute.listPreferredItemPaddingRight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.logo = global::Mehspot.AndroidApp.Resource.Attribute.logo;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.logoDescription = global::Mehspot.AndroidApp.Resource.Attribute.logoDescription;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.maxActionInlineWidth = global::Mehspot.AndroidApp.Resource.Attribute.maxActionInlineWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.maxButtonHeight = global::Mehspot.AndroidApp.Resource.Attribute.maxButtonHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.maxThumbHidden = global::Mehspot.AndroidApp.Resource.Attribute.maxThumbHidden;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.measureWithLargestChild = global::Mehspot.AndroidApp.Resource.Attribute.measureWithLargestChild;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRouteAudioTrackDrawable = global::Mehspot.AndroidApp.Resource.Attribute.mediaRouteAudioTrackDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRouteButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.mediaRouteButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRouteCloseDrawable = global::Mehspot.AndroidApp.Resource.Attribute.mediaRouteCloseDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRouteDefaultIconDrawable = global::Mehspot.AndroidApp.Resource.Attribute.mediaRouteDefaultIconDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRoutePauseDrawable = global::Mehspot.AndroidApp.Resource.Attribute.mediaRoutePauseDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRoutePlayDrawable = global::Mehspot.AndroidApp.Resource.Attribute.mediaRoutePlayDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::Mehspot.AndroidApp.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::Mehspot.AndroidApp.Resource.Attribute.mediaRouteSpeakerIconDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.mediaRouteTvIconDrawable = global::Mehspot.AndroidApp.Resource.Attribute.mediaRouteTvIconDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.menu = global::Mehspot.AndroidApp.Resource.Attribute.menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.minThumbHidden = global::Mehspot.AndroidApp.Resource.Attribute.minThumbHidden;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.multiChoiceItemLayout = global::Mehspot.AndroidApp.Resource.Attribute.multiChoiceItemLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.navigationContentDescription = global::Mehspot.AndroidApp.Resource.Attribute.navigationContentDescription;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.navigationIcon = global::Mehspot.AndroidApp.Resource.Attribute.navigationIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.navigationMode = global::Mehspot.AndroidApp.Resource.Attribute.navigationMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.overlapAnchor = global::Mehspot.AndroidApp.Resource.Attribute.overlapAnchor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.paddingEnd = global::Mehspot.AndroidApp.Resource.Attribute.paddingEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.paddingStart = global::Mehspot.AndroidApp.Resource.Attribute.paddingStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.panelBackground = global::Mehspot.AndroidApp.Resource.Attribute.panelBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.panelMenuListTheme = global::Mehspot.AndroidApp.Resource.Attribute.panelMenuListTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.panelMenuListWidth = global::Mehspot.AndroidApp.Resource.Attribute.panelMenuListWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.popupMenuStyle = global::Mehspot.AndroidApp.Resource.Attribute.popupMenuStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.popupTheme = global::Mehspot.AndroidApp.Resource.Attribute.popupTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.popupWindowStyle = global::Mehspot.AndroidApp.Resource.Attribute.popupWindowStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.preserveIconSpacing = global::Mehspot.AndroidApp.Resource.Attribute.preserveIconSpacing;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.pressedTranslationZ = global::Mehspot.AndroidApp.Resource.Attribute.pressedTranslationZ;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.progressBarPadding = global::Mehspot.AndroidApp.Resource.Attribute.progressBarPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.progressBarStyle = global::Mehspot.AndroidApp.Resource.Attribute.progressBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.queryBackground = global::Mehspot.AndroidApp.Resource.Attribute.queryBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.queryHint = global::Mehspot.AndroidApp.Resource.Attribute.queryHint;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.radioButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.radioButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.ratingBarStyle = global::Mehspot.AndroidApp.Resource.Attribute.ratingBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.ratingBarStyleIndicator = global::Mehspot.AndroidApp.Resource.Attribute.ratingBarStyleIndicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.ratingBarStyleSmall = global::Mehspot.AndroidApp.Resource.Attribute.ratingBarStyleSmall;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.reverseLayout = global::Mehspot.AndroidApp.Resource.Attribute.reverseLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.rippleColor = global::Mehspot.AndroidApp.Resource.Attribute.rippleColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.searchHintIcon = global::Mehspot.AndroidApp.Resource.Attribute.searchHintIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.searchIcon = global::Mehspot.AndroidApp.Resource.Attribute.searchIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.searchViewStyle = global::Mehspot.AndroidApp.Resource.Attribute.searchViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.seekBarStyle = global::Mehspot.AndroidApp.Resource.Attribute.seekBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.selectableItemBackground = global::Mehspot.AndroidApp.Resource.Attribute.selectableItemBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.selectableItemBackgroundBorderless = global::Mehspot.AndroidApp.Resource.Attribute.selectableItemBackgroundBorderless;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.showAsAction = global::Mehspot.AndroidApp.Resource.Attribute.showAsAction;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.showDividers = global::Mehspot.AndroidApp.Resource.Attribute.showDividers;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.showRangeLabels = global::Mehspot.AndroidApp.Resource.Attribute.showRangeLabels;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.showText = global::Mehspot.AndroidApp.Resource.Attribute.showText;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.singleChoiceItemLayout = global::Mehspot.AndroidApp.Resource.Attribute.singleChoiceItemLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.spanCount = global::Mehspot.AndroidApp.Resource.Attribute.spanCount;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.spinBars = global::Mehspot.AndroidApp.Resource.Attribute.spinBars;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.spinnerDropDownItemStyle = global::Mehspot.AndroidApp.Resource.Attribute.spinnerDropDownItemStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.spinnerStyle = global::Mehspot.AndroidApp.Resource.Attribute.spinnerStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.splitTrack = global::Mehspot.AndroidApp.Resource.Attribute.splitTrack;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.srcCompat = global::Mehspot.AndroidApp.Resource.Attribute.srcCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.stackFromEnd = global::Mehspot.AndroidApp.Resource.Attribute.stackFromEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.state_above_anchor = global::Mehspot.AndroidApp.Resource.Attribute.state_above_anchor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.statusBarBackground = global::Mehspot.AndroidApp.Resource.Attribute.statusBarBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.statusBarScrim = global::Mehspot.AndroidApp.Resource.Attribute.statusBarScrim;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.stepValue = global::Mehspot.AndroidApp.Resource.Attribute.stepValue;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.stepValueContinuously = global::Mehspot.AndroidApp.Resource.Attribute.stepValueContinuously;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.submitBackground = global::Mehspot.AndroidApp.Resource.Attribute.submitBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.subtitle = global::Mehspot.AndroidApp.Resource.Attribute.subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.subtitleTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.subtitleTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.subtitleTextColor = global::Mehspot.AndroidApp.Resource.Attribute.subtitleTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.subtitleTextStyle = global::Mehspot.AndroidApp.Resource.Attribute.subtitleTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.suggestionRowLayout = global::Mehspot.AndroidApp.Resource.Attribute.suggestionRowLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.switchMinWidth = global::Mehspot.AndroidApp.Resource.Attribute.switchMinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.switchPadding = global::Mehspot.AndroidApp.Resource.Attribute.switchPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.switchStyle = global::Mehspot.AndroidApp.Resource.Attribute.switchStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.switchTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.switchTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabBackground = global::Mehspot.AndroidApp.Resource.Attribute.tabBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabContentStart = global::Mehspot.AndroidApp.Resource.Attribute.tabContentStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabGravity = global::Mehspot.AndroidApp.Resource.Attribute.tabGravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabIndicatorColor = global::Mehspot.AndroidApp.Resource.Attribute.tabIndicatorColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabIndicatorHeight = global::Mehspot.AndroidApp.Resource.Attribute.tabIndicatorHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabMaxWidth = global::Mehspot.AndroidApp.Resource.Attribute.tabMaxWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabMinWidth = global::Mehspot.AndroidApp.Resource.Attribute.tabMinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabMode = global::Mehspot.AndroidApp.Resource.Attribute.tabMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabPadding = global::Mehspot.AndroidApp.Resource.Attribute.tabPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabPaddingBottom = global::Mehspot.AndroidApp.Resource.Attribute.tabPaddingBottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabPaddingEnd = global::Mehspot.AndroidApp.Resource.Attribute.tabPaddingEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabPaddingStart = global::Mehspot.AndroidApp.Resource.Attribute.tabPaddingStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabPaddingTop = global::Mehspot.AndroidApp.Resource.Attribute.tabPaddingTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabSelectedTextColor = global::Mehspot.AndroidApp.Resource.Attribute.tabSelectedTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.tabTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.tabTextColor = global::Mehspot.AndroidApp.Resource.Attribute.tabTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textAboveThumbsColor = global::Mehspot.AndroidApp.Resource.Attribute.textAboveThumbsColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textAllCaps = global::Mehspot.AndroidApp.Resource.Attribute.textAllCaps;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textAppearanceLargePopupMenu = global::Mehspot.AndroidApp.Resource.Attribute.textAppearanceLargePopupMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textAppearanceListItem = global::Mehspot.AndroidApp.Resource.Attribute.textAppearanceListItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textAppearanceListItemSmall = global::Mehspot.AndroidApp.Resource.Attribute.textAppearanceListItemSmall;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textAppearanceSearchResultSubtitle = global::Mehspot.AndroidApp.Resource.Attribute.textAppearanceSearchResultSubtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textAppearanceSearchResultTitle = global::Mehspot.AndroidApp.Resource.Attribute.textAppearanceSearchResultTitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textAppearanceSmallPopupMenu = global::Mehspot.AndroidApp.Resource.Attribute.textAppearanceSmallPopupMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textColorAlertDialogListItem = global::Mehspot.AndroidApp.Resource.Attribute.textColorAlertDialogListItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textColorError = global::Mehspot.AndroidApp.Resource.Attribute.textColorError;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textColorSearchUrl = global::Mehspot.AndroidApp.Resource.Attribute.textColorSearchUrl;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.textSize = global::Mehspot.AndroidApp.Resource.Attribute.textSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.theme = global::Mehspot.AndroidApp.Resource.Attribute.theme;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thickness = global::Mehspot.AndroidApp.Resource.Attribute.thickness;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbDisabled = global::Mehspot.AndroidApp.Resource.Attribute.thumbDisabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbNormal = global::Mehspot.AndroidApp.Resource.Attribute.thumbNormal;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbPressed = global::Mehspot.AndroidApp.Resource.Attribute.thumbPressed;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbShadow = global::Mehspot.AndroidApp.Resource.Attribute.thumbShadow;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbShadowBlur = global::Mehspot.AndroidApp.Resource.Attribute.thumbShadowBlur;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbShadowColor = global::Mehspot.AndroidApp.Resource.Attribute.thumbShadowColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbShadowXOffset = global::Mehspot.AndroidApp.Resource.Attribute.thumbShadowXOffset;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbShadowYOffset = global::Mehspot.AndroidApp.Resource.Attribute.thumbShadowYOffset;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.thumbTextPadding = global::Mehspot.AndroidApp.Resource.Attribute.thumbTextPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.title = global::Mehspot.AndroidApp.Resource.Attribute.title;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleEnabled = global::Mehspot.AndroidApp.Resource.Attribute.titleEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleMarginBottom = global::Mehspot.AndroidApp.Resource.Attribute.titleMarginBottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleMarginEnd = global::Mehspot.AndroidApp.Resource.Attribute.titleMarginEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleMarginStart = global::Mehspot.AndroidApp.Resource.Attribute.titleMarginStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleMarginTop = global::Mehspot.AndroidApp.Resource.Attribute.titleMarginTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleMargins = global::Mehspot.AndroidApp.Resource.Attribute.titleMargins;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleTextAppearance = global::Mehspot.AndroidApp.Resource.Attribute.titleTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleTextColor = global::Mehspot.AndroidApp.Resource.Attribute.titleTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.titleTextStyle = global::Mehspot.AndroidApp.Resource.Attribute.titleTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.toolbarId = global::Mehspot.AndroidApp.Resource.Attribute.toolbarId;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.toolbarNavigationButtonStyle = global::Mehspot.AndroidApp.Resource.Attribute.toolbarNavigationButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.toolbarStyle = global::Mehspot.AndroidApp.Resource.Attribute.toolbarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.track = global::Mehspot.AndroidApp.Resource.Attribute.track;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.useCompatPadding = global::Mehspot.AndroidApp.Resource.Attribute.useCompatPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.valuesAboveThumbs = global::Mehspot.AndroidApp.Resource.Attribute.valuesAboveThumbs;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.voiceIcon = global::Mehspot.AndroidApp.Resource.Attribute.voiceIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowActionBar = global::Mehspot.AndroidApp.Resource.Attribute.windowActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowActionBarOverlay = global::Mehspot.AndroidApp.Resource.Attribute.windowActionBarOverlay;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowActionModeOverlay = global::Mehspot.AndroidApp.Resource.Attribute.windowActionModeOverlay;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowFixedHeightMajor = global::Mehspot.AndroidApp.Resource.Attribute.windowFixedHeightMajor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowFixedHeightMinor = global::Mehspot.AndroidApp.Resource.Attribute.windowFixedHeightMinor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowFixedWidthMajor = global::Mehspot.AndroidApp.Resource.Attribute.windowFixedWidthMajor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowFixedWidthMinor = global::Mehspot.AndroidApp.Resource.Attribute.windowFixedWidthMinor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowMinWidthMajor = global::Mehspot.AndroidApp.Resource.Attribute.windowMinWidthMajor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowMinWidthMinor = global::Mehspot.AndroidApp.Resource.Attribute.windowMinWidthMinor;
-			global::Xamarin.RangeSlider.Forms.Resource.Attribute.windowNoTitle = global::Mehspot.AndroidApp.Resource.Attribute.windowNoTitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Boolean.abc_action_bar_embed_tabs = global::Mehspot.AndroidApp.Resource.Boolean.abc_action_bar_embed_tabs;
-			global::Xamarin.RangeSlider.Forms.Resource.Boolean.abc_allow_stacked_button_bar = global::Mehspot.AndroidApp.Resource.Boolean.abc_allow_stacked_button_bar;
-			global::Xamarin.RangeSlider.Forms.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::Mehspot.AndroidApp.Resource.Boolean.abc_config_actionMenuItemAllCaps;
-			global::Xamarin.RangeSlider.Forms.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::Mehspot.AndroidApp.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
-			global::Xamarin.RangeSlider.Forms.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::Mehspot.AndroidApp.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_background_cache_hint_selector_material_dark = global::Mehspot.AndroidApp.Resource.Color.abc_background_cache_hint_selector_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_background_cache_hint_selector_material_light = global::Mehspot.AndroidApp.Resource.Color.abc_background_cache_hint_selector_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_color_highlight_material = global::Mehspot.AndroidApp.Resource.Color.abc_color_highlight_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_input_method_navigation_guard = global::Mehspot.AndroidApp.Resource.Color.abc_input_method_navigation_guard;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_primary_text_disable_only_material_dark = global::Mehspot.AndroidApp.Resource.Color.abc_primary_text_disable_only_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_primary_text_disable_only_material_light = global::Mehspot.AndroidApp.Resource.Color.abc_primary_text_disable_only_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_primary_text_material_dark = global::Mehspot.AndroidApp.Resource.Color.abc_primary_text_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_primary_text_material_light = global::Mehspot.AndroidApp.Resource.Color.abc_primary_text_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_search_url_text = global::Mehspot.AndroidApp.Resource.Color.abc_search_url_text;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_search_url_text_normal = global::Mehspot.AndroidApp.Resource.Color.abc_search_url_text_normal;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_search_url_text_pressed = global::Mehspot.AndroidApp.Resource.Color.abc_search_url_text_pressed;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_search_url_text_selected = global::Mehspot.AndroidApp.Resource.Color.abc_search_url_text_selected;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_secondary_text_material_dark = global::Mehspot.AndroidApp.Resource.Color.abc_secondary_text_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.abc_secondary_text_material_light = global::Mehspot.AndroidApp.Resource.Color.abc_secondary_text_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.accent_material_dark = global::Mehspot.AndroidApp.Resource.Color.accent_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.accent_material_light = global::Mehspot.AndroidApp.Resource.Color.accent_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.background_floating_material_dark = global::Mehspot.AndroidApp.Resource.Color.background_floating_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.background_floating_material_light = global::Mehspot.AndroidApp.Resource.Color.background_floating_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.background_material_dark = global::Mehspot.AndroidApp.Resource.Color.background_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.background_material_light = global::Mehspot.AndroidApp.Resource.Color.background_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.bright_foreground_disabled_material_dark = global::Mehspot.AndroidApp.Resource.Color.bright_foreground_disabled_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.bright_foreground_disabled_material_light = global::Mehspot.AndroidApp.Resource.Color.bright_foreground_disabled_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.bright_foreground_inverse_material_dark = global::Mehspot.AndroidApp.Resource.Color.bright_foreground_inverse_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.bright_foreground_inverse_material_light = global::Mehspot.AndroidApp.Resource.Color.bright_foreground_inverse_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.bright_foreground_material_dark = global::Mehspot.AndroidApp.Resource.Color.bright_foreground_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.bright_foreground_material_light = global::Mehspot.AndroidApp.Resource.Color.bright_foreground_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.button_material_dark = global::Mehspot.AndroidApp.Resource.Color.button_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.button_material_light = global::Mehspot.AndroidApp.Resource.Color.button_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.cardview_dark_background = global::Mehspot.AndroidApp.Resource.Color.cardview_dark_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.cardview_light_background = global::Mehspot.AndroidApp.Resource.Color.cardview_light_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.cardview_shadow_end_color = global::Mehspot.AndroidApp.Resource.Color.cardview_shadow_end_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.cardview_shadow_start_color = global::Mehspot.AndroidApp.Resource.Color.cardview_shadow_start_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_fab_shadow_end_color = global::Mehspot.AndroidApp.Resource.Color.design_fab_shadow_end_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_fab_shadow_mid_color = global::Mehspot.AndroidApp.Resource.Color.design_fab_shadow_mid_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_fab_shadow_start_color = global::Mehspot.AndroidApp.Resource.Color.design_fab_shadow_start_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_fab_stroke_end_inner_color = global::Mehspot.AndroidApp.Resource.Color.design_fab_stroke_end_inner_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_fab_stroke_end_outer_color = global::Mehspot.AndroidApp.Resource.Color.design_fab_stroke_end_outer_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_fab_stroke_top_inner_color = global::Mehspot.AndroidApp.Resource.Color.design_fab_stroke_top_inner_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_fab_stroke_top_outer_color = global::Mehspot.AndroidApp.Resource.Color.design_fab_stroke_top_outer_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_snackbar_background_color = global::Mehspot.AndroidApp.Resource.Color.design_snackbar_background_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_textinput_error_color_dark = global::Mehspot.AndroidApp.Resource.Color.design_textinput_error_color_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.design_textinput_error_color_light = global::Mehspot.AndroidApp.Resource.Color.design_textinput_error_color_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.dim_foreground_disabled_material_dark = global::Mehspot.AndroidApp.Resource.Color.dim_foreground_disabled_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.dim_foreground_disabled_material_light = global::Mehspot.AndroidApp.Resource.Color.dim_foreground_disabled_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.dim_foreground_material_dark = global::Mehspot.AndroidApp.Resource.Color.dim_foreground_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.dim_foreground_material_light = global::Mehspot.AndroidApp.Resource.Color.dim_foreground_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.foreground_material_dark = global::Mehspot.AndroidApp.Resource.Color.foreground_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.foreground_material_light = global::Mehspot.AndroidApp.Resource.Color.foreground_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.highlighted_text_material_dark = global::Mehspot.AndroidApp.Resource.Color.highlighted_text_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.highlighted_text_material_light = global::Mehspot.AndroidApp.Resource.Color.highlighted_text_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_blue_grey_800 = global::Mehspot.AndroidApp.Resource.Color.material_blue_grey_800;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_blue_grey_900 = global::Mehspot.AndroidApp.Resource.Color.material_blue_grey_900;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_blue_grey_950 = global::Mehspot.AndroidApp.Resource.Color.material_blue_grey_950;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_deep_teal_200 = global::Mehspot.AndroidApp.Resource.Color.material_deep_teal_200;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_deep_teal_500 = global::Mehspot.AndroidApp.Resource.Color.material_deep_teal_500;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_grey_100 = global::Mehspot.AndroidApp.Resource.Color.material_grey_100;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_grey_300 = global::Mehspot.AndroidApp.Resource.Color.material_grey_300;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_grey_50 = global::Mehspot.AndroidApp.Resource.Color.material_grey_50;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_grey_600 = global::Mehspot.AndroidApp.Resource.Color.material_grey_600;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_grey_800 = global::Mehspot.AndroidApp.Resource.Color.material_grey_800;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_grey_850 = global::Mehspot.AndroidApp.Resource.Color.material_grey_850;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.material_grey_900 = global::Mehspot.AndroidApp.Resource.Color.material_grey_900;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.primary_dark_material_dark = global::Mehspot.AndroidApp.Resource.Color.primary_dark_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.primary_dark_material_light = global::Mehspot.AndroidApp.Resource.Color.primary_dark_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.primary_material_dark = global::Mehspot.AndroidApp.Resource.Color.primary_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.primary_material_light = global::Mehspot.AndroidApp.Resource.Color.primary_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.primary_text_default_material_dark = global::Mehspot.AndroidApp.Resource.Color.primary_text_default_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.primary_text_default_material_light = global::Mehspot.AndroidApp.Resource.Color.primary_text_default_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.primary_text_disabled_material_dark = global::Mehspot.AndroidApp.Resource.Color.primary_text_disabled_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.primary_text_disabled_material_light = global::Mehspot.AndroidApp.Resource.Color.primary_text_disabled_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.ripple_material_dark = global::Mehspot.AndroidApp.Resource.Color.ripple_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.ripple_material_light = global::Mehspot.AndroidApp.Resource.Color.ripple_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.secondary_text_default_material_dark = global::Mehspot.AndroidApp.Resource.Color.secondary_text_default_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.secondary_text_default_material_light = global::Mehspot.AndroidApp.Resource.Color.secondary_text_default_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.secondary_text_disabled_material_dark = global::Mehspot.AndroidApp.Resource.Color.secondary_text_disabled_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.secondary_text_disabled_material_light = global::Mehspot.AndroidApp.Resource.Color.secondary_text_disabled_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.switch_thumb_disabled_material_dark = global::Mehspot.AndroidApp.Resource.Color.switch_thumb_disabled_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.switch_thumb_disabled_material_light = global::Mehspot.AndroidApp.Resource.Color.switch_thumb_disabled_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.switch_thumb_material_dark = global::Mehspot.AndroidApp.Resource.Color.switch_thumb_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.switch_thumb_material_light = global::Mehspot.AndroidApp.Resource.Color.switch_thumb_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.switch_thumb_normal_material_dark = global::Mehspot.AndroidApp.Resource.Color.switch_thumb_normal_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Color.switch_thumb_normal_material_light = global::Mehspot.AndroidApp.Resource.Color.switch_thumb_normal_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_content_inset_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_content_inset_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_default_height_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_default_height_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_default_padding_end_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_default_padding_end_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_default_padding_start_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_default_padding_start_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_progress_bar_size = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_progress_bar_size;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_stacked_max_height = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_stacked_max_height;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_button_min_height_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_button_min_height_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_button_min_width_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_button_min_width_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_action_button_min_width_overflow_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_action_button_min_width_overflow_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_alert_dialog_button_bar_height = global::Mehspot.AndroidApp.Resource.Dimension.abc_alert_dialog_button_bar_height;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_button_inset_horizontal_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_button_inset_horizontal_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_button_inset_vertical_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_button_inset_vertical_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_button_padding_horizontal_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_button_padding_horizontal_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_button_padding_vertical_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_button_padding_vertical_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_config_prefDialogWidth = global::Mehspot.AndroidApp.Resource.Dimension.abc_config_prefDialogWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_control_corner_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_control_corner_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_control_inset_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_control_inset_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_control_padding_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_control_padding_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dialog_fixed_height_major = global::Mehspot.AndroidApp.Resource.Dimension.abc_dialog_fixed_height_major;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dialog_fixed_height_minor = global::Mehspot.AndroidApp.Resource.Dimension.abc_dialog_fixed_height_minor;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dialog_fixed_width_major = global::Mehspot.AndroidApp.Resource.Dimension.abc_dialog_fixed_width_major;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dialog_fixed_width_minor = global::Mehspot.AndroidApp.Resource.Dimension.abc_dialog_fixed_width_minor;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dialog_min_width_major = global::Mehspot.AndroidApp.Resource.Dimension.abc_dialog_min_width_major;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dialog_min_width_minor = global::Mehspot.AndroidApp.Resource.Dimension.abc_dialog_min_width_minor;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dialog_padding_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_dialog_padding_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dialog_padding_top_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_dialog_padding_top_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_disabled_alpha_material_dark = global::Mehspot.AndroidApp.Resource.Dimension.abc_disabled_alpha_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_disabled_alpha_material_light = global::Mehspot.AndroidApp.Resource.Dimension.abc_disabled_alpha_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dropdownitem_icon_width = global::Mehspot.AndroidApp.Resource.Dimension.abc_dropdownitem_icon_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dropdownitem_text_padding_left = global::Mehspot.AndroidApp.Resource.Dimension.abc_dropdownitem_text_padding_left;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_dropdownitem_text_padding_right = global::Mehspot.AndroidApp.Resource.Dimension.abc_dropdownitem_text_padding_right;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_edit_text_inset_bottom_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_edit_text_inset_bottom_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_edit_text_inset_horizontal_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_edit_text_inset_top_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_edit_text_inset_top_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_floating_window_z = global::Mehspot.AndroidApp.Resource.Dimension.abc_floating_window_z;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_list_item_padding_horizontal_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_list_item_padding_horizontal_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_panel_menu_list_width = global::Mehspot.AndroidApp.Resource.Dimension.abc_panel_menu_list_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_search_view_preferred_width = global::Mehspot.AndroidApp.Resource.Dimension.abc_search_view_preferred_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_seekbar_track_background_height_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_seekbar_track_background_height_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_seekbar_track_progress_height_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_seekbar_track_progress_height_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_select_dialog_padding_start_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_select_dialog_padding_start_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_switch_padding = global::Mehspot.AndroidApp.Resource.Dimension.abc_switch_padding;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_body_1_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_body_1_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_body_2_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_body_2_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_button_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_button_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_caption_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_caption_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_display_1_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_display_1_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_display_2_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_display_2_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_display_3_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_display_3_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_display_4_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_display_4_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_headline_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_headline_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_large_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_large_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_medium_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_medium_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_menu_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_menu_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_small_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_small_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_subhead_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_subhead_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_title_material = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_title_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.abc_text_size_title_material_toolbar = global::Mehspot.AndroidApp.Resource.Dimension.abc_text_size_title_material_toolbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.cardview_compat_inset_shadow = global::Mehspot.AndroidApp.Resource.Dimension.cardview_compat_inset_shadow;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.cardview_default_elevation = global::Mehspot.AndroidApp.Resource.Dimension.cardview_default_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.cardview_default_radius = global::Mehspot.AndroidApp.Resource.Dimension.cardview_default_radius;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_appbar_elevation = global::Mehspot.AndroidApp.Resource.Dimension.design_appbar_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_bottom_sheet_modal_elevation = global::Mehspot.AndroidApp.Resource.Dimension.design_bottom_sheet_modal_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_fab_border_width = global::Mehspot.AndroidApp.Resource.Dimension.design_fab_border_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_fab_elevation = global::Mehspot.AndroidApp.Resource.Dimension.design_fab_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_fab_image_size = global::Mehspot.AndroidApp.Resource.Dimension.design_fab_image_size;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_fab_size_mini = global::Mehspot.AndroidApp.Resource.Dimension.design_fab_size_mini;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_fab_size_normal = global::Mehspot.AndroidApp.Resource.Dimension.design_fab_size_normal;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_fab_translation_z_pressed = global::Mehspot.AndroidApp.Resource.Dimension.design_fab_translation_z_pressed;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_navigation_elevation = global::Mehspot.AndroidApp.Resource.Dimension.design_navigation_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_navigation_icon_padding = global::Mehspot.AndroidApp.Resource.Dimension.design_navigation_icon_padding;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_navigation_icon_size = global::Mehspot.AndroidApp.Resource.Dimension.design_navigation_icon_size;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_navigation_max_width = global::Mehspot.AndroidApp.Resource.Dimension.design_navigation_max_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_navigation_padding_bottom = global::Mehspot.AndroidApp.Resource.Dimension.design_navigation_padding_bottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_navigation_separator_vertical_padding = global::Mehspot.AndroidApp.Resource.Dimension.design_navigation_separator_vertical_padding;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_action_inline_max_width = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_action_inline_max_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_background_corner_radius = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_background_corner_radius;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_elevation = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_max_width = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_max_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_min_width = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_min_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_padding_horizontal = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_padding_horizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_padding_vertical = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_padding_vertical;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_padding_vertical_2lines;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_snackbar_text_size = global::Mehspot.AndroidApp.Resource.Dimension.design_snackbar_text_size;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_tab_max_width = global::Mehspot.AndroidApp.Resource.Dimension.design_tab_max_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_tab_scrollable_min_width = global::Mehspot.AndroidApp.Resource.Dimension.design_tab_scrollable_min_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_tab_text_size = global::Mehspot.AndroidApp.Resource.Dimension.design_tab_text_size;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.design_tab_text_size_2line = global::Mehspot.AndroidApp.Resource.Dimension.design_tab_text_size_2line;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.disabled_alpha_material_dark = global::Mehspot.AndroidApp.Resource.Dimension.disabled_alpha_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.disabled_alpha_material_light = global::Mehspot.AndroidApp.Resource.Dimension.disabled_alpha_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.highlight_alpha_material_colored = global::Mehspot.AndroidApp.Resource.Dimension.highlight_alpha_material_colored;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.highlight_alpha_material_dark = global::Mehspot.AndroidApp.Resource.Dimension.highlight_alpha_material_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.highlight_alpha_material_light = global::Mehspot.AndroidApp.Resource.Dimension.highlight_alpha_material_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::Mehspot.AndroidApp.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::Mehspot.AndroidApp.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::Mehspot.AndroidApp.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.mr_controller_volume_group_list_item_height = global::Mehspot.AndroidApp.Resource.Dimension.mr_controller_volume_group_list_item_height;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.mr_controller_volume_group_list_item_icon_size = global::Mehspot.AndroidApp.Resource.Dimension.mr_controller_volume_group_list_item_icon_size;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.mr_controller_volume_group_list_max_height = global::Mehspot.AndroidApp.Resource.Dimension.mr_controller_volume_group_list_max_height;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::Mehspot.AndroidApp.Resource.Dimension.mr_controller_volume_group_list_padding_top;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.mr_dialog_fixed_width_major = global::Mehspot.AndroidApp.Resource.Dimension.mr_dialog_fixed_width_major;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.mr_dialog_fixed_width_minor = global::Mehspot.AndroidApp.Resource.Dimension.mr_dialog_fixed_width_minor;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.notification_large_icon_height = global::Mehspot.AndroidApp.Resource.Dimension.notification_large_icon_height;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.notification_large_icon_width = global::Mehspot.AndroidApp.Resource.Dimension.notification_large_icon_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Dimension.notification_subtext_size = global::Mehspot.AndroidApp.Resource.Dimension.notification_subtext_size;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_action_bar_item_background_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_action_bar_item_background_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_borderless_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_borderless_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_check_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_check_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_colored_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_colored_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_default_mtrl_shape = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_default_mtrl_shape;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_radio_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_radio_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::Mehspot.AndroidApp.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_cab_background_internal_bg = global::Mehspot.AndroidApp.Resource.Drawable.abc_cab_background_internal_bg;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_cab_background_top_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_cab_background_top_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_control_background_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_control_background_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_edit_text_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_edit_text_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_star_black_16dp = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_star_black_16dp;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_star_black_36dp = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_star_black_36dp;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_star_half_black_16dp = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_star_half_black_16dp;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ic_star_half_black_36dp = global::Mehspot.AndroidApp.Resource.Drawable.abc_ic_star_half_black_36dp;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_item_background_holo_dark = global::Mehspot.AndroidApp.Resource.Drawable.abc_item_background_holo_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_item_background_holo_light = global::Mehspot.AndroidApp.Resource.Drawable.abc_item_background_holo_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_divider_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_divider_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_focused_holo = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_focused_holo;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_longpressed_holo = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_longpressed_holo;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_pressed_holo_dark = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_pressed_holo_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_pressed_holo_light = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_pressed_holo_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_selector_background_transition_holo_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_selector_disabled_holo_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_selector_disabled_holo_light = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_selector_disabled_holo_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_selector_holo_dark = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_selector_holo_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_list_selector_holo_light = global::Mehspot.AndroidApp.Resource.Drawable.abc_list_selector_holo_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::Mehspot.AndroidApp.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_popup_background_mtrl_mult = global::Mehspot.AndroidApp.Resource.Drawable.abc_popup_background_mtrl_mult;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ratingbar_indicator_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_ratingbar_indicator_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_ratingbar_small_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_ratingbar_small_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::Mehspot.AndroidApp.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::Mehspot.AndroidApp.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_seekbar_thumb_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_seekbar_thumb_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_seekbar_track_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_seekbar_track_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_spinner_mtrl_am_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_spinner_textfield_background_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_spinner_textfield_background_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_switch_thumb_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_switch_thumb_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_switch_track_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_switch_track_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_tab_indicator_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_tab_indicator_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_text_cursor_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_text_cursor_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_textfield_default_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::Mehspot.AndroidApp.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.abc_textfield_search_material = global::Mehspot.AndroidApp.Resource.Drawable.abc_textfield_search_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.design_fab_background = global::Mehspot.AndroidApp.Resource.Drawable.design_fab_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.design_snackbar_background = global::Mehspot.AndroidApp.Resource.Drawable.design_snackbar_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.ic_audiotrack_light = global::Mehspot.AndroidApp.Resource.Drawable.ic_audiotrack_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.mr_dialog_material_background_dark = global::Mehspot.AndroidApp.Resource.Drawable.mr_dialog_material_background_dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.mr_dialog_material_background_light = global::Mehspot.AndroidApp.Resource.Drawable.mr_dialog_material_background_light;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.notification_template_icon_bg = global::Mehspot.AndroidApp.Resource.Drawable.notification_template_icon_bg;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.seek_thumb_disabled = global::Mehspot.AndroidApp.Resource.Drawable.seek_thumb_disabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.seek_thumb_normal = global::Mehspot.AndroidApp.Resource.Drawable.seek_thumb_normal;
-			global::Xamarin.RangeSlider.Forms.Resource.Drawable.seek_thumb_pressed = global::Mehspot.AndroidApp.Resource.Drawable.seek_thumb_pressed;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action0 = global::Mehspot.AndroidApp.Resource.Id.action0;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_bar = global::Mehspot.AndroidApp.Resource.Id.action_bar;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_bar_activity_content = global::Mehspot.AndroidApp.Resource.Id.action_bar_activity_content;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_bar_container = global::Mehspot.AndroidApp.Resource.Id.action_bar_container;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_bar_root = global::Mehspot.AndroidApp.Resource.Id.action_bar_root;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_bar_spinner = global::Mehspot.AndroidApp.Resource.Id.action_bar_spinner;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_bar_subtitle = global::Mehspot.AndroidApp.Resource.Id.action_bar_subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_bar_title = global::Mehspot.AndroidApp.Resource.Id.action_bar_title;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_context_bar = global::Mehspot.AndroidApp.Resource.Id.action_context_bar;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_divider = global::Mehspot.AndroidApp.Resource.Id.action_divider;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_menu_divider = global::Mehspot.AndroidApp.Resource.Id.action_menu_divider;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_menu_presenter = global::Mehspot.AndroidApp.Resource.Id.action_menu_presenter;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_mode_bar = global::Mehspot.AndroidApp.Resource.Id.action_mode_bar;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_mode_bar_stub = global::Mehspot.AndroidApp.Resource.Id.action_mode_bar_stub;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.action_mode_close_button = global::Mehspot.AndroidApp.Resource.Id.action_mode_close_button;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.activity_chooser_view_content = global::Mehspot.AndroidApp.Resource.Id.activity_chooser_view_content;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.alertTitle = global::Mehspot.AndroidApp.Resource.Id.alertTitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.always = global::Mehspot.AndroidApp.Resource.Id.always;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.beginning = global::Mehspot.AndroidApp.Resource.Id.beginning;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.bottom = global::Mehspot.AndroidApp.Resource.Id.bottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.buttonPanel = global::Mehspot.AndroidApp.Resource.Id.buttonPanel;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.cancel_action = global::Mehspot.AndroidApp.Resource.Id.cancel_action;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.center = global::Mehspot.AndroidApp.Resource.Id.center;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.center_horizontal = global::Mehspot.AndroidApp.Resource.Id.center_horizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.center_vertical = global::Mehspot.AndroidApp.Resource.Id.center_vertical;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.checkbox = global::Mehspot.AndroidApp.Resource.Id.checkbox;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.chronometer = global::Mehspot.AndroidApp.Resource.Id.chronometer;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.clip_horizontal = global::Mehspot.AndroidApp.Resource.Id.clip_horizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.clip_vertical = global::Mehspot.AndroidApp.Resource.Id.clip_vertical;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.collapseActionView = global::Mehspot.AndroidApp.Resource.Id.collapseActionView;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.contentPanel = global::Mehspot.AndroidApp.Resource.Id.contentPanel;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.custom = global::Mehspot.AndroidApp.Resource.Id.custom;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.customPanel = global::Mehspot.AndroidApp.Resource.Id.customPanel;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.decor_content_parent = global::Mehspot.AndroidApp.Resource.Id.decor_content_parent;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.default_activity_button = global::Mehspot.AndroidApp.Resource.Id.default_activity_button;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.design_bottom_sheet = global::Mehspot.AndroidApp.Resource.Id.design_bottom_sheet;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.design_menu_item_action_area = global::Mehspot.AndroidApp.Resource.Id.design_menu_item_action_area;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.design_menu_item_action_area_stub = global::Mehspot.AndroidApp.Resource.Id.design_menu_item_action_area_stub;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.design_menu_item_text = global::Mehspot.AndroidApp.Resource.Id.design_menu_item_text;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.design_navigation_view = global::Mehspot.AndroidApp.Resource.Id.design_navigation_view;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.disableHome = global::Mehspot.AndroidApp.Resource.Id.disableHome;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.edit_query = global::Mehspot.AndroidApp.Resource.Id.edit_query;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.end = global::Mehspot.AndroidApp.Resource.Id.end;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.end_padder = global::Mehspot.AndroidApp.Resource.Id.end_padder;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.enterAlways = global::Mehspot.AndroidApp.Resource.Id.enterAlways;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.enterAlwaysCollapsed = global::Mehspot.AndroidApp.Resource.Id.enterAlwaysCollapsed;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.exitUntilCollapsed = global::Mehspot.AndroidApp.Resource.Id.exitUntilCollapsed;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.expand_activities_button = global::Mehspot.AndroidApp.Resource.Id.expand_activities_button;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.expanded_menu = global::Mehspot.AndroidApp.Resource.Id.expanded_menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.fill = global::Mehspot.AndroidApp.Resource.Id.fill;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.fill_horizontal = global::Mehspot.AndroidApp.Resource.Id.fill_horizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.fill_vertical = global::Mehspot.AndroidApp.Resource.Id.fill_vertical;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.@fixed = global::Mehspot.AndroidApp.Resource.Id.@fixed;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.home = global::Mehspot.AndroidApp.Resource.Id.home;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.homeAsUp = global::Mehspot.AndroidApp.Resource.Id.homeAsUp;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.icon = global::Mehspot.AndroidApp.Resource.Id.icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.ifRoom = global::Mehspot.AndroidApp.Resource.Id.ifRoom;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.image = global::Mehspot.AndroidApp.Resource.Id.image;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.info = global::Mehspot.AndroidApp.Resource.Id.info;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.item_touch_helper_previous_elevation = global::Mehspot.AndroidApp.Resource.Id.item_touch_helper_previous_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.left = global::Mehspot.AndroidApp.Resource.Id.left;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.line1 = global::Mehspot.AndroidApp.Resource.Id.line1;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.line3 = global::Mehspot.AndroidApp.Resource.Id.line3;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.listMode = global::Mehspot.AndroidApp.Resource.Id.listMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.list_item = global::Mehspot.AndroidApp.Resource.Id.list_item;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.media_actions = global::Mehspot.AndroidApp.Resource.Id.media_actions;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.middle = global::Mehspot.AndroidApp.Resource.Id.middle;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mini = global::Mehspot.AndroidApp.Resource.Id.mini;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_art = global::Mehspot.AndroidApp.Resource.Id.mr_art;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_chooser_list = global::Mehspot.AndroidApp.Resource.Id.mr_chooser_list;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_chooser_route_desc = global::Mehspot.AndroidApp.Resource.Id.mr_chooser_route_desc;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_chooser_route_icon = global::Mehspot.AndroidApp.Resource.Id.mr_chooser_route_icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_chooser_route_name = global::Mehspot.AndroidApp.Resource.Id.mr_chooser_route_name;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_close = global::Mehspot.AndroidApp.Resource.Id.mr_close;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_control_divider = global::Mehspot.AndroidApp.Resource.Id.mr_control_divider;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_control_subtitle = global::Mehspot.AndroidApp.Resource.Id.mr_control_subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_control_title = global::Mehspot.AndroidApp.Resource.Id.mr_control_title;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_control_title_container = global::Mehspot.AndroidApp.Resource.Id.mr_control_title_container;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_custom_control = global::Mehspot.AndroidApp.Resource.Id.mr_custom_control;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_default_control = global::Mehspot.AndroidApp.Resource.Id.mr_default_control;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_dialog_area = global::Mehspot.AndroidApp.Resource.Id.mr_dialog_area;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_expandable_area = global::Mehspot.AndroidApp.Resource.Id.mr_expandable_area;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_group_expand_collapse = global::Mehspot.AndroidApp.Resource.Id.mr_group_expand_collapse;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_media_main_control = global::Mehspot.AndroidApp.Resource.Id.mr_media_main_control;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_name = global::Mehspot.AndroidApp.Resource.Id.mr_name;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_playback_control = global::Mehspot.AndroidApp.Resource.Id.mr_playback_control;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_title_bar = global::Mehspot.AndroidApp.Resource.Id.mr_title_bar;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_volume_control = global::Mehspot.AndroidApp.Resource.Id.mr_volume_control;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_volume_group_list = global::Mehspot.AndroidApp.Resource.Id.mr_volume_group_list;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_volume_item_icon = global::Mehspot.AndroidApp.Resource.Id.mr_volume_item_icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.mr_volume_slider = global::Mehspot.AndroidApp.Resource.Id.mr_volume_slider;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.multiply = global::Mehspot.AndroidApp.Resource.Id.multiply;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.navigation_header_container = global::Mehspot.AndroidApp.Resource.Id.navigation_header_container;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.never = global::Mehspot.AndroidApp.Resource.Id.never;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.none = global::Mehspot.AndroidApp.Resource.Id.none;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.normal = global::Mehspot.AndroidApp.Resource.Id.normal;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.parallax = global::Mehspot.AndroidApp.Resource.Id.parallax;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.parentPanel = global::Mehspot.AndroidApp.Resource.Id.parentPanel;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.pin = global::Mehspot.AndroidApp.Resource.Id.pin;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.progress_circular = global::Mehspot.AndroidApp.Resource.Id.progress_circular;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.progress_horizontal = global::Mehspot.AndroidApp.Resource.Id.progress_horizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.radio = global::Mehspot.AndroidApp.Resource.Id.radio;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.right = global::Mehspot.AndroidApp.Resource.Id.right;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.screen = global::Mehspot.AndroidApp.Resource.Id.screen;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.scroll = global::Mehspot.AndroidApp.Resource.Id.scroll;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.scrollIndicatorDown = global::Mehspot.AndroidApp.Resource.Id.scrollIndicatorDown;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.scrollIndicatorUp = global::Mehspot.AndroidApp.Resource.Id.scrollIndicatorUp;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.scrollView = global::Mehspot.AndroidApp.Resource.Id.scrollView;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.scrollable = global::Mehspot.AndroidApp.Resource.Id.scrollable;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_badge = global::Mehspot.AndroidApp.Resource.Id.search_badge;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_bar = global::Mehspot.AndroidApp.Resource.Id.search_bar;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_button = global::Mehspot.AndroidApp.Resource.Id.search_button;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_close_btn = global::Mehspot.AndroidApp.Resource.Id.search_close_btn;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_edit_frame = global::Mehspot.AndroidApp.Resource.Id.search_edit_frame;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_go_btn = global::Mehspot.AndroidApp.Resource.Id.search_go_btn;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_mag_icon = global::Mehspot.AndroidApp.Resource.Id.search_mag_icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_plate = global::Mehspot.AndroidApp.Resource.Id.search_plate;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_src_text = global::Mehspot.AndroidApp.Resource.Id.search_src_text;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.search_voice_btn = global::Mehspot.AndroidApp.Resource.Id.search_voice_btn;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.select_dialog_listview = global::Mehspot.AndroidApp.Resource.Id.select_dialog_listview;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.shortcut = global::Mehspot.AndroidApp.Resource.Id.shortcut;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.showCustom = global::Mehspot.AndroidApp.Resource.Id.showCustom;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.showHome = global::Mehspot.AndroidApp.Resource.Id.showHome;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.showTitle = global::Mehspot.AndroidApp.Resource.Id.showTitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.snackbar_action = global::Mehspot.AndroidApp.Resource.Id.snackbar_action;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.snackbar_text = global::Mehspot.AndroidApp.Resource.Id.snackbar_text;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.snap = global::Mehspot.AndroidApp.Resource.Id.snap;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.spacer = global::Mehspot.AndroidApp.Resource.Id.spacer;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.split_action_bar = global::Mehspot.AndroidApp.Resource.Id.split_action_bar;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.src_atop = global::Mehspot.AndroidApp.Resource.Id.src_atop;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.src_in = global::Mehspot.AndroidApp.Resource.Id.src_in;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.src_over = global::Mehspot.AndroidApp.Resource.Id.src_over;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.start = global::Mehspot.AndroidApp.Resource.Id.start;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.status_bar_latest_event_content = global::Mehspot.AndroidApp.Resource.Id.status_bar_latest_event_content;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.submit_area = global::Mehspot.AndroidApp.Resource.Id.submit_area;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.tabMode = global::Mehspot.AndroidApp.Resource.Id.tabMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.text = global::Mehspot.AndroidApp.Resource.Id.text;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.text2 = global::Mehspot.AndroidApp.Resource.Id.text2;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.textSpacerNoButtons = global::Mehspot.AndroidApp.Resource.Id.textSpacerNoButtons;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.time = global::Mehspot.AndroidApp.Resource.Id.time;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.title = global::Mehspot.AndroidApp.Resource.Id.title;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.title_template = global::Mehspot.AndroidApp.Resource.Id.title_template;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.top = global::Mehspot.AndroidApp.Resource.Id.top;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.topPanel = global::Mehspot.AndroidApp.Resource.Id.topPanel;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.touch_outside = global::Mehspot.AndroidApp.Resource.Id.touch_outside;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.up = global::Mehspot.AndroidApp.Resource.Id.up;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.useLogo = global::Mehspot.AndroidApp.Resource.Id.useLogo;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.view_offset_helper = global::Mehspot.AndroidApp.Resource.Id.view_offset_helper;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.volume_item_container = global::Mehspot.AndroidApp.Resource.Id.volume_item_container;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.withText = global::Mehspot.AndroidApp.Resource.Id.withText;
-			global::Xamarin.RangeSlider.Forms.Resource.Id.wrap_content = global::Mehspot.AndroidApp.Resource.Id.wrap_content;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.abc_config_activityDefaultDur = global::Mehspot.AndroidApp.Resource.Integer.abc_config_activityDefaultDur;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.abc_config_activityShortDur = global::Mehspot.AndroidApp.Resource.Integer.abc_config_activityShortDur;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.bottom_sheet_slide_duration = global::Mehspot.AndroidApp.Resource.Integer.bottom_sheet_slide_duration;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.cancel_button_image_alpha = global::Mehspot.AndroidApp.Resource.Integer.cancel_button_image_alpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.design_snackbar_text_max_lines = global::Mehspot.AndroidApp.Resource.Integer.design_snackbar_text_max_lines;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::Mehspot.AndroidApp.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::Mehspot.AndroidApp.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::Mehspot.AndroidApp.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
-			global::Xamarin.RangeSlider.Forms.Resource.Integer.status_bar_notification_info_maxnum = global::Mehspot.AndroidApp.Resource.Integer.status_bar_notification_info_maxnum;
-			global::Xamarin.RangeSlider.Forms.Resource.Interpolator.mr_fast_out_slow_in = global::Mehspot.AndroidApp.Resource.Interpolator.mr_fast_out_slow_in;
-			global::Xamarin.RangeSlider.Forms.Resource.Interpolator.mr_linear_out_slow_in = global::Mehspot.AndroidApp.Resource.Interpolator.mr_linear_out_slow_in;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_action_bar_title_item = global::Mehspot.AndroidApp.Resource.Layout.abc_action_bar_title_item;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_action_bar_up_container = global::Mehspot.AndroidApp.Resource.Layout.abc_action_bar_up_container;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_action_bar_view_list_nav_layout = global::Mehspot.AndroidApp.Resource.Layout.abc_action_bar_view_list_nav_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_action_menu_item_layout = global::Mehspot.AndroidApp.Resource.Layout.abc_action_menu_item_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_action_menu_layout = global::Mehspot.AndroidApp.Resource.Layout.abc_action_menu_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_action_mode_bar = global::Mehspot.AndroidApp.Resource.Layout.abc_action_mode_bar;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_action_mode_close_item_material = global::Mehspot.AndroidApp.Resource.Layout.abc_action_mode_close_item_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_activity_chooser_view = global::Mehspot.AndroidApp.Resource.Layout.abc_activity_chooser_view;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_activity_chooser_view_list_item = global::Mehspot.AndroidApp.Resource.Layout.abc_activity_chooser_view_list_item;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_alert_dialog_button_bar_material = global::Mehspot.AndroidApp.Resource.Layout.abc_alert_dialog_button_bar_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_alert_dialog_material = global::Mehspot.AndroidApp.Resource.Layout.abc_alert_dialog_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_dialog_title_material = global::Mehspot.AndroidApp.Resource.Layout.abc_dialog_title_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_expanded_menu_layout = global::Mehspot.AndroidApp.Resource.Layout.abc_expanded_menu_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_list_menu_item_checkbox = global::Mehspot.AndroidApp.Resource.Layout.abc_list_menu_item_checkbox;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_list_menu_item_icon = global::Mehspot.AndroidApp.Resource.Layout.abc_list_menu_item_icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_list_menu_item_layout = global::Mehspot.AndroidApp.Resource.Layout.abc_list_menu_item_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_list_menu_item_radio = global::Mehspot.AndroidApp.Resource.Layout.abc_list_menu_item_radio;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_popup_menu_item_layout = global::Mehspot.AndroidApp.Resource.Layout.abc_popup_menu_item_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_screen_content_include = global::Mehspot.AndroidApp.Resource.Layout.abc_screen_content_include;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_screen_simple = global::Mehspot.AndroidApp.Resource.Layout.abc_screen_simple;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_screen_simple_overlay_action_mode = global::Mehspot.AndroidApp.Resource.Layout.abc_screen_simple_overlay_action_mode;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_screen_toolbar = global::Mehspot.AndroidApp.Resource.Layout.abc_screen_toolbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_search_dropdown_item_icons_2line = global::Mehspot.AndroidApp.Resource.Layout.abc_search_dropdown_item_icons_2line;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_search_view = global::Mehspot.AndroidApp.Resource.Layout.abc_search_view;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.abc_select_dialog_material = global::Mehspot.AndroidApp.Resource.Layout.abc_select_dialog_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_bottom_sheet_dialog = global::Mehspot.AndroidApp.Resource.Layout.design_bottom_sheet_dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_layout_snackbar = global::Mehspot.AndroidApp.Resource.Layout.design_layout_snackbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_layout_snackbar_include = global::Mehspot.AndroidApp.Resource.Layout.design_layout_snackbar_include;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_layout_tab_icon = global::Mehspot.AndroidApp.Resource.Layout.design_layout_tab_icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_layout_tab_text = global::Mehspot.AndroidApp.Resource.Layout.design_layout_tab_text;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_menu_item_action_area = global::Mehspot.AndroidApp.Resource.Layout.design_menu_item_action_area;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_navigation_item = global::Mehspot.AndroidApp.Resource.Layout.design_navigation_item;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_navigation_item_header = global::Mehspot.AndroidApp.Resource.Layout.design_navigation_item_header;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_navigation_item_separator = global::Mehspot.AndroidApp.Resource.Layout.design_navigation_item_separator;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_navigation_item_subheader = global::Mehspot.AndroidApp.Resource.Layout.design_navigation_item_subheader;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_navigation_menu = global::Mehspot.AndroidApp.Resource.Layout.design_navigation_menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.design_navigation_menu_item = global::Mehspot.AndroidApp.Resource.Layout.design_navigation_menu_item;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.mr_chooser_dialog = global::Mehspot.AndroidApp.Resource.Layout.mr_chooser_dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.mr_chooser_list_item = global::Mehspot.AndroidApp.Resource.Layout.mr_chooser_list_item;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.mr_controller_material_dialog_b = global::Mehspot.AndroidApp.Resource.Layout.mr_controller_material_dialog_b;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.mr_controller_volume_item = global::Mehspot.AndroidApp.Resource.Layout.mr_controller_volume_item;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.mr_playback_control = global::Mehspot.AndroidApp.Resource.Layout.mr_playback_control;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.mr_volume_control = global::Mehspot.AndroidApp.Resource.Layout.mr_volume_control;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.notification_media_action = global::Mehspot.AndroidApp.Resource.Layout.notification_media_action;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.notification_media_cancel_action = global::Mehspot.AndroidApp.Resource.Layout.notification_media_cancel_action;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.notification_template_big_media = global::Mehspot.AndroidApp.Resource.Layout.notification_template_big_media;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.notification_template_big_media_narrow = global::Mehspot.AndroidApp.Resource.Layout.notification_template_big_media_narrow;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.notification_template_media = global::Mehspot.AndroidApp.Resource.Layout.notification_template_media;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.notification_template_part_chronometer = global::Mehspot.AndroidApp.Resource.Layout.notification_template_part_chronometer;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.notification_template_part_time = global::Mehspot.AndroidApp.Resource.Layout.notification_template_part_time;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.select_dialog_item_material = global::Mehspot.AndroidApp.Resource.Layout.select_dialog_item_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.select_dialog_multichoice_material = global::Mehspot.AndroidApp.Resource.Layout.select_dialog_multichoice_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.select_dialog_singlechoice_material = global::Mehspot.AndroidApp.Resource.Layout.select_dialog_singlechoice_material;
-			global::Xamarin.RangeSlider.Forms.Resource.Layout.support_simple_spinner_dropdown_item = global::Mehspot.AndroidApp.Resource.Layout.support_simple_spinner_dropdown_item;
-			global::Xamarin.RangeSlider.Forms.Resource.String.ApplicationName = global::Mehspot.AndroidApp.Resource.String.ApplicationName;
-			global::Xamarin.RangeSlider.Forms.Resource.String.Hello = global::Mehspot.AndroidApp.Resource.String.Hello;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_action_bar_home_description = global::Mehspot.AndroidApp.Resource.String.abc_action_bar_home_description;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_action_bar_home_description_format = global::Mehspot.AndroidApp.Resource.String.abc_action_bar_home_description_format;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_action_bar_home_subtitle_description_format = global::Mehspot.AndroidApp.Resource.String.abc_action_bar_home_subtitle_description_format;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_action_bar_up_description = global::Mehspot.AndroidApp.Resource.String.abc_action_bar_up_description;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_action_menu_overflow_description = global::Mehspot.AndroidApp.Resource.String.abc_action_menu_overflow_description;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_action_mode_done = global::Mehspot.AndroidApp.Resource.String.abc_action_mode_done;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_activity_chooser_view_see_all = global::Mehspot.AndroidApp.Resource.String.abc_activity_chooser_view_see_all;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_activitychooserview_choose_application = global::Mehspot.AndroidApp.Resource.String.abc_activitychooserview_choose_application;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_capital_off = global::Mehspot.AndroidApp.Resource.String.abc_capital_off;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_capital_on = global::Mehspot.AndroidApp.Resource.String.abc_capital_on;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_search_hint = global::Mehspot.AndroidApp.Resource.String.abc_search_hint;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_searchview_description_clear = global::Mehspot.AndroidApp.Resource.String.abc_searchview_description_clear;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_searchview_description_query = global::Mehspot.AndroidApp.Resource.String.abc_searchview_description_query;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_searchview_description_search = global::Mehspot.AndroidApp.Resource.String.abc_searchview_description_search;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_searchview_description_submit = global::Mehspot.AndroidApp.Resource.String.abc_searchview_description_submit;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_searchview_description_voice = global::Mehspot.AndroidApp.Resource.String.abc_searchview_description_voice;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_shareactionprovider_share_with = global::Mehspot.AndroidApp.Resource.String.abc_shareactionprovider_share_with;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_shareactionprovider_share_with_application = global::Mehspot.AndroidApp.Resource.String.abc_shareactionprovider_share_with_application;
-			global::Xamarin.RangeSlider.Forms.Resource.String.abc_toolbar_collapse_description = global::Mehspot.AndroidApp.Resource.String.abc_toolbar_collapse_description;
-			global::Xamarin.RangeSlider.Forms.Resource.String.app_name = global::Mehspot.AndroidApp.Resource.String.app_name;
-			global::Xamarin.RangeSlider.Forms.Resource.String.appbar_scrolling_view_behavior = global::Mehspot.AndroidApp.Resource.String.appbar_scrolling_view_behavior;
-			global::Xamarin.RangeSlider.Forms.Resource.String.bottom_sheet_behavior = global::Mehspot.AndroidApp.Resource.String.bottom_sheet_behavior;
-			global::Xamarin.RangeSlider.Forms.Resource.String.character_counter_pattern = global::Mehspot.AndroidApp.Resource.String.character_counter_pattern;
-			global::Xamarin.RangeSlider.Forms.Resource.String.demo_max_label = global::Mehspot.AndroidApp.Resource.String.demo_max_label;
-			global::Xamarin.RangeSlider.Forms.Resource.String.demo_min_label = global::Mehspot.AndroidApp.Resource.String.demo_min_label;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_button_content_description = global::Mehspot.AndroidApp.Resource.String.mr_button_content_description;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_chooser_searching = global::Mehspot.AndroidApp.Resource.String.mr_chooser_searching;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_chooser_title = global::Mehspot.AndroidApp.Resource.String.mr_chooser_title;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_casting_screen = global::Mehspot.AndroidApp.Resource.String.mr_controller_casting_screen;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_close_description = global::Mehspot.AndroidApp.Resource.String.mr_controller_close_description;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_collapse_group = global::Mehspot.AndroidApp.Resource.String.mr_controller_collapse_group;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_disconnect = global::Mehspot.AndroidApp.Resource.String.mr_controller_disconnect;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_expand_group = global::Mehspot.AndroidApp.Resource.String.mr_controller_expand_group;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_no_info_available = global::Mehspot.AndroidApp.Resource.String.mr_controller_no_info_available;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_no_media_selected = global::Mehspot.AndroidApp.Resource.String.mr_controller_no_media_selected;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_pause = global::Mehspot.AndroidApp.Resource.String.mr_controller_pause;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_play = global::Mehspot.AndroidApp.Resource.String.mr_controller_play;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_controller_stop = global::Mehspot.AndroidApp.Resource.String.mr_controller_stop;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_system_route_name = global::Mehspot.AndroidApp.Resource.String.mr_system_route_name;
-			global::Xamarin.RangeSlider.Forms.Resource.String.mr_user_route_category_name = global::Mehspot.AndroidApp.Resource.String.mr_user_route_category_name;
-			global::Xamarin.RangeSlider.Forms.Resource.String.status_bar_notification_info_overflow = global::Mehspot.AndroidApp.Resource.String.status_bar_notification_info_overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.AlertDialog_AppCompat = global::Mehspot.AndroidApp.Resource.Style.AlertDialog_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.AlertDialog_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.AlertDialog_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Animation_AppCompat_Dialog = global::Mehspot.AndroidApp.Resource.Style.Animation_AppCompat_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Animation_AppCompat_DropDownUp = global::Mehspot.AndroidApp.Resource.Style.Animation_AppCompat_DropDownUp;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Animation_Design_BottomSheetDialog = global::Mehspot.AndroidApp.Resource.Style.Animation_Design_BottomSheetDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_AlertDialog_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_AlertDialog_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_AlertDialog_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Base_AlertDialog_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Animation_AppCompat_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_Animation_AppCompat_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::Mehspot.AndroidApp.Resource.Style.Base_Animation_AppCompat_DropDownUp;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_CardView = global::Mehspot.AndroidApp.Resource.Style.Base_CardView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_DialogWindowTitle_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_DialogWindowTitle_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Body1;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Body2;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Button = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Button;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Caption;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Display1;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Display2;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Display3;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Display4;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Headline;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Large = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Large;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Medium;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Small = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Title = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::Mehspot.AndroidApp.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_CompactMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::Mehspot.AndroidApp.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_ThemeOverlay_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_ThemeOverlay_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::Mehspot.AndroidApp.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::Mehspot.AndroidApp.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::Mehspot.AndroidApp.Resource.Style.Base_V12_Widget_AppCompat_EditText;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V21_Theme_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_V21_Theme_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V21_Theme_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Base_V21_Theme_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V22_Theme_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_V22_Theme_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V22_Theme_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Base_V22_Theme_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V23_Theme_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_V23_Theme_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V23_Theme_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Base_V23_Theme_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V7_Theme_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Base_V7_Theme_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V7_Theme_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Base_V7_Theme_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::Mehspot.AndroidApp.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::Mehspot.AndroidApp.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::Mehspot.AndroidApp.Resource.Style.Base_V7_Widget_AppCompat_EditText;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionButton = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActionMode = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActionMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Button = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Button;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Button_Colored;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Button_Small = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Button_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ButtonBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_EditText = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_EditText;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ImageButton = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ImageButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ListView = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ListView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_PopupMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_PopupWindow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ProgressBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_RatingBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_RatingBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_SearchView = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_SearchView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_SeekBar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_SeekBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Spinner = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Spinner;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Toolbar = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Toolbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Base_Widget_Design_TabLayout = global::Mehspot.AndroidApp.Resource.Style.Base_Widget_Design_TabLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.CardView = global::Mehspot.AndroidApp.Resource.Style.CardView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.CardView_Dark = global::Mehspot.AndroidApp.Resource.Style.CardView_Dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.CardView_Light = global::Mehspot.AndroidApp.Resource.Style.CardView_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Platform_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Platform_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_ThemeOverlay_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Platform_ThemeOverlay_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::Mehspot.AndroidApp.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_V11_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Platform_V11_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_V11_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Platform_V11_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_V14_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Platform_V14_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_V14_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Platform_V14_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Platform_Widget_AppCompat_Spinner = global::Mehspot.AndroidApp.Resource.Style.Platform_Widget_AppCompat_Spinner;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::Mehspot.AndroidApp.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::Mehspot.AndroidApp.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::Mehspot.AndroidApp.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Body1 = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Body1;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Body2 = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Body2;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Button = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Button;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Caption = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Caption;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Display1 = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Display1;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Display2 = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Display2;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Display3 = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Display3;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Display4 = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Display4;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Headline = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Headline;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Large = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Large;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Medium = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Medium;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Menu = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Small = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Subhead = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Subhead;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Title = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_Button;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Design_Counter = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Design_Counter;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Design_Counter_Overflow = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Design_Counter_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Design_Error = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Design_Error;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Design_Hint = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Design_Hint;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Design_Snackbar_Message = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Design_Snackbar_Message;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Design_Tab = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Design_Tab;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_StatusBar_EventContent = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_StatusBar_EventContent;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_StatusBar_EventContent_Info = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_StatusBar_EventContent_Info;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_StatusBar_EventContent_Line2 = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_StatusBar_EventContent_Line2;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_StatusBar_EventContent_Time = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_StatusBar_EventContent_Time;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_StatusBar_EventContent_Title = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_StatusBar_EventContent_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::Mehspot.AndroidApp.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_CompactMenu = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_CompactMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_DayNight = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_DayNight;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_DayNight_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Dialog = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Dialog_Alert = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Dialog_Alert;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_DialogWhenLarge;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Light_Dialog = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Light_Dialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_Light_NoActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_AppCompat_NoActionBar = global::Mehspot.AndroidApp.Resource.Style.Theme_AppCompat_NoActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_Design = global::Mehspot.AndroidApp.Resource.Style.Theme_Design;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_Design_BottomSheetDialog = global::Mehspot.AndroidApp.Resource.Style.Theme_Design_BottomSheetDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_Design_Light = global::Mehspot.AndroidApp.Resource.Style.Theme_Design_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::Mehspot.AndroidApp.Resource.Style.Theme_Design_Light_BottomSheetDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_Design_Light_NoActionBar = global::Mehspot.AndroidApp.Resource.Style.Theme_Design_Light_NoActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_Design_NoActionBar = global::Mehspot.AndroidApp.Resource.Style.Theme_Design_NoActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_MediaRouter = global::Mehspot.AndroidApp.Resource.Style.Theme_MediaRouter;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_MediaRouter_Light = global::Mehspot.AndroidApp.Resource.Style.Theme_MediaRouter_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::Mehspot.AndroidApp.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Theme_MediaRouter_LightControlPanel = global::Mehspot.AndroidApp.Resource.Style.Theme_MediaRouter_LightControlPanel;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.ThemeOverlay_AppCompat = global::Mehspot.AndroidApp.Resource.Style.ThemeOverlay_AppCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::Mehspot.AndroidApp.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.ThemeOverlay_AppCompat_Dark = global::Mehspot.AndroidApp.Resource.Style.ThemeOverlay_AppCompat_Dark;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::Mehspot.AndroidApp.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.ThemeOverlay_AppCompat_Light = global::Mehspot.AndroidApp.Resource.Style.ThemeOverlay_AppCompat_Light;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionBar_Solid;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionBar_TabText;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionBar_TabView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionButton = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActionMode = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActionMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ActivityChooserView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ActivityChooserView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Button = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Button;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Button_Borderless = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Button_Borderless;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Button_Colored = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Button_Colored;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Button_Small = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Button_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ButtonBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ButtonBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_EditText = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_EditText;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ImageButton = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ImageButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionButton = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_PopupMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_SearchView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_SearchView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ListPopupWindow = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ListPopupWindow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ListView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ListView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ListView_DropDown = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ListView_DropDown;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ListView_Menu = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ListView_Menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_PopupMenu = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_PopupMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_PopupWindow = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_PopupWindow;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ProgressBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ProgressBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_RatingBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_RatingBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_RatingBar_Small = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_RatingBar_Small;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_SearchView = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_SearchView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_SeekBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_SeekBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Spinner = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Spinner;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Spinner_DropDown;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Spinner_Underlined;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Toolbar = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Toolbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::Mehspot.AndroidApp.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_AppBarLayout = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_AppBarLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_BottomSheet_Modal = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_BottomSheet_Modal;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_CollapsingToolbar = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_CollapsingToolbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_CoordinatorLayout = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_CoordinatorLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_FloatingActionButton = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_FloatingActionButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_NavigationView = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_NavigationView;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_Snackbar = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_Snackbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_TabLayout = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_TabLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_Design_TextInputLayout = global::Mehspot.AndroidApp.Resource.Style.Widget_Design_TextInputLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::Mehspot.AndroidApp.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::Mehspot.AndroidApp.Resource.Style.Widget_MediaRouter_MediaRouteButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_background = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_backgroundSplit = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_backgroundSplit;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_backgroundStacked = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_backgroundStacked;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_contentInsetEnd = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_contentInsetEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_contentInsetLeft = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_contentInsetLeft;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_contentInsetRight = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_contentInsetRight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_contentInsetStart = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_contentInsetStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_customNavigationLayout = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_customNavigationLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_displayOptions = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_displayOptions;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_divider = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_divider;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_elevation = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_height = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_height;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_hideOnContentScroll = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_hideOnContentScroll;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_homeAsUpIndicator = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_homeAsUpIndicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_homeLayout = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_homeLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_icon = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_indeterminateProgressStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_itemPadding = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_itemPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_logo = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_logo;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_navigationMode = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_navigationMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_popupTheme = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_popupTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_progressBarPadding = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_progressBarPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_progressBarStyle = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_progressBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_subtitle = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_subtitleTextStyle = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_subtitleTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_title = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_title;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBar_titleTextStyle = global::Mehspot.AndroidApp.Resource.Styleable.ActionBar_titleTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBarLayout = global::Mehspot.AndroidApp.Resource.Styleable.ActionBarLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::Mehspot.AndroidApp.Resource.Styleable.ActionBarLayout_android_layout_gravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMenuItemView = global::Mehspot.AndroidApp.Resource.Styleable.ActionMenuItemView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMenuItemView_android_minWidth = global::Mehspot.AndroidApp.Resource.Styleable.ActionMenuItemView_android_minWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMenuView = global::Mehspot.AndroidApp.Resource.Styleable.ActionMenuView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMode = global::Mehspot.AndroidApp.Resource.Styleable.ActionMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMode_background = global::Mehspot.AndroidApp.Resource.Styleable.ActionMode_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMode_backgroundSplit = global::Mehspot.AndroidApp.Resource.Styleable.ActionMode_backgroundSplit;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMode_closeItemLayout = global::Mehspot.AndroidApp.Resource.Styleable.ActionMode_closeItemLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMode_height = global::Mehspot.AndroidApp.Resource.Styleable.ActionMode_height;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMode_subtitleTextStyle = global::Mehspot.AndroidApp.Resource.Styleable.ActionMode_subtitleTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActionMode_titleTextStyle = global::Mehspot.AndroidApp.Resource.Styleable.ActionMode_titleTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActivityChooserView = global::Mehspot.AndroidApp.Resource.Styleable.ActivityChooserView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::Mehspot.AndroidApp.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ActivityChooserView_initialActivityCount = global::Mehspot.AndroidApp.Resource.Styleable.ActivityChooserView_initialActivityCount;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AlertDialog = global::Mehspot.AndroidApp.Resource.Styleable.AlertDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AlertDialog_android_layout = global::Mehspot.AndroidApp.Resource.Styleable.AlertDialog_android_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::Mehspot.AndroidApp.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AlertDialog_listItemLayout = global::Mehspot.AndroidApp.Resource.Styleable.AlertDialog_listItemLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AlertDialog_listLayout = global::Mehspot.AndroidApp.Resource.Styleable.AlertDialog_listLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::Mehspot.AndroidApp.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::Mehspot.AndroidApp.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppBarLayout = global::Mehspot.AndroidApp.Resource.Styleable.AppBarLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppBarLayout_android_background = global::Mehspot.AndroidApp.Resource.Styleable.AppBarLayout_android_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppBarLayout_elevation = global::Mehspot.AndroidApp.Resource.Styleable.AppBarLayout_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppBarLayout_expanded = global::Mehspot.AndroidApp.Resource.Styleable.AppBarLayout_expanded;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatImageView = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatImageView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatImageView_android_src = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatImageView_android_src;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatImageView_srcCompat = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatImageView_srcCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTextView = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTextView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTextView_android_textAppearance = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTextView_android_textAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTextView_textAllCaps = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTextView_textAllCaps;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarDivider = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarDivider;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarSize = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarTheme = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeBackground = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_alertDialogStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_alertDialogTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_buttonBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_buttonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_buttonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_checkboxStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_checkboxStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_colorAccent = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_colorAccent;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_colorButtonNormal;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_colorControlActivated = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_colorControlActivated;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_colorControlHighlight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_colorControlNormal = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_colorControlNormal;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_colorPrimary = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_colorPrimary;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_controlBackground = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_controlBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_dialogTheme = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_dialogTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_dividerHorizontal;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_dividerVertical = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_dividerVertical;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_editTextBackground = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_editTextBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_editTextColor = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_editTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_editTextStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_editTextStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_imageButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_panelBackground = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_panelBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_popupMenuStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_popupWindowStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_radioButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_ratingBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_searchViewStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_searchViewStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_seekBarStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_seekBarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_selectableItemBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_spinnerStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_spinnerStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_switchStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_switchStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_toolbarStyle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_toolbarStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowActionBar = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowActionBar;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.AppCompatTheme_windowNoTitle = global::Mehspot.AndroidApp.Resource.Styleable.AppCompatTheme_windowNoTitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ButtonBarLayout = global::Mehspot.AndroidApp.Resource.Styleable.ButtonBarLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ButtonBarLayout_allowStacking = global::Mehspot.AndroidApp.Resource.Styleable.ButtonBarLayout_allowStacking;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView = global::Mehspot.AndroidApp.Resource.Styleable.CardView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_android_minHeight = global::Mehspot.AndroidApp.Resource.Styleable.CardView_android_minHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_android_minWidth = global::Mehspot.AndroidApp.Resource.Styleable.CardView_android_minWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_cardBackgroundColor = global::Mehspot.AndroidApp.Resource.Styleable.CardView_cardBackgroundColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_cardCornerRadius = global::Mehspot.AndroidApp.Resource.Styleable.CardView_cardCornerRadius;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_cardElevation = global::Mehspot.AndroidApp.Resource.Styleable.CardView_cardElevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_cardMaxElevation = global::Mehspot.AndroidApp.Resource.Styleable.CardView_cardMaxElevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_cardPreventCornerOverlap = global::Mehspot.AndroidApp.Resource.Styleable.CardView_cardPreventCornerOverlap;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_cardUseCompatPadding = global::Mehspot.AndroidApp.Resource.Styleable.CardView_cardUseCompatPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_contentPadding = global::Mehspot.AndroidApp.Resource.Styleable.CardView_contentPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_contentPaddingBottom = global::Mehspot.AndroidApp.Resource.Styleable.CardView_contentPaddingBottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_contentPaddingLeft = global::Mehspot.AndroidApp.Resource.Styleable.CardView_contentPaddingLeft;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_contentPaddingRight = global::Mehspot.AndroidApp.Resource.Styleable.CardView_contentPaddingRight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CardView_contentPaddingTop = global::Mehspot.AndroidApp.Resource.Styleable.CardView_contentPaddingTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_title = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_title;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::Mehspot.AndroidApp.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CompoundButton = global::Mehspot.AndroidApp.Resource.Styleable.CompoundButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CompoundButton_android_button = global::Mehspot.AndroidApp.Resource.Styleable.CompoundButton_android_button;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CompoundButton_buttonTint = global::Mehspot.AndroidApp.Resource.Styleable.CompoundButton_buttonTint;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CompoundButton_buttonTintMode = global::Mehspot.AndroidApp.Resource.Styleable.CompoundButton_buttonTintMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CoordinatorLayout = global::Mehspot.AndroidApp.Resource.Styleable.CoordinatorLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CoordinatorLayout_keylines = global::Mehspot.AndroidApp.Resource.Styleable.CoordinatorLayout_keylines;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::Mehspot.AndroidApp.Resource.Styleable.CoordinatorLayout_statusBarBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DesignTheme = global::Mehspot.AndroidApp.Resource.Styleable.DesignTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::Mehspot.AndroidApp.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DesignTheme_bottomSheetStyle = global::Mehspot.AndroidApp.Resource.Styleable.DesignTheme_bottomSheetStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DesignTheme_textColorError = global::Mehspot.AndroidApp.Resource.Styleable.DesignTheme_textColorError;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle_barLength = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle_barLength;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle_color = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle_color;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle_drawableSize = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle_drawableSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle_spinBars = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle_spinBars;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.DrawerArrowToggle_thickness = global::Mehspot.AndroidApp.Resource.Styleable.DrawerArrowToggle_thickness;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton_backgroundTint = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton_backgroundTint;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton_backgroundTintMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton_borderWidth = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton_borderWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton_elevation = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton_fabSize = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton_fabSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton_rippleColor = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton_rippleColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.FloatingActionButton_useCompatPadding = global::Mehspot.AndroidApp.Resource.Styleable.FloatingActionButton_useCompatPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ForegroundLinearLayout = global::Mehspot.AndroidApp.Resource.Styleable.ForegroundLinearLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::Mehspot.AndroidApp.Resource.Styleable.ForegroundLinearLayout_android_foreground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::Mehspot.AndroidApp.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::Mehspot.AndroidApp.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_android_gravity = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_android_gravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_android_orientation = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_android_orientation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_android_weightSum;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_divider = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_divider;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_dividerPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_showDividers = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_showDividers;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_Layout = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_Layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::Mehspot.AndroidApp.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ListPopupWindow = global::Mehspot.AndroidApp.Resource.Styleable.ListPopupWindow;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::Mehspot.AndroidApp.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::Mehspot.AndroidApp.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MediaRouteButton = global::Mehspot.AndroidApp.Resource.Styleable.MediaRouteButton;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MediaRouteButton_android_minHeight = global::Mehspot.AndroidApp.Resource.Styleable.MediaRouteButton_android_minHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MediaRouteButton_android_minWidth = global::Mehspot.AndroidApp.Resource.Styleable.MediaRouteButton_android_minWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::Mehspot.AndroidApp.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuGroup = global::Mehspot.AndroidApp.Resource.Styleable.MenuGroup;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuGroup_android_checkableBehavior = global::Mehspot.AndroidApp.Resource.Styleable.MenuGroup_android_checkableBehavior;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuGroup_android_enabled = global::Mehspot.AndroidApp.Resource.Styleable.MenuGroup_android_enabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuGroup_android_id = global::Mehspot.AndroidApp.Resource.Styleable.MenuGroup_android_id;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuGroup_android_menuCategory = global::Mehspot.AndroidApp.Resource.Styleable.MenuGroup_android_menuCategory;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuGroup_android_orderInCategory = global::Mehspot.AndroidApp.Resource.Styleable.MenuGroup_android_orderInCategory;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuGroup_android_visible = global::Mehspot.AndroidApp.Resource.Styleable.MenuGroup_android_visible;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_actionLayout = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_actionLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_actionProviderClass = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_actionProviderClass;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_actionViewClass = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_actionViewClass;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_alphabeticShortcut;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_checkable = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_checkable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_checked = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_checked;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_enabled = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_enabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_icon = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_id = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_id;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_menuCategory = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_menuCategory;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_numericShortcut = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_numericShortcut;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_onClick = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_onClick;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_orderInCategory = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_orderInCategory;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_title = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_title;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_titleCondensed = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_titleCondensed;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_android_visible = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_android_visible;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuItem_showAsAction = global::Mehspot.AndroidApp.Resource.Styleable.MenuItem_showAsAction;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView = global::Mehspot.AndroidApp.Resource.Styleable.MenuView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView_android_headerBackground = global::Mehspot.AndroidApp.Resource.Styleable.MenuView_android_headerBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView_android_horizontalDivider = global::Mehspot.AndroidApp.Resource.Styleable.MenuView_android_horizontalDivider;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView_android_itemBackground = global::Mehspot.AndroidApp.Resource.Styleable.MenuView_android_itemBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::Mehspot.AndroidApp.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView_android_itemTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.MenuView_android_itemTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView_android_verticalDivider = global::Mehspot.AndroidApp.Resource.Styleable.MenuView_android_verticalDivider;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView_android_windowAnimationStyle = global::Mehspot.AndroidApp.Resource.Styleable.MenuView_android_windowAnimationStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.MenuView_preserveIconSpacing = global::Mehspot.AndroidApp.Resource.Styleable.MenuView_preserveIconSpacing;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_android_background = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_android_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_android_fitsSystemWindows;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_android_maxWidth = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_android_maxWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_elevation = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_headerLayout = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_headerLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_itemBackground = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_itemBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_itemIconTint = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_itemIconTint;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_itemTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_itemTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_itemTextColor = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_itemTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.NavigationView_menu = global::Mehspot.AndroidApp.Resource.Styleable.NavigationView_menu;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.PopupWindow = global::Mehspot.AndroidApp.Resource.Styleable.PopupWindow;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.PopupWindow_android_popupBackground = global::Mehspot.AndroidApp.Resource.Styleable.PopupWindow_android_popupBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.PopupWindow_overlapAnchor = global::Mehspot.AndroidApp.Resource.Styleable.PopupWindow_overlapAnchor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.PopupWindowBackgroundState = global::Mehspot.AndroidApp.Resource.Styleable.PopupWindowBackgroundState;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::Mehspot.AndroidApp.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_absoluteMaxValue = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_absoluteMaxValue;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_absoluteMinValue = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_absoluteMinValue;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_activateOnDefaultValues = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_activateOnDefaultValues;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_activeColor = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_activeColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_alwaysActive = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_alwaysActive;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_barHeight = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_barHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_defaultColor = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_defaultColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_internalPadding = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_internalPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_maxThumbHidden = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_maxThumbHidden;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_minThumbHidden = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_minThumbHidden;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_showRangeLabels = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_showRangeLabels;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_stepValue = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_stepValue;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_stepValueContinuously = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_stepValueContinuously;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_textAboveThumbsColor = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_textAboveThumbsColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_textSize = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_textSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_thumbDisabled = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbDisabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_thumbNormal = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbNormal;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_thumbPressed = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbPressed;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_thumbShadow = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbShadow;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_thumbShadowBlur = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbShadowBlur;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_thumbShadowColor = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbShadowColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_thumbShadowXOffset = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbShadowXOffset;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_thumbShadowYOffset = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_thumbShadowYOffset;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RangeSliderControl_valuesAboveThumbs = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_valuesAboveThumbs;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RecyclerView = global::Mehspot.AndroidApp.Resource.Styleable.RecyclerView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RecyclerView_android_orientation = global::Mehspot.AndroidApp.Resource.Styleable.RecyclerView_android_orientation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RecyclerView_layoutManager = global::Mehspot.AndroidApp.Resource.Styleable.RecyclerView_layoutManager;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RecyclerView_reverseLayout = global::Mehspot.AndroidApp.Resource.Styleable.RecyclerView_reverseLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RecyclerView_spanCount = global::Mehspot.AndroidApp.Resource.Styleable.RecyclerView_spanCount;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.RecyclerView_stackFromEnd = global::Mehspot.AndroidApp.Resource.Styleable.RecyclerView_stackFromEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ScrimInsetsFrameLayout = global::Mehspot.AndroidApp.Resource.Styleable.ScrimInsetsFrameLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::Mehspot.AndroidApp.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView = global::Mehspot.AndroidApp.Resource.Styleable.SearchView;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_android_focusable = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_android_focusable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_android_imeOptions = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_android_imeOptions;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_android_inputType = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_android_inputType;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_android_maxWidth = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_android_maxWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_closeIcon = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_closeIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_commitIcon = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_commitIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_defaultQueryHint = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_defaultQueryHint;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_goIcon = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_goIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_iconifiedByDefault = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_iconifiedByDefault;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_layout = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_queryBackground = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_queryBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_queryHint = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_queryHint;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_searchHintIcon = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_searchHintIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_searchIcon = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_searchIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_submitBackground = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_submitBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_suggestionRowLayout = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_suggestionRowLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SearchView_voiceIcon = global::Mehspot.AndroidApp.Resource.Styleable.SearchView_voiceIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SnackbarLayout = global::Mehspot.AndroidApp.Resource.Styleable.SnackbarLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SnackbarLayout_android_maxWidth = global::Mehspot.AndroidApp.Resource.Styleable.SnackbarLayout_android_maxWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SnackbarLayout_elevation = global::Mehspot.AndroidApp.Resource.Styleable.SnackbarLayout_elevation;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::Mehspot.AndroidApp.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Spinner = global::Mehspot.AndroidApp.Resource.Styleable.Spinner;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Spinner_android_dropDownWidth = global::Mehspot.AndroidApp.Resource.Styleable.Spinner_android_dropDownWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Spinner_android_entries = global::Mehspot.AndroidApp.Resource.Styleable.Spinner_android_entries;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Spinner_android_popupBackground = global::Mehspot.AndroidApp.Resource.Styleable.Spinner_android_popupBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Spinner_android_prompt = global::Mehspot.AndroidApp.Resource.Styleable.Spinner_android_prompt;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Spinner_popupTheme = global::Mehspot.AndroidApp.Resource.Styleable.Spinner_popupTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_android_textOff = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_android_textOff;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_android_textOn = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_android_textOn;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_android_thumb = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_android_thumb;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_showText = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_showText;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_splitTrack = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_splitTrack;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_switchMinWidth = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_switchMinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_switchPadding = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_switchPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_switchTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_switchTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_thumbTextPadding = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_thumbTextPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.SwitchCompat_track = global::Mehspot.AndroidApp.Resource.Styleable.SwitchCompat_track;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabItem = global::Mehspot.AndroidApp.Resource.Styleable.TabItem;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabItem_android_icon = global::Mehspot.AndroidApp.Resource.Styleable.TabItem_android_icon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabItem_android_layout = global::Mehspot.AndroidApp.Resource.Styleable.TabItem_android_layout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabItem_android_text = global::Mehspot.AndroidApp.Resource.Styleable.TabItem_android_text;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabBackground = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabBackground;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabContentStart = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabContentStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabGravity = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabGravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabIndicatorColor = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabIndicatorColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabIndicatorHeight = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabIndicatorHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabMaxWidth = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabMaxWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabMinWidth = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabMinWidth;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabMode = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabPadding = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabPadding;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabPaddingBottom = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabPaddingBottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabPaddingEnd = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabPaddingEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabPaddingStart = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabPaddingStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabPaddingTop = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabPaddingTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabSelectedTextColor = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabSelectedTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TabLayout_tabTextColor = global::Mehspot.AndroidApp.Resource.Styleable.TabLayout_tabTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_android_shadowColor = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_android_shadowColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_android_shadowDx = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_android_shadowDx;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_android_shadowDy = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_android_shadowDy;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_android_shadowRadius = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_android_shadowRadius;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_android_textColor = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_android_textColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_android_textSize = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_android_textSize;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_android_textStyle = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_android_textStyle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_android_typeface = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_android_typeface;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextAppearance_textAllCaps = global::Mehspot.AndroidApp.Resource.Styleable.TextAppearance_textAllCaps;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_android_hint = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_android_hint;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_android_textColorHint = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_android_textColorHint;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_counterEnabled = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_counterEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_counterMaxLength = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_counterMaxLength;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_counterTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_counterTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_errorEnabled = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_errorEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_errorTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_errorTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_hintEnabled = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_hintEnabled;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.TextInputLayout_hintTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.TextInputLayout_hintTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_android_gravity = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_android_gravity;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_android_minHeight = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_android_minHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_collapseContentDescription = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_collapseContentDescription;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_collapseIcon = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_collapseIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_contentInsetEnd = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_contentInsetEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_contentInsetLeft = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_contentInsetLeft;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_contentInsetRight = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_contentInsetRight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_contentInsetStart = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_contentInsetStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_logo = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_logo;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_logoDescription = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_logoDescription;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_maxButtonHeight = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_maxButtonHeight;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_navigationContentDescription = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_navigationContentDescription;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_navigationIcon = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_navigationIcon;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_popupTheme = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_popupTheme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_subtitle = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_subtitle;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_subtitleTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_subtitleTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_subtitleTextColor = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_subtitleTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_title = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_title;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_titleMarginBottom = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_titleMarginBottom;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_titleMarginEnd = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_titleMarginEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_titleMarginStart = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_titleMarginStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_titleMarginTop = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_titleMarginTop;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_titleMargins = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_titleMargins;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_titleTextAppearance = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_titleTextAppearance;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.Toolbar_titleTextColor = global::Mehspot.AndroidApp.Resource.Styleable.Toolbar_titleTextColor;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.View = global::Mehspot.AndroidApp.Resource.Styleable.View;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.View_android_focusable = global::Mehspot.AndroidApp.Resource.Styleable.View_android_focusable;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.View_android_theme = global::Mehspot.AndroidApp.Resource.Styleable.View_android_theme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.View_paddingEnd = global::Mehspot.AndroidApp.Resource.Styleable.View_paddingEnd;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.View_paddingStart = global::Mehspot.AndroidApp.Resource.Styleable.View_paddingStart;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.View_theme = global::Mehspot.AndroidApp.Resource.Styleable.View_theme;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ViewBackgroundHelper = global::Mehspot.AndroidApp.Resource.Styleable.ViewBackgroundHelper;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ViewBackgroundHelper_android_background = global::Mehspot.AndroidApp.Resource.Styleable.ViewBackgroundHelper_android_background;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::Mehspot.AndroidApp.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::Mehspot.AndroidApp.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ViewStubCompat = global::Mehspot.AndroidApp.Resource.Styleable.ViewStubCompat;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ViewStubCompat_android_id = global::Mehspot.AndroidApp.Resource.Styleable.ViewStubCompat_android_id;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ViewStubCompat_android_inflatedId = global::Mehspot.AndroidApp.Resource.Styleable.ViewStubCompat_android_inflatedId;
-			global::Xamarin.RangeSlider.Forms.Resource.Styleable.ViewStubCompat_android_layout = global::Mehspot.AndroidApp.Resource.Styleable.ViewStubCompat_android_layout;
 		}
 		
 		public partial class BooleanCell
@@ -7665,653 +5972,647 @@ namespace Mehspot.AndroidApp
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f080001
-			public const int ApplicationName = 2131230721;
-			
-			// aapt resource value: 0x7f080000
-			public const int Hello = 2131230720;
-			
-			// aapt resource value: 0x7f0800d2
-			public const int LabelNone = 2131230930;
-			
-			// aapt resource value: 0x7f080072
-			public const int abc_action_bar_home_description = 2131230834;
-			
-			// aapt resource value: 0x7f080073
-			public const int abc_action_bar_home_description_format = 2131230835;
-			
-			// aapt resource value: 0x7f080074
-			public const int abc_action_bar_home_subtitle_description_format = 2131230836;
-			
-			// aapt resource value: 0x7f080075
-			public const int abc_action_bar_up_description = 2131230837;
-			
-			// aapt resource value: 0x7f080076
-			public const int abc_action_menu_overflow_description = 2131230838;
-			
-			// aapt resource value: 0x7f080077
-			public const int abc_action_mode_done = 2131230839;
-			
-			// aapt resource value: 0x7f080078
-			public const int abc_activity_chooser_view_see_all = 2131230840;
-			
-			// aapt resource value: 0x7f080079
-			public const int abc_activitychooserview_choose_application = 2131230841;
-			
-			// aapt resource value: 0x7f08007a
-			public const int abc_capital_off = 2131230842;
-			
-			// aapt resource value: 0x7f08007b
-			public const int abc_capital_on = 2131230843;
-			
-			// aapt resource value: 0x7f080087
-			public const int abc_font_family_body_1_material = 2131230855;
-			
-			// aapt resource value: 0x7f080088
-			public const int abc_font_family_body_2_material = 2131230856;
-			
-			// aapt resource value: 0x7f080089
-			public const int abc_font_family_button_material = 2131230857;
-			
-			// aapt resource value: 0x7f08008a
-			public const int abc_font_family_caption_material = 2131230858;
-			
-			// aapt resource value: 0x7f08008b
-			public const int abc_font_family_display_1_material = 2131230859;
-			
-			// aapt resource value: 0x7f08008c
-			public const int abc_font_family_display_2_material = 2131230860;
-			
-			// aapt resource value: 0x7f08008d
-			public const int abc_font_family_display_3_material = 2131230861;
-			
-			// aapt resource value: 0x7f08008e
-			public const int abc_font_family_display_4_material = 2131230862;
-			
-			// aapt resource value: 0x7f08008f
-			public const int abc_font_family_headline_material = 2131230863;
-			
-			// aapt resource value: 0x7f080090
-			public const int abc_font_family_menu_material = 2131230864;
-			
-			// aapt resource value: 0x7f080091
-			public const int abc_font_family_subhead_material = 2131230865;
-			
-			// aapt resource value: 0x7f080092
-			public const int abc_font_family_title_material = 2131230866;
-			
-			// aapt resource value: 0x7f08007c
-			public const int abc_search_hint = 2131230844;
-			
-			// aapt resource value: 0x7f08007d
-			public const int abc_searchview_description_clear = 2131230845;
-			
-			// aapt resource value: 0x7f08007e
-			public const int abc_searchview_description_query = 2131230846;
-			
-			// aapt resource value: 0x7f08007f
-			public const int abc_searchview_description_search = 2131230847;
-			
-			// aapt resource value: 0x7f080080
-			public const int abc_searchview_description_submit = 2131230848;
-			
-			// aapt resource value: 0x7f080081
-			public const int abc_searchview_description_voice = 2131230849;
-			
-			// aapt resource value: 0x7f080082
-			public const int abc_shareactionprovider_share_with = 2131230850;
-			
-			// aapt resource value: 0x7f080083
-			public const int abc_shareactionprovider_share_with_application = 2131230851;
-			
-			// aapt resource value: 0x7f080084
-			public const int abc_toolbar_collapse_description = 2131230852;
-			
-			// aapt resource value: 0x7f080093
-			public const int accept = 2131230867;
-			
-			// aapt resource value: 0x7f080002
-			public const int app_name = 2131230722;
-			
-			// aapt resource value: 0x7f08006a
-			public const int appbar_scrolling_view_behavior = 2131230826;
-			
-			// aapt resource value: 0x7f08006b
-			public const int bottom_sheet_behavior = 2131230827;
-			
-			// aapt resource value: 0x7f08006c
-			public const int character_counter_pattern = 2131230828;
-			
-			// aapt resource value: 0x7f0800a4
-			public const int com_facebook_device_auth_instructions = 2131230884;
-			
-			// aapt resource value: 0x7f0800a5
-			public const int com_facebook_image_download_unknown_error = 2131230885;
-			
-			// aapt resource value: 0x7f0800a6
-			public const int com_facebook_internet_permission_error_message = 2131230886;
-			
-			// aapt resource value: 0x7f0800a7
-			public const int com_facebook_internet_permission_error_title = 2131230887;
-			
-			// aapt resource value: 0x7f0800a8
-			public const int com_facebook_like_button_liked = 2131230888;
-			
-			// aapt resource value: 0x7f0800a9
-			public const int com_facebook_like_button_not_liked = 2131230889;
-			
-			// aapt resource value: 0x7f0800aa
-			public const int com_facebook_loading = 2131230890;
-			
-			// aapt resource value: 0x7f0800ab
-			public const int com_facebook_loginview_cancel_action = 2131230891;
-			
-			// aapt resource value: 0x7f0800ac
-			public const int com_facebook_loginview_log_in_button = 2131230892;
-			
-			// aapt resource value: 0x7f0800ad
-			public const int com_facebook_loginview_log_in_button_continue = 2131230893;
-			
-			// aapt resource value: 0x7f0800ae
-			public const int com_facebook_loginview_log_in_button_long = 2131230894;
-			
-			// aapt resource value: 0x7f0800af
-			public const int com_facebook_loginview_log_out_action = 2131230895;
-			
-			// aapt resource value: 0x7f0800b0
-			public const int com_facebook_loginview_log_out_button = 2131230896;
-			
-			// aapt resource value: 0x7f0800b1
-			public const int com_facebook_loginview_logged_in_as = 2131230897;
-			
-			// aapt resource value: 0x7f0800b2
-			public const int com_facebook_loginview_logged_in_using_facebook = 2131230898;
-			
-			// aapt resource value: 0x7f0800b3
-			public const int com_facebook_send_button_text = 2131230899;
-			
-			// aapt resource value: 0x7f0800b4
-			public const int com_facebook_share_button_text = 2131230900;
-			
-			// aapt resource value: 0x7f0800b5
-			public const int com_facebook_smart_device_instructions = 2131230901;
-			
-			// aapt resource value: 0x7f0800b6
-			public const int com_facebook_smart_device_instructions_or = 2131230902;
-			
-			// aapt resource value: 0x7f0800b7
-			public const int com_facebook_smart_login_confirmation_cancel = 2131230903;
-			
-			// aapt resource value: 0x7f0800bb
-			public const int com_facebook_smart_login_confirmation_continue_as = 2131230907;
-			
-			// aapt resource value: 0x7f0800b8
-			public const int com_facebook_smart_login_confirmation_title = 2131230904;
-			
-			// aapt resource value: 0x7f0800b9
-			public const int com_facebook_tooltip_default = 2131230905;
-			
-			// aapt resource value: 0x7f0800bc
-			public const int common_google_play_services_enable_button = 2131230908;
-			
-			// aapt resource value: 0x7f0800bd
-			public const int common_google_play_services_enable_text = 2131230909;
-			
-			// aapt resource value: 0x7f0800be
-			public const int common_google_play_services_enable_title = 2131230910;
-			
-			// aapt resource value: 0x7f0800bf
-			public const int common_google_play_services_install_button = 2131230911;
-			
-			// aapt resource value: 0x7f0800c0
-			public const int common_google_play_services_install_text = 2131230912;
-			
-			// aapt resource value: 0x7f0800c1
-			public const int common_google_play_services_install_title = 2131230913;
-			
-			// aapt resource value: 0x7f0800c2
-			public const int common_google_play_services_notification_ticker = 2131230914;
-			
-			// aapt resource value: 0x7f0800cc
-			public const int common_google_play_services_unknown_issue = 2131230924;
-			
-			// aapt resource value: 0x7f0800c3
-			public const int common_google_play_services_unsupported_text = 2131230915;
-			
-			// aapt resource value: 0x7f0800c4
-			public const int common_google_play_services_update_button = 2131230916;
-			
-			// aapt resource value: 0x7f0800c5
-			public const int common_google_play_services_update_text = 2131230917;
-			
-			// aapt resource value: 0x7f0800c6
-			public const int common_google_play_services_update_title = 2131230918;
-			
-			// aapt resource value: 0x7f0800c7
-			public const int common_google_play_services_updating_text = 2131230919;
-			
-			// aapt resource value: 0x7f0800c8
-			public const int common_google_play_services_wear_update_text = 2131230920;
-			
-			// aapt resource value: 0x7f0800c9
-			public const int common_open_on_phone = 2131230921;
-			
-			// aapt resource value: 0x7f0800ca
-			public const int common_signin_button_text = 2131230922;
-			
-			// aapt resource value: 0x7f0800cb
-			public const int common_signin_button_text_long = 2131230923;
-			
-			// aapt resource value: 0x7f080094
-			public const int create_calendar_message = 2131230868;
-			
-			// aapt resource value: 0x7f080095
-			public const int create_calendar_title = 2131230869;
-			
-			// aapt resource value: 0x7f080096
-			public const int debug_menu_ad_information = 2131230870;
-			
-			// aapt resource value: 0x7f080097
-			public const int debug_menu_creative_preview = 2131230871;
-			
-			// aapt resource value: 0x7f080098
-			public const int debug_menu_title = 2131230872;
-			
-			// aapt resource value: 0x7f080099
-			public const int debug_menu_troubleshooting = 2131230873;
-			
-			// aapt resource value: 0x7f08009a
-			public const int decline = 2131230874;
-			
-			// aapt resource value: 0x7f080004
-			public const int demo_max_label = 2131230724;
-			
-			// aapt resource value: 0x7f080003
-			public const int demo_min_label = 2131230723;
-			
-			// aapt resource value: 0x7f08009d
-			public const int exo_controls_fastforward_description = 2131230877;
-			
-			// aapt resource value: 0x7f08009e
-			public const int exo_controls_next_description = 2131230878;
-			
-			// aapt resource value: 0x7f08009f
-			public const int exo_controls_pause_description = 2131230879;
-			
-			// aapt resource value: 0x7f0800a0
-			public const int exo_controls_play_description = 2131230880;
-			
-			// aapt resource value: 0x7f0800a1
-			public const int exo_controls_previous_description = 2131230881;
-			
-			// aapt resource value: 0x7f0800a2
-			public const int exo_controls_rewind_description = 2131230882;
-			
-			// aapt resource value: 0x7f0800a3
-			public const int exo_controls_stop_description = 2131230883;
-			
-			// aapt resource value: 0x7f0800ce
-			public const int facebook_app_id = 2131230926;
-			
-			// aapt resource value: 0x7f0800d1
-			public const int fb_login_protocol_scheme = 2131230929;
-			
-			// aapt resource value: 0x7f0800cf
-			public const int google_maps_api = 2131230927;
-			
 			// aapt resource value: 0x7f0800d0
-			public const int google_places_api = 2131230928;
-			
-			// aapt resource value: 0x7f0800cd
-			public const int hello = 2131230925;
-			
-			// aapt resource value: 0x7f08001d
-			public const int hockeyapp_crash_dialog_app_name_fallback = 2131230749;
-			
-			// aapt resource value: 0x7f08001e
-			public const int hockeyapp_crash_dialog_message = 2131230750;
-			
-			// aapt resource value: 0x7f08001f
-			public const int hockeyapp_crash_dialog_negative_button = 2131230751;
-			
-			// aapt resource value: 0x7f080020
-			public const int hockeyapp_crash_dialog_neutral_button = 2131230752;
-			
-			// aapt resource value: 0x7f080021
-			public const int hockeyapp_crash_dialog_positive_button = 2131230753;
-			
-			// aapt resource value: 0x7f080022
-			public const int hockeyapp_crash_dialog_title = 2131230754;
-			
-			// aapt resource value: 0x7f080023
-			public const int hockeyapp_dialog_error_message = 2131230755;
-			
-			// aapt resource value: 0x7f080024
-			public const int hockeyapp_dialog_error_title = 2131230756;
-			
-			// aapt resource value: 0x7f080025
-			public const int hockeyapp_dialog_negative_button = 2131230757;
-			
-			// aapt resource value: 0x7f080026
-			public const int hockeyapp_dialog_positive_button = 2131230758;
-			
-			// aapt resource value: 0x7f080027
-			public const int hockeyapp_download_failed_dialog_message = 2131230759;
-			
-			// aapt resource value: 0x7f080028
-			public const int hockeyapp_download_failed_dialog_negative_button = 2131230760;
-			
-			// aapt resource value: 0x7f080029
-			public const int hockeyapp_download_failed_dialog_positive_button = 2131230761;
-			
-			// aapt resource value: 0x7f08002a
-			public const int hockeyapp_download_failed_dialog_title = 2131230762;
-			
-			// aapt resource value: 0x7f08002b
-			public const int hockeyapp_error_no_network_message = 2131230763;
-			
-			// aapt resource value: 0x7f08002c
-			public const int hockeyapp_expiry_info_text = 2131230764;
-			
-			// aapt resource value: 0x7f08002d
-			public const int hockeyapp_expiry_info_title = 2131230765;
-			
-			// aapt resource value: 0x7f08002e
-			public const int hockeyapp_feedback_attach_file = 2131230766;
-			
-			// aapt resource value: 0x7f08002f
-			public const int hockeyapp_feedback_attach_picture = 2131230767;
-			
-			// aapt resource value: 0x7f080030
-			public const int hockeyapp_feedback_attachment_button_text = 2131230768;
-			
-			// aapt resource value: 0x7f080031
-			public const int hockeyapp_feedback_attachment_error = 2131230769;
-			
-			// aapt resource value: 0x7f080032
-			public const int hockeyapp_feedback_attachment_loading = 2131230770;
-			
-			// aapt resource value: 0x7f080033
-			public const int hockeyapp_feedback_email_hint = 2131230771;
-			
-			// aapt resource value: 0x7f080034
-			public const int hockeyapp_feedback_email_hint_required = 2131230772;
-			
-			// aapt resource value: 0x7f080035
-			public const int hockeyapp_feedback_failed_text = 2131230773;
-			
-			// aapt resource value: 0x7f080036
-			public const int hockeyapp_feedback_failed_title = 2131230774;
-			
-			// aapt resource value: 0x7f080037
-			public const int hockeyapp_feedback_fetching_feedback_text = 2131230775;
-			
-			// aapt resource value: 0x7f080038
-			public const int hockeyapp_feedback_generic_error = 2131230776;
-			
-			// aapt resource value: 0x7f080039
-			public const int hockeyapp_feedback_last_updated_text = 2131230777;
-			
-			// aapt resource value: 0x7f08003a
-			public const int hockeyapp_feedback_max_attachments_allowed = 2131230778;
-			
-			// aapt resource value: 0x7f08003b
-			public const int hockeyapp_feedback_message_hint = 2131230779;
-			
-			// aapt resource value: 0x7f08003c
-			public const int hockeyapp_feedback_message_hint_required = 2131230780;
-			
-			// aapt resource value: 0x7f08003d
-			public const int hockeyapp_feedback_name_hint = 2131230781;
-			
-			// aapt resource value: 0x7f08003e
-			public const int hockeyapp_feedback_name_hint_required = 2131230782;
-			
-			// aapt resource value: 0x7f08003f
-			public const int hockeyapp_feedback_refresh_button_text = 2131230783;
-			
-			// aapt resource value: 0x7f080040
-			public const int hockeyapp_feedback_response_button_text = 2131230784;
-			
-			// aapt resource value: 0x7f080041
-			public const int hockeyapp_feedback_select_file = 2131230785;
-			
-			// aapt resource value: 0x7f080042
-			public const int hockeyapp_feedback_select_picture = 2131230786;
-			
-			// aapt resource value: 0x7f080043
-			public const int hockeyapp_feedback_send_button_text = 2131230787;
-			
-			// aapt resource value: 0x7f080044
-			public const int hockeyapp_feedback_send_generic_error = 2131230788;
-			
-			// aapt resource value: 0x7f080045
-			public const int hockeyapp_feedback_send_network_error = 2131230789;
-			
-			// aapt resource value: 0x7f080046
-			public const int hockeyapp_feedback_sending_feedback_text = 2131230790;
-			
-			// aapt resource value: 0x7f080047
-			public const int hockeyapp_feedback_subject_hint = 2131230791;
-			
-			// aapt resource value: 0x7f080048
-			public const int hockeyapp_feedback_subject_hint_required = 2131230792;
-			
-			// aapt resource value: 0x7f080049
-			public const int hockeyapp_feedback_title = 2131230793;
-			
-			// aapt resource value: 0x7f08004a
-			public const int hockeyapp_feedback_validate_email_empty = 2131230794;
-			
-			// aapt resource value: 0x7f08004b
-			public const int hockeyapp_feedback_validate_email_error = 2131230795;
-			
-			// aapt resource value: 0x7f08004c
-			public const int hockeyapp_feedback_validate_name_error = 2131230796;
-			
-			// aapt resource value: 0x7f08004d
-			public const int hockeyapp_feedback_validate_subject_error = 2131230797;
-			
-			// aapt resource value: 0x7f08004e
-			public const int hockeyapp_feedback_validate_text_error = 2131230798;
-			
-			// aapt resource value: 0x7f08004f
-			public const int hockeyapp_login_email_hint = 2131230799;
-			
-			// aapt resource value: 0x7f080050
-			public const int hockeyapp_login_email_hint_required = 2131230800;
-			
-			// aapt resource value: 0x7f080051
-			public const int hockeyapp_login_headline_text = 2131230801;
-			
-			// aapt resource value: 0x7f080052
-			public const int hockeyapp_login_headline_text_email_only = 2131230802;
-			
-			// aapt resource value: 0x7f080053
-			public const int hockeyapp_login_login_button_text = 2131230803;
-			
-			// aapt resource value: 0x7f080054
-			public const int hockeyapp_login_missing_credentials_toast = 2131230804;
-			
-			// aapt resource value: 0x7f080055
-			public const int hockeyapp_login_password_hint = 2131230805;
-			
-			// aapt resource value: 0x7f080056
-			public const int hockeyapp_login_password_hint_required = 2131230806;
-			
-			// aapt resource value: 0x7f080057
-			public const int hockeyapp_paint_dialog_message = 2131230807;
-			
-			// aapt resource value: 0x7f080058
-			public const int hockeyapp_paint_dialog_negative_button = 2131230808;
-			
-			// aapt resource value: 0x7f080059
-			public const int hockeyapp_paint_dialog_neutral_button = 2131230809;
-			
-			// aapt resource value: 0x7f08005a
-			public const int hockeyapp_paint_dialog_positive_button = 2131230810;
-			
-			// aapt resource value: 0x7f08005b
-			public const int hockeyapp_paint_indicator_toast = 2131230811;
-			
-			// aapt resource value: 0x7f08005c
-			public const int hockeyapp_paint_menu_clear = 2131230812;
-			
-			// aapt resource value: 0x7f08005d
-			public const int hockeyapp_paint_menu_save = 2131230813;
-			
-			// aapt resource value: 0x7f08005e
-			public const int hockeyapp_paint_menu_undo = 2131230814;
-			
-			// aapt resource value: 0x7f08005f
-			public const int hockeyapp_permission_dialog_negative_button = 2131230815;
-			
-			// aapt resource value: 0x7f080060
-			public const int hockeyapp_permission_dialog_positive_button = 2131230816;
-			
-			// aapt resource value: 0x7f080061
-			public const int hockeyapp_permission_update_message = 2131230817;
-			
-			// aapt resource value: 0x7f080062
-			public const int hockeyapp_permission_update_title = 2131230818;
-			
-			// aapt resource value: 0x7f080063
-			public const int hockeyapp_update_button = 2131230819;
-			
-			// aapt resource value: 0x7f080064
-			public const int hockeyapp_update_dialog_message = 2131230820;
-			
-			// aapt resource value: 0x7f080065
-			public const int hockeyapp_update_dialog_negative_button = 2131230821;
-			
-			// aapt resource value: 0x7f080066
-			public const int hockeyapp_update_dialog_positive_button = 2131230822;
-			
-			// aapt resource value: 0x7f080067
-			public const int hockeyapp_update_dialog_title = 2131230823;
-			
-			// aapt resource value: 0x7f080068
-			public const int hockeyapp_update_mandatory_toast = 2131230824;
-			
-			// aapt resource value: 0x7f080069
-			public const int hockeyapp_update_version_details_label = 2131230825;
-			
-			// aapt resource value: 0x7f08001c
-			public const int library_name = 2131230748;
-			
-			// aapt resource value: 0x7f0800ba
-			public const int messenger_send_button_text = 2131230906;
-			
-			// aapt resource value: 0x7f080005
-			public const int mr_button_content_description = 2131230725;
-			
-			// aapt resource value: 0x7f080006
-			public const int mr_cast_button_connected = 2131230726;
-			
-			// aapt resource value: 0x7f080007
-			public const int mr_cast_button_connecting = 2131230727;
-			
-			// aapt resource value: 0x7f080008
-			public const int mr_cast_button_disconnected = 2131230728;
-			
-			// aapt resource value: 0x7f080009
-			public const int mr_chooser_searching = 2131230729;
-			
-			// aapt resource value: 0x7f08000a
-			public const int mr_chooser_title = 2131230730;
-			
-			// aapt resource value: 0x7f08000b
-			public const int mr_controller_album_art = 2131230731;
-			
-			// aapt resource value: 0x7f08000c
-			public const int mr_controller_casting_screen = 2131230732;
-			
-			// aapt resource value: 0x7f08000d
-			public const int mr_controller_close_description = 2131230733;
-			
-			// aapt resource value: 0x7f08000e
-			public const int mr_controller_collapse_group = 2131230734;
-			
-			// aapt resource value: 0x7f08000f
-			public const int mr_controller_disconnect = 2131230735;
-			
-			// aapt resource value: 0x7f080010
-			public const int mr_controller_expand_group = 2131230736;
-			
-			// aapt resource value: 0x7f080011
-			public const int mr_controller_no_info_available = 2131230737;
-			
-			// aapt resource value: 0x7f080012
-			public const int mr_controller_no_media_selected = 2131230738;
-			
-			// aapt resource value: 0x7f080013
-			public const int mr_controller_pause = 2131230739;
-			
-			// aapt resource value: 0x7f080014
-			public const int mr_controller_play = 2131230740;
-			
-			// aapt resource value: 0x7f080019
-			public const int mr_controller_stop = 2131230745;
-			
-			// aapt resource value: 0x7f080015
-			public const int mr_controller_stop_casting = 2131230741;
-			
-			// aapt resource value: 0x7f080016
-			public const int mr_controller_volume_slider = 2131230742;
-			
-			// aapt resource value: 0x7f080017
-			public const int mr_system_route_name = 2131230743;
-			
-			// aapt resource value: 0x7f080018
-			public const int mr_user_route_category_name = 2131230744;
-			
-			// aapt resource value: 0x7f0800d4
-			public const int new_subdivision = 2131230932;
-			
-			// aapt resource value: 0x7f08006d
-			public const int password_toggle_content_description = 2131230829;
-			
-			// aapt resource value: 0x7f08006e
-			public const int path_password_eye = 2131230830;
-			
-			// aapt resource value: 0x7f08006f
-			public const int path_password_eye_mask_strike_through = 2131230831;
+			public const int LabelNone = 2131230928;
 			
 			// aapt resource value: 0x7f080070
-			public const int path_password_eye_mask_visible = 2131230832;
+			public const int abc_action_bar_home_description = 2131230832;
 			
 			// aapt resource value: 0x7f080071
-			public const int path_password_strike_through = 2131230833;
+			public const int abc_action_bar_home_description_format = 2131230833;
 			
-			// aapt resource value: 0x7f08001a
-			public const int place_autocomplete_clear_button = 2131230746;
+			// aapt resource value: 0x7f080072
+			public const int abc_action_bar_home_subtitle_description_format = 2131230834;
 			
-			// aapt resource value: 0x7f08001b
-			public const int place_autocomplete_search_hint = 2131230747;
+			// aapt resource value: 0x7f080073
+			public const int abc_action_bar_up_description = 2131230835;
 			
-			// aapt resource value: 0x7f0800d7
-			public const int save_button_label = 2131230935;
+			// aapt resource value: 0x7f080074
+			public const int abc_action_menu_overflow_description = 2131230836;
+			
+			// aapt resource value: 0x7f080075
+			public const int abc_action_mode_done = 2131230837;
+			
+			// aapt resource value: 0x7f080076
+			public const int abc_activity_chooser_view_see_all = 2131230838;
+			
+			// aapt resource value: 0x7f080077
+			public const int abc_activitychooserview_choose_application = 2131230839;
+			
+			// aapt resource value: 0x7f080078
+			public const int abc_capital_off = 2131230840;
+			
+			// aapt resource value: 0x7f080079
+			public const int abc_capital_on = 2131230841;
 			
 			// aapt resource value: 0x7f080085
-			public const int search_menu_title = 2131230853;
+			public const int abc_font_family_body_1_material = 2131230853;
 			
 			// aapt resource value: 0x7f080086
-			public const int status_bar_notification_info_overflow = 2131230854;
+			public const int abc_font_family_body_2_material = 2131230854;
+			
+			// aapt resource value: 0x7f080087
+			public const int abc_font_family_button_material = 2131230855;
+			
+			// aapt resource value: 0x7f080088
+			public const int abc_font_family_caption_material = 2131230856;
+			
+			// aapt resource value: 0x7f080089
+			public const int abc_font_family_display_1_material = 2131230857;
+			
+			// aapt resource value: 0x7f08008a
+			public const int abc_font_family_display_2_material = 2131230858;
+			
+			// aapt resource value: 0x7f08008b
+			public const int abc_font_family_display_3_material = 2131230859;
+			
+			// aapt resource value: 0x7f08008c
+			public const int abc_font_family_display_4_material = 2131230860;
+			
+			// aapt resource value: 0x7f08008d
+			public const int abc_font_family_headline_material = 2131230861;
+			
+			// aapt resource value: 0x7f08008e
+			public const int abc_font_family_menu_material = 2131230862;
+			
+			// aapt resource value: 0x7f08008f
+			public const int abc_font_family_subhead_material = 2131230863;
+			
+			// aapt resource value: 0x7f080090
+			public const int abc_font_family_title_material = 2131230864;
+			
+			// aapt resource value: 0x7f08007a
+			public const int abc_search_hint = 2131230842;
+			
+			// aapt resource value: 0x7f08007b
+			public const int abc_searchview_description_clear = 2131230843;
+			
+			// aapt resource value: 0x7f08007c
+			public const int abc_searchview_description_query = 2131230844;
+			
+			// aapt resource value: 0x7f08007d
+			public const int abc_searchview_description_search = 2131230845;
+			
+			// aapt resource value: 0x7f08007e
+			public const int abc_searchview_description_submit = 2131230846;
+			
+			// aapt resource value: 0x7f08007f
+			public const int abc_searchview_description_voice = 2131230847;
+			
+			// aapt resource value: 0x7f080080
+			public const int abc_shareactionprovider_share_with = 2131230848;
+			
+			// aapt resource value: 0x7f080081
+			public const int abc_shareactionprovider_share_with_application = 2131230849;
+			
+			// aapt resource value: 0x7f080082
+			public const int abc_toolbar_collapse_description = 2131230850;
+			
+			// aapt resource value: 0x7f080091
+			public const int accept = 2131230865;
+			
+			// aapt resource value: 0x7f080000
+			public const int app_name = 2131230720;
+			
+			// aapt resource value: 0x7f080068
+			public const int appbar_scrolling_view_behavior = 2131230824;
+			
+			// aapt resource value: 0x7f080069
+			public const int bottom_sheet_behavior = 2131230825;
+			
+			// aapt resource value: 0x7f08006a
+			public const int character_counter_pattern = 2131230826;
+			
+			// aapt resource value: 0x7f0800a2
+			public const int com_facebook_device_auth_instructions = 2131230882;
+			
+			// aapt resource value: 0x7f0800a3
+			public const int com_facebook_image_download_unknown_error = 2131230883;
+			
+			// aapt resource value: 0x7f0800a4
+			public const int com_facebook_internet_permission_error_message = 2131230884;
+			
+			// aapt resource value: 0x7f0800a5
+			public const int com_facebook_internet_permission_error_title = 2131230885;
+			
+			// aapt resource value: 0x7f0800a6
+			public const int com_facebook_like_button_liked = 2131230886;
+			
+			// aapt resource value: 0x7f0800a7
+			public const int com_facebook_like_button_not_liked = 2131230887;
+			
+			// aapt resource value: 0x7f0800a8
+			public const int com_facebook_loading = 2131230888;
+			
+			// aapt resource value: 0x7f0800a9
+			public const int com_facebook_loginview_cancel_action = 2131230889;
+			
+			// aapt resource value: 0x7f0800aa
+			public const int com_facebook_loginview_log_in_button = 2131230890;
+			
+			// aapt resource value: 0x7f0800ab
+			public const int com_facebook_loginview_log_in_button_continue = 2131230891;
+			
+			// aapt resource value: 0x7f0800ac
+			public const int com_facebook_loginview_log_in_button_long = 2131230892;
+			
+			// aapt resource value: 0x7f0800ad
+			public const int com_facebook_loginview_log_out_action = 2131230893;
+			
+			// aapt resource value: 0x7f0800ae
+			public const int com_facebook_loginview_log_out_button = 2131230894;
+			
+			// aapt resource value: 0x7f0800af
+			public const int com_facebook_loginview_logged_in_as = 2131230895;
+			
+			// aapt resource value: 0x7f0800b0
+			public const int com_facebook_loginview_logged_in_using_facebook = 2131230896;
+			
+			// aapt resource value: 0x7f0800b1
+			public const int com_facebook_send_button_text = 2131230897;
+			
+			// aapt resource value: 0x7f0800b2
+			public const int com_facebook_share_button_text = 2131230898;
+			
+			// aapt resource value: 0x7f0800b3
+			public const int com_facebook_smart_device_instructions = 2131230899;
+			
+			// aapt resource value: 0x7f0800b4
+			public const int com_facebook_smart_device_instructions_or = 2131230900;
+			
+			// aapt resource value: 0x7f0800b5
+			public const int com_facebook_smart_login_confirmation_cancel = 2131230901;
+			
+			// aapt resource value: 0x7f0800b9
+			public const int com_facebook_smart_login_confirmation_continue_as = 2131230905;
+			
+			// aapt resource value: 0x7f0800b6
+			public const int com_facebook_smart_login_confirmation_title = 2131230902;
+			
+			// aapt resource value: 0x7f0800b7
+			public const int com_facebook_tooltip_default = 2131230903;
+			
+			// aapt resource value: 0x7f0800ba
+			public const int common_google_play_services_enable_button = 2131230906;
+			
+			// aapt resource value: 0x7f0800bb
+			public const int common_google_play_services_enable_text = 2131230907;
+			
+			// aapt resource value: 0x7f0800bc
+			public const int common_google_play_services_enable_title = 2131230908;
+			
+			// aapt resource value: 0x7f0800bd
+			public const int common_google_play_services_install_button = 2131230909;
+			
+			// aapt resource value: 0x7f0800be
+			public const int common_google_play_services_install_text = 2131230910;
+			
+			// aapt resource value: 0x7f0800bf
+			public const int common_google_play_services_install_title = 2131230911;
+			
+			// aapt resource value: 0x7f0800c0
+			public const int common_google_play_services_notification_ticker = 2131230912;
+			
+			// aapt resource value: 0x7f0800ca
+			public const int common_google_play_services_unknown_issue = 2131230922;
+			
+			// aapt resource value: 0x7f0800c1
+			public const int common_google_play_services_unsupported_text = 2131230913;
+			
+			// aapt resource value: 0x7f0800c2
+			public const int common_google_play_services_update_button = 2131230914;
+			
+			// aapt resource value: 0x7f0800c3
+			public const int common_google_play_services_update_text = 2131230915;
+			
+			// aapt resource value: 0x7f0800c4
+			public const int common_google_play_services_update_title = 2131230916;
+			
+			// aapt resource value: 0x7f0800c5
+			public const int common_google_play_services_updating_text = 2131230917;
+			
+			// aapt resource value: 0x7f0800c6
+			public const int common_google_play_services_wear_update_text = 2131230918;
+			
+			// aapt resource value: 0x7f0800c7
+			public const int common_open_on_phone = 2131230919;
+			
+			// aapt resource value: 0x7f0800c8
+			public const int common_signin_button_text = 2131230920;
+			
+			// aapt resource value: 0x7f0800c9
+			public const int common_signin_button_text_long = 2131230921;
+			
+			// aapt resource value: 0x7f080092
+			public const int create_calendar_message = 2131230866;
+			
+			// aapt resource value: 0x7f080093
+			public const int create_calendar_title = 2131230867;
+			
+			// aapt resource value: 0x7f080094
+			public const int debug_menu_ad_information = 2131230868;
+			
+			// aapt resource value: 0x7f080095
+			public const int debug_menu_creative_preview = 2131230869;
+			
+			// aapt resource value: 0x7f080096
+			public const int debug_menu_title = 2131230870;
+			
+			// aapt resource value: 0x7f080097
+			public const int debug_menu_troubleshooting = 2131230871;
+			
+			// aapt resource value: 0x7f080098
+			public const int decline = 2131230872;
+			
+			// aapt resource value: 0x7f080002
+			public const int demo_max_label = 2131230722;
+			
+			// aapt resource value: 0x7f080001
+			public const int demo_min_label = 2131230721;
 			
 			// aapt resource value: 0x7f08009b
-			public const int store_picture_message = 2131230875;
+			public const int exo_controls_fastforward_description = 2131230875;
 			
 			// aapt resource value: 0x7f08009c
-			public const int store_picture_title = 2131230876;
+			public const int exo_controls_next_description = 2131230876;
 			
-			// aapt resource value: 0x7f0800d3
-			public const int take_photo_dialog = 2131230931;
+			// aapt resource value: 0x7f08009d
+			public const int exo_controls_pause_description = 2131230877;
+			
+			// aapt resource value: 0x7f08009e
+			public const int exo_controls_play_description = 2131230878;
+			
+			// aapt resource value: 0x7f08009f
+			public const int exo_controls_previous_description = 2131230879;
+			
+			// aapt resource value: 0x7f0800a0
+			public const int exo_controls_rewind_description = 2131230880;
+			
+			// aapt resource value: 0x7f0800a1
+			public const int exo_controls_stop_description = 2131230881;
+			
+			// aapt resource value: 0x7f0800cc
+			public const int facebook_app_id = 2131230924;
+			
+			// aapt resource value: 0x7f0800cf
+			public const int fb_login_protocol_scheme = 2131230927;
+			
+			// aapt resource value: 0x7f0800cd
+			public const int google_maps_api = 2131230925;
+			
+			// aapt resource value: 0x7f0800ce
+			public const int google_places_api = 2131230926;
+			
+			// aapt resource value: 0x7f0800cb
+			public const int hello = 2131230923;
+			
+			// aapt resource value: 0x7f08001b
+			public const int hockeyapp_crash_dialog_app_name_fallback = 2131230747;
+			
+			// aapt resource value: 0x7f08001c
+			public const int hockeyapp_crash_dialog_message = 2131230748;
+			
+			// aapt resource value: 0x7f08001d
+			public const int hockeyapp_crash_dialog_negative_button = 2131230749;
+			
+			// aapt resource value: 0x7f08001e
+			public const int hockeyapp_crash_dialog_neutral_button = 2131230750;
+			
+			// aapt resource value: 0x7f08001f
+			public const int hockeyapp_crash_dialog_positive_button = 2131230751;
+			
+			// aapt resource value: 0x7f080020
+			public const int hockeyapp_crash_dialog_title = 2131230752;
+			
+			// aapt resource value: 0x7f080021
+			public const int hockeyapp_dialog_error_message = 2131230753;
+			
+			// aapt resource value: 0x7f080022
+			public const int hockeyapp_dialog_error_title = 2131230754;
+			
+			// aapt resource value: 0x7f080023
+			public const int hockeyapp_dialog_negative_button = 2131230755;
+			
+			// aapt resource value: 0x7f080024
+			public const int hockeyapp_dialog_positive_button = 2131230756;
+			
+			// aapt resource value: 0x7f080025
+			public const int hockeyapp_download_failed_dialog_message = 2131230757;
+			
+			// aapt resource value: 0x7f080026
+			public const int hockeyapp_download_failed_dialog_negative_button = 2131230758;
+			
+			// aapt resource value: 0x7f080027
+			public const int hockeyapp_download_failed_dialog_positive_button = 2131230759;
+			
+			// aapt resource value: 0x7f080028
+			public const int hockeyapp_download_failed_dialog_title = 2131230760;
+			
+			// aapt resource value: 0x7f080029
+			public const int hockeyapp_error_no_network_message = 2131230761;
+			
+			// aapt resource value: 0x7f08002a
+			public const int hockeyapp_expiry_info_text = 2131230762;
+			
+			// aapt resource value: 0x7f08002b
+			public const int hockeyapp_expiry_info_title = 2131230763;
+			
+			// aapt resource value: 0x7f08002c
+			public const int hockeyapp_feedback_attach_file = 2131230764;
+			
+			// aapt resource value: 0x7f08002d
+			public const int hockeyapp_feedback_attach_picture = 2131230765;
+			
+			// aapt resource value: 0x7f08002e
+			public const int hockeyapp_feedback_attachment_button_text = 2131230766;
+			
+			// aapt resource value: 0x7f08002f
+			public const int hockeyapp_feedback_attachment_error = 2131230767;
+			
+			// aapt resource value: 0x7f080030
+			public const int hockeyapp_feedback_attachment_loading = 2131230768;
+			
+			// aapt resource value: 0x7f080031
+			public const int hockeyapp_feedback_email_hint = 2131230769;
+			
+			// aapt resource value: 0x7f080032
+			public const int hockeyapp_feedback_email_hint_required = 2131230770;
+			
+			// aapt resource value: 0x7f080033
+			public const int hockeyapp_feedback_failed_text = 2131230771;
+			
+			// aapt resource value: 0x7f080034
+			public const int hockeyapp_feedback_failed_title = 2131230772;
+			
+			// aapt resource value: 0x7f080035
+			public const int hockeyapp_feedback_fetching_feedback_text = 2131230773;
+			
+			// aapt resource value: 0x7f080036
+			public const int hockeyapp_feedback_generic_error = 2131230774;
+			
+			// aapt resource value: 0x7f080037
+			public const int hockeyapp_feedback_last_updated_text = 2131230775;
+			
+			// aapt resource value: 0x7f080038
+			public const int hockeyapp_feedback_max_attachments_allowed = 2131230776;
+			
+			// aapt resource value: 0x7f080039
+			public const int hockeyapp_feedback_message_hint = 2131230777;
+			
+			// aapt resource value: 0x7f08003a
+			public const int hockeyapp_feedback_message_hint_required = 2131230778;
+			
+			// aapt resource value: 0x7f08003b
+			public const int hockeyapp_feedback_name_hint = 2131230779;
+			
+			// aapt resource value: 0x7f08003c
+			public const int hockeyapp_feedback_name_hint_required = 2131230780;
+			
+			// aapt resource value: 0x7f08003d
+			public const int hockeyapp_feedback_refresh_button_text = 2131230781;
+			
+			// aapt resource value: 0x7f08003e
+			public const int hockeyapp_feedback_response_button_text = 2131230782;
+			
+			// aapt resource value: 0x7f08003f
+			public const int hockeyapp_feedback_select_file = 2131230783;
+			
+			// aapt resource value: 0x7f080040
+			public const int hockeyapp_feedback_select_picture = 2131230784;
+			
+			// aapt resource value: 0x7f080041
+			public const int hockeyapp_feedback_send_button_text = 2131230785;
+			
+			// aapt resource value: 0x7f080042
+			public const int hockeyapp_feedback_send_generic_error = 2131230786;
+			
+			// aapt resource value: 0x7f080043
+			public const int hockeyapp_feedback_send_network_error = 2131230787;
+			
+			// aapt resource value: 0x7f080044
+			public const int hockeyapp_feedback_sending_feedback_text = 2131230788;
+			
+			// aapt resource value: 0x7f080045
+			public const int hockeyapp_feedback_subject_hint = 2131230789;
+			
+			// aapt resource value: 0x7f080046
+			public const int hockeyapp_feedback_subject_hint_required = 2131230790;
+			
+			// aapt resource value: 0x7f080047
+			public const int hockeyapp_feedback_title = 2131230791;
+			
+			// aapt resource value: 0x7f080048
+			public const int hockeyapp_feedback_validate_email_empty = 2131230792;
+			
+			// aapt resource value: 0x7f080049
+			public const int hockeyapp_feedback_validate_email_error = 2131230793;
+			
+			// aapt resource value: 0x7f08004a
+			public const int hockeyapp_feedback_validate_name_error = 2131230794;
+			
+			// aapt resource value: 0x7f08004b
+			public const int hockeyapp_feedback_validate_subject_error = 2131230795;
+			
+			// aapt resource value: 0x7f08004c
+			public const int hockeyapp_feedback_validate_text_error = 2131230796;
+			
+			// aapt resource value: 0x7f08004d
+			public const int hockeyapp_login_email_hint = 2131230797;
+			
+			// aapt resource value: 0x7f08004e
+			public const int hockeyapp_login_email_hint_required = 2131230798;
+			
+			// aapt resource value: 0x7f08004f
+			public const int hockeyapp_login_headline_text = 2131230799;
+			
+			// aapt resource value: 0x7f080050
+			public const int hockeyapp_login_headline_text_email_only = 2131230800;
+			
+			// aapt resource value: 0x7f080051
+			public const int hockeyapp_login_login_button_text = 2131230801;
+			
+			// aapt resource value: 0x7f080052
+			public const int hockeyapp_login_missing_credentials_toast = 2131230802;
+			
+			// aapt resource value: 0x7f080053
+			public const int hockeyapp_login_password_hint = 2131230803;
+			
+			// aapt resource value: 0x7f080054
+			public const int hockeyapp_login_password_hint_required = 2131230804;
+			
+			// aapt resource value: 0x7f080055
+			public const int hockeyapp_paint_dialog_message = 2131230805;
+			
+			// aapt resource value: 0x7f080056
+			public const int hockeyapp_paint_dialog_negative_button = 2131230806;
+			
+			// aapt resource value: 0x7f080057
+			public const int hockeyapp_paint_dialog_neutral_button = 2131230807;
+			
+			// aapt resource value: 0x7f080058
+			public const int hockeyapp_paint_dialog_positive_button = 2131230808;
+			
+			// aapt resource value: 0x7f080059
+			public const int hockeyapp_paint_indicator_toast = 2131230809;
+			
+			// aapt resource value: 0x7f08005a
+			public const int hockeyapp_paint_menu_clear = 2131230810;
+			
+			// aapt resource value: 0x7f08005b
+			public const int hockeyapp_paint_menu_save = 2131230811;
+			
+			// aapt resource value: 0x7f08005c
+			public const int hockeyapp_paint_menu_undo = 2131230812;
+			
+			// aapt resource value: 0x7f08005d
+			public const int hockeyapp_permission_dialog_negative_button = 2131230813;
+			
+			// aapt resource value: 0x7f08005e
+			public const int hockeyapp_permission_dialog_positive_button = 2131230814;
+			
+			// aapt resource value: 0x7f08005f
+			public const int hockeyapp_permission_update_message = 2131230815;
+			
+			// aapt resource value: 0x7f080060
+			public const int hockeyapp_permission_update_title = 2131230816;
+			
+			// aapt resource value: 0x7f080061
+			public const int hockeyapp_update_button = 2131230817;
+			
+			// aapt resource value: 0x7f080062
+			public const int hockeyapp_update_dialog_message = 2131230818;
+			
+			// aapt resource value: 0x7f080063
+			public const int hockeyapp_update_dialog_negative_button = 2131230819;
+			
+			// aapt resource value: 0x7f080064
+			public const int hockeyapp_update_dialog_positive_button = 2131230820;
+			
+			// aapt resource value: 0x7f080065
+			public const int hockeyapp_update_dialog_title = 2131230821;
+			
+			// aapt resource value: 0x7f080066
+			public const int hockeyapp_update_mandatory_toast = 2131230822;
+			
+			// aapt resource value: 0x7f080067
+			public const int hockeyapp_update_version_details_label = 2131230823;
+			
+			// aapt resource value: 0x7f08001a
+			public const int library_name = 2131230746;
+			
+			// aapt resource value: 0x7f0800b8
+			public const int messenger_send_button_text = 2131230904;
+			
+			// aapt resource value: 0x7f080003
+			public const int mr_button_content_description = 2131230723;
+			
+			// aapt resource value: 0x7f080004
+			public const int mr_cast_button_connected = 2131230724;
+			
+			// aapt resource value: 0x7f080005
+			public const int mr_cast_button_connecting = 2131230725;
+			
+			// aapt resource value: 0x7f080006
+			public const int mr_cast_button_disconnected = 2131230726;
+			
+			// aapt resource value: 0x7f080007
+			public const int mr_chooser_searching = 2131230727;
+			
+			// aapt resource value: 0x7f080008
+			public const int mr_chooser_title = 2131230728;
+			
+			// aapt resource value: 0x7f080009
+			public const int mr_controller_album_art = 2131230729;
+			
+			// aapt resource value: 0x7f08000a
+			public const int mr_controller_casting_screen = 2131230730;
+			
+			// aapt resource value: 0x7f08000b
+			public const int mr_controller_close_description = 2131230731;
+			
+			// aapt resource value: 0x7f08000c
+			public const int mr_controller_collapse_group = 2131230732;
+			
+			// aapt resource value: 0x7f08000d
+			public const int mr_controller_disconnect = 2131230733;
+			
+			// aapt resource value: 0x7f08000e
+			public const int mr_controller_expand_group = 2131230734;
+			
+			// aapt resource value: 0x7f08000f
+			public const int mr_controller_no_info_available = 2131230735;
+			
+			// aapt resource value: 0x7f080010
+			public const int mr_controller_no_media_selected = 2131230736;
+			
+			// aapt resource value: 0x7f080011
+			public const int mr_controller_pause = 2131230737;
+			
+			// aapt resource value: 0x7f080012
+			public const int mr_controller_play = 2131230738;
+			
+			// aapt resource value: 0x7f080017
+			public const int mr_controller_stop = 2131230743;
+			
+			// aapt resource value: 0x7f080013
+			public const int mr_controller_stop_casting = 2131230739;
+			
+			// aapt resource value: 0x7f080014
+			public const int mr_controller_volume_slider = 2131230740;
+			
+			// aapt resource value: 0x7f080015
+			public const int mr_system_route_name = 2131230741;
+			
+			// aapt resource value: 0x7f080016
+			public const int mr_user_route_category_name = 2131230742;
+			
+			// aapt resource value: 0x7f0800d2
+			public const int new_subdivision = 2131230930;
+			
+			// aapt resource value: 0x7f08006b
+			public const int password_toggle_content_description = 2131230827;
+			
+			// aapt resource value: 0x7f08006c
+			public const int path_password_eye = 2131230828;
+			
+			// aapt resource value: 0x7f08006d
+			public const int path_password_eye_mask_strike_through = 2131230829;
+			
+			// aapt resource value: 0x7f08006e
+			public const int path_password_eye_mask_visible = 2131230830;
+			
+			// aapt resource value: 0x7f08006f
+			public const int path_password_strike_through = 2131230831;
+			
+			// aapt resource value: 0x7f080018
+			public const int place_autocomplete_clear_button = 2131230744;
+			
+			// aapt resource value: 0x7f080019
+			public const int place_autocomplete_search_hint = 2131230745;
 			
 			// aapt resource value: 0x7f0800d5
-			public const int verify_subdivision = 2131230933;
+			public const int save_button_label = 2131230933;
 			
-			// aapt resource value: 0x7f0800d6
-			public const int view_subdivision = 2131230934;
+			// aapt resource value: 0x7f080083
+			public const int search_menu_title = 2131230851;
+			
+			// aapt resource value: 0x7f080084
+			public const int status_bar_notification_info_overflow = 2131230852;
+			
+			// aapt resource value: 0x7f080099
+			public const int store_picture_message = 2131230873;
+			
+			// aapt resource value: 0x7f08009a
+			public const int store_picture_title = 2131230874;
+			
+			// aapt resource value: 0x7f0800d1
+			public const int take_photo_dialog = 2131230929;
+			
+			// aapt resource value: 0x7f0800d3
+			public const int verify_subdivision = 2131230931;
+			
+			// aapt resource value: 0x7f0800d4
+			public const int view_subdivision = 2131230932;
 			
 			static String()
 			{
