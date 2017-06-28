@@ -5,10 +5,10 @@ namespace Mehspot.Core.DTO.Search
     [SearchFilterDto(Constants.BadgeNames.Golf)]
     public class SearchGolfDTO : SearchFilterDTOBase
     {
-        [Cell(Label = "Min Handicap", CellType = CellType.Range, Order = 0, MinValue = 0, MaxValue = 100)]
+        [Cell(Label = "Handicap", CellType = CellType.Range, Order = 0, MinValue = 0, MaxValue = 100, DefaultValue = 1, MaxValueProperty = nameof(MaxHandicap))]
         public double? Handicap { get; set; }
 
-        [Cell(Label = "Max Handicap", CellType = CellType.Range, Order = 1, MinValue = 0, MaxValue = 100)]
+        [Cell(Label = "Max Handicap", CellType = CellType.Range, Order = 1, MinValue = 0, MaxValue = 100, DefaultValue = 100, MinValueProperty = nameof(Handicap))]
         public double? MaxHandicap { get; set; }
 
         [Cell(Label = "Gender", CellType = CellType.Select, Order = 2, OptionsKey = BadgeService.BadgeKeys.Gender)]
