@@ -61,7 +61,7 @@ namespace Mehspot.Core.Builders
             var properties = type.GetTypeInfo().GetAllProperties()
                                  .Select(prop => new { prop = prop, attr = prop.GetCustomAttributes(true).OfType<CellAttribute>().FirstOrDefault() })
                                  .Where(a => a.attr != null)
-                                 .OrderBy(a => a.attr.Order);
+                                 .OrderBy(a => a.attr.Order).ToList();
 
             var cells = new List<Tuple<int, TCell>>();
             foreach (var prop in properties)
@@ -71,11 +71,54 @@ namespace Mehspot.Core.Builders
                 switch (prop.attr.CellType)
                 {
                     case CellType.Range:
-                        targetCell = cellBuilder.GetRangeCell<int?>(prop.attr.DefaultValue as int?, v =>
+                        if (properties.Any(a => a.prop.Name == prop.attr.MinValueProperty))
+                            continue;
+
+                        var maxValProp = properties.FirstOrDefault(a => a.prop.Name == prop.attr.MaxValueProperty);
+                        if (maxValProp == null)
                         {
-                            prop.prop.SetValue(filter, v);                      // TODO Object of type 'System.Int32' cannot be converted to type 'System.Nullable`1[System.Double]'.
-                            OnCellChanged(filter, prop.prop.Name, v);
-                        }, prop.attr.Label, prop.attr.MinValue, prop.attr.MaxValue, isReadOnly: prop.attr.ReadOnly);
+                            targetCell = cellBuilder.GetRangeCell<int?>(prop.attr.DefaultValue as int?, v =>
+                            {
+                                object val = null;
+                                if (v != null)
+                                {
+                                    var propertyType = Nullable.GetUnderlyingType(prop.prop.PropertyType) ?? prop.prop.PropertyType;
+                                    val = Convert.ChangeType(v, propertyType);
+                                }
+
+                                prop.prop.SetValue(filter, val);
+
+                                OnCellChanged(filter, prop.prop.Name, v);
+                            }, prop.attr.Label, prop.attr.MinValue, prop.attr.MaxValue, isReadOnly: prop.attr.ReadOnly);
+                        }
+                        else
+                        {
+                            var defaultMinValue = prop.attr.DefaultValue as int?;
+                            var defaultMaxValue = Convert.ToInt32(maxValProp.prop.GetValue(filter) ?? maxValProp.attr.DefaultValue);
+                            targetCell = cellBuilder.GetMaxMinRangeCell<int?>(defaultMinValue, defaultMaxValue, vMin =>
+                            {
+                                object val = null;
+                                if (vMin != null)
+                                {
+                                    var propertyType = Nullable.GetUnderlyingType(prop.prop.PropertyType) ?? prop.prop.PropertyType;
+                                    val = Convert.ChangeType(vMin, propertyType);
+                                }
+                                prop.prop.SetValue(filter, val);
+                                OnCellChanged(filter, prop.prop.Name, vMin);
+                            }, vMax =>
+                            {
+                                object val = null;
+                                if (vMax != null)
+                                {
+                                    var propertyType = Nullable.GetUnderlyingType(prop.prop.PropertyType) ?? prop.prop.PropertyType;
+                                    val = Convert.ChangeType(vMax, propertyType);
+                                }
+
+                                maxValProp.prop.SetValue(filter, val);
+                                OnCellChanged(filter, maxValProp.prop.Name, vMax);
+                            }, prop.attr.Label, prop.attr.MinValue, maxValProp.attr.MaxValue, isReadOnly: prop.attr.ReadOnly);
+                        }
+
                         break;
                     case CellType.Boolean:
                         targetCell = (TCell)cellBuilder.GetBooleanCell(value as bool? == true, v =>

@@ -24,6 +24,10 @@ namespace Mehspot.Core.DTO.Search
 
         public int MaxValue { get; set; }
 
+        public string MinValueProperty { get; set; }
+
+        public string MaxValueProperty { get; set; }
+
         public string OptionsKey { get; set; }
 
         public bool SkipFirstOption { get; set; }
