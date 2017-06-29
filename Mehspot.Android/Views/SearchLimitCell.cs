@@ -12,16 +12,30 @@ namespace Mehspot.AndroidApp.Views
 	{
 		public event Action OnRegisterButtonTouched;
 
-		readonly Activity activity;
-
+		public SearchLimitCell(Context context, Android.Util.IAttributeSet attrs) : base(context, attrs)
+		{
+			Initialize();
+		}
 
 		public SearchLimitCell(Activity context, string requiredBadgeName, string searchBadgeName) : base(context)
 		{
-			this.activity = context;
+			Initialize();
+			SetTargetBadge(requiredBadgeName, searchBadgeName);
+		}
+
+		public TextView Message => (TextView)FindViewById(Resource.SearchLimitCell.Message);
+
+		public Button RegisterButton => (Button)FindViewById(Resource.SearchLimitCell.RegisterButton);
+
+		void Initialize()
+		{
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.SearchLimitCell, this);
+			this.RegisterButton.Click += (sender, e) => OnRegisterButtonTouched?.Invoke();
+		}
 
-
+		public void SetTargetBadge(string requiredBadgeName, string searchBadgeName)
+		{
 			string badgeNameLocalized = null;
 			if (requiredBadgeName != null)
 			{
@@ -35,12 +49,6 @@ namespace Mehspot.AndroidApp.Views
 			}
 			string badgeNamePart = (requiredBadgeName == Mehspot.Core.Constants.BadgeNames.Fitness || searchBadgeName == Mehspot.Core.Constants.BadgeNames.Golf || requiredBadgeName == Mehspot.Core.Constants.BadgeNames.OtherJobs ? "for " : "as ") + badgeNameLocalized;
 			Message.Text = string.Format(MehspotResources.SearchLimitMessageTemplate, badgeNamePart);
-
-
-			this.RegisterButton.Click += (sender, e) => OnRegisterButtonTouched?.Invoke();
 		}
-
-		public TextView Message => (TextView)FindViewById(Resource.SearchLimitCell.Message);
-		public Button RegisterButton => (Button)FindViewById(Resource.SearchLimitCell.RegisterButton);
 	}
 }

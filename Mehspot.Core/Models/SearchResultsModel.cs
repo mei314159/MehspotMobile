@@ -21,6 +21,7 @@ namespace Mehspot.Core
         private readonly BadgeService badgeService;
         private readonly Type resultType;
         private readonly List<int> expandedRows = new List<int>();
+
         public readonly ISearchResultsController controller;
 
         public event OnLoadingError OnLoadingError;
@@ -29,6 +30,7 @@ namespace Mehspot.Core
 
         public readonly List<ISearchResultDTO> Items = new List<ISearchResultDTO>();
         public ISearchResultDTO SelectedItem => Items?[selectedItemIndex];
+        public bool TriedToSearch { get; private set; }
 
         public bool RegisterButtonVisible =>
         controller.BadgeSummary.RequiredBadgeId.HasValue
@@ -67,6 +69,7 @@ namespace Mehspot.Core
             loading = true;
             var skip = refresh ? 0 : (this.Items?.Count ?? 0);
             var result = await badgeService.Search(this.controller.SearchQuery, skip, pageSize, this.resultType);
+            this.TriedToSearch = true;
             if (result.IsSuccess)
             {
                 if (refresh)

@@ -17,7 +17,6 @@ namespace Mehspot.AndroidApp.Adapters
 		public event Action<ISearchResultDTO> ViewProfileButtonClicked;
 		public event Action<ISearchResultDTO, SearchResultItem> Clicked;
 
-		bool NoResults;
 		NoResultsView noResultsView;
 
 		private readonly Activity context;
@@ -28,23 +27,21 @@ namespace Mehspot.AndroidApp.Adapters
 			this.model = model;
 			this.context = context;
 		}
-		public override long GetItemId(int position)
-		{
-			return position;
-		}
 
-		public override ISearchResultDTO this[int position]
-		{
-			get { return NoResults ? null : model.Items[position]; }
-		}
+		public override long GetItemId(int position) => position;
+		public override ISearchResultDTO this[int position] => model.Items[position];
 
 		public override int Count
 		{
 			get
 			{
-				var count = model.GetRowsCount();
-				this.NoResults = count == 0;
-				return count == 0 ? 1 : count;
+				var count = model.TriedToSearch ? model.GetRowsCount() : 0;
+				if (count == 0 && !model.RegisterButtonVisible)
+				{
+					count = 1;
+				}
+
+				return count;
 			}
 		}
 
@@ -52,11 +49,25 @@ namespace Mehspot.AndroidApp.Adapters
 		{
 			View cell = null;
 
-			if (NoResults)
+			if (model.Items.Count == 0)
 			{
-				cell = this.noResultsView ?? (this.noResultsView = new NoResultsView(this.context));
-				cell.LayoutParameters = new ViewGroup.LayoutParams(parent.Width, parent.Height);
-				cell.RequestLayout();
+				if (noResultsView == null)
+				{
+					this.noResultsView = new NoResultsView(this.context);
+					if (this.model.RegisterButtonVisible)
+					{
+						noResultsView.ShowRegisterButton(model.controller.BadgeSummary.RequiredBadgeName, model.controller.BadgeSummary.BadgeName);
+					}
+					else
+					{
+						noResultsView.HideRegisterButton();
+					}
+				}
+
+				this.noResultsView.LayoutParameters = new ViewGroup.LayoutParams(parent.Width, parent.Height);
+				this.noResultsView.RequestLayout();
+
+				cell = this.noResultsView;
 			}
 			else if (!this.model.RegisterButtonVisible || position + 1 < model.GetRowsCount())
 			{
