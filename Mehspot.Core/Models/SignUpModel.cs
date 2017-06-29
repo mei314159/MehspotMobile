@@ -59,8 +59,8 @@ namespace Mehspot.Core.Models
                 }
                 else
                 {
-                    var modelStateError = result.ModelState.ModelState.Count > 0 ? result.ModelState.ModelState.First().Value.FirstOrDefault() : null; 
-                    viewHelper.ShowAlert("Sign Up error", modelStateError ?? result.ErrorMessage);
+                    var modelStateError = result.ModelState?.ModelState?.Count > 0 ? result.ModelState.ModelState.First().Value.FirstOrDefault() : result.ErrorMessage;
+                    viewHelper.ShowAlert("Sign Up error", modelStateError);
                 }
             }
         }

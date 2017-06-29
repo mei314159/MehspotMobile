@@ -66,6 +66,14 @@ namespace Mehspot.Core
                     }
 
                 }
+                catch (HttpRequestException)
+                {
+                    return new Result<object>
+                    {
+                        IsSuccess = false,
+                        ErrorMessage = "No internet connection."
+                    };
+                }
                 catch (Exception ex)
                 {
                     MehspotAppContext.Instance.LogException(ex);
@@ -150,6 +158,14 @@ namespace Mehspot.Core
                         };
                     }
 
+                }
+                catch (HttpRequestException)
+                {
+                    return new Result<TResult>
+                    {
+                        IsSuccess = false,
+                        ErrorMessage = "No internet connection."
+                    };
                 }
                 catch (Exception ex)
                 {
