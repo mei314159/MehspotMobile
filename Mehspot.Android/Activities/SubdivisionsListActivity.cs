@@ -1,8 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -19,8 +17,10 @@ using Android.Views;
 using Android.Widget;
 using Mehspot.AndroidApp.Adapters;
 using Mehspot.AndroidApp.Resources.layout;
+using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Contracts.ViewControllers;
+using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO.Subdivision;
 using Mehspot.Core.Models.Subdivisions;
 
@@ -30,23 +30,26 @@ namespace Mehspot.AndroidApp.Activities
 	public class SubdivisionsListActivity : AppCompatActivity, ISubdivisionsListController, IOnMapReadyCallback, ILocationListener,
 	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener
 	{
-		static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
-		SubdivisionsListModel model;
+		private const long MinTime = 0;
+		private const float MinDistance = 0;
+
+		private static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
+		private SubdivisionsListModel model;
 		private Marker marker;
 		private GoogleMap map;
+		private LocationManager locationManager;
+		private CameraPosition camera;
+		private string locationProvider;
+		private SetPositionDelegate locationDetected;
+		private Action locationDetectionError;
 
-		LocationManager locationManager;
-		string locationProvider;
-
-		SetPositionDelegate locationDetected;
-		Action locationDetectionError;
-
+		public IViewHelper ViewHelper { get; set; }
 		public int? SelectedSubdivisionId => Intent.GetExtra<int?>("selectedSubdivisionId");
-
 		public List<SubdivisionDTO> Subdivisions => Intent.GetExtra<List<SubdivisionDTO>>("subdivisions");
 		public Android.Support.V7.Widget.Toolbar Toolbar => FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.SubdivisionListActivity.Menu);
 		public string ZipCode => Intent.GetStringExtra("zipCode");
 		public Action<SubdivisionDTO> OnDismissed => Intent.GetExtra<Action<SubdivisionDTO>>("onDismissed");
+
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -55,6 +58,7 @@ namespace Mehspot.AndroidApp.Activities
 			//var menu = FindViewById<ActionMenuView>(Resource.SubdivisionListActivity.Menu);
 			//menu.Menu.Add(new Java.Lang.String("hello"));
 			this.Toolbar.SetOnMenuItemClickListener(this);
+			ViewHelper = new ActivityHelper(this);
 			model = new SubdivisionsListModel(this);
 			model.Initialize();
 		}
@@ -69,11 +73,14 @@ namespace Mehspot.AndroidApp.Activities
 				ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessCoarseLocation) ==
 				Permission.Granted)
 			{
-				DetectUserPosition();
+				this.DetectUserPosition();
 			}
 			else
 			{
-				if (ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessFineLocation) != Permission.Granted || ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessCoarseLocation) != Permission.Granted)
+				if (ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessFineLocation) !=
+					Permission.Granted ||
+					ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessCoarseLocation) !=
+					Permission.Granted)
 				{
 					ActivityCompat.RequestPermissions(this, new string[] {
 					Android.Manifest.Permission.AccessFineLocation,
@@ -103,7 +110,6 @@ namespace Mehspot.AndroidApp.Activities
 
 		}
 
-		CameraPosition camera;
 		public void SetMapLocation(double latitude, double longitude)
 		{
 			camera = CameraPosition.FromLatLngZoom(new LatLng(latitude, longitude), 15);
@@ -138,7 +144,7 @@ namespace Mehspot.AndroidApp.Activities
 			ApplyLocation();
 		}
 
-		void ApplyLocation()
+		private void ApplyLocation()
 		{
 			if (camera != null)
 			{
@@ -148,27 +154,47 @@ namespace Mehspot.AndroidApp.Activities
 			}
 		}
 
-		void DetectUserPosition()
+		private void DetectUserPosition()
 		{
-			locationManager = (LocationManager)GetSystemService(LocationService);
-			Criteria criteriaForLocationService = new Criteria
+			try
 			{
-				Accuracy = Accuracy.Fine
-			};
-			var acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
+				locationManager = (LocationManager)GetSystemService(LocationService);
 
-			if (acceptableLocationProviders.Any())
-			{
-				locationProvider = acceptableLocationProviders.First();
+				bool isGPSEnabled = locationManager.IsProviderEnabled(LocationManager.GpsProvider);
+				bool isNetworkEnabled = locationManager.IsProviderEnabled(LocationManager.NetworkProvider);
+
+				if (!isGPSEnabled && !isNetworkEnabled)
+				{
+					ViewHelper.ShowAlert("Connection Error", "Sorry, no Internet connectivity detected. Please reconnect and try again.");
+				}
+				else
+				{
+					if (isGPSEnabled)
+					{
+						SpotLocation(LocationManager.GpsProvider);
+					}
+					else if (isNetworkEnabled)
+					{
+						SpotLocation(LocationManager.NetworkProvider);
+					}
+				}
 			}
-			else
+			catch (Exception e)
+			{ }
+		}
+
+		private void SpotLocation(string provider)
+		{
+			locationManager.RequestLocationUpdates(provider, MinTime, MinDistance, this);
+			if (locationManager != null)
 			{
-				locationProvider = string.Empty;
+				Location location = locationManager.GetLastKnownLocation(provider);
+				if (location != null)
+				{
+					InitializeList(Subdivisions, null);
+					SetMapLocation(location.Latitude, location.Longitude);
+				}
 			}
-
-			Log.Debug(TAG, "Using " + locationProvider + ".");
-
-			locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -207,12 +233,12 @@ namespace Mehspot.AndroidApp.Activities
 
 		public void OnStatusChanged(string provider, Availability status, Bundle extras) { }
 
-		void SubdivisionsListAdapter_Clicked(SubdivisionDTO dto)
+		private void SubdivisionsListAdapter_Clicked(SubdivisionDTO dto)
 		{
 			model.SelectItem(dto);
 		}
 
-		void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		private void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			var item = e.View as SubdivisionsListItem;
 			if (item != null)
@@ -222,7 +248,7 @@ namespace Mehspot.AndroidApp.Activities
 			}
 		}
 
-		void UpdateToolbar(SubdivisionDTO dto)
+		private void UpdateToolbar(SubdivisionDTO dto)
 		{
 			Toolbar.Menu.Clear();
 			if (dto == null)
@@ -247,7 +273,7 @@ namespace Mehspot.AndroidApp.Activities
 				case Resource.Id.new_subdivision:
 					target = new Intent(this, typeof(SubdivisionActivity));
 					target.PutExtra("zipCode", this.ZipCode);
-					target.PutExtra("allowEdititng", MehspotAppContext.Instance.AuthManager.AuthInfo.IsAdmin);
+					target.PutExtra("allowEdititng", true);
 					target.PutExtra("onDismissed", new Action<EditSubdivisionDTO>(model.OnSubdivisionCreated));
 					this.StartActivity(target);
 					return true;
@@ -274,8 +300,6 @@ namespace Mehspot.AndroidApp.Activities
 					return false;
 			}
 		}
-
-
 
 		public void DismissViewController(SubdivisionDTO dto)
 		{

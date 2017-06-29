@@ -1,8 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -33,27 +31,33 @@ namespace Mehspot.AndroidApp.Activities
 	public class SubdivisionActivity : AppCompatActivity, ISubdivisionController, IOnMapReadyCallback, ILocationListener,
 	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener, GoogleApiClient.IOnConnectionFailedListener
 	{
-		int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-		static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
-		SubdivisionModel model;
+		private const long MinTime = 0;
+		private const float MinDistance = 0;
+
+		private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+		private static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
+		private SubdivisionModel model;
 		private Marker marker;
 		private GoogleMap map;
 		private Geocoder geocoder;
-		CameraPosition camera;
-		LocationManager locationManager;
-		string locationProvider;
-
-		SetPositionDelegate locationDetected;
-		Action locationDetectionError;
+		private CameraPosition camera;
+		private LocationManager locationManager;
+		private string locationProvider;
+		private SetPositionDelegate locationDetected;
+		private Action locationDetectionError;
 
 		public Action<EditSubdivisionDTO> OnDismissed => Intent.GetExtra<Action<EditSubdivisionDTO>>("onDismissed");
-
 		public Android.Support.V7.Widget.Toolbar Toolbar => FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.SubdivisionActivity.Menu);
 
 		public IViewHelper ViewHelper { get; set; }
 		public SubdivisionDTO Subdivision => Intent.GetExtra<SubdivisionDTO>("subdivision");
 		public string ZipCode => Intent.GetStringExtra("zipCode");
 		public bool AllowEdititng => Intent.GetBooleanExtra("allowEdititng", false);
+
+		public EditText NameField => FindViewById<EditText>(Resource.SubdivisionActivity.NameField);
+		public EditText AddressField => FindViewById<EditText>(Resource.SubdivisionActivity.AddressField);
+		public EditText LatitudeField => FindViewById<EditText>(Resource.SubdivisionActivity.LatitudeField);
+		public EditText LongitudeField => FindViewById<EditText>(Resource.SubdivisionActivity.LongitudeField);
 
 		#region Properties
 		public string NameFieldText
@@ -201,10 +205,6 @@ namespace Mehspot.AndroidApp.Activities
 		}
 		#endregion
 
-		public EditText NameField => FindViewById<EditText>(Resource.SubdivisionActivity.NameField);
-		public EditText AddressField => FindViewById<EditText>(Resource.SubdivisionActivity.AddressField);
-		public EditText LatitudeField => FindViewById<EditText>(Resource.SubdivisionActivity.LatitudeField);
-		public EditText LongitudeField => FindViewById<EditText>(Resource.SubdivisionActivity.LongitudeField);
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -241,30 +241,51 @@ namespace Mehspot.AndroidApp.Activities
 					Android.Manifest.Permission.AccessCoarseLocation,
 						Android.Manifest.Permission.AccessMockLocation}, 1);
 				}
+
+				DetectUserPosition();
 			}
 		}
 
-		void DetectUserPosition()
+		private void DetectUserPosition()
 		{
-			locationManager = (LocationManager)GetSystemService(LocationService);
-			Criteria criteriaForLocationService = new Criteria
+			try
 			{
-				Accuracy = Accuracy.Fine
-			};
-			var acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
+				locationManager = (LocationManager)GetSystemService(LocationService);
 
-			if (acceptableLocationProviders.Any())
-			{
-				locationProvider = acceptableLocationProviders.First();
+				bool isGPSEnabled = locationManager.IsProviderEnabled(LocationManager.GpsProvider);
+				bool isNetworkEnabled = locationManager.IsProviderEnabled(LocationManager.NetworkProvider);
+
+				if (!isGPSEnabled && !isNetworkEnabled)
+				{
+					ViewHelper.ShowAlert("Connection Error", "Sorry, no Internet connectivity detected. Please reconnect and try again.");
+				}
+				else
+				{
+					if (isGPSEnabled)
+					{
+						SpotLocation(LocationManager.GpsProvider);
+					}
+					else if (isNetworkEnabled)
+					{
+						SpotLocation(LocationManager.NetworkProvider);
+					}
+				}
 			}
-			else
+			catch (Exception e)
+			{ }
+		}
+
+		private void SpotLocation(string provider)
+		{
+			locationManager.RequestLocationUpdates(provider, MinTime, MinDistance, this);
+			if (locationManager != null)
 			{
-				locationProvider = string.Empty;
+				Location location = locationManager.GetLastKnownLocation(provider);
+				if (location != null)
+				{
+					SetMapLocation(location.Latitude, location.Longitude);
+				}
 			}
-
-			Log.Debug(TAG, "Using " + locationProvider + ".");
-
-			locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -277,8 +298,9 @@ namespace Mehspot.AndroidApp.Activities
 						{
 							DetectUserPosition();
 						}
-						else{
-                            this.locationDetected(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
+						else
+						{
+							this.locationDetected(Mehspot.Core.Constants.Location.DefaultLatitude, Mehspot.Core.Constants.Location.DefaultLongitude);
 						}
 						break;
 					}
@@ -299,17 +321,17 @@ namespace Mehspot.AndroidApp.Activities
 			ApplyLocation();
 		}
 
-		void Map_MarkerDragStart(object sender, GoogleMap.MarkerDragStartEventArgs e)
+		private void Map_MarkerDragStart(object sender, GoogleMap.MarkerDragStartEventArgs e)
 		{
 			model.MarkerDraggingStarted();
 		}
 
-		void Map_MarkerDragEnd(object sender, GoogleMap.MarkerDragEndEventArgs e)
+		private void Map_MarkerDragEnd(object sender, GoogleMap.MarkerDragEndEventArgs e)
 		{
 			model.MarkerDraggingEnded(e.Marker.Position.Latitude, e.Marker.Position.Longitude);
 		}
 
-		void ApplyLocation(bool setMapOnly = false)
+		private void ApplyLocation(bool setMapOnly = false)
 		{
 			if (camera != null)
 			{
@@ -403,7 +425,7 @@ namespace Mehspot.AndroidApp.Activities
 		}
 
 
-		void AddressField_FocusChange(object sender, View.FocusChangeEventArgs e)
+		private void AddressField_FocusChange(object sender, View.FocusChangeEventArgs e)
 		{
 			if (!e.HasFocus)
 				return;
