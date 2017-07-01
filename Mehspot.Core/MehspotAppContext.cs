@@ -10,25 +10,27 @@ namespace Mehspot.Core
 {
     public sealed class MehspotAppContext
     {
-        private static readonly Lazy<MehspotAppContext> lazy = new Lazy<MehspotAppContext> (() => new MehspotAppContext ());
+        private static readonly Lazy<MehspotAppContext> lazy = new Lazy<MehspotAppContext>(() => new MehspotAppContext());
         private HubConnection connection;
         private IHubProxy proxy;
         public static MehspotAppContext Instance => lazy.Value;
         public event Action<MessagingNotificationType, MessageDto> ReceivedNotification;
 
-        private MehspotAppContext ()
+        private MehspotAppContext()
         {
         }
 
-        public void Initialize (IApplicationDataStorage dataStorage)
+        public void Initialize(IApplicationDataStorage dataStorage)
         {
             DataStorage = dataStorage;
-            AuthManager = new AccountService (dataStorage);
+            AuthManager = new AccountService(dataStorage);
             AuthManager.Authenticated += OnAuthenticated;
-            var isAuthenticated = AuthManager.IsAuthenticated ();
-            if (isAuthenticated) {
-                Task.Factory.StartNew (async () => {
-                    await RunSignalRAsync (true);
+            var isAuthenticated = AuthManager.IsAuthenticated();
+            if (isAuthenticated)
+            {
+                Task.Factory.StartNew(async () =>
+                {
+                    await RunSignalRAsync(true);
                 });
             }
         }
@@ -38,9 +40,10 @@ namespace Mehspot.Core
 
         public AccountService AuthManager { get; private set; }
 
-        public void DisconnectSignalR ()
+        public void DisconnectSignalR()
         {
-            if (connection != null) {
+            if (connection != null)
+            {
                 connection.StateChanged -= HubConnection_StateChanged;
                 connection.Error -= HubConnection_Error;
                 connection = null;
@@ -48,22 +51,31 @@ namespace Mehspot.Core
             }
         }
 
-        private async Task RunSignalRAsync (bool dismissCurrentConnection = false)
+        private async Task RunSignalRAsync(bool dismissCurrentConnection = false)
         {
-            if (connection != null && !dismissCurrentConnection) {
+            if (connection != null && !dismissCurrentConnection)
+            {
                 return;
             }
 
-            DisconnectSignalR ();
-            connection = new HubConnection (Constants.ApiHost);
-            connection.TraceLevel = TraceLevels.All;
-            connection.Headers.Add ("Authorization", "Bearer " + AuthManager.AuthInfo.AccessToken);
-            connection.StateChanged += HubConnection_StateChanged;
-            connection.Error += HubConnection_Error;
 
-            proxy = connection.CreateHubProxy ("MessageNotificationHub");
-            proxy.On<MessagingNotificationType, MessageDto> ("OnSendNotification", OnSendNotification);
-            await connection.Start ();
+            try
+            {
+                DisconnectSignalR();
+                connection = new HubConnection(Constants.ApiHost);
+                connection.TraceLevel = TraceLevels.All;
+                connection.Headers.Add("Authorization", "Bearer " + AuthManager.AuthInfo.AccessToken);
+                connection.StateChanged += HubConnection_StateChanged;
+                connection.Error += HubConnection_Error;
+
+                proxy = connection.CreateHubProxy("MessageNotificationHub");
+                proxy.On<MessagingNotificationType, MessageDto>("OnSendNotification", OnSendNotification);
+                await connection.Start();
+            }
+            catch (Exception ex)
+            {
+                LogException(ex);
+            }
         }
 
         public void LogException(Exception ex)
@@ -71,32 +83,37 @@ namespace Mehspot.Core
             OnException?.Invoke(ex);
         }
 
-        void HubConnection_StateChanged (StateChange obj)
+        void HubConnection_StateChanged(StateChange obj)
         {
-            if (obj.NewState == ConnectionState.Disconnected) {
-                Task.Factory.StartNew (async () => {
-                    await RunSignalRAsync (true);
+            if (obj.NewState == ConnectionState.Disconnected)
+            {
+                Task.Factory.StartNew(async () =>
+                {
+                    await RunSignalRAsync(true);
                 });
             }
         }
 
-        void HubConnection_Error (Exception ex)
+        void HubConnection_Error(Exception ex)
         {
             LogException(ex);
         }
 
-        private void OnSendNotification (MessagingNotificationType notificationType, MessageDto data)
+        private void OnSendNotification(MessagingNotificationType notificationType, MessageDto data)
         {
-            if (ReceivedNotification != null) {
-                ReceivedNotification (notificationType, data);
+            if (ReceivedNotification != null)
+            {
+                ReceivedNotification(notificationType, data);
             }
         }
 
-        private void OnAuthenticated (AuthenticationInfoDTO authInfo)
+        private void OnAuthenticated(AuthenticationInfoDTO authInfo)
         {
-            if (connection == null) {
-                Task.Factory.StartNew (async () => {
-                    await RunSignalRAsync (true);
+            if (connection == null)
+            {
+                Task.Factory.StartNew(async () =>
+                {
+                    await RunSignalRAsync(true);
                 });
             }
         }

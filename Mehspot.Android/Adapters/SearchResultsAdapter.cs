@@ -36,7 +36,7 @@ namespace Mehspot.AndroidApp.Adapters
 			get
 			{
 				var count = model.TriedToSearch ? model.GetRowsCount() : 0;
-				if (count == 0 && !model.RegisterButtonVisible)
+				if (count == 0 && (model.TriedToSearch && !model.RegisterButtonVisible))
 				{
 					count = 1;
 				}
