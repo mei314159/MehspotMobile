@@ -14,6 +14,8 @@ namespace Mehspot.iOS
 {
 	public partial class LoginViewController : UIViewController
 	{
+		private NSObject willHideNotificationObserver;
+		private NSObject willShowNotificationObserver;
 
 		SignInModel model;
 		LoginButton loginView;
@@ -31,7 +33,7 @@ namespace Mehspot.iOS
 
 		public override void ViewDidLoad()
 		{
-            RegisterForKeyboardNotifications ();
+
 			this.View.AddGestureRecognizer(new UITapGestureRecognizer(HideKeyboard));
 			this.EmailField.ShouldReturn += TextFieldShouldReturn;
 			this.PasswordField.ShouldReturn += TextFieldShouldReturn;
@@ -66,7 +68,16 @@ namespace Mehspot.iOS
 
 		public override void ViewDidAppear(bool animated)
 		{
+			RegisterForKeyboardNotifications();
 			this.ScrollView.ContentSize = new CGSize(ScrollView.ContentSize.Width, ScrollView.ContentSize.Height + 110);
+		}
+
+		public override void ViewDidDisappear(bool animated)
+		{
+			if (willHideNotificationObserver != null)
+				NSNotificationCenter.DefaultCenter.RemoveObserver(willHideNotificationObserver);
+			if (willShowNotificationObserver != null)
+				NSNotificationCenter.DefaultCenter.RemoveObserver(willShowNotificationObserver);
 		}
 
 		partial void SignInButtonTouched(UIButton sender)
@@ -77,7 +88,16 @@ namespace Mehspot.iOS
 
 		private void Model_SignedIn(AuthenticationResult result)
 		{
-			var targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+			UIViewController targetViewController;
+			if (MehspotAppContext.Instance.DataStorage.WalkthroughPassed)
+			{
+				targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+			}
+			else
+			{
+				targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+			}
+
 			this.View.Window.SwapController(targetViewController);
 		}
 
@@ -116,8 +136,8 @@ namespace Mehspot.iOS
 
 		protected virtual void RegisterForKeyboardNotifications()
 		{
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
+			this.willHideNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
+			this.willShowNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
 		}
 
 		public void OnKeyboardNotification(NSNotification notification)
