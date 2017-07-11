@@ -10,9 +10,11 @@ namespace Mehspot.AndroidApp
 {
 	public class TextEditCell : RelativeLayout, ITextEditCell
 	{
-		string previousText;
+		private const int MaxDigits = 9;
 
+		private string previousText;
 		private string mask;
+
 		public Action<ITextEditCell, string> SetModelProperty;
 		public event Action<TextEditCell, string> ValueChanged;
 		public int? MaxLength { get; set; }
@@ -196,9 +198,11 @@ namespace Mehspot.AndroidApp
 			{
 				case Mehspot.Core.Builders.KeyboardType.Decimal:
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassNumber | Android.Text.InputTypes.NumberFlagDecimal | Android.Text.InputTypes.NumberFlagSigned);
+					this.MaxLength = MaxDigits;
 					break;
 				case Mehspot.Core.Builders.KeyboardType.Numeric:
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassNumber | Android.Text.InputTypes.NumberVariationNormal | Android.Text.InputTypes.NumberFlagSigned);
+					this.MaxLength = MaxDigits;
 					break;
 				default:
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextVariationNormal);
