@@ -74,8 +74,9 @@ namespace mehspot.iOS
 			this.SetViewControllers(new[] { step2 }, UIPageViewControllerNavigationDirection.Forward, true, (finished) => { });
 		}
 
-		async void Step2OnContinue(int subdivisionId, int? optionId)
+		async void Step2OnContinue(string zip, int subdivisionId, int? optionId)
 		{
+			profile.Zip = zip;
 			profile.SubdivisionId = subdivisionId;
 			profile.SubdivisionOptionId = optionId;
 			if (profileImage == null && string.IsNullOrWhiteSpace(profile.ProfilePicturePath))

@@ -34,7 +34,7 @@ namespace Mehspot.iOS
 		public override void ViewDidLoad()
 		{
 
-			this.View.AddGestureRecognizer(new UITapGestureRecognizer(HideKeyboard));
+			this.View.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			this.EmailField.ShouldReturn += TextFieldShouldReturn;
 			this.PasswordField.ShouldReturn += TextFieldShouldReturn;
 			Profile.Notifications.ObserveDidChange((sender, e) =>
@@ -127,11 +127,6 @@ namespace Mehspot.iOS
 			}
 
 			return false; // We do not want UITextField to insert line-breaks.
-		}
-
-		public void HideKeyboard()
-		{
-			this.View.FindFirstResponder()?.ResignFirstResponder();
 		}
 
 		protected virtual void RegisterForKeyboardNotifications()

@@ -10,10 +10,11 @@ using Mehspot.Core;
 using Mehspot.iOS.Wrappers;
 using Mehspot.Core.Contracts.Wrappers;
 using CoreGraphics;
+using Mehspot.iOS.Extensions;
 
 namespace mehspot.iOS
 {
-	public delegate void WalkthroughStep2Delegate(int subdivisionId, int? optionId);
+	public delegate void WalkthroughStep2Delegate(string zip, int subdivisionId, int? optionId);
 	public partial class WalkthroughStep2Controller : UIViewController
 	{
 		private SubdivisionService subdivisionService;
@@ -39,6 +40,7 @@ namespace mehspot.iOS
 		public override void ViewDidLoad()
 		{
 			subdivisionService = new SubdivisionService(MehspotAppContext.Instance.DataStorage);
+			this.View.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			viewHelper = new ViewHelper(this.ParentViewController.View);
 			ZipField.Layer.BorderWidth = SubdivisionField.Layer.BorderWidth = 1;
 			ZipField.Layer.BorderColor = SubdivisionField.Layer.BorderColor = UIColor.FromRGB(174, 210, 122).CGColor;
@@ -72,9 +74,9 @@ namespace mehspot.iOS
 
 		partial void ContinueButtonTouched(UIButton sender)
 		{
-			if (SelectedSubdivisionId.HasValue && OnContinue != null)
+			if (!string.IsNullOrWhiteSpace(this.ZipField.Text) && SelectedSubdivisionId.HasValue && OnContinue != null)
 			{
-				OnContinue(this.SelectedSubdivisionId.Value, this.SelectedSubdivisionOptionId);
+				OnContinue(this.ZipField.Text, this.SelectedSubdivisionId.Value, this.SelectedSubdivisionOptionId);
 			}
 		}
 
