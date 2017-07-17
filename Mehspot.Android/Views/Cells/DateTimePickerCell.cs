@@ -12,8 +12,7 @@ namespace Mehspot.AndroidApp
 {
 
 	public class DateTimePickerCell<T> : RelativeLayout,
-	IDialogInterfaceOnCancelListener,
-	DatePicker.IOnDateChangedListener
+	IDialogInterfaceOnCancelListener
 	{
 		public class DatePickerSelectedEventArgs : EventArgs
 		{
@@ -60,7 +59,7 @@ namespace Mehspot.AndroidApp
 				AlertDialog.Builder builder = new AlertDialog.Builder(Context);
 				var datePicker = new DatePicker(Context);
 				datePicker.LayoutMode = ViewLayoutMode.OpticalBounds; //v < 21
-				datePicker.Init(Value.Year, Value.Month - 1, Value.Day, this);
+				datePicker.Init(Value.Year, Value.Month - 1, Value.Day, null);
 				builder.SetView(datePicker);
 				builder.SetPositiveButton(Android.Resource.String.Ok, (s, ev) =>
 						{
@@ -88,10 +87,6 @@ namespace Mehspot.AndroidApp
 
 		public DateTimePickerCell(Context context, IAttributeSet attrs, int defStyle)
 				: base(context, attrs, defStyle)
-		{
-		}
-
-		public void OnDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
 		{
 		}
 
