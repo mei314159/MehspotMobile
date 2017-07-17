@@ -2,21 +2,25 @@
 using System.Threading.Tasks;
 using Mehspot.Core.Auth;
 using Mehspot.Core.Contracts.Wrappers;
+using Mehspot.Core.DTO;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.Models
 {
     public class SignInModel
     {
-        private readonly AccountService authManager;
+        private readonly AccountService accountService;
+        private readonly ProfileService profileService;
         private readonly IViewHelper viewHelper;
         public static string[] FbReadPermissions = { "public_profile", "email" };
-        public SignInModel(AccountService authManager, IViewHelper viewHelper)
+        public SignInModel(AccountService accountService, ProfileService profileService, IViewHelper viewHelper)
         {
-            this.authManager = authManager;
+            this.accountService = accountService;
+            this.profileService = profileService;
             this.viewHelper = viewHelper;
         }
 
-        public event Action<AuthenticationResult> SignedIn;
+        public event Action<AuthenticationResult, ProfileDto> SignedIn;
         public event Action<AuthenticationResult> SignInError;
 
         public async Task SignInAsync(string email, string password)
@@ -31,17 +35,13 @@ namespace Mehspot.Core.Models
             }
             else
             {
-
                 viewHelper.ShowOverlay("Sign In...");
-                var authenticationResult = await authManager.SignInAsync(email, password);
+                var authenticationResult = await accountService.SignInAsync(email, password);
                 viewHelper.HideOverlay();
 
                 if (authenticationResult.IsSuccess)
                 {
-                    if (SignedIn != null)
-                    {
-                        SignedIn(authenticationResult);
-                    }
+                    await this.SignedInInternalAsync(authenticationResult);
                 }
                 else
                 {
@@ -53,19 +53,24 @@ namespace Mehspot.Core.Models
         public async Task SignInExternalAsync(string token, string provider)
         {
             viewHelper.ShowOverlay("Sign In...");
-            var authenticationResult = await authManager.SignInExternalAsync(token, provider);
+            var authenticationResult = await accountService.SignInExternalAsync(token, provider);
             viewHelper.HideOverlay();
 
             if (authenticationResult.IsSuccess)
             {
-                SignedIn?.Invoke(authenticationResult);
+                await this.SignedInInternalAsync(authenticationResult);
             }
             else
             {
                 SignInError?.Invoke(authenticationResult);
                 viewHelper.ShowAlert("Authentication error", authenticationResult.ErrorMessage);
             }
+        }
 
+        async Task SignedInInternalAsync(AuthenticationResult authenticationResult)
+        {
+            var profile = await profileService.LoadProfileAsync();
+            SignedIn?.Invoke(authenticationResult, profile.Data);
         }
     }
 }

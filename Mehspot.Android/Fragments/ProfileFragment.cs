@@ -316,22 +316,23 @@ namespace Mehspot.AndroidApp
 
 		private async void SaveButton_Click(object sender, EventArgs e)
 		{
-			byte[] dataBytes = null;
+			Stream stream = null;
 			if (profileImageChanged)
 			{
 				UserImage.BuildDrawingCache(true);
 				Bitmap bitmap = UserImage.GetDrawingCache(true);
 
-				using (var stream = new MemoryStream())
-				{
-					bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
-					dataBytes = stream.ToArray();
-				}
+				stream = new MemoryStream();
+				bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
 
 				profileImageChanged = false;
 			}
 
-			await model.SaveProfileAsync(dataBytes);
+			await model.SaveProfileAsync(stream);
+			if (stream != null)
+			{
+				stream.Dispose();
+			}
 		}
 	}
 

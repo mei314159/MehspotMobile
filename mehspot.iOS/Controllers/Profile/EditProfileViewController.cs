@@ -2,24 +2,18 @@ using Foundation;
 using System;
 using UIKit;
 using Mehspot.Core.Contracts.Wrappers;
-using System.Collections.Generic;
 using Mehspot.Core.DTO;
 using Mehspot.Core;
 using Mehspot.iOS.Wrappers;
 using Mehspot.iOS.Extensions;
 using System.Runtime.InteropServices;
 using CoreGraphics;
-using System.Threading.Tasks;
 using SDWebImage;
-using Mehspot.iOS.Views;
-using System.Linq;
 using Facebook.LoginKit;
-using Mehspot.iOS.Views;
 using Mehspot.Core.Services;
-using Mehspot.Core.DTO.Subdivision;
 using Mehspot.Core.Models;
-using Mehspot.Core.Builders;
 using Mehspot.iOS.Core.Builders;
+using System.IO;
 
 namespace Mehspot.iOS
 {
@@ -231,12 +225,10 @@ namespace Mehspot.iOS
 
 		async partial void SaveButtonTouched(UIBarButtonItem sender)
 		{
-			byte[] dataBytes = null;
+			Stream dataBytes = null;
 			if (profileImageChanged)
 			{
-				var data = this.ProfilePicture.Image.AsJPEG();
-				dataBytes = new byte[data.Length];
-				Marshal.Copy(data.Bytes, dataBytes, 0, Convert.ToInt32(data.Length));
+				dataBytes = this.ProfilePicture.Image.AsJPEG().AsStream();
 			}
 
 			await model.SaveProfileAsync(dataBytes);

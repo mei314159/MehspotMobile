@@ -47,10 +47,9 @@ namespace Mehspot.Core.Auth
                         var authInfo = JsonConvert.DeserializeObject<AuthenticationInfoDTO>(responseString);
                         authInfo.AuthDate = DateTime.Now;
                         this.ApplicationDataStorage.AuthInfo = authInfo;
-                        if (Authenticated != null)
-                        {
-                            Authenticated(authInfo);
-                        }
+
+                        this.Authenticated?.Invoke(authInfo);
+
                         return new AuthenticationResult
                         {
                             IsSuccess = true,

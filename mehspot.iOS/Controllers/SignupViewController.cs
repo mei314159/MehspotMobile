@@ -8,126 +8,146 @@ using Mehspot.Core.DTO;
 using Mehspot.iOS.Extensions;
 using CoreGraphics;
 using Mehspot.Core.Auth;
+using Mehspot.Core.Services;
 
 namespace Mehspot.iOS
 {
-    public partial class SignupViewController : UIViewController
-    {
-        SignUpModel model;
-        public SignupViewController (IntPtr handle) : base (handle)
-        {
-        }
+	public partial class SignupViewController : UIViewController
+	{
+		private NSObject willHideNotificationObserver;
+		private NSObject willShowNotificationObserver;
+		SignUpModel model;
+		public SignupViewController(IntPtr handle) : base(handle)
+		{
+		}
 
-        public override void ViewDidLoad ()
-        {
-            model = new SignUpModel (MehspotAppContext.Instance.AuthManager, new ViewHelper (this.View));
-            model.SignedUp += Model_SignedUp;
-            model.SignedIn += Model_SignedIn;
-            this.View.AddGestureRecognizer (new UITapGestureRecognizer (this.HideKeyboard));
-            this.EmailField.ShouldReturn += TextFieldShouldReturn;
-            this.UserNameField.ShouldReturn += TextFieldShouldReturn;
-            this.PasswordField.ShouldReturn += TextFieldShouldReturn;
-            this.ConfirmationPasswordField.ShouldReturn += TextFieldShouldReturn;
-            RegisterForKeyboardNotifications ();
-        }
+		public override void ViewDidLoad()
+		{
+			model = new SignUpModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ViewHelper(this.View));
+			model.SignedUp += Model_SignedUp;
+			model.SignedIn += Model_SignedIn;
+			this.View.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
+			this.EmailField.ShouldReturn += TextFieldShouldReturn;
+			this.UserNameField.ShouldReturn += TextFieldShouldReturn;
+			this.PasswordField.ShouldReturn += TextFieldShouldReturn;
+			this.ConfirmationPasswordField.ShouldReturn += TextFieldShouldReturn;
+
+		}
 
 		public override void ViewDidAppear(bool animated)
 		{
-            this.ScrollView.ContentSize = new CGSize(ScrollView.ContentSize.Width, ScrollView.ContentSize.Height + 170);
+			RegisterForKeyboardNotifications();
+			this.ScrollView.ContentSize = new CGSize(ScrollView.ContentSize.Width, ScrollView.ContentSize.Height + 170);
 		}
 
-        private async void Model_SignedUp (Result result)
-        {
-            await model.SignInAsync (this.EmailField.Text, this.PasswordField.Text);
-        }
+		public override void ViewDidDisappear(bool animated)
+		{
+			if (willHideNotificationObserver != null)
+				NSNotificationCenter.DefaultCenter.RemoveObserver(willHideNotificationObserver);
+			if (willShowNotificationObserver != null)
+				NSNotificationCenter.DefaultCenter.RemoveObserver(willShowNotificationObserver);
+		}
 
-        void Model_SignedIn (AuthenticationResult obj)
-        {
-            var targetViewController = UIStoryboard.FromName ("Main", null).InstantiateInitialViewController ();
-            this.View.Window.SwapController (targetViewController);
-        }
+		private async void Model_SignedUp(Result result)
+		{
+			await model.SignInAsync(this.EmailField.Text, this.PasswordField.Text);
+		}
 
-        private async void SignUpAsync ()
-        {
-            await model.SignUpAsync (this.EmailField.Text, this.UserNameField.Text, this.PasswordField.Text, this.ConfirmationPasswordField.Text, AgreeWithTerms.On);
-        }
+		void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
+		{
+			UIViewController targetViewController;
+			targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+			this.View.Window.SwapController(targetViewController);
+		}
 
-        private bool TextFieldShouldReturn (UITextField textField)
-        {
-            var nextTag = textField.Tag + 1;
-            UIResponder nextResponder = this.View.ViewWithTag (nextTag);
-            if (nextResponder != null) {
-                nextResponder.BecomeFirstResponder ();
-            } else {
-                // Not found, so remove keyboard.
-                textField.ResignFirstResponder ();
-                SignUpAsync ();
-            }
+		private async void SignUpAsync()
+		{
+			await model.SignUpAsync(this.EmailField.Text, this.UserNameField.Text, this.PasswordField.Text, this.ConfirmationPasswordField.Text, AgreeWithTerms.On);
+		}
 
-            return false; // We do not want UITextField to insert line-breaks.
-        }
+		private bool TextFieldShouldReturn(UITextField textField)
+		{
+			var nextTag = textField.Tag + 1;
+			UIResponder nextResponder = this.View.ViewWithTag(nextTag);
+			if (nextResponder != null)
+			{
+				nextResponder.BecomeFirstResponder();
+			}
+			else
+			{
+				// Not found, so remove keyboard.
+				textField.ResignFirstResponder();
+				SignUpAsync();
+			}
 
-        partial void CommunityGuidelinesButtonTouched (UIButton sender)
-        {
-            UIApplication.SharedApplication.OpenUrl (new NSUrl (Constants.ApiHost + "/Account/CommunityGuidelines"));
-        }
+			return false; // We do not want UITextField to insert line-breaks.
+		}
 
-        partial void PrivacyPolicyButtonTouched (UIButton sender)
-        {
-            UIApplication.SharedApplication.OpenUrl (new NSUrl (Constants.ApiHost + "/Account/PrivacyPolicy"));
-        }
+		partial void CommunityGuidelinesButtonTouched(UIButton sender)
+		{
+			UIApplication.SharedApplication.OpenUrl(new NSUrl(Constants.ApiHost + "/Account/CommunityGuidelines"));
+		}
 
-        partial void TermsofUseButtonTouched (UIButton sender)
-        {
-            UIApplication.SharedApplication.OpenUrl (new NSUrl (Constants.ApiHost + "/Account/TermsOfUse"));
-        }
+		partial void PrivacyPolicyButtonTouched(UIButton sender)
+		{
+			UIApplication.SharedApplication.OpenUrl(new NSUrl(Constants.ApiHost + "/Account/PrivacyPolicy"));
+		}
 
-        partial void SignupButtonTouched (UIButton sender)
-        {
-            sender.BecomeFirstResponder ();
-            SignUpAsync ();
-        }
+		partial void TermsofUseButtonTouched(UIButton sender)
+		{
+			UIApplication.SharedApplication.OpenUrl(new NSUrl(Constants.ApiHost + "/Account/TermsOfUse"));
+		}
 
-        protected virtual void RegisterForKeyboardNotifications ()
-        {
-            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillHideNotification, OnKeyboardNotification);
-            NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, OnKeyboardNotification);
-        }
+		partial void SignupButtonTouched(UIButton sender)
+		{
+			sender.BecomeFirstResponder();
+			SignUpAsync();
+		}
 
-        public void OnKeyboardNotification (NSNotification notification)
-        {
-            if (!IsViewLoaded)
-                return;
+		protected virtual void RegisterForKeyboardNotifications()
+		{
+			this.willHideNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
+			this.willShowNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
+		}
 
-            //Check if the keyboard is becoming visible
-            var visible = notification.Name == UIKeyboard.WillShowNotification;
+		public void OnKeyboardNotification(NSNotification notification)
+		{
+			if (!IsViewLoaded)
+				return;
 
-            //Start an animation, using values from the keyboard
-            UIView.BeginAnimations ("AnimateForKeyboard");
-            UIView.SetAnimationBeginsFromCurrentState (true);
-            UIView.SetAnimationDuration (UIKeyboard.AnimationDurationFromNotification (notification));
-            UIView.SetAnimationCurve ((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification (notification));
+			//Check if the keyboard is becoming visible
+			var visible = notification.Name == UIKeyboard.WillShowNotification;
 
-            //Pass the notification, calculating keyboard height, etc.
-            var keyboardFrame = visible
-                                    ? UIKeyboard.FrameEndFromNotification (notification)
-                                    : UIKeyboard.FrameBeginFromNotification (notification);
-            OnKeyboardChanged (visible, keyboardFrame);
-            //Commit the animation
-            UIView.CommitAnimations ();
-        }
+			//Start an animation, using values from the keyboard
+			UIView.BeginAnimations("AnimateForKeyboard");
+			UIView.SetAnimationBeginsFromCurrentState(true);
+			UIView.SetAnimationDuration(UIKeyboard.AnimationDurationFromNotification(notification));
+			UIView.SetAnimationCurve((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification(notification));
 
-        public virtual void OnKeyboardChanged (bool visible, CGRect keyboardFrame)
-        {
-            if (View.Superview == null) {
-                return;
-            }
+			//Pass the notification, calculating keyboard height, etc.
+			var keyboardFrame = visible
+									? UIKeyboard.FrameEndFromNotification(notification)
+									: UIKeyboard.FrameBeginFromNotification(notification);
+			OnKeyboardChanged(visible, keyboardFrame);
+			//Commit the animation
+			UIView.CommitAnimations();
+		}
 
-            if (visible) {
+		public virtual void OnKeyboardChanged(bool visible, CGRect keyboardFrame)
+		{
+			if (View.Superview == null)
+			{
+				return;
+			}
+
+			if (visible)
+			{
 				this.ScrollView.ContentOffset = new CGPoint(0, 170);
-            } else {
-                this.ScrollView.ContentOffset = new CGPoint(0, 0);
-            }
-        }
-    }
+			}
+			else
+			{
+				this.ScrollView.ContentOffset = new CGPoint(0, 0);
+			}
+		}
+	}
 }

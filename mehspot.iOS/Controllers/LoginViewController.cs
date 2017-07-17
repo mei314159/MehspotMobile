@@ -9,17 +9,21 @@ using Foundation;
 using Facebook.CoreKit;
 using Facebook.LoginKit;
 using CoreGraphics;
+using Mehspot.Core.Services;
+using Mehspot.Core.DTO;
 
 namespace Mehspot.iOS
 {
 	public partial class LoginViewController : UIViewController
 	{
+		private NSObject willHideNotificationObserver;
+		private NSObject willShowNotificationObserver;
 
 		SignInModel model;
 		LoginButton loginView;
 		public LoginViewController(IntPtr handle) : base(handle)
 		{
-			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ViewHelper(this.View));
+			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ViewHelper(this.View));
 			model.SignedIn += Model_SignedIn;
 			model.SignInError += Model_SignInError;
 		}
@@ -31,8 +35,8 @@ namespace Mehspot.iOS
 
 		public override void ViewDidLoad()
 		{
-            RegisterForKeyboardNotifications ();
-			this.View.AddGestureRecognizer(new UITapGestureRecognizer(HideKeyboard));
+
+			this.View.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			this.EmailField.ShouldReturn += TextFieldShouldReturn;
 			this.PasswordField.ShouldReturn += TextFieldShouldReturn;
 			Profile.Notifications.ObserveDidChange((sender, e) =>
@@ -66,7 +70,16 @@ namespace Mehspot.iOS
 
 		public override void ViewDidAppear(bool animated)
 		{
+			RegisterForKeyboardNotifications();
 			this.ScrollView.ContentSize = new CGSize(ScrollView.ContentSize.Width, ScrollView.ContentSize.Height + 110);
+		}
+
+		public override void ViewDidDisappear(bool animated)
+		{
+			if (willHideNotificationObserver != null)
+				NSNotificationCenter.DefaultCenter.RemoveObserver(willHideNotificationObserver);
+			if (willShowNotificationObserver != null)
+				NSNotificationCenter.DefaultCenter.RemoveObserver(willShowNotificationObserver);
 		}
 
 		partial void SignInButtonTouched(UIButton sender)
@@ -75,9 +88,18 @@ namespace Mehspot.iOS
 			SignInAsync();
 		}
 
-		private void Model_SignedIn(AuthenticationResult result)
+		private void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
-			var targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+			UIViewController targetViewController;
+			if (MehspotAppContext.Instance.DataStorage.WalkthroughPassed)
+			{
+				targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+			}
+			else
+			{
+				targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+			}
+
 			this.View.Window.SwapController(targetViewController);
 		}
 
@@ -109,15 +131,10 @@ namespace Mehspot.iOS
 			return false; // We do not want UITextField to insert line-breaks.
 		}
 
-		public void HideKeyboard()
-		{
-			this.View.FindFirstResponder()?.ResignFirstResponder();
-		}
-
 		protected virtual void RegisterForKeyboardNotifications()
 		{
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
+			this.willHideNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
+			this.willShowNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
 		}
 
 		public void OnKeyboardNotification(NSNotification notification)

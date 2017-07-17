@@ -4,16 +4,17 @@ using System.Threading.Tasks;
 using Mehspot.Core.Auth;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.Models
 {
 
-    public class ResetPasswordModel: SignInModel
+    public class ResetPasswordModel : SignInModel
     {
         private readonly AccountService authManager;
         private readonly IViewHelper viewHelper;
 
-        public ResetPasswordModel(AccountService authManager, IViewHelper viewHelper): base(authManager, viewHelper)
+        public ResetPasswordModel(AccountService authManager, ProfileService profileService, IViewHelper viewHelper) : base(authManager, profileService, viewHelper)
         {
             this.authManager = authManager;
             this.viewHelper = viewHelper;
@@ -34,7 +35,8 @@ namespace Mehspot.Core.Models
             else
             {
                 viewHelper.ShowOverlay("Reset Password...");
-                var dto = new ResetPasswordDto {
+                var dto = new ResetPasswordDto
+                {
                     Email = email,
                     Code = code,
                     Password = password,

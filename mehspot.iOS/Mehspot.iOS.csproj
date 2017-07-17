@@ -209,6 +209,7 @@
     <InterfaceDefinition Include="Views\Cell\SearchLimitCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageCell.xib" />
     <InterfaceDefinition Include="Views\Cell\RangeSliderCell.xib" />
+    <InterfaceDefinition Include="Walkthrough.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -338,6 +339,20 @@
     <Compile Include="Views\Cell\RangeSliderCell.designer.cs">
       <DependentUpon>RangeSliderCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="WalkthroughController.cs" />
+    <Compile Include="WalkthroughController.designer.cs">
+      <DependentUpon>WalkthroughController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WalkthroughStep1Controller.cs" />
+    <Compile Include="WalkthroughStep1Controller.designer.cs">
+      <DependentUpon>WalkthroughStep1Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WalkthroughStep2Controller.cs" />
+    <Compile Include="WalkthroughStep2Controller.designer.cs">
+      <DependentUpon>WalkthroughStep2Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedTextField.cs" />
+    <Compile Include="PageDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />
@@ -394,6 +409,7 @@
     <BundleResource Include="Resources\slider-default-handle-highlighted.png" />
     <BundleResource Include="Resources\slider-default-handle-disabled%402x.png" />
     <BundleResource Include="Resources\slider-default-handle-disabled.png" />
+    <BundleResource Include="Resources\subdivisionicon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

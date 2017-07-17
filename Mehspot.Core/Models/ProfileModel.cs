@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using Mehspot.Core.DTO.Subdivision;
 using Mehspot.Core.Services;
 using Mehspot.Core.Builders;
 using Mehspot.Core.DTO.Badges;
+using System.IO;
 
 namespace Mehspot.Core.Models
 {
@@ -48,14 +49,11 @@ namespace Mehspot.Core.Models
             loading = true;
             LoadingStart?.Invoke();
 
-            var profileResult = await profileService.GetProfileAsync();
-
+            var profileResult = await profileService.LoadProfileAsync();
             if (profileResult.IsSuccess)
             {
                 profile = profileResult.Data;
-                var states = await GetStates();
-                var subdivisions = await GetSubdivisions(profile.Zip);
-                InitializeTable(profile, states, subdivisions);
+                await InitializeTableAsync();
             }
             else
             {
@@ -67,8 +65,10 @@ namespace Mehspot.Core.Models
             loading = false;
         }
 
-        void InitializeTable(ProfileDto profile, KeyValuePair<int?, string>[] states, List<SubdivisionDTO> subdivisions)
+        async Task InitializeTableAsync()
         {
+            var states = await GetStates();
+            var subdivisions = await GetSubdivisions(profile.Zip);
             viewController.UserName = profile.UserName;
             viewController.FullName = $"{profile.FirstName} {profile.LastName}".Trim(' ');
             viewController.ProfilePicturePath = profile.ProfilePicturePath;
@@ -117,15 +117,15 @@ namespace Mehspot.Core.Models
                 });
         }
 
-        public async Task SaveProfileAsync(byte[] pictureBytes = null)
+        public async Task SaveProfileAsync(Stream pictureStream = null)
         {
             viewController.SaveButtonEnabled = false;
             viewController.HideKeyboard();
             viewController.ViewHelper.ShowOverlay("Saving...");
 
-            if (pictureBytes != null)
+            if (pictureStream != null)
             {
-                await this.profileService.UploadProfileImageAsync(pictureBytes);
+                await this.profileService.UploadProfileImageAsync(pictureStream);
             }
 
             var result = await this.profileService.UpdateAsync(profile);
