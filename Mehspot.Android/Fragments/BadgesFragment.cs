@@ -51,7 +51,10 @@ namespace Mehspot.AndroidApp
 		public override async void OnStart()
 		{
 			base.OnStart();
-			await this.model.RefreshAsync();
+			if (!model.dataLoaded)
+			{
+				await this.model.RefreshAsync();
+			}
 		}
 
 		void Model_LoadingStart()

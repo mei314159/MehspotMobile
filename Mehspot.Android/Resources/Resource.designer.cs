@@ -313,11 +313,14 @@ namespace Mehspot.AndroidApp
 		public partial class MessageBoard
 		{
 			
-			// aapt resource value: 0x7f170000
-			public const int SearchBar = 2132213760;
-			
 			// aapt resource value: 0x7f170001
-			public const int SearchButton = 2132213761;
+			public const int SearchBar = 2132213761;
+			
+			// aapt resource value: 0x7f170002
+			public const int SearchButton = 2132213762;
+			
+			// aapt resource value: 0x7f170000
+			public const int messageRefresher = 2132213760;
 			
 			static MessageBoard()
 			{

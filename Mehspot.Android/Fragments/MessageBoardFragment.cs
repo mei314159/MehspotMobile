@@ -40,7 +40,7 @@ namespace Mehspot.AndroidApp
 			return inflater.Inflate(Resource.Layout.MessageBoard, container, false);
 		}
 
-		public override async void OnViewCreated(View view, Bundle savedInstanceState)
+		public override void OnViewCreated(View view, Bundle savedInstanceState)
 		{
 			base.OnViewCreated(view, savedInstanceState);
 
@@ -60,22 +60,26 @@ namespace Mehspot.AndroidApp
 			model.LoadingStart += Model_LoadingStart;
 			model.LoadingEnd += Model_LoadingEnd;
 
-
-			var refresher = Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
-
+			var refresher = this.Activity.FindViewById<SwipeRefreshLayout>(Resource.MessageBoard.messageRefresher);
 			refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 														Resource.Color.xam_purple,
 														Resource.Color.xam_gray,
 														Resource.Color.xam_green);
 			refresher.Refresh += async (sender, e) =>
-									{
-										await model.LoadMessageBoardAsync();
-										refresher.Refreshing = false;
-									};
-
-			await this.model.LoadMessageBoardAsync();
+			{
+				await model.LoadMessageBoardAsync();
+				refresher.Refreshing = false;
+			};
 		}
 
+		public override async void OnStart()
+		{
+			base.OnStart();
+			if (!model.dataLoaded)
+			{
+				await this.model.LoadMessageBoardAsync(true);
+			}
+		}
 
 		void Model_LoadingStart()
 		{
