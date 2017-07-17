@@ -12,7 +12,10 @@ namespace Mehspot.iOS.Views
 	[Register("TextEditCell")]
 	public class TextEditCell : UITableViewCell, ITextEditCell
 	{
+		private const int MaxDigits = 9;
+
 		private string mask;
+
 		public static readonly NSString Key = new NSString("TextEditCell");
 		public static readonly UINib Nib;
 
@@ -129,10 +132,11 @@ namespace Mehspot.iOS.Views
 			{
 				case KeyboardType.Decimal:
 					TextView.KeyboardType = UIKeyboardType.DecimalPad;
+					this.MaxLength = MaxDigits;
 					break;
 				case KeyboardType.Numeric:
 					TextView.KeyboardType = UIKeyboardType.NumberPad;
-					this.MaxLength = 9;
+					this.MaxLength = MaxDigits;
 					break;
 				default:
 					TextView.KeyboardType = UIKeyboardType.Default;
