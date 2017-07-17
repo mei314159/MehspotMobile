@@ -12,16 +12,15 @@ namespace Mehspot.Core.Models
     public class BadgesModel
     {
         private volatile bool loading;
-
         private readonly BadgeService badgesService;
         private readonly IBadgesViewController viewController;
-
-        public BadgeSummaryDTO[] Items;
         private int selectedBadgeIndex;
         private List<int> expandedRows = new List<int>();
 
+        public BadgeSummaryDTO[] Items;
         public event Action LoadingStart;
         public event Action LoadingEnd;
+        public volatile bool dataLoaded;
 
         public BadgesModel(BadgeService messagesService, IBadgesViewController viewController)
         {
@@ -32,12 +31,17 @@ namespace Mehspot.Core.Models
         public int Page { get; private set; } = 1;
         public BadgeSummaryDTO SelectedBadge => Items?[selectedBadgeIndex];
 
-        public async Task RefreshAsync()
+        public async Task RefreshAsync(bool isFirstLoad = false)
         {
             if (loading)
                 return;
             loading = true;
-            LoadingStart?.Invoke();
+
+            if (isFirstLoad)
+            {
+                LoadingStart?.Invoke();
+            }
+            
             var result = await badgesService.GetBadgesSummaryAsync();
             if (result.IsSuccess)
             {
@@ -50,6 +54,7 @@ namespace Mehspot.Core.Models
             }
 
             LoadingEnd?.Invoke();
+            dataLoaded = result.IsSuccess;
             loading = false;
         }
 

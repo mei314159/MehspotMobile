@@ -151,7 +151,7 @@ namespace Mehspot.AndroidApp
 			base.OnStart();
 			if (!model.dataLoaded)
 			{
-				await model.RefreshView();
+				await model.RefreshView(true);
 			}
 		}
 
@@ -173,9 +173,9 @@ namespace Mehspot.AndroidApp
 
 		private void Model_LoadingEnd()
 		{
-			ViewHelper.HideOverlay();
 			ProfileContainer.Visibility = ViewStates.Visible;
 			this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = true;
+			ViewHelper.HideOverlay();
 		}
 
 		private void ChangePhotoButton_Click(object sender, EventArgs e)

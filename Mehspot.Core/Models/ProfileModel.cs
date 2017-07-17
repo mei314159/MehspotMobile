@@ -42,12 +42,14 @@ namespace Mehspot.Core.Models
             this.subdivisionService = subdivisionService;
         }
 
-        public async Task RefreshView()
+        public async Task RefreshView(bool isFirstLoad = false)
         {
             if (loading)
                 return;
             loading = true;
-            LoadingStart?.Invoke();
+
+            if (isFirstLoad)
+                LoadingStart?.Invoke();
 
             var profileResult = await profileService.LoadProfileAsync();
             if (profileResult.IsSuccess)
