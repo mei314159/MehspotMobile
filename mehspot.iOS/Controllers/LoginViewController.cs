@@ -9,6 +9,8 @@ using Foundation;
 using Facebook.CoreKit;
 using Facebook.LoginKit;
 using CoreGraphics;
+using Mehspot.Core.Services;
+using Mehspot.Core.DTO;
 
 namespace Mehspot.iOS
 {
@@ -21,7 +23,7 @@ namespace Mehspot.iOS
 		LoginButton loginView;
 		public LoginViewController(IntPtr handle) : base(handle)
 		{
-			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ViewHelper(this.View));
+			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ViewHelper(this.View));
 			model.SignedIn += Model_SignedIn;
 			model.SignInError += Model_SignInError;
 		}
@@ -86,7 +88,7 @@ namespace Mehspot.iOS
 			SignInAsync();
 		}
 
-		private void Model_SignedIn(AuthenticationResult result)
+		private void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
 			UIViewController targetViewController;
 			if (MehspotAppContext.Instance.DataStorage.WalkthroughPassed)

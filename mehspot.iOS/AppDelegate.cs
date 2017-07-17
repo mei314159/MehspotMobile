@@ -285,7 +285,11 @@ namespace Mehspot.iOS
 				}
 
 				return storyboard.InstantiateViewController("LoginViewController");
+			}
 
+			if (!MehspotAppContext.Instance.DataStorage.WalkthroughPassed)
+			{
+				return UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
 			}
 
 			return storyboard.InstantiateInitialViewController();

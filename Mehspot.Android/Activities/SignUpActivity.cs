@@ -9,6 +9,8 @@ using Mehspot.Core.Auth;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Models;
+using Mehspot.Core.Services;
+using Mehspot.Core.DTO;
 
 namespace Mehspot.AndroidApp
 {
@@ -19,7 +21,7 @@ namespace Mehspot.AndroidApp
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			model = new SignUpModel(MehspotAppContext.Instance.AuthManager, new ActivityHelper(this));
+			model = new SignUpModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ActivityHelper(this));
 			model.SignedIn += Model_SignedIn;
 			model.SignedUp += Model_SignedUp;
 
@@ -77,7 +79,7 @@ namespace Mehspot.AndroidApp
 			await model.SignInAsync(this.EmailField.Text, this.PasswordField.Text);
 		}
 
-		private void Model_SignedIn(AuthenticationResult result)
+		private void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
 			this.StartActivity(new Intent(Application.Context, typeof(MainActivity)));
 		}

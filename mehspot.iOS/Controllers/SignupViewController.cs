@@ -8,6 +8,7 @@ using Mehspot.Core.DTO;
 using Mehspot.iOS.Extensions;
 using CoreGraphics;
 using Mehspot.Core.Auth;
+using Mehspot.Core.Services;
 
 namespace Mehspot.iOS
 {
@@ -22,7 +23,7 @@ namespace Mehspot.iOS
 
 		public override void ViewDidLoad()
 		{
-			model = new SignUpModel(MehspotAppContext.Instance.AuthManager, new ViewHelper(this.View));
+			model = new SignUpModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ViewHelper(this.View));
 			model.SignedUp += Model_SignedUp;
 			model.SignedIn += Model_SignedIn;
 			this.View.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
@@ -52,7 +53,7 @@ namespace Mehspot.iOS
 			await model.SignInAsync(this.EmailField.Text, this.PasswordField.Text);
 		}
 
-		void Model_SignedIn(AuthenticationResult obj)
+		void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
 			UIViewController targetViewController;
 			targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();

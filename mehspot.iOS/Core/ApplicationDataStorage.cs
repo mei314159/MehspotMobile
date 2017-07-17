@@ -137,19 +137,39 @@ namespace Mehspot.iOS.Core
 		{
 			get
 			{
-				var result = NSUserDefaults
-					.StandardUserDefaults
-					.BoolForKey(nameof(IApplicationDataStorage.WalkthroughPassed));
-
-				return result;
+				return Profile != null &&
+				!string.IsNullOrWhiteSpace(Profile.ProfilePicturePath) &&
+				!string.IsNullOrWhiteSpace(Profile.Zip) &&
+				Profile.SubdivisionId != null;
 			}
+		}
 
+		public ProfileDto Profile
+		{
+			get
+			{
+				var data = NSUserDefaults.StandardUserDefaults.StringForKey(nameof(IApplicationDataStorage.Profile));
+
+				if (!string.IsNullOrWhiteSpace(data))
+				{
+					var result = JsonConvert.DeserializeObject<ProfileDto>(data);
+					return result;
+				}
+
+				return null;
+			}
 			set
 			{
-				NSUserDefaults
-					.StandardUserDefaults
-					.SetBool(value, nameof(IApplicationDataStorage.WalkthroughPassed));
-				NSUserDefaults.StandardUserDefaults.Synchronize();
+				if (value == null)
+				{
+					NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.Profile));
+				}
+				else
+				{
+					var data = JsonConvert.SerializeObject(value);
+					NSUserDefaults.StandardUserDefaults.SetString(data, nameof(IApplicationDataStorage.Profile));
+					NSUserDefaults.StandardUserDefaults.Synchronize();
+				}
 			}
 		}
 

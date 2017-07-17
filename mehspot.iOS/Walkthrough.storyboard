@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="82" translatesAutoresizingMaskIntoConstraints="NO" image="profile_image" clipsSubviews="YES">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="82" translatesAutoresizingMaskIntoConstraints="NO" image="profile_image" clipsSubviews="YES">
                                 <rect key="frame" x="71" y="100" width="232" height="232"/>
                                 <constraints>
                                     <constraint id="90" firstAttribute="width" secondItem="82" secondAttribute="height" multiplier="1:1"/>

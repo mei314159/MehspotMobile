@@ -45,6 +45,7 @@ namespace mehspot.iOS
 			ZipField.Layer.BorderWidth = SubdivisionField.Layer.BorderWidth = 1;
 			ZipField.Layer.BorderColor = SubdivisionField.Layer.BorderColor = UIColor.FromRGB(174, 210, 122).CGColor;
 			ZipField.Mask = "#####";
+			ZipField.Placeholder = "Zip Code";
 			ZipField.Text = ZipCode;
 			ZipField.EditingChanged += ZipField_ValueChanged;
 			subdivisionSelectorEnabled = ZipField.IsValid;

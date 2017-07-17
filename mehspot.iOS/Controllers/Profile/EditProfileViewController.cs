@@ -13,6 +13,7 @@ using Facebook.LoginKit;
 using Mehspot.Core.Services;
 using Mehspot.Core.Models;
 using Mehspot.iOS.Core.Builders;
+using System.IO;
 
 namespace Mehspot.iOS
 {
@@ -224,12 +225,10 @@ namespace Mehspot.iOS
 
 		async partial void SaveButtonTouched(UIBarButtonItem sender)
 		{
-			byte[] dataBytes = null;
+			Stream dataBytes = null;
 			if (profileImageChanged)
 			{
-				var data = this.ProfilePicture.Image.AsJPEG();
-				dataBytes = new byte[data.Length];
-				Marshal.Copy(data.Bytes, dataBytes, 0, Convert.ToInt32(data.Length));
+				dataBytes = this.ProfilePicture.Image.AsJPEG().AsStream();
 			}
 
 			await model.SaveProfileAsync(dataBytes);

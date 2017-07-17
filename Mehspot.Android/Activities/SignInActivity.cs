@@ -13,6 +13,7 @@ using Mehspot.Core.Models;
 using Xamarin.Facebook;
 using Xamarin.Facebook.Login;
 using Xamarin.Facebook.Login.Widget;
+using Mehspot.Core.Services;
 
 namespace Mehspot.AndroidApp
 {
@@ -26,7 +27,7 @@ namespace Mehspot.AndroidApp
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.SignIn);
-			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ActivityHelper(this));
+			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ActivityHelper(this));
 			model.SignedIn += Model_SignedIn;
 
 			FindViewById<Button>(Resource.Id.SignIn_Button).Click += SignInButton_Click;
@@ -56,7 +57,7 @@ namespace Mehspot.AndroidApp
 			await model.SignInAsync(emailField.Text, passwordField.Text);
 		}
 
-		private void Model_SignedIn(AuthenticationResult result)
+		private void Model_SignedIn(AuthenticationResult result, Mehspot.Core.DTO.ProfileDto profile)
 		{
 			this.StartActivity(new Intent(Application.Context, typeof(MainActivity)));
 		}

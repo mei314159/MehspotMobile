@@ -117,14 +117,31 @@ namespace Mehspot.AndroidApp.Core
 		{
 			get
 			{
-				var result = settings.GetBoolean(nameof(IApplicationDataStorage.WalkthroughPassed), false);
-				return result;
+				return Profile != null &&
+				!string.IsNullOrWhiteSpace(Profile.ProfilePicturePath) &&
+				!string.IsNullOrWhiteSpace(Profile.Zip) &&
+				Profile.SubdivisionId != null;
 			}
+		}
 
+		public ProfileDto Profile
+		{
+			get
+			{
+				var data = settings.GetString(nameof(IApplicationDataStorage.Profile), null);
+				if (!string.IsNullOrWhiteSpace(data))
+				{
+					var result = JsonConvert.DeserializeObject<ProfileDto>(data);
+					return result;
+				}
+
+				return null;
+			}
 			set
 			{
+				var data = value == null ? null : JsonConvert.SerializeObject(value);
 				var prefEditor = settings.Edit();
-				prefEditor.PutBoolean(nameof(IApplicationDataStorage.WalkthroughPassed), value);
+				prefEditor.PutString(nameof(IApplicationDataStorage.Profile), data);
 				prefEditor.Commit();
 			}
 		}

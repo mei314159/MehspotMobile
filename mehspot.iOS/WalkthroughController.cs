@@ -8,6 +8,7 @@ using Mehspot.Core.DTO;
 using Mehspot.iOS.Extensions;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.iOS.Wrappers;
+using System.IO;
 
 namespace mehspot.iOS
 {
@@ -18,7 +19,7 @@ namespace mehspot.iOS
 		ProfileService profileService;
 
 		ProfileDto profile;
-		byte[] profileImage;
+		Stream profileImageStream;
 		private IViewHelper viewHelper;
 
 
@@ -38,7 +39,7 @@ namespace mehspot.iOS
 			this.SetViewControllers(new[] { step1 }, UIPageViewControllerNavigationDirection.Forward, false, (finished) => { });
 
 			viewHelper.ShowOverlay("Loading Profile");
-			var result = await profileService.GetProfileAsync();
+			var result = await profileService.LoadProfileAsync();
 			viewHelper.HideOverlay();
 			if (result.IsSuccess)
 			{
@@ -68,9 +69,9 @@ namespace mehspot.iOS
 			return true;
 		}
 
-		void Step1OnContinue(byte[] image)
+		void Step1OnContinue(Stream imageStream)
 		{
-			this.profileImage = image;
+			this.profileImageStream = imageStream;
 			this.SetViewControllers(new[] { step2 }, UIPageViewControllerNavigationDirection.Forward, true, (finished) => { });
 		}
 
@@ -79,7 +80,7 @@ namespace mehspot.iOS
 			profile.Zip = zip;
 			profile.SubdivisionId = subdivisionId;
 			profile.SubdivisionOptionId = optionId;
-			if (profileImage == null && string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
+			if (profileImageStream == null && string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
 			{
 				viewHelper.ShowPrompt("Error", "Please, upload a profile picture", "OK", () =>
 				{
@@ -90,9 +91,9 @@ namespace mehspot.iOS
 
 			viewHelper.ShowOverlay("Saving profile");
 			Result photoResult = null;
-			if (profileImage != null)
+			if (profileImageStream != null)
 			{
-				photoResult = await profileService.UploadProfileImageAsync(this.profileImage);
+				photoResult = await profileService.UploadProfileImageAsync(this.profileImageStream);
 			}
 
 			if (photoResult == null || photoResult.IsSuccess)
@@ -101,7 +102,6 @@ namespace mehspot.iOS
 				viewHelper.HideOverlay();
 				if (result.IsSuccess)
 				{
-					MehspotAppContext.Instance.DataStorage.WalkthroughPassed = true;
 					var targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
 					View.Window.SwapController(targetViewController);
 				}

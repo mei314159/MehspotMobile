@@ -5,18 +5,19 @@ using System.Threading.Tasks;
 using Mehspot.Core.Auth;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.Models
 {
 
-    public class SignUpModel: SignInModel
+    public class SignUpModel : SignInModel
     {
         public readonly IViewHelper viewHelper;
         private readonly AccountService authManager;
 
-        public SignUpModel(AccountService authManager, IViewHelper viewHelper): base( authManager, viewHelper)
+        public SignUpModel(AccountService accountService, ProfileService profileService, IViewHelper viewHelper) : base(accountService, profileService, viewHelper)
         {
-            this.authManager = authManager;
+            this.authManager = accountService;
             this.viewHelper = viewHelper;
         }
 
@@ -40,7 +41,8 @@ namespace Mehspot.Core.Models
             {
                 viewHelper.ShowAlert("Validation error", "Password and Confirmation password are different.");
             }
-            else if (!agreeWithTerms) {
+            else if (!agreeWithTerms)
+            {
                 viewHelper.ShowAlert("Validation error", "You must acknowledge by checking the box.");
             }
             else

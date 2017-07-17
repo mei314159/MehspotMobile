@@ -26,7 +26,6 @@ namespace Mehspot.iOS
 			{
 				mask = value;
 				this.MaxLength = mask?.Length;
-				this.Placeholder = mask;
 			}
 		}
 

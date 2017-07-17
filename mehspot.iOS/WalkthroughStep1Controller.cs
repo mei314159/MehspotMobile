@@ -1,14 +1,12 @@
 using Foundation;
 using System;
 using UIKit;
-using System.Runtime.InteropServices;
-using System.Linq;
 using SDWebImage;
-using CoreGraphics;
+using System.IO;
 
 namespace mehspot.iOS
 {
-	public delegate void WalkthroughStep1Delegate(byte[] image);
+	public delegate void WalkthroughStep1Delegate(Stream image);
 
 	public partial class WalkthroughStep1Controller : UIViewController
 	{
@@ -53,12 +51,10 @@ namespace mehspot.iOS
 		{
 			if (OnContinue != null)
 			{
-				byte[] dataBytes = null;
+				Stream dataBytes = null;
 				if (profileImageChanged)
 				{
-					var data = this.ProfilePicture.Image.AsJPEG();
-					dataBytes = new byte[data.Length];
-					Marshal.Copy(data.Bytes, dataBytes, 0, Convert.ToInt32(data.Length));
+					dataBytes = this.ProfilePicture.Image.AsJPEG().AsStream();
 				}
 
 				OnContinue.Invoke(dataBytes);

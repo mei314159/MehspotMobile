@@ -6,11 +6,12 @@ namespace Mehspot.Core.Contracts
     public interface IApplicationDataStorage
     {
         AuthenticationInfoDTO AuthInfo { get; set; }
+        ProfileDto Profile { get; set; }
         string OldPushToken { get; set; }
         string PushToken { get; set; }
         bool PushIsEnabled { get; set; }
         bool PushDeviceTokenSentToBackend { get; set; }
-        bool WalkthroughPassed { get; set; }
+        bool WalkthroughPassed { get; }
         OsType OsType { get; }
 
         T Get<T>(string key) where T : class;
