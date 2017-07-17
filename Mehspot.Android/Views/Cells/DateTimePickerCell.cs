@@ -59,10 +59,13 @@ namespace Mehspot.AndroidApp
 			{
 				AlertDialog.Builder builder = new AlertDialog.Builder(Context);
 				var datePicker = new DatePicker(Context);
-				datePicker.Init(Value.Year, Value.Month, Value.Day, this);
+				datePicker.LayoutMode = ViewLayoutMode.OpticalBounds; //v < 21
+				datePicker.Init(Value.Year, Value.Month - 1, Value.Day, this);
 				builder.SetView(datePicker);
 				builder.SetPositiveButton(Android.Resource.String.Ok, (s, ev) =>
 						{
+							Value = new DateTime(datePicker.Year, datePicker.Month + 1, datePicker.DayOfMonth);
+							ChooseDate.Text = GetDateString(Value);
 							var typedValue = typeof(T) == typeof(string) ? (T)(object)Value.ToString() : (T)(object)Value;
 							setProperty(typedValue);
 							(s as AlertDialog)?.Cancel();
@@ -90,8 +93,6 @@ namespace Mehspot.AndroidApp
 
 		public void OnDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
 		{
-			Value = new DateTime(year, monthOfYear + 1, dayOfMonth);
-			ChooseDate.Text = GetDateString(Value);
 		}
 
 		public void OnCancel(IDialogInterface dialog)
