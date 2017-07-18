@@ -21,6 +21,7 @@ namespace Mehspot.AndroidApp.Wrappers
 			dialog = new ProgressDialog(context);
 			dialog.SetMessage(text);
 			dialog.SetProgressStyle(ProgressDialogStyle.Spinner);
+			dialog.SetCancelable(false);
 			dialog.Show();
 		}
 
