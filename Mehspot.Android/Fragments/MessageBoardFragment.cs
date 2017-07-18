@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content;
@@ -22,6 +23,8 @@ namespace Mehspot.AndroidApp
 	public class MessageBoardFragment : Android.Support.V4.App.Fragment, IMessageBoardViewController
 	{
 		private MessageBoardModel model;
+		private List<MessageBoardItem> wrapList = new List<MessageBoardItem>();
+
 		public string Filter
 		{
 			get
@@ -95,10 +98,19 @@ namespace Mehspot.AndroidApp
 		{
 			var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.messageBoardWrapper);
 			wrapper.RemoveAllViews();
+
+			foreach (var element in wrapList)
+			{
+				element.Dispose();
+			}
+
+			wrapList.Clear();
+
 			foreach (var item in model.Items)
 			{
 				var bubble = CreateMessageBoardItem(item);
 				wrapper.AddView(bubble);
+				wrapList.Add(bubble);
 			}
 		}
 
