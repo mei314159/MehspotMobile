@@ -67,8 +67,9 @@ namespace Mehspot.AndroidApp
 
 		}
 
-		public void OnError(FacebookException p0)
+		public async void OnError(FacebookException p0)
 		{
+			await model.SignInExternalErrorAsync(p0.Message);
 		}
 
 		public async void OnSuccess(Java.Lang.Object p0)
