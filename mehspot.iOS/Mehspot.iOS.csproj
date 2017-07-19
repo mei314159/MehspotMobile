@@ -260,9 +260,6 @@
       <DependentUpon>EditProfileViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cell\BadgeItemCell.cs" />
-    <Compile Include="Views\Cell\BadgeItemCell.designer.cs">
-      <DependentUpon>BadgeItemCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\Badges\BadgesViewController.cs" />
     <Compile Include="Controllers\Badges\BadgesViewController.designer.cs">
       <DependentUpon>BadgesViewController.cs</DependentUpon>
