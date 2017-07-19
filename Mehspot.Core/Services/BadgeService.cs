@@ -110,19 +110,7 @@ namespace Mehspot.Core.Services
             var result = await PostAsync<object>("Badges/SaveProfile", profile).ConfigureAwait(false);
             if (result.IsSuccess)
             {
-                var items = CachedBadgeSummary;
-                if (items != null)
-                {
-                    foreach (var item in items)
-                    {
-                        if (item.BadgeId == profile.BadgeId)
-                        {
-                            item.IsRegistered = true;
-                        }
-                    }
-
-                    CachedBadgeSummary = items;
-                }
+                UpdateCachedBadgeSummary(profile.BadgeId, true);
             }
             return result;
         }
@@ -147,21 +135,26 @@ namespace Mehspot.Core.Services
             var result = await DeleteAsync<object>($"badges/{badgeId}", null).ConfigureAwait(false);
             if (result.IsSuccess)
             {
-                var items = CachedBadgeSummary;
-                if (items != null)
-                {
-                    foreach (var item in items)
-                    {
-                        if (item.BadgeId == badgeId)
-                        {
-                            item.IsRegistered = false;
-                        }
-                    }
-
-                    CachedBadgeSummary = items;
-                }
+                UpdateCachedBadgeSummary(badgeId, false);
             }
             return result;
+        }
+
+        private void UpdateCachedBadgeSummary(int badgeId, bool isRegistered)
+        {
+            var items = CachedBadgeSummary;
+            if (items != null)
+            {
+                foreach (var item in items)
+                {
+                    if (item.BadgeId == badgeId)
+                    {
+                        item.IsRegistered = isRegistered;
+                    }
+                }
+
+                CachedBadgeSummary = items;
+            }
         }
 
         public class BadgeKeys

@@ -158,8 +158,6 @@
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%402x.png" />
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%403x.png" />
-    <ImageAsset Include="Assets.xcassets\arrow-up.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\arrow-up.imageset\arrow-up%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -189,7 +187,6 @@
     <Folder Include="Assets.xcassets\details-icon.imageset\" />
     <Folder Include="Assets.xcassets\review-icon.imageset\" />
     <Folder Include="Core\Builders\" />
-    <Folder Include="Assets.xcassets\arrow-up.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -212,7 +209,6 @@
     <InterfaceDefinition Include="Views\Cell\SearchLimitCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageCell.xib" />
     <InterfaceDefinition Include="Views\Cell\RangeSliderCell.xib" />
-    <InterfaceDefinition Include="Walkthrough.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -264,6 +260,9 @@
       <DependentUpon>EditProfileViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cell\BadgeItemCell.cs" />
+    <Compile Include="Views\Cell\BadgeItemCell.designer.cs">
+      <DependentUpon>BadgeItemCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Badges\BadgesViewController.cs" />
     <Compile Include="Controllers\Badges\BadgesViewController.designer.cs">
       <DependentUpon>BadgesViewController.cs</DependentUpon>
@@ -339,20 +338,6 @@
     <Compile Include="Views\Cell\RangeSliderCell.designer.cs">
       <DependentUpon>RangeSliderCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="WalkthroughController.cs" />
-    <Compile Include="WalkthroughController.designer.cs">
-      <DependentUpon>WalkthroughController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WalkthroughStep1Controller.cs" />
-    <Compile Include="WalkthroughStep1Controller.designer.cs">
-      <DependentUpon>WalkthroughStep1Controller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WalkthroughStep2Controller.cs" />
-    <Compile Include="WalkthroughStep2Controller.designer.cs">
-      <DependentUpon>WalkthroughStep2Controller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExtendedTextField.cs" />
-    <Compile Include="PageDataSource.cs" />
     <Compile Include="Extensions\OverlayExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -410,7 +395,6 @@
     <BundleResource Include="Resources\slider-default-handle-highlighted.png" />
     <BundleResource Include="Resources\slider-default-handle-disabled%402x.png" />
     <BundleResource Include="Resources\slider-default-handle-disabled.png" />
-    <BundleResource Include="Resources\subdivisionicon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">
