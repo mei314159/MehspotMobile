@@ -173,7 +173,7 @@ namespace Mehspot.iOS.Core
 			}
 		}
 
-		public T Get<T>(string key) where T : class
+		public T Get<T>(string key)
 		{
 			var data = NSUserDefaults.StandardUserDefaults.StringForKey(key);
 
@@ -183,7 +183,7 @@ namespace Mehspot.iOS.Core
 				return result;
 			}
 
-			return null;
+			return default(T);
 		}
 
 		public void Set<T>(string key, T value) where T : class

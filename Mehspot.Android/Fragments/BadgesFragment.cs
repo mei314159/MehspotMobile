@@ -43,7 +43,7 @@ namespace Mehspot.AndroidApp
 														Resource.Color.xam_green);
 			refresher.Refresh += async (sender, e) =>
 			{
-				await model.RefreshAsync();
+				await model.RefreshAsync(true, true);
 				refresher.Refreshing = false;
 			};
 		}
@@ -53,7 +53,7 @@ namespace Mehspot.AndroidApp
 			base.OnStart();
 			if (!model.dataLoaded)
 			{
-				await this.model.RefreshAsync();
+				await model.RefreshAsync(model.Items == null, false);
 			}
 		}
 

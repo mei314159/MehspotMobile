@@ -119,6 +119,11 @@ namespace Mehspot.Core
 
         public void SelectRow(int row)
         {
+            if (RegisterButtonVisible)
+            {
+                return;
+            }
+
             this.selectedItemIndex = row;
             if (expandedRows.Contains(row))
             {
