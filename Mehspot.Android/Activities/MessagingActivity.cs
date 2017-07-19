@@ -1,11 +1,10 @@
-
 using System;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Widget;
+using Java.Lang;
 using Mehspot.AndroidApp.Resources.layout;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
@@ -23,8 +22,12 @@ namespace Mehspot.AndroidApp
 	{
 		private MessagingModel messagingModel;
 
+		public ScrollView scrollView => this.FindViewById<ScrollView>(Resource.Id.scrollView1);
+		public LinearLayout messagesWrapper => this.FindViewById<LinearLayout>(Resource.Id.messagesWrapper);
 		public string ToUserName => Intent.GetStringExtra("toUserName");
 		public string ToUserId => Intent.GetStringExtra("toUserId");
+
+		public IViewHelper ViewHelper { get; private set; }
 
 		public string MessageFieldValue
 		{
@@ -39,8 +42,6 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
-		public IViewHelper ViewHelper { get; private set; }
-
 
 		protected override async void OnCreate(Bundle savedInstanceState)
 		{
@@ -52,6 +53,7 @@ namespace Mehspot.AndroidApp
 
 			FindViewById<Button>(Resource.Id.sendMessageButton).Click += SendButtonClicked;
 			FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.MessagingActivity.Menu).Title = this.ToUserName;
+
 			var refresher = FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
 			refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 											Resource.Color.xam_purple,
@@ -65,7 +67,16 @@ namespace Mehspot.AndroidApp
 
 			refresher.Refreshing = true;
 			await this.messagingModel.LoadMessagesAsync();
+			RunOnUiThread(ScrollingDown);
 			refresher.Refreshing = false;
+		}
+
+		private void ScrollingDown()
+		{
+			scrollView.Post(new Java.Lang.Runnable(new Action(() =>
+			{
+				scrollView.FullScroll(Android.Views.FocusSearchDirection.Down);
+			})));
 		}
 
 		void OnSendNotification(MessagingNotificationType notificationType, MessageDto data)
@@ -86,14 +97,12 @@ namespace Mehspot.AndroidApp
 
 		public void AddMessageBubbleToEnd(MessageDto messageDto)
 		{
-			var messagesWrapper = this.FindViewById<LinearLayout>(Resource.Id.messagesWrapper);
 			var bubble = CreateMessageBubble(messageDto);
 			messagesWrapper.AddView(bubble);
 		}
 
 		public void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult)
 		{
-			var messagesWrapper = this.FindViewById<LinearLayout>(Resource.Id.messagesWrapper);
 			foreach (var messageDto in messagesResult.Data.Data)
 			{
 				var bubble = CreateMessageBubble(messageDto);
