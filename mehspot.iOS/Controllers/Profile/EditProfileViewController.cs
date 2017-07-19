@@ -19,7 +19,6 @@ namespace Mehspot.iOS
 {
 	public partial class EditProfileViewController : UITableViewController, IProfileViewController
 	{
-		volatile bool loading;
 		volatile bool profileImageChanged;
 
 		private ProfileService profileService;
@@ -122,7 +121,7 @@ namespace Mehspot.iOS
 			if (!model.dataLoaded)
 			{
 				TableView.TableHeaderView.Hidden = TableView.TableFooterView.Hidden = false;
-				await model.RefreshView();
+				await model.RefreshView(true);
 			}
 		}
 

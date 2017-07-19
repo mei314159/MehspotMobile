@@ -12,10 +12,10 @@ namespace Mehspot.Core.Models
     public class BadgesModel
     {
         private volatile bool loading;
+        private volatile int selectedBadgeIndex;
         private readonly BadgeService badgesService;
         private readonly IBadgesViewController viewController;
-        private int selectedBadgeIndex;
-        private List<int> expandedRows = new List<int>();
+        private readonly List<int> expandedRows = new List<int>();
 
         public BadgeSummaryDTO[] Items;
         public event Action LoadingStart;
@@ -31,30 +31,50 @@ namespace Mehspot.Core.Models
         public int Page { get; private set; } = 1;
         public BadgeSummaryDTO SelectedBadge => Items?[selectedBadgeIndex];
 
-        public async Task RefreshAsync(bool isFirstLoad = false)
+        public bool TryLoadFromCache()
+        {
+            var cachedBadgeSummary = badgesService.CachedBadgeSummary;
+            if (cachedBadgeSummary != null)
+            {
+                this.Items = cachedBadgeSummary;
+                viewController.DisplayBadges();
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task RefreshAsync(bool loadFromServer, bool showSpinner = false)
         {
             if (loading)
                 return;
             loading = true;
 
-            if (isFirstLoad)
+            var loadedFromCache = TryLoadFromCache();
+
+            if ((showSpinner || !loadedFromCache) && loadFromServer)
             {
                 LoadingStart?.Invoke();
             }
-            
-            var result = await badgesService.GetBadgesSummaryAsync();
-            if (result.IsSuccess)
+
+            if (loadFromServer)
             {
-                this.Items = result.Data;
-                viewController.DisplayBadges();
-            }
-            else
-            {
-                viewController.ViewHelper.ShowAlert("Error", "Can not load badges");
+                var result = await badgesService.GetBadgesSummaryAsync();
+                if (result.IsSuccess)
+                {
+                    this.Items = result.Data;
+                    viewController.DisplayBadges();
+                }
+                else
+                {
+                    viewController.ViewHelper.ShowAlert("Error", "Can not load badges");
+                }
+
+
+                LoadingEnd?.Invoke();
+                dataLoaded = result.IsSuccess;
             }
 
-            LoadingEnd?.Invoke();
-            dataLoaded = result.IsSuccess;
             loading = false;
         }
 
@@ -62,7 +82,8 @@ namespace Mehspot.Core.Models
         {
             for (int i = 0; i < Items.Length; i++)
             {
-                if (Items[i] == dto) {
+                if (Items[i] == dto)
+                {
                     SelectRow(i);
                     break;
                 }
