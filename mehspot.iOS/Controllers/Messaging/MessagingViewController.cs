@@ -102,6 +102,11 @@ namespace Mehspot.iOS
 			this.NavBar.TopItem.Title = ToUserName;
 		}
 
+		public void ScrollingDown()
+		{
+	
+		}
+
 		public override void ViewDidAppear(bool animated)
 		{
 			Appeared?.Invoke();

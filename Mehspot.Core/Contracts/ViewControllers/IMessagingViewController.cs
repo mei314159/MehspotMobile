@@ -14,6 +14,8 @@ namespace Mehspot.Core.Contracts.ViewControllers
 
         IViewHelper ViewHelper { get; }
 
+        void ScrollingDown();
+
         void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult);
 
         void ToggleMessagingControls(bool enabled);

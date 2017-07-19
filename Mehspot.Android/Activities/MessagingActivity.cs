@@ -67,16 +67,18 @@ namespace Mehspot.AndroidApp
 
 			refresher.Refreshing = true;
 			await this.messagingModel.LoadMessagesAsync();
-			RunOnUiThread(ScrollingDown);
 			refresher.Refreshing = false;
 		}
 
-		private void ScrollingDown()
+		public void ScrollingDown()
 		{
-			scrollView.Post(new Java.Lang.Runnable(new Action(() =>
+			RunOnUiThread(() =>
 			{
-				scrollView.FullScroll(Android.Views.FocusSearchDirection.Down);
-			})));
+				scrollView.Post(new Java.Lang.Runnable(new Action(() =>
+				{
+					scrollView.FullScroll(Android.Views.FocusSearchDirection.Down);
+				})));
+			});
 		}
 
 		void OnSendNotification(MessagingNotificationType notificationType, MessageDto data)
