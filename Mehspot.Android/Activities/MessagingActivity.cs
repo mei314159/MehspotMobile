@@ -101,6 +101,7 @@ namespace Mehspot.AndroidApp
 		{
 			var bubble = CreateMessageBubble(messageDto);
 			messagesWrapper.AddView(bubble);
+			ScrollingDown();
 		}
 
 		public void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult)

@@ -41,7 +41,6 @@ namespace Mehspot.Core.Models
                 {
                     this.viewController.AddMessageBubbleToEnd(result.Data);
                     this.viewController.MessageFieldValue = string.Empty;
-                    this.viewController.ScrollingDown();
                 }
 
                 viewController.ToggleMessagingControls(true);

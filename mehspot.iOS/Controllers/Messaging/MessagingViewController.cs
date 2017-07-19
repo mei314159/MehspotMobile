@@ -104,7 +104,7 @@ namespace Mehspot.iOS
 
 		public void ScrollingDown()
 		{
-	
+			messagesList.ScrollToRow(NSIndexPath.FromRowSection(messages.Count - 1, 0), UITableViewScrollPosition.None, true);
 		}
 
 		public override void ViewDidAppear(bool animated)
@@ -130,6 +130,7 @@ namespace Mehspot.iOS
 				InvokeOnMainThread(() =>
 				{
 					AddMessageBubbleToEnd(data);
+					ScrollingDown();
 				});
 
 				await this.messagingModel.MarkMessagesReadAsync();
@@ -150,7 +151,8 @@ namespace Mehspot.iOS
 		{
 			messages.AddRange(messagesResult.Data.Data);
 			var rows = messagesResult.Data.Data.Select((a, i) => NSIndexPath.FromRowSection(i, 0)).Reverse().ToArray();
-			messagesList.InsertRows(rows, UITableViewRowAnimation.Top);
+			messagesList.InsertRows(rows, UITableViewRowAnimation.None);
+			ScrollingDown();
 		}
 
 		public void ToggleMessagingControls(bool enabled)
@@ -162,8 +164,8 @@ namespace Mehspot.iOS
 		{
 			messages.Insert(0, messageDto);
 			var row = NSIndexPath.FromRowSection(messages.Count - 1, 0);
-			messagesList.InsertRows(new[] { row }, UITableViewRowAnimation.Top);
-			messagesList.ScrollToRow(row, UITableViewScrollPosition.Bottom, true);
+			messagesList.InsertRows(new[] { row }, UITableViewRowAnimation.None);
+			ScrollingDown();
 		}
 
 		public nint RowsInSection(UITableView tableView, nint section)
