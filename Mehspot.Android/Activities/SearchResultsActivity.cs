@@ -44,7 +44,6 @@ namespace Mehspot.AndroidApp
 			model.LoadingMoreEnded += LoadingMoreEnded;
 			model.OnLoadingError += OnLoadingError;
 
-			//ListView.ScrollChange += Handle_ScrollChange;
 			ListView.ViewTreeObserver.AddOnScrollChangedListener(this);
 
 			searchResultsAdapter = new SearchResultsAdapter(this, model);
@@ -105,36 +104,21 @@ namespace Mehspot.AndroidApp
 				{
 					wrapper.Visibility = ViewStates.Gone;
 				};
-
-
 			}
 
 			this.model.SelectItem(dto);
 		}
 
-		void Handle_ScrollChange(object sender, View.ScrollChangeEventArgs e)
+		void ViewTreeObserver.IOnScrollChangedListener.OnScrollChanged()
 		{
-			var scrollView = (ListView)sender;
-			var currentOffset = e.ScrollY;
+			var scrollView = ListView; 
+			var currentOffset = ListView.ScrollY;
 			var maximumOffset = (scrollView.GetChildAt(0)?.Height ?? 0) - scrollView.Height;
 			var deltaOffset = maximumOffset - currentOffset;
 			if (currentOffset > 0 && deltaOffset <= 0)
 			{
 				Task.Run(async () => await this.model.LoadMoreAsync());
 			}
-		}
-
-		void ViewTreeObserver.IOnScrollChangedListener.OnScrollChanged()
-		{
-			/*
-			var scrollView = ListView;
-			var currentOffset = e.ScrollY;
-			var maximumOffset = (scrollView.GetChildAt(0)?.Height ?? 0) - scrollView.Height;
-			var deltaOffset = maximumOffset - currentOffset;
-			if (currentOffset > 0 && deltaOffset <= 0)
-			{
-				Task.Run(async () => await this.model.LoadMoreAsync());
-			}*/
 		}
 
 		void OnLoadingError(Mehspot.Core.DTO.Result result)
