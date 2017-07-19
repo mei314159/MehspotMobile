@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Gms.Gcm;
 using Android.Gms.Iid;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Util;
 using Mehspot.Core;
@@ -129,7 +130,7 @@ namespace Mehspot.AndroidApp
             var pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.OneShot);
 
             var notificationBuilder = new Notification.Builder(this)
-                .SetSmallIcon(Android.Graphics.Drawables.Icon.CreateWithResource(this, Resource.Drawable.ic_stat_ic_notification))
+                //.SetSmallIcon(Icon.CreateWithResource(this, Resource.Drawable.ic_stat_ic_notification))
                 .SetContentTitle("New Message")
                 .SetContentText(push.Message)
                 .SetAutoCancel(true)
