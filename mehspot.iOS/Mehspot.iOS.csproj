@@ -158,6 +158,8 @@
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%402x.png" />
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\arrow-up.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\arrow-up.imageset\arrow-up%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -187,6 +189,7 @@
     <Folder Include="Assets.xcassets\details-icon.imageset\" />
     <Folder Include="Assets.xcassets\review-icon.imageset\" />
     <Folder Include="Core\Builders\" />
+    <Folder Include="Assets.xcassets\arrow-up.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -261,9 +264,6 @@
       <DependentUpon>EditProfileViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cell\BadgeItemCell.cs" />
-    <Compile Include="Views\Cell\BadgeItemCell.designer.cs">
-      <DependentUpon>BadgeItemCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\Badges\BadgesViewController.cs" />
     <Compile Include="Controllers\Badges\BadgesViewController.designer.cs">
       <DependentUpon>BadgesViewController.cs</DependentUpon>
@@ -353,6 +353,7 @@
     </Compile>
     <Compile Include="ExtendedTextField.cs" />
     <Compile Include="PageDataSource.cs" />
+    <Compile Include="Extensions\OverlayExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

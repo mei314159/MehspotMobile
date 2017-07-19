@@ -14,13 +14,33 @@ namespace Mehspot.Core.Services
 {
     public class BadgeService : BaseDataService
     {
+        public const string BadgeSummaryCacheKey = "BadgeSummaryCacheKey";
         public BadgeService(IApplicationDataStorage applicationDataStorage) : base(applicationDataStorage)
         {
         }
 
+        public BadgeSummaryDTO[] CachedBadgeSummary
+        {
+            get
+            {
+                return ApplicationDataStorage.Get<BadgeSummaryDTO[]>(BadgeSummaryCacheKey);
+            }
+            set
+            {
+                ApplicationDataStorage.Set(BadgeSummaryCacheKey, value);
+            }
+        }
+
         public async Task<Result<BadgeSummaryDTO[]>> GetBadgesSummaryAsync()
         {
-            return await GetAsync<BadgeSummaryDTO[]>("Badges/Get").ConfigureAwait(false);
+            var result = await GetAsync<BadgeSummaryDTO[]>("Badges/Get").ConfigureAwait(false);
+
+            if (result.IsSuccess)
+            {
+                ApplicationDataStorage.Set(BadgeSummaryCacheKey, result.Data);
+            }
+
+            return result;
         }
 
         public async Task<Result<StaticDataDTO[]>> GetBadgeKeysAsync(int badgeId, string key)
@@ -87,7 +107,24 @@ namespace Mehspot.Core.Services
 
         public async Task<Result> SaveBadgeProfileAsync(BadgeProfileDTO<EditBadgeProfileDTO> profile)
         {
-            return await PostAsync<object>("Badges/SaveProfile", profile).ConfigureAwait(false);
+            var result = await PostAsync<object>("Badges/SaveProfile", profile).ConfigureAwait(false);
+            if (result.IsSuccess)
+            {
+                var items = CachedBadgeSummary;
+                if (items != null)
+                {
+                    foreach (var item in items)
+                    {
+                        if (item.BadgeId == profile.BadgeId)
+                        {
+                            item.IsRegistered = true;
+                        }
+                    }
+
+                    CachedBadgeSummary = items;
+                }
+            }
+            return result;
         }
 
         public async Task<Result> ToggleBadgeUserDescriptionAsync(BadgeUserDescriptionDTO dto)
@@ -107,7 +144,24 @@ namespace Mehspot.Core.Services
 
         public async Task<Result> DeleteBadgeAsync(int badgeId)
         {
-            return await DeleteAsync<object>($"badges/{badgeId}", null).ConfigureAwait(false);
+            var result = await DeleteAsync<object>($"badges/{badgeId}", null).ConfigureAwait(false);
+            if (result.IsSuccess)
+            {
+                var items = CachedBadgeSummary;
+                if (items != null)
+                {
+                    foreach (var item in items)
+                    {
+                        if (item.BadgeId == badgeId)
+                        {
+                            item.IsRegistered = false;
+                        }
+                    }
+
+                    CachedBadgeSummary = items;
+                }
+            }
+            return result;
         }
 
         public class BadgeKeys

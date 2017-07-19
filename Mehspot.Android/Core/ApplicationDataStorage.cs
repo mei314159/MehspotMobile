@@ -146,7 +146,7 @@ namespace Mehspot.AndroidApp.Core
 			}
 		}
 
-		public T Get<T>(string key) where T : class
+		public T Get<T>(string key)
 		{
 			var data = settings.GetString(key, null);
 			if (!string.IsNullOrWhiteSpace(data))
@@ -155,7 +155,7 @@ namespace Mehspot.AndroidApp.Core
 				return result;
 			}
 
-			return null;
+			return default(T);
 		}
 
 		public void Set<T>(string key, T value) where T : class

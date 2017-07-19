@@ -14,7 +14,7 @@ namespace Mehspot.Core.Contracts
         bool WalkthroughPassed { get; }
         OsType OsType { get; }
 
-        T Get<T>(string key) where T : class;
+        T Get<T>(string key);
         void Set<T>(string key, T result) where T : class;
     }
 }
