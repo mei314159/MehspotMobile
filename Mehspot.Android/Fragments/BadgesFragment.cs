@@ -1,4 +1,5 @@
-﻿using Android.Animation;
+﻿using System.Collections.Generic;
+using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -19,6 +20,7 @@ namespace Mehspot.AndroidApp
 	public class BadgesFragment : Android.Support.V4.App.Fragment, IBadgesViewController
 	{
 		private BadgesModel model;
+		private List<BadgeSummaryItem> wrapList = new List<BadgeSummaryItem>();
 
 		public IViewHelper ViewHelper { get; private set; }
 
@@ -55,6 +57,16 @@ namespace Mehspot.AndroidApp
 			{
 				await model.RefreshAsync(model.Items == null, true);
 			}
+		}
+
+		public override void OnPause()
+		{
+			base.OnPause();
+		}
+
+		public override void OnStop()
+		{
+			base.OnStop();
 		}
 
 		void Model_LoadingStart()
@@ -129,10 +141,19 @@ namespace Mehspot.AndroidApp
 		{
 			var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.badgesWrapper);
 			wrapper.RemoveAllViews();
+
+			foreach (var element in wrapList)
+			{
+				element.Dispose();
+			}
+
+			wrapList.Clear();
+
 			foreach (var item in model.Items)
 			{
 				var bubble = CreateItem(item);
 				wrapper.AddView(bubble);
+				wrapList.Add(bubble);
 			}
 		}
 

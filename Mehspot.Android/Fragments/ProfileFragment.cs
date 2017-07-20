@@ -159,6 +159,7 @@ namespace Mehspot.AndroidApp
 		{
 			var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.ProfileViewActivity.profileContentWrapper);
 			wrapper.RemoveAllViews();
+
 			foreach (var item in model.Cells)
 			{
 				wrapper.AddView(item);
