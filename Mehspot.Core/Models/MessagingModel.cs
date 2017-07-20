@@ -23,7 +23,8 @@ namespace Mehspot.Core.Models
             var messagesResult = await messagesService.GetMessages(Page++, viewController.ToUserId);
             if (messagesResult.IsSuccess)
             {
-                viewController.DisplayMessages(messagesResult);
+                this.viewController.DisplayMessages(messagesResult);
+                this.viewController.ScrollingDown();
             }
             //viewController.ViewHelper.HideOverlay();
         }
