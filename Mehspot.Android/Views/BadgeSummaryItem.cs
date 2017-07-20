@@ -27,10 +27,14 @@ namespace Mehspot.AndroidApp.Resources.layout
 			LikesCount.Text = dto.Likes.ToString();
 			RecommendationsCount.Text = dto.Recommendations.ToString();
 			ReferencesCount.Text = dto.References.ToString();
-			RegisterButton.Text = dto.IsRegistered ? "Update" : "Register";
+			RegisterButton.Text = dto.IsRegistered ? "Update" : "Register";;
 
 			var identifier = Resources.GetIdentifier(dto.BadgeName.ToLower() + (dto.IsRegistered ? string.Empty : "b"), "drawable", context.PackageName);
-			Picture.SetImageResource(identifier);
+			using (var Picture = FindViewById<ImageView>(Resource.BadgeSummary.Picture))
+			{
+				Picture.SetImageResource(identifier);
+			}
+
 			this.Click += Handle_Click;
 			this.RegisterButton.Click += (sender, e) => RegisterButtonClicked(dto);
 			this.SearchButton.Click += (sender, e) => SearchButtonClicked(dto);
@@ -41,13 +45,21 @@ namespace Mehspot.AndroidApp.Resources.layout
 		public TextView LikesCount => (TextView)FindViewById(Resource.BadgeSummary.LikesCount);
 		public TextView RecommendationsCount => (TextView)FindViewById(Resource.BadgeSummary.RecommendationsCount);
 		public TextView ReferencesCount => (TextView)FindViewById(Resource.BadgeSummary.ReferencesCount);
-		public ImageView Picture => (ImageView)FindViewById(Resource.BadgeSummary.Picture);
+		//public ImageView Picture => (ImageView)FindViewById(Resource.BadgeSummary.Picture);;
 		public Button RegisterButton => (Button)FindViewById(Resource.BadgeSummary.RegisterButton);
 		public Button SearchButton => (Button)FindViewById(Resource.BadgeSummary.SearchButton);
 
 		void Handle_Click(object sender, EventArgs e)
 		{
 			this.Clicked?.Invoke(this.dto, this);
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+				FindViewById<ImageView>(Resource.BadgeSummary.Picture).Dispose();
+
+			base.Dispose(disposing);
 		}
 	}
 }
