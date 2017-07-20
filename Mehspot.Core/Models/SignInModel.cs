@@ -67,6 +67,11 @@ namespace Mehspot.Core.Models
             }
         }
 
+        public async Task SignInExternalErrorAsync(string message)
+        {
+            viewHelper.ShowAlert("Authentication error", message);
+        }
+
         async Task SignedInInternalAsync(AuthenticationResult authenticationResult)
         {
             var profile = await profileService.LoadProfileAsync();
