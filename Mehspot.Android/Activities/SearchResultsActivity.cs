@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Android.Animation;
 using Android.App;
@@ -19,13 +20,15 @@ namespace Mehspot.AndroidApp
 {
 
 	[Activity(Label = "Search Results")]
-	public class SearchResultsActivity : Activity, ISearchResultsController
+	public class SearchResultsActivity : Activity, ISearchResultsController, ViewTreeObserver.IOnScrollChangedListener
 	{
 		private SearchResultsModel model;
 		private SearchResultsAdapter searchResultsAdapter;
+		private ListView ListView => this.FindViewById<ListView>(Resource.SearchResults.ListView);
+		private SwipeRefreshLayout Refresher => this.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
+
 		public BadgeSummaryDTO BadgeSummary => Intent.GetExtra<BadgeSummaryDTO>("badgeSummary");
 		public ISearchQueryDTO SearchQuery => Intent.GetExtra<ISearchQueryDTO>("searchQuery");
-
 		public IViewHelper ViewHelper { get; private set; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -41,7 +44,7 @@ namespace Mehspot.AndroidApp
 			model.LoadingMoreEnded += LoadingMoreEnded;
 			model.OnLoadingError += OnLoadingError;
 
-			ListView.ScrollChange += Handle_ScrollChange;
+			ListView.ViewTreeObserver.AddOnScrollChangedListener(this);
 
 			searchResultsAdapter = new SearchResultsAdapter(this, model);
 			searchResultsAdapter.MessageButtonClicked += Item_MessageButtonClicked;
@@ -55,9 +58,6 @@ namespace Mehspot.AndroidApp
 										   	Resource.Color.xam_green);
 			Refresher.Refresh += (sender, e) => RefreshResults();
 		}
-
-		private ListView ListView => this.FindViewById<ListView>(Resource.SearchResults.ListView);
-		private SwipeRefreshLayout Refresher => this.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
 
 		protected override void OnStart()
 		{
@@ -104,17 +104,15 @@ namespace Mehspot.AndroidApp
 				{
 					wrapper.Visibility = ViewStates.Gone;
 				};
-
-
 			}
 
 			this.model.SelectItem(dto);
 		}
 
-		void Handle_ScrollChange(object sender, View.ScrollChangeEventArgs e)
+		void ViewTreeObserver.IOnScrollChangedListener.OnScrollChanged()
 		{
-			var scrollView = (ListView)sender;
-			var currentOffset = e.ScrollY;
+			var scrollView = ListView; 
+			var currentOffset = ListView.ScrollY;
 			var maximumOffset = (scrollView.GetChildAt(0)?.Height ?? 0) - scrollView.Height;
 			var deltaOffset = maximumOffset - currentOffset;
 			if (currentOffset > 0 && deltaOffset <= 0)
