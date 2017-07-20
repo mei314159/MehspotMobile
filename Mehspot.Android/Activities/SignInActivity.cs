@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
@@ -69,7 +68,7 @@ namespace Mehspot.AndroidApp
 
 		public async void OnError(FacebookException p0)
 		{
-			await model.SignInExternalErrorAsync(p0.Message);
+			await model.SignInExternalErrorAsync("No internet connection.");
 		}
 
 		public async void OnSuccess(Java.Lang.Object p0)
