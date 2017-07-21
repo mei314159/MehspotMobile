@@ -80,7 +80,7 @@ namespace Mehspot.AndroidApp
 						{
 							this.SetProperty(dto);
 							this.SetSelectValueButtonTitle(dto);
-							this.SelectedSubdivisionId = dto.Id;
+							this.SelectedSubdivisionId = dto?.Id;
 						});
 
 			this.Context.StartActivity(target);

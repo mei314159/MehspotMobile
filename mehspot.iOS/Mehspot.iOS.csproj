@@ -209,6 +209,7 @@
     <InterfaceDefinition Include="Views\Cell\SearchLimitCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MessageCell.xib" />
     <InterfaceDefinition Include="Views\Cell\RangeSliderCell.xib" />
+    <InterfaceDefinition Include="Walkthrough.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -336,6 +337,14 @@
       <DependentUpon>RangeSliderCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\OverlayExtensions.cs" />
+    <Compile Include="WalkthroughController.cs" />
+    <Compile Include="WalkthroughController.designer.cs" />
+    <Compile Include="WalkthroughStep1Controller.cs" />
+    <Compile Include="WalkthroughStep1Controller.designer.cs" />
+    <Compile Include="WalkthroughStep2Controller.cs" />
+    <Compile Include="WalkthroughStep2Controller.designer.cs" />
+    <Compile Include="ExtendedTextField.cs" />
+    <Compile Include="PageDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />
