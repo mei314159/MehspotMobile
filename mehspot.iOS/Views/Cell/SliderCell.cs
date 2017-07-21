@@ -37,7 +37,7 @@ namespace Mehspot.iOS.Views.Cell
 			cell.CellSlider.MinValue = 0;
 			cell.CellSlider.MaxValue = 100;
 
-			cell.CellSlider.Value = defaultValue ?? cell.CellSlider.MinValue;
+			cell.CellSlider.Value = cell.ValueToProgress(defaultValue ?? cell.CellSlider.MinValue);
 			cell.SetValueLabel(cell.CellSlider.Value == cell.CellSlider.MinValue ? string.Empty : cell.CellSlider.Value.ToString());
 
 			cell.CellSlider.ValueChanged += (sender, e) =>
@@ -74,6 +74,11 @@ namespace Mehspot.iOS.Views.Cell
 		private int ProgressToValue(float progress)
 		{
 			return (int)(minValue + (maxValue - minValue) * progress / 100);
+		}
+
+		private int ValueToProgress(float value)
+		{
+			return (int)((value - minValue) / (float)(maxValue - minValue) * 100);
 		}
 	}
 }
