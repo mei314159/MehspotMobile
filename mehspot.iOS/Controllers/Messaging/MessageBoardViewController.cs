@@ -59,7 +59,7 @@ namespace Mehspot.iOS
 
 		public override async void ViewDidAppear(bool animated)
 		{
-			await model.LoadMessageBoardAsync();
+			await model.LoadMessageBoardAsync(model.Items == null);
 			AppDelegate.CheckPushNotificationsPermissions();
 			if (goToMessagesWhenAppear)
 			{

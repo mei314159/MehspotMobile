@@ -102,13 +102,9 @@ namespace Mehspot.iOS
 			this.NavBar.TopItem.Title = ToUserName;
 		}
 
-		public void ScrollingDown()
+		public void ScrollToEnd()
 		{
-			if (messages.Any())
-			{
-				var nSIndexPath = NSIndexPath.FromRowSection(messages.Count - 1, 0);
-				messagesList.ScrollToRow(nSIndexPath, UITableViewScrollPosition.None, true);
-			}
+			messagesList.ScrollToRow(NSIndexPath.FromRowSection(messages.Count - 1, 0), UITableViewScrollPosition.None, true);
 		}
 
 		public override void ViewDidAppear(bool animated)
@@ -134,7 +130,6 @@ namespace Mehspot.iOS
 				InvokeOnMainThread(() =>
 				{
 					AddMessageBubbleToEnd(data);
-					ScrollingDown();
 				});
 
 				await this.messagingModel.MarkMessagesReadAsync();
@@ -153,10 +148,16 @@ namespace Mehspot.iOS
 
 		public void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult)
 		{
-			messages.AddRange(messagesResult.Data.Data);
-			var rows = messagesResult.Data.Data.Select((a, i) => NSIndexPath.FromRowSection(i, 0)).Reverse().ToArray();
-			messagesList.InsertRows(rows, UITableViewRowAnimation.None);
-			ScrollingDown();
+			InvokeOnMainThread(() =>
+			{
+				messages.AddRange(messagesResult.Data.Data);
+				var rows = messagesResult.Data.Data.Select((a, i) => NSIndexPath.FromRowSection(i, 0)).Reverse().ToArray();
+				messagesList.InsertRows(rows, UITableViewRowAnimation.None);
+				if (messages.Count > 0)
+				{
+					messagesList.ScrollToRow(NSIndexPath.FromRowSection(rows.Length - 1, 0), UITableViewScrollPosition.None, true);
+				}
+			});
 		}
 
 		public void ToggleMessagingControls(bool enabled)
@@ -169,7 +170,7 @@ namespace Mehspot.iOS
 			messages.Insert(0, messageDto);
 			var row = NSIndexPath.FromRowSection(messages.Count - 1, 0);
 			messagesList.InsertRows(new[] { row }, UITableViewRowAnimation.None);
-			ScrollingDown();
+			ScrollToEnd();
 		}
 
 		public nint RowsInSection(UITableView tableView, nint section)
