@@ -70,11 +70,11 @@ namespace Mehspot.AndroidApp
 			refresher.Refreshing = false;
 		}
 
-		public void ScrollingDown()
+		public void ScrollToEnd()
 		{
 			RunOnUiThread(() =>
 			{
-				scrollView.Post(new Java.Lang.Runnable(new Action(() =>
+				scrollView.Post(new Runnable(new Action(() =>
 				{
 					scrollView.FullScroll(Android.Views.FocusSearchDirection.Down);
 				})));
@@ -101,7 +101,7 @@ namespace Mehspot.AndroidApp
 		{
 			var bubble = CreateMessageBubble(messageDto);
 			messagesWrapper.AddView(bubble);
-			ScrollingDown();
+			ScrollToEnd();
 		}
 
 		public void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult)
@@ -120,11 +120,11 @@ namespace Mehspot.AndroidApp
 			messageField.Enabled = sendButton.Enabled = enabled;
 		}
 
-        private MessageBubble CreateMessageBubble (MessageDto messageDto)
-        {
-            var isMyMessage = messageDto.FromUserId == MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
-			var bubble = new MessageBubble (this, messageDto.Message, messageDto.SentDate, isMyMessage);
-            return bubble;
-        }
-    }
+		private MessageBubble CreateMessageBubble(MessageDto messageDto)
+		{
+			var isMyMessage = messageDto.FromUserId == MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
+			var bubble = new MessageBubble(this, messageDto.Message, messageDto.SentDate, isMyMessage);
+			return bubble;
+		}
+	}
 }
