@@ -56,6 +56,7 @@ namespace Mehspot.Core.Models
             var authenticationResult = await accountService.SignInExternalAsync(token, provider);
             viewHelper.HideOverlay();
 
+
             if (authenticationResult.IsSuccess)
             {
                 await this.SignedInInternalAsync(authenticationResult);

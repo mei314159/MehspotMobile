@@ -17,13 +17,15 @@ namespace Mehspot.iOS
 		private NSObject willHideNotificationObserver;
 		private NSObject willShowNotificationObserver;
 		SignUpModel model;
+		ViewHelper viewHelper;
 		public SignupViewController(IntPtr handle) : base(handle)
 		{
 		}
 
 		public override void ViewDidLoad()
 		{
-			model = new SignUpModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ViewHelper(this.View));
+			viewHelper = new ViewHelper(this.View);
+			model = new SignUpModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), viewHelper);
 			model.SignedUp += Model_SignedUp;
 			model.SignedIn += Model_SignedIn;
 			this.View.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
@@ -55,6 +57,7 @@ namespace Mehspot.iOS
 
 		void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
+			this.viewHelper.ShowOverlay("Wait...");
 			UIViewController targetViewController;
 			targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
 			this.View.Window.SwapController(targetViewController);
@@ -100,6 +103,7 @@ namespace Mehspot.iOS
 
 		partial void SignupButtonTouched(UIButton sender)
 		{
+			this.HideKeyboard();
 			sender.BecomeFirstResponder();
 			SignUpAsync();
 		}
