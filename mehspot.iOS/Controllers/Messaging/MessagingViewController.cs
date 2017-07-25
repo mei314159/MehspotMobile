@@ -104,7 +104,11 @@ namespace Mehspot.iOS
 
 		public void ScrollingDown()
 		{
-			messagesList.ScrollToRow(NSIndexPath.FromRowSection(messages.Count - 1, 0), UITableViewScrollPosition.None, true);
+			if (messages.Any())
+			{
+				var nSIndexPath = NSIndexPath.FromRowSection(messages.Count - 1, 0);
+				messagesList.ScrollToRow(nSIndexPath, UITableViewScrollPosition.None, true);
+			}
 		}
 
 		public override void ViewDidAppear(bool animated)
