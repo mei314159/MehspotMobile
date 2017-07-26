@@ -18,12 +18,14 @@ namespace Mehspot.iOS
 	{
 		private NSObject willHideNotificationObserver;
 		private NSObject willShowNotificationObserver;
+		ViewHelper viewHelper;
 
 		SignInModel model;
 		LoginButton loginView;
 		public LoginViewController(IntPtr handle) : base(handle)
 		{
-			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ViewHelper(this.View));
+			viewHelper = new ViewHelper(this.View);
+			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), viewHelper);
 			model.SignedIn += Model_SignedIn;
 			model.SignInError += Model_SignInError;
 		}
@@ -90,14 +92,15 @@ namespace Mehspot.iOS
 
 		private void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
+			this.viewHelper.ShowOverlay("Wait...");
 			UIViewController targetViewController;
-			if (MehspotAppContext.Instance.DataStorage.WalkthroughPassed)
+			if (string.IsNullOrWhiteSpace(profile.Zip) || profile.SubdivisionId == null || string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
 			{
-				targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+				targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
 			}
 			else
 			{
-				targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+				targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
 			}
 
 			this.View.Window.SwapController(targetViewController);

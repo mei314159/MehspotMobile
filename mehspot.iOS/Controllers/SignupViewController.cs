@@ -59,7 +59,15 @@ namespace Mehspot.iOS
 		{
 			this.viewHelper.ShowOverlay("Wait...");
 			UIViewController targetViewController;
-			targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+			if (string.IsNullOrWhiteSpace(profile.Zip) || profile.SubdivisionId == null || string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
+			{
+				targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+			}
+			else
+			{
+				targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+			}
+
 			this.View.Window.SwapController(targetViewController);
 		}
 
