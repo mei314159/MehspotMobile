@@ -36,12 +36,12 @@ namespace Mehspot.Core.Models
             else
             {
                 viewHelper.ShowOverlay("Sign In...");
-                var authenticationResult = await accountService.SignInAsync(email, password);
+                var authenticationResult = await accountService.SignInAsync(email, password).ConfigureAwait(false);
                 viewHelper.HideOverlay();
 
                 if (authenticationResult.IsSuccess)
                 {
-                    await this.SignedInInternalAsync(authenticationResult);
+                    await this.SignedInInternalAsync(authenticationResult).ConfigureAwait(false);
                 }
                 else
                 {
@@ -53,13 +53,13 @@ namespace Mehspot.Core.Models
         public async Task SignInExternalAsync(string token, string provider)
         {
             viewHelper.ShowOverlay("Sign In...");
-            var authenticationResult = await accountService.SignInExternalAsync(token, provider);
+            var authenticationResult = await accountService.SignInExternalAsync(token, provider).ConfigureAwait(false);
             viewHelper.HideOverlay();
 
 
             if (authenticationResult.IsSuccess)
             {
-                await this.SignedInInternalAsync(authenticationResult);
+                await this.SignedInInternalAsync(authenticationResult).ConfigureAwait(false);
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Mehspot.Core.Models
 
         async Task SignedInInternalAsync(AuthenticationResult authenticationResult)
         {
-            var profile = await profileService.LoadProfileAsync();
+            var profile = await profileService.LoadProfileAsync().ConfigureAwait(false);
             SignedIn?.Invoke(authenticationResult, profile.Data);
         }
     }

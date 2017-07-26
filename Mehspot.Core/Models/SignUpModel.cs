@@ -49,7 +49,7 @@ namespace Mehspot.Core.Models
             {
 
                 viewHelper.ShowOverlay("Sign Up...");
-                var result = await authManager.SignUpAsync(email, username, password, confirmPassword);
+                var result = await authManager.SignUpAsync(email, username, password, confirmPassword).ConfigureAwait(false);
                 viewHelper.HideOverlay();
 
                 if (result.IsSuccess)

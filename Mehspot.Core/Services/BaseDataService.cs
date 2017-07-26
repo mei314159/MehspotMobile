@@ -123,6 +123,10 @@ namespace Mehspot.Core
                     {
                         webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.ApplicationDataStorage.AuthInfo.AccessToken);
                     }
+                    else
+                    {
+                        webClient.DefaultRequestHeaders.Remove("Authorization");
+                    }
 
                     HttpResponseMessage response;
                     if (method == HttpMethod.Put)
