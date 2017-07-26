@@ -9,6 +9,7 @@ using Mehspot.iOS.Extensions;
 using CoreGraphics;
 using Mehspot.Core.Auth;
 using Mehspot.Core.Services;
+using System.Threading.Tasks;
 
 namespace Mehspot.iOS
 {
@@ -52,28 +53,30 @@ namespace Mehspot.iOS
 
 		private async void Model_SignedUp(Result result)
 		{
-			await model.SignInAsync(this.EmailField.Text, this.PasswordField.Text);
+			string email = null;
+			string password = null;
+			InvokeOnMainThread(() =>
+			{
+				email = this.EmailField.Text;
+				password = this.PasswordField.Text;
+			});
+
+			await model.SignInAsync(email, password).ConfigureAwait(false);
 		}
 
 		void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
-			this.viewHelper.ShowOverlay("Wait...");
-			UIViewController targetViewController;
-			if (string.IsNullOrWhiteSpace(profile.Zip) || profile.SubdivisionId == null || string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
+			InvokeOnMainThread(() =>
 			{
-				targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
-			}
-			else
-			{
-				targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
-			}
-
-			this.View.Window.SwapController(targetViewController);
+				this.viewHelper.ShowOverlay("Wait...");
+				UIViewController targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+				this.View.Window.SwapController(targetViewController);
+			});
 		}
 
-		private async void SignUpAsync()
+		private async Task SignUpAsync()
 		{
-			await model.SignUpAsync(this.EmailField.Text, this.UserNameField.Text, this.PasswordField.Text, this.ConfirmationPasswordField.Text, AgreeWithTerms.On);
+			await model.SignUpAsync(this.EmailField.Text, this.UserNameField.Text, this.PasswordField.Text, this.ConfirmationPasswordField.Text, AgreeWithTerms.On).ConfigureAwait(false);
 		}
 
 		private bool TextFieldShouldReturn(UITextField textField)

@@ -92,18 +92,21 @@ namespace Mehspot.iOS
 
 		private void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
-			this.viewHelper.ShowOverlay("Wait...");
-			UIViewController targetViewController;
-			if (string.IsNullOrWhiteSpace(profile.Zip) || profile.SubdivisionId == null || string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
+			InvokeOnMainThread(() =>
 			{
-				targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
-			}
-			else
-			{
-				targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
-			}
+				this.viewHelper.ShowOverlay("Wait...");
+				UIViewController targetViewController;
+				if (string.IsNullOrWhiteSpace(profile.Zip) || profile.SubdivisionId == null || string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
+				{
+					targetViewController = UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+				}
+				else
+				{
+					targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+				}
 
-			this.View.Window.SwapController(targetViewController);
+				this.View.Window.SwapController(targetViewController);
+			});
 		}
 
 		private async void SignInAsync()
