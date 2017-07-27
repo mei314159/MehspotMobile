@@ -153,7 +153,7 @@ namespace Mehspot.iOS
 				messages.AddRange(messagesResult.Data.Data);
 				var rows = messagesResult.Data.Data.Select((a, i) => NSIndexPath.FromRowSection(i, 0)).Reverse().ToArray();
 				messagesList.InsertRows(rows, UITableViewRowAnimation.None);
-				if (messages.Count > 0)
+				if (messages.Count > 0 && rows.Length > 0)
 				{
 					messagesList.ScrollToRow(NSIndexPath.FromRowSection(rows.Length - 1, 0), UITableViewScrollPosition.None, true);
 				}
