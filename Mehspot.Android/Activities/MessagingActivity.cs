@@ -109,7 +109,7 @@ namespace Mehspot.AndroidApp
 			foreach (var messageDto in messagesResult.Data.Data)
 			{
 				var bubble = CreateMessageBubble(messageDto);
-				messagesWrapper.AddView(bubble, 0);
+				RunOnUiThread(() => messagesWrapper.AddView(bubble, 0));
 			}
 		}
 
