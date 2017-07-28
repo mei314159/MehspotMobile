@@ -14,18 +14,23 @@ namespace Mehspot.AndroidApp
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			MehspotAppContext.Instance.Initialize(new ApplicationDataStorage());
-
+			base.OnCreate(savedInstanceState);
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.SplashScreen);
-			Task startupWork = new Task(() =>
-			{
-				Task.Delay(1000);  // Simulate a bit of startup work.
-			});
 
-			startupWork.ContinueWith(t =>
-			{
+		}
 
+		protected override void OnStart()
+		{
+			base.OnStart();
+            RunAsync();
+		}
+
+		async Task RunAsync()
+		{
+			Task.Delay(100).ContinueWith(async (arg) =>
+			{
+				MehspotAppContext.Instance.Initialize(new ApplicationDataStorage());
 				Type targetActivityType;
 				if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated())
 				{
@@ -35,13 +40,11 @@ namespace Mehspot.AndroidApp
 				{
 					targetActivityType = typeof(MainActivity);
 				}
-				base.StartActivity(new Intent(Application.Context, targetActivityType));
 
-			}, TaskScheduler.FromCurrentSynchronizationContext());
+				RunOnUiThread(() => this.StartActivity(new Intent(Application.Context, targetActivityType)));
 
-			startupWork.Start();
+			});
 
-			base.OnCreate(savedInstanceState);
 		}
 	}
 }
