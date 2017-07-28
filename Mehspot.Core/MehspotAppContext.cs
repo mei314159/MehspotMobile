@@ -59,7 +59,6 @@ namespace Mehspot.Core
                 return;
             }
 
-
             try
             {
                 DisconnectSignalR();

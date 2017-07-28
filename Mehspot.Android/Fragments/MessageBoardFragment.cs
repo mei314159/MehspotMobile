@@ -121,12 +121,15 @@ namespace Mehspot.AndroidApp
 
 		public void UpdateMessageBoardCell(MessageBoardItemDto dto, int index)
 		{
-			var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.messageBoardWrapper);
-			var item = (MessageBoardItem)wrapper.FindViewWithTag(dto.WithUser.Id);
+			this.Activity.RunOnUiThread(() =>
+			{
+				var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.messageBoardWrapper);
+				var item = (MessageBoardItem)wrapper.FindViewWithTag(dto.WithUser.Id);
 
-			item.UnreadMessagesCount.Text = (int.Parse(item.UnreadMessagesCount.Text) + 1).ToString();
-			item.Message.Text = dto.LastMessage;
-			item.UnreadMessagesCount.Visibility = ViewStates.Visible;
+				item.UnreadMessagesCount.Text = (int.Parse(item.UnreadMessagesCount.Text) + 1).ToString();
+				item.Message.Text = dto.LastMessage;
+				item.UnreadMessagesCount.Visibility = ViewStates.Visible;
+			});
 		}
 
 
