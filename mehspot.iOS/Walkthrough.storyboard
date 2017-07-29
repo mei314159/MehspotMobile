@@ -207,7 +207,7 @@
                                         <rect key="frame" x="72" y="531" width="232" height="44"/>
                                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.62352941176470589" green="0.796078431372549" blue="0.403921568627451" alpha="1"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27" weight="light"/>
-                                        <state key="normal" title="Start">
+                                        <state key="normal" title="Continue">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                                         </state>
@@ -262,7 +262,190 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="162" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="706" y="293"/>
+            <point key="canvasLocation" x="713" y="-45"/>
+        </scene>
+        <scene sceneID="343">
+            <objects>
+                <viewController id="344" sceneMemberID="viewController" customClass="WalkthroughStep3Controller" storyboardIdentifier="WalkthroughStep3Controller" useStoryboardIdentifierAsRestorationIdentifier="YES">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="397"/>
+                        <viewControllerLayoutGuide type="bottom" id="398"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="355">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="356" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Step 3" id="357"/>
+                                </items>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" colorSpace="calibratedRGB" red="0.27843137254901962" green="0.68235294117647061" blue="0" alpha="1"/>
+                                </textAttributes>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                <color key="barTintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="401" translatesAutoresizingMaskIntoConstraints="NO" image="w3_background_t">
+                                <rect key="frame" x="0.0" y="44" width="375" height="268"/>
+                                <constraints>
+                                    <constraint id="402" firstAttribute="width" secondItem="401" secondAttribute="height" multiplier="375:268"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register for Badges" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="406" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2" minimumScaleFactor="0.5">
+                                <rect key="frame" x="47" y="376" width="280" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="412" firstItem="406" firstAttribute="height" constant="34"/>
+                                    <constraint id="495" firstItem="406" firstAttribute="width" constant="280"/>
+                                </constraints>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="413" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="5" minimumFontSize="9" text="Badges allow you to identify your family's needs and services that you can offer to the families">
+                                <rect key="frame" x="47" y="434" width="280" height="59"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="433" firstItem="413" firstAttribute="height" constant="78" relation="lessThanOrEqual"/>
+                                    <constraint id="546" firstItem="413" firstAttribute="width" constant="280"/>
+                                </constraints>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="422" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="71" y="575" width="232" height="44"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.62352941176470589" green="0.796078431372549" blue="0.403921568627451" alpha="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27" weight="light"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="427" firstItem="422" firstAttribute="height" constant="44"/>
+                                    <constraint id="430" firstItem="422" firstAttribute="width" constant="232"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="PictureButtonTouched:" destination="424" id="423" eventType="touchUpInside"/>
+                                    <action selector="ContinueButtonTouched:" destination="426" id="425" eventType="touchUpInside"/>
+                                    <action selector="ContinueButtonTouched:" destination="344" id="434" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="390" firstItem="356" firstAttribute="top" secondItem="355" secondAttribute="top"/>
+                            <constraint id="391" firstItem="356" firstAttribute="trailing" secondItem="355" secondAttribute="trailing"/>
+                            <constraint id="392" firstItem="356" firstAttribute="leading" secondItem="355" secondAttribute="leading"/>
+                            <constraint id="403" firstItem="401" firstAttribute="width" secondItem="355" secondAttribute="width"/>
+                            <constraint id="404" firstItem="401" firstAttribute="top" secondItem="356" secondAttribute="bottom"/>
+                            <constraint id="405" firstItem="401" firstAttribute="centerX" secondItem="355" secondAttribute="centerX"/>
+                            <constraint id="409" firstItem="406" firstAttribute="centerX" secondItem="355" secondAttribute="centerX"/>
+                            <constraint id="417" firstItem="413" firstAttribute="centerX" secondItem="406" secondAttribute="centerX"/>
+                            <constraint id="428" firstItem="355" firstAttribute="bottom" secondItem="422" secondAttribute="bottom" constant="48"/>
+                            <constraint id="429" firstItem="422" firstAttribute="centerX" secondItem="355" secondAttribute="centerX"/>
+                            <constraint id="431" firstItem="406" firstAttribute="top" secondItem="401" secondAttribute="bottom" constant="64"/>
+                            <constraint id="432" firstItem="413" firstAttribute="top" secondItem="406" secondAttribute="bottom" constant="24"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="399" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1141" y="-47"/>
+        </scene>
+        <scene sceneID="435">
+            <objects>
+                <viewController id="436" sceneMemberID="viewController" customClass="WalkthroughStep4Controller" storyboardIdentifier="WalkthroughStep4Controller" useStoryboardIdentifierAsRestorationIdentifier="YES">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="467"/>
+                        <viewControllerLayoutGuide type="bottom" id="468"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="437">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="438" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Step 4" id="439"/>
+                                </items>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" colorSpace="calibratedRGB" red="0.27843137254901962" green="0.68235294117647061" blue="0" alpha="1"/>
+                                </textAttributes>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                <color key="barTintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="447" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                                <rect key="frame" x="71" y="575" width="232" height="44"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.62352941176470589" green="0.796078431372549" blue="0.403921568627451" alpha="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27" weight="light"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="453" firstItem="447" firstAttribute="height" constant="44"/>
+                                    <constraint id="454" firstItem="447" firstAttribute="width" constant="232"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="PictureButtonTouched:" destination="449" id="448" eventType="touchUpInside"/>
+                                    <action selector="ContinueButtonTouched:" destination="451" id="450" eventType="touchUpInside"/>
+                                    <action selector="ContinueButtonTouched:" destination="436" id="541" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose what you would like to find" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="471" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2" minimumScaleFactor="0.5">
+                                <rect key="frame" x="41" y="62" width="292" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="476" firstItem="471" firstAttribute="width" constant="292"/>
+                                    <constraint id="477" firstItem="471" firstAttribute="height" constant="66"/>
+                                </constraints>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="1" sectionFooterHeight="1" id="530" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="154" width="375" height="332"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="531">
+                                        <rect key="frame" x="0.0" y="1" width="375" height="110"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="531" id="532">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <constraints>
+                                    <constraint id="538" firstItem="530" firstAttribute="height" constant="332"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint id="455" firstItem="438" firstAttribute="top" secondItem="437" secondAttribute="top"/>
+                            <constraint id="456" firstItem="438" firstAttribute="trailing" secondItem="437" secondAttribute="trailing"/>
+                            <constraint id="457" firstItem="438" firstAttribute="leading" secondItem="437" secondAttribute="leading"/>
+                            <constraint id="463" firstItem="437" firstAttribute="bottom" secondItem="447" secondAttribute="bottom" constant="48"/>
+                            <constraint id="464" firstItem="447" firstAttribute="centerX" secondItem="437" secondAttribute="centerX"/>
+                            <constraint id="474" firstItem="471" firstAttribute="centerX" secondItem="437" secondAttribute="centerX"/>
+                            <constraint id="536" firstItem="530" firstAttribute="centerX" secondItem="437" secondAttribute="centerX"/>
+                            <constraint id="537" firstItem="530" firstAttribute="width" secondItem="437" secondAttribute="width"/>
+                            <constraint id="539" firstItem="530" firstAttribute="top" secondItem="471" secondAttribute="bottom" constant="26"/>
+                            <constraint id="540" firstItem="447" firstAttribute="top" secondItem="530" secondAttribute="bottom" constant="89" relation="lessThanOrEqual"/>
+                            <constraint id="556" firstItem="471" firstAttribute="top" secondItem="438" secondAttribute="bottom" constant="18"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="TableView" destination="530" id="name-outlet-530"/>
+                        <outlet property="ContinueButton" destination="447" id="name-outlet-447"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="469" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="-50"/>
         </scene>
     </scenes>
     <resources>
@@ -318,7 +501,7 @@
         <image name="slider-default-handle.png" width="23" height="23"/>
         <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
         <image name="slider-default-handle-disabled.png" width="23" height="23"/>
-        <image name="subdivisionicon.png" width="232" height="231.5"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>

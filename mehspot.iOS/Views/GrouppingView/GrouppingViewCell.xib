@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" customClass="GrouppingViewCell" id="cZE-iV-UFb" multipleTouchEnabled="YES">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="2" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0" minimumScaleFactor="0.5" misplaced="YES">
+                        <rect key="frame" x="0.0" y="54" width="130" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24" weight="semibold"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint id="3" firstItem="2" firstAttribute="centerX" secondItem="cZE-iV-UFb" secondAttribute="centerX"/>
+                <constraint id="4" firstItem="2" firstAttribute="centerY" secondItem="cZE-iV-UFb" secondAttribute="centerY"/>
+                <constraint id="5" firstItem="2" firstAttribute="width" secondItem="cZE-iV-UFb" secondAttribute="width" relation="lessThanOrEqual"/>
+                <constraint id="6" firstItem="2" firstAttribute="height" secondItem="cZE-iV-UFb" secondAttribute="height" relation="lessThanOrEqual"/>
+            </constraints>
+            <connections>
+                <outlet property="Label" destination="2" id="name-outlet-2"/>
+            </connections>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                    <real key="value" value="65"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="chat-icon" width="25" height="25"/>
+        <image name="profile-icon" width="25" height="25"/>
+        <image name="signout-icon" width="22" height="22"/>
+        <image name="search-icon" width="25" height="25"/>
+        <image name="star-yellow-icon" width="24" height="24"/>
+        <image name="more-icon" width="25" height="25"/>
+        <image name="details-icon" width="25" height="25"/>
+        <image name="review-icon" width="25" height="25"/>
+        <image name="profile_image.png" width="400" height="400"/>
+        <image name="badges/babysitter.png" width="70" height="69"/>
+        <image name="badges/babysitteremployer.png" width="70" height="70"/>
+        <image name="badges/fitness.png" width="210" height="210"/>
+        <image name="badges/friendship.png" width="210" height="210"/>
+        <image name="badges/golf.png" width="500" height="500"/>
+        <image name="badges/hobby.png" width="210" height="208"/>
+        <image name="badges/kidsplaydate.png" width="210" height="210"/>
+        <image name="badges/otherjobs.png" width="210" height="210"/>
+        <image name="badges/petsitter.png" width="500" height="500"/>
+        <image name="badges/petsitteremployer.png" width="500" height="500"/>
+        <image name="badges/sports.png" width="70" height="70"/>
+        <image name="badges/tennis.png" width="140" height="140"/>
+        <image name="badges/tutor.png" width="466" height="467"/>
+        <image name="badges/tutoremployer.png" width="494" height="489"/>
+        <image name="badges/babysitterb.png" width="70" height="69"/>
+        <image name="badges/babysitteremployerb.png" width="70" height="70"/>
+        <image name="badges/friendshipb.png" width="210" height="210"/>
+        <image name="badges/golfb.png" width="500" height="500"/>
+        <image name="badges/petsitterb.png" width="500" height="500"/>
+        <image name="badges/petsitteremployerb.png" width="500" height="500"/>
+        <image name="badges/sportsb.png" width="70" height="70"/>
+        <image name="badges/tennisb.png" width="140" height="140"/>
+        <image name="badges/tutorb.png" width="466" height="467"/>
+        <image name="badges/tutoremployerb.png" width="494" height="489"/>
+        <image name="badges/fitnessb.png" width="210" height="210"/>
+        <image name="badges/hobbyb.png" width="210" height="208"/>
+        <image name="badges/kidsplaydateb.png" width="210" height="210"/>
+        <image name="badges/otherjobsb.png" width="210" height="210"/>
+        <image name="signin-fb.png" width="220" height="40"/>
+        <image name="logo.jpg" width="1242" height="795"/>
+        <image name="logo-small.jpg" width="300" height="192"/>
+        <image name="slider-default_trackBackground.png" width="11" height="9"/>
+        <image name="slider-default7-trackCrossedOver.png" width="6" height="4"/>
+        <image name="slider-default7-trackBackground.png" width="6" height="4"/>
+        <image name="slider-default7-track.png" width="6" height="4"/>
+        <image name="slider-default7-handle.png" width="43" height="43"/>
+        <image name="slider-default7-handle-disabled.png" width="43" height="43"/>
+        <image name="slider-default-trackCrossedOver.png" width="11" height="9"/>
+        <image name="slider-default-trackBackground.png" width="11" height="9"/>
+        <image name="slider-default-track.png" width="11" height="9"/>
+        <image name="slider-default-handle.png" width="23" height="23"/>
+        <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
+        <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
+    </resources>
+</document>

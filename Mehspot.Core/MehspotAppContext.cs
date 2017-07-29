@@ -36,6 +36,7 @@ namespace Mehspot.Core
         }
 
         public IApplicationDataStorage DataStorage { get; private set; }
+
         public event Action<Exception> OnException;
 
         public AccountService AuthManager { get; private set; }

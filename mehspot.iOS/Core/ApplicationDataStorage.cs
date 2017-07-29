@@ -173,6 +173,26 @@ namespace Mehspot.iOS.Core
 			}
 		}
 
+		public BadgeGroup PreferredBadgeGroup
+		{
+			get
+			{
+				var result = (BadgeGroup)(int)NSUserDefaults
+					.StandardUserDefaults
+					.IntForKey(nameof(IApplicationDataStorage.PreferredBadgeGroup));
+
+				return result;
+			}
+
+			set
+			{
+				NSUserDefaults
+					.StandardUserDefaults
+					.SetInt((int)value, nameof(IApplicationDataStorage.PreferredBadgeGroup));
+				NSUserDefaults.StandardUserDefaults.Synchronize();
+			}
+		}
+
 		public T Get<T>(string key)
 		{
 			var data = NSUserDefaults.StandardUserDefaults.StringForKey(key);

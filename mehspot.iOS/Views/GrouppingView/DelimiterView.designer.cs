@@ -7,12 +7,11 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
-namespace Mehspot.iOS
+namespace mehspot.iOS.Views.GrouppingView
 {
-    [Register ("BadgesViewController")]
-    partial class BadgesViewController
+    [Register ("DelimiterView")]
+    partial class DelimiterView
     {
         void ReleaseDesignerOutlets ()
         {

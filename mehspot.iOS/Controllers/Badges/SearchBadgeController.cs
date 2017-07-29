@@ -7,8 +7,6 @@ using Mehspot.iOS.Wrappers;
 using Mehspot.Core;
 using Mehspot.Core.Services;
 using Mehspot.Core.DTO;
-using Mehspot.iOS.Views.Cell;
-using Mehspot.Core.Builders;
 using Mehspot.iOS.Core.Builders;
 
 namespace Mehspot.iOS
@@ -17,6 +15,7 @@ namespace Mehspot.iOS
 	{
 		private SearchBadgeModel<UITableViewCell> model;
 		public BadgeSummaryDTO BadgeSummary { get; set; }
+
 		public IViewHelper ViewHelper { get; private set; }
 
 		public SearchBadgeController(IntPtr handle) : base(handle)

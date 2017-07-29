@@ -166,6 +166,8 @@
     <Compile Include="DTO\Subdivision\VerifySubdivisionResult.cs" />
     <Compile Include="Models\Subdivisions\VerifySubdivisionModel.cs" />
     <Compile Include="Models\Subdivisions\SectionModel.cs" />
+    <Compile Include="DTO\BadgeGroup.cs" />
+    <Compile Include="Services\Badges\BadgeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -187,6 +189,7 @@
     <Folder Include="Builders\" />
     <Folder Include="Contracts\Cells\" />
     <Folder Include="Models\Subdivisions\" />
+    <Folder Include="Services\Badges\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
