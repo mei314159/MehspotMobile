@@ -42,6 +42,10 @@ namespace Mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.NSLayoutConstraint TextViewHeightConstraint { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem UserPic { get; set; }
+
         [Action ("CloseButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);
@@ -85,6 +89,11 @@ namespace Mehspot.iOS
             if (TextViewHeightConstraint != null) {
                 TextViewHeightConstraint.Dispose ();
                 TextViewHeightConstraint = null;
+            }
+
+            if (UserPic != null) {
+                UserPic.Dispose ();
+                UserPic = null;
             }
         }
     }

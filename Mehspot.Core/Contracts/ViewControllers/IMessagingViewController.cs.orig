@@ -13,9 +13,12 @@ namespace Mehspot.Core.Contracts.ViewControllers
 
         IViewHelper ViewHelper { get; }
 
+<<<<<<< HEAD
+        void ScrollingDown();
+=======
         void ScrollToEnd();
 
-        void ScrollingDown();
+>>>>>>> dev
         void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult);
         void ToggleMessagingControls(bool enabled);
         void AddMessageBubbleToEnd(MessageDto messageDto);

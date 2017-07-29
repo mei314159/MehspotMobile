@@ -24,8 +24,11 @@ namespace Mehspot.AndroidApp
 	public class ViewBadgeProfileActivity : Activity, IViewBadgeProfileController
 	{
 		private ViewBadgeProfileModel<View> model;
-		public BadgeSummaryDTO BadgeSummary => Intent.GetExtra<BadgeSummaryDTO>("badgeSummary");
-		public ISearchResultDTO SearchResultDTO => Intent.GetExtra<ISearchResultDTO>("searchResult");
+		public int BadgeId => Intent.GetIntExtra("badgeId", 0);
+
+		public string BadgeName => Intent.GetStringExtra("badgeName");
+
+		public string UserId => Intent.GetStringExtra("userId");
 
 		public IViewHelper ViewHelper { get; private set; }
 

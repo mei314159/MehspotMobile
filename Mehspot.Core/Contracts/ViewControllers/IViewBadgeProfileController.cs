@@ -7,8 +7,9 @@ namespace Mehspot.Core
 
     public interface IViewBadgeProfileController
     {
-        ISearchResultDTO SearchResultDTO { get; }
-        BadgeSummaryDTO BadgeSummary { get; }
+        int BadgeId { get; }
+        string BadgeName { get; }
+        string UserId { get; }
         IViewHelper ViewHelper { get; }
 
         string WindowTitle { get; set; }

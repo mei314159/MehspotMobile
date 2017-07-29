@@ -82,7 +82,6 @@ namespace Mehspot.Core
             controller.ViewHelper.HideOverlay();
             string message;
             if (result.IsSuccess)
-
             {
                 if (!controller.BadgeIsRegistered)
                 {

@@ -64,7 +64,6 @@ namespace Mehspot.Core
                             ErrorMessage = errorResponse.ErrorMessage
                         };
                     }
-
                 }
                 catch (HttpRequestException)
                 {

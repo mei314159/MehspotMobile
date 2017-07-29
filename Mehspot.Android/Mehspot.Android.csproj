@@ -316,6 +316,7 @@
     <AndroidResource Include="Resources\layout\VerifySubdivisionActivity.axml" />
     <AndroidResource Include="Resources\layout\RangeSliderCell.axml" />
     <AndroidResource Include="Resources\layout\NoResultsView.axml" />
+    <AndroidResource Include="Resources\layout\UserProfileViewActivity.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

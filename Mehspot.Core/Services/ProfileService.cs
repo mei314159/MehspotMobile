@@ -22,6 +22,13 @@ namespace Mehspot.Core.Services
             return profile;
         }
 
+        public async Task<Result<UserProfileSummaryDTO>> LoadProfileSummaryAsync(string userId)
+        {
+            var userProfile = await this.GetAsync<UserProfileSummaryDTO>($"Profile/Summary?userId={userId}");
+            MehspotAppContext.Instance.DataStorage.UserProfile = userProfile.Data;
+            return userProfile;
+        }
+
         public async Task<Result<ProfileDto>> UpdateAsync(ProfileDto profile)
         {
             var result = await this.PutAsync<ProfileDto>("profile/update", profile);

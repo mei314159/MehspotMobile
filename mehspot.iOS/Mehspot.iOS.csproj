@@ -158,6 +158,15 @@
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%402x.png" />
     <ImageAsset Include="Assets.xcassets\review-icon.imageset\review-icon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\user-pic.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\user-pic.imageset\user_pic%402x.png" />
+    <ImageAsset Include="Assets.xcassets\user-pic.imageset\user_pic%403x.png" />
+    <ImageAsset Include="Assets.xcassets\like-pic.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\like-pic.imageset\like_pic%402x.png" />
+    <ImageAsset Include="Assets.xcassets\like-pic.imageset\like_pic%403x.png" />
+    <ImageAsset Include="Assets.xcassets\star-pic.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star-pic.imageset\star_pic%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star-pic.imageset\star_pic%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -189,6 +198,9 @@
     <Folder Include="Core\Builders\" />
     <Folder Include="Views\GrouppingView\" />
     <Folder Include="Views\Cell\Badges\" />
+    <Folder Include="Assets.xcassets\user-pic.imageset\" />
+    <Folder Include="Assets.xcassets\like-pic.imageset\" />
+    <Folder Include="Assets.xcassets\star-pic.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -211,6 +223,7 @@
     <InterfaceDefinition Include="Views\Cell\MessageCell.xib" />
     <InterfaceDefinition Include="Views\Cell\RangeSliderCell.xib" />
     <InterfaceDefinition Include="Walkthrough.storyboard" />
+    <InterfaceDefinition Include="Views\Cell\BadgeItemCellSimplified.xib" />
     <InterfaceDefinition Include="Views\GrouppingView\GrouppingViewCell.xib" />
     <InterfaceDefinition Include="Views\Cell\Badges\BadgeCategoryCell.xib" />
     <InterfaceDefinition Include="Views\Cell\Badges\BadgeItemCell.xib" />
@@ -339,6 +352,10 @@
     <Compile Include="Extensions\OverlayExtensions.cs" />
     <Compile Include="WalkthroughController.cs" />
     <Compile Include="WalkthroughController.designer.cs" />
+    <Compile Include="Controllers\Profile\UserProfileViewController.cs" />
+    <Compile Include="Controllers\Profile\UserProfileViewController.designer.cs">
+      <DependentUpon>UserProfileViewController.cs</DependentUpon>
+</Compile>
     <Compile Include="WalkthroughStep1Controller.cs" />
     <Compile Include="WalkthroughStep1Controller.designer.cs" />
     <Compile Include="WalkthroughStep2Controller.cs" />
@@ -350,6 +367,7 @@
       <DependentUpon>WalkthroughStep3Controller.cs</DependentUpon>
     </Compile>
     <Compile Include="WalkthroughStep4Controller.cs" />
+    <Compile Include="Views\Cell\BadgeItemCellSimplified.cs" />
     <Compile Include="WalkthroughStep4Controller.designer.cs">
       <DependentUpon>WalkthroughStep4Controller.cs</DependentUpon>
     </Compile>

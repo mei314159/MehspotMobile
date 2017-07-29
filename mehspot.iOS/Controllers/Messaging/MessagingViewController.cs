@@ -14,6 +14,8 @@ using Mehspot.iOS.Extensions;
 using CoreGraphics;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Drawing;
+using SDWebImage;
 
 namespace Mehspot.iOS
 {
@@ -33,7 +35,10 @@ namespace Mehspot.iOS
 
 		public string ToUserName { get; set; }
 		public string ToUserId { get; set; }
+		public string ProfilePicturePath { get; set; }
 		public UIViewController ParentController { get; set; }
+
+		public IViewHelper ViewHelper { get; private set; }
 
 		public event Action Appeared;
 
@@ -50,11 +55,11 @@ namespace Mehspot.iOS
 			}
 		}
 
-		public IViewHelper ViewHelper { get; private set; }
 
 		public override async void ViewDidLoad()
 		{
 			ViewHelper = new ViewHelper(this.messagesList);
+
 			MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
 			View.BringSubviewToFront(messageFieldWrapper);
 			messagesList.RegisterNibForCellReuse(MessageCell.Nib, MessageCell.Key);
@@ -66,10 +71,12 @@ namespace Mehspot.iOS
 			messagesList.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			messagesList.RowHeight = UITableView.AutomaticDimension;
 			messagesList.EstimatedRowHeight = 50;
+
 			textField.Changed += (sender, e) =>
 			{
 				LayoutTextInput();
 			};
+
 			textField.Layer.BorderWidth = 1;
 			textField.Layer.BorderColor = UIColor.LightGray.CGColor;
 			RegisterForKeyboardNotifications();
@@ -96,10 +103,47 @@ namespace Mehspot.iOS
 			}
 		}
 
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+			if (segue.Identifier == "ShowUserProfileSegue")
+			{
+				var controller = (UserProfileViewController)segue.DestinationViewController;
+				controller.ToUserName = this.ToUserName;
+				controller.ToUserId = this.ToUserId;
+				controller.ParentController = this;
+			}
+
+			base.PrepareForSegue(segue, sender);
+		}
+
 		public override void ViewWillAppear(bool animated)
 		{
 			this.Title = ToUserName;
 			this.NavBar.TopItem.Title = ToUserName;
+
+			var composeButton = new UIButton(new RectangleF(0, 0, 30, 30));
+			composeButton.ContentMode = UIViewContentMode.ScaleAspectFill;
+			composeButton.Layer.CornerRadius = composeButton.Frame.Width / 2;
+			composeButton.ClipsToBounds = true;
+			composeButton.TouchUpInside += (sender, e) =>
+			{ 
+                PerformSegue("ShowUserProfileSegue", this);
+			};
+
+			if (!string.IsNullOrEmpty(ProfilePicturePath))
+			{
+				var url = NSUrl.FromString(ProfilePicturePath);
+				if (url != null)
+				{
+					composeButton.SetBackgroundImage(url, UIControlState.Normal);
+				}
+			}
+			else
+			{
+				composeButton.SetBackgroundImage(UIImage.FromFile("profile_image.png"), UIControlState.Normal);
+			}
+
+			UserPic.CustomView = composeButton;
 		}
 
 		public void ScrollToEnd()
@@ -236,6 +280,11 @@ namespace Mehspot.iOS
 			}
 
 			this.View.LayoutIfNeeded();
+		}
+
+		public void ScrollingDown()
+		{
+			
 		}
 	}
 }

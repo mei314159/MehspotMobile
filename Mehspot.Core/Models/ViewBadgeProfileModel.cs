@@ -17,7 +17,7 @@ namespace Mehspot.Core.Models
     {
         private volatile bool loading;
         private bool showRecommendations;
-        private IBadgeProfileDTO Profile;
+        public IBadgeProfileDTO Profile;
         private List<BadgeUserRecommendationDTO> recommendations;
 
         private readonly string currentUserId;
@@ -52,7 +52,7 @@ namespace Mehspot.Core.Models
 
         public ViewBadgeProfileModel(IViewBadgeProfileController controller, BadgeService badgeService, CellBuilder<TCell> cellBuilder)
         {
-            this.cellFactory = new AttributeCellFactory<TCell>(badgeService, controller.BadgeSummary.BadgeId, cellBuilder);
+            this.cellFactory = new AttributeCellFactory<TCell>(badgeService, controller.BadgeId, cellBuilder);
             this.cellFactory.CellChanged += CellsSource_CellChanged;
             this.controller = controller;
             this.currentUserId = MehspotAppContext.Instance.AuthManager.AuthInfo.UserId;
@@ -60,13 +60,13 @@ namespace Mehspot.Core.Models
             var genericParameter = typeof(IBadgeProfileValues)
                   .GetTypeInfo().Assembly.ExportedTypes
                   .FirstOrDefault(a => a.GetTypeInfo()
-                  .GetCustomAttribute<ViewProfileDtoAttribute>()?.BadgeName == controller.BadgeSummary.BadgeName);
+                  .GetCustomAttribute<ViewProfileDtoAttribute>()?.BadgeName == controller.BadgeName);
             resultType = typeof(BadgeProfileDTO<>).MakeGenericType(genericParameter);
         }
 
         public string GetTitle()
         {
-            return (MehspotResources.ResourceManager.GetString(controller.BadgeSummary.BadgeName) ?? controller.BadgeSummary.BadgeName) + " Profile";
+            return (MehspotResources.ResourceManager.GetString(controller.BadgeName) ?? controller.BadgeName) + " Profile";
         }
 
         public async Task RefreshView()
@@ -78,20 +78,20 @@ namespace Mehspot.Core.Models
             OnRefreshing?.Invoke();
             this.controller.WindowTitle = GetTitle();
 
-            var result = await cellFactory.BadgeService.GetBadgeProfileAsync(this.cellFactory.BadgeId, controller.SearchResultDTO.Details.UserId, resultType);
+            Result<IBadgeProfileDTO> result = await cellFactory.BadgeService.GetBadgeProfileAsync(this.cellFactory.BadgeId, controller.UserId, resultType);
             if (result.IsSuccess)
             {
                 this.Profile = result.Data;
                 this.profileDataCells.Clear();
                 this.profileDataCells.AddRange(await cellFactory.CreateCellsForObject(result.Data));
 
-                this.controller.WindowTitle = $"{controller.BadgeSummary.BadgeName} {result.Data.Details.UserName}";
+                this.controller.WindowTitle = $"{controller.BadgeName} {result.Data.Details.UserName}";
                 this.controller.SetProfilePictureUrl(result.Data.Details.ProfilePicturePath);
                 this.controller.Subdivision = result.Data.Details.SubdivisionName?.Trim();
-                this.controller.Distance = Math.Round(controller.SearchResultDTO.Details.DistanceFrom ?? 0, 2) + " miles";
-                this.controller.Likes = $"{controller.SearchResultDTO.Details.Likes} Likes / {controller.SearchResultDTO.Details.Recommendations} Recommendations";
-                this.controller.FirstName = controller.SearchResultDTO.Details.FirstName;
-                this.controller.HideFavoriteIcon = !controller.SearchResultDTO.Details.Favourite;
+                this.controller.Distance = Math.Round(result.Data.Details.Distance ?? 0, 2) + " miles";
+                this.controller.HideFavoriteIcon = !result.Data.Details.IsFavorite;
+                this.controller.Likes = $"{result.Data.Details.ReferenceCount} Reference / {result.Data.Details.RecommendationsCount} Recommendations";
+                this.controller.FirstName = result.Data.Details.FirstName;
                 this.controller.InfoLabel1 = result.Data.AdditionalInfo.InfoLabel1;
                 this.controller.InfoLabel2 = result.Data.AdditionalInfo.InfoLabel2;
                 LoadProfile();
@@ -124,7 +124,7 @@ namespace Mehspot.Core.Models
                 controller.ViewHelper.ShowOverlay("Wait...");
 
                 recommendationCells.Clear();
-                var result = await cellFactory.BadgeService.GetBadgeRecommendationsAsync(this.controller.BadgeSummary.BadgeId, this.controller.SearchResultDTO.Details.UserId);
+                var result = await cellFactory.BadgeService.GetBadgeRecommendationsAsync(this.controller.BadgeId, this.controller.UserId);
                 if (result.IsSuccess)
                 {
                     bool reviewed = false;
@@ -166,23 +166,23 @@ namespace Mehspot.Core.Models
         {
             var dto = new BadgeUserDescriptionDTO
             {
-                BadgeId = this.controller.BadgeSummary.BadgeId,
-                BadgeName = this.controller.BadgeSummary.BadgeName,
-                Delete = this.controller.SearchResultDTO.Details.Favourite,
-                EmployeeId = this.controller.SearchResultDTO.Details.UserId,
+                BadgeId = this.controller.BadgeId,
+                BadgeName = this.controller.BadgeName,
+                Delete = this.Profile.Details.IsFavorite,
+                EmployeeId = this.controller.UserId,
                 Type = BadgeDescriptionTypeEnum.Favourite
             };
 
-            this.controller.HideFavoriteIcon = this.controller.SearchResultDTO.Details.Favourite;
+            this.controller.HideFavoriteIcon = this.Profile.Details.IsFavorite;
             var result = await ToggleBadgeUserDescriptionAsync(dto);
             if (result.IsSuccess)
 
             {
-                this.controller.SearchResultDTO.Details.Favourite = !this.controller.SearchResultDTO.Details.Favourite;
+                this.Profile.Details.IsFavorite = !this.Profile.Details.IsFavorite;
             }
             else
             {
-                this.controller.HideFavoriteIcon = !this.controller.SearchResultDTO.Details.Favourite;
+                this.controller.HideFavoriteIcon = !this.Profile.Details.IsFavorite;
             }
         }
 
@@ -208,9 +208,9 @@ namespace Mehspot.Core.Models
                 {
                     var dto = new BadgeUserDescriptionDTO
                     {
-                        BadgeId = controller.BadgeSummary.BadgeId,
+                        BadgeId = controller.BadgeId,
                         EmployeeId = Profile.Details.UserId,
-                        BadgeName = controller.BadgeSummary.BadgeName,
+                        BadgeName = controller.BadgeName,
                         Delete = !(bool)value,
                         Type = BadgeDescriptionTypeEnum.Reference
                     };

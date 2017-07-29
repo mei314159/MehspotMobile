@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
@@ -146,7 +146,30 @@ namespace Mehspot.AndroidApp.Core
 			}
 		}
 
-		public BadgeGroup PreferredBadgeGroup
+		public UserProfileSummaryDTO UserProfile
+		{
+			get
+			{
+				var data = settings.GetString(nameof(IApplicationDataStorage.UserProfile), null);
+				if (!string.IsNullOrWhiteSpace(data))
+				{
+					var result = JsonConvert.DeserializeObject<UserProfileSummaryDTO>(data);
+					return result;
+				}
+
+				return null;
+			}
+
+			set
+			{
+				var data = value == null ? null : JsonConvert.SerializeObject(value);
+				var prefEditor = settings.Edit();
+				prefEditor.PutString(nameof(IApplicationDataStorage.UserProfile), data);
+				prefEditor.Commit();
+			}
+		}
+
+        public BadgeGroup PreferredBadgeGroup
 		{
 			get
 			{
