@@ -951,4 +951,25 @@
 	<data name="SearchLimitMessageTemplate" xml:space="preserve">
     <value>If you want to see more results please click Register button below to sign up {0}</value>
   </data>
+	<data name="BadgeGroup_Jobs" xml:space="preserve">
+    <value>Jobs</value>
+  </data>
+	<data name="BadgeGroupDescription_Jobs" xml:space="preserve">
+    <value>Register to be a babysitter, pet sitter, tutor or a student worker.</value>
+  </data>
+	<data name="BadgeGroup_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+	<data name="BadgeGroupDescription_Friends" xml:space="preserve">
+    <value>Find friends for you or your family. Find tennis/golf/workout buddies.</value>
+  </data>
+	<data name="BadgeGroup_Helpers" xml:space="preserve">
+    <value>Helpers</value>
+  </data>
+	<data name="BadgeGroupDescription_Helpers" xml:space="preserve">
+    <value>Find babysitters, pet sitters, tutors and student workers.</value>
+  </data>
+	<data name="OtherHelpers" xml:space="preserve">
+    <value>Find Helpers</value>
+  </data>
 </root>

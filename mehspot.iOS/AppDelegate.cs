@@ -266,7 +266,7 @@ namespace Mehspot.iOS
 
 		private UIViewController GetInitialViewController(NSDictionary launchOptions)
 		{
-			var storyboard = UIStoryboard.FromName("Main", null);
+			//return UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
 			if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated())
 			{
 				if (launchOptions != null)
@@ -284,7 +284,7 @@ namespace Mehspot.iOS
 					}
 				}
 
-				return storyboard.InstantiateViewController("LoginViewController");
+				return UIStoryboard.FromName("Main", null).InstantiateViewController("LoginViewController");
 			}
 
 			if (!MehspotAppContext.Instance.DataStorage.WalkthroughPassed)
@@ -292,7 +292,7 @@ namespace Mehspot.iOS
 				return UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
 			}
 
-			return storyboard.InstantiateInitialViewController();
+			return UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
 		}
 
 		void OnException(Exception exception)

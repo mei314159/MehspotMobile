@@ -15,7 +15,9 @@ namespace mehspot.iOS
 	public partial class WalkthroughController : UIPageViewController
 	{
 		private WalkthroughStep1Controller step1;
-		private WalkthroughStep2Controller step2;
+		private WalkthroughStep2Controller step2;
+		private WalkthroughStep3Controller step3;
+		private WalkthroughStep4Controller step4;
 		ProfileService profileService;
 
 		ProfileDto profile;
@@ -33,9 +35,13 @@ namespace mehspot.iOS
 			profileService = new ProfileService(MehspotAppContext.Instance.DataStorage);
 			step1 = (WalkthroughStep1Controller)Storyboard.InstantiateViewController("WalkthroughStep1Controller");
 			step2 = (WalkthroughStep2Controller)Storyboard.InstantiateViewController("WalkthroughStep2Controller");
+			step3 = (WalkthroughStep3Controller)Storyboard.InstantiateViewController("WalkthroughStep3Controller");
+			step4 = (WalkthroughStep4Controller)Storyboard.InstantiateViewController("WalkthroughStep4Controller");
 			step1.OnContinue += Step1OnContinue;
 			step2.OnContinue += Step2OnContinue;
-			this.DataSource = new PageDataSource(new List<UIViewController> { step1, step2 });
+			step3.OnContinue += Step3OnContinue;
+			step4.OnContinue += Step4OnContinue;
+			this.DataSource = new PageDataSource(new List<UIViewController> { step1, step2, step3, step4 });
 			this.SetViewControllers(new[] { step1 }, UIPageViewControllerNavigationDirection.Forward, false, (finished) => { });
 
 			viewHelper.ShowOverlay("Loading Profile");
@@ -72,19 +78,29 @@ namespace mehspot.iOS
 		void Step1OnContinue(Stream imageStream)
 		{
 			this.profileImageStream = imageStream;
-			this.SetViewControllers(new[] { step2 }, UIPageViewControllerNavigationDirection.Forward, true, (finished) => { });
+			this.SetViewControllers(new[] { step2 }, UIPageViewControllerNavigationDirection.Forward, true, null);
 		}
 
-		async void Step2OnContinue(string zip, int subdivisionId, int? optionId)
+		void Step2OnContinue(string zip, int subdivisionId, int? optionId)
 		{
 			profile.Zip = zip;
 			profile.SubdivisionId = subdivisionId;
 			profile.SubdivisionOptionId = optionId;
+			this.SetViewControllers(new[] { step3 }, UIPageViewControllerNavigationDirection.Forward, true, null);
+		}
+
+		void Step3OnContinue()
+		{
+			this.SetViewControllers(new[] { step4 }, UIPageViewControllerNavigationDirection.Forward, true, null);
+		}
+
+		async void Step4OnContinue(BadgeGroup badgeGroup)
+		{
 			if (profileImageStream == null && string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
 			{
 				viewHelper.ShowPrompt("Error", "Please, upload a profile picture", "OK", () =>
 				{
-					this.SetViewControllers(new[] { step1 }, UIPageViewControllerNavigationDirection.Reverse, true, (finished) => { });
+					this.SetViewControllers(new[] { step1 }, UIPageViewControllerNavigationDirection.Reverse, true, null);
 				});
 				return;
 			}
@@ -102,6 +118,7 @@ namespace mehspot.iOS
 				viewHelper.HideOverlay();
 				if (result.IsSuccess)
 				{
+					MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup = badgeGroup;
 					var targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
 					View.Window.SwapController(targetViewController);
 				}
@@ -115,6 +132,7 @@ namespace mehspot.iOS
 				viewHelper.ShowAlert("Error", "Can not save profile picture");
 				viewHelper.HideOverlay();
 			}
+
 		}
 
 		protected override void Dispose(bool disposing)

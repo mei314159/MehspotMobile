@@ -146,6 +146,22 @@ namespace Mehspot.AndroidApp.Core
 			}
 		}
 
+		public BadgeGroup PreferredBadgeGroup
+		{
+			get
+			{
+				var result = (BadgeGroup)settings.GetInt(nameof(IApplicationDataStorage.PreferredBadgeGroup), 0);
+				return result;
+			}
+
+			set
+			{
+				var prefEditor = settings.Edit();
+				prefEditor.PutInt(nameof(IApplicationDataStorage.PreferredBadgeGroup), (int)value);
+				prefEditor.Commit();
+			}
+		}
+
 		public T Get<T>(string key)
 		{
 			var data = settings.GetString(key, null);

@@ -55,7 +55,7 @@ namespace Mehspot.AndroidApp
 			base.OnStart();
 			if (!model.dataLoaded)
 			{
-				await model.RefreshAsync(model.Items == null, true);
+				model.RefreshAsync(model.Items == null, true);
 			}
 		}
 
@@ -139,22 +139,25 @@ namespace Mehspot.AndroidApp
 
 		public void DisplayBadges()
 		{
-			var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.badgesWrapper);
-			wrapper.RemoveAllViews();
-
-			foreach (var element in wrapList)
+			Activity.RunOnUiThread(() =>
 			{
-				element.Dispose();
-			}
+				var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.badgesWrapper);
+				wrapper.RemoveAllViews();
 
-			wrapList.Clear();
+				foreach (var element in wrapList)
+				{
+					element.Dispose();
+				}
 
-			foreach (var item in model.Items)
-			{
-				var bubble = CreateItem(item);
-				wrapper.AddView(bubble);
-				wrapList.Add(bubble);
-			}
+				wrapList.Clear();
+
+				foreach (var item in model.Items)
+				{
+					var bubble = CreateItem(item);
+					wrapper.AddView(bubble);
+					wrapList.Add(bubble);
+				}
+			});
 		}
 
 		private ValueAnimator SlideAnimator(View view, int start, int end)

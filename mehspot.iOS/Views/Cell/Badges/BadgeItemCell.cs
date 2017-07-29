@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 
 using Foundation;
 using Mehspot.Core;
-using Mehspot.Core.DTO;
+using ObjCRuntime;
 using UIKit;
+using Mehspot.Core.Services.Badges;
 
 namespace Mehspot.iOS.Views
 {
@@ -23,7 +24,7 @@ namespace Mehspot.iOS.Views
 			// Note: this .ctor should not contain any initialization logic.
 		}
 
-		public BadgeSummaryDTO BadgeSummary { get; set; }
+		public BadgeInfo BadgeInfo { get; set; }
 
 
 		[Outlet]
@@ -59,6 +60,14 @@ namespace Mehspot.iOS.Views
 		public Action<UIButton> SearchButtonTouch { get; set; }
 		public Action<UIButton> BadgeRegisterButtonTouch { get; set; }
 
+
+		public static BadgeItemCell Create()
+		{
+			var arr = NSBundle.MainBundle.LoadNib("BadgeItemCell", null, null);
+			var v = Runtime.GetNSObject<BadgeItemCell>(arr.ValueAt(0));
+			return v;
+		}
+
 		partial void SearchButtonTouched(UIButton sender)
 		{
 			SearchButtonTouch?.Invoke(sender);
@@ -69,20 +78,20 @@ namespace Mehspot.iOS.Views
 			BadgeRegisterButtonTouch?.Invoke(sender);
 		}
 
-		public void Configure(BadgeSummaryDTO badge)
+		public void Initialize(BadgeInfo badge)
 		{
 			var cell = this;
-			cell.BadgePicture.Image = UIImage.FromFile("badges/" + badge.BadgeName.ToLower() + (badge.IsRegistered ? string.Empty : "b"));
-			cell.BadgeName.Text = MehspotResources.ResourceManager.GetString(badge.BadgeName);
-			cell.BadgeSummary = badge;
+			cell.BadgePicture.Image = UIImage.FromFile("badges/" + badge.BadgeName.ToLower() + (badge.Badge.IsRegistered ? string.Empty : "b"));
+			cell.BadgeName.Text = badge.CustomLabel ?? MehspotResources.ResourceManager.GetString(badge.BadgeName);
+			cell.BadgeInfo = badge;
 			cell.SearchButton.Layer.BorderWidth = cell.BadgeRegisterButton.Layer.BorderWidth = 1;
 			cell.SearchButton.Layer.BorderColor = cell.SearchButton.TitleColor(UIControlState.Normal).CGColor;
 			cell.BadgeRegisterButton.Layer.BorderColor = cell.BadgeRegisterButton.TitleColor(UIControlState.Normal).CGColor;
-			cell.BadgeRegisterButton.SetTitle(badge.IsRegistered ? "Update" : "Register", UIControlState.Normal);
+			cell.BadgeRegisterButton.SetTitle(badge.Badge.IsRegistered ? "Update" : "Register", UIControlState.Normal);
 			cell.BadgeDescription.Text = MehspotResources.ResourceManager.GetString(badge.BadgeName + "_Description");
-			cell.LikesCount.Text = badge.Likes.ToString();
-			cell.RecommendationsCount.Text = badge.Recommendations.ToString();
-			cell.ReferencesCount.Text = badge.References.ToString();
+			cell.LikesCount.Text = badge.Badge.Likes.ToString();
+			cell.RecommendationsCount.Text = badge.Badge.Recommendations.ToString();
+			cell.ReferencesCount.Text = badge.Badge.References.ToString();
 		}
 		void ReleaseDesignerOutlets()
 		{

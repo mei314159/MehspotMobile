@@ -187,6 +187,8 @@
     <Folder Include="Assets.xcassets\details-icon.imageset\" />
     <Folder Include="Assets.xcassets\review-icon.imageset\" />
     <Folder Include="Core\Builders\" />
+    <Folder Include="Views\GrouppingView\" />
+    <Folder Include="Views\Cell\Badges\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -197,7 +199,6 @@
     <InterfaceDefinition Include="Views\Cell\TextEditCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SliderCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SearchResultsCell.xib" />
-    <InterfaceDefinition Include="Views\Cell\BadgeItemCell.xib" />
     <InterfaceDefinition Include="Views\Cell\TextViewCell.xib" />
     <InterfaceDefinition Include="Views\Cell\MultilineTextEditCell.xib" />
     <InterfaceDefinition Include="Views\Cell\SubdivisionPickerCell.xib" />
@@ -210,6 +211,10 @@
     <InterfaceDefinition Include="Views\Cell\MessageCell.xib" />
     <InterfaceDefinition Include="Views\Cell\RangeSliderCell.xib" />
     <InterfaceDefinition Include="Walkthrough.storyboard" />
+    <InterfaceDefinition Include="Views\GrouppingView\GrouppingViewCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\Badges\BadgeCategoryCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\Badges\BadgeItemCell.xib" />
+    <InterfaceDefinition Include="Views\GrouppingView\GrouppingView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -259,11 +264,6 @@
     <Compile Include="Controllers\Profile\EditProfileViewController.cs" />
     <Compile Include="Controllers\Profile\EditProfileViewController.designer.cs">
       <DependentUpon>EditProfileViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Cell\BadgeItemCell.cs" />
-    <Compile Include="Controllers\Badges\BadgesViewController.cs" />
-    <Compile Include="Controllers\Badges\BadgesViewController.designer.cs">
-      <DependentUpon>BadgesViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Badges\ViewProfileViewController.cs" />
     <Compile Include="Controllers\Badges\ViewProfileViewController.designer.cs">
@@ -345,6 +345,35 @@
     <Compile Include="WalkthroughStep2Controller.designer.cs" />
     <Compile Include="ExtendedTextField.cs" />
     <Compile Include="PageDataSource.cs" />
+    <Compile Include="WalkthroughStep3Controller.cs" />
+    <Compile Include="WalkthroughStep3Controller.designer.cs">
+      <DependentUpon>WalkthroughStep3Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WalkthroughStep4Controller.cs" />
+    <Compile Include="WalkthroughStep4Controller.designer.cs">
+      <DependentUpon>WalkthroughStep4Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GrouppingView\GrouppingViewCell.cs" />
+    <Compile Include="Views\GrouppingView\GrouppingViewCell.designer.cs">
+      <DependentUpon>GrouppingViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\BadgeGroupsViewController.cs" />
+    <Compile Include="Controllers\Badges\BadgeGroupsViewController.designer.cs">
+      <DependentUpon>BadgeGroupsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Badges\DataSources\BadgesGrouppingViewDataSource.cs" />
+    <Compile Include="Views\Cell\Badges\BadgeCategoryCell.cs" />
+    <Compile Include="Views\Cell\Badges\BadgeCategoryCell.designer.cs">
+      <DependentUpon>BadgeCategoryCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\Badges\BadgeItemCell.cs" />
+    <Compile Include="Views\GrouppingView\GrouppingView.cs" />
+    <Compile Include="Views\GrouppingView\GrouppingView.designer.cs">
+      <DependentUpon>GrouppingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GrouppingView\GrouppingViewDataSource.cs" />
+    <Compile Include="Views\GrouppingView\IGrouppingViewCell.cs" />
+    <Compile Include="Views\GrouppingView\DelimiterView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />
@@ -401,6 +430,8 @@
     <BundleResource Include="Resources\slider-default-handle-highlighted.png" />
     <BundleResource Include="Resources\slider-default-handle-disabled%402x.png" />
     <BundleResource Include="Resources\slider-default-handle-disabled.png" />
+    <BundleResource Include="Resources\w3_background_t%402x.png" />
+    <BundleResource Include="Resources\badge_group_bg%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

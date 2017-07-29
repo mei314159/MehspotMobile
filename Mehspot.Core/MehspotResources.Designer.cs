@@ -2543,5 +2543,61 @@ namespace Mehspot.Core
                 return ResourceManager.GetString("SearchLimitMessageTemplate", resourceCulture);
             }
         }
+
+        public static string BadgeGroup_Jobs
+        {
+            get
+            {
+                return ResourceManager.GetString("BadgeGroup_Jobs", resourceCulture);
+            }
+        }
+
+        public static string BadgeGroupDescription_Jobs
+        {
+            get
+            {
+                return ResourceManager.GetString("BadgeGroupDescription_Jobs", resourceCulture);
+            }
+        }
+
+        public static string BadgeGroup_Friends
+        {
+            get
+            {
+                return ResourceManager.GetString("BadgeGroup_Friends", resourceCulture);
+            }
+        }
+
+        public static string BadgeGroupDescription_Friends
+        {
+            get
+            {
+                return ResourceManager.GetString("BadgeGroupDescription_Friends", resourceCulture);
+            }
+        }
+
+        public static string BadgeGroup_Helpers
+        {
+            get
+            {
+                return ResourceManager.GetString("BadgeGroup_Helpers", resourceCulture);
+            }
+        }
+
+        public static string BadgeGroupDescription_Helpers
+        {
+            get
+            {
+                return ResourceManager.GetString("BadgeGroupDescription_Helpers", resourceCulture);
+            }
+        }
+
+        public static string OtherHelpers
+        {
+            get
+            {
+                return ResourceManager.GetString("OtherHelpers", resourceCulture);
+            }
+        }
     }
 }
