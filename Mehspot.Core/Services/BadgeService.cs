@@ -43,6 +43,18 @@ namespace Mehspot.Core.Services
             return result;
         }
 
+        public async Task<Result<BadgeSummaryBaseDTO[]>> GetBadgesSummaryBaseAsync(string userId)
+        {
+            var result = await GetAsync<BadgeSummaryBaseDTO[]>($"Badges/Summary?userId={userId}").ConfigureAwait(false);
+
+            if (result.IsSuccess)
+            {
+                ApplicationDataStorage.Set(BadgeSummaryCacheKey, result.Data);
+            }
+
+            return result;
+        }
+
         public async Task<Result<StaticDataDTO[]>> GetBadgeKeysAsync(int badgeId, string key)
         {
             return await GetAsync<StaticDataDTO[]>("Badges/GetBadgeKeys?badgeId=" + badgeId + "&key=" + key).ConfigureAwait(false);
@@ -71,7 +83,6 @@ namespace Mehspot.Core.Services
         {
             return await GetAsync<BadgeRecommendationDTO>($"Badges/Recommendations?badgeId={badgeId}&userId={userId}").ConfigureAwait(false);
         }
-
 
         public async Task<Result<BadgeProfileDTO<EditBadgeProfileDTO>>> GetMyBadgeProfileAsync(int badgeId)
         {

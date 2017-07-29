@@ -18,7 +18,7 @@ using Mehspot.Core.Services;
 namespace Mehspot.AndroidApp
 {
 	[Activity(Label = "Messaging")]
-	public class MessagingActivity : Activity, IMessagingViewController
+	public class MessagingActivity : Activity, 	IMessagingViewController
 	{
 		private MessagingModel messagingModel;
 
@@ -42,6 +42,18 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
+		public string ProfilePicturePath
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
 
 		protected override async void OnCreate(Bundle savedInstanceState)
 		{

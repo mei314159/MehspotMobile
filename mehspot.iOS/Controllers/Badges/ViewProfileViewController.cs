@@ -22,8 +22,9 @@ namespace Mehspot.iOS
 		private string MessageUserName;
 
 		public IViewHelper ViewHelper { get; private set; }
-		public ISearchResultDTO SearchResultDTO { get; set; }
-		public BadgeSummaryDTO BadgeSummary { get; set; }
+		public int BadgeId { get; set; }
+		public string BadgeName { get; set; }
+		public string UserId { get; set; }
 
 		#region IViewBadgeProfileController
 		public string WindowTitle
@@ -185,18 +186,19 @@ namespace Mehspot.iOS
 
 		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
 		{
-			if (segue.Identifier == "GoToMessagingSegue")
+			if (segue.Identifier == "GoToMessagingSegue" && this.model.Profile != null)
 			{
 				var controller = (MessagingViewController)segue.DestinationViewController;
 				controller.ToUserId = MessageUserId;
 				controller.ToUserName = MessageUserName;
+				controller.ProfilePicturePath = this.model.Profile.Details.ProfilePicturePath;
 				controller.ParentController = this;
 			}
 			else if (segue.Identifier == "GoToWriteRecommendationSegue")
 			{
 				var controller = (WriteReviewController)segue.DestinationViewController;
-				controller.BadgeId = SearchResultDTO.Details.BadgeId;
-				controller.UserId = SearchResultDTO.Details.UserId;
+				controller.BadgeId = this.BadgeId;
+				controller.UserId = this.UserId;
 				controller.OnSave += RecommendationAdded;
 			}
 
@@ -225,7 +227,7 @@ namespace Mehspot.iOS
 					}
 				case 2:
 					{
-						GoToMessaging(this.SearchResultDTO.Details.UserId, this.SearchResultDTO.Details.FirstName);
+						GoToMessaging(this.UserId, this.FirstName);
 						break;
 					}
 			}

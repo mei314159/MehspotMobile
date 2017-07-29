@@ -20,6 +20,7 @@ namespace Mehspot.iOS
 
 		private string SelectedUserId;
 		private string SelectedUserName;
+		private string SelectedUserImagePath;
 		private UIRefreshControl refreshControl;
 
 		public string Filter
@@ -31,6 +32,7 @@ namespace Mehspot.iOS
 		}
 
 		public IViewHelper ViewHelper { get; private set; }
+
 
 		public MessageBoardViewController(IntPtr handle) : base(handle)
 		{
@@ -90,6 +92,7 @@ namespace Mehspot.iOS
 			var controller = (MessagingViewController)segue.DestinationViewController;
 			controller.ToUserName = this.SelectedUserName;
 			controller.ToUserId = this.SelectedUserId;
+			controller.ProfilePicturePath = this.SelectedUserImagePath;
 			controller.ParentController = this;
 			base.PrepareForSegue(segue, sender);
 		}
@@ -112,6 +115,7 @@ namespace Mehspot.iOS
 		public void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			var dto = model.Items[indexPath.Row].WithUser;
+			this.SelectedUserImagePath = model.Items[indexPath.Row].WithUser.ProfilePicturePath;
 			this.SelectedUserId = dto.Id;
 			this.SelectedUserName = dto.UserName;
 			PerformSegue("GoToMessagingSegue", this);

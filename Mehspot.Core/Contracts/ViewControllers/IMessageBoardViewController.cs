@@ -11,9 +11,7 @@ namespace Mehspot.Core.Contracts.ViewControllers
         IViewHelper ViewHelper { get; }
 
         void DisplayMessageBoard();
-
         void UpdateApplicationBadge(int value);
-
         void UpdateMessageBoardCell(MessageBoardItemDto dto, int index);
     }
 

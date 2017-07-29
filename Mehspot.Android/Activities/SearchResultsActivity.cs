@@ -141,7 +141,9 @@ namespace Mehspot.AndroidApp
 		void Item_ViewProfileButtonClicked(ISearchResultDTO dto)
 		{
 			var target = new Intent(this, typeof(ViewBadgeProfileActivity));
-			target.PutExtra("badgeSummary", this.BadgeSummary);
+			target.PutExtra("badgeId", this.BadgeSummary.BadgeId);
+			target.PutExtra("badgeName", this.BadgeSummary.BadgeName);
+			target.PutExtra("userId", dto.Details.UserId);
 			target.PutExtra("searchResult", dto);
 			this.StartActivity(target);
 		}

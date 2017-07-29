@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using Mehspot.iOS.Views;
 using Mehspot.Core.Contracts.Wrappers;
 using UIKit;
+using CoreGraphics;
 
 namespace Mehspot.iOS.Wrappers
 {
@@ -40,7 +41,7 @@ namespace Mehspot.iOS.Wrappers
 			   });
 		}
 
-		public void ShowOverlay(string text)
+		public void ShowOverlay(string text, bool opaque = false)
 		{
 			HideOverlay();
 
@@ -59,9 +60,17 @@ namespace Mehspot.iOS.Wrappers
 					frame = UIScreen.MainScreen.Bounds;
 				}
 
-				loadingOverlay = new LoadingOverlay(frame, text);
+				if (!opaque)
+				{
+					loadingOverlay = new LoadingOverlay(frame, text);
+				}
+				else
+				{
+					view.UserInteractionEnabled = false;
+					loadingOverlay = new LoadingOverlay(frame, text, true);
+				}
+
 				view.Add(loadingOverlay);
-				view.UserInteractionEnabled = false;
 				view.BringSubviewToFront(loadingOverlay);
 			});
 		}
@@ -75,7 +84,6 @@ namespace Mehspot.iOS.Wrappers
 					view.UserInteractionEnabled = true;
 
 					loadingOverlay.Hide();
-					loadingOverlay.Dispose();
 				});
 
 				loadingOverlay = null;

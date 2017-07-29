@@ -11,10 +11,23 @@ namespace Mehspot.iOS.Views
 		UIActivityIndicatorView activitySpinner;
 		UILabel loadingLabel;
 
-		public LoadingOverlay(CGRect frame, string text) : base(frame)
+		public LoadingOverlay(CGRect frame, string text, bool opaque = false) : base(frame)
+		{
+			if (!opaque)
+			{
+				Initialize(UIColor.FromRGBA(0, 0, 0, 0.8f), UIActivityIndicatorViewStyle.WhiteLarge, text);
+			}
+			else
+			{ 
+				Initialize(UIColor.White, UIActivityIndicatorViewStyle.Gray, text);
+				activitySpinner.Transform = CGAffineTransform.MakeScale(2f, 2f);
+			}
+		}
+
+		private void Initialize(UIColor color, UIActivityIndicatorViewStyle style, string text)
 		{
 			// configurable bits
-			BackgroundColor = UIColor.FromRGBA(0, 0, 0, 0.8f);
+			BackgroundColor = color;// UIColor.FromRGBA(255, 255, 255, 1.0f);
 			AutoresizingMask = UIViewAutoresizing.All;
 
 			nfloat labelHeight = 22;
@@ -25,12 +38,12 @@ namespace Mehspot.iOS.Views
 			nfloat centerY = Frame.Height / 2;
 
 			// create the activity spinner, center it horizontall and put it 5 points above center x
-			activitySpinner = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
+			activitySpinner = new UIActivityIndicatorView(style);
 			activitySpinner.Frame = new CGRect(
 				centerX - (activitySpinner.Frame.Width / 2),
-				centerY - activitySpinner.Frame.Height - 20,
-				activitySpinner.Frame.Width,
-				activitySpinner.Frame.Height);
+							centerY - activitySpinner.Frame.Height - 20,
+							activitySpinner.Frame.Width,
+							activitySpinner.Frame.Height);
 			activitySpinner.AutoresizingMask = UIViewAutoresizing.All;
 			AddSubview(activitySpinner);
 			activitySpinner.StartAnimating();
@@ -48,7 +61,6 @@ namespace Mehspot.iOS.Views
 			loadingLabel.TextAlignment = UITextAlignment.Center;
 			loadingLabel.AutoresizingMask = UIViewAutoresizing.All;
 			AddSubview(loadingLabel);
-
 		}
 
 		/// <summary>

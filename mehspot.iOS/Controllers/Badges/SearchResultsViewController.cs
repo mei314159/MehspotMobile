@@ -151,12 +151,14 @@ namespace Mehspot.iOS
 				var controller = (MessagingViewController)segue.DestinationViewController;
 				controller.ToUserName = this.model.SelectedItem.Details.FirstName;
 				controller.ToUserId = this.model.SelectedItem.Details.UserId;
+				controller.ProfilePicturePath = this.model.SelectedItem.Details.ProfilePicturePath;
 			}
 			else if (segue.Identifier == "ViewProfileSegue")
 			{
 				var controller = (ViewProfileViewController)segue.DestinationViewController;
-				controller.BadgeSummary = BadgeSummary;
-				controller.SearchResultDTO = this.model.SelectedItem;
+				controller.BadgeId = this.BadgeSummary.BadgeId;
+				controller.BadgeName = this.BadgeSummary.BadgeName;
+				controller.UserId = this.model.SelectedItem.Details.UserId;
 			}
 			else if (segue.Identifier == "RegisterRequiredBadgeSegue")
 			{

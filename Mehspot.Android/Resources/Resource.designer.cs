@@ -5907,13 +5907,16 @@ namespace Mehspot.AndroidApp
 			public const int TextViewItem = 2130968700;
 			
 			// aapt resource value: 0x7f04007d
-			public const int VerifySubdivisionActivity = 2130968701;
+			public const int UserProfileViewActivity = 2130968701;
 			
 			// aapt resource value: 0x7f04007e
-			public const int ViewBadgeProfileActivity = 2130968702;
+			public const int VerifySubdivisionActivity = 2130968702;
 			
 			// aapt resource value: 0x7f04007f
-			public const int WriteReviewActivity = 2130968703;
+			public const int ViewBadgeProfileActivity = 2130968703;
+			
+			// aapt resource value: 0x7f040080
+			public const int WriteReviewActivity = 2130968704;
 			
 			static Layout()
 			{

@@ -22,6 +22,12 @@ namespace Mehspot.Core.DTO.Badges
 
         public string ProfilePicturePath { get; set; }
 
+        public bool IsFavorite { get; set; }
+
+        public int RecommendationsCount { get; set; }
+
+        public double? Distance { get; set; }
+
         [Cell(Label = "Hired Before", CellType = CellType.Boolean, Order = 999)]
         public bool IsHired { get; set; }
 

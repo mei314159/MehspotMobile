@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Mehspot.Core.Contracts.ViewControllers;
+using Mehspot.Core.DTO;
+using Mehspot.Core.Services;
+
+namespace Mehspot.Core.Models
+{
+    public class UserProfileViewModel
+    {
+        private readonly BadgeService badgesService;
+        private readonly ProfileService profileService;
+        private readonly IUserProfileViewController viewController;
+        private volatile bool loading;
+        private volatile int selectedBadgeIndex;
+
+        public UserProfileSummaryDTO userProfile;
+        public List<BadgeSummaryBaseDTO> Items;
+        public string UserId { get; set; }
+        public event Action LoadingStart;
+        public event Action LoadingEnd;
+        public volatile bool dataLoaded;
+
+        public BadgeSummaryBaseDTO SelectedBadge => Items?[selectedBadgeIndex];
+
+
+        public UserProfileViewModel(BadgeService badgesService, ProfileService profileService, IUserProfileViewController viewController)
+        {
+            this.badgesService = badgesService;
+            this.profileService = profileService;
+            this.viewController = viewController;
+        }
+
+        public async Task LoadAsync()
+        {
+            if (loading)
+                return;
+
+            loading = true;
+            LoadingStart?.Invoke();
+
+            var profileResult = await profileService.LoadProfileSummaryAsync(UserId);
+            if (profileResult.IsSuccess)
+            {
+                this.Items = profileResult.Data.RegisteredBadges;
+                this.userProfile = profileResult.Data;
+                await InitializeDataAsync();
+            }
+            else
+            {
+                viewController.ViewHelper.ShowAlert("Error", "Can not load data");
+            }
+
+            LoadingEnd?.Invoke();
+            viewController.ViewHelper.HideOverlay();
+            dataLoaded = profileResult.IsSuccess;
+            loading = false;
+        }
+
+        private async Task InitializeDataAsync()
+        {
+            viewController.UserName = userProfile.UserName;
+            viewController.FullName = $"{userProfile.FirstName} {userProfile.LastName}".Trim(' ');
+            if (string.IsNullOrWhiteSpace(viewController.FullName))
+            {
+                viewController.FullName = userProfile.UserName;
+            }
+            viewController.ProfilePicturePath = userProfile.ProfilePicturePath;
+            viewController.RecommendationsCount = userProfile.RecommendationsCount;
+            viewController.ReferencesCount = userProfile.ReferencesCount;
+
+            viewController.ReloadData();
+        }
+
+        public void SelectRow(int row)
+        {
+            this.selectedBadgeIndex = row;
+        }
+    }
+}

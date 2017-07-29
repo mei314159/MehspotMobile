@@ -167,7 +167,11 @@
     <Compile Include="Models\Subdivisions\VerifySubdivisionModel.cs" />
     <Compile Include="Models\Subdivisions\SectionModel.cs" />
     <Compile Include="DTO\BadgeGroup.cs" />
+    <Compile Include="Contracts\ViewControllers\IUserProfileViewController.cs" />
+    <Compile Include="Models\UserProfileViewModel.cs" />
+    <Compile Include="DTO\Profile\UserProfileSummaryDTO.cs" />
     <Compile Include="Services\Badges\BadgeHelper.cs" />
+    <Compile Include="DTO\Profile\BadgeSummaryBaseDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

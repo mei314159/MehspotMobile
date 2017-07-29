@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
@@ -173,7 +173,37 @@ namespace Mehspot.iOS.Core
 			}
 		}
 
-		public BadgeGroup PreferredBadgeGroup
+		public UserProfileSummaryDTO UserProfile
+		{
+			get
+			{
+				var data = NSUserDefaults.StandardUserDefaults.StringForKey(nameof(IApplicationDataStorage.UserProfile));
+
+				if (!string.IsNullOrWhiteSpace(data))
+				{
+					var result = JsonConvert.DeserializeObject<UserProfileSummaryDTO>(data);
+					return result;
+				}
+
+				return null;
+			}
+
+			set
+			{
+				if (value == null)
+				{
+					NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.UserProfile));
+				}
+				else
+				{
+					var data = JsonConvert.SerializeObject(value);
+					NSUserDefaults.StandardUserDefaults.SetString(data, nameof(IApplicationDataStorage.UserProfile));
+					NSUserDefaults.StandardUserDefaults.Synchronize();
+				}
+			}
+		}
+
+        public BadgeGroup PreferredBadgeGroup
 		{
 			get
 			{

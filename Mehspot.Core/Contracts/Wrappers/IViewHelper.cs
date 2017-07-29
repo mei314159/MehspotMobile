@@ -8,7 +8,7 @@ namespace Mehspot.Core.Contracts.Wrappers
 
         void ShowPrompt(string title, string text, string positiveButtonTitle, Action positiveAction);
 
-        void ShowOverlay(string text);
+        void ShowOverlay(string text, bool opaque = false);
 
         void HideOverlay();
     }

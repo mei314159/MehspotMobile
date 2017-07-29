@@ -7,6 +7,7 @@ namespace Mehspot.Core.Contracts
     {
         AuthenticationInfoDTO AuthInfo { get; set; }
         ProfileDto Profile { get; set; }
+        UserProfileSummaryDTO UserProfile { get; set; }
         string OldPushToken { get; set; }
         string PushToken { get; set; }
         bool PushIsEnabled { get; set; }
