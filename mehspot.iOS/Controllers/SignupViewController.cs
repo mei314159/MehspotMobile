@@ -61,7 +61,7 @@ namespace Mehspot.iOS
 				password = this.PasswordField.Text;
 			});
 
-			await model.SignInAsync(email, password).ConfigureAwait(false);
+			model.SignInAsync(email, password);
 		}
 
 		void Model_SignedIn(AuthenticationResult result, ProfileDto profile)

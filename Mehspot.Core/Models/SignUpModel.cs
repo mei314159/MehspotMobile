@@ -50,19 +50,16 @@ namespace Mehspot.Core.Models
 
                 viewHelper.ShowOverlay("Sign Up...");
                 var result = await authManager.SignUpAsync(email, username, password, confirmPassword).ConfigureAwait(false);
-                viewHelper.HideOverlay();
 
                 if (result.IsSuccess)
                 {
-                    if (SignedUp != null)
-                    {
-                        SignedUp(result);
-                    }
+                    SignedUp?.Invoke(result);
                 }
                 else
                 {
                     var modelStateError = result.ModelState?.ModelState?.Count > 0 ? result.ModelState.ModelState.First().Value.FirstOrDefault() : result.ErrorMessage;
                     viewHelper.ShowAlert("Sign Up error", modelStateError);
+                    viewHelper.HideOverlay();
                 }
             }
         }

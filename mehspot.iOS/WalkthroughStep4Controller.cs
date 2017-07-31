@@ -42,8 +42,8 @@ namespace mehspot.iOS
 			Cells = new[]
 			 {
 				BadgeCategoryCell.Create(UIColor.FromRGB(251, 114, 0), BadgeGroup.Friends),
-				BadgeCategoryCell.Create(UIColor.FromRGB(3,155, 67), BadgeGroup.Jobs),
-				BadgeCategoryCell.Create(UIColor.FromRGB(13,109,182), BadgeGroup.Helpers)
+				BadgeCategoryCell.Create(UIColor.FromRGB(3, 155, 67), BadgeGroup.Helpers),
+				BadgeCategoryCell.Create(UIColor.FromRGB(13, 109, 182), BadgeGroup.Jobs)
 			 };
 
 			TableView.DataSource = this;

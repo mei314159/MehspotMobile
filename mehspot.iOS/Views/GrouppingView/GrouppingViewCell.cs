@@ -43,10 +43,10 @@ namespace mehspot.iOS.Views
 				case BadgeGroup.Friends:
 					color = UIColor.FromRGB(251, 114, 0);
 					break;
-				case BadgeGroup.Jobs:
+				case BadgeGroup.Helpers:
 					color = UIColor.FromRGB(3, 155, 67);
 					break;
-				case BadgeGroup.Helpers:
+				case BadgeGroup.Jobs:
 					color = UIColor.FromRGB(13, 109, 182);
 					break;
 				default:

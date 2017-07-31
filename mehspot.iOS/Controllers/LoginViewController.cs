@@ -11,6 +11,7 @@ using Facebook.LoginKit;
 using CoreGraphics;
 using Mehspot.Core.Services;
 using Mehspot.Core.DTO;
+using System.Diagnostics;
 
 namespace Mehspot.iOS
 {
@@ -67,6 +68,7 @@ namespace Mehspot.iOS
 
 				await model.SignInExternalAsync(e.Result.Token.TokenString, "Facebook");
 			};
+
 			this.FbAuthButtonWrapper.AddSubview(loginView);
 		}
 
@@ -92,9 +94,10 @@ namespace Mehspot.iOS
 
 		private void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
+			this.viewHelper.ShowOverlay("Wait...");
 			InvokeOnMainThread(() =>
 			{
-				this.viewHelper.ShowOverlay("Wait...");
+				var s = Stopwatch.StartNew();
 				UIViewController targetViewController;
 				if (string.IsNullOrWhiteSpace(profile.Zip) || profile.SubdivisionId == null || string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
 				{
@@ -106,6 +109,7 @@ namespace Mehspot.iOS
 				}
 
 				this.View.Window.SwapController(targetViewController);
+				Console.WriteLine($"[stopwatch]:{s.Elapsed}");
 			});
 		}
 
