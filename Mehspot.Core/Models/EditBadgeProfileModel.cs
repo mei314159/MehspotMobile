@@ -92,20 +92,21 @@ namespace Mehspot.Core
 
                 this.controller.WindowTitle = GetTitle();
                 message = $"{controller.BadgeName} badge profile successfully saved";
+
+                controller.ViewHelper.ShowPrompt("Success", message, "OK", () =>
+                { 
+                    if (result.IsSuccess && controller.RedirectToSearchResults)
+                    {
+                        controller.GoToSearchResults();
+                    }
+                });
             }
             else
             {
-                var errors = result.ModelState.ModelState?.Select(a => a.Value?.FirstOrDefault());
+                var errors = result.ModelState?.ModelState?.Select(a => a.Value?.FirstOrDefault());
                 message = errors != null ? string.Join(Environment.NewLine, errors) : result.ErrorMessage;
+                controller.ViewHelper.ShowAlert(result.ErrorMessage, message);
             }
-
-            controller.ViewHelper.ShowPrompt(result.IsSuccess ? "Success" : "Error", message, "OK", () =>
-                        {
-                            if (result.IsSuccess && controller.RedirectToSearchResults)
-                            {
-                                controller.GoToSearchResults();
-                            }
-                        });
 
             controller.SaveButtonEnabled = true;
         }

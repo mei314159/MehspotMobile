@@ -135,8 +135,9 @@ namespace Mehspot.Core.Models
 
             if (!result.IsSuccess)
             {
-                var error = string.Join(Environment.NewLine, result.ModelState.ModelState.SelectMany(a => a.Value));
-                viewController.ViewHelper.ShowAlert(result.ErrorMessage, error);
+                var errors = result.ModelState?.ModelState?.SelectMany(a => a.Value);
+                var message = errors != null ? string.Join(Environment.NewLine, errors) : result.ErrorMessage;
+                viewController.ViewHelper.ShowAlert(result.ErrorMessage, message);
             }
 
             this.viewController.SaveButtonEnabled = true;
