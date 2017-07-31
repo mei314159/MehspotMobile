@@ -121,7 +121,8 @@ namespace Mehspot.Core.Models
         {
             if (recommendationCells.Count == 0)
             {
-                controller.ViewHelper.ShowOverlay("Wait...");
+                //controller.ViewHelper.ShowOverlay("Wait...");
+                OnRefreshing?.Invoke();
 
                 recommendationCells.Clear();
                 var result = await cellFactory.BadgeService.GetBadgeRecommendationsAsync(this.controller.BadgeId, this.controller.UserId);
@@ -151,7 +152,8 @@ namespace Mehspot.Core.Models
                     }
                 }
 
-                controller.ViewHelper.HideOverlay();
+                //controller.ViewHelper.HideOverlay();
+                OnRefreshed?.Invoke();
             }
 
             this.ShowRecommendations = true;

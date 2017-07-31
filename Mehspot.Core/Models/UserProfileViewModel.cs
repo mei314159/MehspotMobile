@@ -18,8 +18,6 @@ namespace Mehspot.Core.Models
         public UserProfileSummaryDTO userProfile;
         public List<BadgeSummaryBaseDTO> Items;
         public string UserId { get; set; }
-        public event Action LoadingStart;
-        public event Action LoadingEnd;
         public volatile bool dataLoaded;
 
         public BadgeSummaryBaseDTO SelectedBadge => Items?[selectedBadgeIndex];
@@ -38,7 +36,6 @@ namespace Mehspot.Core.Models
                 return;
 
             loading = true;
-            LoadingStart?.Invoke();
 
             var profileResult = await profileService.LoadProfileSummaryAsync(UserId);
             if (profileResult.IsSuccess)
@@ -52,9 +49,8 @@ namespace Mehspot.Core.Models
                 viewController.ViewHelper.ShowAlert("Error", "Can not load data");
             }
 
-            LoadingEnd?.Invoke();
-            viewController.ViewHelper.HideOverlay();
             dataLoaded = profileResult.IsSuccess;
+            viewController.ViewHelper.HideOverlay();
             loading = false;
         }
 

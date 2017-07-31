@@ -93,7 +93,7 @@ namespace Mehspot.iOS
 
 		partial void CloseButtonTouched(UIBarButtonItem sender)
 		{
-			if (ParentController is MessageBoardViewController)
+			if (ParentController is MessageBoardViewController || ParentController is ViewProfileViewController)
 			{
 				DismissViewController(true, null);
 			}

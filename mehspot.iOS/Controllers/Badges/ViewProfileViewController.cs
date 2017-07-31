@@ -179,8 +179,9 @@ namespace Mehspot.iOS
 			model.OnGoToMessaging += GoToMessaging;
 		}
 
-		public override async void ViewDidAppear(bool animated)
+		public override async void ViewWillAppear(bool animated)
 		{
+			SendMessageButton.SelectedSegment = 0;
 			await model.RefreshView();
 		}
 
@@ -240,15 +241,17 @@ namespace Mehspot.iOS
 
 		void Model_OnRefreshing()
 		{
+			TableView.Hidden = true;
 			TableView.UserInteractionEnabled = false;
+			ActivityIndicator.Hidden = false;
 			ActivityIndicator.StartAnimating();
-
 		}
 
 		void Model_OnRefreshed()
 		{
 			ActivityIndicator.StopAnimating();
-			ActivityIndicator.RemoveFromSuperview();
+			TableView.Hidden = false;
+			ActivityIndicator.Hidden = true;
 			TableView.UserInteractionEnabled = true;
 			TableView.TableHeaderView.Hidden = false;
 		}
