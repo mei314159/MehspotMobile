@@ -3,8 +3,11 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
+using Android.Support.V7.App;
+using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using Java.Net;
 using Mehspot.AndroidApp.Resources.layout;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
@@ -24,8 +27,12 @@ namespace Mehspot.AndroidApp
 
 		public ScrollView scrollView => this.FindViewById<ScrollView>(Resource.Id.scrollView1);
 		public LinearLayout messagesWrapper => this.FindViewById<LinearLayout>(Resource.Id.messagesWrapper);
+		public ImageView UserPicture => this.FindViewById<ImageView>(Resource.MessagingActivity.UserImage);
+		public TextView UserNameLabel => this.FindViewById<TextView>(Resource.MessagingActivity.UserName);
+
 		public string ToUserName => Intent.GetStringExtra("toUserName");
 		public string ToUserId => Intent.GetStringExtra("toUserId");
+		public string ProfilePicturePath => Intent.GetStringExtra("toProfilePicturePath");
 
 		public IViewHelper ViewHelper { get; private set; }
 
@@ -42,29 +49,27 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
-		public string ProfilePicturePath
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		protected override async void OnCreate(Bundle savedInstanceState)
+				protected override async void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.MessagingActivity);
+
 			this.ViewHelper = new ActivityHelper(this);
 			this.messagingModel = new MessagingModel(new MessagesService(MehspotAppContext.Instance.DataStorage), this);
 			MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
 
 			FindViewById<Button>(Resource.Id.sendMessageButton).Click += SendButtonClicked;
-			FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.MessagingActivity.Menu).Title = this.ToUserName;
+			UserNameLabel.Text = this.ToUserName;
+			UserPicture.ClipToOutline = true;
+			this.SetImage();
+
+			UserPicture.Click += (sender, e) =>
+			{
+				var userProfileActivity = new Intent(this, typeof(UserProfileViewActivity));
+				userProfileActivity.PutExtra("toUserName", this.ToUserName);
+				userProfileActivity.PutExtra("toUserId", this.ToUserId);
+				this.StartActivity(userProfileActivity);
+			};
 
 			var refresher = FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
 			refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
@@ -80,6 +85,30 @@ namespace Mehspot.AndroidApp
 			refresher.Refreshing = true;
 			await this.messagingModel.LoadMessagesAsync();
 			refresher.Refreshing = false;
+			this.ScrollToEnd();
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+		}
+
+		private void SetImage()
+		{
+			if (!string.IsNullOrEmpty(ProfilePicturePath))
+			{
+				var url = new URL(ProfilePicturePath);
+
+				if (ProfilePicturePath != null)
+				{
+					var bitmap = this.GetImageBitmapFromUrl(ProfilePicturePath);
+					UserPicture.SetImageBitmap(bitmap);
+				}
+			}
+			else
+			{
+				UserPicture.SetImageResource(Resource.Drawable.profile_image);
+			}
 		}
 
 		public void ScrollToEnd()

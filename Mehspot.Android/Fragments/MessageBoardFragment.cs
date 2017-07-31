@@ -146,6 +146,7 @@ namespace Mehspot.AndroidApp
 			var messagingActivity = new Intent(this.Context, typeof(MessagingActivity));
 			messagingActivity.PutExtra("toUserId", toUserId);
 			messagingActivity.PutExtra("toUserName", toUserName);
+			messagingActivity.PutExtra("toProfilePicturePath", dto.WithUser.ProfilePicturePath); 
 			this.StartActivity(messagingActivity);
 		}
 

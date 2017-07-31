@@ -43,6 +43,7 @@ namespace Mehspot.Core.Services
         public async Task<Result<string>> UploadProfileImageAsync(Stream profileImage)
         {
             var data = new MultipartFormDataContent();
+            profileImage.Position = 0;
             var streamContent = new StreamContent(profileImage);
             data.Add(streamContent, "file", "file.jpg");
             var result = await SendDataAsync<string>("profile/UploadProfileImage", HttpMethod.Post, data).ConfigureAwait(false);

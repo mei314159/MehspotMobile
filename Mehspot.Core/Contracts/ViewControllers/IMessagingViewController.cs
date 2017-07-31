@@ -9,13 +9,11 @@ namespace Mehspot.Core.Contracts.ViewControllers
         string ToUserId { get; }
         string ToUserName { get; }
         string MessageFieldValue { get; set; }
-        string ProfilePicturePath { get; set; }
+        string ProfilePicturePath { get; }
 
         IViewHelper ViewHelper { get; }
 
         void ScrollToEnd();
-
-        void ScrollingDown();
         void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult);
         void ToggleMessagingControls(bool enabled);
         void AddMessageBubbleToEnd(MessageDto messageDto);

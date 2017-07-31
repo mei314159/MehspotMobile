@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Android.Animation;
 using Android.App;
 using Android.Content;
@@ -133,7 +133,6 @@ namespace Mehspot.AndroidApp
 				{
 					wrapper.Visibility = ViewStates.Gone;
 				};
-
 			}
 		}
 

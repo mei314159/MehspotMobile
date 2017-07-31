@@ -24,25 +24,25 @@ namespace Mehspot.AndroidApp
 	public class ViewBadgeProfileActivity : Activity, IViewBadgeProfileController
 	{
 		private ViewBadgeProfileModel<View> model;
+
 		public int BadgeId => Intent.GetIntExtra("badgeId", 0);
 
 		public string BadgeName => Intent.GetStringExtra("badgeName");
 
 		public string UserId => Intent.GetStringExtra("userId");
 
+		public TextView UserNameLabel => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.UserNameLabel);
+		public TextView LikesCount => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.LikesCount);
+		public TextView DistanceLabel => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.DistanceLabel);
+		public TextView InfoLabel1View => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.InfoLabel1);
+		public TextView InfoLabel2View => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.InfoLabel2);
+		public TextView SubdivisionLabel => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.SubdivisionLabel);
+		public ListView ListView => FindViewById<ListView>(Resource.ViewBadgeProfileActivity.ListView);
+		public ImageView Picture => FindViewById<ImageView>(Resource.ViewBadgeProfileActivity.Picture);
+		public ImageView FavoriteIcon => FindViewById<ImageView>(Resource.ViewBadgeProfileActivity.FavoriteIcon);
+		public SegmentedControl Segments => FindViewById<SegmentedControl>(Resource.ViewBadgeProfileActivity.Segments);
+
 		public IViewHelper ViewHelper { get; private set; }
-
-		public TextView UserNameLabel => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.UserNameLabel);
-		public TextView LikesCount => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.LikesCount);
-		public TextView DistanceLabel => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.DistanceLabel);
-		public TextView InfoLabel1View => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.InfoLabel1);
-		public TextView InfoLabel2View => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.InfoLabel2);
-		public TextView SubdivisionLabel => (TextView)FindViewById(Resource.ViewBadgeProfileActivity.SubdivisionLabel);
-		public ListView ListView => (ListView)FindViewById(Resource.ViewBadgeProfileActivity.ListView);
-
-		public ImageView Picture => (ImageView)FindViewById(Resource.ViewBadgeProfileActivity.Picture);
-		public ImageView FavoriteIcon => (ImageView)FindViewById(Resource.ViewBadgeProfileActivity.FavoriteIcon);
-		public SegmentedControl Segments => (SegmentedControl)FindViewById(Resource.ViewBadgeProfileActivity.Segments);
 
 		#region IViewBadgeProfileController
 
@@ -170,15 +170,30 @@ namespace Mehspot.AndroidApp
 			SetContentView(Resource.Layout.ViewBadgeProfileActivity);
 
 			this.ViewHelper = new ActivityHelper(this);
+
 			model = new ViewBadgeProfileModel<View>(this, new BadgeService(MehspotAppContext.Instance.DataStorage), new AndroidCellBuilder(this));
 			model.OnRefreshing += Model_OnRefreshing;
 			model.OnRefreshed += Model_OnRefreshed;
 			model.OnWriteReviewButtonTouched += RecommendationsDataSource_OnWriteReviewButtonTouched;
 			model.OnGoToMessaging += GoToMessaging;
+
 			Segments.DetailsButton.Click += DetailsButton_Click;
 			Segments.RecommendationsButton.Click += RecommendationsButton_Click;
 			Segments.MessageButton.Click += MessageButton_Click;
+
 			ListView.Adapter = new ViewListAdapter(this, model);
+		}
+
+		protected override void OnStart()
+		{
+			base.OnStart();
+			model.RefreshView();
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+			Segments.HighlightSelectedButton(Segments.DetailsButton);
 		}
 
 		void DetailsButton_Click(object sender, EventArgs e)
@@ -193,16 +208,7 @@ namespace Mehspot.AndroidApp
 
 		void MessageButton_Click(object sender, EventArgs e)
 		{
-			var messagingActivity = new Intent(this, typeof(MessagingActivity));
-			messagingActivity.PutExtra("toUserId", this.SearchResultDTO.Details.UserId);
-			messagingActivity.PutExtra("toUserName", this.SearchResultDTO.Details.FirstName);
-			this.StartActivity(messagingActivity);
-		}
-
-		protected override void OnStart()
-		{
-			base.OnStart();
-			model.RefreshView();
+			GoToMessaging(this.UserId, this.FirstName);
 		}
 
 		public void SetProfilePictureUrl(string value)
@@ -225,7 +231,6 @@ namespace Mehspot.AndroidApp
 
 		public void ReloadCells()
 		{
-			Segments.HighlightSelectedButton(Segments.DetailsButton);
 			((ViewListAdapter)ListView.Adapter).NotifyDataSetChanged();
 		}
 
@@ -244,6 +249,7 @@ namespace Mehspot.AndroidApp
 			var messagingActivity = new Intent(this, typeof(MessagingActivity));
 			messagingActivity.PutExtra("toUserId", userId);
 			messagingActivity.PutExtra("toUserName", userName);
+			messagingActivity.PutExtra("toProfilePicturePath", this.model.Profile.Details.ProfilePicturePath);
 			this.StartActivity(messagingActivity);
 		}
 
@@ -257,8 +263,8 @@ namespace Mehspot.AndroidApp
 		void RecommendationsDataSource_OnWriteReviewButtonTouched()
 		{
 			var activity = new Intent(this, typeof(WriteReviewActivity));
-			activity.PutExtra("userId", this.SearchResultDTO.Details.UserId);
-			activity.PutExtra("badgeId", this.SearchResultDTO.Details.BadgeId);
+			//activity.PutExtra("userId", this.SearchResultDTO.Details.UserId);
+			//activity.PutExtra("badgeId", this.SearchResultDTO.Details.BadgeId);
 			this.StartActivity(activity);
 		}
 	}
