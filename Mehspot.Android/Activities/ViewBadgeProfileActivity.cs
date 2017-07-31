@@ -191,6 +191,11 @@ namespace Mehspot.AndroidApp
 			model.LoadProfile();
 		}
 
+		async void DetailsButton_Click(object sender, EventArgs e)
+		{
+			model.LoadProfile();
+		}
+
 		async void RecommendationsButton_Click(object sender, EventArgs e)
 		{
 			Segments.HighlightSelectedButton(Segments.RecommendationsButton);

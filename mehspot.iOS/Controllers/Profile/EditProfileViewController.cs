@@ -6,7 +6,6 @@ using Mehspot.Core.DTO;
 using Mehspot.Core;
 using Mehspot.iOS.Wrappers;
 using Mehspot.iOS.Extensions;
-using System.Runtime.InteropServices;
 using CoreGraphics;
 using SDWebImage;
 using Facebook.LoginKit;
@@ -21,7 +20,6 @@ namespace Mehspot.iOS
 	{
 		volatile bool profileImageChanged;
 
-		private ProfileService profileService;
 		private SubdivisionService subdivisionService;
 		private ProfileModel<UITableViewCell> model;
 		private string profilePicturePath;
@@ -98,7 +96,7 @@ namespace Mehspot.iOS
 
 		public override void ViewDidLoad()
 		{
-			profileService = new ProfileService(MehspotAppContext.Instance.DataStorage);
+			var profileService = new ProfileService(MehspotAppContext.Instance.DataStorage);
 			subdivisionService = new SubdivisionService(MehspotAppContext.Instance.DataStorage);
 			ViewHelper = new ViewHelper(this.View);
 
@@ -227,7 +225,7 @@ namespace Mehspot.iOS
 			Stream dataBytes = null;
 			if (profileImageChanged)
 			{
-				dataBytes = this.ProfilePicture.Image.AsJPEG().AsStream();
+				dataBytes = this.ProfilePicture.Image.MaxResizeImage(320, 320).AsJPEG().AsStream();
 			}
 
 			await model.SaveProfileAsync(dataBytes);

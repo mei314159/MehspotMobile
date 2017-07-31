@@ -502,6 +502,10 @@
         <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
         <image name="slider-default-handle-disabled.png" width="23" height="23"/>
         <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>

@@ -134,6 +134,15 @@ namespace mehspot.iOS
 			{
 				viewHelper.ShowOverlay("Loading Subdivisions");
 				Subdivisions = await GetSubdivisions(ZipField.Text);
+				if (Subdivisions?.Count <= 0)
+				{
+					SubdivisionField.SetTitle("Add Subdivision", UIControlState.Normal);
+				}
+				else
+				{
+					SubdivisionField.SetTitle("Subdivision", UIControlState.Normal);
+				}
+
 				viewHelper.HideOverlay();
 			}
 

@@ -873,9 +873,6 @@ namespace Mehspot.AndroidApp
 		public partial class ViewBadgeProfileActivity
 		{
 			
-			// aapt resource value: 0x7f2c0005
-			public const int DistanceLabel = 2133590021;
-			
 			// aapt resource value: 0x7f2e0005
 			public const int DistanceLabel = 2133721093;
 			
@@ -891,9 +888,6 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f2e0004
 			public const int LikesCount = 2133721092;
 			
-			// aapt resource value: 0x7f2e000a
-			public const int ListView = 2133721098;
-			
 			// aapt resource value: 0x7f2e0001
 			public const int Picture = 2133721089;
 			
@@ -905,13 +899,15 @@ namespace Mehspot.AndroidApp
 			
 			// aapt resource value: 0x7f2e0006
 			public const int SubdivisionLabel = 2133721094;
-			// aapt resource value: 0x7f2c000b
-			public const int profileContentWrapper = 2133590027;
 			
 			// aapt resource value: 0x7f2e0003
 			public const int UserNameLabel = 2133721091;
-			// aapt resource value: 0x7f2c000a
-			public const int profileScrollView = 2133590026;
+			
+			// aapt resource value: 0x7f2e000b
+			public const int profileContentWrapper = 2133721099;
+			
+			// aapt resource value: 0x7f2e000a
+			public const int profileScrollView = 2133721098;
 			
 			static ViewBadgeProfileActivity()
 			{

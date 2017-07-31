@@ -335,6 +335,11 @@ namespace Mehspot.AndroidApp
 				stream.Dispose();
 			}
 		}
+
+		public void InvokeOnMainThread(Action action)
+		{
+			this.Activity.RunOnUiThread(action);
+		}
 	}
 
 }

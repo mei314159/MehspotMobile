@@ -127,20 +127,22 @@ namespace Mehspot.Core.Models
 
             if (pictureStream != null)
             {
-                await this.profileService.UploadProfileImageAsync(pictureStream);
+                await this.profileService.UploadProfileImageAsync(pictureStream).ConfigureAwait(false);
             }
 
-            var result = await this.profileService.UpdateAsync(profile);
+            var result = await this.profileService.UpdateAsync(profile).ConfigureAwait(false);
             viewController.ViewHelper.HideOverlay();
-
-            if (!result.IsSuccess)
+            viewController.InvokeOnMainThread(() =>
             {
-                var errors = result.ModelState?.ModelState?.SelectMany(a => a.Value);
-                var message = errors != null ? string.Join(Environment.NewLine, errors) : result.ErrorMessage;
-                viewController.ViewHelper.ShowAlert(result.ErrorMessage, message);
-            }
+                if (!result.IsSuccess)
+                {
+                    var errors = result.ModelState?.ModelState?.SelectMany(a => a.Value);
+                    var message = errors != null ? string.Join(Environment.NewLine, errors) : result.ErrorMessage;
+                    viewController.ViewHelper.ShowAlert(result.ErrorMessage, message);
+                }
 
-            this.viewController.SaveButtonEnabled = true;
+                this.viewController.SaveButtonEnabled = true;
+            });
         }
 
         private async void ZipCell_ValueChanged(ITextEditCell sender, string value, ISubdivisionPickerCell subdivisionCell)
