@@ -5,34 +5,143 @@
     <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+EditBadgeProfileActivity/toolbar"
+        android:layout_centerHorizontal="true"
+        android:id="@+UserProfileViewActivity/UserProfileToolbar"
         app:title="User Profile"
         android:minWidth="25px"
         android:minHeight="25px"
         android:background="@color/light_green" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/UserProfileBlurPicture"
+        android:layout_below="@+UserProfileViewActivity/UserProfileToolbar"
+        android:src="#ffb0b0b0"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:id="@+id/UserProfilePicture"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@id/UserProfileBlurPicture"
+        android:layout_marginBottom="-30dp"
+        android:background="@drawable/roundedframe100"
+        android:src="@drawable/profile_image"
+        android:scaleType="centerCrop" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp" />
-        <ScrollView
+        android:layout_height="80dp"
+        android:id="@+id/UserProfileInfoView"
+        android:layout_below="@id/UserProfileBlurPicture"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:src="@drawable/like_pic"
+                android:paddingTop="15dp"
+                android:paddingRight="1dp" />
+            <TextView
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+UserProfileViewActivity/referenceCount"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="7pt" />
+            <TextView
+                android:text="Reference"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:paddingBottom="15dp"
+                android:textStyle="bold"
+                android:textSize="6pt"
+                android:textColor="@color/light_orange" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:id="@+id/UserProfileServiceView"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:gravity="center_horizontal">
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:id="@+UserProfileViewActivity/UserName"
+                android:gravity="center"
+                android:textSize="10pt"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/UserProfilePicture"
+                android:layout_marginTop="50dp"
+                android:text="User Name" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:src="@drawable/star_pic"
+                android:paddingTop="15dp"
+                android:paddingRight="1dp" />
+            <TextView
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+UserProfileViewActivity/recommendationCount"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="7pt" />
+            <TextView
+                android:text="Recommendation"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:paddingBottom="15dp"
+                android:textStyle="bold"
+                android:textSize="6pt"
+                android:textColor="@color/xam_blue" />
+        </LinearLayout>
+    </LinearLayout>
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+UserProfileViewActivity/profileScrollView"
+        android:layout_below="@id/UserProfileInfoView"
+        android:layout_marginTop="7dp">
+        <LinearLayout
+            android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+ProfileViewActivity/profileScrollView">
-            <LinearLayout
-                android:orientation="vertical"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:id="@+EditBadgeProfileActivity/ContentWrapper" />
-        </ScrollView>
-    </LinearLayout>
+            android:id="@+UserProfileViewActivity/ContentWrapper" />
+    </ScrollView>
 </RelativeLayout>

@@ -18,8 +18,9 @@
         android:maxHeight="50dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/roundedframe50"
         android:scaleType="centerCrop" />
-    <TextView
+    <TextView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/userName"
@@ -34,10 +35,9 @@
         android:layout_marginRight="50dp"
         android:minHeight="20dp"
         android:maxHeight="20dp"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:text="User Name"
         android:textStyle="bold" />
-    <TextView
+    <TextView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/message"
@@ -50,10 +50,9 @@
         android:minWidth="200dp"
         android:minHeight="20dp"
         android:layout_alignParentRight="true"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:text="Message"
         android:textSize="12dp" />
-    <TextView
+    <TextView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/unreadMessagesCount"
@@ -62,7 +61,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:minHeight="20dp"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:text="12"
         android:maxWidth="20dp"
         android:maxHeight="20dp"

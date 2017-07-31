@@ -215,6 +215,8 @@
     <Compile Include="Activities\VerifySubdivisionActivity.cs" />
     <Compile Include="Views\NoResultsView.cs" />
     <Compile Include="Views\Cells\RangeSliderCell.cs" />
+    <Compile Include="Activities\UserProfileViewActivity.cs" />
+    <Compile Include="Views\BadgeSummaryItemSimpified.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -317,6 +319,11 @@
     <AndroidResource Include="Resources\layout\RangeSliderCell.axml" />
     <AndroidResource Include="Resources\layout\NoResultsView.axml" />
     <AndroidResource Include="Resources\layout\UserProfileViewActivity.axml" />
+    <AndroidResource Include="Resources\layout\BadgeSummaryItemSimplified.axml" />
+    <AndroidResource Include="Resources\drawable\star_pic.png" />
+    <AndroidResource Include="Resources\drawable\like_pic.png" />
+    <AndroidResource Include="Resources\drawable\profile_image_small.png" />
+    <AndroidResource Include="Resources\drawable\roundedFrame100.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

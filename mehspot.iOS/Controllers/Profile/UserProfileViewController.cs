@@ -117,6 +117,7 @@ namespace Mehspot.iOS
 			this.ViewHelper = new ViewHelper(this.View);
 			badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
 			profileService = new ProfileService(MehspotAppContext.Instance.DataStorage);
+			ViewHelper.ShowOverlay("Wait...", true);
 
 			model = new UserProfileViewModel(badgeService, profileService, this);
 			model.UserId = this.ToUserId;

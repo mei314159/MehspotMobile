@@ -16,7 +16,7 @@ namespace Mehspot.AndroidApp.Wrappers
 			this.activity = activity;
 		}
 
-		public void ShowOverlay(string text)
+		public void ShowOverlay(string text, bool opaque = false)
 		{
 			activity.RunOnUiThread(() =>
 				{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mehspot.Core.Contracts.ViewControllers;
@@ -76,6 +76,18 @@ namespace Mehspot.Core.Models
         public void SelectRow(int row)
         {
             this.selectedBadgeIndex = row;
+        }
+
+        public void SelectBadge(BadgeSummaryBaseDTO dto)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i] == dto)
+                {
+                    SelectRow(i);
+                    break;
+                }
+            }
         }
     }
 }

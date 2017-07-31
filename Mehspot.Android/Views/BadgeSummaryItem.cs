@@ -45,7 +45,6 @@ namespace Mehspot.AndroidApp.Resources.layout
 		public TextView LikesCount => (TextView)FindViewById(Resource.BadgeSummary.LikesCount);
 		public TextView RecommendationsCount => (TextView)FindViewById(Resource.BadgeSummary.RecommendationsCount);
 		public TextView ReferencesCount => (TextView)FindViewById(Resource.BadgeSummary.ReferencesCount);
-		//public ImageView Picture => (ImageView)FindViewById(Resource.BadgeSummary.Picture);;
 		public Button RegisterButton => (Button)FindViewById(Resource.BadgeSummary.RegisterButton);
 		public Button SearchButton => (Button)FindViewById(Resource.BadgeSummary.SearchButton);
 

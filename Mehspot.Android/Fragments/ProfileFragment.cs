@@ -87,7 +87,7 @@ namespace Mehspot.AndroidApp
 				if (!string.IsNullOrEmpty(value))
 				{
 					profilePicturePath = value;
-					var url = new URL(profilePicturePath);
+					//var url = new URL(profilePicturePath);
 					if (profilePicturePath != null)
 					{
 						var bitmap = this.Activity.GetImageBitmapFromUrl(profilePicturePath);
