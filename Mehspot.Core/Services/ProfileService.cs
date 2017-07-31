@@ -31,7 +31,7 @@ namespace Mehspot.Core.Services
 
         public async Task<Result<ProfileDto>> UpdateAsync(ProfileDto profile)
         {
-            var result = await this.PutAsync<ProfileDto>("Profile/Update", profile);
+            var result = await this.PutAsync<ProfileDto>("Profile/Update", profile).ConfigureAwait(false);
             if (result.IsSuccess)
             {
                 MehspotAppContext.Instance.DataStorage.Profile = result.Data;

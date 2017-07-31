@@ -3,6 +3,7 @@ using System;
 using UIKit;
 using SDWebImage;
 using System.IO;
+using Mehspot.iOS.Extensions;
 
 namespace mehspot.iOS
 {
@@ -54,7 +55,7 @@ namespace mehspot.iOS
 				Stream dataBytes = null;
 				if (profileImageChanged)
 				{
-					dataBytes = this.ProfilePicture.Image.AsJPEG().AsStream();
+					dataBytes = this.ProfilePicture.Image.MaxResizeImage(320, 320).AsJPEG().AsStream();
 				}
 
 				OnContinue.Invoke(dataBytes);

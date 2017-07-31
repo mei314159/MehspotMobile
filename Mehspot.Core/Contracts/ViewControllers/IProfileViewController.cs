@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Mehspot.Core.Contracts.Wrappers;
-using Mehspot.Core.DTO;
-using Mehspot.Core.DTO.Subdivision;
 
 namespace Mehspot.Core
 {
@@ -17,5 +14,7 @@ namespace Mehspot.Core
 
         void ReloadData();
         void HideKeyboard();
+
+        void InvokeOnMainThread(Action action);
     }
 }

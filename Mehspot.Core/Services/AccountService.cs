@@ -6,6 +6,7 @@ using Mehspot.Core.Dto;
 using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
+using Mehspot.Core.Services;
 
 namespace Mehspot.Core.Auth
 {
@@ -163,6 +164,8 @@ namespace Mehspot.Core.Auth
         public void SignOut()
         {
             this.ApplicationDataStorage.AuthInfo = null;
+            this.ApplicationDataStorage.Profile = null;
+            this.ApplicationDataStorage.Set<object>(BadgeService.BadgeSummaryCacheKey, null);
         }
     }
 }

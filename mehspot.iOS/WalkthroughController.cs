@@ -9,6 +9,7 @@ using Mehspot.iOS.Extensions;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.iOS.Wrappers;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace mehspot.iOS
 {
@@ -106,33 +107,38 @@ namespace mehspot.iOS
 			}
 
 			viewHelper.ShowOverlay("Saving profile");
-			Result photoResult = null;
 			if (profileImageStream != null)
 			{
-				photoResult = await profileService.UploadProfileImageAsync(this.profileImageStream);
+				await UploadProfilePictureAsync(profileImageStream);
 			}
 
-			if (photoResult == null || photoResult.IsSuccess)
+			var result = await profileService.UpdateAsync(this.profile);
+
+			if (result.IsSuccess)
 			{
-				var result = await profileService.UpdateAsync(this.profile);
-				viewHelper.HideOverlay();
-				if (result.IsSuccess)
+				MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup = badgeGroup;
+				InvokeOnMainThread(() =>
 				{
-					MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup = badgeGroup;
 					var targetViewController = UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
 					View.Window.SwapController(targetViewController);
-				}
-				else
-				{
-					viewHelper.ShowAlert("Error", "Can not save user profile");
-				}
+				});
 			}
 			else
+			{
+				viewHelper.ShowAlert("Error", "Can not save user profile");
+				viewHelper.HideOverlay();
+			}
+
+		}
+
+		async Task UploadProfilePictureAsync(Stream photoStream)
+		{
+			var photoResult = await profileService.UploadProfileImageAsync(photoStream).ConfigureAwait(false);
+			if (photoResult != null && !photoResult.IsSuccess)
 			{
 				viewHelper.ShowAlert("Error", "Can not save profile picture");
 				viewHelper.HideOverlay();
 			}
-
 		}
 
 		protected override void Dispose(bool disposing)
@@ -141,6 +147,8 @@ namespace mehspot.iOS
 			{
 				step1?.Dispose();
 				step2?.Dispose();
+				step3?.Dispose();
+				step4?.Dispose();
 			}
 
 			base.Dispose(disposing);
