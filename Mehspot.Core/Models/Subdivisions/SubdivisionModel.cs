@@ -69,6 +69,12 @@ namespace Mehspot.Core.Models.Subdivisions
             controller.LoadPlaceByCoordinates(latitude, longitude);
         }
 
+        public void SetMarkerByPress(double latitude, double longitude)
+        {
+            controller.ViewHelper.ShowOverlay("Wait...");
+            controller.LoadPlaceByCoordinates(latitude, longitude);
+        }
+
         public void ReverseGeocodeCallback(double latitude, double longitude, string country, string name, params string[] addressLines)
         {
             controller.AddressFieldEnabled =
@@ -94,37 +100,48 @@ namespace Mehspot.Core.Models.Subdivisions
 
         public async Task SaveAsync()
         {
-            controller.ViewHelper.ShowOverlay("Saving...");
-
             DTO.Name = controller.NameFieldText;
             DTO.Address.FormattedAddress = controller.AddressFieldText;
             double latitude, longitude;
             DTO.Address.Latitude = double.TryParse(controller.LatitudeFieldText, out latitude) ? latitude : DTO.Address.Latitude;
             DTO.Address.Longitude = double.TryParse(controller.LongitudeFieldText, out longitude) ? longitude : DTO.Address.Longitude;
 
-            Result result;
-            if (controller.Subdivision != null)
+            if (string.IsNullOrWhiteSpace(DTO.Name))
             {
-                var overrideResult = await this.subdivisionService.OverrideAsync(DTO);
-                DTO.Id = overrideResult.Data.Id;
-                result = overrideResult;
+                controller.ViewHelper.ShowAlert("Error", "Enter subdivision name");
+            }
+            else if (string.IsNullOrWhiteSpace(DTO.Address.FormattedAddress))
+            {
+                controller.ViewHelper.ShowAlert("Error", "Enter subdivision address");
             }
             else
             {
-                var createResult = await this.subdivisionService.CreateAsync(DTO);
-                DTO.Id = createResult.Data.SubdivisionId;
-                DTO.OptionId = createResult.Data.OptionId;
-                result = createResult;
-            }
+                controller.ViewHelper.ShowOverlay("Saving...");
 
-            controller.ViewHelper.HideOverlay();
-            if (result.IsSuccess)
-            {
-                controller.DismissViewController(DTO);
-            }
-            else
-            {
-                controller.ViewHelper.ShowAlert("Error", result.ErrorMessage);
+                Result result;
+                if (controller.Subdivision != null)
+                {
+                    var overrideResult = await this.subdivisionService.OverrideAsync(DTO);
+                    DTO.Id = overrideResult.Data.Id;
+                    result = overrideResult;
+                }
+                else
+                {
+                    var createResult = await this.subdivisionService.CreateAsync(DTO);
+                    DTO.Id = createResult.Data.SubdivisionId;
+                    DTO.OptionId = createResult.Data.OptionId;
+                    result = createResult;
+                }
+
+                controller.ViewHelper.HideOverlay();
+                if (result.IsSuccess)
+                {
+                    controller.DismissViewController(DTO);
+                }
+                else
+                {
+                    controller.ViewHelper.ShowAlert("Error", result.ErrorMessage);
+                }
             }
         }
 
