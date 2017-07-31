@@ -21,19 +21,18 @@ namespace Mehspot.AndroidApp
 	public class EditBadgeProfileActivity : Activity, IEditBadgeProfileController
 	{
 		private EditBadgeProfileModel<View> model;
+
 		public BadgeSummaryDTO BadgeSummary => Intent.GetExtra<BadgeSummaryDTO>("badgeSummary");
-
-		public IViewHelper ViewHelper { get; private set; }
-
 		public Button SearchButton => this.FindViewById<Button>(Resource.SearchFilter.SearchButton);
-
+		public bool RedirectToSearchResults => Intent.GetBooleanExtra("redirectToSearchResults", false);
 		public string BadgeName => Intent.GetStringExtra("badgeName");
-
 		public int BadgeId => Intent.GetIntExtra("badgeId", 0);
+		public LinearLayout ContentWrapper => FindViewById<LinearLayout>(Resource.EditBadgeProfileActivity.ContentWrapper);
+		public Button SaveButton => FindViewById<Button>(Resource.EditBadgeProfileActivity.SaveButton);
 
 		public bool BadgeIsRegistered { get; set; }
 
-		public bool RedirectToSearchResults => Intent.GetBooleanExtra("redirectToSearchResults", false);
+		public IViewHelper ViewHelper { get; private set; }
 
 		public bool SaveButtonEnabled
 		{
@@ -59,8 +58,7 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
-		public LinearLayout ContentWrapper => FindViewById<LinearLayout>(Resource.EditBadgeProfileActivity.ContentWrapper);
-		public Button SaveButton => (Button)FindViewById(Resource.EditBadgeProfileActivity.SaveButton);
+
 
 		public Android.Support.V7.Widget.Toolbar Toolbar => this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.EditBadgeProfileActivity.toolbar);
 

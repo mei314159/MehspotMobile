@@ -26,6 +26,7 @@ namespace Mehspot.AndroidApp
 		private ViewBadgeProfileModel<View> model;
 
 		public int BadgeId => Intent.GetIntExtra("badgeId", 0);
+		public ISearchResultDTO SearchResultDTO => Intent.GetExtra<ISearchResultDTO>("searchResult");
 
 		public string BadgeName => Intent.GetStringExtra("badgeName");
 
@@ -37,7 +38,8 @@ namespace Mehspot.AndroidApp
 		public TextView InfoLabel1View => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.InfoLabel1);
 		public TextView InfoLabel2View => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.InfoLabel2);
 		public TextView SubdivisionLabel => FindViewById<TextView>(Resource.ViewBadgeProfileActivity.SubdivisionLabel);
-		public ListView ListView => FindViewById<ListView>(Resource.ViewBadgeProfileActivity.ListView);
+		public LinearLayout ContentWrapper => FindViewById<LinearLayout>(Resource.ViewBadgeProfileActivity.profileContentWrapper);
+
 		public ImageView Picture => FindViewById<ImageView>(Resource.ViewBadgeProfileActivity.Picture);
 		public ImageView FavoriteIcon => FindViewById<ImageView>(Resource.ViewBadgeProfileActivity.FavoriteIcon);
 		public SegmentedControl Segments => FindViewById<SegmentedControl>(Resource.ViewBadgeProfileActivity.Segments);
@@ -180,35 +182,35 @@ namespace Mehspot.AndroidApp
 			Segments.DetailsButton.Click += DetailsButton_Click;
 			Segments.RecommendationsButton.Click += RecommendationsButton_Click;
 			Segments.MessageButton.Click += MessageButton_Click;
-
-			ListView.Adapter = new ViewListAdapter(this, model);
-		}
-
-		protected override void OnStart()
-		{
-			base.OnStart();
-			model.RefreshView();
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
 			Segments.HighlightSelectedButton(Segments.DetailsButton);
-		}
-
-		void DetailsButton_Click(object sender, EventArgs e)
-		{
 			model.LoadProfile();
 		}
 
 		async void RecommendationsButton_Click(object sender, EventArgs e)
 		{
+			Segments.HighlightSelectedButton(Segments.RecommendationsButton);
 			await model.LoadRecommendations();
 		}
 
 		void MessageButton_Click(object sender, EventArgs e)
 		{
+			Segments.HighlightSelectedButton(Segments.MessageButton);
+			var messagingActivity = new Intent(this, typeof(MessagingActivity));
+			messagingActivity.PutExtra("toUserId", this.SearchResultDTO.Details.UserId);
+			messagingActivity.PutExtra("toUserName", this.SearchResultDTO.Details.FirstName);
+			this.StartActivity(messagingActivity);
+		}
+
+		protected override void OnStart()
+		{
 			GoToMessaging(this.UserId, this.FirstName);
+			Segments.HighlightSelectedButton(Segments.DetailsButton);
+			model.RefreshView();
 		}
 
 		public void SetProfilePictureUrl(string value)
@@ -231,7 +233,11 @@ namespace Mehspot.AndroidApp
 
 		public void ReloadCells()
 		{
-			((ViewListAdapter)ListView.Adapter).NotifyDataSetChanged();
+			ContentWrapper.RemoveAllViews();
+			foreach (var item in model.Cells)
+			{
+				ContentWrapper.AddView(item);
+			}
 		}
 
 		void Model_OnRefreshing()
