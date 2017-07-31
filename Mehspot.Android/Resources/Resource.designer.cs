@@ -209,14 +209,33 @@ namespace Mehspot.AndroidApp
 			global::Xamarin.RangeSlider.Resource.Styleable.RangeSliderControl_valuesAboveThumbs = global::Mehspot.AndroidApp.Resource.Styleable.RangeSliderControl_valuesAboveThumbs;
 		}
 		
-		public partial class BooleanCell
+		public partial class BadgeSummarySimplified
 		{
 			
 			// aapt resource value: 0x7f110001
-			public const int FieldLabel = 2131820545;
+			public const int BadgeName = 2131820545;
 			
 			// aapt resource value: 0x7f110000
-			public const int Switch = 2131820544;
+			public const int Picture = 2131820544;
+			
+			static BadgeSummarySimplified()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private BadgeSummarySimplified()
+			{
+			}
+		}
+		
+		public partial class BooleanCell
+		{
+			
+			// aapt resource value: 0x7f120001
+			public const int FieldLabel = 2131886081;
+			
+			// aapt resource value: 0x7f120000
+			public const int Switch = 2131886080;
 			
 			static BooleanCell()
 			{
@@ -231,8 +250,8 @@ namespace Mehspot.AndroidApp
 		public partial class ButtonCell
 		{
 			
-			// aapt resource value: 0x7f120000
-			public const int Button = 2131886080;
+			// aapt resource value: 0x7f130000
+			public const int Button = 2131951616;
 			
 			static ButtonCell()
 			{
@@ -247,11 +266,11 @@ namespace Mehspot.AndroidApp
 		public partial class DateViewCell
 		{
 			
-			// aapt resource value: 0x7f130001
-			public const int ChooseDate = 2131951617;
+			// aapt resource value: 0x7f140001
+			public const int ChooseDate = 2132017153;
 			
-			// aapt resource value: 0x7f130000
-			public const int FieldLabel = 2131951616;
+			// aapt resource value: 0x7f140000
+			public const int FieldLabel = 2132017152;
 			
 			static DateViewCell()
 			{
@@ -266,14 +285,14 @@ namespace Mehspot.AndroidApp
 		public partial class DialogView
 		{
 			
-			// aapt resource value: 0x7f140002
-			public const int closeView = 2132017154;
+			// aapt resource value: 0x7f150002
+			public const int closeView = 2132082690;
 			
-			// aapt resource value: 0x7f140000
-			public const int openCamera = 2132017152;
+			// aapt resource value: 0x7f150000
+			public const int openCamera = 2132082688;
 			
-			// aapt resource value: 0x7f140001
-			public const int openPhotoGallery = 2132017153;
+			// aapt resource value: 0x7f150001
+			public const int openPhotoGallery = 2132082689;
 			
 			static DialogView()
 			{
@@ -288,17 +307,17 @@ namespace Mehspot.AndroidApp
 		public partial class EditBadgeProfileActivity
 		{
 			
-			// aapt resource value: 0x7f150002
-			public const int ContentWrapper = 2132082690;
+			// aapt resource value: 0x7f160002
+			public const int ContentWrapper = 2132148226;
 			
-			// aapt resource value: 0x7f150001
-			public const int Refresher = 2132082689;
+			// aapt resource value: 0x7f160001
+			public const int Refresher = 2132148225;
 			
-			// aapt resource value: 0x7f150003
-			public const int SaveButton = 2132082691;
+			// aapt resource value: 0x7f160003
+			public const int SaveButton = 2132148227;
 			
-			// aapt resource value: 0x7f150000
-			public const int toolbar = 2132082688;
+			// aapt resource value: 0x7f160000
+			public const int toolbar = 2132148224;
 			
 			static EditBadgeProfileActivity()
 			{
@@ -313,14 +332,14 @@ namespace Mehspot.AndroidApp
 		public partial class MessageBoard
 		{
 			
-			// aapt resource value: 0x7f170001
-			public const int SearchBar = 2132213761;
+			// aapt resource value: 0x7f180001
+			public const int SearchBar = 2132279297;
 			
-			// aapt resource value: 0x7f170002
-			public const int SearchButton = 2132213762;
+			// aapt resource value: 0x7f180002
+			public const int SearchButton = 2132279298;
 			
-			// aapt resource value: 0x7f170000
-			public const int messageRefresher = 2132213760;
+			// aapt resource value: 0x7f180000
+			public const int messageRefresher = 2132279296;
 			
 			static MessageBoard()
 			{
@@ -335,8 +354,8 @@ namespace Mehspot.AndroidApp
 		public partial class MessageBubble
 		{
 			
-			// aapt resource value: 0x7f180000
-			public const int MessageDateText = 2132279296;
+			// aapt resource value: 0x7f190000
+			public const int MessageDateText = 2132344832;
 			
 			static MessageBubble()
 			{
@@ -351,8 +370,14 @@ namespace Mehspot.AndroidApp
 		public partial class MessagingActivity
 		{
 			
-			// aapt resource value: 0x7f190000
-			public const int Menu = 2132344832;
+			// aapt resource value: 0x7f1a0000
+			public const int Menu = 2132410368;
+			
+			// aapt resource value: 0x7f1a0001
+			public const int UserImage = 2132410369;
+			
+			// aapt resource value: 0x7f1a0002
+			public const int UserName = 2132410370;
 			
 			static MessagingActivity()
 			{
@@ -367,11 +392,11 @@ namespace Mehspot.AndroidApp
 		public partial class MultiselectCell
 		{
 			
-			// aapt resource value: 0x7f1a0001
-			public const int Dropdown = 2132410369;
+			// aapt resource value: 0x7f1b0001
+			public const int Dropdown = 2132475905;
 			
-			// aapt resource value: 0x7f1a0000
-			public const int FieldLabel = 2132410368;
+			// aapt resource value: 0x7f1b0000
+			public const int FieldLabel = 2132475904;
 			
 			static MultiselectCell()
 			{
@@ -386,8 +411,8 @@ namespace Mehspot.AndroidApp
 		public partial class NoResults
 		{
 			
-			// aapt resource value: 0x7f1b0000
-			public const int Register = 2132475904;
+			// aapt resource value: 0x7f1c0000
+			public const int Register = 2132541440;
 			
 			static NoResults()
 			{
@@ -402,11 +427,11 @@ namespace Mehspot.AndroidApp
 		public partial class PickerCell
 		{
 			
-			// aapt resource value: 0x7f1c0001
-			public const int Dropdown = 2132541441;
+			// aapt resource value: 0x7f1d0001
+			public const int Dropdown = 2132606977;
 			
-			// aapt resource value: 0x7f1c0000
-			public const int FieldLabel = 2132541440;
+			// aapt resource value: 0x7f1d0000
+			public const int FieldLabel = 2132606976;
 			
 			static PickerCell()
 			{
@@ -421,41 +446,41 @@ namespace Mehspot.AndroidApp
 		public partial class ProfileViewActivity
 		{
 			
-			// aapt resource value: 0x7f160004
-			public const int cardViewFrame = 2132148228;
+			// aapt resource value: 0x7f170004
+			public const int cardViewFrame = 2132213764;
 			
-			// aapt resource value: 0x7f160008
-			public const int changePhotoButton = 2132148232;
+			// aapt resource value: 0x7f170008
+			public const int changePhotoButton = 2132213768;
 			
-			// aapt resource value: 0x7f160003
-			public const int container = 2132148227;
+			// aapt resource value: 0x7f170003
+			public const int container = 2132213763;
 			
-			// aapt resource value: 0x7f160009
-			public const int profileContentWrapper = 2132148233;
+			// aapt resource value: 0x7f170009
+			public const int profileContentWrapper = 2132213769;
 			
-			// aapt resource value: 0x7f160005
-			public const int profilePhoto = 2132148229;
+			// aapt resource value: 0x7f170005
+			public const int profilePhoto = 2132213765;
 			
-			// aapt resource value: 0x7f160002
-			public const int profileRefresher = 2132148226;
+			// aapt resource value: 0x7f170002
+			public const int profileRefresher = 2132213762;
 			
-			// aapt resource value: 0x7f160000
-			public const int profileScrollView = 2132148224;
+			// aapt resource value: 0x7f170000
+			public const int profileScrollView = 2132213760;
 			
-			// aapt resource value: 0x7f160001
-			public const int profileViewLayout = 2132148225;
+			// aapt resource value: 0x7f170001
+			public const int profileViewLayout = 2132213761;
 			
-			// aapt resource value: 0x7f16000a
-			public const int saveProfileButton = 2132148234;
+			// aapt resource value: 0x7f17000a
+			public const int saveProfileButton = 2132213770;
 			
-			// aapt resource value: 0x7f16000b
-			public const int signoutButton = 2132148235;
+			// aapt resource value: 0x7f17000b
+			public const int signoutButton = 2132213771;
 			
-			// aapt resource value: 0x7f160007
-			public const int userFullNameLabel = 2132148231;
+			// aapt resource value: 0x7f170007
+			public const int userFullNameLabel = 2132213767;
 			
-			// aapt resource value: 0x7f160006
-			public const int userNameLabel = 2132148230;
+			// aapt resource value: 0x7f170006
+			public const int userNameLabel = 2132213766;
 			
 			static ProfileViewActivity()
 			{
@@ -470,17 +495,17 @@ namespace Mehspot.AndroidApp
 		public partial class RangeSliderCell
 		{
 			
-			// aapt resource value: 0x7f1d0000
-			public const int FieldLabel = 2132606976;
+			// aapt resource value: 0x7f1e0000
+			public const int FieldLabel = 2132672512;
 			
-			// aapt resource value: 0x7f1d0003
-			public const int MaxValueLabel = 2132606979;
+			// aapt resource value: 0x7f1e0003
+			public const int MaxValueLabel = 2132672515;
 			
-			// aapt resource value: 0x7f1d0001
-			public const int MinValueLabel = 2132606977;
+			// aapt resource value: 0x7f1e0001
+			public const int MinValueLabel = 2132672513;
 			
-			// aapt resource value: 0x7f1d0002
-			public const int RangeSlider = 2132606978;
+			// aapt resource value: 0x7f1e0002
+			public const int RangeSlider = 2132672514;
 			
 			static RangeSliderCell()
 			{
@@ -495,17 +520,17 @@ namespace Mehspot.AndroidApp
 		public partial class RecommendationCell
 		{
 			
-			// aapt resource value: 0x7f1e0002
-			public const int Date = 2132672514;
+			// aapt resource value: 0x7f1f0002
+			public const int Date = 2132738050;
 			
-			// aapt resource value: 0x7f1e0003
-			public const int Message = 2132672515;
+			// aapt resource value: 0x7f1f0003
+			public const int Message = 2132738051;
 			
-			// aapt resource value: 0x7f1e0000
-			public const int Picture = 2132672512;
+			// aapt resource value: 0x7f1f0000
+			public const int Picture = 2132738048;
 			
-			// aapt resource value: 0x7f1e0001
-			public const int UserName = 2132672513;
+			// aapt resource value: 0x7f1f0001
+			public const int UserName = 2132738049;
 			
 			static RecommendationCell()
 			{
@@ -520,11 +545,11 @@ namespace Mehspot.AndroidApp
 		public partial class SearchLimitCell
 		{
 			
-			// aapt resource value: 0x7f200000
-			public const int Message = 2132803584;
+			// aapt resource value: 0x7f210000
+			public const int Message = 2132869120;
 			
-			// aapt resource value: 0x7f200001
-			public const int RegisterButton = 2132803585;
+			// aapt resource value: 0x7f210001
+			public const int RegisterButton = 2132869121;
 			
 			static SearchLimitCell()
 			{
@@ -539,50 +564,50 @@ namespace Mehspot.AndroidApp
 		public partial class SearchResultItem
 		{
 			
-			// aapt resource value: 0x7f21000a
-			public const int DistanceLabel = 2132869130;
+			// aapt resource value: 0x7f22000a
+			public const int DistanceLabel = 2132934666;
 			
-			// aapt resource value: 0x7f210002
-			public const int FavoriteIcon = 2132869122;
+			// aapt resource value: 0x7f220002
+			public const int FavoriteIcon = 2132934658;
 			
-			// aapt resource value: 0x7f210009
-			public const int InfoLabel1 = 2132869129;
+			// aapt resource value: 0x7f220009
+			public const int InfoLabel1 = 2132934665;
 			
-			// aapt resource value: 0x7f21000b
-			public const int InfoLabel2 = 2132869131;
+			// aapt resource value: 0x7f22000b
+			public const int InfoLabel2 = 2132934667;
 			
-			// aapt resource value: 0x7f21000c
-			public const int InfoWrapper = 2132869132;
+			// aapt resource value: 0x7f22000c
+			public const int InfoWrapper = 2132934668;
 			
-			// aapt resource value: 0x7f210004
-			public const int LikesCount = 2132869124;
+			// aapt resource value: 0x7f220004
+			public const int LikesCount = 2132934660;
 			
-			// aapt resource value: 0x7f210005
-			public const int LikesCountText = 2132869125;
+			// aapt resource value: 0x7f220005
+			public const int LikesCountText = 2132934661;
 			
-			// aapt resource value: 0x7f210001
-			public const int Picture = 2132869121;
+			// aapt resource value: 0x7f220001
+			public const int Picture = 2132934657;
 			
-			// aapt resource value: 0x7f210000
-			public const int PictureFrame = 2132869120;
+			// aapt resource value: 0x7f220000
+			public const int PictureFrame = 2132934656;
 			
-			// aapt resource value: 0x7f210006
-			public const int RecommendationsCount = 2132869126;
+			// aapt resource value: 0x7f220006
+			public const int RecommendationsCount = 2132934662;
 			
-			// aapt resource value: 0x7f210007
-			public const int RecommendationsCountText = 2132869127;
+			// aapt resource value: 0x7f220007
+			public const int RecommendationsCountText = 2132934663;
 			
-			// aapt resource value: 0x7f21000e
-			public const int SendMessageButton = 2132869134;
+			// aapt resource value: 0x7f22000e
+			public const int SendMessageButton = 2132934670;
 			
-			// aapt resource value: 0x7f210008
-			public const int SubdivisionLabel = 2132869128;
+			// aapt resource value: 0x7f220008
+			public const int SubdivisionLabel = 2132934664;
 			
-			// aapt resource value: 0x7f210003
-			public const int UserNameLabel = 2132869123;
+			// aapt resource value: 0x7f220003
+			public const int UserNameLabel = 2132934659;
 			
-			// aapt resource value: 0x7f21000d
-			public const int ViewProfileButton = 2132869133;
+			// aapt resource value: 0x7f22000d
+			public const int ViewProfileButton = 2132934669;
 			
 			static SearchResultItem()
 			{
@@ -597,8 +622,8 @@ namespace Mehspot.AndroidApp
 		public partial class SearchResults
 		{
 			
-			// aapt resource value: 0x7f220000
-			public const int ListView = 2132934656;
+			// aapt resource value: 0x7f230000
+			public const int ListView = 2133000192;
 			
 			static SearchResults()
 			{
@@ -613,14 +638,14 @@ namespace Mehspot.AndroidApp
 		public partial class SegmentedControl
 		{
 			
-			// aapt resource value: 0x7f230000
-			public const int DetailsButton = 2133000192;
+			// aapt resource value: 0x7f240000
+			public const int DetailsButton = 2133065728;
 			
-			// aapt resource value: 0x7f230002
-			public const int MessageButton = 2133000194;
+			// aapt resource value: 0x7f240002
+			public const int MessageButton = 2133065730;
 			
-			// aapt resource value: 0x7f230001
-			public const int RecommendationsButton = 2133000193;
+			// aapt resource value: 0x7f240001
+			public const int RecommendationsButton = 2133065729;
 			
 			static SegmentedControl()
 			{
@@ -635,14 +660,14 @@ namespace Mehspot.AndroidApp
 		public partial class SliderCell
 		{
 			
-			// aapt resource value: 0x7f240000
-			public const int FieldLabel = 2133065728;
+			// aapt resource value: 0x7f250000
+			public const int FieldLabel = 2133131264;
 			
-			// aapt resource value: 0x7f240002
-			public const int Slider = 2133065730;
+			// aapt resource value: 0x7f250002
+			public const int Slider = 2133131266;
 			
-			// aapt resource value: 0x7f240001
-			public const int ValueLabel = 2133065729;
+			// aapt resource value: 0x7f250001
+			public const int ValueLabel = 2133131265;
 			
 			static SliderCell()
 			{
@@ -657,26 +682,26 @@ namespace Mehspot.AndroidApp
 		public partial class SubdivisionActivity
 		{
 			
-			// aapt resource value: 0x7f250002
-			public const int AddressField = 2133131266;
+			// aapt resource value: 0x7f260002
+			public const int AddressField = 2133196802;
 			
-			// aapt resource value: 0x7f250004
-			public const int LatitudeField = 2133131268;
+			// aapt resource value: 0x7f260004
+			public const int LatitudeField = 2133196804;
 			
-			// aapt resource value: 0x7f250003
-			public const int LinearLayout = 2133131267;
+			// aapt resource value: 0x7f260003
+			public const int LinearLayout = 2133196803;
 			
-			// aapt resource value: 0x7f250005
-			public const int LongitudeField = 2133131269;
+			// aapt resource value: 0x7f260005
+			public const int LongitudeField = 2133196805;
 			
-			// aapt resource value: 0x7f250006
-			public const int MapViewWrapper = 2133131270;
+			// aapt resource value: 0x7f260006
+			public const int MapViewWrapper = 2133196806;
 			
-			// aapt resource value: 0x7f250000
-			public const int Menu = 2133131264;
+			// aapt resource value: 0x7f260000
+			public const int Menu = 2133196800;
 			
-			// aapt resource value: 0x7f250001
-			public const int NameField = 2133131265;
+			// aapt resource value: 0x7f260001
+			public const int NameField = 2133196801;
 			
 			static SubdivisionActivity()
 			{
@@ -691,14 +716,14 @@ namespace Mehspot.AndroidApp
 		public partial class SubdivisionListActivity
 		{
 			
-			// aapt resource value: 0x7f270001
-			public const int MapViewWrapper = 2133262337;
+			// aapt resource value: 0x7f280001
+			public const int MapViewWrapper = 2133327873;
 			
-			// aapt resource value: 0x7f270000
-			public const int Menu = 2133262336;
+			// aapt resource value: 0x7f280000
+			public const int Menu = 2133327872;
 			
-			// aapt resource value: 0x7f270002
-			public const int SubdivisionsList = 2133262338;
+			// aapt resource value: 0x7f280002
+			public const int SubdivisionsList = 2133327874;
 			
 			static SubdivisionListActivity()
 			{
@@ -713,11 +738,11 @@ namespace Mehspot.AndroidApp
 		public partial class SubdivisionPickerCell
 		{
 			
-			// aapt resource value: 0x7f260000
-			public const int FieldLabel = 2133196800;
+			// aapt resource value: 0x7f270000
+			public const int FieldLabel = 2133262336;
 			
-			// aapt resource value: 0x7f260001
-			public const int SelectValueButton = 2133196801;
+			// aapt resource value: 0x7f270001
+			public const int SelectValueButton = 2133262337;
 			
 			static SubdivisionPickerCell()
 			{
@@ -732,8 +757,8 @@ namespace Mehspot.AndroidApp
 		public partial class SubdivisionsListItem
 		{
 			
-			// aapt resource value: 0x7f280000
-			public const int TextLabel = 2133327872;
+			// aapt resource value: 0x7f290000
+			public const int TextLabel = 2133393408;
 			
 			static SubdivisionsListItem()
 			{
@@ -748,11 +773,11 @@ namespace Mehspot.AndroidApp
 		public partial class TextEditCell
 		{
 			
-			// aapt resource value: 0x7f290000
-			public const int FieldLabel = 2133393408;
+			// aapt resource value: 0x7f2a0000
+			public const int FieldLabel = 2133458944;
 			
-			// aapt resource value: 0x7f290001
-			public const int TextInput = 2133393409;
+			// aapt resource value: 0x7f2a0001
+			public const int TextInput = 2133458945;
 			
 			static TextEditCell()
 			{
@@ -767,11 +792,11 @@ namespace Mehspot.AndroidApp
 		public partial class TextViewCell
 		{
 			
-			// aapt resource value: 0x7f2a0000
-			public const int FieldLabel = 2133458944;
+			// aapt resource value: 0x7f2b0000
+			public const int FieldLabel = 2133524480;
 			
-			// aapt resource value: 0x7f2a0001
-			public const int Text = 2133458945;
+			// aapt resource value: 0x7f2b0001
+			public const int Text = 2133524481;
 			
 			static TextViewCell()
 			{
@@ -783,26 +808,57 @@ namespace Mehspot.AndroidApp
 			}
 		}
 		
+		public partial class UserProfileViewActivity
+		{
+			
+			// aapt resource value: 0x7f2c0005
+			public const int ContentWrapper = 2133590021;
+			
+			// aapt resource value: 0x7f2c0002
+			public const int UserName = 2133590018;
+			
+			// aapt resource value: 0x7f2c0000
+			public const int UserProfileToolbar = 2133590016;
+			
+			// aapt resource value: 0x7f2c0004
+			public const int profileScrollView = 2133590020;
+			
+			// aapt resource value: 0x7f2c0003
+			public const int recommendationCount = 2133590019;
+			
+			// aapt resource value: 0x7f2c0001
+			public const int referenceCount = 2133590017;
+			
+			static UserProfileViewActivity()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private UserProfileViewActivity()
+			{
+			}
+		}
+		
 		public partial class VerifySubdivisionActivity
 		{
 			
-			// aapt resource value: 0x7f2b0004
-			public const int AddressSection = 2133524484;
+			// aapt resource value: 0x7f2d0004
+			public const int AddressSection = 2133655556;
 			
-			// aapt resource value: 0x7f2b0003
-			public const int AddressSectionLabel = 2133524483;
+			// aapt resource value: 0x7f2d0003
+			public const int AddressSectionLabel = 2133655555;
 			
-			// aapt resource value: 0x7f2b0005
-			public const int MapViewWrapper = 2133524485;
+			// aapt resource value: 0x7f2d0005
+			public const int MapViewWrapper = 2133655557;
 			
-			// aapt resource value: 0x7f2b0000
-			public const int Menu = 2133524480;
+			// aapt resource value: 0x7f2d0000
+			public const int Menu = 2133655552;
 			
-			// aapt resource value: 0x7f2b0002
-			public const int NameSection = 2133524482;
+			// aapt resource value: 0x7f2d0002
+			public const int NameSection = 2133655554;
 			
-			// aapt resource value: 0x7f2b0001
-			public const int NameSectionLabel = 2133524481;
+			// aapt resource value: 0x7f2d0001
+			public const int NameSectionLabel = 2133655553;
 			
 			static VerifySubdivisionActivity()
 			{
@@ -817,38 +873,38 @@ namespace Mehspot.AndroidApp
 		public partial class ViewBadgeProfileActivity
 		{
 			
-			// aapt resource value: 0x7f2c0005
-			public const int DistanceLabel = 2133590021;
+			// aapt resource value: 0x7f2e0005
+			public const int DistanceLabel = 2133721093;
 			
-			// aapt resource value: 0x7f2c0002
-			public const int FavoriteIcon = 2133590018;
+			// aapt resource value: 0x7f2e0002
+			public const int FavoriteIcon = 2133721090;
 			
-			// aapt resource value: 0x7f2c0007
-			public const int InfoLabel1 = 2133590023;
+			// aapt resource value: 0x7f2e0007
+			public const int InfoLabel1 = 2133721095;
 			
-			// aapt resource value: 0x7f2c0008
-			public const int InfoLabel2 = 2133590024;
+			// aapt resource value: 0x7f2e0008
+			public const int InfoLabel2 = 2133721096;
 			
-			// aapt resource value: 0x7f2c0004
-			public const int LikesCount = 2133590020;
+			// aapt resource value: 0x7f2e0004
+			public const int LikesCount = 2133721092;
 			
-			// aapt resource value: 0x7f2c000a
-			public const int ListView = 2133590026;
+			// aapt resource value: 0x7f2e000a
+			public const int ListView = 2133721098;
 			
-			// aapt resource value: 0x7f2c0001
-			public const int Picture = 2133590017;
+			// aapt resource value: 0x7f2e0001
+			public const int Picture = 2133721089;
 			
-			// aapt resource value: 0x7f2c0000
-			public const int PictureFrame = 2133590016;
+			// aapt resource value: 0x7f2e0000
+			public const int PictureFrame = 2133721088;
 			
-			// aapt resource value: 0x7f2c0009
-			public const int Segments = 2133590025;
+			// aapt resource value: 0x7f2e0009
+			public const int Segments = 2133721097;
 			
-			// aapt resource value: 0x7f2c0006
-			public const int SubdivisionLabel = 2133590022;
+			// aapt resource value: 0x7f2e0006
+			public const int SubdivisionLabel = 2133721094;
 			
-			// aapt resource value: 0x7f2c0003
-			public const int UserNameLabel = 2133590019;
+			// aapt resource value: 0x7f2e0003
+			public const int UserNameLabel = 2133721091;
 			
 			static ViewBadgeProfileActivity()
 			{
@@ -863,11 +919,11 @@ namespace Mehspot.AndroidApp
 		public partial class WriteReviewActivity
 		{
 			
-			// aapt resource value: 0x7f2d0001
-			public const int CommentView = 2133655553;
+			// aapt resource value: 0x7f2f0001
+			public const int CommentView = 2133786625;
 			
-			// aapt resource value: 0x7f2d0000
-			public const int SaveButton = 2133655552;
+			// aapt resource value: 0x7f2f0000
+			public const int SaveButton = 2133786624;
 			
 			static WriteReviewActivity()
 			{
@@ -3589,26 +3645,26 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02017e
-			public const int avd_hide_password_1 = 2130837886;
+			// aapt resource value: 0x7f020182
+			public const int avd_hide_password_1 = 2130837890;
 			
-			// aapt resource value: 0x7f02017f
-			public const int avd_hide_password_2 = 2130837887;
+			// aapt resource value: 0x7f020183
+			public const int avd_hide_password_2 = 2130837891;
 			
-			// aapt resource value: 0x7f020180
-			public const int avd_hide_password_3 = 2130837888;
+			// aapt resource value: 0x7f020184
+			public const int avd_hide_password_3 = 2130837892;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f020181
-			public const int avd_show_password_1 = 2130837889;
+			// aapt resource value: 0x7f020185
+			public const int avd_show_password_1 = 2130837893;
 			
-			// aapt resource value: 0x7f020182
-			public const int avd_show_password_2 = 2130837890;
+			// aapt resource value: 0x7f020186
+			public const int avd_show_password_2 = 2130837894;
 			
-			// aapt resource value: 0x7f020183
-			public const int avd_show_password_3 = 2130837891;
+			// aapt resource value: 0x7f020187
+			public const int avd_show_password_3 = 2130837895;
 			
 			// aapt resource value: 0x7f020055
 			public const int babysitter = 2130837589;
@@ -4286,220 +4342,232 @@ namespace Mehspot.AndroidApp
 			public const int kidsplaydateb = 2130837813;
 			
 			// aapt resource value: 0x7f020136
-			public const int logo = 2130837814;
+			public const int like_pic = 2130837814;
 			
 			// aapt resource value: 0x7f020137
-			public const int messenger_bubble_large_blue = 2130837815;
+			public const int logo = 2130837815;
 			
 			// aapt resource value: 0x7f020138
-			public const int messenger_bubble_large_white = 2130837816;
+			public const int messenger_bubble_large_blue = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int messenger_bubble_small_blue = 2130837817;
+			public const int messenger_bubble_large_white = 2130837817;
 			
 			// aapt resource value: 0x7f02013a
-			public const int messenger_bubble_small_white = 2130837818;
+			public const int messenger_bubble_small_blue = 2130837818;
 			
 			// aapt resource value: 0x7f02013b
-			public const int messenger_button_blue_bg_round = 2130837819;
+			public const int messenger_bubble_small_white = 2130837819;
 			
 			// aapt resource value: 0x7f02013c
-			public const int messenger_button_blue_bg_selector = 2130837820;
+			public const int messenger_button_blue_bg_round = 2130837820;
 			
 			// aapt resource value: 0x7f02013d
-			public const int messenger_button_send_round_shadow = 2130837821;
+			public const int messenger_button_blue_bg_selector = 2130837821;
 			
 			// aapt resource value: 0x7f02013e
-			public const int messenger_button_white_bg_round = 2130837822;
+			public const int messenger_button_send_round_shadow = 2130837822;
 			
 			// aapt resource value: 0x7f02013f
-			public const int messenger_button_white_bg_selector = 2130837823;
+			public const int messenger_button_white_bg_round = 2130837823;
 			
 			// aapt resource value: 0x7f020140
-			public const int mr_button_connected_dark = 2130837824;
+			public const int messenger_button_white_bg_selector = 2130837824;
 			
 			// aapt resource value: 0x7f020141
-			public const int mr_button_connected_light = 2130837825;
+			public const int mr_button_connected_dark = 2130837825;
 			
 			// aapt resource value: 0x7f020142
-			public const int mr_button_connecting_dark = 2130837826;
+			public const int mr_button_connected_light = 2130837826;
 			
 			// aapt resource value: 0x7f020143
-			public const int mr_button_connecting_light = 2130837827;
+			public const int mr_button_connecting_dark = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int mr_button_dark = 2130837828;
+			public const int mr_button_connecting_light = 2130837828;
 			
 			// aapt resource value: 0x7f020145
-			public const int mr_button_light = 2130837829;
+			public const int mr_button_dark = 2130837829;
 			
 			// aapt resource value: 0x7f020146
-			public const int mr_dialog_close_dark = 2130837830;
+			public const int mr_button_light = 2130837830;
 			
 			// aapt resource value: 0x7f020147
-			public const int mr_dialog_close_light = 2130837831;
+			public const int mr_dialog_close_dark = 2130837831;
 			
 			// aapt resource value: 0x7f020148
-			public const int mr_dialog_material_background_dark = 2130837832;
+			public const int mr_dialog_close_light = 2130837832;
 			
 			// aapt resource value: 0x7f020149
-			public const int mr_dialog_material_background_light = 2130837833;
+			public const int mr_dialog_material_background_dark = 2130837833;
 			
 			// aapt resource value: 0x7f02014a
-			public const int mr_group_collapse = 2130837834;
+			public const int mr_dialog_material_background_light = 2130837834;
 			
 			// aapt resource value: 0x7f02014b
-			public const int mr_group_expand = 2130837835;
+			public const int mr_group_collapse = 2130837835;
 			
 			// aapt resource value: 0x7f02014c
-			public const int mr_media_pause_dark = 2130837836;
+			public const int mr_group_expand = 2130837836;
 			
 			// aapt resource value: 0x7f02014d
-			public const int mr_media_pause_light = 2130837837;
+			public const int mr_media_pause_dark = 2130837837;
 			
 			// aapt resource value: 0x7f02014e
-			public const int mr_media_play_dark = 2130837838;
+			public const int mr_media_pause_light = 2130837838;
 			
 			// aapt resource value: 0x7f02014f
-			public const int mr_media_play_light = 2130837839;
+			public const int mr_media_play_dark = 2130837839;
 			
 			// aapt resource value: 0x7f020150
-			public const int mr_media_stop_dark = 2130837840;
+			public const int mr_media_play_light = 2130837840;
 			
 			// aapt resource value: 0x7f020151
-			public const int mr_media_stop_light = 2130837841;
+			public const int mr_media_stop_dark = 2130837841;
 			
 			// aapt resource value: 0x7f020152
-			public const int mr_vol_type_audiotrack_dark = 2130837842;
+			public const int mr_media_stop_light = 2130837842;
 			
 			// aapt resource value: 0x7f020153
-			public const int mr_vol_type_audiotrack_light = 2130837843;
+			public const int mr_vol_type_audiotrack_dark = 2130837843;
 			
 			// aapt resource value: 0x7f020154
-			public const int navigation_empty_icon = 2130837844;
+			public const int mr_vol_type_audiotrack_light = 2130837844;
 			
 			// aapt resource value: 0x7f020155
-			public const int notification_action_background = 2130837845;
+			public const int navigation_empty_icon = 2130837845;
 			
 			// aapt resource value: 0x7f020156
-			public const int notification_bg = 2130837846;
+			public const int notification_action_background = 2130837846;
 			
 			// aapt resource value: 0x7f020157
-			public const int notification_bg_low = 2130837847;
+			public const int notification_bg = 2130837847;
 			
 			// aapt resource value: 0x7f020158
-			public const int notification_bg_low_normal = 2130837848;
+			public const int notification_bg_low = 2130837848;
 			
 			// aapt resource value: 0x7f020159
-			public const int notification_bg_low_pressed = 2130837849;
+			public const int notification_bg_low_normal = 2130837849;
 			
 			// aapt resource value: 0x7f02015a
-			public const int notification_bg_normal = 2130837850;
+			public const int notification_bg_low_pressed = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int notification_bg_normal_pressed = 2130837851;
+			public const int notification_bg_normal = 2130837851;
 			
 			// aapt resource value: 0x7f02015c
-			public const int notification_icon_background = 2130837852;
-			
-			// aapt resource value: 0x7f02017c
-			public const int notification_template_icon_bg = 2130837884;
-			
-			// aapt resource value: 0x7f02017d
-			public const int notification_template_icon_low_bg = 2130837885;
+			public const int notification_bg_normal_pressed = 2130837852;
 			
 			// aapt resource value: 0x7f02015d
-			public const int notification_tile_bg = 2130837853;
+			public const int notification_icon_background = 2130837853;
+			
+			// aapt resource value: 0x7f020180
+			public const int notification_template_icon_bg = 2130837888;
+			
+			// aapt resource value: 0x7f020181
+			public const int notification_template_icon_low_bg = 2130837889;
 			
 			// aapt resource value: 0x7f02015e
-			public const int notify_panel_notification_icon_bg = 2130837854;
+			public const int notification_tile_bg = 2130837854;
 			
 			// aapt resource value: 0x7f02015f
-			public const int otherjobs = 2130837855;
+			public const int notify_panel_notification_icon_bg = 2130837855;
 			
 			// aapt resource value: 0x7f020160
-			public const int otherjobsb = 2130837856;
+			public const int otherjobs = 2130837856;
 			
 			// aapt resource value: 0x7f020161
-			public const int petsitter = 2130837857;
+			public const int otherjobsb = 2130837857;
 			
 			// aapt resource value: 0x7f020162
-			public const int petsitterb = 2130837858;
+			public const int petsitter = 2130837858;
 			
 			// aapt resource value: 0x7f020163
-			public const int petsitteremployer = 2130837859;
+			public const int petsitterb = 2130837859;
 			
 			// aapt resource value: 0x7f020164
-			public const int petsitteremployerb = 2130837860;
+			public const int petsitteremployer = 2130837860;
 			
 			// aapt resource value: 0x7f020165
-			public const int places_ic_clear = 2130837861;
+			public const int petsitteremployerb = 2130837861;
 			
 			// aapt resource value: 0x7f020166
-			public const int places_ic_search = 2130837862;
+			public const int places_ic_clear = 2130837862;
 			
 			// aapt resource value: 0x7f020167
-			public const int plusicon = 2130837863;
+			public const int places_ic_search = 2130837863;
 			
 			// aapt resource value: 0x7f020168
-			public const int powered_by_google_dark = 2130837864;
+			public const int plusicon = 2130837864;
 			
 			// aapt resource value: 0x7f020169
-			public const int powered_by_google_light = 2130837865;
+			public const int powered_by_google_dark = 2130837865;
 			
 			// aapt resource value: 0x7f02016a
-			public const int profile_image = 2130837866;
+			public const int powered_by_google_light = 2130837866;
 			
 			// aapt resource value: 0x7f02016b
-			public const int reviewicon = 2130837867;
+			public const int profile_image = 2130837867;
 			
 			// aapt resource value: 0x7f02016c
-			public const int roundedFrame = 2130837868;
+			public const int profile_image_small = 2130837868;
 			
 			// aapt resource value: 0x7f02016d
-			public const int roundedFrame25 = 2130837869;
+			public const int reviewicon = 2130837869;
 			
 			// aapt resource value: 0x7f02016e
-			public const int roundedFrame50 = 2130837870;
+			public const int roundedFrame = 2130837870;
 			
 			// aapt resource value: 0x7f02016f
-			public const int seek_thumb_disabled = 2130837871;
+			public const int roundedFrame100 = 2130837871;
 			
 			// aapt resource value: 0x7f020170
-			public const int seek_thumb_normal = 2130837872;
+			public const int roundedFrame25 = 2130837872;
 			
 			// aapt resource value: 0x7f020171
-			public const int seek_thumb_pressed = 2130837873;
+			public const int roundedFrame50 = 2130837873;
 			
 			// aapt resource value: 0x7f020172
-			public const int shape = 2130837874;
+			public const int seek_thumb_disabled = 2130837874;
 			
 			// aapt resource value: 0x7f020173
-			public const int sports = 2130837875;
+			public const int seek_thumb_normal = 2130837875;
 			
 			// aapt resource value: 0x7f020174
-			public const int sportsb = 2130837876;
+			public const int seek_thumb_pressed = 2130837876;
 			
 			// aapt resource value: 0x7f020175
-			public const int staryellow = 2130837877;
+			public const int shape = 2130837877;
 			
 			// aapt resource value: 0x7f020176
-			public const int tennis = 2130837878;
+			public const int sports = 2130837878;
 			
 			// aapt resource value: 0x7f020177
-			public const int tennisb = 2130837879;
+			public const int sportsb = 2130837879;
 			
 			// aapt resource value: 0x7f020178
-			public const int tutor = 2130837880;
+			public const int star_pic = 2130837880;
 			
 			// aapt resource value: 0x7f020179
-			public const int tutorb = 2130837881;
+			public const int staryellow = 2130837881;
 			
 			// aapt resource value: 0x7f02017a
-			public const int tutoremployer = 2130837882;
+			public const int tennis = 2130837882;
 			
 			// aapt resource value: 0x7f02017b
-			public const int tutoremployerb = 2130837883;
+			public const int tennisb = 2130837883;
+			
+			// aapt resource value: 0x7f02017c
+			public const int tutor = 2130837884;
+			
+			// aapt resource value: 0x7f02017d
+			public const int tutorb = 2130837885;
+			
+			// aapt resource value: 0x7f02017e
+			public const int tutoremployer = 2130837886;
+			
+			// aapt resource value: 0x7f02017f
+			public const int tutoremployerb = 2130837887;
 			
 			static Drawable()
 			{
@@ -4552,6 +4620,18 @@ namespace Mehspot.AndroidApp
 			
 			// aapt resource value: 0x7f0d0124
 			public const int UserNameField = 2131558692;
+			
+			// aapt resource value: 0x7f0d0130
+			public const int UserProfileBlurPicture = 2131558704;
+			
+			// aapt resource value: 0x7f0d0132
+			public const int UserProfileInfoView = 2131558706;
+			
+			// aapt resource value: 0x7f0d0131
+			public const int UserProfilePicture = 2131558705;
+			
+			// aapt resource value: 0x7f0d0133
+			public const int UserProfileServiceView = 2131558707;
 			
 			// aapt resource value: 0x7f0d00fd
 			public const int action0 = 2131558653;
@@ -4940,8 +5020,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0d0060
 			public const int list_item = 2131558496;
 			
-			// aapt resource value: 0x7f0d0132
-			public const int masked = 2131558706;
+			// aapt resource value: 0x7f0d0136
+			public const int masked = 2131558710;
 			
 			// aapt resource value: 0x7f0d0100
 			public const int media_actions = 2131558656;
@@ -5063,8 +5143,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0d0050
 			public const int never_display = 2131558480;
 			
-			// aapt resource value: 0x7f0d0133
-			public const int new_subdivision = 2131558707;
+			// aapt resource value: 0x7f0d0137
+			public const int new_subdivision = 2131558711;
 			
 			// aapt resource value: 0x7f0d00ac
 			public const int next = 2131558572;
@@ -5174,8 +5254,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0d0012
 			public const int satellite = 2131558418;
 			
-			// aapt resource value: 0x7f0d0134
-			public const int save_button = 2131558708;
+			// aapt resource value: 0x7f0d0138
+			public const int save_button = 2131558712;
 			
 			// aapt resource value: 0x7f0d002f
 			public const int screen = 2131558447;
@@ -5360,8 +5440,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0d006f
 			public const int title_template = 2131558511;
 			
-			// aapt resource value: 0x7f0d0130
-			public const int toolbar2 = 2131558704;
+			// aapt resource value: 0x7f0d0134
+			public const int toolbar2 = 2131558708;
 			
 			// aapt resource value: 0x7f0d0023
 			public const int top = 2131558435;
@@ -5396,8 +5476,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0d0123
 			public const int userNameLabel = 2131558691;
 			
-			// aapt resource value: 0x7f0d0135
-			public const int verify_subdivision = 2131558709;
+			// aapt resource value: 0x7f0d0139
+			public const int verify_subdivision = 2131558713;
 			
 			// aapt resource value: 0x7f0d00b0
 			public const int video_frame = 2131558576;
@@ -5408,14 +5488,14 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f0d0002
 			public const int view_offset_helper = 2131558402;
 			
-			// aapt resource value: 0x7f0d0136
-			public const int view_subdivision = 2131558710;
+			// aapt resource value: 0x7f0d013a
+			public const int view_subdivision = 2131558714;
 			
 			// aapt resource value: 0x7f0d00d2
 			public const int viewpager = 2131558610;
 			
-			// aapt resource value: 0x7f0d0131
-			public const int visible = 2131558705;
+			// aapt resource value: 0x7f0d0135
+			public const int visible = 2131558709;
 			
 			// aapt resource value: 0x7f0d00f1
 			public const int volume_item_container = 2131558641;
@@ -5622,301 +5702,304 @@ namespace Mehspot.AndroidApp
 			public const int BadgeSummaryItem = 2130968605;
 			
 			// aapt resource value: 0x7f04001e
-			public const int BooleanCell = 2130968606;
+			public const int BadgeSummaryItemSimplified = 2130968606;
 			
 			// aapt resource value: 0x7f04001f
-			public const int ButtonCell = 2130968607;
+			public const int BooleanCell = 2130968607;
 			
 			// aapt resource value: 0x7f040020
-			public const int com_facebook_activity_layout = 2130968608;
+			public const int ButtonCell = 2130968608;
 			
 			// aapt resource value: 0x7f040021
-			public const int com_facebook_device_auth_dialog_fragment = 2130968609;
+			public const int com_facebook_activity_layout = 2130968609;
 			
 			// aapt resource value: 0x7f040022
-			public const int com_facebook_login_fragment = 2130968610;
+			public const int com_facebook_device_auth_dialog_fragment = 2130968610;
 			
 			// aapt resource value: 0x7f040023
-			public const int com_facebook_smart_device_dialog_fragment = 2130968611;
+			public const int com_facebook_login_fragment = 2130968611;
 			
 			// aapt resource value: 0x7f040024
-			public const int com_facebook_tooltip_bubble = 2130968612;
+			public const int com_facebook_smart_device_dialog_fragment = 2130968612;
 			
 			// aapt resource value: 0x7f040025
-			public const int DateViewCell = 2130968613;
+			public const int com_facebook_tooltip_bubble = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int design_bottom_navigation_item = 2130968614;
+			public const int DateViewCell = 2130968614;
 			
 			// aapt resource value: 0x7f040027
-			public const int design_bottom_sheet_dialog = 2130968615;
+			public const int design_bottom_navigation_item = 2130968615;
 			
 			// aapt resource value: 0x7f040028
-			public const int design_layout_snackbar = 2130968616;
+			public const int design_bottom_sheet_dialog = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int design_layout_snackbar_include = 2130968617;
+			public const int design_layout_snackbar = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int design_layout_tab_icon = 2130968618;
+			public const int design_layout_snackbar_include = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
-			public const int design_layout_tab_text = 2130968619;
+			public const int design_layout_tab_icon = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int design_menu_item_action_area = 2130968620;
+			public const int design_layout_tab_text = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int design_navigation_item = 2130968621;
+			public const int design_menu_item_action_area = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int design_navigation_item_header = 2130968622;
+			public const int design_navigation_item = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int design_navigation_item_separator = 2130968623;
+			public const int design_navigation_item_header = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int design_navigation_item_subheader = 2130968624;
+			public const int design_navigation_item_separator = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int design_navigation_menu = 2130968625;
+			public const int design_navigation_item_subheader = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int design_navigation_menu_item = 2130968626;
+			public const int design_navigation_menu = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int design_text_input_password_icon = 2130968627;
+			public const int design_navigation_menu_item = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int DialogView = 2130968628;
+			public const int design_text_input_password_icon = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int EditBadgeProfileActivity = 2130968629;
+			public const int DialogView = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int exo_playback_control_view = 2130968630;
+			public const int EditBadgeProfileActivity = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int exo_simple_player_view = 2130968631;
+			public const int exo_playback_control_view = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int hockeyapp_activity_expiry_info = 2130968632;
+			public const int exo_simple_player_view = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int hockeyapp_activity_feedback = 2130968633;
+			public const int hockeyapp_activity_expiry_info = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int hockeyapp_activity_login = 2130968634;
+			public const int hockeyapp_activity_feedback = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int hockeyapp_activity_update = 2130968635;
+			public const int hockeyapp_activity_login = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int hockeyapp_fragment_update = 2130968636;
+			public const int hockeyapp_activity_update = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int hockeyapp_view_feedback_message = 2130968637;
+			public const int hockeyapp_fragment_update = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int MainActivity = 2130968638;
+			public const int hockeyapp_view_feedback_message = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int MessageBoard = 2130968639;
+			public const int MainActivity = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int MessageBoardItem = 2130968640;
+			public const int MessageBoard = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int MessageBubble = 2130968641;
+			public const int MessageBoardItem = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int MessagingActivity = 2130968642;
+			public const int MessageBubble = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int messenger_button_send_blue_large = 2130968643;
+			public const int MessagingActivity = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int messenger_button_send_blue_round = 2130968644;
+			public const int messenger_button_send_blue_large = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int messenger_button_send_blue_small = 2130968645;
+			public const int messenger_button_send_blue_round = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int messenger_button_send_white_large = 2130968646;
+			public const int messenger_button_send_blue_small = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int messenger_button_send_white_round = 2130968647;
+			public const int messenger_button_send_white_large = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int messenger_button_send_white_small = 2130968648;
+			public const int messenger_button_send_white_round = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int mr_chooser_dialog = 2130968649;
+			public const int messenger_button_send_white_small = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int mr_chooser_list_item = 2130968650;
+			public const int mr_chooser_dialog = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int mr_controller_material_dialog_b = 2130968651;
+			public const int mr_chooser_list_item = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int mr_controller_volume_item = 2130968652;
+			public const int mr_controller_material_dialog_b = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int mr_playback_control = 2130968653;
+			public const int mr_controller_volume_item = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int mr_volume_control = 2130968654;
+			public const int mr_playback_control = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int MultiselectCell = 2130968655;
+			public const int mr_volume_control = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int NoResultsView = 2130968656;
+			public const int MultiselectCell = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int notification_action = 2130968657;
+			public const int NoResultsView = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int notification_action_tombstone = 2130968658;
+			public const int notification_action = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int notification_media_action = 2130968659;
+			public const int notification_action_tombstone = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int notification_media_cancel_action = 2130968660;
+			public const int notification_media_action = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int notification_template_big_media = 2130968661;
+			public const int notification_media_cancel_action = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int notification_template_big_media_custom = 2130968662;
+			public const int notification_template_big_media = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int notification_template_big_media_narrow = 2130968663;
+			public const int notification_template_big_media_custom = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int notification_template_big_media_narrow_custom = 2130968664;
+			public const int notification_template_big_media_narrow = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int notification_template_custom_big = 2130968665;
+			public const int notification_template_big_media_narrow_custom = 2130968665;
 			
 			// aapt resource value: 0x7f04005a
-			public const int notification_template_icon_group = 2130968666;
+			public const int notification_template_custom_big = 2130968666;
 			
 			// aapt resource value: 0x7f04005b
-			public const int notification_template_lines_media = 2130968667;
+			public const int notification_template_icon_group = 2130968667;
 			
 			// aapt resource value: 0x7f04005c
-			public const int notification_template_media = 2130968668;
+			public const int notification_template_lines_media = 2130968668;
 			
 			// aapt resource value: 0x7f04005d
-			public const int notification_template_media_custom = 2130968669;
+			public const int notification_template_media = 2130968669;
 			
 			// aapt resource value: 0x7f04005e
-			public const int notification_template_part_chronometer = 2130968670;
+			public const int notification_template_media_custom = 2130968670;
 			
 			// aapt resource value: 0x7f04005f
-			public const int notification_template_part_time = 2130968671;
+			public const int notification_template_part_chronometer = 2130968671;
 			
 			// aapt resource value: 0x7f040060
-			public const int PickerCell = 2130968672;
+			public const int notification_template_part_time = 2130968672;
 			
 			// aapt resource value: 0x7f040061
-			public const int place_autocomplete_fragment = 2130968673;
+			public const int PickerCell = 2130968673;
 			
 			// aapt resource value: 0x7f040062
-			public const int place_autocomplete_item_powered_by_google = 2130968674;
+			public const int place_autocomplete_fragment = 2130968674;
 			
 			// aapt resource value: 0x7f040063
-			public const int place_autocomplete_item_prediction = 2130968675;
+			public const int place_autocomplete_item_powered_by_google = 2130968675;
 			
 			// aapt resource value: 0x7f040064
-			public const int place_autocomplete_progress = 2130968676;
+			public const int place_autocomplete_item_prediction = 2130968676;
 			
 			// aapt resource value: 0x7f040065
-			public const int ProfileDemo = 2130968677;
+			public const int place_autocomplete_progress = 2130968677;
 			
 			// aapt resource value: 0x7f040066
-			public const int ProfileViewActivity = 2130968678;
+			public const int ProfileDemo = 2130968678;
 			
 			// aapt resource value: 0x7f040067
-			public const int RangeSliderCell = 2130968679;
+			public const int ProfileViewActivity = 2130968679;
 			
 			// aapt resource value: 0x7f040068
-			public const int RecommendationCell = 2130968680;
+			public const int RangeSliderCell = 2130968680;
 			
 			// aapt resource value: 0x7f040069
-			public const int SearchBadgeActivity = 2130968681;
+			public const int RecommendationCell = 2130968681;
 			
 			// aapt resource value: 0x7f04006a
-			public const int SearchLimitCell = 2130968682;
+			public const int SearchBadgeActivity = 2130968682;
 			
 			// aapt resource value: 0x7f04006b
-			public const int SearchResultItem = 2130968683;
+			public const int SearchLimitCell = 2130968683;
 			
 			// aapt resource value: 0x7f04006c
-			public const int SearchResultsActivity = 2130968684;
+			public const int SearchResultItem = 2130968684;
 			
 			// aapt resource value: 0x7f04006d
-			public const int SegmentedControl = 2130968685;
+			public const int SearchResultsActivity = 2130968685;
 			
 			// aapt resource value: 0x7f04006e
-			public const int select_dialog_item_material = 2130968686;
+			public const int SegmentedControl = 2130968686;
 			
 			// aapt resource value: 0x7f04006f
-			public const int select_dialog_multichoice_material = 2130968687;
+			public const int select_dialog_item_material = 2130968687;
 			
 			// aapt resource value: 0x7f040070
-			public const int select_dialog_singlechoice_material = 2130968688;
+			public const int select_dialog_multichoice_material = 2130968688;
 			
 			// aapt resource value: 0x7f040071
-			public const int SignIn = 2130968689;
+			public const int select_dialog_singlechoice_material = 2130968689;
 			
 			// aapt resource value: 0x7f040072
-			public const int SignUp = 2130968690;
+			public const int SignIn = 2130968690;
 			
 			// aapt resource value: 0x7f040073
-			public const int SliderCell = 2130968691;
+			public const int SignUp = 2130968691;
 			
 			// aapt resource value: 0x7f040074
-			public const int SplashScreen = 2130968692;
+			public const int SliderCell = 2130968692;
 			
 			// aapt resource value: 0x7f040075
-			public const int SubdivisionActivity = 2130968693;
+			public const int SplashScreen = 2130968693;
 			
 			// aapt resource value: 0x7f040076
-			public const int SubdivisionPickerCell = 2130968694;
+			public const int SubdivisionActivity = 2130968694;
 			
 			// aapt resource value: 0x7f040077
-			public const int SubdivisionsListActivity = 2130968695;
+			public const int SubdivisionPickerCell = 2130968695;
 			
 			// aapt resource value: 0x7f040078
-			public const int SubdivisionsListItem = 2130968696;
+			public const int SubdivisionsListActivity = 2130968696;
 			
 			// aapt resource value: 0x7f040079
-			public const int support_simple_spinner_dropdown_item = 2130968697;
+			public const int SubdivisionsListItem = 2130968697;
 			
 			// aapt resource value: 0x7f04007a
-			public const int TextEditCell = 2130968698;
+			public const int support_simple_spinner_dropdown_item = 2130968698;
 			
 			// aapt resource value: 0x7f04007b
-			public const int TextViewCell = 2130968699;
+			public const int TextEditCell = 2130968699;
 			
 			// aapt resource value: 0x7f04007c
-			public const int TextViewItem = 2130968700;
+			public const int TextViewCell = 2130968700;
 			
 			// aapt resource value: 0x7f04007d
-			public const int UserProfileViewActivity = 2130968701;
+			public const int TextViewItem = 2130968701;
 			
 			// aapt resource value: 0x7f04007e
-			public const int VerifySubdivisionActivity = 2130968702;
+			public const int UserProfileViewActivity = 2130968702;
 			
 			// aapt resource value: 0x7f04007f
-			public const int ViewBadgeProfileActivity = 2130968703;
+			public const int VerifySubdivisionActivity = 2130968703;
 			
 			// aapt resource value: 0x7f040080
-			public const int WriteReviewActivity = 2130968704;
+			public const int ViewBadgeProfileActivity = 2130968704;
+			
+			// aapt resource value: 0x7f040081
+			public const int WriteReviewActivity = 2130968705;
 			
 			static Layout()
 			{
@@ -5972,14 +6055,14 @@ namespace Mehspot.AndroidApp
 		public partial class SearchFilter
 		{
 			
-			// aapt resource value: 0x7f1f0001
-			public const int FieldsWrapper = 2132738049;
+			// aapt resource value: 0x7f200001
+			public const int FieldsWrapper = 2132803585;
 			
-			// aapt resource value: 0x7f1f0002
-			public const int SearchButton = 2132738050;
+			// aapt resource value: 0x7f200002
+			public const int SearchButton = 2132803586;
 			
-			// aapt resource value: 0x7f1f0000
-			public const int toolbar = 2132738048;
+			// aapt resource value: 0x7f200000
+			public const int toolbar = 2132803584;
 			
 			static SearchFilter()
 			{
