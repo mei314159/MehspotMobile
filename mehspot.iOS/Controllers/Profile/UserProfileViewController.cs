@@ -125,11 +125,15 @@ namespace Mehspot.iOS
 			this.TableView.RegisterNibForCellReuse(BadgeItemCellSimplified.Nib, BadgeItemCellSimplified.Key);
 		}
 
+		public override void ViewWillAppear(bool animated)
+		{
+			ViewHelper.ShowOverlay("Wait...", true);
+		}
+
 		public override async void ViewDidAppear(bool animated)
 		{
 			if (!model.dataLoaded)
 			{
-				ViewHelper.ShowOverlay("Wait...", true);
 				model.LoadAsync();
 			}
 		}
