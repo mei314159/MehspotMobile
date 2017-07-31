@@ -102,7 +102,7 @@
         android:layout_below="@+ViewBadgeProfileActivity/InfoLabel2"
         android:layout_marginLeft="90dp"
         android:layout_marginRight="10dp" />
-    <ListView xmlns:tools="http://schemas.android.com/tools"
+<!--<ListView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+ViewBadgeProfileActivity/ListView"
@@ -114,5 +114,21 @@
         android:minHeight="50dp"
         tools:listitem="@layout/textviewcell"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="10dp" />-->
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+ViewBadgeProfileActivity/profileScrollView"
+        android:layout_marginBottom="40dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:id="@+ViewBadgeProfileActivity/profileContentWrapper" />
+    </ScrollView>
 </RelativeLayout>
