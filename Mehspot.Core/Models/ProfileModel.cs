@@ -134,7 +134,11 @@ namespace Mehspot.Core.Models
             viewController.ViewHelper.HideOverlay();
             viewController.InvokeOnMainThread(() =>
             {
-                if (!result.IsSuccess)
+                if (result.IsSuccess)
+                {
+                    viewController.ViewHelper.ShowPrompt("Success", "Profile successfully saved", "OK", () => { });
+                }
+                else
                 {
                     var errors = result.ModelState?.ModelState?.SelectMany(a => a.Value);
                     var message = errors != null ? string.Join(Environment.NewLine, errors) : result.ErrorMessage;

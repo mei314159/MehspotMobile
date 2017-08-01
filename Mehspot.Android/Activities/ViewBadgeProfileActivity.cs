@@ -191,8 +191,9 @@ namespace Mehspot.AndroidApp
 			model.LoadProfile();
 		}
 
-		async void DetailsButton_Click(object sender, EventArgs e)
+		void DetailsButton_Click(object sender, EventArgs e)
 		{
+			Segments.HighlightSelectedButton(Segments.DetailsButton);
 			model.LoadProfile();
 		}
 
@@ -205,15 +206,12 @@ namespace Mehspot.AndroidApp
 		void MessageButton_Click(object sender, EventArgs e)
 		{
 			Segments.HighlightSelectedButton(Segments.MessageButton);
-			var messagingActivity = new Intent(this, typeof(MessagingActivity));
-			messagingActivity.PutExtra("toUserId", this.SearchResultDTO.Details.UserId);
-			messagingActivity.PutExtra("toUserName", this.SearchResultDTO.Details.FirstName);
-			this.StartActivity(messagingActivity);
+			GoToMessaging(this.UserId, this.FirstName);
 		}
 
 		protected override void OnStart()
 		{
-			GoToMessaging(this.UserId, this.FirstName);
+			base.OnStart();
 			Segments.HighlightSelectedButton(Segments.DetailsButton);
 			model.RefreshView();
 		}
