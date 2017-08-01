@@ -485,7 +485,7 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5285" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="814" y="-35"/>
+            <point key="canvasLocation" x="504" y="258"/>
         </scene>
         <!--Messages-->
         <scene sceneID="192">
@@ -956,9 +956,11 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="TableView" destination="4925" id="name-outlet-4925"/>
                         <segue destination="87" kind="presentation" identifier="GoToMessagingSegue" id="6602"/>
                         <segue destination="6650" kind="show" identifier="GoToWriteRecommendationSegue" id="6713"/>
+                        <segue id="17962" destination="17922" kind="unwind" unwindAction="UnwindToMessagingViewController:" identifier="UnwindToMessagingSegue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4903" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="17922" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="287" y="1566"/>
         </scene>
@@ -1905,6 +1907,7 @@ Reset Password button</string>
         <image name="slider-default-handle-disabled.png" width="23" height="23"/>
         <image name="w3_background_t.png" width="375" height="267.5"/>
         <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="round-arrow" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7965"/>

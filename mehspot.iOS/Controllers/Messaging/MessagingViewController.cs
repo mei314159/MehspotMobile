@@ -91,6 +91,11 @@ namespace Mehspot.iOS
 			textField.LayoutIfNeeded();
 		}
 
+		[Action("UnwindToMessagingViewController:")]
+		public void UnwindToMessagingViewController(UIStoryboardSegue segue)
+		{
+		}
+
 		partial void CloseButtonTouched(UIBarButtonItem sender)
 		{
 			if (ParentController is MessageBoardViewController || ParentController is ViewProfileViewController)
@@ -126,8 +131,8 @@ namespace Mehspot.iOS
 			composeButton.Layer.CornerRadius = composeButton.Frame.Width / 2;
 			composeButton.ClipsToBounds = true;
 			composeButton.TouchUpInside += (sender, e) =>
-			{ 
-                PerformSegue("ShowUserProfileSegue", this);
+			{
+				PerformSegue("ShowUserProfileSegue", this);
 			};
 
 			if (!string.IsNullOrEmpty(ProfilePicturePath))
@@ -284,7 +289,7 @@ namespace Mehspot.iOS
 
 		public void ScrollingDown()
 		{
-			
+
 		}
 	}
 }

@@ -31,12 +31,12 @@ namespace Mehspot.iOS.Wrappers
 			   {
 				   var avAlert = new UIAlertView(title, text, (IUIAlertViewDelegate)null, "Cancel", new[] { positiveButtonTitle });
 				   avAlert.Clicked += (sender, e) =>
-							   {
-								   if (e.ButtonIndex != avAlert.CancelButtonIndex)
-								   {
-									   positiveAction();
-								   }
-							   };
+						{
+							if (e.ButtonIndex != avAlert.CancelButtonIndex)
+							{
+								positiveAction();
+							}
+						};
 				   avAlert.Show();
 			   });
 		}
@@ -70,17 +70,7 @@ namespace Mehspot.iOS.Wrappers
 					loadingOverlay = new LoadingOverlay(frame, text, true);
 				}
 
-			if (!opaque)
-			{
-				loadingOverlay = new LoadingOverlay(frame, text);
 				view.Add(loadingOverlay);
-			}
-			else
-			{
-				view.UserInteractionEnabled = false;
-				loadingOverlay = new LoadingOverlay(frame, text, true);
-			}
-
 				view.BringSubviewToFront(loadingOverlay);
 			});
 		}

@@ -117,21 +117,11 @@ namespace Mehspot.iOS
 			this.ViewHelper = new ViewHelper(this.View);
 			badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
 			profileService = new ProfileService(MehspotAppContext.Instance.DataStorage);
-			ViewHelper.ShowOverlay("Wait...", true);
-
 			model = new UserProfileViewModel(badgeService, profileService, this);
 			model.UserId = this.ToUserId;
 
 			this.TableView.RegisterNibForCellReuse(BadgeItemCellSimplified.Nib, BadgeItemCellSimplified.Key);
-		}
-
-		public override void ViewWillAppear(bool animated)
-		{
 			ViewHelper.ShowOverlay("Wait...", true);
-		}
-
-		public override async void ViewDidAppear(bool animated)
-		{
 			if (!model.dataLoaded)
 			{
 				model.LoadAsync();
@@ -157,6 +147,7 @@ namespace Mehspot.iOS
 				controller.BadgeId = selectedBadge.BadgeId;
 				controller.BadgeName = selectedBadge.BadgeName;
 				controller.UserId = model.UserId;
+				controller.ParentController = this;
 			}
 		}
 

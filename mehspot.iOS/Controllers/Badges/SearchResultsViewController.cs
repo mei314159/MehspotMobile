@@ -152,6 +152,7 @@ namespace Mehspot.iOS
 				controller.ToUserName = this.model.SelectedItem.Details.FirstName;
 				controller.ToUserId = this.model.SelectedItem.Details.UserId;
 				controller.ProfilePicturePath = this.model.SelectedItem.Details.ProfilePicturePath;
+				controller.ParentController = this;
 			}
 			else if (segue.Identifier == "ViewProfileSegue")
 			{

@@ -49,6 +49,9 @@ namespace Mehspot.iOS.Views
 		[Outlet]
 		UIKit.NSLayoutConstraint ButtonsWrapperWidth { get; set; }
 
+		[Outlet]
+		UIKit.NSLayoutConstraint ImageLeft { get; set; }
+
 		public Action<UIButton> SearchButtonTouch { get; set; }
 		public Action<UIButton> BadgeRegisterButtonTouch { get; set; }
 
@@ -75,6 +78,7 @@ namespace Mehspot.iOS.Views
 		{
 			buttonsVisible = selected && !this.buttonsVisible;
 			ButtonsWrapperWidth.Constant = buttonsVisible ? 160 : 0;
+			ImageLeft.Constant = buttonsVisible ? -60 : 10;
 			UIView.Animate(0.2, () =>
 			{
 				LayoutIfNeeded();
@@ -133,6 +137,12 @@ namespace Mehspot.iOS.Views
 			{
 				SearchButton.Dispose();
 				SearchButton = null;
+			}
+
+			if (ImageLeft != null)
+			{
+				ImageLeft.Dispose();
+				ImageLeft = null;
 			}
 		}
 	}

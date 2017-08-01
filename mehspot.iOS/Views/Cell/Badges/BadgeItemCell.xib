@@ -18,6 +18,7 @@
                 <outlet property="BadgeRegisterButton" destination="25" id="name-outlet-25"/>
                 <outlet property="ButtonsWrapper" destination="113" id="name-outlet-113"/>
                 <outlet property="ButtonsWrapperWidth" destination="125" id="name-outlet-125"/>
+                <outlet property="ImageLeft" destination="4" id="name-outlet-4"/>
             </connections>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
@@ -37,8 +38,8 @@
                         <nil key="highlightedColor"/>
                         <constraints/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="21" translatesAutoresizingMaskIntoConstraints="NO" text="Badge Description" numberOfLines="0" adjustsFontSizeToFit="NO" misplaced="YES">
-                        <rect key="frame" x="80" y="31" width="125" height="39"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="21" translatesAutoresizingMaskIntoConstraints="NO" text="Badge Description" numberOfLines="0" adjustsFontSizeToFit="NO">
+                        <rect key="frame" x="80" y="31" width="112" height="39"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                         <nil key="highlightedColor"/>
@@ -167,5 +168,6 @@
         <image name="slider-default-handle-disabled.png" width="23" height="23"/>
         <image name="w3_background_t.png" width="375" height="267.5"/>
         <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="round-arrow" width="128" height="128"/>
     </resources>
 </document>

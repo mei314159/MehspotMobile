@@ -26,6 +26,8 @@ namespace Mehspot.iOS
 		public string BadgeName { get; set; }
 		public string UserId { get; set; }
 
+		public UIViewController ParentController { get; set; }
+
 		#region IViewBadgeProfileController
 		public string WindowTitle
 		{
@@ -273,7 +275,8 @@ namespace Mehspot.iOS
 		{
 			MessageUserId = userId;
 			MessageUserName = userName;
-			PerformSegue("GoToMessagingSegue", this);
+			string segueName = this.ParentController is UserProfileViewController ? "UnwindToMessagingSegue" : "GoToMessagingSegue";
+			base.PerformSegue(segueName, this);
 		}
 
 		private async void ProfilePictureDoupleTapped()
