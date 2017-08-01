@@ -31,8 +31,7 @@ namespace Mehspot.Core
 
         public string GetTitle()
         {
-            var badgeName = MehspotResources.ResourceManager.GetString(this.controller.BadgeSummary.BadgeName) ?? this.controller.BadgeSummary.BadgeName;
-            var title = "Search for " + badgeName;
+            var title = MehspotResources.ResourceManager.GetString("Find_" + this.controller.BadgeSummary.BadgeName) ?? ("Search for " + this.controller.BadgeSummary.BadgeName);
             return title;
         }
 

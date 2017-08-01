@@ -27,9 +27,6 @@
 	<data name="Golf" xml:space="preserve">
 	    <value>Golf</value>
 	</data>
-	<data name="Friendship" xml:space="preserve">
-	    <value>Friendship</value>
-	</data>
 	<data name="KidsPlayDate" xml:space="preserve">
 	    <value>Kids Playdate</value>
 	</data>
@@ -54,6 +51,42 @@
 	<data name="TutorEmployer" xml:space="preserve">
 	    <value>Tutor Employer</value>
 	</data>
+	<data name="Find_Babysitter" xml:space="preserve">
+        <value>Find Babysitter</value>
+    </data>
+	<data name="Find_BabysitterEmployer" xml:space="preserve">
+        <value>Find Babysitter Job</value>
+    </data>
+	<data name="Find_Fitness" xml:space="preserve">
+        <value>Find Fitness Partner</value>
+    </data>
+	<data name="Find_Friendship" xml:space="preserve">
+        <value>Find Friend</value>
+    </data>
+	<data name="Find_Golf" xml:space="preserve">
+        <value>Find Golf Partner</value>
+    </data>
+	<data name="Find_KidsPlayDate" xml:space="preserve">
+        <value>Find Kids Playdate</value>
+    </data>
+	<data name="Find_OtherJobs" xml:space="preserve">
+        <value>Find Other Jobs</value>
+    </data>
+	<data name="Find_PetSitter" xml:space="preserve">
+        <value>Find Pet Sitter</value>
+    </data>
+	<data name="Find_PetSitterEmployer" xml:space="preserve">
+        <value>Find Pet Sitter Job</value>
+    </data>
+	<data name="Find_Tennis" xml:space="preserve">
+        <value>Find Tennis Partner</value>
+    </data>
+	<data name="Find_Tutor" xml:space="preserve">
+        <value>Find Tutor</value>
+    </data>
+	<data name="Find_TutorEmployer" xml:space="preserve">
+        <value>Find Tutor Job</value>
+    </data>
 	<data name="Babysitter_Description" xml:space="preserve">
 	    <value>Search for babysitters</value>
 	</data>

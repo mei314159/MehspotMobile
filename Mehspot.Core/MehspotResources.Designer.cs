@@ -160,6 +160,102 @@ namespace Mehspot.Core
             }
         }
 
+        public static string Find_Babysitter
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_Babysitter", resourceCulture);
+            }
+        }
+
+        public static string Find_BabysitterEmployer
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_BabysitterEmployer", resourceCulture);
+            }
+        }
+
+        public static string Find_Fitness
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_Fitness", resourceCulture);
+            }
+        }
+
+        public static string Find_Friendship
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_Friendship", resourceCulture);
+            }
+        }
+
+        public static string Find_Golf
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_Golf", resourceCulture);
+            }
+        }
+
+        public static string Find_KidsPlayDate
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_KidsPlayDate", resourceCulture);
+            }
+        }
+
+        public static string Find_OtherJobs
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_OtherJobs", resourceCulture);
+            }
+        }
+
+        public static string Find_PetSitter
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_PetSitter", resourceCulture);
+            }
+        }
+
+        public static string Find_PetSitterEmployer
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_PetSitterEmployer", resourceCulture);
+            }
+        }
+
+        public static string Find_Tennis
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_Tennis", resourceCulture);
+            }
+        }
+
+        public static string Find_Tutor
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_Tutor", resourceCulture);
+            }
+        }
+
+        public static string Find_TutorEmployer
+        {
+            get
+            {
+                return ResourceManager.GetString("Find_TutorEmployer", resourceCulture);
+            }
+        }
+
         public static string Babysitter_Description
         {
             get
