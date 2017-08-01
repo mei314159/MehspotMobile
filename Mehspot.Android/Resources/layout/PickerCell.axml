@@ -22,5 +22,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:id="@+PickerCell/Dropdown"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.5"
+        android:layout_marginRight="10dp" />
 </LinearLayout>
