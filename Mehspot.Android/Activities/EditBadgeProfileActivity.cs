@@ -123,12 +123,12 @@ namespace Mehspot.AndroidApp
 		private void Model_LoadingStarted()
 		{
 			this.SaveButtonEnabled = false;
-			ViewHelper.ShowOverlay("Loading");
+			Refresher.Refreshing = true;
 		}
 
 		private void Model_LoadingEnded()
 		{
-			ViewHelper.HideOverlay();
+			Refresher.Refreshing = false;
 			this.SaveButtonEnabled = true;
 		}
 
