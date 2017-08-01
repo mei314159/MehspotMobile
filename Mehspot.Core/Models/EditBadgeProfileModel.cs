@@ -209,14 +209,12 @@ namespace Mehspot.Core
                 }
                 else if (valueType == BadgeDataType.Integer)
                 {
-                    var cell = cellBuilder.GetTextEditCell(badgeValue.Value.Value, (c, a) => badgeValue.Value.Value = a, label, placeholder, validationRegex: "^[0-9]+$");
-                    cell.SetKeyboardType(KeyboardType.Numeric);
+                    var cell = cellBuilder.GetTextEditCell(badgeValue.Value.Value, (c, a) => badgeValue.Value.Value = a, label, KeyboardType.Numeric, placeholder, validationRegex: "^[0-9]+$");
                     Cells.Add((TCell)cell);
                 }
                 else if (valueType == BadgeDataType.Float)
                 {
-                    var cell = cellBuilder.GetTextEditCell(badgeValue.Value.Value, (c, a) => badgeValue.Value.Value = a, label, placeholder, validationRegex: "^\\d+([\\.\\,]{0,1}\\d{0,2})?$");
-                    cell.SetKeyboardType(KeyboardType.Decimal);
+                    var cell = cellBuilder.GetTextEditCell(badgeValue.Value.Value, (c, a) => badgeValue.Value.Value = a, label, KeyboardType.Decimal, placeholder, validationRegex: "^\\d+([\\.\\,]{0,1}\\d{0,2})?$");
                     Cells.Add((TCell)cell);
                 }
                 else if (valueType == BadgeDataType.Date)
@@ -230,7 +228,7 @@ namespace Mehspot.Core
                 }
                 else
                 {
-                    var cell = (TCell)cellBuilder.GetTextEditCell(badgeValue.Value.Value, (c, a) => badgeValue.Value.Value = a, label, placeholder);
+                    var cell = (TCell)cellBuilder.GetTextEditCell(badgeValue.Value.Value, (c, a) => badgeValue.Value.Value = a, label, KeyboardType.Default, placeholder);
                     Cells.Add(cell);
                 }
             }

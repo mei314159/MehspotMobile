@@ -38,7 +38,7 @@ namespace Mehspot.AndroidApp
 
 		public bool IsValid => ValidateMask(TextInput.Text, true);
 
-		public TextEditCell(Context context, string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null) : base(context)
+		public TextEditCell(Context context, string initialValue, Action<ITextEditCell, string> setProperty, string label, Mehspot.Core.Builders.KeyboardType type = Mehspot.Core.Builders.KeyboardType.Default, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null) : base(context)
 		{
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.TextEditCell, this);
@@ -52,6 +52,7 @@ namespace Mehspot.AndroidApp
 			this.SetModelProperty = setProperty;
 			this.Mask = mask;
 			this.ValidationRegex = validationRegex;
+			this.SetKeyboardType(type);
 		}
 
 		public TextView FieldLabel => this.FindViewById<TextView>(Resource.TextEditCell.FieldLabel);
@@ -203,6 +204,13 @@ namespace Mehspot.AndroidApp
 				case Mehspot.Core.Builders.KeyboardType.Numeric:
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassNumber | Android.Text.InputTypes.NumberVariationNormal | Android.Text.InputTypes.NumberFlagSigned);
 					this.MaxLength = MaxDigits;
+					break;
+				case Mehspot.Core.Builders.KeyboardType.Phone:
+					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassPhone | Android.Text.InputTypes.NumberVariationNormal | Android.Text.InputTypes.NumberFlagSigned);
+					this.MaxLength = MaxDigits;
+					break;
+				case Mehspot.Core.Builders.KeyboardType.Email:
+					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText | Android.Text.InputTypes.NumberVariationNormal | Android.Text.InputTypes.NumberFlagSigned);
 					break;
 				default:
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextVariationNormal);

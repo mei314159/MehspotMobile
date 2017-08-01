@@ -99,7 +99,7 @@ namespace Mehspot.iOS.Views
 
 		public Action<ITextEditCell, string> SetModelProperty;
 
-		public static TextEditCell Create(string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)
+		public static TextEditCell Create(string initialValue, Action<ITextEditCell, string> setProperty, string label, KeyboardType type = KeyboardType.Default, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)
 		{
 			var cell = (TextEditCell)Nib.Instantiate(null, null)[0];
 			cell.SelectionStyle = UITableViewCellSelectionStyle.None;
@@ -119,6 +119,7 @@ namespace Mehspot.iOS.Views
 			cell.TextView.ShouldChangeText += cell.TextInput_ShouldChangeCharacters;
 			cell.TextView.ShouldEndEditing += (textView) => { cell.UpdateSize(); return true; };
 			cell.SetModelProperty = setProperty;
+			cell.SetKeyboardType(type);
 
 			cell.ValidationRegex = validationRegex;
 			cell.UpdateSize();
@@ -137,6 +138,13 @@ namespace Mehspot.iOS.Views
 				case KeyboardType.Numeric:
 					TextView.KeyboardType = UIKeyboardType.NumberPad;
 					this.MaxLength = MaxDigits;
+					break;
+				case KeyboardType.Email:
+					TextView.KeyboardType = UIKeyboardType.EmailAddress;
+					break;
+				case KeyboardType.Phone:
+					TextView.KeyboardType = UIKeyboardType.PhonePad;
+                    this.MaxLength = MaxDigits;
 					break;
 				default:
 					TextView.KeyboardType = UIKeyboardType.Default;

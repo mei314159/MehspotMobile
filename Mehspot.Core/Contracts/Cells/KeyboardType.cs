@@ -4,6 +4,8 @@ namespace Mehspot.Core.Builders
     {
         Default,
         Numeric,
-        Decimal
+        Decimal,
+        Email,
+        Phone
     }
 }

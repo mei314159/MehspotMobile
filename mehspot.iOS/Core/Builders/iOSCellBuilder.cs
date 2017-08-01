@@ -61,9 +61,9 @@ namespace Mehspot.iOS.Core.Builders
 			return SubdivisionPickerCell.Create(selectedId, setProperty, label, list, zipCode, isReadOnly);
 		}
 
-		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)
+		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, KeyboardType type = KeyboardType.Default, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)
 		{
-			return TextEditCell.Create(initialValue, setProperty, label, placeholder, isReadOnly, mask, validationRegex);
+			return TextEditCell.Create(initialValue, setProperty, label, type, placeholder, isReadOnly, mask, validationRegex);
 		}
 
 		public override UITableViewCell GetTextViewCell(string text, string label)
