@@ -75,6 +75,7 @@ namespace Mehspot.iOS.Controllers
 			mapView = new MapView(MapWrapperView.Bounds);
 			mapView.DraggingMarkerStarted += MapView_DraggingMarkerStarted;
 			mapView.DraggingMarkerEnded += MapView_DraggingMarkerEnded;
+			mapView.CoordinateLongPressed += MapView_CoordinateLongPressed;
 
 			marker = Marker.FromPosition(mapView.Camera.Target);
 			marker.Map = mapView;
@@ -92,6 +93,12 @@ namespace Mehspot.iOS.Controllers
 		public void DisplayCells()
 		{
 			MainTable.ReloadData();
+		}
+
+		void MapView_CoordinateLongPressed(object sender, GMSCoordEventArgs e)
+		{
+			model.SetMarkerByPress(e.Coordinate.Latitude, e.Coordinate.Longitude);
+			marker.Position = new CLLocationCoordinate2D(e.Coordinate.Latitude, e.Coordinate.Longitude);
 		}
 
 		void MapView_DraggingMarkerStarted(object sender, GMSMarkerEventEventArgs e)

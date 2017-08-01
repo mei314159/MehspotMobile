@@ -314,11 +314,18 @@ namespace Mehspot.AndroidApp.Activities
 			map = googleMap;
 			map.MarkerDragStart += Map_MarkerDragStart;
 			map.MarkerDragEnd += Map_MarkerDragEnd;
+			map.MapLongClick += Map_MapLongClick;
 			var options = new MarkerOptions();
 			options.SetPosition(camera.Target);
 			marker = map.AddMarker(options);
 			marker.Draggable = MarkerDraggable;
 			ApplyLocation();
+		}
+
+		void Map_MapLongClick(object sender, GoogleMap.MapLongClickEventArgs e)
+		{
+			model.SetMarkerByPress(e.Point.Latitude, e.Point.Longitude);
+			marker.Position = new LatLng(e.Point.Latitude, e.Point.Longitude);
 		}
 
 		private void Map_MarkerDragStart(object sender, GoogleMap.MarkerDragStartEventArgs e)

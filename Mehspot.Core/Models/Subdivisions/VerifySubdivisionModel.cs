@@ -60,6 +60,11 @@ namespace Mehspot.Core.Models.Subdivisions
             }
         }
 
+        public void SetMarkerByPress(double latitude, double longitude)
+        {
+            controller.ViewHelper.ShowOverlay("Wait...");
+            controller.LoadPlaceByCoordinates(latitude, longitude);
+        }
 
         public void MarkerDraggingStarted()
         {
@@ -186,8 +191,8 @@ namespace Mehspot.Core.Models.Subdivisions
             Sections.Add(nameSection);
             Sections.Add(adressSection);
 
-            var option = options.First(a => a.Id == addressOptions[0].Key.Value);
-            controller.ShowLocation(option.Address.Latitude, option.Address.Longitude);
+            //var option = options.First(a => a.Id == addressOptions[0].Key.Value);
+            //controller.ShowLocation(option.Address.Latitude, option.Address.Longitude);
         }
 
         void NameOptionChanged(int? value)
