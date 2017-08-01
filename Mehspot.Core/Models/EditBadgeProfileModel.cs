@@ -183,7 +183,7 @@ namespace Mehspot.Core
                 }
                 else if (itemName.EndsWith("Zip", StringComparison.OrdinalIgnoreCase) && itemName.StartsWith(profile.BadgeName, StringComparison.OrdinalIgnoreCase))
                 {
-                    var cell = cellBuilder.GetTextEditCell(badgeValue.Value.Value, (c, a) => { badgeValue.Value.Value = a; ZipCell_ValueChanged(c, a, itemName.Replace("Zip", "Subdivision")); }, label, mask: "#####");
+                    var cell = cellBuilder.GetTextEditCell(badgeValue.Value.Value, (c, a) => { badgeValue.Value.Value = a; ZipCell_ValueChanged(c, a, itemName.Replace("Zip", "Subdivision")); }, label, KeyboardType.Numeric, mask: "#####");
                     Cells.Add((TCell)cell);
                 }
                 else if (valueType == BadgeDataType.Boolean)

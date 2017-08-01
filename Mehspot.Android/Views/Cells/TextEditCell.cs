@@ -207,7 +207,6 @@ namespace Mehspot.AndroidApp
 					break;
 				case Mehspot.Core.Builders.KeyboardType.Phone:
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassPhone | Android.Text.InputTypes.NumberVariationNormal | Android.Text.InputTypes.NumberFlagSigned);
-					this.MaxLength = MaxDigits;
 					break;
 				case Mehspot.Core.Builders.KeyboardType.Email:
 					this.TextInput.SetRawInputType(Android.Text.InputTypes.ClassText | Android.Text.InputTypes.NumberVariationNormal | Android.Text.InputTypes.NumberFlagSigned);

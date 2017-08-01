@@ -158,7 +158,7 @@ namespace Mehspot.Core.Builders
                         targetCell = cellBuilder.GetTextViewCell(value as string ?? string.Empty, prop.attr.Label);
                         break;
                     default:
-                        targetCell = (TCell)cellBuilder.GetTextEditCell(value as string, (cell, v) => prop.prop.SetValue(filter, v), prop.attr.Label, mask: prop.attr.Mask, isReadOnly: prop.attr.ReadOnly);
+                        targetCell = (TCell)cellBuilder.GetTextEditCell(value as string, (cell, v) => prop.prop.SetValue(filter, v), prop.attr.Label, KeyboardType.Numeric, mask: prop.attr.Mask, isReadOnly: prop.attr.ReadOnly);
                         break;
                 }
                 if (targetCell != null)

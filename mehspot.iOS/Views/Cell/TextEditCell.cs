@@ -144,7 +144,6 @@ namespace Mehspot.iOS.Views
 					break;
 				case KeyboardType.Phone:
 					TextView.KeyboardType = UIKeyboardType.PhonePad;
-                    this.MaxLength = MaxDigits;
 					break;
 				default:
 					TextView.KeyboardType = UIKeyboardType.Default;
