@@ -9,8 +9,9 @@ using Mehspot.Core.Services.Badges;
 namespace Mehspot.iOS.Views
 {
 	[Register("BadgeItemCell")]
-	public partial class BadgeItemCell : UITableViewCell
+	public class BadgeItemCell : UITableViewCell
 	{
+		bool buttonsVisible;
 		public static readonly NSString Key = new NSString("BadgeItemCell");
 		public static readonly UINib Nib;
 
@@ -40,26 +41,16 @@ namespace Mehspot.iOS.Views
 		UIKit.UIButton BadgeRegisterButton { get; set; }
 
 		[Outlet]
-		UIKit.UILabel LikesCount { get; set; }
-
-		[Outlet]
-		UIKit.UILabel RecommendationsCount { get; set; }
-
-		[Outlet]
-		UIKit.UILabel ReferencesCount { get; set; }
-
-		[Outlet]
 		UIKit.UIButton SearchButton { get; set; }
 
-		[Action("BadgeRegisterButtonTouched:")]
-		partial void BadgeRegisterButtonTouched(UIKit.UIButton sender);
+		[Outlet]
+		UIKit.UIView ButtonsWrapper { get; set; }
 
-		[Action("SearchButtonTouched:")]
-		partial void SearchButtonTouched(UIKit.UIButton sender);
+		[Outlet]
+		UIKit.NSLayoutConstraint ButtonsWrapperWidth { get; set; }
 
 		public Action<UIButton> SearchButtonTouch { get; set; }
 		public Action<UIButton> BadgeRegisterButtonTouch { get; set; }
-
 
 		public static BadgeItemCell Create()
 		{
@@ -68,31 +59,38 @@ namespace Mehspot.iOS.Views
 			return v;
 		}
 
-		partial void SearchButtonTouched(UIButton sender)
+		[Action("SearchButtonTouched:")]
+		void SearchButtonTouched(UIButton sender)
 		{
 			SearchButtonTouch?.Invoke(sender);
 		}
 
-		partial void BadgeRegisterButtonTouched(UIButton sender)
+		[Action("BadgeRegisterButtonTouched:")]
+		void BadgeRegisterButtonTouched(UIButton sender)
 		{
 			BadgeRegisterButtonTouch?.Invoke(sender);
+		}
+
+		public override void SetSelected(bool selected, bool animated)
+		{
+			buttonsVisible = selected && !this.buttonsVisible;
+			ButtonsWrapperWidth.Constant = buttonsVisible ? 160 : 0;
+			UIView.Animate(0.2, () =>
+			{
+				LayoutIfNeeded();
+			});
 		}
 
 		public void Initialize(BadgeInfo badge)
 		{
 			var cell = this;
 			cell.BadgePicture.Image = UIImage.FromFile("badges/" + badge.BadgeName.ToLower() + (badge.Badge.IsRegistered ? string.Empty : "b"));
-			cell.BadgeName.Text = badge.CustomLabel ?? MehspotResources.ResourceManager.GetString(badge.BadgeName);
+			cell.BadgeName.Text = badge.CustomLabel ?? MehspotResources.ResourceManager.GetString("Find_" + badge.SearchBadge);
 			cell.BadgeInfo = badge;
-			cell.SearchButton.Layer.BorderWidth = cell.BadgeRegisterButton.Layer.BorderWidth = 1;
-			cell.SearchButton.Layer.BorderColor = cell.SearchButton.TitleColor(UIControlState.Normal).CGColor;
-			cell.BadgeRegisterButton.Layer.BorderColor = cell.BadgeRegisterButton.TitleColor(UIControlState.Normal).CGColor;
 			cell.BadgeRegisterButton.SetTitle(badge.Badge.IsRegistered ? "Update" : "Register", UIControlState.Normal);
 			cell.BadgeDescription.Text = MehspotResources.ResourceManager.GetString(badge.BadgeName + "_Description");
-			cell.LikesCount.Text = badge.Badge.Likes.ToString();
-			cell.RecommendationsCount.Text = badge.Badge.Recommendations.ToString();
-			cell.ReferencesCount.Text = badge.Badge.References.ToString();
 		}
+
 		void ReleaseDesignerOutlets()
 		{
 			if (BadgeDescription != null)
@@ -119,22 +117,16 @@ namespace Mehspot.iOS.Views
 				BadgeRegisterButton = null;
 			}
 
-			if (LikesCount != null)
+			if (ButtonsWrapperWidth != null)
 			{
-				LikesCount.Dispose();
-				LikesCount = null;
+				ButtonsWrapperWidth.Dispose();
+				ButtonsWrapperWidth = null;
 			}
 
-			if (RecommendationsCount != null)
+			if (ButtonsWrapper != null)
 			{
-				RecommendationsCount.Dispose();
-				RecommendationsCount = null;
-			}
-
-			if (ReferencesCount != null)
-			{
-				ReferencesCount.Dispose();
-				ReferencesCount = null;
+				ButtonsWrapper.Dispose();
+				ButtonsWrapper = null;
 			}
 
 			if (SearchButton != null)

@@ -65,7 +65,7 @@ namespace Mehspot.Core.Services.Badges
                 {
                     BadgeName = Constants.BadgeNames.OtherJobs,
                     SearchBadge = Constants.BadgeNames.OtherJobs,
-                    CustomLabel = MehspotResources.OtherHelpers,
+                    CustomLabel = MehspotResources.OtherHelpers
                 }
             });
 
@@ -88,8 +88,7 @@ namespace Mehspot.Core.Services.Badges
                 new BadgeInfo
                 {
                     BadgeName = Constants.BadgeNames.OtherJobs,
-                    SearchBadge = null,
-                    CustomLabel = MehspotResources.OtherJobs
+                    SearchBadge = Constants.BadgeNames.OtherJobs
                 }
             });
 
