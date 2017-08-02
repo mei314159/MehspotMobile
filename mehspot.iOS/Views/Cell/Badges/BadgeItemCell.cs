@@ -92,7 +92,7 @@ namespace Mehspot.iOS.Views
 			cell.BadgeName.Text = badge.CustomLabel ?? MehspotResources.ResourceManager.GetString("Find_" + badge.SearchBadge);
 			cell.BadgeInfo = badge;
 			cell.BadgeRegisterButton.SetTitle(badge.Badge.IsRegistered ? "Update" : "Register", UIControlState.Normal);
-			cell.BadgeDescription.Text = MehspotResources.ResourceManager.GetString(badge.BadgeName + "_Description");
+			cell.BadgeDescription.Text = badge.CustomDescription ?? MehspotResources.ResourceManager.GetString(badge.SearchBadge + "_Description");
 		}
 
 		void ReleaseDesignerOutlets()
