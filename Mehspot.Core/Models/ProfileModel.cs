@@ -136,7 +136,7 @@ namespace Mehspot.Core.Models
             {
                 if (result.IsSuccess)
                 {
-                    viewController.ViewHelper.ShowPrompt("Success", "Profile successfully saved", "OK", () => { });
+                    viewController.ViewHelper.ShowAlert("Success", "Profile successfully saved");
                 }
                 else
                 {
