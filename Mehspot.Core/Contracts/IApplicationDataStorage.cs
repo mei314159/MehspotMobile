@@ -14,7 +14,7 @@ namespace Mehspot.Core.Contracts
         bool PushDeviceTokenSentToBackend { get; set; }
         bool WalkthroughPassed { get; }
         OsType OsType { get; }
-        BadgeGroup PreferredBadgeGroup { get; set; }
+        BadgeGroup? PreferredBadgeGroup { get; set; }
         T Get<T>(string key);
         void Set<T>(string key, T result) where T : class;
     }

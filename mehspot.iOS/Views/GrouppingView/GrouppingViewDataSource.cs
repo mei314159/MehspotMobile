@@ -52,7 +52,7 @@ namespace mehspot.iOS
 			}
 		}
 
-		public UITableView TableView
+		public virtual UITableView TableView
 		{
 			get
 			{
