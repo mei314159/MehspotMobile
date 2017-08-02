@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Android.App;
 using Android.Views;
-using Mehspot.AndroidApp;
 using Mehspot.Core.Builders;
 using Mehspot.Core.DTO.Badges;
 using Mehspot.Core.DTO.Subdivision;
@@ -70,9 +69,9 @@ namespace Mehspot.AndroidApp.Core.Builders
 			return new SubdivisionPickerCell(activity, selectedId, setProperty, label, list, zipCode, isReadOnly);
 		}
 
-		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)
+		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, Mehspot.Core.Builders.KeyboardType type = Mehspot.Core.Builders.KeyboardType.Default, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)
 		{
-			return new TextEditCell(activity, initialValue, setProperty, label, placeholder, isReadOnly, mask, validationRegex);
+			return new TextEditCell(activity, initialValue, setProperty, label, type, placeholder, isReadOnly, mask, validationRegex);
 		}
 
 		public override View GetTextViewCell(string text, string label)

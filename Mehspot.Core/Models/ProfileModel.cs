@@ -77,8 +77,8 @@ namespace Mehspot.Core.Models
 
             Cells.Clear();
             Cells.Add((TView)cellBuilder.GetTextEditCell(profile.UserName, (c, a) => profile.UserName = a, "User Name"));
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.Email, (c, a) => profile.Email = a, "Email", null, true));
-            var phoneNumberCell = (TView)cellBuilder.GetTextEditCell(profile.PhoneNumber, (c, a) => profile.PhoneNumber = a, "Phone Number", mask: "(###)###-####");
+            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.Email, (c, a) => profile.Email = a, "Email",KeyboardType.Email, null, true));
+            var phoneNumberCell = (TView)cellBuilder.GetTextEditCell(profile.PhoneNumber, (c, a) => profile.PhoneNumber = a, "Phone Number", KeyboardType.Phone, mask: "(###)###-####");
             Cells.Add(phoneNumberCell);
             Cells.Add((TView)cellBuilder.GetDatePickerCell(profile.DateOfBirth, (property) => { profile.DateOfBirth = property; }, "Date Of Birth"));
             Cells.Add((TView)cellBuilder.GetPickerCell(profile.Gender, (property) => { profile.Gender = property; }, "Gender", genders));
@@ -97,7 +97,7 @@ namespace Mehspot.Core.Models
                         {
                             profile.Zip = a;
                             ZipCell_ValueChanged(c, a, subdivisionCell);
-                        }, "Zip", mask: "#####");
+                        }, "Zip", KeyboardType.Numeric, mask: "#####");
             subdivisionCell.IsReadOnly = string.IsNullOrWhiteSpace(profile.Zip) || !zipCell.IsValid;
             Cells.Add((TView)zipCell);
             Cells.Add((TView)subdivisionCell);
