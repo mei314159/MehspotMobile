@@ -31,12 +31,12 @@ namespace Mehspot.AndroidApp.Activities
 	public class VerifySubdivisionActivity : AppCompatActivity, IVerifySubdivisionController, IOnMapReadyCallback,
 	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener, GoogleApiClient.IOnConnectionFailedListener
 	{
-		static readonly string TAG = "X:" + nameof(VerifySubdivisionActivity);
-		VerifySubdivisionModel<View> model;
+		private static readonly string TAG = "X:" + nameof(VerifySubdivisionActivity);
+		private VerifySubdivisionModel<View> model;
 		private Marker marker;
 		private GoogleMap map;
 		private Geocoder geocoder;
-		CameraPosition camera;
+		private CameraPosition camera;
 
 		#region Properties
 
@@ -125,11 +125,18 @@ namespace Mehspot.AndroidApp.Activities
 			map = googleMap;
 			map.MarkerDragStart += Map_MarkerDragStart;
 			map.MarkerDragEnd += Map_MarkerDragEnd;
+			map.MapLongClick += Map_MapLongClick;
 			var options = new MarkerOptions();
 			options.SetPosition(camera.Target);
 			marker = map.AddMarker(options);
 			marker.Draggable = MarkerDraggable;
 			ApplyLocation();
+		}
+
+		void Map_MapLongClick(object sender, GoogleMap.MapLongClickEventArgs e)
+		{
+			model.SetMarkerByPress(e.Point.Latitude, e.Point.Longitude);
+			marker.Position = new LatLng(e.Point.Latitude, e.Point.Longitude);
 		}
 
 		void Map_MarkerDragStart(object sender, GoogleMap.MarkerDragStartEventArgs e)
@@ -187,7 +194,6 @@ namespace Mehspot.AndroidApp.Activities
 			camera = CameraPosition.FromLatLngZoom(new LatLng(latitude, longitude), 15);
 			if (map == null)
 			{
-
 				var mapOptions = new GoogleMapOptions()
 							.InvokeMapType(GoogleMap.MapTypeNormal)
 							.InvokeZoomControlsEnabled(true);
