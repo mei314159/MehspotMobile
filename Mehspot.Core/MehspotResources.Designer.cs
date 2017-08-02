@@ -2695,5 +2695,13 @@ namespace Mehspot.Core
                 return ResourceManager.GetString("OtherHelpers", resourceCulture);
             }
         }
+
+        public static string OtherHelpersDescription
+        {
+            get
+            {
+                return ResourceManager.GetString("OtherHelpersDescription", resourceCulture);
+            }
+        }
     }
 }
