@@ -21,6 +21,7 @@ namespace Mehspot.AndroidApp
 	{
 		private BadgesModel model;
 		private List<BadgeSummaryItem> wrapList = new List<BadgeSummaryItem>();
+		private SwipeRefreshLayout refresher => this.Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
 
 		public IViewHelper ViewHelper { get; private set; }
 
@@ -38,7 +39,6 @@ namespace Mehspot.AndroidApp
 			model.LoadingStart += Model_LoadingStart;
 			model.LoadingEnd += Model_LoadingEnd;
 
-			var refresher = this.Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
 			refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 														Resource.Color.xam_purple,
 														Resource.Color.xam_gray,
@@ -71,12 +71,12 @@ namespace Mehspot.AndroidApp
 
 		void Model_LoadingStart()
 		{
-			ViewHelper.ShowOverlay("Loading");
+			refresher.Refreshing = true;
 		}
 
 		void Model_LoadingEnd()
 		{
-			ViewHelper.HideOverlay();
+			refresher.Refreshing = false;
 		}
 
 		private BadgeSummaryItem CreateItem(BadgeSummaryDTO dto)

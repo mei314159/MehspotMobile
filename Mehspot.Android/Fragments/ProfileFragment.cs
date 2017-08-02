@@ -49,6 +49,7 @@ namespace Mehspot.AndroidApp
 		public TextView UserFullNameLabel => this.Activity.FindViewById<TextView>(Resource.ProfileViewActivity.userFullNameLabel);
 		public ImageView UserImage => this.Activity.FindViewById<ImageView>(Resource.ProfileViewActivity.profilePhoto);
 		public View ProfileContainer => this.Activity.FindViewById<LinearLayout>(Resource.ProfileViewActivity.container);
+		public SwipeRefreshLayout refresher => this.Activity.FindViewById<SwipeRefreshLayout>(Resource.ProfileViewActivity.profileRefresher);
 
 		#region IProfileViewController 
 		public IViewHelper ViewHelper { get; private set; }
@@ -130,7 +131,6 @@ namespace Mehspot.AndroidApp
 			model.SignedOut += Model_SignedOut;
 			UserImage.ClipToOutline = true;
 
-			var refresher = this.Activity.FindViewById<SwipeRefreshLayout>(Resource.ProfileViewActivity.profileRefresher);
 			refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 														Resource.Color.xam_purple,
 														Resource.Color.xam_gray,
@@ -169,14 +169,16 @@ namespace Mehspot.AndroidApp
 		private void Model_LoadingStart()
 		{
 			this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = false;
-			ViewHelper.ShowOverlay("Loading");
+			//ViewHelper.ShowOverlay("Loading");
+			refresher.Refreshing = true;
 		}
 
 		private void Model_LoadingEnd()
 		{
 			ProfileContainer.Visibility = ViewStates.Visible;
 			this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = true;
-			ViewHelper.HideOverlay();
+			//ViewHelper.HideOverlay();
+			refresher.Refreshing = false;
 		}
 
 		private void ChangePhotoButton_Click(object sender, EventArgs e)

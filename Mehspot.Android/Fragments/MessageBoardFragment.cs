@@ -37,6 +37,7 @@ namespace Mehspot.AndroidApp
 
 		public EditText SearchBar => Activity.FindViewById<EditText>(Resource.MessageBoard.SearchBar);
 		public Button SearchButton => Activity.FindViewById<Button>(Resource.MessageBoard.SearchButton);
+		public SwipeRefreshLayout refresher => Activity.FindViewById<SwipeRefreshLayout>(Resource.MessageBoard.messageRefresher);
 
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
@@ -63,7 +64,6 @@ namespace Mehspot.AndroidApp
 			model.LoadingStart += Model_LoadingStart;
 			model.LoadingEnd += Model_LoadingEnd;
 
-			var refresher = this.Activity.FindViewById<SwipeRefreshLayout>(Resource.MessageBoard.messageRefresher);
 			refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
 														Resource.Color.xam_purple,
 														Resource.Color.xam_gray,
@@ -86,12 +86,12 @@ namespace Mehspot.AndroidApp
 
 		void Model_LoadingStart()
 		{
-			ViewHelper.ShowOverlay("Loading");
+			refresher.Refreshing = true;
 		}
 
 		void Model_LoadingEnd()
 		{
-			ViewHelper.HideOverlay();
+			refresher.Refreshing = false;
 		}
 
 		public void DisplayMessageBoard()
@@ -149,7 +149,7 @@ namespace Mehspot.AndroidApp
 			var messagingActivity = new Intent(this.Context, typeof(MessagingActivity));
 			messagingActivity.PutExtra("toUserId", toUserId);
 			messagingActivity.PutExtra("toUserName", toUserName);
-			messagingActivity.PutExtra("toProfilePicturePath", dto.WithUser.ProfilePicturePath); 
+			messagingActivity.PutExtra("toProfilePicturePath", dto.WithUser.ProfilePicturePath);
 			this.StartActivity(messagingActivity);
 		}
 
