@@ -3,7 +3,6 @@ using Android.Content;
 using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
-using System;
 using Mehspot.Core.Push;
 
 namespace Mehspot.AndroidApp.Core
@@ -169,11 +168,17 @@ namespace Mehspot.AndroidApp.Core
 			}
 		}
 
-        public BadgeGroup PreferredBadgeGroup
+		public BadgeGroup? PreferredBadgeGroup
 		{
 			get
 			{
-				var result = (BadgeGroup)settings.GetInt(nameof(IApplicationDataStorage.PreferredBadgeGroup), 0);
+				var value = settings.GetInt(nameof(IApplicationDataStorage.PreferredBadgeGroup), 0);
+				if (value == default(int))
+				{
+					return null;
+				}
+
+				var result = (BadgeGroup)value;
 				return result;
 			}
 

@@ -34,7 +34,7 @@ namespace mehspot.iOS
 		public IViewHelper ViewHelper { get; private set; }
 
 
-		public override async void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 
 			this.ViewHelper = new ViewHelper(this.View);
@@ -43,10 +43,8 @@ namespace mehspot.iOS
 			model.LoadingEnd += Model_LoadingEnd;
 
 
-			DataSource = new BadgesGrouppingViewDataSource(model)
-			{
-				CurrentKey = MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup
-			};
+			DataSource = new BadgesGrouppingViewDataSource(model);
+
 			DataSource.SearchButtonTouch += SearchButton_TouchUpInside;
 			DataSource.BadgeRegisterButtonTouch += BadgeRegisterButton_TouchUpInside;
 			var grouppingView = iOS.GrouppingView.Create(GrouppingView.Bounds, DataSource);

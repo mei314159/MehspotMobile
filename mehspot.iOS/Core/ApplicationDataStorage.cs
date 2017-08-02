@@ -203,14 +203,20 @@ namespace Mehspot.iOS.Core
 			}
 		}
 
-        public BadgeGroup PreferredBadgeGroup
+		public BadgeGroup? PreferredBadgeGroup
 		{
 			get
 			{
-				var result = (BadgeGroup)(int)NSUserDefaults
+				var value = (int)NSUserDefaults
 					.StandardUserDefaults
 					.IntForKey(nameof(IApplicationDataStorage.PreferredBadgeGroup));
 
+				if (value == default(int))
+				{
+					return null;
+				}
+
+				var result = (BadgeGroup)value;
 				return result;
 			}
 

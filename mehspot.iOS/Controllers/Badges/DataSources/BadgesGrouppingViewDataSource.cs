@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
 using mehspot.iOS.Views;
+using Mehspot.Core;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Models;
 using Mehspot.Core.Services.Badges;
@@ -78,7 +79,36 @@ namespace mehspot.iOS.Controllers.Badges.DataSources
 		public override void RefreshTable()
 		{
 			this.Groups = model.BadgeHelper.GetGroups();
+			CurrentKey = GetCurrentKey();
 			base.RefreshTable();
+		}
+
+		BadgeGroup GetCurrentKey()
+		{
+			var preferredBadgeGroup = MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup;
+			if (preferredBadgeGroup == null)
+			{
+				if (Groups[BadgeGroup.Friends].Any(a => a.Badge.IsRegistered))
+				{
+					preferredBadgeGroup = BadgeGroup.Friends;
+				}
+				else if (Groups[BadgeGroup.Helpers].Any(a => a.Badge.IsRegistered))
+				{
+					preferredBadgeGroup = BadgeGroup.Helpers;
+				}
+				else if (Groups[BadgeGroup.Jobs].Any(a => a.Badge.IsRegistered))
+				{
+					preferredBadgeGroup = BadgeGroup.Jobs;
+				}
+				else
+				{
+					preferredBadgeGroup = BadgeGroup.Friends;
+				}
+
+				MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup = preferredBadgeGroup;
+			}
+
+			return preferredBadgeGroup.Value;
 		}
 	}
 }
