@@ -52,46 +52,46 @@
 	    <value>Tutor Employer</value>
 	</data>
 	<data name="Find_Babysitter" xml:space="preserve">
-        <value>Find Babysitter</value>
+        <value>Find Babysitters</value>
     </data>
 	<data name="Find_BabysitterEmployer" xml:space="preserve">
-        <value>Find Babysitter Job</value>
+        <value>Find Babysitter Jobs</value>
     </data>
 	<data name="Find_Fitness" xml:space="preserve">
-        <value>Find Fitness Partner</value>
+        <value>Find Fitness Partners</value>
     </data>
 	<data name="Find_Friendship" xml:space="preserve">
-        <value>Find Friend</value>
+        <value>Find Friends</value>
     </data>
 	<data name="Find_Golf" xml:space="preserve">
-        <value>Find Golf Partner</value>
+        <value>Find Golf Partners</value>
     </data>
 	<data name="Find_KidsPlayDate" xml:space="preserve">
-        <value>Find Kids Playdate</value>
+        <value>Find Kids Playdates</value>
     </data>
 	<data name="Find_OtherJobs" xml:space="preserve">
         <value>Find Other Jobs</value>
     </data>
 	<data name="Find_PetSitter" xml:space="preserve">
-        <value>Find Pet Sitter</value>
+        <value>Find Pet Sitters</value>
     </data>
 	<data name="Find_PetSitterEmployer" xml:space="preserve">
-        <value>Find Pet Sitter Job</value>
+        <value>Find Pet Sitter Jobs</value>
     </data>
 	<data name="Find_Tennis" xml:space="preserve">
-        <value>Find Tennis Partner</value>
+        <value>Find Tennis Partners</value>
     </data>
 	<data name="Find_Tutor" xml:space="preserve">
-        <value>Find Tutor</value>
+        <value>Find Tutors</value>
     </data>
 	<data name="Find_TutorEmployer" xml:space="preserve">
-        <value>Find Tutor Job</value>
+        <value>Find Tutor Jobs</value>
     </data>
 	<data name="Babysitter_Description" xml:space="preserve">
 	    <value>Search for babysitters</value>
 	</data>
 	<data name="BabysitterEmployer_Description" xml:space="preserve">
-	    <value>Search for for families in need of a babysitter</value>
+	    <value>Search for families in need of a babysitter</value>
 	</data>
 	<data name="Fitness_Description" xml:space="preserve">
 	    <value>Search for fitness partner</value>

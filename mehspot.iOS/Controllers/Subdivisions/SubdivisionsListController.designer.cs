@@ -34,10 +34,6 @@ namespace Mehspot.iOS.Controllers
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void MoreButtonTouched (UIKit.UIBarButtonItem sender);
 
-        [Action ("SaveButtonTouched:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void SaveButtonTouched (UIKit.UIBarButtonItem sender);
-
         void ReleaseDesignerOutlets ()
         {
             if (MapWrapperView != null) {

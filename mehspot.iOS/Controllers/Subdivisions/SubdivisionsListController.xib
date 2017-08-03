@@ -34,7 +34,7 @@
                     </constraints>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="13"/>
-                        <barButtonItem id="21" title="Add">
+                        <barButtonItem id="21" title="Add Subdivision">
                             <connections>
                                 <action selector="AddButtonTouched:" destination="-1" id="56"/>
                             </connections>
@@ -67,11 +67,6 @@
                             <barButtonItem key="leftBarButtonItem" systemItem="stop" id="18">
                                 <connections>
                                     <action selector="CloseButtonTouched:" destination="-1" id="48"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" systemItem="save" id="19">
-                                <connections>
-                                    <action selector="SaveButtonTouched:" destination="-1" id="47"/>
                                 </connections>
                             </barButtonItem>
                         </navigationItem>
@@ -172,6 +167,24 @@
         <image name="review-icon" width="25" height="25"/>
         <image name="signin-fb.png" width="220" height="40"/>
         <image name="logo-small.jpg" width="300" height="192"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="slider-default_trackBackground.png" width="11" height="9"/>
+        <image name="slider-default7-trackCrossedOver.png" width="6" height="4"/>
+        <image name="slider-default7-trackBackground.png" width="6" height="4"/>
+        <image name="slider-default7-track.png" width="6" height="4"/>
+        <image name="slider-default7-handle.png" width="43" height="43"/>
+        <image name="slider-default7-handle-disabled.png" width="43" height="43"/>
+        <image name="slider-default-trackCrossedOver.png" width="11" height="9"/>
+        <image name="slider-default-trackBackground.png" width="11" height="9"/>
+        <image name="slider-default-track.png" width="11" height="9"/>
+        <image name="slider-default-handle.png" width="23" height="23"/>
+        <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
+        <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>
