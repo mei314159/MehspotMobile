@@ -109,45 +109,46 @@ namespace mehspot.iOS
 
 		async void ZipField_ValueChanged(object sender, EventArgs e)
 		{
-			await LoadSubdivisionsAsync();
-		}
-
-		private async Task<List<SubdivisionDTO>> GetSubdivisions(string zipCode)
-		{
-			if (!string.IsNullOrWhiteSpace(zipCode))
+			if (ZipField.IsValid)
 			{
-				var subdivisionsResult = await subdivisionService.ListSubdivisionsAsync(zipCode);
-				if (subdivisionsResult.IsSuccess)
-				{
-					this.subdivisionsLoaded = true;
-					return subdivisionsResult.Data;
-				}
+				this.HideKeyboard();
 			}
 
-			return new List<SubdivisionDTO>();
+			await LoadSubdivisionsAsync();
+			if (ZipField.IsValid)
+			{
+				SubdivisionButtonTouched(SubdivisionField);
+			}
 		}
 
-		async Task LoadSubdivisionsAsync()
+		private async Task LoadSubdivisionsAsync()
 		{
 			subdivisionSelectorEnabled = false;
 			if (ZipField.IsValid)
 			{
 				viewHelper.ShowOverlay("Loading Subdivisions");
-				Subdivisions = await GetSubdivisions(ZipField.Text);
-				if (Subdivisions?.Count <= 0)
+				var subdivisionsResult = await subdivisionService.ListSubdivisionsAsync(ZipField.Text).ConfigureAwait(false);
+				if (subdivisionsResult.IsSuccess)
 				{
-					SubdivisionField.SetTitle("Add Subdivision", UIControlState.Normal);
+					this.subdivisionsLoaded = true;
+					Subdivisions = subdivisionsResult.Data;
 				}
 				else
 				{
-					SubdivisionField.SetTitle("Subdivision", UIControlState.Normal);
+					viewHelper.ShowAlert("Error", subdivisionsResult.ErrorMessage);
 				}
 
+				InvokeOnMainThread(() => SubdivisionField
+								   .SetTitle(Subdivisions?.Count <= 0 ? "Add Subdivision" : "Subdivision", UIControlState.Normal));
 				viewHelper.HideOverlay();
 			}
 
-			subdivisionSelectorEnabled = ZipField.IsValid;
+			InvokeOnMainThread(() =>
+			{
+				subdivisionSelectorEnabled = ZipField.IsValid;
+			});
 		}
+
 		protected virtual void RegisterForKeyboardNotifications()
 		{
 			this.willHideNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);

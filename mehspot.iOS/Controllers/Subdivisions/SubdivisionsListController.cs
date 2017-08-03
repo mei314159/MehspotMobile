@@ -10,6 +10,7 @@ using UIKit;
 using CoreLocation;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Models.Subdivisions;
+using Mehspot.iOS.Wrappers;
 
 namespace Mehspot.iOS.Controllers
 {
@@ -41,14 +42,17 @@ namespace Mehspot.iOS.Controllers
 
 			model = new SubdivisionsListModel(this);
 			model.Initialize();
+			if (Subdivisions?.Count > 0)
+			{
+				model.RefreshMap();
+			}
+			else
+			{
+				var avAlert = new UIAlertView("There is no subdivision yet for this zip code", "Please add your subdivision", (IUIAlertViewDelegate)null, "OK", null);
+				avAlert.Clicked += (sender, e) => GoToAddSubdivisionController();
+				avAlert.Show();
+			}
 		}
-
-		public override void ViewDidAppear(bool animated)
-		{
-			base.ViewDidAppear(animated);
-			model.RefreshMap();
-		}
-
 		public void InitializeList(List<SubdivisionDTO> subdivisions, SubdivisionDTO selectedSubdivision)
 		{
 			var pickerModel = new CustomPickerModel(subdivisions.Select(a => a.DisplayName).ToList());
@@ -106,24 +110,17 @@ namespace Mehspot.iOS.Controllers
 			marker.Position = camera.Target;
 		}
 
-		partial void SaveButtonTouched(UIBarButtonItem sender)
-		{
-			this.OnDismissed?.Invoke(model.SelectedSubdivision);
-			DismissViewController(true, null);
-		}
-
 		partial void CloseButtonTouched(UIBarButtonItem sender)
 		{
+
+			if (model.SelectedSubdivision != null)
+				this.OnDismissed?.Invoke(model.SelectedSubdivision);
 			DismissViewController(true, null);
 		}
 
 		partial void AddButtonTouched(UIBarButtonItem sender)
 		{
-			var controller = new SubdivisionController();
-			controller.AllowEdititng = true;
-			controller.ZipCode = this.ZipCode;
-			controller.OnDismissed += model.OnSubdivisionCreated;
-			this.PresentViewController(controller, true, null);
+			GoToAddSubdivisionController();
 		}
 
 		void SubdivisionOptionsActionSheet_Clicked(object sender, UIButtonEventArgs e)
@@ -169,6 +166,15 @@ namespace Mehspot.iOS.Controllers
 				subdivisionOptionsActionSheet.Clicked += SubdivisionOptionsActionSheet_Clicked;
 				subdivisionOptionsActionSheet.ShowInView(View);
 			}
+		}
+
+		void GoToAddSubdivisionController()
+		{
+			var controller = new SubdivisionController();
+			controller.AllowEdititng = true;
+			controller.ZipCode = this.ZipCode;
+			controller.OnDismissed += model.OnSubdivisionCreated;
+			this.PresentViewController(controller, true, null);
 		}
 	}
 }
