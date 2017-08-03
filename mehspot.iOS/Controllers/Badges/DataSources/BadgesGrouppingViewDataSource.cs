@@ -73,7 +73,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources
 
 		public async Task ReloadDataAsync()
 		{
-			await model.RefreshAsync(false, true).ConfigureAwait(false);
+			await model.RefreshAsync(model.Items == null, true).ConfigureAwait(false);
 		}
 
 		public override void RefreshTable()

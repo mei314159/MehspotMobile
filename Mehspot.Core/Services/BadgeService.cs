@@ -133,7 +133,8 @@ namespace Mehspot.Core.Services
 
         public async Task<Result> ToggleEnabledState(int badgeId, bool isEnabled)
         {
-            return await PostAsync<object>($"badges/{badgeId}/toggle", isEnabled).ConfigureAwait(false);
+            var result = await PostAsync<object>($"badges/{badgeId}/toggle", isEnabled).ConfigureAwait(false);
+            return result;
         }
 
         public async Task<Result<BadgeUserRecommendationDTO>> WriteRecommendationAsync(int badgeId, string userId, string text)
@@ -161,6 +162,11 @@ namespace Mehspot.Core.Services
                     if (item.BadgeId == badgeId)
                     {
                         item.IsRegistered = isRegistered;
+                    }
+
+                    if (item.RequiredBadgeId == badgeId)
+                    {
+                        item.RequiredBadgeIsRegistered = isRegistered;
                     }
                 }
 
