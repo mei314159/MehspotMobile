@@ -239,7 +239,7 @@ namespace Mehspot.iOS
 		void Model_SignedOut()
 		{
 			new LoginManager().LogOut();
-			var targetViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("LoginViewController");
+			var targetViewController = UIStoryboard.FromName("Login", null).InstantiateViewController("LoginViewController");
 			this.View.Window.SwapController(targetViewController);
 		}
 
