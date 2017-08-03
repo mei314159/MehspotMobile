@@ -232,6 +232,9 @@
     <InterfaceDefinition Include="Views\Cell\Badges\BadgeItemCell.xib" />
     <InterfaceDefinition Include="Views\GrouppingView\GrouppingView.xib" />
     <InterfaceDefinition Include="Views\Cell\Badges\BadgeItemCellSimplified.xib" />
+    <InterfaceDefinition Include="Login.storyboard" />
+    <InterfaceDefinition Include="Badges.storyboard" />
+    <InterfaceDefinition Include="Contact.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

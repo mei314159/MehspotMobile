@@ -146,22 +146,7 @@ namespace Mehspot.iOS
 
 		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
 		{
-			if (segue.Identifier == "GoToMessagingSegue")
-			{
-				var controller = (MessagingViewController)segue.DestinationViewController;
-				controller.ToUserName = this.model.SelectedItem.Details.FirstName;
-				controller.ToUserId = this.model.SelectedItem.Details.UserId;
-				controller.ProfilePicturePath = this.model.SelectedItem.Details.ProfilePicturePath;
-				controller.ParentController = this;
-			}
-			else if (segue.Identifier == "ViewProfileSegue")
-			{
-				var controller = (ViewProfileViewController)segue.DestinationViewController;
-				controller.BadgeId = this.BadgeSummary.BadgeId;
-				controller.BadgeName = this.BadgeSummary.BadgeName;
-				controller.UserId = this.model.SelectedItem.Details.UserId;
-			}
-			else if (segue.Identifier == "RegisterRequiredBadgeSegue")
+			if (segue.Identifier == "RegisterRequiredBadgeSegue")
 			{
 				var controller = (EditBadgeProfileController)segue.DestinationViewController;
 
@@ -187,13 +172,28 @@ namespace Mehspot.iOS
 		private void SendMessageButtonTouched(UIButton obj, ISearchResultDTO dto)
 		{
 			this.model.SelectItem(dto);
-			PerformSegue("GoToMessagingSegue", this);
+			var storyboard = UIStoryboard.FromName("Contact", null);
+			var controller = (MessagingViewController)storyboard.InstantiateViewController("MessagingViewController");
+
+			controller.ToUserName = this.model.SelectedItem.Details.FirstName;
+			controller.ToUserId = this.model.SelectedItem.Details.UserId;
+			controller.ProfilePicturePath = this.model.SelectedItem.Details.ProfilePicturePath;
+			controller.ParentController = this;
+
+			this.NavigationController?.ShowDetailViewController(controller, this);
 		}
 
 		private void ViewProfileButtonTouched(UIButton obj, ISearchResultDTO dto)
 		{
 			this.model.SelectItem(dto);
-			PerformSegue("ViewProfileSegue", this);
+			var storyboard = UIStoryboard.FromName("Contact", null);
+			var controller = (ViewProfileViewController)storyboard.InstantiateViewController("ViewProfileViewController");
+
+			controller.BadgeId = this.BadgeSummary.BadgeId;
+			controller.BadgeName = this.BadgeSummary.BadgeName;
+			controller.UserId = this.model.SelectedItem.Details.UserId;
+
+			this.NavigationController?.ShowDetailViewController(controller, this);
 		}
 
 		void OnRegisterButtonTouched()
