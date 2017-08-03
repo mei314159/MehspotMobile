@@ -70,7 +70,7 @@ namespace Mehspot.iOS
 
 				if (url.StartsWith("/account/forgotpassword", StringComparison.Ordinal))
 				{
-					var storyboard = UIStoryboard.FromName("Main", null);
+					var storyboard = UIStoryboard.FromName("Login", null);
 					var controller = storyboard.InstantiateViewController("ForgotPasswordViewController");
 					Window.SwapController(controller);
 					return true;
@@ -88,7 +88,7 @@ namespace Mehspot.iOS
 
 		private ResetPasswordViewController GetResetPasswordController(NSUserActivity userActivity)
 		{
-			var storyboard = UIStoryboard.FromName("Main", null);
+			var storyboard = UIStoryboard.FromName("Login", null);
 			var controller = (ResetPasswordViewController)storyboard.InstantiateViewController("ResetPasswordViewController");
 			var keyValueChunks = userActivity.WebPageUrl.Query.Split('&').Select(a => a.Split('=')).ToDictionary(a => a[0], a => a[1]);
 			controller.Email = System.Net.WebUtility.UrlDecode(keyValueChunks["email"]);
@@ -284,7 +284,7 @@ namespace Mehspot.iOS
 					}
 				}
 
-				return UIStoryboard.FromName("Main", null).InstantiateViewController("LoginViewController");
+				return UIStoryboard.FromName("Login", null).InstantiateViewController("LoginViewController");
 			}
 
 			if (!MehspotAppContext.Instance.DataStorage.WalkthroughPassed)

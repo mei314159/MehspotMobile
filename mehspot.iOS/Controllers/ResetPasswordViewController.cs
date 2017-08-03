@@ -72,7 +72,7 @@ namespace Mehspot.iOS
 
 		partial void BackButtonTouched(UIBarButtonItem sender)
 		{
-			var targetViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("LoginViewController");
+			var targetViewController = UIStoryboard.FromName("Login", null).InstantiateViewController("LoginViewController");
 			this.View.Window.SwapController(targetViewController);
 		}
 	}
