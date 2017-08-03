@@ -66,7 +66,7 @@ namespace Mehspot.iOS
 			if (goToMessagesWhenAppear)
 			{
 				goToMessagesWhenAppear = false;
-				PerformSegue("GoToMessagingSegue", this);
+                ShowMessagesFromUser(this.SelectedUserId, this.SelectedUserName);
 			}
 		}
 
@@ -85,16 +85,6 @@ namespace Mehspot.iOS
 		public void DisplayMessageBoard()
 		{
 			MessageBoardTable.ReloadData();
-		}
-
-		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-		{
-			var controller = (MessagingViewController)segue.DestinationViewController;
-			controller.ToUserName = this.SelectedUserName;
-			controller.ToUserId = this.SelectedUserId;
-			controller.ProfilePicturePath = this.SelectedUserImagePath;
-			controller.ParentController = this;
-			base.PrepareForSegue(segue, sender);
 		}
 
 		public nint RowsInSection(UITableView tableView, nint section)
@@ -118,7 +108,7 @@ namespace Mehspot.iOS
 			this.SelectedUserImagePath = model.Items[indexPath.Row].WithUser.ProfilePicturePath;
 			this.SelectedUserId = dto.Id;
 			this.SelectedUserName = dto.UserName;
-			PerformSegue("GoToMessagingSegue", this);
+			ShowMessagesFromUser(this.SelectedUserId, this.SelectedUserName);
 			tableView.DeselectRow(indexPath, true);
 		}
 
@@ -128,7 +118,15 @@ namespace Mehspot.iOS
 			this.SelectedUserName = userName;
 			if (this.IsViewLoaded)
 			{
-				PerformSegue("GoToMessagingSegue", this);
+				var storyboard = UIStoryboard.FromName("Contact", null);
+				var controller = (MessagingViewController)storyboard.InstantiateViewController("MessagingViewController");
+
+				controller.ToUserName = this.SelectedUserName;
+				controller.ToUserId = this.SelectedUserId;
+				controller.ProfilePicturePath = this.SelectedUserImagePath;
+				controller.ParentController = this;
+
+				this.NavigationController?.ShowDetailViewController(controller, this);
 			}
 			else
 			{
@@ -151,12 +149,10 @@ namespace Mehspot.iOS
 
 			if (url != null)
 			{
-
 				cell.ProfilePicture.SetImage(url);
 			}
 			else
 			{
-
 				cell.ProfilePicture.Image = UIImage.FromFile("profile_image");
 			}
 
