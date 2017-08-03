@@ -51,12 +51,12 @@ namespace mehspot.iOS
 			GrouppingView.AddSubview(grouppingView);
 		}
 
-		void Model_LoadingStart()
+		private void Model_LoadingStart()
 		{
 			//this.RefreshControl.BeginRefreshing();
 		}
 
-		void Model_LoadingEnd()
+		private void Model_LoadingEnd()
 		{
 			//this.TableView.SetContentOffset(CGPoint.Empty, true);
 			//this.RefreshControl.EndRefreshing();
@@ -99,42 +99,36 @@ namespace mehspot.iOS
 
 		}
 
-		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-		{
-			if (segue.Identifier == "GoToSearchFilterSegue")
-			{
-				var controller = ((SearchBadgeController)segue.DestinationViewController);
-				controller.BadgeSummary = model.BadgeHelper.GetBadgeSummary(this.selectedBadge.SearchBadge);
-			}
-			else if (segue.Identifier == "GoToEditBadgeSegue")
-			{
-				var controller = ((EditBadgeProfileController)segue.DestinationViewController);
-				controller.BadgeIsRegistered = selectedBadge.Badge.IsRegistered;
-				controller.BadgeId = selectedBadge.Badge.BadgeId;
-				controller.BadgeName = selectedBadge.BadgeName;
-			}
-
-			base.PrepareForSegue(segue, sender);
-		}
-
 		//async void RefreshControl_ValueChanged(object sender, EventArgs e)
 		//{
 		//	await model.RefreshAsync(true, true);
 		//}
 
-		void SearchButton_TouchUpInside(BadgeItemCell cell)
+		private void BadgeRegisterButton_TouchUpInside(BadgeItemCell cell)
 		{
 			this.selectedBadge = cell.BadgeInfo;
-			PerformSegue("GoToSearchFilterSegue", this);
+			var storyboard = UIStoryboard.FromName("Badges", null);
+			var controller = (EditBadgeProfileController)storyboard.InstantiateViewController("EditBadgeProfileController");
+
+			controller.BadgeIsRegistered = selectedBadge.Badge.IsRegistered;
+			controller.BadgeId = selectedBadge.Badge.BadgeId;
+			controller.BadgeName = selectedBadge.BadgeName;
+
+            this.NavigationController?.ShowViewController(controller, this);
 		}
 
-		void BadgeRegisterButton_TouchUpInside(BadgeItemCell cell)
+		private void SearchButton_TouchUpInside(BadgeItemCell cell)
 		{
 			this.selectedBadge = cell.BadgeInfo;
-			PerformSegue("GoToEditBadgeSegue", this);
+
+			var storyboard = UIStoryboard.FromName("Badges", null);
+			var controller = (SearchBadgeController)storyboard.InstantiateViewController("SearchBadgeController");
+			controller.BadgeSummary = model.BadgeHelper.GetBadgeSummary(this.selectedBadge.SearchBadge);
+
+			this.NavigationController?.ShowViewController(controller, this);
 		}
 
-		void ShowTutorial()
+		private void ShowTutorial()
 		{
 			tutorialOverlay?.Hide();
 			tutorialOverlay = View.Window
@@ -163,7 +157,7 @@ namespace mehspot.iOS
 			tutorialOverlay.AddGestureRecognizer(new UITapGestureRecognizer(this.TutorialOverlayTouched));
 		}
 
-		void TutorialOverlayTouched()
+		private void TutorialOverlayTouched()
 		{
 			tutorialOverlay.Hide();
 			tutorialOverlay.Dispose();
