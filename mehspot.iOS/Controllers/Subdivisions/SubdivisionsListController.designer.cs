@@ -16,6 +16,10 @@ namespace Mehspot.iOS.Controllers
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView ButtonsWrapper { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView MapWrapperView { get; set; }
 
         [Outlet]
@@ -24,7 +28,7 @@ namespace Mehspot.iOS.Controllers
 
         [Action ("AddButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void AddButtonTouched (UIKit.UIBarButtonItem sender);
+        partial void AddButtonTouched (UIKit.UIButton sender);
 
         [Action ("CloseButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -32,10 +36,19 @@ namespace Mehspot.iOS.Controllers
 
         [Action ("MoreButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void MoreButtonTouched (UIKit.UIBarButtonItem sender);
+        partial void MoreButtonTouched (UIKit.UIButton sender);
+
+        [Action ("SaveButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SaveButtonTouched (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
+            if (ButtonsWrapper != null) {
+                ButtonsWrapper.Dispose ();
+                ButtonsWrapper = null;
+            }
+
             if (MapWrapperView != null) {
                 MapWrapperView.Dispose ();
                 MapWrapperView = null;

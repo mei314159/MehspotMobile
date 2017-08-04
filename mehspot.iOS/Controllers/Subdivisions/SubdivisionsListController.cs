@@ -110,15 +110,19 @@ namespace Mehspot.iOS.Controllers
 			marker.Position = camera.Target;
 		}
 
-		partial void CloseButtonTouched(UIBarButtonItem sender)
+		partial void SaveButtonTouched(UIButton sender)
 		{
-
 			if (model.SelectedSubdivision != null)
 				this.OnDismissed?.Invoke(model.SelectedSubdivision);
 			DismissViewController(true, null);
 		}
 
-		partial void AddButtonTouched(UIBarButtonItem sender)
+		partial void CloseButtonTouched(UIBarButtonItem sender)
+		{
+			DismissViewController(true, null);
+		}
+
+		partial void AddButtonTouched(UIButton sender)
 		{
 			GoToAddSubdivisionController();
 		}
@@ -147,7 +151,7 @@ namespace Mehspot.iOS.Controllers
 			}
 		}
 
-		partial void MoreButtonTouched(UIBarButtonItem sender)
+		partial void MoreButtonTouched(UIButton sender)
 		{
 			if (model.SelectedSubdivision != null)
 			{

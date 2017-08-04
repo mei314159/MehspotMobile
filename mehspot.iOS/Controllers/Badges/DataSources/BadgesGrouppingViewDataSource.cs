@@ -56,18 +56,45 @@ namespace mehspot.iOS.Controllers.Badges.DataSources
 		[Export("tableView:heightForRowAtIndexPath:")]
 		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
 		{
-			return 80;
+			if (model.IsRowExpanded(indexPath.Row))
+			{
+				return 152;
+			}
+			else
+			{
+				return 70;
+			}
+		}
+
+		[Export("tableView:didSelectRowAtIndexPath:")]
+		public void RowSelected(UITableView tableView, NSIndexPath indexPath)
+		{
+			model.SelectRow(indexPath.Row);
+			tableView.ReloadRows(new[] { indexPath }, UITableViewRowAnimation.Fade);
+			tableView.ScrollToRow(indexPath, UITableViewScrollPosition.None, true);
+		}
+
+
+		[Export("collectionView:didSelectItemAtIndexPath:")]
+		public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
+		{
+			model.CollapseRows();
+			base.ItemSelected(collectionView, indexPath);
 		}
 
 		void SearchButton_TouchUpInside(UIButton button)
 		{
 			var cell = (BadgeItemCell)button.FindSuperviewOfType(this.TableView, typeof(BadgeItemCell));
+			var indexPath = this.TableView.IndexPathForCell(cell);
+			this.model.SelectRow(indexPath.Row);
 			SearchButtonTouch?.Invoke(cell);
 		}
 
 		void BadgeRegisterButton_TouchUpInside(UIButton button)
 		{
 			var cell = (BadgeItemCell)button.FindSuperviewOfType(this.TableView, typeof(BadgeItemCell));
+			var indexPath = this.TableView.IndexPathForCell(cell);
+			this.model.SelectRow(indexPath.Row);
 			BadgeRegisterButtonTouch?.Invoke(cell);
 		}
 

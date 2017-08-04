@@ -2703,5 +2703,21 @@ namespace Mehspot.Core
                 return ResourceManager.GetString("OtherHelpersDescription", resourceCulture);
             }
         }
+
+        public static string PleaseRegisterMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseRegisterMessage", resourceCulture);
+            }
+        }
+
+        public static string BadgeRegistrationRequired
+        {
+            get
+            {
+                return ResourceManager.GetString("BadgeRegistrationRequired", resourceCulture);
+            }
+        }
     }
 }

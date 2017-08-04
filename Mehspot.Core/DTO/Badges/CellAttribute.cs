@@ -39,6 +39,8 @@ namespace Mehspot.Core.DTO.Search
         public bool ReadOnly { get; set; }
 
         public CellType CellType { get; set; }
+
+        public Type[] IgnoreFor { get; set; }
     }
 
     public class ViewProfileDtoAttribute : Attribute

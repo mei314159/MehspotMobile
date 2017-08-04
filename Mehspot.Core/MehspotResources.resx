@@ -1008,4 +1008,10 @@
 	<data name="OtherHelpersDescription" xml:space="preserve">
     <value>Search for student workers</value>
   </data>
+	<data name="PleaseRegisterMessage" xml:space="preserve">
+    <value>Please sign up for required badge to be able to contact users</value>
+  </data>
+	<data name="BadgeRegistrationRequired" xml:space="preserve">
+    <value>Badge registration required</value>
+  </data>
 </root>
