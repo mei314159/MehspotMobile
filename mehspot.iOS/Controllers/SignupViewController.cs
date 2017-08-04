@@ -15,10 +15,14 @@ namespace Mehspot.iOS
 {
 	public partial class SignupViewController : UIViewController
 	{
+		private const float IPhone5ScreenHeight = 568f;
+
 		private NSObject willHideNotificationObserver;
 		private NSObject willShowNotificationObserver;
-		SignUpModel model;
-		ViewHelper viewHelper;
+		private SignUpModel model;
+		private ViewHelper viewHelper;
+
+
 		public SignupViewController(IntPtr handle) : base(handle)
 		{
 		}
@@ -34,7 +38,7 @@ namespace Mehspot.iOS
 			this.UserNameField.ShouldReturn += TextFieldShouldReturn;
 			this.PasswordField.ShouldReturn += TextFieldShouldReturn;
 			this.ConfirmationPasswordField.ShouldReturn += TextFieldShouldReturn;
-
+			this.SetScreenConstraints();
 		}
 
 		public override void ViewDidAppear(bool animated)
@@ -51,6 +55,14 @@ namespace Mehspot.iOS
 				NSNotificationCenter.DefaultCenter.RemoveObserver(willShowNotificationObserver);
 		}
 
+		private void SetScreenConstraints()
+		{
+			if (UIScreen.MainScreen.Bounds.Height > IPhone5ScreenHeight)
+			{
+				this.ScrollView.ScrollEnabled = false;
+			}
+		}
+
 		private async void Model_SignedUp(Result result)
 		{
 			string email = null;
@@ -64,7 +76,7 @@ namespace Mehspot.iOS
 			model.SignInAsync(email, password);
 		}
 
-		void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
+		private void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
 			InvokeOnMainThread(() =>
 			{

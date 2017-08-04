@@ -38,7 +38,7 @@ namespace Mehspot.iOS
 
 		public override void ViewDidLoad()
 		{
-
+			this.ScrollView.ScrollEnabled = false;
 			this.View.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			this.EmailField.ShouldReturn += TextFieldShouldReturn;
 			this.PasswordField.ShouldReturn += TextFieldShouldReturn;
