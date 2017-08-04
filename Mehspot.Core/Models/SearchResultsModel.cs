@@ -121,6 +121,7 @@ namespace Mehspot.Core
         {
             if (RegisterButtonVisible)
             {
+                controller.ViewHelper.ShowAlert(MehspotResources.BadgeRegistrationRequired, MehspotResources.PleaseRegisterMessage);
                 return;
             }
 

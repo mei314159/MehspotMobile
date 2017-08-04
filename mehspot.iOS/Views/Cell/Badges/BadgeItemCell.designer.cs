@@ -35,19 +35,19 @@ namespace Mehspot.iOS.Views
                 BadgeRegisterButton = null;
             }
 
-            if (ButtonsWrapper != null) {
-                ButtonsWrapper.Dispose ();
-                ButtonsWrapper = null;
+            if (LikesCount != null) {
+                LikesCount.Dispose ();
+                LikesCount = null;
             }
 
-            if (ButtonsWrapperWidth != null) {
-                ButtonsWrapperWidth.Dispose ();
-                ButtonsWrapperWidth = null;
+            if (RecommendationsCount != null) {
+                RecommendationsCount.Dispose ();
+                RecommendationsCount = null;
             }
 
-            if (ImageLeft != null) {
-                ImageLeft.Dispose ();
-                ImageLeft = null;
+            if (ReferencesCount != null) {
+                ReferencesCount.Dispose ();
+                ReferencesCount = null;
             }
 
             if (SearchButton != null) {

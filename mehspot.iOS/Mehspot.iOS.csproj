@@ -457,6 +457,7 @@
     <BundleResource Include="Resources\slider-default-handle-disabled.png" />
     <BundleResource Include="Resources\w3_background_t%402x.png" />
     <BundleResource Include="Resources\badge_group_bg%402x.png" />
+    <BundleResource Include="Resources\subdivisionicon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mehspot.Core\Mehspot.Core.csproj">

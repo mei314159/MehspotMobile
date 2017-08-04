@@ -28,13 +28,13 @@ namespace Mehspot.Core.DTO.Badges
 
         public double? Distance { get; set; }
 
-        [Cell(Label = "Hired Before", CellType = CellType.Boolean, Order = 999)]
+        [Cell(Label = "Hired Before", CellType = CellType.Boolean, Order = 999, IgnoreFor = new[] { typeof(BadgeProfileDTO<FriendshipProfileDTO>) })]
         public bool IsHired { get; set; }
 
-        [Cell(Label = "Add Reference", CellType = CellType.Boolean, Order = 1000)]
+        [Cell(Label = "Add Reference", CellType = CellType.Boolean, Order = 1000, IgnoreFor = new[] { typeof(BadgeProfileDTO<FriendshipProfileDTO>) })]
         public bool HasReference { get; set; }
 
-        [Cell(Label = "References Count", CellType = CellType.TextView, Order = 1001)]
+        [Cell(Label = "References Count", CellType = CellType.TextView, Order = 1001, IgnoreFor = new[] { typeof(BadgeProfileDTO<FriendshipProfileDTO>) })]
         public int ReferenceCount { get; set; }
     }
 }

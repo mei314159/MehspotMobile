@@ -18,16 +18,25 @@ namespace Mehspot.Core.DTO.Badges
         [Cell("Gender", 3, CellType.TextView)]
         public string Gender { get; set; }
 
-        [Cell("Age Range", 4, CellType.TextView)]
+        [Cell("Family Composition", 4, CellType.TextView)]
+        public string FriendshipFamilyComposition { get; set; }
+
+        [Cell("Profession", 5, CellType.TextView)]
+        public string FriendshipProfession { get; set; }
+
+        [Cell("Looking For", 6, CellType.TextView)]
+        public string FriendshipLookingFor { get; set; }
+
+        [Cell("Age Range", 7, CellType.TextView)]
         public string HobbyAgeRange { get; set; }
 
-        [Cell("Preferred Date and Time", 5, CellType.TextView)]
+        [Cell("Preferred Date and Time", 8, CellType.TextView)]
         public string HobbyPreferredDateTime { get; set; }
 
-        [Cell("Preferred Location", 6, CellType.TextView)]
+        [Cell("Preferred Location", 9, CellType.TextView)]
         public string HobbyPreferredLocation { get; set; }
 
-        [Cell("Additional Information", 7, CellType.TextView)]
+        [Cell("Additional Information", 10, CellType.TextView)]
         public string HobbyAdditionalInformation { get; set; }
 
         public string InfoLabel1
@@ -39,9 +48,5 @@ namespace Mehspot.Core.DTO.Badges
         {
             get { return HobbyType; }
         }
-
-        public string FriendshipFamilyComposition { get; set; }
-        public string FriendshipProfession { get; set; }
-        public string FriendshipLookingFor { get; set; }
     }
 }

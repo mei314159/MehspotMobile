@@ -28,7 +28,7 @@ namespace Mehspot.Core.Builders
 
         public virtual async Task<List<TCell>> CreateCellsForObject(object filter)
         {
-            return (await CreateCellsInternal(filter)).OrderBy(a => a.Item1).Select(a => a.Item2).ToList();
+            return (await CreateCellsInternal(filter, filter.GetType())).OrderBy(a => a.Item1).Select(a => a.Item2).ToList();
         }
 
         public virtual IButtonCell CreateButtonCell(string title)
@@ -55,7 +55,7 @@ namespace Mehspot.Core.Builders
             return null;
         }
 
-        private async Task<List<Tuple<int, TCell>>> CreateCellsInternal(object filter)
+        private async Task<List<Tuple<int, TCell>>> CreateCellsInternal(object filter, Type rootType)
         {
             var type = filter.GetType();
             var properties = type.GetTypeInfo().GetAllProperties()
@@ -66,6 +66,11 @@ namespace Mehspot.Core.Builders
             var cells = new List<Tuple<int, TCell>>();
             foreach (var prop in properties)
             {
+                if (prop.attr.IgnoreFor?.Contains(rootType) == true)
+                {
+                    continue;
+                }
+
                 var value = prop.prop.GetValue(filter);
                 TCell targetCell = default(TCell);
                 switch (prop.attr.CellType)
@@ -151,7 +156,7 @@ namespace Mehspot.Core.Builders
                         }, prop.attr.Label, multiselectOptions, isReadOnly: prop.attr.ReadOnly);
                         break;
                     case CellType.Complex:
-                        var childCells = await this.CreateCellsInternal(value);
+                        var childCells = await this.CreateCellsInternal(value, rootType);
                         cells.AddRange(childCells);
                         break;
                     case CellType.TextView:
