@@ -162,7 +162,7 @@ namespace Mehspot.iOS.Views
 
 			var modalPicker = new ModalPickerViewController(ModalPickerType.Date, cell.placeholder, controller)
 			{
-				HeaderBackgroundColor = UIColor.White,
+				//HeaderBackgroundColor = UIColor.White,
 				HeaderTextColor = UIColor.DarkGray,
 				TransitioningDelegate = new ModalPickerTransitionDelegate(),
 				ModalPresentationStyle = UIModalPresentationStyle.Custom,
