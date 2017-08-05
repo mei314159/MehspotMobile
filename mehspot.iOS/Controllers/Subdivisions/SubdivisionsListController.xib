@@ -104,12 +104,12 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="104" translatesAutoresizingMaskIntoConstraints="NO">
-                            <rect key="frame" x="132" y="7" width="112" height="30"/>
+                            <rect key="frame" x="118" y="7" width="140" height="30"/>
                             <state key="normal" title="Add Subdivision">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <constraints>
-                                <constraint id="107" firstItem="104" firstAttribute="width" constant="112"/>
+                                <constraint id="107" firstItem="104" firstAttribute="width" constant="140"/>
                             </constraints>
                             <connections>
                                 <action selector="AddButtonTouched:" destination="-1" id="109" eventType="touchUpInside"/>

@@ -46,7 +46,11 @@ namespace Mehspot.Core.Models.Subdivisions
             }
             else
             {
-                UpdateInputFieldsFromDTO();
+
+                controller.NameFieldText = DTO.Name;
+                controller.AddressFieldText = DTO.Address.FormattedAddress;
+                controller.LatitudeFieldText = DTO.Address.Latitude.ToString();
+                controller.LongitudeFieldText = DTO.Address.Longitude.ToString();
                 controller.SetMapLocation(DTO.Address.Latitude, DTO.Address.Longitude, true);
             }
 
@@ -89,12 +93,16 @@ namespace Mehspot.Core.Models.Subdivisions
                 this.DTO.Address.Country = country;
             }
 
-            if (string.IsNullOrWhiteSpace(this.DTO.Name))
+            if (string.IsNullOrWhiteSpace(controller.NameFieldText))
             {
                 this.DTO.Name = name;
+                controller.NameFieldText = DTO.Name;
             }
 
-            this.UpdateInputFieldsFromDTO();
+            controller.AddressFieldText = DTO.Address.FormattedAddress;
+            controller.LatitudeFieldText = DTO.Address.Latitude.ToString();
+            controller.LongitudeFieldText = DTO.Address.Longitude.ToString();
+
             controller.ViewHelper.HideOverlay();
         }
 
@@ -144,16 +152,6 @@ namespace Mehspot.Core.Models.Subdivisions
                 }
             }
         }
-
-
-        private void UpdateInputFieldsFromDTO()
-        {
-            controller.NameFieldText = DTO.Name;
-            controller.AddressFieldText = DTO.Address.FormattedAddress;
-            controller.LatitudeFieldText = DTO.Address.Latitude.ToString();
-            controller.LongitudeFieldText = DTO.Address.Longitude.ToString();
-        }
-
     }
 }
 

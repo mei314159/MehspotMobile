@@ -30,13 +30,8 @@ namespace Mehspot.Core.DTO.Badges
         [Cell("Age Range", 7, CellType.TextView)]
         public string HobbyAgeRange { get; set; }
 
-        [Cell("Preferred Date and Time", 8, CellType.TextView)]
-        public string HobbyPreferredDateTime { get; set; }
 
-        [Cell("Preferred Location", 9, CellType.TextView)]
-        public string HobbyPreferredLocation { get; set; }
-
-        [Cell("Additional Information", 10, CellType.TextView)]
+        [Cell("Additional Information", 8, CellType.TextView)]
         public string HobbyAdditionalInformation { get; set; }
 
         public string InfoLabel1
