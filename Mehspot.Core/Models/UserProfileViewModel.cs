@@ -41,6 +41,10 @@ namespace Mehspot.Core.Models
             if (profileResult.IsSuccess)
             {
                 this.Items = profileResult.Data.RegisteredBadges;
+                if (Items.Count == 0)
+                {
+                    viewController.ShowLabel();
+                }
                 this.userProfile = profileResult.Data;
                 await InitializeDataAsync();
             }

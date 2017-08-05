@@ -1,4 +1,4 @@
-﻿using Mehspot.Core.Contracts.Wrappers;
+using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
 
 namespace Mehspot.Core.Contracts.ViewControllers
@@ -14,5 +14,6 @@ namespace Mehspot.Core.Contracts.ViewControllers
         IViewHelper ViewHelper { get; }
 
         void ReloadData();
-    }
+        void ShowLabel();
+	}
 }

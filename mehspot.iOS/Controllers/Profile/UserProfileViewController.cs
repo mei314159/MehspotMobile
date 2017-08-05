@@ -12,6 +12,7 @@ using Mehspot.Core;
 using Mehspot.Core.DTO;
 using SDWebImage;
 using CoreImage;
+using System.Drawing;
 
 namespace Mehspot.iOS
 {
@@ -204,6 +205,20 @@ namespace Mehspot.iOS
 		private void ConfigureCell(BadgeItemCellSimplified cell, BadgeSummaryBaseDTO badge)
 		{
 			cell.Configure(badge);
+		}
+
+		public void ShowLabel()
+		{
+			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+
+			var label = new UILabel();
+			var labelHeight = 40;
+			label.Text = "There are no registered badges.";
+			label.TextColor = UIColor.Gray;
+			label.Frame = new CGRect(0, this.View.Bounds.Bottom - this.TableView.Bounds.Height / 2 - labelHeight, this.View.Bounds.Width, labelHeight);
+			label.TextAlignment = UITextAlignment.Center;
+
+			this.View.AddSubview(label);
 		}
 	}
 }
