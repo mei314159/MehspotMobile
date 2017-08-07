@@ -41,11 +41,15 @@ namespace Mehspot.AndroidApp.Wrappers
 			}
 		}
 
-		public void ShowAlert(string title, string text)
+		public void ShowAlert(string title, string text, Action action = null)
 		{
 			activity.RunOnUiThread(() =>
 				{
-					Toast.MakeText(activity, text, ToastLength.Long).Show();
+					var alert = new AlertDialog.Builder(activity);
+					alert.SetTitle(title);
+					alert.SetMessage(text);
+					alert.SetPositiveButton("OK", (senderAlert, args) => action());
+					alert.Create().Show();
 				});
 		}
 

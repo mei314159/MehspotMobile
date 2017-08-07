@@ -16,11 +16,16 @@ namespace Mehspot.iOS.Wrappers
 			this.view = view;
 		}
 
-		public void ShowAlert(string title, string text)
+		public void ShowAlert(string title, string text, Action action = null)
 		{
 			view.InvokeOnMainThread(() =>
 			{
 				var avAlert = new UIAlertView(title, text, (IUIAlertViewDelegate)null, "OK", null);
+				if (action != null)
+				{
+					avAlert.Clicked += (sender, e) => action();
+				}
+
 				avAlert.Show();
 			});
 		}

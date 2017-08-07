@@ -93,7 +93,13 @@ namespace Mehspot.Core
                 this.controller.WindowTitle = GetTitle();
                 message = $"{controller.BadgeName} badge profile successfully saved";
 
-                controller.ViewHelper.ShowAlert("Success", message);
+                controller.ViewHelper.ShowAlert("Success", message, () =>
+                {
+                    if (controller.RedirectToSearchResults)
+                    {
+                        controller.GoToSearchResults();
+                    }
+                });
             }
             else
             {
