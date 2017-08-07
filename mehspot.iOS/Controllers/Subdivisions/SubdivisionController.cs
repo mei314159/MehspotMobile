@@ -236,7 +236,7 @@ namespace Mehspot.iOS.Controllers
 
 		private void HandleReverseGeocodeCallback(ReverseGeocodeResponse response, NSError error)
 		{
-			if (error != null)
+			if (error != null || response.FirstResult == null)
 				return;
 
 			var address = response.FirstResult;
