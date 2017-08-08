@@ -42,6 +42,7 @@ namespace Mehspot.iOS
 			this.View.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			this.EmailField.ShouldReturn += TextFieldShouldReturn;
 			this.PasswordField.ShouldReturn += TextFieldShouldReturn;
+			this.PasswordField.EditingChanged += (sender, e) => ShowPasswordButton.Hidden = string.IsNullOrEmpty(this.PasswordField.Text);
 			Profile.Notifications.ObserveDidChange((sender, e) =>
 			{
 

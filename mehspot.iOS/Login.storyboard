@@ -71,7 +71,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="19">
-                                                <rect key="frame" x="20" y="121" width="295" height="30"/>
+                                                <rect key="frame" x="20" y="121" width="335" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="join" secureTextEntry="YES"/>
                                             </textField>
@@ -154,8 +154,8 @@
                                                     <constraint firstAttribute="height" constant="46" id="6223"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7685" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="325" y="121" width="30" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7685" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                                                <rect key="frame" x="315" y="121" width="30" height="30"/>
                                                 <state key="normal" image="eye">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -195,9 +195,9 @@
                                             <constraint firstItem="14" firstAttribute="leading" secondItem="13" secondAttribute="leading" id="7610"/>
                                             <constraint firstItem="12" firstAttribute="leading" secondItem="14" secondAttribute="leading" id="7611"/>
                                             <constraint firstItem="19" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="7612"/>
-                                            <constraint id="7686" firstItem="7685" firstAttribute="trailing" secondItem="14" secondAttribute="trailing"/>
                                             <constraint id="7689" firstItem="7685" firstAttribute="centerY" secondItem="19" secondAttribute="centerY"/>
-                                            <constraint id="7690" firstItem="7685" firstAttribute="leading" secondItem="19" secondAttribute="trailing" constant="10"/>
+                                            <constraint id="7701" firstItem="19" firstAttribute="width" secondItem="14" secondAttribute="width"/>
+                                            <constraint id="7702" firstItem="19" firstAttribute="trailing" secondItem="7685" secondAttribute="trailing" constant="10"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -599,6 +599,45 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7703" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                                                <rect key="frame" x="315" y="174" width="30" height="30"/>
+                                                <state key="normal" image="eye">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <constraints>
+                                                    <constraint id="7708" firstItem="7703" firstAttribute="height" constant="30"/>
+                                                    <constraint id="7709" firstAttribute="width" secondItem="7703" secondAttribute="height" multiplier="1:1"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="ShowPasswordButtonTouchedDown:" destination="7705" id="7704" eventType="touchDown"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="7705" id="7706" eventType="touchUpInside"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="7705" id="7707" eventType="touchUpOutside"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="5753" id="7712" eventType="touchUpInside"/>
+                                                    <action selector="ShowPasswordButtonTouchedDown:" destination="5753" id="7713" eventType="touchDown"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="5753" id="7714" eventType="touchUpOutside"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7715" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                                                <rect key="frame" x="315" y="246" width="30" height="30"/>
+                                                <state key="normal" image="eye">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <constraints>
+                                                    <constraint id="7724" firstItem="7715" firstAttribute="height" constant="30"/>
+                                                    <constraint id="7725" firstAttribute="width" secondItem="7715" secondAttribute="height" multiplier="1:1"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="ShowPasswordButtonTouchedDown:" destination="7717" id="7716" eventType="touchDown"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="7717" id="7718" eventType="touchUpInside"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="7717" id="7719" eventType="touchUpOutside"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="7721" id="7720" eventType="touchUpInside"/>
+                                                    <action selector="ShowPasswordButtonTouchedDown:" destination="7721" id="7722" eventType="touchDown"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="7721" id="7723" eventType="touchUpOutside"/>
+                                                    <action selector="ShowConfirmationPasswordButtonTouchedUp:" destination="5753" id="7728" eventType="touchUpInside"/>
+                                                    <action selector="ShowConfirmationPasswordButtonTouchedUp:" destination="5753" id="7729" eventType="touchUpOutside"/>
+                                                    <action selector="ShowConfirmationPasswordButtonTouchedDown:" destination="5753" id="7730" eventType="touchDown"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -645,6 +684,10 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                                             <constraint id="7677" firstItem="5854" firstAttribute="leading" secondItem="5830" secondAttribute="trailing" constant="15"/>
                                             <constraint id="7679" firstItem="5837" firstAttribute="bottom" secondItem="5862" secondAttribute="top" constant="3"/>
                                             <constraint id="7680" firstItem="5862" firstAttribute="leading" secondItem="5854" secondAttribute="trailing" constant="4"/>
+                                            <constraint id="7710" firstItem="7703" firstAttribute="centerY" secondItem="5757" secondAttribute="centerY"/>
+                                            <constraint id="7711" firstItem="5757" firstAttribute="trailing" secondItem="7703" secondAttribute="trailing" constant="10"/>
+                                            <constraint id="7726" firstItem="7715" firstAttribute="centerY" secondItem="5821" secondAttribute="centerY"/>
+                                            <constraint id="7727" firstItem="5821" firstAttribute="trailing" secondItem="7715" secondAttribute="trailing" constant="10"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
@@ -706,6 +749,8 @@ Want to make life interesting? Live, Love, Laugh, and Learn. Let MehSpot connect
                         <outlet property="PasswordField" destination="5757" id="5756"/>
                         <outlet property="ScrollView" destination="7493" id="name-outlet-7493"/>
                         <outlet property="UserNameField" destination="5755" id="name-outlet-5755"/>
+                        <outlet property="ShowPasswordButton" destination="7703" id="name-outlet-7703"/>
+                        <outlet property="ShowConfirmationPasswordButton" destination="7715" id="name-outlet-7715"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5795" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -37,6 +37,8 @@ namespace Mehspot.iOS
 			this.EmailField.ShouldReturn += TextFieldShouldReturn;
 			this.UserNameField.ShouldReturn += TextFieldShouldReturn;
 			this.PasswordField.ShouldReturn += TextFieldShouldReturn;
+			this.PasswordField.EditingChanged += (sender, e) => ShowPasswordButton.Hidden = string.IsNullOrEmpty(this.PasswordField.Text);
+			this.ConfirmationPasswordField.EditingChanged += (sender, e) => ShowConfirmationPasswordButton.Hidden = string.IsNullOrEmpty(this.ConfirmationPasswordField.Text);
 			this.ConfirmationPasswordField.ShouldReturn += TextFieldShouldReturn;
 			this.SetScreenConstraints();
 		}
@@ -175,6 +177,26 @@ namespace Mehspot.iOS
 			{
 				this.ScrollView.ContentOffset = new CGPoint(0, 0);
 			}
+		}
+
+		partial void ShowPasswordButtonTouchedUp(UIButton sender)
+		{
+			PasswordField.SecureTextEntry = true;
+		}
+
+		partial void ShowPasswordButtonTouchedDown(UIButton sender)
+		{
+			PasswordField.SecureTextEntry = false;
+		}
+
+		partial void ShowConfirmationPasswordButtonTouchedUp(UIButton sender)
+		{
+			ConfirmationPasswordField.SecureTextEntry = true;
+		}
+
+		partial void ShowConfirmationPasswordButtonTouchedDown(UIButton sender)
+		{
+			ConfirmationPasswordField.SecureTextEntry = false;
 		}
 	}
 }

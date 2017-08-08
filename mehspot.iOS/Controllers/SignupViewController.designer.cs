@@ -40,6 +40,14 @@ namespace Mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton ShowConfirmationPasswordButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton ShowPasswordButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField UserNameField { get; set; }
 
         [Action ("CommunityGuidelinesButtonTouched:")]
@@ -49,6 +57,22 @@ namespace Mehspot.iOS
         [Action ("PrivacyPolicyButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void PrivacyPolicyButtonTouched (UIKit.UIButton sender);
+
+        [Action ("ShowConfirmationPasswordButtonTouchedDown:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ShowConfirmationPasswordButtonTouchedDown (UIKit.UIButton sender);
+
+        [Action ("ShowConfirmationPasswordButtonTouchedUp:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ShowConfirmationPasswordButtonTouchedUp (UIKit.UIButton sender);
+
+        [Action ("ShowPasswordButtonTouchedDown:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ShowPasswordButtonTouchedDown (UIKit.UIButton sender);
+
+        [Action ("ShowPasswordButtonTouchedUp:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ShowPasswordButtonTouchedUp (UIKit.UIButton sender);
 
         [Action ("SignupButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -88,6 +112,16 @@ namespace Mehspot.iOS
             if (ScrollView != null) {
                 ScrollView.Dispose ();
                 ScrollView = null;
+            }
+
+            if (ShowConfirmationPasswordButton != null) {
+                ShowConfirmationPasswordButton.Dispose ();
+                ShowConfirmationPasswordButton = null;
+            }
+
+            if (ShowPasswordButton != null) {
+                ShowPasswordButton.Dispose ();
+                ShowPasswordButton = null;
             }
 
             if (UserNameField != null) {
