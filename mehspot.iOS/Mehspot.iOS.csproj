@@ -235,6 +235,7 @@
     <InterfaceDefinition Include="Login.storyboard" />
     <InterfaceDefinition Include="Badges.storyboard" />
     <InterfaceDefinition Include="Contact.storyboard" />
+    <InterfaceDefinition Include="NoResultsView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -399,6 +400,10 @@
     <Compile Include="Views\GrouppingView\DelimiterView.cs" />
     <Compile Include="Views\Cell\Badges\BadgeItemCell.cs" />
     <Compile Include="Views\Cell\Badges\BadgeItemCellSimplified.cs" />
+    <Compile Include="NoResultsView.cs" />
+    <Compile Include="NoResultsView.designer.cs">
+      <DependentUpon>NoResultsView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

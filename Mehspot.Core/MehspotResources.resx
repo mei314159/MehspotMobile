@@ -982,7 +982,7 @@
     <value>Profession</value>
   </data>
 	<data name="SearchLimitMessageTemplate" xml:space="preserve">
-    <value>If you want to see more results please click Register button below to sign up {0}</value>
+    <value>If you want to see more results please click Register button below to sign up {0} {1}</value>
   </data>
 	<data name="BadgeGroup_Jobs" xml:space="preserve">
     <value>Jobs</value>
@@ -1013,5 +1013,14 @@
   </data>
 	<data name="BadgeRegistrationRequired" xml:space="preserve">
     <value>Badge registration required</value>
+  </data>
+	<data name="PlayedBefore" xml:space="preserve">
+    <value>Played Before</value>
+  </data>
+	<data name="HiredBefore" xml:space="preserve">
+    <value>Hired Before</value>
+  </data>
+	<data name="ReferencesCount" xml:space="preserve">
+    <value>References Count</value>
   </data>
 </root>

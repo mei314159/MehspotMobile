@@ -2719,5 +2719,29 @@ namespace Mehspot.Core
                 return ResourceManager.GetString("BadgeRegistrationRequired", resourceCulture);
             }
         }
+
+        public static string PlayedBefore
+        {
+            get
+            {
+                return ResourceManager.GetString("PlayedBefore", resourceCulture);
+            }
+        }
+
+        public static string HiredBefore
+        {
+            get
+            {
+                return ResourceManager.GetString("HiredBefore", resourceCulture);
+            }
+        }
+
+        public static string ReferencesCount
+        {
+            get
+            {
+                return ResourceManager.GetString("ReferencesCount", resourceCulture);
+            }
+        }
     }
 }

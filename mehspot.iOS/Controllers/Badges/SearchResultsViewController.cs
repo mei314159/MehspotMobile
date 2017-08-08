@@ -11,6 +11,7 @@ using Mehspot.Core.Services;
 using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Contracts.Wrappers;
+using mehspot.iOS;
 
 namespace Mehspot.iOS
 {
@@ -23,6 +24,7 @@ namespace Mehspot.iOS
 		private volatile bool loading;
 		private volatile bool viewWasInitialized;
 		SearchResultsModel model;
+		private NoResultsView noResultsView;
 
 		public IViewHelper ViewHelper { get; set; }
 		public BadgeSummaryDTO BadgeSummary { get; set; }
@@ -59,6 +61,31 @@ namespace Mehspot.iOS
 
 		public void ReloadData()
 		{
+			if (model.Items.Count == 0 && noResultsView?.Superview == null)
+			{
+				if (noResultsView == null)
+				{
+					this.noResultsView = NoResultsView.Create(GetRegisterButtonDescription());
+				}
+
+				if (this.model.RegisterButtonVisible)
+				{
+					noResultsView.ShowRegisterButton();
+					noResultsView.OnRegisterButtonTouched += OnRegisterButtonTouched;
+				}
+				else
+				{
+					noResultsView.HideRegisterButton();
+				}
+				this.noResultsView.Frame = TableView.Frame;
+				TableView.Superview.AddSubview(this.noResultsView);
+			}
+			else
+			{
+				if (noResultsView?.Superview != null)
+					noResultsView.RemoveFromSuperview();
+			}
+
 			TableView.ReloadData();
 		}
 
@@ -99,12 +126,24 @@ namespace Mehspot.iOS
 			}
 			else if (this.model.RegisterButtonVisible)
 			{
-				var searchLimitCell = SearchLimitCell.Create(BadgeSummary.RequiredBadgeName, BadgeSummary.BadgeName);
+				var searchLimitCell = SearchLimitCell.Create(GetRegisterButtonDescription());
 				searchLimitCell.OnRegisterButtonTouched += OnRegisterButtonTouched;
 				cell = searchLimitCell;
 			}
 
 			return cell;
+		}
+
+		string GetRegisterButtonDescription()
+		{
+			Func<string, string> localize = (s) => s == null ? null : MehspotResources.ResourceManager.GetString(s) ?? s;
+
+			string localizedName = localize(BadgeSummary.RequiredBadgeName) ?? localize(BadgeSummary.BadgeName);
+			string badgeNamePart = (BadgeSummary.RequiredBadgeName == Constants.BadgeNames.Fitness
+									|| BadgeSummary.RequiredBadgeName == Constants.BadgeNames.Golf
+									|| BadgeSummary.RequiredBadgeName == Constants.BadgeNames.OtherJobs ? "for" : "as");
+			var description = string.Format(MehspotResources.SearchLimitMessageTemplate, badgeNamePart, localizedName);
+			return description;
 		}
 
 		[Export("scrollViewDidScroll:")]
@@ -234,6 +273,18 @@ namespace Mehspot.iOS
 			this.TableView.SetContentOffset(CGPoint.Empty, true);
 			this.RefreshControl.EndRefreshing();
 			loading = false;
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && this.noResultsView != null)
+			{
+				this.noResultsView.Dispose();
+				this.noResultsView = null;
+			}
+
+
+			base.Dispose(disposing);
 		}
 	}
 }

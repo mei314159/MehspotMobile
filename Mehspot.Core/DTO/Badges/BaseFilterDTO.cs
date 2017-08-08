@@ -5,7 +5,6 @@ namespace Mehspot.Core.DTO.Search
         [Cell(Label = "Max Distance", CellType = CellType.Range, MinValue = 0, MaxValue = 200, DefaultValue = 20, Order = -2)]
         public int? DistanceFrom { get; set; }
 
-        [Cell(Label = "Zip Code", CellType = CellType.TextEdit, Mask = "#####", Order = -1)]
         public string ZipCode { get; set; }
 
         [Cell(Label = "Has Profile Picture", CellType = CellType.Boolean, Order = 999)]
