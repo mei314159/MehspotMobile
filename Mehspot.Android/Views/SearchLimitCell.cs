@@ -47,8 +47,8 @@ namespace Mehspot.AndroidApp.Views
 				badgeNameLocalized = MehspotResources.ResourceManager.GetString(searchBadgeName);
 				badgeNameLocalized = badgeNameLocalized ?? searchBadgeName;
 			}
-			string badgeNamePart = (requiredBadgeName == Mehspot.Core.Constants.BadgeNames.Fitness || searchBadgeName == Mehspot.Core.Constants.BadgeNames.Golf || requiredBadgeName == Mehspot.Core.Constants.BadgeNames.OtherJobs ? "for " : "as ") + badgeNameLocalized;
-			Message.Text = string.Format(MehspotResources.SearchLimitMessageTemplate, badgeNamePart);
+			string badgeNamePart = (requiredBadgeName == Mehspot.Core.Constants.BadgeNames.Fitness || searchBadgeName == Mehspot.Core.Constants.BadgeNames.Golf || requiredBadgeName == Mehspot.Core.Constants.BadgeNames.OtherJobs ? "for" : "as");
+			Message.Text = string.Format(MehspotResources.SearchLimitMessageTemplate, badgeNamePart, badgeNameLocalized);
 		}
 	}
 }

@@ -25,6 +25,8 @@ namespace Mehspot.Core.Models
         private readonly IViewBadgeProfileController controller;
         private readonly Type resultType;
 
+        private readonly CellBuilder<TCell> cellBuilder;
+
         private readonly List<TCell> profileDataCells = new List<TCell>();
         private readonly List<TCell> recommendationCells = new List<TCell>();
 
@@ -52,6 +54,7 @@ namespace Mehspot.Core.Models
 
         public ViewBadgeProfileModel(IViewBadgeProfileController controller, BadgeService badgeService, CellBuilder<TCell> cellBuilder)
         {
+            this.cellBuilder = cellBuilder;
             this.cellFactory = new AttributeCellFactory<TCell>(badgeService, controller.BadgeId, cellBuilder);
             this.cellFactory.CellChanged += CellsSource_CellChanged;
             this.controller = controller;
@@ -128,6 +131,7 @@ namespace Mehspot.Core.Models
                 var result = await cellFactory.BadgeService.GetBadgeRecommendationsAsync(this.controller.BadgeId, this.controller.UserId);
                 if (result.IsSuccess)
                 {
+                    recommendationCells.AddRange(GetExtraCells());
                     bool reviewed = false;
                     if (result.Data?.Recommendations != null)
                     {
@@ -162,6 +166,35 @@ namespace Mehspot.Core.Models
             //TableView.Source = recommendationsDataSource;
             //TableView.ReloadData();
             //TableView.Hidden = false;
+        }
+
+        private IEnumerable<TCell> GetExtraCells()
+        {
+            if (this.Profile is BadgeProfileDTO<FriendshipProfileDTO>)
+            {
+                yield break;
+            }
+
+
+            var isHiredLabel = (this.Profile is BadgeProfileDTO<TennisProfileDTO> ||
+                                   this.Profile is BadgeProfileDTO<GolfProfileDTO> ||
+                                   this.Profile is BadgeProfileDTO<KidsPlayDateProfileDTO>) ? MehspotResources.PlayedBefore : MehspotResources.HiredBefore;
+
+            yield return (TCell)this.cellBuilder
+                                    .GetBooleanCell(this.Profile.Details.IsHired, (v) =>
+                                 {
+                                     this.Profile.Details.IsHired = v;
+                                     CellsSource_CellChanged(this.Profile.Details, nameof(BadgeProfileDetailsDTO.IsHired), v);
+                                 }, isHiredLabel);
+            yield return (TCell)this.cellBuilder
+                                    .GetBooleanCell(this.Profile.Details.HasReference, (v) =>
+            {
+                this.Profile.Details.IsHired = v;
+                CellsSource_CellChanged(this.Profile.Details, nameof(BadgeProfileDetailsDTO.HasReference), v);
+            }, "Add Reference");
+
+            yield return (TCell)this.cellBuilder
+                                    .GetTextViewCell(this.Profile.Details.ReferenceCount.ToString(), MehspotResources.ReferencesCount);
         }
 
         public async Task ToggleFavoriteAsync()

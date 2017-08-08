@@ -2,13 +2,12 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Subdivision;
 using Mehspot.Core.Services;
 using Mehspot.Core.Builders;
-using Mehspot.Core.DTO.Badges;
 using System.IO;
+using System.Diagnostics;
 
 namespace Mehspot.Core.Models
 {
@@ -77,17 +76,7 @@ namespace Mehspot.Core.Models
 
             Cells.Clear();
             Cells.Add((TView)cellBuilder.GetTextEditCell(profile.UserName, (c, a) => profile.UserName = a, "User Name"));
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.Email, (c, a) => profile.Email = a, "Email",KeyboardType.Email, null, true));
-            var phoneNumberCell = (TView)cellBuilder.GetTextEditCell(profile.PhoneNumber, (c, a) => profile.PhoneNumber = a, "Phone Number", KeyboardType.Phone, mask: "(###)###-####");
-            Cells.Add(phoneNumberCell);
-            Cells.Add((TView)cellBuilder.GetDatePickerCell(profile.DateOfBirth, (property) => { profile.DateOfBirth = property; }, "Date Of Birth"));
-            Cells.Add((TView)cellBuilder.GetPickerCell(profile.Gender, (property) => { profile.Gender = property; }, "Gender", genders));
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.FirstName, (c, a) => profile.FirstName = a, "First Name"));
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.LastName, (c, a) => profile.LastName = a, "Last Name"));
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.AddressLine1, (c, a) => profile.AddressLine1 = a, "Address Line 1"));
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.AddressLine2, (c, a) => profile.AddressLine2 = a, "Address Line 2"));
-            Cells.Add((TView)cellBuilder.GetPickerCell(profile.State, (property) => { profile.State = property; }, "State", states));
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.City, (c, a) => profile.City = a, "City"));
+            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.Email, (c, a) => profile.Email = a, "Email", KeyboardType.Email, null, true));
             var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.SubdivisionId, (property) =>
                         {
                             profile.SubdivisionId = property?.Id;
@@ -101,9 +90,6 @@ namespace Mehspot.Core.Models
             subdivisionCell.IsReadOnly = string.IsNullOrWhiteSpace(profile.Zip) || !zipCell.IsValid;
             Cells.Add((TView)zipCell);
             Cells.Add((TView)subdivisionCell);
-
-            Cells.Add((TView)cellBuilder.GetBooleanCell(profile.MehspotNotificationsEnabled, v => profile.MehspotNotificationsEnabled = v, "Email notifications enabled"));
-            Cells.Add((TView)cellBuilder.GetBooleanCell(profile.AllGroupsNotificationsEnabled, v => profile.AllGroupsNotificationsEnabled = v, "Group notifications enabled"));
             viewController.ReloadData();
         }
 
