@@ -24,6 +24,10 @@ namespace Mehspot.iOS.Controllers
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton MoreButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIPickerView PickerView { get; set; }
 
         [Action ("AddButtonTouched:")]
@@ -52,6 +56,11 @@ namespace Mehspot.iOS.Controllers
             if (MapWrapperView != null) {
                 MapWrapperView.Dispose ();
                 MapWrapperView = null;
+            }
+
+            if (MoreButton != null) {
+                MoreButton.Dispose ();
+                MoreButton = null;
             }
 
             if (PickerView != null) {

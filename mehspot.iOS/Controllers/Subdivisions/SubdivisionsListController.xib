@@ -15,6 +15,7 @@
                 <outlet property="PickerView" destination="5" id="name-outlet-5"/>
                 <outlet property="MapWrapperView" destination="31" id="name-outlet-31"/>
                 <outlet property="ButtonsWrapper" destination="82" id="name-outlet-82"/>
+                <outlet property="MoreButton" destination="103" id="name-outlet-103"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -93,7 +94,7 @@
                                 <constraint id="97" firstItem="89" firstAttribute="width" constant="46"/>
                             </constraints>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" lineBreakMode="middleTruncation" id="103" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" lineBreakMode="middleTruncation" id="103" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" hidden="YES">
                             <rect key="frame" x="20" y="11" width="22" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal">
@@ -207,6 +208,7 @@
         <image name="w3_background_t.png" width="375" height="267.5"/>
         <image name="badge_group_bg.png" width="375" height="219.5"/>
         <image name="subdivisionicon.png" width="232" height="231.5"/>
+        <image name="eye" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>
