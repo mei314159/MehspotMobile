@@ -86,6 +86,16 @@ namespace Mehspot.iOS
 				NSNotificationCenter.DefaultCenter.RemoveObserver(willShowNotificationObserver);
 		}
 
+		partial void ShowPasswordButtonTouchedUp(UIButton sender)
+		{
+			PasswordField.SecureTextEntry = true;
+		}
+
+		partial void ShowPasswordButtonTouchedDown(UIButton sender)
+		{
+			PasswordField.SecureTextEntry = false;
+		}
+
 		partial void SignInButtonTouched(UIButton sender)
 		{
 			sender.BecomeFirstResponder();
