@@ -58,7 +58,11 @@ namespace Mehspot.iOS.Controllers
 			var pickerModel = new CustomPickerModel(subdivisions.Select(a => a.DisplayName).ToList());
 			this.PickerView.Model = pickerModel;
 			this.PickerView.Select(subdivisions.IndexOf(selectedSubdivision), 0, false);
-			pickerModel.ItemSelected += (pickerView, row, component) => model.SelectItem((int)row);
+			pickerModel.ItemSelected += (pickerView, row, component) => { model.SelectItem((int)row); MoreButton.Hidden = false; };
+			if (subdivisions?.Count > 0 && selectedSubdivision != null)
+			{
+				MoreButton.Hidden = false;
+			}
 		}
 
 		public void DetectUserPosition(SetPositionDelegate onSuccess, Action onError)
