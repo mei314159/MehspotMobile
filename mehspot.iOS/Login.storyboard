@@ -71,7 +71,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="19">
-                                                <rect key="frame" x="20" y="121" width="335" height="30"/>
+                                                <rect key="frame" x="20" y="121" width="295" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="join" secureTextEntry="YES"/>
                                             </textField>
@@ -154,6 +154,21 @@
                                                     <constraint firstAttribute="height" constant="46" id="6223"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7685" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <rect key="frame" x="325" y="121" width="30" height="30"/>
+                                                <state key="normal" image="eye">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <constraints>
+                                                    <constraint id="7687" firstItem="7685" firstAttribute="height" constant="30"/>
+                                                    <constraint id="7688" firstAttribute="width" secondItem="7685" secondAttribute="height" multiplier="1:1"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="ShowPasswordButtonTouchedDown:" destination="8" id="7691" eventType="touchDown"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="8" id="7695" eventType="touchUpInside"/>
+                                                    <action selector="ShowPasswordButtonTouchedUp:" destination="8" id="7696" eventType="touchUpOutside"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -165,7 +180,6 @@
                                             <constraint firstItem="12" firstAttribute="top" secondItem="14" secondAttribute="bottom" constant="13" id="7591"/>
                                             <constraint firstItem="19" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="8" id="7594"/>
                                             <constraint firstItem="19" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="7595"/>
-                                            <constraint firstItem="19" firstAttribute="width" secondItem="14" secondAttribute="width" id="7596"/>
                                             <constraint firstItem="57" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="1" id="7597"/>
                                             <constraint firstItem="57" firstAttribute="leading" secondItem="19" secondAttribute="leading" id="7598"/>
                                             <constraint firstItem="25" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="50" id="7599"/>
@@ -181,6 +195,9 @@
                                             <constraint firstItem="14" firstAttribute="leading" secondItem="13" secondAttribute="leading" id="7610"/>
                                             <constraint firstItem="12" firstAttribute="leading" secondItem="14" secondAttribute="leading" id="7611"/>
                                             <constraint firstItem="19" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="7612"/>
+                                            <constraint id="7686" firstItem="7685" firstAttribute="trailing" secondItem="14" secondAttribute="trailing"/>
+                                            <constraint id="7689" firstItem="7685" firstAttribute="centerY" secondItem="19" secondAttribute="centerY"/>
+                                            <constraint id="7690" firstItem="7685" firstAttribute="leading" secondItem="19" secondAttribute="trailing" constant="10"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -212,6 +229,7 @@
                         <outlet property="FbAuthButtonWrapper" destination="6217" id="name-outlet-6217"/>
                         <outlet property="PasswordField" destination="19" id="name-outlet-19"/>
                         <outlet property="ScrollView" destination="7536" id="name-outlet-7536"/>
+                        <outlet property="ShowPasswordButton" destination="7685" id="name-outlet-7685"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -889,6 +907,8 @@ Reset Password button</string>
         <image name="slider-default-handle-disabled.png" width="23" height="23"/>
         <image name="w3_background_t.png" width="375" height="267.5"/>
         <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
+        <image name="eye" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>

@@ -30,6 +30,18 @@ namespace Mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIScrollView ScrollView { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton ShowPasswordButton { get; set; }
+
+        [Action ("ShowPasswordButtonTouchedDown:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ShowPasswordButtonTouchedDown (UIKit.UIButton sender);
+
+        [Action ("ShowPasswordButtonTouchedUp:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ShowPasswordButtonTouchedUp (UIKit.UIButton sender);
+
         [Action ("SignInButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SignInButtonTouched (UIKit.UIButton sender);
@@ -54,6 +66,11 @@ namespace Mehspot.iOS
             if (ScrollView != null) {
                 ScrollView.Dispose ();
                 ScrollView = null;
+            }
+
+            if (ShowPasswordButton != null) {
+                ShowPasswordButton.Dispose ();
+                ShowPasswordButton = null;
             }
         }
     }
