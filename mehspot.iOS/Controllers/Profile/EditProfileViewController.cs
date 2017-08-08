@@ -107,7 +107,7 @@ namespace Mehspot.iOS
 			TableView.RowHeight = UITableView.AutomaticDimension;
 			TableView.EstimatedRowHeight = 44;
 			this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
-
+			this.ProfilePicture.AddGestureRecognizer(new UITapGestureRecognizer(ShowUploadPictureDialog) { NumberOfTapsRequired = 1 });
 			model = new ProfileModel<UITableViewCell>(profileService, subdivisionService, this, new IosCellBuilder());
 			model.LoadingStart += Model_LoadingStart;
 			model.LoadingEnd += Model_LoadingEnd;
@@ -158,10 +158,16 @@ namespace Mehspot.iOS
 
 		private async void RefreshControl_ValueChanged(object sender, EventArgs e)
 		{
+			this.ProfilePicture.UserInteractionEnabled = false;
 			await model.RefreshView();
 		}
 
 		partial void ChangePhotoButtonTouched(UIButton sender)
+		{
+			ShowUploadPictureDialog();
+		}
+
+		private void ShowUploadPictureDialog()
 		{
 			var photoSourceActionSheet = new UIActionSheet("Take a photo from");
 			photoSourceActionSheet.AddButton("Camera");
@@ -246,6 +252,7 @@ namespace Mehspot.iOS
 		public void ReloadData()
 		{
 			TableView.ReloadData();
+			this.ProfilePicture.UserInteractionEnabled = true;
 		}
 
 		public void HideKeyboard()
