@@ -61,6 +61,8 @@ namespace Mehspot.iOS
 				new IosCellBuilder());
 			model.LoadingStarted += Model_LoadingStarted;
 			model.LoadingEnded += Model_LoadingEnded;
+			TableView.EstimatedRowHeight = 44;
+			TableView.RowHeight = UITableView.AutomaticDimension;
 			TableView.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			//TableView.RowHeight = UITableView.AutomaticDimension;
 			//TableView.EstimatedRowHeight = 44;
@@ -123,11 +125,11 @@ namespace Mehspot.iOS
 			return model.Cells.Count;
 		}
 
-		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
-		{
-			var cell = model.Cells[indexPath.Row];
-			return cell.Frame.Height;
-		}
+		//public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		//{
+		//	var cell = model.Cells[indexPath.Row];
+		//	return cell.Frame.Height;
+		//}
 
 		private void Model_LoadingStarted()
 		{
