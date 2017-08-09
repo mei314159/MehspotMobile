@@ -28,11 +28,12 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint id="4" firstItem="2" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
                     <constraint id="6" firstItem="5" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
                     <constraint id="7" firstItem="5" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
                     <constraint id="9" firstItem="5" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
                     <constraint id="12" firstItem="2" firstAttribute="leading" secondItem="5" secondAttribute="trailing" constant="5"/>
+                    <constraint id="15" firstItem="2" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="6"/>
+                    <constraint id="16" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="2" secondAttribute="bottom" constant="6"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -82,5 +83,25 @@
         <image name="review-icon" width="25" height="25"/>
         <image name="signin-fb.png" width="220" height="40"/>
         <image name="logo-small.jpg" width="300" height="192"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="slider-default_trackBackground.png" width="11" height="9"/>
+        <image name="slider-default7-trackCrossedOver.png" width="6" height="4"/>
+        <image name="slider-default7-trackBackground.png" width="6" height="4"/>
+        <image name="slider-default7-track.png" width="6" height="4"/>
+        <image name="slider-default7-handle.png" width="43" height="43"/>
+        <image name="slider-default7-handle-disabled.png" width="43" height="43"/>
+        <image name="slider-default-trackCrossedOver.png" width="11" height="9"/>
+        <image name="slider-default-trackBackground.png" width="11" height="9"/>
+        <image name="slider-default-track.png" width="11" height="9"/>
+        <image name="slider-default-handle.png" width="23" height="23"/>
+        <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
+        <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
     </resources>
 </document>

@@ -14,14 +14,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="9" numberOfLines="2">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="9" numberOfLines="2">
                         <rect key="frame" x="15" y="0.0" width="145" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                         <nil key="highlightedColor"/>
                         <constraints>
                             <constraint id="19" firstItem="16" firstAttribute="width" constant="145"/>
-                            <constraint id="42" firstItem="16" firstAttribute="height" constant="44"/>
+                            <constraint id="42" firstItem="16" firstAttribute="height" constant="44" relation="greaterThanOrEqual"/>
                         </constraints>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="30" translatesAutoresizingMaskIntoConstraints="NO" customClass="ExtendedTextView">
@@ -42,6 +42,7 @@
                     <constraint id="34" firstItem="30" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="5"/>
                     <constraint id="38" firstItem="30" firstAttribute="bottom" secondItem="YTl-1W-gDM" secondAttribute="bottom" constant="1"/>
                     <constraint id="41" firstItem="16" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
+                    <constraint id="47" firstItem="16" firstAttribute="bottom" secondItem="YTl-1W-gDM" secondAttribute="bottom" constant="1"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -93,5 +94,25 @@
         <image name="review-icon" width="25" height="25"/>
         <image name="signin-fb.png" width="220" height="40"/>
         <image name="logo-small.jpg" width="300" height="192"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="slider-default_trackBackground.png" width="11" height="9"/>
+        <image name="slider-default7-trackCrossedOver.png" width="6" height="4"/>
+        <image name="slider-default7-trackBackground.png" width="6" height="4"/>
+        <image name="slider-default7-track.png" width="6" height="4"/>
+        <image name="slider-default7-handle.png" width="43" height="43"/>
+        <image name="slider-default7-handle-disabled.png" width="43" height="43"/>
+        <image name="slider-default-trackCrossedOver.png" width="11" height="9"/>
+        <image name="slider-default-trackBackground.png" width="11" height="9"/>
+        <image name="slider-default-track.png" width="11" height="9"/>
+        <image name="slider-default-handle.png" width="23" height="23"/>
+        <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
+        <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
     </resources>
 </document>

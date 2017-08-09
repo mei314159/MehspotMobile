@@ -69,6 +69,7 @@ namespace Mehspot.iOS.Views
 			cell.pickerType = type;
 			cell.FieldLabel.Text = label;
 			cell.Value = initialValue;
+			cell.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
 			return cell;
 		}
 
@@ -256,6 +257,13 @@ namespace Mehspot.iOS.Views
 			}
 
 			SelectValueButton.SetTitle(title ?? this.placeholder, UIControlState.Normal);
+			SelectValueButton.TitleLabel.Lines = 0;
+			var textSize = SelectValueButton.TitleLabel.SizeThatFits(new CGSize(SelectValueButton.TitleLabel.Frame.Width, nfloat.MaxValue));
+			var height = textSize.Height > SelectValueButton.TitleLabel.Frame.Height ? textSize.Height : SelectValueButton.TitleLabel.Frame.Height;
+			SelectValueButton.Frame = new CGRect(SelectValueButton.TitleLabel.Frame.Location, new CGSize(textSize.Width, height > 44 ? height : 44));
+			SelectValueButton.LayoutIfNeeded();
+			this.Frame = new CGRect(this.Frame.Location, new CGSize(this.Frame.Width, this.SelectValueButton.Frame.Height));
+			(this.FindSuperviewOfType(null, typeof(UITableView)) as UITableView)?.ReloadData();
 		}
 
 		void ReleaseDesignerOutlets()

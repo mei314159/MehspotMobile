@@ -229,8 +229,9 @@ namespace Mehspot.Core
                 }
                 else if (valueType == BadgeDataType.LongString)
                 {
-                    var cell = cellBuilder.GetMultilineTextEditCell(badgeValue.Value.Value, (property) => badgeValue.Value.Value = property, label);
-                    Cells.Add(cell);
+                    var cell = cellBuilder.GetTextEditCell(badgeValue.Value.Value, (a, property) => badgeValue.Value.Value = property, label);
+                    cell.Multiline = true;
+                    Cells.Add((TCell)cell);
                 }
                 else
                 {
