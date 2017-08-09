@@ -21,6 +21,7 @@
                         <nil key="highlightedColor"/>
                         <constraints>
                             <constraint id="5" firstItem="2" firstAttribute="width" constant="145"/>
+                            <constraint id="38" firstItem="2" firstAttribute="height" constant="44"/>
                         </constraints>
                     </label>
                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="7" translatesAutoresizingMaskIntoConstraints="NO">
@@ -38,15 +39,15 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint id="3" firstItem="2" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
                     <constraint id="4" firstItem="2" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
-                    <constraint id="6" firstItem="2" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
                     <constraint id="8" firstItem="7" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
                     <constraint id="25" firstItem="22" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="5"/>
                     <constraint id="26" firstItem="22" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
                     <constraint id="27" firstItem="22" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
                     <constraint id="29" firstItem="7" firstAttribute="leading" secondItem="22" secondAttribute="trailing" constant="5"/>
                     <constraint id="33" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="5"/>
+                    <constraint id="36" firstItem="2" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
+                    <constraint id="37" firstItem="2" firstAttribute="bottom" secondItem="YTl-1W-gDM" secondAttribute="bottom" constant="1"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -109,5 +110,13 @@
         <image name="slider-default-handle.png" width="23" height="23"/>
         <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
         <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
     </resources>
 </document>

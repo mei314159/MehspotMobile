@@ -49,7 +49,6 @@
                 </subviews>
                 <constraints>
                     <constraint id="4" firstItem="3" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
-                    <constraint id="5" firstItem="3" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
                     <constraint id="8" firstItem="2" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
                     <constraint id="54" firstItem="15" firstAttribute="trailing" secondItem="YTl-1W-gDM" secondAttribute="trailing"/>
                     <constraint id="57" firstItem="15" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
@@ -58,6 +57,8 @@
                     <constraint id="63" firstItem="14" firstAttribute="trailing" secondItem="2" secondAttribute="leading"/>
                     <constraint id="64" firstItem="14" firstAttribute="centerY" secondItem="3" secondAttribute="centerY"/>
                     <constraint id="65" firstItem="2" firstAttribute="centerY" secondItem="3" secondAttribute="centerY"/>
+                    <constraint id="68" firstItem="3" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
+                    <constraint id="69" firstItem="3" firstAttribute="bottom" secondItem="YTl-1W-gDM" secondAttribute="bottom" constant="1"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -121,5 +122,13 @@
         <image name="slider-default-handle.png" width="23" height="23"/>
         <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
         <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
     </resources>
 </document>

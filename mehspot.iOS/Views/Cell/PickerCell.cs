@@ -219,7 +219,12 @@ namespace Mehspot.iOS.Views
 			else if (cell.pickerType == PickerTypeEnum.Multiselect)
 			{
 				var values = cell.Value as IEnumerable;
-				var rows = cell.RowValues.Select((x, i) => new SourceItem { Name = x.Value, Selected = values != null && values.Cast<object>().Any(a => Equals(x.Key, a)) }).ToArray();
+				var rows = cell.RowValues.Select((x, i) => new SourceItem
+				{
+					Key = x.Key,
+					Name = x.Value,
+					Selected = values != null && values.Cast<object>().Any(a => Equals(x.Key, a))
+				}).ToArray();
 				var picker = new MultiSelectPickerViewController(cell.placeholder, controller, rows)
 				{
 					//HeaderBackgroundColor = UIColor.White,

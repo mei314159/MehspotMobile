@@ -7,7 +7,7 @@ using System.Linq;
 namespace Mehspot.iOS.Views.MultiSelectPicker
 {
 
-	public class MultiSelectPickerViewController : UIViewController, IUITableViewDataSource
+	public class MultiSelectPickerViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
 	{
 		public event Action<int[]> OnModalPickerDismissed;
 		const float _headerBarHeight = 40;
@@ -42,6 +42,7 @@ namespace Mehspot.iOS.Views.MultiSelectPicker
 			CancelButtonText = "Cancel";
 			TableView.SetEditing(true, false);
 			TableView.DataSource = this;
+			TableView.Delegate = this;
 		}
 
 		public override void ViewDidLoad()
@@ -172,6 +173,36 @@ namespace Mehspot.iOS.Views.MultiSelectPicker
 			{
 				Show(true);
 				View.SetNeedsDisplay();
+			}
+		}
+
+		[Export("tableView:didSelectRowAtIndexPath:")]
+		public void RowSelected(UITableView tableView, NSIndexPath indexPath)
+		{
+			var sourceItem = TableItems[indexPath.Row];
+			sourceItem.Selected = true;
+			if (indexPath.Row == 0 && sourceItem.Key == null)
+			{
+				for (int i = 1; i < TableItems.Length; i++)
+				{
+					TableItems[i].Selected = true;
+					tableView.SelectRow(NSIndexPath.FromRowSection(i, indexPath.Section), false, UITableViewScrollPosition.None);
+				}
+			}
+		}
+
+		[Export("tableView:didDeselectRowAtIndexPath:")]
+		public void RowDeselected(UITableView tableView, NSIndexPath indexPath)
+		{
+			var sourceItem = TableItems[indexPath.Row];
+			sourceItem.Selected = false;
+			if (indexPath.Row == 0 && sourceItem.Key == null)
+			{
+				for (int i = 1; i < TableItems.Length; i++)
+				{
+					TableItems[i].Selected = false;
+					tableView.DeselectRow(NSIndexPath.FromRowSection(i, indexPath.Section), false);
+				}
 			}
 		}
 
