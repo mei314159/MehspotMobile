@@ -165,7 +165,7 @@ namespace Mehspot.Core
             foreach (var badgeValue in profile.BadgeValues)
             {
                 var badgeItem = badgeValue.Value.BadgeBadgeItem.BadgeItem;
-                if (ProfileKeys.NonDuplicatedKeys.Contains(badgeItem.Name))
+                if (ProfileKeys.ExcludedKeys.Contains(badgeItem.Name))
                     continue;
 
                 var itemName = badgeItem.Name;

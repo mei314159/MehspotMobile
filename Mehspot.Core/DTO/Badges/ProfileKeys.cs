@@ -14,6 +14,6 @@
 
         public const string Subdivision = "Subdivision";
 
-        public static readonly string[] NonDuplicatedKeys = { State, Zip, City, Subdivision };
+        public static readonly string[] ExcludedKeys = { State, Zip, City, Subdivision, "PetSitterEmployerSearchable", "PetSitterEmployerSittersNotification", "PetSitterEmployerSittersNotificationDistance" };
     }
 }
