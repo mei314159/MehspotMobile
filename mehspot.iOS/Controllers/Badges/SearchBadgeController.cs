@@ -30,6 +30,8 @@ namespace Mehspot.iOS
 			var badgeService = new BadgeService(MehspotAppContext.Instance.DataStorage);
 			this.model = new SearchBadgeModel<UITableViewCell>(this, badgeService, new IosCellBuilder());
 			this.NavBar.Title = this.model.GetTitle();
+			this.TableView.EstimatedRowHeight = 44;
+			this.TableView.RowHeight = UITableView.AutomaticDimension;
 		}
 
 		public override async void ViewWillAppear(bool animated)
