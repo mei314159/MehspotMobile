@@ -128,20 +128,38 @@
                 android:textColor="@color/xam_blue" />
         </LinearLayout>
     </LinearLayout>
-    <ScrollView
+    <RelativeLayout
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+UserProfileViewActivity/profileScrollView"
         android:layout_below="@id/UserProfileInfoView"
         android:layout_marginTop="7dp">
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:text="There are no registered badges"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+UserProfileViewActivity/Message"
+            android:gravity="center"
+            android:textSize="@dimen/abc_text_size_title_material"
+            android:textStyle="bold"
+            android:textColor="@color/material_grey_300"
+            android:paddingBottom="7dp"
+            android:visibility="invisible" />
+        <ScrollView
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+UserProfileViewActivity/ContentWrapper" />
-    </ScrollView>
+            android:id="@+UserProfileViewActivity/profileScrollView">
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+UserProfileViewActivity/ContentWrapper"
+                android:foregroundGravity="center" />
+        </ScrollView>
+    </RelativeLayout>
 </RelativeLayout>

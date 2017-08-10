@@ -40,6 +40,7 @@ namespace Mehspot.AndroidApp
 		public TextView RecommendationsCountLabel => FindViewById<TextView>(Resource.UserProfileViewActivity.recommendationCount);
 		public TextView UserNameLabel => FindViewById<TextView>(Resource.UserProfileViewActivity.UserName);
 		public Android.Support.V7.Widget.Toolbar ProfileToolbar => FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.UserProfileViewActivity.UserProfileToolbar);
+		public LinearLayout ContentWrapper => this.FindViewById<LinearLayout>(Resource.UserProfileViewActivity.ContentWrapper);
 
 		public string ToUserName => Intent.GetStringExtra("toUserName");
 		public string ToUserId => Intent.GetStringExtra("toUserId");
@@ -173,13 +174,12 @@ namespace Mehspot.AndroidApp
 			target.PutExtra("badgeId", selectedBadge.BadgeId);
 			target.PutExtra("badgeName", selectedBadge.BadgeName);
 			target.PutExtra("userId", model.UserId);
-            this.StartActivity(target);
+			this.StartActivity(target);
 		}
 
 		public void DisplayBadges()
 		{
-			var wrapper = this.FindViewById<LinearLayout>(Resource.UserProfileViewActivity.ContentWrapper);
-			wrapper.RemoveAllViews();
+			ContentWrapper.RemoveAllViews();
 
 			foreach (var element in wrapList)
 			{
@@ -191,7 +191,7 @@ namespace Mehspot.AndroidApp
 			foreach (var item in model.Items)
 			{
 				var bubble = CreateItem(item);
-				wrapper.AddView(bubble);
+				ContentWrapper.AddView(bubble);
 				wrapList.Add(bubble);
 			}
 		}
@@ -231,6 +231,15 @@ namespace Mehspot.AndroidApp
 			script.Destroy();
 
 			return blurredBitmap;
+		}
+
+		public void ShowLabel()
+		{
+			var ScrollView = FindViewById<ScrollView>(Resource.UserProfileViewActivity.profileScrollView);
+			var Message = FindViewById<TextView>(Resource.UserProfileViewActivity.Message);
+
+			ScrollView.Visibility = ViewStates.Invisible;
+			Message.Visibility = ViewStates.Visible;
 		}
 	}
 }
