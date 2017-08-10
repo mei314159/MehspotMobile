@@ -97,7 +97,7 @@ namespace Mehspot.iOS
 
 		public void ReloadData()
 		{
-			TableView.ReloadData();
+			InvokeOnMainThread(TableView.ReloadData);
 		}
 
 		public void HideKeyboard()

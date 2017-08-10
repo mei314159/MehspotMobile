@@ -41,13 +41,15 @@ namespace Mehspot.Core
                 try
                 {
                     webClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.ApplicationDataStorage.AuthInfo.AccessToken);
-
+                    var st = System.Diagnostics.Stopwatch.StartNew();
                     var response = await webClient.GetAsync(requestUri).ConfigureAwait(false);
+                    System.Diagnostics.Debug.WriteLine(st.ElapsedMilliseconds + "ms : SendRequest " + uri);
                     var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    System.Diagnostics.Debug.WriteLine(st.ElapsedMilliseconds + "ms : ReadResponse " + uri);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         var data = JsonConvert.DeserializeObject(responseString, resultType);
-
+                        System.Diagnostics.Debug.WriteLine(st.ElapsedMilliseconds + "ms : Deserialize " + uri);
                         return new Result<object>
                         {
                             IsSuccess = true,

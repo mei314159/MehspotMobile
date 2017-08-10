@@ -16,7 +16,6 @@ namespace Mehspot.Core
         private volatile bool loading;
         private volatile bool dataLoaded;
         private BadgeProfileDTO<EditBadgeProfileDTO> profile;
-        private KeyValuePair<int?, string>[] states;
         private IBooleanEditCell toggleEnabledStateCell;
         private IButtonCell deleteBadgeCell;
 
@@ -158,8 +157,6 @@ namespace Mehspot.Core
         private async Task LoadCellsAsync()
         {
             var subdivisionCellKey = Guid.NewGuid().ToString();
-            this.states = await GetStates();
-            var profileSubdivisions = await GetSubdivisions(profile.Profile.Zip);
             Cells.Clear();
 
             foreach (var badgeValue in profile.BadgeValues)
@@ -274,17 +271,6 @@ namespace Mehspot.Core
             }
 
             return new List<SubdivisionDTO>();
-        }
-
-        private async Task<KeyValuePair<int?, string>[]> GetStates()
-        {
-            var statesResult = await subdivisionService.ListStatesAsync();
-            if (statesResult.IsSuccess)
-            {
-                return statesResult.Data.Select(a => new KeyValuePair<int?, string>(a.Id, a.Name)).ToArray();
-            }
-
-            return null;
         }
 
         private void IsEnabledCell_ValueChanged(bool value)
