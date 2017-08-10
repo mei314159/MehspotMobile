@@ -103,8 +103,8 @@ namespace Mehspot.Core
             }
             else
             {
-                var errors = result.ModelState?.ModelState?.Select(a => a.Value?.FirstOrDefault());
-                message = errors != null ? string.Join(Environment.NewLine, errors) : result.ErrorMessage;
+                var error = result.ModelState?.ModelState?.Select(a => a.Value?.FirstOrDefault())?.FirstOrDefault();
+                message = error != null ? error : result.ErrorMessage;
                 controller.ViewHelper.ShowAlert(result.ErrorMessage, message);
             }
 
