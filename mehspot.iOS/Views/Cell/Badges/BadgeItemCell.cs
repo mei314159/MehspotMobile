@@ -84,11 +84,7 @@ namespace Mehspot.iOS.Views
 			cell.SearchButton.Layer.BorderWidth = cell.BadgeRegisterButton.Layer.BorderWidth = 1;
 			cell.SearchButton.Layer.BorderColor = cell.SearchButton.TitleColor(UIControlState.Normal).CGColor;
 			cell.BadgeRegisterButton.Layer.BorderColor = cell.BadgeRegisterButton.TitleColor(UIControlState.Normal).CGColor;
-<<<<<<< HEAD
-			cell.BadgeRegisterButton.SetTitle(badge.Badge.IsRegistered ? "Update" : "Register", UIControlState.Normal);
-=======
 			cell.BadgeRegisterButton.SetTitle("Update My Info", UIControlState.Normal);
->>>>>>> Squash commit
 			cell.BadgeDescription.Text = badge.CustomDescription ?? MehspotResources.ResourceManager.GetString(badge.SearchBadge + "_Description");
 			cell.LikesCount.Text = badge.Badge.Likes.ToString();
 			cell.RecommendationsCount.Text = badge.Badge.Recommendations.ToString();
