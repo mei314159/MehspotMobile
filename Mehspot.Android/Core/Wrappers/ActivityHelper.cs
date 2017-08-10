@@ -48,7 +48,7 @@ namespace Mehspot.AndroidApp.Wrappers
 					var alert = new AlertDialog.Builder(activity);
 					alert.SetTitle(title);
 					alert.SetMessage(text);
-					alert.SetPositiveButton("OK", (senderAlert, args) => action());
+					alert.SetPositiveButton("OK", (senderAlert, args) => action?.Invoke());
 					alert.Create().Show();
 				});
 		}
