@@ -811,8 +811,11 @@ namespace Mehspot.AndroidApp
 		public partial class UserProfileViewActivity
 		{
 			
-			// aapt resource value: 0x7f2c0005
-			public const int ContentWrapper = 2133590021;
+			// aapt resource value: 0x7f2c0006
+			public const int ContentWrapper = 2133590022;
+			
+			// aapt resource value: 0x7f2c0004
+			public const int Message = 2133590020;
 			
 			// aapt resource value: 0x7f2c0002
 			public const int UserName = 2133590018;
@@ -820,8 +823,8 @@ namespace Mehspot.AndroidApp
 			// aapt resource value: 0x7f2c0000
 			public const int UserProfileToolbar = 2133590016;
 			
-			// aapt resource value: 0x7f2c0004
-			public const int profileScrollView = 2133590020;
+			// aapt resource value: 0x7f2c0005
+			public const int profileScrollView = 2133590021;
 			
 			// aapt resource value: 0x7f2c0003
 			public const int recommendationCount = 2133590019;

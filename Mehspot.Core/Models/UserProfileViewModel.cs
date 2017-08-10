@@ -45,8 +45,11 @@ namespace Mehspot.Core.Models
                 {
                     viewController.ShowLabel();
                 }
-                this.userProfile = profileResult.Data;
-                await InitializeDataAsync();
+                else
+                {
+                    this.userProfile = profileResult.Data;
+                    await InitializeDataAsync();
+                }
             }
             else
             {
