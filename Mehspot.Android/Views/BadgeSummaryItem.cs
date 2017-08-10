@@ -27,7 +27,7 @@ namespace Mehspot.AndroidApp.Resources.layout
 			LikesCount.Text = dto.Likes.ToString();
 			RecommendationsCount.Text = dto.Recommendations.ToString();
 			ReferencesCount.Text = dto.References.ToString();
-			RegisterButton.Text = dto.IsRegistered ? "Update" : "Register";;
+			RegisterButton.Text = "Update My Info";
 
 			var identifier = Resources.GetIdentifier(dto.BadgeName.ToLower() + (dto.IsRegistered ? string.Empty : "b"), "drawable", context.PackageName);
 			using (var Picture = FindViewById<ImageView>(Resource.BadgeSummary.Picture))
