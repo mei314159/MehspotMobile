@@ -126,8 +126,8 @@ namespace Mehspot.Core.Models
                 }
                 else
                 {
-                    var errors = result.ModelState?.ModelState?.SelectMany(a => a.Value);
-                    var message = errors != null ? string.Join(Environment.NewLine, errors) : result.ErrorMessage;
+                    var error = result.ModelState?.ModelState?.SelectMany(a => a.Value)?.FirstOrDefault();
+                    var message = error != null ? error : result.ErrorMessage;
                     viewController.ViewHelper.ShowAlert(result.ErrorMessage, message);
                 }
 
