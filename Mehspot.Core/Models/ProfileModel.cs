@@ -68,7 +68,6 @@ namespace Mehspot.Core.Models
 
         async Task InitializeTableAsync()
         {
-            var states = await GetStates();
             var subdivisions = await GetSubdivisions(profile.Zip);
             viewController.UserName = profile.UserName;
             viewController.FullName = $"{profile.FirstName} {profile.LastName}".Trim(' ');
@@ -90,7 +89,7 @@ namespace Mehspot.Core.Models
             subdivisionCell.IsReadOnly = string.IsNullOrWhiteSpace(profile.Zip) || !zipCell.IsValid;
             Cells.Add((TView)zipCell);
             Cells.Add((TView)subdivisionCell);
-            viewController.ReloadData();
+            viewController.InvokeOnMainThread(viewController.ReloadData);
         }
 
         public void Signout()
@@ -159,18 +158,6 @@ namespace Mehspot.Core.Models
             }
 
             return new List<SubdivisionDTO>();
-        }
-
-        private async Task<KeyValuePair<int?, string>[]> GetStates()
-        {
-            var statesResult = await subdivisionService.ListStatesAsync();
-
-            if (statesResult.IsSuccess)
-            {
-                return statesResult.Data.Select(a => new KeyValuePair<int?, string>(a.Id, a.Name)).ToArray();
-            }
-
-            return null;
         }
     }
 }

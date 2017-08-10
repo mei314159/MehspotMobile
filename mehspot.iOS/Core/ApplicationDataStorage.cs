@@ -3,7 +3,6 @@ using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Push;
-using System;
 
 namespace Mehspot.iOS.Core
 {

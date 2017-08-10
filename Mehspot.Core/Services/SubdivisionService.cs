@@ -1,7 +1,6 @@
 using Mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
 using System.Threading.Tasks;
-using Mehspot.Core;
 using Mehspot.Core.DTO.Subdivision;
 using System.Collections.Generic;
 
@@ -10,18 +9,29 @@ namespace Mehspot.Core.Services
 
     public class SubdivisionService : BaseDataService
     {
+        private readonly Dictionary<string, Result<List<SubdivisionDTO>>> cache;
         public SubdivisionService(IApplicationDataStorage applicationDataStorage) : base(applicationDataStorage)
         {
+            cache = new Dictionary<string, Result<List<SubdivisionDTO>>>();
         }
 
-        public Task<Result<StaticDataDTO[]>> ListStatesAsync()
+        public async Task<Result<List<SubdivisionDTO>>> ListSubdivisionsAsync(string zip)
         {
-            return this.GetAsync<StaticDataDTO[]>("Subdivision/ListStates");
-        }
+            Result<List<SubdivisionDTO>> result;
+            if (cache.ContainsKey(zip))
+            {
+                result = cache[zip];
+            }
+            else
+            {
+                result = await this.GetAsync<List<SubdivisionDTO>>("Subdivision/List?zipCode=" + zip);
+                if (result.IsSuccess)
+                {
+                    cache.Add(zip, result);
+                }
+            }
 
-        public Task<Result<List<SubdivisionDTO>>> ListSubdivisionsAsync(string zip)
-        {
-            return this.GetAsync<List<SubdivisionDTO>>("Subdivision/List?zipCode=" + zip);
+            return result;
         }
 
         public Task<Result<List<SubdivisionOptionDTO>>> ListOptionsAsync(int subdivisionId)
@@ -31,17 +41,34 @@ namespace Mehspot.Core.Services
 
         public async Task<Result<CreateSubdivisionResultDTO>> CreateAsync(EditSubdivisionDTO subdivision)
         {
-            return await PostAsync<CreateSubdivisionResultDTO>($"Subdivision/Create", subdivision).ConfigureAwait(false);
+            var result = await PostAsync<CreateSubdivisionResultDTO>($"Subdivision/Create", subdivision).ConfigureAwait(false);
+            if (result.IsSuccess && cache.ContainsKey(subdivision.ZipCode))
+            {
+                cache.Remove(subdivision.ZipCode);
+            }
+
+            return result;
         }
 
         public async Task<Result<EditSubdivisionDTO>> OverrideAsync(EditSubdivisionDTO subdivision)
         {
-            return await PostAsync<EditSubdivisionDTO>($"Subdivision/Override", subdivision).ConfigureAwait(false);
+            var result = await PostAsync<EditSubdivisionDTO>($"Subdivision/Override", subdivision).ConfigureAwait(false);
+            if (result.IsSuccess && cache.ContainsKey(subdivision.ZipCode))
+            {
+                cache.Remove(subdivision.ZipCode);
+            }
+            return result;
         }
 
         public async Task<Result<SubdivisionDTO>> VerifyOptionAsync(int subdivisionOptionId)
         {
-            return await GetAsync<SubdivisionDTO>($"Subdivision/Verify?subdivisionOptionId={subdivisionOptionId}").ConfigureAwait(false);
+            var result = await GetAsync<SubdivisionDTO>($"Subdivision/Verify?subdivisionOptionId={subdivisionOptionId}").ConfigureAwait(false);
+            if (result.IsSuccess && cache.ContainsKey(result.Data.ZipCode))
+            {
+                cache.Remove(result.Data.ZipCode);
+            }
+
+            return result;
         }
 
         public async Task<Result> CreateOptionAsync(SubdivisionOptionDTO subdivisionOption)
