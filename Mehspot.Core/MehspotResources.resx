@@ -420,6 +420,9 @@
 	<data name="PetSitterExpirienceOther" xml:space="preserve">
     <value>If other, specify</value>
   </data>
+	<data name="PetSitterAdditionalQualification" xml:space="preserve">
+    <value>Additional Qualification</value>
+  </data>
 	<data name="PetSitterMultipleDaysDiscount" xml:space="preserve">
     <value>Multiple day discount</value>
   </data>
