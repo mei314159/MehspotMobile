@@ -1,4 +1,5 @@
 
+using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -22,6 +23,8 @@ namespace Mehspot.AndroidApp
 		public IViewHelper ViewHelper { get; private set; }
 
 		public Button SearchButton => this.FindViewById<Button>(Resource.SearchFilter.SearchButton);
+
+		public string CustomKey { get; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -59,6 +62,4 @@ namespace Mehspot.AndroidApp
 			this.StartActivity(target);
 		}
 	}
-
-
 }

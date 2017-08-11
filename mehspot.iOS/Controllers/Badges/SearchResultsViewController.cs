@@ -15,7 +15,6 @@ using mehspot.iOS;
 
 namespace Mehspot.iOS
 {
-
 	public delegate void SendMessageButtonTouched(UIButton obj, ISearchResultDTO item);
 	public delegate void ViewProfileButtonTouched(UIButton obj, ISearchResultDTO item);
 	public delegate void OnRegisterButtonTouched(int requiredBadgeId);
@@ -282,7 +281,6 @@ namespace Mehspot.iOS
 				this.noResultsView.Dispose();
 				this.noResultsView = null;
 			}
-
 
 			base.Dispose(disposing);
 		}
