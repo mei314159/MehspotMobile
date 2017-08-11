@@ -27,10 +27,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="82" translatesAutoresizingMaskIntoConstraints="NO" image="profile_image" clipsSubviews="YES">
-                                <rect key="frame" x="71" y="100" width="232" height="232"/>
+                                <rect key="frame" x="75" y="100" width="225" height="225"/>
                                 <constraints>
-                                    <constraint id="90" firstAttribute="width" secondItem="82" secondAttribute="height" multiplier="1:1"/>
-                                    <constraint id="93" firstItem="82" firstAttribute="width" constant="232"/>
+                                    <constraint id="565" firstAttribute="width" secondItem="82" secondAttribute="height" multiplier="1:1"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
@@ -48,9 +47,12 @@
                                 </textAttributes>
                                 <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                                 <color key="barTintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                <constraints>
+                                    <constraint id="607" firstItem="83" firstAttribute="height" constant="44"/>
+                                </constraints>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="100" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="72" y="523" width="232" height="44"/>
+                                <rect key="frame" x="75" y="551" width="225" height="44"/>
                                 <color key="backgroundColor" colorSpace="calibratedRGB" red="0.62352941176470589" green="0.796078431372549" blue="0.403921568627451" alpha="1"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27" weight="light"/>
                                 <state key="normal" title="Picture">
@@ -65,7 +67,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo or choose from library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="106" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2" minimumScaleFactor="0.5">
-                                <rect key="frame" x="71" y="376" width="232" height="66"/>
+                                <rect key="frame" x="76" y="369" width="225" height="66"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -74,7 +76,7 @@
                                 </constraints>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="113" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
-                                <rect key="frame" x="72" y="575" width="232" height="44"/>
+                                <rect key="frame" x="75" y="603" width="225" height="44"/>
                                 <color key="backgroundColor" colorSpace="calibratedRGB" red="0.62352941176470589" green="0.796078431372549" blue="0.403921568627451" alpha="1"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27" weight="light"/>
                                 <state key="normal" title="Continue">
@@ -95,9 +97,7 @@
                             <constraint id="86" firstItem="83" firstAttribute="trailing" secondItem="10" secondAttribute="trailing"/>
                             <constraint id="87" firstItem="83" firstAttribute="leading" secondItem="10" secondAttribute="leading"/>
                             <constraint id="92" firstItem="82" firstAttribute="centerX" secondItem="10" secondAttribute="centerX"/>
-                            <constraint id="94" firstItem="82" firstAttribute="top" secondItem="83" secondAttribute="bottom" constant="56"/>
-                            <constraint id="102" firstItem="10" firstAttribute="bottom" secondItem="100" secondAttribute="bottom" constant="100"/>
-                            <constraint id="103" firstItem="100" firstAttribute="centerX" secondItem="10" secondAttribute="centerX"/>
+                            <constraint id="94" firstItem="82" firstAttribute="top" secondItem="83" secondAttribute="bottom" constant="20" relation="greaterThanOrEqual"/>
                             <constraint id="105" firstItem="100" firstAttribute="width" secondItem="82" secondAttribute="width"/>
                             <constraint id="107" firstItem="106" firstAttribute="centerX" secondItem="10" secondAttribute="centerX"/>
                             <constraint id="108" firstItem="106" firstAttribute="width" secondItem="82" secondAttribute="width"/>
@@ -105,14 +105,16 @@
                             <constraint id="111" firstItem="100" firstAttribute="centerX" secondItem="10" secondAttribute="centerX"/>
                             <constraint id="117" firstItem="113" firstAttribute="centerX" secondItem="10" secondAttribute="centerX"/>
                             <constraint id="118" firstItem="113" firstAttribute="width" secondItem="100" secondAttribute="width"/>
-                            <constraint id="119" firstItem="113" firstAttribute="height" secondItem="100" secondAttribute="height"/>
-                            <constraint id="120" firstItem="113" firstAttribute="top" secondItem="100" secondAttribute="bottom" constant="8"/>
+                            <constraint id="564" firstItem="82" firstAttribute="width" secondItem="10" secondAttribute="width" multiplier="0.6"/>
+                            <constraint id="578" firstItem="100" firstAttribute="top" secondItem="106" secondAttribute="bottom" constant="20" relation="greaterThanOrEqual"/>
+                            <constraint id="606" firstItem="10" firstAttribute="bottom" secondItem="113" secondAttribute="bottom" constant="20"/>
+                            <constraint id="608" firstItem="82" firstAttribute="top" secondItem="83" secondAttribute="bottom" constant="56" priority="944"/>
+                            <constraint id="647" firstItem="10" firstAttribute="bottom" secondItem="100" secondAttribute="bottom" constant="72"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="ProfilePicture" destination="82" id="name-outlet-82"/>
-                        <outlet property="PictureButtonBottomConstraint" destination="102" id="name-outlet-102"/>
                         <outlet property="PictureButton" destination="100" id="name-outlet-100"/>
                         <outlet property="ContinueButton" destination="113" id="name-outlet-113"/>
                     </connections>
@@ -133,34 +135,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" id="135" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Step 2" id="136"/>
-                                </items>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" colorSpace="calibratedRGB" red="0.27843137254901962" green="0.68235294117647061" blue="0" alpha="1"/>
-                                </textAttributes>
-                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
-                                <color key="barTintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
-                            </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="310" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                            <view contentMode="scaleToFill" id="671" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="125" translatesAutoresizingMaskIntoConstraints="NO" image="subdivisionicon" clipsSubviews="YES">
-                                        <rect key="frame" x="71" y="56" width="232" height="232"/>
-                                        <constraints>
-                                            <constraint id="133" firstAttribute="width" secondItem="125" secondAttribute="height" multiplier="1:1"/>
-                                            <constraint id="134" firstItem="125" firstAttribute="width" constant="232"/>
-                                        </constraints>
+                                        <rect key="frame" x="75" y="100" width="225" height="225"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
                                                 <real key="value" value="116"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <constraints>
+                                            <constraint id="694" firstAttribute="width" secondItem="125" secondAttribute="height" multiplier="1:1"/>
+                                        </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose subdivision" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="139" translatesAutoresizingMaskIntoConstraints="NO" minimumScaleFactor="0.5">
-                                        <rect key="frame" x="71" y="310" width="232" height="33"/>
+                                        <rect key="frame" x="75" y="369" width="225" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -169,7 +160,7 @@
                                         </constraints>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="required to calculate distance between you and others" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="173" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2" minimumScaleFactor="0.5">
-                                        <rect key="frame" x="72" y="343" width="232" height="37"/>
+                                        <rect key="frame" x="75" y="413" width="225" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                                         <nil key="highlightedColor"/>
@@ -178,7 +169,7 @@
                                         </constraints>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="235" translatesAutoresizingMaskIntoConstraints="NO" customClass="ExtendedTextField">
-                                        <rect key="frame" x="72" y="427" width="232" height="44"/>
+                                        <rect key="frame" x="75" y="499" width="225" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <constraints>
@@ -190,7 +181,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="268" translatesAutoresizingMaskIntoConstraints="NO">
-                                        <rect key="frame" x="72" y="479" width="232" height="44"/>
+                                        <rect key="frame" x="75" y="551" width="225" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17" weight="light"/>
                                         <state key="normal" title="Subdivision">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -204,7 +195,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="131" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
-                                        <rect key="frame" x="72" y="531" width="232" height="44"/>
+                                        <rect key="frame" x="75" y="603" width="225" height="44"/>
                                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.62352941176470589" green="0.796078431372549" blue="0.403921568627451" alpha="1"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27" weight="light"/>
                                         <state key="normal" title="Continue">
@@ -219,36 +210,54 @@
                                             <action selector="ContinueButtonTouched:" destination="123" id="143" eventType="touchUpInside"/>
                                         </connections>
                                     </button>
+                                    <navigationBar contentMode="scaleToFill" id="135" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <items>
+                                            <navigationItem title="Step 2" id="136"/>
+                                        </items>
+                                        <textAttributes key="titleTextAttributes">
+                                            <color key="textColor" colorSpace="calibratedRGB" red="0.27843137254901962" green="0.68235294117647061" blue="0" alpha="1"/>
+                                        </textAttributes>
+                                        <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                        <color key="barTintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                        <constraints>
+                                            <constraint id="674" firstItem="135" firstAttribute="height" constant="44"/>
+                                        </constraints>
+                                    </navigationBar>
                                 </subviews>
                                 <constraints>
-                                    <constraint id="318" firstItem="125" firstAttribute="centerX" secondItem="310" secondAttribute="centerX"/>
-                                    <constraint id="319" firstItem="125" firstAttribute="top" secondItem="310" secondAttribute="top" constant="56"/>
-                                    <constraint id="320" firstItem="139" firstAttribute="top" secondItem="125" secondAttribute="bottom" constant="22"/>
-                                    <constraint id="321" firstItem="139" firstAttribute="centerX" secondItem="310" secondAttribute="centerX"/>
-                                    <constraint id="322" firstItem="139" firstAttribute="width" secondItem="125" secondAttribute="width"/>
-                                    <constraint id="323" firstItem="173" firstAttribute="centerX" secondItem="310" secondAttribute="centerX"/>
-                                    <constraint id="324" firstItem="173" firstAttribute="top" secondItem="139" secondAttribute="bottom"/>
-                                    <constraint id="325" firstItem="173" firstAttribute="width" secondItem="139" secondAttribute="width"/>
-                                    <constraint id="326" firstItem="131" firstAttribute="width" secondItem="125" secondAttribute="width"/>
-                                    <constraint id="328" firstItem="131" firstAttribute="centerX" secondItem="310" secondAttribute="centerX"/>
-                                    <constraint id="330" firstItem="268" firstAttribute="width" secondItem="131" secondAttribute="width"/>
-                                    <constraint id="331" firstItem="235" firstAttribute="width" secondItem="131" secondAttribute="width"/>
-                                    <constraint id="332" firstItem="131" firstAttribute="top" secondItem="268" secondAttribute="bottom" constant="8"/>
-                                    <constraint id="333" firstItem="268" firstAttribute="top" secondItem="235" secondAttribute="bottom" constant="8"/>
-                                    <constraint id="334" firstItem="268" firstAttribute="centerX" secondItem="131" secondAttribute="centerX"/>
-                                    <constraint id="335" firstItem="235" firstAttribute="centerX" secondItem="268" secondAttribute="centerX"/>
-                                    <constraint id="337" firstItem="235" firstAttribute="top" secondItem="173" secondAttribute="bottom" constant="47"/>
+                                    <constraint id="675" firstItem="671" firstAttribute="bottom" secondItem="131" secondAttribute="bottom" constant="20"/>
+                                    <constraint id="677" firstItem="131" firstAttribute="top" secondItem="268" secondAttribute="bottom" constant="8"/>
+                                    <constraint id="678" firstItem="131" firstAttribute="centerX" secondItem="671" secondAttribute="centerX"/>
+                                    <constraint id="679" firstItem="131" firstAttribute="width" secondItem="671" secondAttribute="width" multiplier="0.6"/>
+                                    <constraint id="683" firstItem="268" firstAttribute="centerX" secondItem="131" secondAttribute="centerX"/>
+                                    <constraint id="684" firstItem="268" firstAttribute="width" secondItem="131" secondAttribute="width"/>
+                                    <constraint id="686" firstItem="268" firstAttribute="top" secondItem="235" secondAttribute="bottom" constant="8"/>
+                                    <constraint id="687" firstItem="235" firstAttribute="centerX" secondItem="131" secondAttribute="centerX"/>
+                                    <constraint id="688" firstItem="235" firstAttribute="width" secondItem="131" secondAttribute="width"/>
+                                    <constraint id="689" firstItem="125" firstAttribute="centerX" secondItem="671" secondAttribute="centerX"/>
+                                    <constraint id="691" firstItem="125" firstAttribute="width" secondItem="671" secondAttribute="width" multiplier="0.6"/>
+                                    <constraint id="693" firstItem="125" firstAttribute="top" secondItem="671" secondAttribute="top" constant="20" relation="greaterThanOrEqual"/>
+                                    <constraint id="695" firstItem="139" firstAttribute="width" secondItem="125" secondAttribute="width"/>
+                                    <constraint id="697" firstItem="139" firstAttribute="top" secondItem="125" secondAttribute="bottom" constant="20" relation="greaterThanOrEqual"/>
+                                    <constraint id="698" firstItem="139" firstAttribute="centerX" secondItem="671" secondAttribute="centerX"/>
+                                    <constraint id="699" firstItem="173" firstAttribute="top" secondItem="139" secondAttribute="bottom" constant="11"/>
+                                    <constraint id="701" firstItem="173" firstAttribute="centerX" secondItem="139" secondAttribute="centerX"/>
+                                    <constraint id="709" firstItem="173" firstAttribute="width" secondItem="139" secondAttribute="width"/>
+                                    <constraint id="712" firstItem="235" firstAttribute="top" secondItem="173" secondAttribute="bottom" constant="8" relation="greaterThanOrEqual"/>
+                                    <constraint id="715" firstItem="125" firstAttribute="top" secondItem="671" secondAttribute="top" constant="100" priority="637"/>
+                                    <constraint id="718" firstItem="139" firstAttribute="top" secondItem="125" secondAttribute="bottom" constant="44" priority="526"/>
+                                    <constraint id="730" firstItem="135" firstAttribute="top" secondItem="671" secondAttribute="top"/>
+                                    <constraint id="731" firstItem="135" firstAttribute="width" secondItem="671" secondAttribute="width"/>
+                                    <constraint id="732" firstItem="135" firstAttribute="leading" secondItem="671" secondAttribute="leading"/>
                                 </constraints>
-                            </scrollView>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint id="145" firstItem="135" firstAttribute="top" secondItem="132" secondAttribute="top"/>
-                            <constraint id="146" firstItem="135" firstAttribute="trailing" secondItem="132" secondAttribute="trailing"/>
-                            <constraint id="147" firstItem="135" firstAttribute="leading" secondItem="132" secondAttribute="leading"/>
-                            <constraint id="311" firstItem="310" firstAttribute="bottom" secondItem="132" secondAttribute="bottom"/>
-                            <constraint id="312" firstItem="310" firstAttribute="top" secondItem="135" secondAttribute="bottom"/>
-                            <constraint id="313" firstItem="310" firstAttribute="trailing" secondItem="132" secondAttribute="trailing"/>
-                            <constraint id="314" firstItem="310" firstAttribute="leading" secondItem="132" secondAttribute="leading"/>
+                            <constraint id="680" firstItem="671" firstAttribute="leading" secondItem="132" secondAttribute="leading"/>
+                            <constraint id="681" firstItem="671" firstAttribute="trailing" secondItem="132" secondAttribute="trailing"/>
+                            <constraint id="725" firstItem="671" firstAttribute="height" secondItem="132" secondAttribute="height"/>
+                            <constraint id="729" firstItem="671" firstAttribute="top" secondItem="132" secondAttribute="top"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -257,7 +266,8 @@
                         <outlet property="ZipField" destination="235" id="name-outlet-235"/>
                         <outlet property="SubdivisionField" destination="268" id="name-outlet-268"/>
                         <outlet property="ContinueButton" destination="131" id="130"/>
-                        <outlet property="ScrollView" destination="310" id="name-outlet-310"/>
+                        <outlet property="Wrapper" destination="671" id="name-outlet-671"/>
+                        <outlet property="Top" destination="729" id="name-outlet-729"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="162" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -314,7 +324,7 @@
                                 </constraints>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="422" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="71" y="575" width="232" height="44"/>
+                                <rect key="frame" x="76" y="603" width="225" height="44"/>
                                 <color key="backgroundColor" colorSpace="calibratedRGB" red="0.62352941176470589" green="0.796078431372549" blue="0.403921568627451" alpha="1"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27" weight="light"/>
                                 <state key="normal" title="Continue">
@@ -323,7 +333,6 @@
                                 </state>
                                 <constraints>
                                     <constraint id="427" firstItem="422" firstAttribute="height" constant="44"/>
-                                    <constraint id="430" firstItem="422" firstAttribute="width" constant="232"/>
                                 </constraints>
                                 <connections>
                                     <action selector="PictureButtonTouched:" destination="424" id="423" eventType="touchUpInside"/>
@@ -341,10 +350,11 @@
                             <constraint id="405" firstItem="401" firstAttribute="centerX" secondItem="355" secondAttribute="centerX"/>
                             <constraint id="409" firstItem="406" firstAttribute="centerX" secondItem="355" secondAttribute="centerX"/>
                             <constraint id="417" firstItem="413" firstAttribute="centerX" secondItem="406" secondAttribute="centerX"/>
-                            <constraint id="428" firstItem="355" firstAttribute="bottom" secondItem="422" secondAttribute="bottom" constant="48"/>
+                            <constraint id="428" firstItem="355" firstAttribute="bottom" secondItem="422" secondAttribute="bottom" constant="20"/>
                             <constraint id="429" firstItem="422" firstAttribute="centerX" secondItem="355" secondAttribute="centerX"/>
                             <constraint id="431" firstItem="406" firstAttribute="top" secondItem="401" secondAttribute="bottom" constant="64"/>
                             <constraint id="432" firstItem="413" firstAttribute="top" secondItem="406" secondAttribute="bottom" constant="24"/>
+                            <constraint id="650" firstItem="422" firstAttribute="width" secondItem="355" secondAttribute="width" multiplier="0.6"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -378,7 +388,7 @@
                                 <color key="barTintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="447" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
-                                <rect key="frame" x="71" y="575" width="232" height="44"/>
+                                <rect key="frame" x="76" y="603" width="225" height="44"/>
                                 <color key="backgroundColor" colorSpace="calibratedRGB" red="0.62352941176470589" green="0.796078431372549" blue="0.403921568627451" alpha="1"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27" weight="light"/>
                                 <state key="normal" title="Continue">
@@ -387,7 +397,6 @@
                                 </state>
                                 <constraints>
                                     <constraint id="453" firstItem="447" firstAttribute="height" constant="44"/>
-                                    <constraint id="454" firstItem="447" firstAttribute="width" constant="232"/>
                                 </constraints>
                                 <connections>
                                     <action selector="PictureButtonTouched:" destination="449" id="448" eventType="touchUpInside"/>
@@ -402,7 +411,7 @@
                                 <nil key="highlightedColor"/>
                                 <constraints>
                                     <constraint id="476" firstItem="471" firstAttribute="width" constant="292"/>
-                                    <constraint id="477" firstItem="471" firstAttribute="height" constant="66"/>
+                                    <constraint id="477" firstItem="471" firstAttribute="height" constant="66" relation="lessThanOrEqual"/>
                                 </constraints>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="1" sectionFooterHeight="1" id="530" translatesAutoresizingMaskIntoConstraints="NO">
@@ -427,14 +436,17 @@
                             <constraint id="455" firstItem="438" firstAttribute="top" secondItem="437" secondAttribute="top"/>
                             <constraint id="456" firstItem="438" firstAttribute="trailing" secondItem="437" secondAttribute="trailing"/>
                             <constraint id="457" firstItem="438" firstAttribute="leading" secondItem="437" secondAttribute="leading"/>
-                            <constraint id="463" firstItem="437" firstAttribute="bottom" secondItem="447" secondAttribute="bottom" constant="48"/>
+                            <constraint id="463" firstItem="437" firstAttribute="bottom" secondItem="447" secondAttribute="bottom" constant="20"/>
                             <constraint id="464" firstItem="447" firstAttribute="centerX" secondItem="437" secondAttribute="centerX"/>
                             <constraint id="474" firstItem="471" firstAttribute="centerX" secondItem="437" secondAttribute="centerX"/>
                             <constraint id="536" firstItem="530" firstAttribute="centerX" secondItem="437" secondAttribute="centerX"/>
                             <constraint id="537" firstItem="530" firstAttribute="width" secondItem="437" secondAttribute="width"/>
                             <constraint id="539" firstItem="530" firstAttribute="top" secondItem="471" secondAttribute="bottom" constant="26"/>
-                            <constraint id="540" firstItem="447" firstAttribute="top" secondItem="530" secondAttribute="bottom" constant="89" relation="lessThanOrEqual"/>
                             <constraint id="556" firstItem="471" firstAttribute="top" secondItem="438" secondAttribute="bottom" constant="18"/>
+                            <constraint id="589" firstItem="437" firstAttribute="bottom" secondItem="530" secondAttribute="bottom" constant="181" relation="lessThanOrEqual"/>
+                            <constraint id="592" firstItem="447" firstAttribute="top" secondItem="530" secondAttribute="bottom" constant="20" relation="greaterThanOrEqual"/>
+                            <constraint id="597" firstItem="471" firstAttribute="top" secondItem="438" secondAttribute="top" constant="62"/>
+                            <constraint id="651" firstItem="447" firstAttribute="width" secondItem="437" secondAttribute="width" multiplier="0.6"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -506,6 +518,9 @@
         <image name="like-pic" width="49.6666679" height="33"/>
         <image name="star-pic" width="35.6666679" height="32.6666679"/>
         <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>

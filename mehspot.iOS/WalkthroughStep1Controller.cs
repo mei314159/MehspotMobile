@@ -43,6 +43,13 @@ namespace mehspot.iOS
 
 		}
 
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+			View.LayoutIfNeeded();
+			ProfilePicture.Layer.CornerRadius = ProfilePicture.Frame.Width / 2;
+		}
+
 		public override bool PrefersStatusBarHidden()
 		{
 			return true;
@@ -115,7 +122,7 @@ namespace mehspot.iOS
 					PictureButton.Layer.BorderColor = PictureButton.BackgroundColor.CGColor;
 					PictureButton.SetTitleColor(PictureButton.BackgroundColor, UIControlState.Normal);
 					PictureButton.BackgroundColor = UIColor.White;
-					PictureButtonBottomConstraint.Constant = PictureButtonBottomConstraint.Constant + 20;
+					//PictureButtonBottomConstraint.Constant = PictureButtonBottomConstraint.Constant + 20;
 					ContinueButton.Hidden = false;
 				}, () =>
 				{

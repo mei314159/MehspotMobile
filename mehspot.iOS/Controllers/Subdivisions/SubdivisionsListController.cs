@@ -39,7 +39,12 @@ namespace Mehspot.iOS.Controllers
 			marker = new Marker();
 			marker.Map = mapView;
 			MapWrapperView.AddSubview(mapView);
-
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Trailing, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Trailing, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Top, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Bottom, 1, 0));
+			mapView.AutoresizingMask = UIViewAutoresizing.All;
+			MapWrapperView.AutoresizingMask = UIViewAutoresizing.All;
 			model = new SubdivisionsListModel(this);
 			model.Initialize();
 			if (Subdivisions?.Count > 0)
@@ -53,6 +58,7 @@ namespace Mehspot.iOS.Controllers
 				avAlert.Show();
 			}
 		}
+
 		public void InitializeList(List<SubdivisionDTO> subdivisions, SubdivisionDTO selectedSubdivision)
 		{
 			var pickerModel = new CustomPickerModel(subdivisions.Select(a => a.DisplayName).ToList());
@@ -109,6 +115,7 @@ namespace Mehspot.iOS.Controllers
 
 		public void SetMapLocation(double latitude, double longitude)
 		{
+			View.LayoutSubviews();
 			var camera = CameraPosition.FromCamera(latitude, longitude, 15);
 			mapView.Camera = camera;
 			marker.Position = camera.Target;
