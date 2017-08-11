@@ -104,7 +104,8 @@ namespace Mehspot.Core
             {
                 var error = result.ModelState?.ModelState?.Select(a => a.Value?.FirstOrDefault())?.FirstOrDefault();
                 message = error != null ? error : result.ErrorMessage;
-                controller.ViewHelper.ShowAlert(result.ErrorMessage, message);
+                var title = error != null ? MehspotResources.ValidationError : result.ErrorMessage;
+                controller.ViewHelper.ShowAlert(title, message);
             }
 
             controller.SaveButtonEnabled = true;

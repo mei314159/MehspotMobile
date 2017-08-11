@@ -2074,5 +2074,11 @@ namespace Mehspot.Core {
                 return ResourceManager.GetString("ReferencesCount", resourceCulture);
             }
         }
+        
+        public static string ValidationError {
+            get {
+                return ResourceManager.GetString("ValidationError", resourceCulture);
+            }
+        }
     }
 }
