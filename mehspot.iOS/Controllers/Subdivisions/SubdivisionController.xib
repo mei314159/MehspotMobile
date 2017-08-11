@@ -51,9 +51,10 @@
                         <constraint id="58" firstItem="54" firstAttribute="height" constant="20"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" id="63" translatesAutoresizingMaskIntoConstraints="NO">
+                <view contentMode="scaleToFill" id="63" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                     <rect key="frame" x="0.0" y="210" width="375" height="457"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1"/>
+                    <subviews/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="64" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="20" y="86" width="43" height="18"/>
@@ -143,13 +144,13 @@
                 <constraint id="108" firstItem="94" firstAttribute="leading" secondItem="85" secondAttribute="trailing" constant="24">
                     <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                 </constraint>
-                <constraint id="109" firstItem="63" firstAttribute="top" secondItem="85" secondAttribute="bottom" constant="20"/>
                 <constraint id="110" firstItem="63" firstAttribute="leading" secondItem="2" secondAttribute="leading"/>
                 <constraint id="111" firstItem="63" firstAttribute="trailing" secondItem="2" secondAttribute="trailing"/>
                 <constraint id="112" firstItem="63" firstAttribute="bottom" secondItem="2" secondAttribute="bottom"/>
                 <constraint id="126" firstItem="84" firstAttribute="trailing" secondItem="73" secondAttribute="trailing"/>
                 <constraint id="128" firstItem="94" firstAttribute="centerY" secondItem="90" secondAttribute="centerY"/>
                 <constraint id="129" firstItem="85" firstAttribute="leading" secondItem="73" secondAttribute="leading"/>
+                <constraint id="151" firstItem="63" firstAttribute="top" secondItem="54" secondAttribute="top" constant="210"/>
             </constraints>
             <point key="canvasLocation" x="2" y="1"/>
             <variation key="default">
@@ -159,7 +160,6 @@
                     <exclude reference="104"/>
                     <exclude reference="107"/>
                     <exclude reference="108"/>
-                    <exclude reference="109"/>
                     <exclude reference="110"/>
                     <exclude reference="111"/>
                     <exclude reference="112"/>
@@ -172,7 +172,6 @@
                     <include reference="104"/>
                     <include reference="107"/>
                     <include reference="108"/>
-                    <include reference="109"/>
                     <include reference="110"/>
                     <include reference="111"/>
                     <include reference="112"/>
@@ -221,6 +220,26 @@
         <image name="review-icon" width="25" height="25"/>
         <image name="signin-fb.png" width="220" height="40"/>
         <image name="logo-small.jpg" width="300" height="192"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="slider-default_trackBackground.png" width="11" height="9"/>
+        <image name="slider-default7-trackCrossedOver.png" width="6" height="4"/>
+        <image name="slider-default7-trackBackground.png" width="6" height="4"/>
+        <image name="slider-default7-track.png" width="6" height="4"/>
+        <image name="slider-default7-handle.png" width="43" height="43"/>
+        <image name="slider-default7-handle-disabled.png" width="43" height="43"/>
+        <image name="slider-default-trackCrossedOver.png" width="11" height="9"/>
+        <image name="slider-default-trackBackground.png" width="11" height="9"/>
+        <image name="slider-default-track.png" width="11" height="9"/>
+        <image name="slider-default-handle.png" width="23" height="23"/>
+        <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
+        <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>
