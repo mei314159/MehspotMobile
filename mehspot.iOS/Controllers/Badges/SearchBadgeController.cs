@@ -15,6 +15,7 @@ namespace Mehspot.iOS
 	{
 		private SearchBadgeModel<UITableViewCell> model;
 		public BadgeSummaryDTO BadgeSummary { get; set; }
+		public string CustomKey { get; set; }
 
 		public IViewHelper ViewHelper { get; private set; }
 
