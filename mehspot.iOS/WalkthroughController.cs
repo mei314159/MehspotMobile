@@ -106,6 +106,15 @@ namespace mehspot.iOS
 				return;
 			}
 
+			if (profile.Zip == null)
+			{ 
+				viewHelper.ShowPrompt("Error", "Please, set Zip code and Subdivision", "OK", () =>
+				{
+					this.SetViewControllers(new[] { step2 }, UIPageViewControllerNavigationDirection.Reverse, true, null);
+				});
+				return;
+			}
+
 			viewHelper.ShowOverlay("Saving profile");
 			if (profileImageStream != null)
 			{
