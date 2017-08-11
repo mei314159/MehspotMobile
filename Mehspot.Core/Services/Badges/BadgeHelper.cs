@@ -65,7 +65,7 @@ namespace Mehspot.Core.Services.Badges
                 {
                     BadgeName = Constants.BadgeNames.OtherJobs,
                     SearchBadge = Constants.BadgeNames.OtherJobs,
-                    CustomLabel = MehspotResources.OtherHelpers,
+                    CustomKey = "Helpers",
                     CustomDescription = MehspotResources.OtherHelpersDescription
                 }
             });
@@ -110,7 +110,7 @@ namespace Mehspot.Core.Services.Badges
     {
         public string BadgeName { get; set; }
         public string SearchBadge { get; set; }
-        public string CustomLabel { get; set; }
+        public string CustomKey { get; set; }
         public string CustomDescription { get; set; }
         public BadgeSummaryDTO Badge { get; set; }
     }

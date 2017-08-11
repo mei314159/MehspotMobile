@@ -87,6 +87,9 @@
 	<data name="Find_TutorEmployer" xml:space="preserve">
         <value>Find Tutor Jobs</value>
     </data>
+	<data name="Find_Helpers" xml:space="preserve">
+        <value>Find Helpers</value>
+    </data>
 	<data name="Babysitter_Description" xml:space="preserve">
 	    <value>Search for babysitters</value>
 	</data>

@@ -79,7 +79,7 @@ namespace Mehspot.iOS.Views
 		{
 			var cell = this;
 			cell.BadgePicture.Image = UIImage.FromFile("badges/" + badge.BadgeName.ToLower() + (badge.Badge.IsRegistered ? string.Empty : "b"));
-			cell.BadgeName.Text = badge.CustomLabel ?? MehspotResources.ResourceManager.GetString("Find_" + badge.SearchBadge);
+			cell.BadgeName.Text = MehspotResources.ResourceManager.GetString(badge.CustomKey != null ? "Find_" + badge.CustomKey : "Find_" + badge.SearchBadge);
 			cell.BadgeInfo = badge;
 			cell.SearchButton.Layer.BorderWidth = cell.BadgeRegisterButton.Layer.BorderWidth = 1;
 			cell.SearchButton.Layer.BorderColor = cell.SearchButton.TitleColor(UIControlState.Normal).CGColor;
