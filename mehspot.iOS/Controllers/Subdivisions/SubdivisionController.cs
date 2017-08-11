@@ -194,7 +194,12 @@ namespace Mehspot.iOS.Controllers
 			marker.Map = mapView;
 			marker.Draggable = true;
 			MapWrapperView.AddSubview(mapView);
-
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Trailing, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Trailing, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Top, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Bottom, 1, 0));
+			mapView.AutoresizingMask = UIViewAutoresizing.All;
+			MapWrapperView.AutoresizingMask = UIViewAutoresizing.All;
 			this.NameField.UserInteractionEnabled = true;
 			this.NameField.AddGestureRecognizer(new UITapGestureRecognizer(this.HideAutocompleteResults));
 

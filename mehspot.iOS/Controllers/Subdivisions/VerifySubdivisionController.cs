@@ -80,7 +80,12 @@ namespace Mehspot.iOS.Controllers
 			marker.Map = mapView;
 			marker.Draggable = true;
 			MapWrapperView.AddSubview(mapView);
-
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Trailing, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Trailing, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Top, 1, 0));
+			MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Bottom, 1, 0));
+			mapView.AutoresizingMask = UIViewAutoresizing.All;
+			MapWrapperView.AutoresizingMask = UIViewAutoresizing.All;
 			model = new VerifySubdivisionModel<UITableViewCell>(this, new SubdivisionService(MehspotAppContext.Instance.DataStorage), new IosCellBuilder());
 		}
 
@@ -152,6 +157,7 @@ namespace Mehspot.iOS.Controllers
 
 		public void ShowLocation(double latitude, double longitude)
 		{
+			View.LayoutSubviews();
 			var camera = CameraPosition.FromCamera(latitude, longitude, 15);
 			mapView.Camera = camera;
 			marker.Position = camera.Target;
