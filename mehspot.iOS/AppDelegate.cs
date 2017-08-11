@@ -266,7 +266,7 @@ namespace Mehspot.iOS
 
 		private UIViewController GetInitialViewController(NSDictionary launchOptions)
 		{
-			//return UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
+			return UIStoryboard.FromName("Walkthrough", null).InstantiateInitialViewController();
 			if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated())
 			{
 				if (launchOptions != null)

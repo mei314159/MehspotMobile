@@ -24,11 +24,15 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIScrollView ScrollView { get; set; }
+        UIKit.UIButton SubdivisionField { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton SubdivisionField { get; set; }
+        UIKit.NSLayoutConstraint Top { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView Wrapper { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -54,14 +58,19 @@ namespace mehspot.iOS
                 ProfilePicture = null;
             }
 
-            if (ScrollView != null) {
-                ScrollView.Dispose ();
-                ScrollView = null;
-            }
-
             if (SubdivisionField != null) {
                 SubdivisionField.Dispose ();
                 SubdivisionField = null;
+            }
+
+            if (Top != null) {
+                Top.Dispose ();
+                Top = null;
+            }
+
+            if (Wrapper != null) {
+                Wrapper.Dispose ();
+                Wrapper = null;
             }
 
             if (ZipField != null) {

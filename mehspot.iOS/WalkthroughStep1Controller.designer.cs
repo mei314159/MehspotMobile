@@ -24,10 +24,6 @@ namespace mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.NSLayoutConstraint PictureButtonBottomConstraint { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView ProfilePicture { get; set; }
 
         [Action ("ContinueButtonTouched:")]
@@ -48,11 +44,6 @@ namespace mehspot.iOS
             if (PictureButton != null) {
                 PictureButton.Dispose ();
                 PictureButton = null;
-            }
-
-            if (PictureButtonBottomConstraint != null) {
-                PictureButtonBottomConstraint.Dispose ();
-                PictureButtonBottomConstraint = null;
             }
 
             if (ProfilePicture != null) {

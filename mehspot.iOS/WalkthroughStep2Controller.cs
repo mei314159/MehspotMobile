@@ -49,10 +49,12 @@ namespace mehspot.iOS
 			ZipField.Text = ZipCode;
 			ZipField.EditingChanged += ZipField_ValueChanged;
 			subdivisionSelectorEnabled = ZipField.IsValid;
+			View.LayoutIfNeeded();
+			ProfilePicture.Layer.CornerRadius = ProfilePicture.Frame.Width / 2;
 		}
+
 		public override void ViewWillAppear(bool animated)
 		{
-			this.ScrollView.ContentSize = new CGSize(ScrollView.ContentSize.Width, ScrollView.ContentSize.Height + 130);
 			RegisterForKeyboardNotifications();
 		}
 
@@ -184,16 +186,16 @@ namespace mehspot.iOS
 			{
 				return;
 			}
-
 			if (visible)
 			{
-				this.ScrollView.ContentOffset = new CGPoint(0, 130);
+				this.Top.Constant = -130;
 			}
 			else
 			{
-				this.ScrollView.ContentOffset = new CGPoint(0, 0);
-
+				this.Top.Constant = 0;
 			}
+
+			this.View.LayoutIfNeeded();
 		}
 	}
 }
