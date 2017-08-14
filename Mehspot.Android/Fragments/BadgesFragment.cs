@@ -102,6 +102,7 @@ namespace Mehspot.AndroidApp
 		{
 			var target = new Intent(this.Context, typeof(SearchBadgeActivity));
 			target.PutExtra("badgeSummary", dto);
+			target.PutExtra("titleKey", dto.BadgeName);
 			this.StartActivity(target);
 		}
 

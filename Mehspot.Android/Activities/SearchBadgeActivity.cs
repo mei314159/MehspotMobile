@@ -19,7 +19,7 @@ namespace Mehspot.AndroidApp
 	{
 		private SearchBadgeModel<View> model;
 		public BadgeSummaryDTO BadgeSummary => Intent.GetExtra<BadgeSummaryDTO>("badgeSummary");
-		public string TitleKey { get; set; }
+		public string TitleKey => Intent.GetStringExtra("titleKey");
 
 		public IViewHelper ViewHelper { get; private set; }
 
@@ -58,6 +58,7 @@ namespace Mehspot.AndroidApp
 			var target = new Intent(this, typeof(SearchResultsActivity));
 			target.PutExtra("badgeSummary", this.BadgeSummary);
 			target.PutExtra("searchQuery", this.model.SearchQuery);
+			target.PutExtra("titleKey", this.TitleKey);
 			this.StartActivity(target);
 		}
 	}

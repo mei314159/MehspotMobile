@@ -31,6 +31,8 @@ namespace Mehspot.AndroidApp
 		public ISearchQueryDTO SearchQuery => Intent.GetExtra<ISearchQueryDTO>("searchQuery");
 		public IViewHelper ViewHelper { get; private set; }
 
+		public string TitleKey => Intent.GetStringExtra("titleKey");
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -111,7 +113,7 @@ namespace Mehspot.AndroidApp
 
 		void ViewTreeObserver.IOnScrollChangedListener.OnScrollChanged()
 		{
-			var scrollView = ListView; 
+			var scrollView = ListView;
 			var currentOffset = ListView.ScrollY;
 			var maximumOffset = (scrollView.GetChildAt(0)?.Height ?? 0) - scrollView.Height;
 			var deltaOffset = maximumOffset - currentOffset;
