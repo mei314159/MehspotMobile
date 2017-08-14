@@ -15,7 +15,7 @@ namespace Mehspot.iOS.Views
 	{
 		private string placeholder;
 
-		private Action<SubdivisionDTO> SetProperty;
+		public Action<SubdivisionDTO> SetProperty { get; private set; }
 
 		public static readonly NSString Key = new NSString("SubdivisionPickerCell");
 		public static readonly UINib Nib;

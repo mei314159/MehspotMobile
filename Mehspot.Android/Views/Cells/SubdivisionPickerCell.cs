@@ -14,7 +14,7 @@ namespace Mehspot.AndroidApp
 	{
 		private string placeholder;
 
-		private Action<SubdivisionDTO> SetProperty;
+		public Action<SubdivisionDTO> SetProperty { get; private set; }
 
 		public SubdivisionPickerCell(Context context, int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false) :
 											base(context)
