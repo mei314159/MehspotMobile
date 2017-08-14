@@ -230,8 +230,11 @@ namespace Mehspot.iOS.Controllers
 
 		public void DismissViewController(EditSubdivisionDTO dto)
 		{
-			DismissViewController(true, null);
-			this.OnDismissed?.Invoke(dto);
+			InvokeOnMainThread(() =>
+			{
+				DismissViewController(true, null);
+				this.OnDismissed?.Invoke(dto);
+			});
 		}
 
 		public void LoadPlaceByCoordinates(double latitude, double longitude)
@@ -241,15 +244,24 @@ namespace Mehspot.iOS.Controllers
 
 		private void HandleReverseGeocodeCallback(ReverseGeocodeResponse response, NSError error)
 		{
-			if (error != null || response.FirstResult == null)
-				return;
+			try
+			{
 
-			var address = response.FirstResult;
-			model.ReverseGeocodeCallback(address.Coordinate.Latitude,
-										address.Coordinate.Longitude,
-										address.Country,
-										address.SubLocality,
-										address.Lines);
+
+				if (error != null || response.FirstResult == null)
+					return;
+
+				var address = response.FirstResult;
+				model.ReverseGeocodeCallback(address.Coordinate.Latitude,
+											address.Coordinate.Longitude,
+											address.Country,
+											address.SubLocality,
+											address.Lines);
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex);
+			}
 		}
 
 		private void AddressField_EditingChanged(object sender, EventArgs e)
