@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.DTO;
@@ -129,16 +130,23 @@ namespace Mehspot.Core.Models.Subdivisions
                 Result result;
                 if (controller.Subdivision != null)
                 {
-                    var overrideResult = await this.subdivisionService.OverrideAsync(DTO);
-                    DTO.Id = overrideResult.Data.Id;
+                    var overrideResult = await this.subdivisionService.OverrideAsync(DTO).ConfigureAwait(false);
                     result = overrideResult;
+                    if (overrideResult.IsSuccess)
+                    {
+                        DTO.Id = overrideResult.Data.Id;
+                    }
                 }
                 else
                 {
-                    var createResult = await this.subdivisionService.CreateAsync(DTO);
-                    DTO.Id = createResult.Data.SubdivisionId;
-                    DTO.OptionId = createResult.Data.OptionId;
+                    var createResult = await this.subdivisionService.CreateAsync(DTO).ConfigureAwait(false);
                     result = createResult;
+                    if (createResult.IsSuccess)
+                    {
+                        DTO.Id = createResult.Data.SubdivisionId;
+                        DTO.OptionId = createResult.Data.OptionId;
+                    }
+
                 }
 
                 controller.ViewHelper.HideOverlay();
@@ -148,7 +156,10 @@ namespace Mehspot.Core.Models.Subdivisions
                 }
                 else
                 {
-                    controller.ViewHelper.ShowAlert("Error", result.ErrorMessage);
+                    var error = result.ModelState?.ModelState?.Select(a => a.Value?.FirstOrDefault())?.FirstOrDefault();
+                    var message = error != null ? error : result.ErrorMessage;
+                    var title = error != null ? MehspotResources.ValidationError : result.ErrorMessage;
+                    controller.ViewHelper.ShowAlert(title, message);
                 }
             }
         }
