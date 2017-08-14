@@ -25,8 +25,6 @@ namespace Mehspot.AndroidApp
 
 		public Button SearchButton => this.FindViewById<Button>(Resource.SearchFilter.SearchButton);
 
-		public string CustomKey { get; }
-
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
