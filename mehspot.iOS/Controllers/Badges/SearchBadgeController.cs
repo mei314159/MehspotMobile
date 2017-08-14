@@ -15,7 +15,7 @@ namespace Mehspot.iOS
 	{
 		private SearchBadgeModel<UITableViewCell> model;
 		public BadgeSummaryDTO BadgeSummary { get; set; }
-		public string CustomKey { get; set; }
+		public string TitleKey { get; set; }
 
 		public IViewHelper ViewHelper { get; private set; }
 
@@ -54,6 +54,7 @@ namespace Mehspot.iOS
 				var destinationViewController = ((SearchResultsViewController)segue.DestinationViewController);
 				destinationViewController.SearchQuery = this.model.SearchQuery;
 				destinationViewController.BadgeSummary = this.BadgeSummary;
+				destinationViewController.TitleKey = this.TitleKey;
 				this.NavBar.Title = "Filter";
 			}
 

@@ -13,6 +13,8 @@ namespace Mehspot.Core
 
         ISearchQueryDTO SearchQuery { get; }
 
+        string TitleKey { get; }
+
         void ReloadData();
     }
 }
