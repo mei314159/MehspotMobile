@@ -1032,4 +1032,7 @@
 	<data name="ValidationError" xml:space="preserve">
     <value>Validation Error</value>
   </data>
+	<data name="Helpers_SearchResultsTitle" xml:space="preserve">
+        <value>Helpers</value>
+  </data>
 </root>

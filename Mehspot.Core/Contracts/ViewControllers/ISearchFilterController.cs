@@ -10,7 +10,7 @@ namespace Mehspot.Core
         IViewHelper ViewHelper { get; }
 
         BadgeSummaryDTO BadgeSummary { get; }
-        string CustomKey { get; }
+        string TitleKey { get; }
 
         void ReloadData();
     }

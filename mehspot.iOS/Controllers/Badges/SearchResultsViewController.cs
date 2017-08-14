@@ -28,6 +28,7 @@ namespace Mehspot.iOS
 		public IViewHelper ViewHelper { get; set; }
 		public BadgeSummaryDTO BadgeSummary { get; set; }
 		public ISearchQueryDTO SearchQuery { get; set; }
+		public string TitleKey { get; set; }
 
 		public SearchResultsViewController(IntPtr handle) : base(handle)
 		{
