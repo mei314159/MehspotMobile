@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Mehspot.Core.DTO.Subdivision;
 
@@ -13,5 +14,7 @@ namespace Mehspot.Core.Builders
         string ZipCode { get; set; }
 
         List<SubdivisionDTO> Subdivisions { get; set; }
+
+        Action<SubdivisionDTO> SetProperty { get; }
     }
 }

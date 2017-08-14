@@ -138,6 +138,8 @@ namespace Mehspot.Core.Models
         private async void ZipCell_ValueChanged(ITextEditCell sender, string value, ISubdivisionPickerCell subdivisionCell)
         {
             subdivisionCell.IsReadOnly = true;
+
+            subdivisionCell.SetProperty(null);
             if (sender.IsValid)
             {
                 subdivisionCell.Subdivisions = await GetSubdivisions(value);

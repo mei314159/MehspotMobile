@@ -157,7 +157,6 @@ namespace Mehspot.Core
 
         private async Task LoadCellsAsync()
         {
-            var subdivisionCellKey = Guid.NewGuid().ToString();
             Cells.Clear();
 
             foreach (var badgeValue in profile.BadgeValues)
@@ -181,7 +180,7 @@ namespace Mehspot.Core
                     var zipCode = profile.BadgeValues.FirstOrDefault(a => a.Value.BadgeBadgeItem.BadgeItem.Name == zipFieldName).Value?.Value;
                     var subdivisions = await GetSubdivisions(zipCode);
                     int value;
-                    var cell = cellBuilder.GetSubdivisionPickerCell(int.TryParse(badgeValue.Value.Value, out value) ? value : (int?)null, property => badgeValue.Value.Value = property.Id.ToString(), label, subdivisions, zipCode);
+                    var cell = cellBuilder.GetSubdivisionPickerCell(int.TryParse(badgeValue.Value.Value, out value) ? value : (int?)null, property => badgeValue.Value.Value = property?.Id.ToString(), label, subdivisions, zipCode);
                     cell.FieldName = itemName;
                     Cells.Add((TCell)cell);
                 }
@@ -250,6 +249,7 @@ namespace Mehspot.Core
             if (subdivisionCell == null)
                 return;
 
+            subdivisionCell.SetProperty(null);
             subdivisionCell.IsReadOnly = true;
             if (sender.IsValid)
             {
