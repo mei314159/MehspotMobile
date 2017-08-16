@@ -50,8 +50,8 @@ namespace Mehspot.Core.Models.Subdivisions
 
                 controller.NameFieldText = DTO.Name;
                 controller.AddressFieldText = DTO.Address.FormattedAddress;
-                controller.LatitudeFieldText = DTO.Address.Latitude.ToString();
-                controller.LongitudeFieldText = DTO.Address.Longitude.ToString();
+                controller.LatitudeFieldText = DTO.Address.Latitude.ToString()?.Replace(',', '.');
+                controller.LongitudeFieldText = DTO.Address.Longitude.ToString()?.Replace(',', '.');
                 controller.SetMapLocation(DTO.Address.Latitude, DTO.Address.Longitude, true);
             }
 

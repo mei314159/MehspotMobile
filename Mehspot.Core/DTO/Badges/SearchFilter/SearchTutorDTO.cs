@@ -12,6 +12,6 @@ namespace Mehspot.Core.DTO.Search
         public string[] Subjects { get; set; }
 
         [Cell(Label = "Can Travel", CellType = CellType.Boolean, Order = 2)]
-        public int? CanTravel { get; set; }
+        public bool? CanTravel { get; set; }
     }
 }
