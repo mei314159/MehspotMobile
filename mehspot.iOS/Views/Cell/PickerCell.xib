@@ -24,31 +24,30 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21">
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="44" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0">
                         <rect key="frame" x="165" y="0.0" width="155" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <state key="normal" title="Date">
-                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="SelectValueButton_TouchUpInside:" destination="cxk-wN-pdQ" id="36" eventType="touchUpInside"/>
-                        </connections>
-                    </button>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <constraints>
+                            <constraint id="48" firstItem="44" firstAttribute="height" constant="44"/>
+                        </constraints>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15" id="3"/>
-                    <constraint firstItem="21" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="22"/>
-                    <constraint firstItem="21" firstAttribute="trailing" secondItem="YTl-1W-gDM" secondAttribute="trailing" id="23"/>
-                    <constraint firstItem="21" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height" id="25"/>
-                    <constraint firstItem="21" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="5" id="33"/>
                     <constraint id="39" firstItem="2" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
                     <constraint id="40" firstItem="2" firstAttribute="bottom" secondItem="YTl-1W-gDM" secondAttribute="bottom" constant="1"/>
+                    <constraint id="45" firstItem="44" firstAttribute="leading" secondItem="2" secondAttribute="trailing" constant="5"/>
+                    <constraint id="46" firstItem="44" firstAttribute="trailing" secondItem="YTl-1W-gDM" secondAttribute="trailing"/>
+                    <constraint id="47" firstItem="44" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top"/>
+                    <constraint id="65" firstItem="44" firstAttribute="bottom" secondItem="YTl-1W-gDM" secondAttribute="bottom" constant="1"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="FieldLabel" destination="2" id="name-outlet-2"/>
-                <outlet property="SelectValueButton" destination="21" id="name-outlet-21"/>
+                <outlet property="CellHeight" destination="48" id="name-outlet-48"/>
+                <outlet property="SelectValueLabel" destination="44" id="name-outlet-44"/>
             </connections>
         </tableViewCell>
     </objects>
