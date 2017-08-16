@@ -15,14 +15,19 @@ namespace Mehspot.iOS.Views
     {
         void ReleaseDesignerOutlets ()
         {
+            if (CellHeight != null) {
+                CellHeight.Dispose ();
+                CellHeight = null;
+            }
+
             if (FieldLabel != null) {
                 FieldLabel.Dispose ();
                 FieldLabel = null;
             }
 
-            if (SelectValueButton != null) {
-                SelectValueButton.Dispose ();
-                SelectValueButton = null;
+            if (SelectValueLabel != null) {
+                SelectValueLabel.Dispose ();
+                SelectValueLabel = null;
             }
         }
     }

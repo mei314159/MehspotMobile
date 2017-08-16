@@ -38,7 +38,10 @@ namespace Mehspot.iOS.Views
 		}
 
 		[Outlet]
-		UIButton SelectValueButton { get; set; }
+		UILabel SelectValueLabel { get; set; }
+
+		[Outlet]
+		NSLayoutConstraint CellHeight { get; set; }
 
 		[Outlet]
 		UILabel FieldLabel { get; set; }
@@ -52,11 +55,11 @@ namespace Mehspot.iOS.Views
 		{
 			get
 			{
-				return this.SelectValueButton.Enabled;
+				return this.SelectValueLabel.Enabled;
 			}
 			set
 			{
-				this.SelectValueButton.Enabled = !value;
+				this.SelectValueLabel.Enabled = !value;
 			}
 		}
 
@@ -70,6 +73,7 @@ namespace Mehspot.iOS.Views
 			cell.FieldLabel.Text = label;
 			cell.Value = initialValue;
 			cell.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+			cell.SelectValueLabel.AddGestureRecognizer(new UITapGestureRecognizer(cell.SelectValueLabel_TouchUpInside));
 			return cell;
 		}
 
@@ -155,10 +159,9 @@ namespace Mehspot.iOS.Views
 			return cell;
 		}
 
-		[Action("SelectValueButton_TouchUpInside:")]
-		async void SelectValueButton_TouchUpInside(UIButton sender)
+		async void SelectValueLabel_TouchUpInside()
 		{
-			var cell = (PickerCell)(sender).Superview.Superview;
+			var cell = this;
 			var controller = cell.GetViewController();
 
 			var modalPicker = new ModalPickerViewController(ModalPickerType.Date, cell.placeholder, controller)
@@ -261,22 +264,27 @@ namespace Mehspot.iOS.Views
 				}
 			}
 
-			SelectValueButton.SetTitle(title ?? this.placeholder, UIControlState.Normal);
-			SelectValueButton.TitleLabel.Lines = 0;
-			var textSize = SelectValueButton.TitleLabel.SizeThatFits(new CGSize(SelectValueButton.TitleLabel.Frame.Width, nfloat.MaxValue));
-			var height = textSize.Height > SelectValueButton.TitleLabel.Frame.Height ? textSize.Height : SelectValueButton.TitleLabel.Frame.Height;
-			SelectValueButton.Frame = new CGRect(SelectValueButton.TitleLabel.Frame.Location, new CGSize(textSize.Width, height > 44 ? height : 44));
-			SelectValueButton.LayoutIfNeeded();
-			this.Frame = new CGRect(this.Frame.Location, new CGSize(this.Frame.Width, this.SelectValueButton.Frame.Height));
+			SelectValueLabel.Text = title ?? this.placeholder;
+			var textSize = SelectValueLabel.SizeThatFits(new CGSize(SelectValueLabel.Frame.Width, nfloat.MaxValue));
+			var height = textSize.Height > SelectValueLabel.Frame.Height ? textSize.Height : SelectValueLabel.Frame.Height;
+			CellHeight.Constant = height > 44 ? height : 44;
+			this.LayoutIfNeeded();
+			this.Superview?.LayoutIfNeeded();
 			(this.FindSuperviewOfType(null, typeof(UITableView)) as UITableView)?.ReloadData();
 		}
 
 		void ReleaseDesignerOutlets()
 		{
-			if (SelectValueButton != null)
+			if (SelectValueLabel != null)
 			{
-				SelectValueButton.Dispose();
-				SelectValueButton = null;
+				SelectValueLabel.Dispose();
+				SelectValueLabel = null;
+			}
+
+			if (CellHeight != null)
+			{
+				CellHeight.Dispose();
+				CellHeight = null;
 			}
 
 			if (FieldLabel != null)
