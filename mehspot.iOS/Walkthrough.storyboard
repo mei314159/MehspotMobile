@@ -444,7 +444,6 @@
                             <constraint id="539" firstItem="530" firstAttribute="top" secondItem="471" secondAttribute="bottom" constant="26"/>
                             <constraint id="556" firstItem="471" firstAttribute="top" secondItem="438" secondAttribute="bottom" constant="18"/>
                             <constraint id="589" firstItem="437" firstAttribute="bottom" secondItem="530" secondAttribute="bottom" constant="181" relation="lessThanOrEqual"/>
-                            <constraint id="592" firstItem="447" firstAttribute="top" secondItem="530" secondAttribute="bottom" constant="20" relation="greaterThanOrEqual"/>
                             <constraint id="597" firstItem="471" firstAttribute="top" secondItem="438" secondAttribute="top" constant="62"/>
                             <constraint id="651" firstItem="447" firstAttribute="width" secondItem="437" secondAttribute="width" multiplier="0.6"/>
                         </constraints>
