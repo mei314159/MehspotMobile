@@ -297,7 +297,7 @@
                                 <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                                 <color key="barTintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="401" translatesAutoresizingMaskIntoConstraints="NO" image="w3_background_t">
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="401" translatesAutoresizingMaskIntoConstraints="NO" image="w3_background_t" clipsSubviews="YES">
                                 <rect key="frame" x="0.0" y="44" width="375" height="268"/>
                                 <constraints>
                                     <constraint id="402" firstAttribute="width" secondItem="401" secondAttribute="height" multiplier="375:268"/>
