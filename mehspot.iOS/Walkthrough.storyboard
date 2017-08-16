@@ -446,6 +446,7 @@
                             <constraint id="589" firstItem="437" firstAttribute="bottom" secondItem="530" secondAttribute="bottom" constant="181" relation="lessThanOrEqual"/>
                             <constraint id="597" firstItem="471" firstAttribute="top" secondItem="438" secondAttribute="top" constant="62"/>
                             <constraint id="651" firstItem="447" firstAttribute="width" secondItem="437" secondAttribute="width" multiplier="0.6"/>
+                            <constraint id="740" firstItem="447" firstAttribute="top" secondItem="530" secondAttribute="bottom" constant="20" relation="greaterThanOrEqual"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
