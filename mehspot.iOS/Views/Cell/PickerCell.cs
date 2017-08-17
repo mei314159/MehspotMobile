@@ -119,7 +119,7 @@ namespace Mehspot.iOS.Views
 					var values = ((IEnumerable)value).Cast<TProperty>();
 					if (values != null)
 					{
-						var valuesStrings = cell.RowValues.Join(values, a => a.Key, a => a, (a, b) => a.Value).ToArray();
+						var valuesStrings = cell.RowValues?.Join(values, a => a.Key, a => a, (a, b) => a.Value).ToArray();
 						if (valuesStrings != null)
 						{
 							return string.Join(Environment.NewLine, valuesStrings);
@@ -162,6 +162,11 @@ namespace Mehspot.iOS.Views
 		async void SelectValueLabel_TouchUpInside()
 		{
 			var cell = this;
+			if (cell.RowValues == null)
+			{
+				return;
+			}
+
 			var controller = cell.GetViewController();
 
 			var modalPicker = new ModalPickerViewController(ModalPickerType.Date, cell.placeholder, controller)
@@ -196,24 +201,23 @@ namespace Mehspot.iOS.Views
 
 				modalPicker.PickerType = ModalPickerType.Custom;
 				nint selectedRow = 0;
-				if (cell.RowValues != null)
+
+				for (int i = 0; i < cell.RowValues.Length; i++)
 				{
-					for (int i = 0; i < cell.RowValues.Length; i++)
+					var item = cell.RowValues[i];
+					if (item.Key == cell.Value)
 					{
-						var item = cell.RowValues[i];
-						if (item.Key == cell.Value)
-						{
-							selectedRow = i;
-							break;
-						}
+						selectedRow = i;
+						break;
 					}
-					modalPicker.PickerView.Model = new CustomPickerModel(cell.RowValues.Select(a => a.Value).ToList());
-					modalPicker.PickerView.Select(selectedRow, 0, false);
 				}
+				modalPicker.PickerView.Model = new CustomPickerModel(cell.RowValues.Select(a => a.Value).ToList());
+				modalPicker.PickerView.Select(selectedRow, 0, false);
+
 				modalPicker.OnModalPickerDismissed += (s, ea) =>
 				{
 					var index = modalPicker.PickerView.SelectedRowInComponent(0);
-					var value = cell.RowValues?[(int)index].Key;
+					var value = cell.RowValues[(int)index].Key;
 					cell.SetProperty(value);
 				};
 
