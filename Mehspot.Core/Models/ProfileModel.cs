@@ -59,28 +59,31 @@ namespace Mehspot.Core.Models
         public async Task InitializeTableAsync(ProfileDto profile)
         {
             this.profile = profile;
-            var subdivisions = await GetSubdivisions(profile.Zip);
-            viewController.UserName = profile.UserName;
-            viewController.FullName = $"{profile.FirstName} {profile.LastName}".Trim(' ');
-            viewController.ProfilePicturePath = profile.ProfilePicturePath;
+            var subdivisions = await GetSubdivisions(profile.Zip).ConfigureAwait(false);
+            viewController.InvokeOnMainThread(() =>
+            {
+                viewController.UserName = profile.UserName;
+                viewController.FullName = $"{profile.FirstName} {profile.LastName}".Trim(' ');
+                viewController.ProfilePicturePath = profile.ProfilePicturePath;
 
-            Cells.Clear();
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.UserName, (c, a) => profile.UserName = a, "User Name"));
-            Cells.Add((TView)cellBuilder.GetTextEditCell(profile.Email, (c, a) => profile.Email = a, "Email", KeyboardType.Email, null, true));
-            var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.SubdivisionId, (property) =>
-                        {
-                            profile.SubdivisionId = property?.Id;
-                            profile.SubdivisionOptionId = property?.OptionId;
-                        }, "Subdivision", subdivisions, profile.Zip);
-            var zipCell = cellBuilder.GetTextEditCell(profile.Zip, (c, a) =>
-                        {
-                            profile.Zip = a;
-                            ZipCell_ValueChanged(c, a, subdivisionCell);
-                        }, "Zip", KeyboardType.Numeric, mask: "#####");
-            subdivisionCell.IsReadOnly = string.IsNullOrWhiteSpace(profile.Zip) || !zipCell.IsValid;
-            Cells.Add((TView)zipCell);
-            Cells.Add((TView)subdivisionCell);
-            viewController.InvokeOnMainThread(viewController.ReloadData);
+                Cells.Clear();
+                Cells.Add((TView)cellBuilder.GetTextEditCell(profile.UserName, (c, a) => profile.UserName = a, "User Name"));
+                Cells.Add((TView)cellBuilder.GetTextEditCell(profile.Email, (c, a) => profile.Email = a, "Email", KeyboardType.Email, null, true));
+                var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.SubdivisionId, (property) =>
+                            {
+                                profile.SubdivisionId = property?.Id;
+                                profile.SubdivisionOptionId = property?.OptionId;
+                            }, "Subdivision", subdivisions, profile.Zip);
+                var zipCell = cellBuilder.GetTextEditCell(profile.Zip, (c, a) =>
+                            {
+                                profile.Zip = a;
+                                ZipCell_ValueChanged(c, a, subdivisionCell);
+                            }, "Zip", KeyboardType.Numeric, mask: "#####");
+                subdivisionCell.IsReadOnly = string.IsNullOrWhiteSpace(profile.Zip) || !zipCell.IsValid;
+                Cells.Add((TView)zipCell);
+                Cells.Add((TView)subdivisionCell);
+                viewController.ReloadData();
+            });
         }
 
         public void Signout()
