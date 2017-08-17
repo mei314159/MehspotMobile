@@ -54,14 +54,6 @@ namespace Mehspot.AndroidApp.Adapters
 				if (noResultsView == null)
 				{
 					this.noResultsView = new NoResultsView(this.context);
-					if (this.model.RegisterButtonVisible)
-					{
-						noResultsView.ShowRegisterButton(model.controller.BadgeSummary.RequiredBadgeName, model.controller.BadgeSummary.BadgeName);
-					}
-					else
-					{
-						noResultsView.HideRegisterButton();
-					}
 				}
 
 				this.noResultsView.LayoutParameters = new ViewGroup.LayoutParams(parent.Width, parent.Height);

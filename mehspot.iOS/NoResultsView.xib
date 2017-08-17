@@ -11,37 +11,6 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0" text="If you want to see more results please click Register button below to sign up as Babysitter Employer">
-                    <rect key="frame" x="38" y="553" width="299" height="54"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" colorSpace="calibratedRGB" red="0.9882352941176471" green="0.41568627450980394" blue="0.15686274509803921" alpha="1"/>
-                    <nil key="highlightedColor"/>
-                    <constraints>
-                        <constraint id="17" firstItem="4" firstAttribute="height" constant="54"/>
-                    </constraints>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="68" y="615" width="240" height="44"/>
-                    <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <state key="normal" title="Register">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleColor" colorSpace="calibratedRGB" red="0.30196078431372547" green="0.63529411764705879" blue="0.090196078431372548" alpha="1"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                            <real key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <constraints>
-                        <constraint id="10" firstItem="9" firstAttribute="width" constant="240"/>
-                        <constraint id="18" firstItem="9" firstAttribute="height" constant="44"/>
-                    </constraints>
-                    <connections>
-                        <action selector="RegisterButtonTouched:" destination="cxk-wN-pdQ" id="21" eventType="touchUpInside"/>
-                        <action selector="RegisterButtonTouched:" destination="1" id="38" eventType="touchUpInside"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No search result found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="32" translatesAutoresizingMaskIntoConstraints="NO" minimumScaleFactor="0.5">
                     <rect key="frame" x="20" y="318" width="335" height="32"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26" weight="light"/>
@@ -50,19 +19,11 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint id="26" firstItem="1" firstAttribute="bottom" secondItem="9" secondAttribute="bottom" constant="8"/>
-                <constraint id="27" firstItem="9" firstAttribute="centerX" secondItem="1" secondAttribute="centerX"/>
-                <constraint id="29" firstItem="9" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="8"/>
-                <constraint id="30" firstItem="1" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" constant="38"/>
-                <constraint id="31" firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="38"/>
                 <constraint id="34" firstItem="32" firstAttribute="centerY" secondItem="1" secondAttribute="centerY"/>
                 <constraint id="36" firstItem="32" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20"/>
                 <constraint id="37" firstItem="1" firstAttribute="trailing" secondItem="32" secondAttribute="trailing" constant="20"/>
             </constraints>
-            <connections>
-                <outlet property="RegisterButton" destination="9" id="name-outlet-9"/>
-                <outlet property="Message" destination="4" id="name-outlet-4"/>
-            </connections>
+            <connections/>
         </view>
     </objects>
     <resources>
@@ -125,6 +86,7 @@
         <image name="w3_background_t.png" width="375" height="267.5"/>
         <image name="badge_group_bg.png" width="375" height="219.5"/>
         <image name="subdivisionicon.png" width="232" height="231.5"/>
+        <image name="eye" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>

@@ -65,18 +65,9 @@ namespace Mehspot.iOS
 			{
 				if (noResultsView == null)
 				{
-					this.noResultsView = NoResultsView.Create(GetRegisterButtonDescription());
+					this.noResultsView = NoResultsView.Create();
 				}
 
-				if (this.model.RegisterButtonVisible)
-				{
-					noResultsView.ShowRegisterButton();
-					noResultsView.OnRegisterButtonTouched += OnRegisterButtonTouched;
-				}
-				else
-				{
-					noResultsView.HideRegisterButton();
-				}
 				this.noResultsView.Frame = TableView.Frame;
 				TableView.Superview.AddSubview(this.noResultsView);
 			}
