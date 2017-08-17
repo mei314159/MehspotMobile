@@ -31,7 +31,7 @@ namespace Mehspot.AndroidApp
 			this.FieldLabel.Text = label;
 			this.Value = initialValue;
 
-			this.RowValues = rowValues;
+			this.RowValues = rowValues ?? new KeyValuePair<T, string>[] { };
 			this.Dropdown.Adapter = new ArrayAdapter(context, Resource.Layout.TextViewItem, this.RowValues.Select(a => a.Value).ToArray());
 			this.Dropdown.ItemSelected += Dropdown_ItemSelected;
 			this.Dropdown.SetSelection(this.RowValues.Select((a, i) => new { a, i }).FirstOrDefault(a => Equals(a.a.Key, initialValue))?.i ?? 0);

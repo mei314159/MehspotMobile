@@ -11,7 +11,7 @@ using Mehspot.Core.DTO;
 namespace Mehspot.AndroidApp.Resources.layout
 {
 
-	public class MessageBoardItem : RelativeLayout
+    public class MessageBoardItem : RelativeLayout
 	{
 		readonly MessageBoardItemDto dto;
 
@@ -37,7 +37,16 @@ namespace Mehspot.AndroidApp.Resources.layout
 				if (!string.IsNullOrWhiteSpace(dto.WithUser.ProfilePicturePath))
 				{
 					var imageBitmap = activity.GetImageBitmapFromUrl(dto.WithUser.ProfilePicturePath);
-					activity.RunOnUiThread(() => ProfilePicture.SetImageBitmap(imageBitmap));
+                    activity.RunOnUiThread(() =>
+                    {
+                        try
+                        {
+							ProfilePicture?.SetImageBitmap(imageBitmap);
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    });
 				}
 			});
 
@@ -64,7 +73,7 @@ namespace Mehspot.AndroidApp.Resources.layout
 		{
 			get
 			{
-				return (ImageView)FindViewById(Resource.Id.profilePicture);
+				return FindViewById(Resource.Id.profilePicture) as ImageView;
 			}
 		}
 

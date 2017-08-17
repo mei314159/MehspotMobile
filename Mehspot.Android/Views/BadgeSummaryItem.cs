@@ -3,33 +3,33 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 using Mehspot.Core;
-using Mehspot.Core.DTO;
+using Mehspot.Core.Services.Badges;
 
 namespace Mehspot.AndroidApp.Resources.layout
 {
 
 	public class BadgeSummaryItem : RelativeLayout
 	{
-		readonly BadgeSummaryDTO dto;
+		readonly BadgeInfo dto;
 
-		public event Action<BadgeSummaryDTO, BadgeSummaryItem> Clicked;
-		public event Action<BadgeSummaryDTO> RegisterButtonClicked;
-		public event Action<BadgeSummaryDTO> SearchButtonClicked;
+		public event Action<BadgeInfo, BadgeSummaryItem> Clicked;
+		public event Action<BadgeInfo> RegisterButtonClicked;
+		public event Action<BadgeInfo> SearchButtonClicked;
 
-		public BadgeSummaryItem(Context context, BadgeSummaryDTO dto) : base(context)
+		public BadgeSummaryItem(Context context, BadgeInfo dto) : base(context)
 		{
 			this.dto = dto;
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.BadgeSummaryItem, this);
 
-			BadgeName.Text = MehspotResources.ResourceManager.GetString(dto.BadgeName);
-			BadgeDescription.Text = MehspotResources.ResourceManager.GetString(dto.BadgeName + "_Description");
-			LikesCount.Text = dto.Likes.ToString();
-			RecommendationsCount.Text = dto.Recommendations.ToString();
-			ReferencesCount.Text = dto.References.ToString();
+            BadgeName.Text = MehspotResources.ResourceManager.GetString(dto.CustomKey != null ? "Find_" + dto.CustomKey : "Find_" + dto.SearchBadge);
+            BadgeDescription.Text = dto.CustomDescription ?? MehspotResources.ResourceManager.GetString(dto.SearchBadge + "_Description");
+            LikesCount.Text = dto.Badge.Likes.ToString();
+			RecommendationsCount.Text = dto.Badge.Recommendations.ToString();
+			ReferencesCount.Text = dto.Badge.References.ToString();
 			RegisterButton.Text = "Update My Info";
 
-			var identifier = Resources.GetIdentifier(dto.BadgeName.ToLower() + (dto.IsRegistered ? string.Empty : "b"), "drawable", context.PackageName);
+			var identifier = Resources.GetIdentifier(dto.BadgeName.ToLower() + (dto.Badge.IsRegistered ? string.Empty : "b"), "drawable", context.PackageName);
 			using (var Picture = FindViewById<ImageView>(Resource.BadgeSummary.Picture))
 			{
 				Picture.SetImageResource(identifier);

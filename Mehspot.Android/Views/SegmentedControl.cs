@@ -43,7 +43,7 @@ namespace Mehspot.AndroidApp.Views
 			foreach (var item in Buttons)
 			{
 				item.SetBackgroundResource(Resource.Color.white);
-				item.SetColorFilter(new Android.Graphics.Color(ContextCompat.GetColor(context, Resource.Color.dark_green)));
+				item.SetColorFilter(new Color(ContextCompat.GetColor(context, Resource.Color.dark_green)));
 			}
 
 			button.SetBackgroundResource(Resource.Color.dark_green);

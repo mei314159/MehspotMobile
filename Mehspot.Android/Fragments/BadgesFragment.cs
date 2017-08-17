@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.Animation;
-using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Support.V4.Widget;
+using Android.Runtime;
+using Android.Support.Design.Widget;
+using Android.Support.V4.Content;
+using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
 using Mehspot.AndroidApp.Resources.layout;
@@ -19,10 +23,9 @@ namespace Mehspot.AndroidApp
 {
 	public class BadgesFragment : Android.Support.V4.App.Fragment, IBadgesViewController
 	{
+		private TabLayout tabLayout;
 		private BadgesModel model;
-		private List<BadgeSummaryItem> wrapList = new List<BadgeSummaryItem>();
-		private SwipeRefreshLayout refresher => this.Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
-
+		
 		public IViewHelper ViewHelper { get; private set; }
 
 
@@ -35,142 +38,44 @@ namespace Mehspot.AndroidApp
 		{
 			base.OnViewCreated(view, savedInstanceState);
 			this.ViewHelper = new ActivityHelper(this.Activity);
+
+			tabLayout = View.FindViewById<TabLayout>(Resource.Id.sliding_tabs);
 			model = new BadgesModel(new BadgeService(MehspotAppContext.Instance.DataStorage), this);
 			model.LoadingStart += Model_LoadingStart;
 			model.LoadingEnd += Model_LoadingEnd;
-
-			refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
-														Resource.Color.xam_purple,
-														Resource.Color.xam_gray,
-														Resource.Color.xam_green);
-			refresher.Refresh += async (sender, e) =>
-			{
-				await model.RefreshAsync(true);
-				refresher.Refreshing = false;
-			};
 		}
 
-		public override async void OnStart()
+		public override void OnStart()
 		{
 			base.OnStart();
-			if (!model.dataLoaded)
-			{
-				model.RefreshAsync(model.Items == null, true);
-			}
-		}
-
-		public override void OnPause()
-		{
-			base.OnPause();
-		}
-
-		public override void OnStop()
-		{
-			base.OnStop();
+            (this.Activity as MainActivity)?.SelectTab(this.GetType());
+            model.RefreshAsync(model.Items == null, true);
 		}
 
 		void Model_LoadingStart()
 		{
-			refresher.Refreshing = true;
 		}
 
 		void Model_LoadingEnd()
 		{
-			refresher.Refreshing = false;
 		}
 
-		private BadgeSummaryItem CreateItem(BadgeSummaryDTO dto)
-		{
-			var item = new BadgeSummaryItem(this.Activity, dto);
-			item.Tag = dto.BadgeId;
-			item.Clicked += Item_Clicked;
-			item.SearchButtonClicked += Item_SearchButtonClicked;
-			item.RegisterButtonClicked += Item_RegisterButtonClicked;
-			return item;
-		}
+        public void DisplayBadges()
+        {
+			tabLayout.SetTabTextColors(ContextCompat.GetColor(this.Activity, Resource.Color.black), ContextCompat.GetColor(this.Activity, Resource.Color.dark_orange));
 
-		void Item_RegisterButtonClicked(BadgeSummaryDTO dto)
-		{
-			var target = new Intent(this.Context, typeof(EditBadgeProfileActivity));
-			target.PutExtra("badgeId", dto.BadgeId);
-			target.PutExtra("badgeName", dto.BadgeName);
-			target.PutExtra("badgeIsRegistered", dto.IsRegistered);
-			this.StartActivity(target);
-		}
+			var groups = model.BadgeHelper.GetGroups();
 
-		void Item_SearchButtonClicked(BadgeSummaryDTO dto)
-		{
-			var target = new Intent(this.Context, typeof(SearchBadgeActivity));
-			target.PutExtra("badgeSummary", dto);
-			target.PutExtra("titleKey", dto.BadgeName);
-			this.StartActivity(target);
-		}
+			//Fragment array
+			var fragments = groups.Select(a => new BadgeGroupFragment(a.Key, a.Value)).ToArray();
 
-		private void Item_Clicked(BadgeSummaryDTO dto, BadgeSummaryItem sender)
-		{
-			this.model.SelectBadge(dto);
-
-			var wrapper = sender.FindViewById(Resource.BadgeSummary.InfoWrapper);
-
-			if (wrapper.Visibility.Equals(ViewStates.Gone))
-			{
-				//set Visible
-				wrapper.Visibility = ViewStates.Visible;
-				int widthSpec = View.MeasureSpec.MakeMeasureSpec(0, MeasureSpecMode.Unspecified);
-				int heightSpec = View.MeasureSpec.MakeMeasureSpec(0, MeasureSpecMode.Unspecified);
-				wrapper.Measure(widthSpec, heightSpec);
-
-				ValueAnimator mAnimator = SlideAnimator(wrapper, 0, wrapper.MeasuredHeight);
-				mAnimator.Start();
-
-			}
-			else
-			{
-				//collapse();
-				int finalHeight = wrapper.Height;
-				ValueAnimator mAnimator = SlideAnimator(wrapper, finalHeight, 0);
-				mAnimator.Start();
-				mAnimator.AnimationEnd += (s, e) =>
-				{
-					wrapper.Visibility = ViewStates.Gone;
-				};
-			}
-		}
-
-		public void DisplayBadges()
-		{
-			Activity.RunOnUiThread(() =>
-			{
-				var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.badgesWrapper);
-				wrapper.RemoveAllViews();
-
-				foreach (var element in wrapList)
-				{
-					element.Dispose();
-				}
-
-				wrapList.Clear();
-
-				foreach (var item in model.Items)
-				{
-					var bubble = CreateItem(item);
-					wrapper.AddView(bubble);
-					wrapList.Add(bubble);
-				}
-			});
-		}
-
-		private ValueAnimator SlideAnimator(View view, int start, int end)
-		{
-			var animator = ValueAnimator.OfInt(start, end);
-			animator.Update += (sender, e) =>
-				{
-					var value = (int)animator.AnimatedValue;
-					ViewGroup.LayoutParams layoutParams = view.LayoutParameters;
-					layoutParams.Height = value;
-					view.LayoutParameters = layoutParams;
-				};
-			return animator;
-		}
-	}
+			//Tab title array
+			var titles = CharSequence.ArrayFromStringArray(groups.Select(a => MehspotResources.ResourceManager.GetString("BadgeGroup_" + a.Key.ToString())).ToArray());
+			var viewPager = View.FindViewById<ViewPager>(Resource.Id.viewpager);
+			//viewpager holding fragment array and tab title text
+			viewPager.Adapter = new TabsFragmentPagerAdapter(Activity.SupportFragmentManager, fragments, titles);
+			// Give the TabLayout the ViewPager 
+			tabLayout.SetupWithViewPager(viewPager);
+        }
+    }
 }

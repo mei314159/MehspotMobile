@@ -35,9 +35,9 @@ namespace Mehspot.AndroidApp
 
 		public IViewHelper ViewHelper { get; private set; }
 
-		public EditText SearchBar => Activity.FindViewById<EditText>(Resource.MessageBoard.SearchBar);
-		public Button SearchButton => Activity.FindViewById<Button>(Resource.MessageBoard.SearchButton);
-		public SwipeRefreshLayout refresher => Activity.FindViewById<SwipeRefreshLayout>(Resource.MessageBoard.messageRefresher);
+		public EditText SearchBar => View.FindViewById<EditText>(Resource.MessageBoard.SearchBar);
+		public Button SearchButton => View.FindViewById<Button>(Resource.MessageBoard.SearchButton);
+		public SwipeRefreshLayout refresher => View.FindViewById<SwipeRefreshLayout>(Resource.MessageBoard.messageRefresher);
 
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
@@ -60,7 +60,6 @@ namespace Mehspot.AndroidApp
 			this.ViewHelper = new ActivityHelper(this.Activity);
 
 			model = new MessageBoardModel(new MessagesService(MehspotAppContext.Instance.DataStorage), this);
-
 			model.LoadingStart += Model_LoadingStart;
 			model.LoadingEnd += Model_LoadingEnd;
 
@@ -75,9 +74,17 @@ namespace Mehspot.AndroidApp
 			};
 		}
 
+		public override void OnDestroyView()
+		{
+			base.OnDestroyView();
+			model.LoadingStart -= Model_LoadingStart;
+			model.LoadingEnd -= Model_LoadingEnd;
+		}
+
 		public override async void OnStart()
 		{
 			base.OnStart();
+            (this.Activity as MainActivity)?.SelectTab(this.GetType());
 			if (!model.dataLoaded)
 			{
 				await this.model.LoadMessageBoardAsync(true);
@@ -89,14 +96,25 @@ namespace Mehspot.AndroidApp
 			refresher.Refreshing = true;
 		}
 
-		void Model_LoadingEnd()
+		void Model_LoadingEnd(Result<MessageBoardItemDto[]> result)
 		{
+			if (result.IsSuccess)
+			{
+				DisplayMessageBoard();
+				UpdateApplicationBadge(result.Data.Length > 0 ? result.Data.Sum(a => a.UnreadMessagesCount) : 0);
+			}
+
 			refresher.Refreshing = false;
 		}
 
 		public void DisplayMessageBoard()
 		{
-			var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.messageBoardWrapper);
+			if (model.Items == null)
+			{
+				return;
+			}
+
+			var wrapper = this.View.FindViewById<LinearLayout>(Resource.Id.messageBoardWrapper);
 			wrapper.RemoveAllViews();
 
 			foreach (var element in wrapList)
@@ -105,7 +123,6 @@ namespace Mehspot.AndroidApp
 			}
 
 			wrapList.Clear();
-
 			foreach (var item in model.Items)
 			{
 				var bubble = CreateMessageBoardItem(item);
@@ -123,7 +140,7 @@ namespace Mehspot.AndroidApp
 		{
 			this.Activity.RunOnUiThread(() =>
 			{
-				var wrapper = this.Activity.FindViewById<LinearLayout>(Resource.Id.messageBoardWrapper);
+				var wrapper = this.View.FindViewById<LinearLayout>(Resource.Id.messageBoardWrapper);
 				var item = (MessageBoardItem)wrapper.FindViewWithTag(dto.WithUser.Id);
 
 				item.UnreadMessagesCount.Text = (int.Parse(item.UnreadMessagesCount.Text) + 1).ToString();
