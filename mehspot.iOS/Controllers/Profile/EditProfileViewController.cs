@@ -94,6 +94,8 @@ namespace Mehspot.iOS
 		{
 		}
 
+		public bool IsActive => this.IsViewLoaded;
+
 		public override void ViewDidLoad()
 		{
 			var profileService = new ProfileService(MehspotAppContext.Instance.DataStorage);
@@ -125,16 +127,33 @@ namespace Mehspot.iOS
 
 		void Model_LoadingStart()
 		{
-			this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = TableView.UserInteractionEnabled = false;
-			this.RefreshControl.BeginRefreshing();
-			TableView.SetContentOffset(new CGPoint(0, -this.RefreshControl.Frame.Size.Height), true);
+			InvokeOnMainThread(() =>
+			{
+				this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = TableView.UserInteractionEnabled = false;
+				this.RefreshControl.BeginRefreshing();
+				TableView.SetContentOffset(new CGPoint(0, -this.RefreshControl.Frame.Size.Height), true);
+			});
 		}
 
-		void Model_LoadingEnd()
+		async void Model_LoadingEnd(Result<ProfileDto> profileResult)
 		{
-			TableView.SetContentOffset(CGPoint.Empty, true);
-			RefreshControl.EndRefreshing();
-			this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = TableView.UserInteractionEnabled = true;
+			if (View == null)
+				return;
+			if (profileResult.IsSuccess)
+			{
+				await model.InitializeTableAsync(profileResult.Data).ConfigureAwait(false);
+			}
+			else
+			{
+				ViewHelper.ShowAlert("Error", "Can not load profile data");
+			}
+
+			InvokeOnMainThread(() =>
+			{
+				TableView.SetContentOffset(CGPoint.Empty, true);
+				RefreshControl.EndRefreshing();
+				this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = TableView.UserInteractionEnabled = true;
+			});
 		}
 
 		#region UITableView

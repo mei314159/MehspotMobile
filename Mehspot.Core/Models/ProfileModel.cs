@@ -14,7 +14,7 @@ namespace Mehspot.Core.Models
     public class ProfileModel<TView> : IListModel<TView>
     {
         public event Action LoadingStart;
-        public event Action LoadingEnd;
+        public event Action<Result<ProfileDto>> LoadingEnd;
         public event Action SignedOut;
         public volatile bool dataLoaded;
         public CellBuilder<TView> cellBuilder;
@@ -49,25 +49,16 @@ namespace Mehspot.Core.Models
 
             if (isFirstLoad)
                 LoadingStart?.Invoke();
+            var profileResult = await profileService.LoadProfileAsync().ConfigureAwait(false);
 
-            var profileResult = await profileService.LoadProfileAsync();
-            if (profileResult.IsSuccess)
-            {
-                profile = profileResult.Data;
-                await InitializeTableAsync();
-            }
-            else
-            {
-                viewController.ViewHelper.ShowAlert("Error", "Can not load profile data");
-            }
-
-            LoadingEnd?.Invoke();
+            LoadingEnd?.Invoke(profileResult);
             dataLoaded = profileResult.IsSuccess;
             loading = false;
         }
 
-        async Task InitializeTableAsync()
+        public async Task InitializeTableAsync(ProfileDto profile)
         {
+            this.profile = profile;
             var subdivisions = await GetSubdivisions(profile.Zip);
             viewController.UserName = profile.UserName;
             viewController.FullName = $"{profile.FirstName} {profile.LastName}".Trim(' ');

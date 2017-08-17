@@ -10,6 +10,7 @@ using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.Models;
 using Mehspot.iOS.Wrappers;
+using System.Linq;
 
 namespace Mehspot.iOS
 {
@@ -66,7 +67,7 @@ namespace Mehspot.iOS
 			if (goToMessagesWhenAppear)
 			{
 				goToMessagesWhenAppear = false;
-                ShowMessagesFromUser(this.SelectedUserId, this.SelectedUserName);
+				ShowMessagesFromUser(this.SelectedUserId, this.SelectedUserName);
 			}
 		}
 
@@ -76,8 +77,14 @@ namespace Mehspot.iOS
 			this.MessageBoardTable.SetContentOffset(new CGPoint(0, -this.refreshControl.Frame.Size.Height), true);
 		}
 
-		void Model_LoadingEnd()
+		void Model_LoadingEnd(Result<MessageBoardItemDto[]> result)
 		{
+			if (result.IsSuccess)
+			{
+				DisplayMessageBoard();
+				UpdateApplicationBadge(result.Data.Length > 0 ? result.Data.Sum(a => a.UnreadMessagesCount) : 0);
+			}
+
 			this.MessageBoardTable.SetContentOffset(CGPoint.Empty, true);
 			this.refreshControl.EndRefreshing();
 		}

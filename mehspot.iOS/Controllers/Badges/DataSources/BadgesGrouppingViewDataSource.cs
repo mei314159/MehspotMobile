@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
@@ -107,36 +108,8 @@ namespace mehspot.iOS.Controllers.Badges.DataSources
 		{
 			this.Groups = model.BadgeHelper.GetGroups();
 			if (CurrentKey == default(int))
-				CurrentKey = GetCurrentKey();
+				CurrentKey = model.GetCurrentKey(this.Groups);
 			base.RefreshTable();
-		}
-
-		BadgeGroup GetCurrentKey()
-		{
-			var preferredBadgeGroup = MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup;
-			if (preferredBadgeGroup == null)
-			{
-				if (Groups[BadgeGroup.Friends].Any(a => a.Badge.IsRegistered))
-				{
-					preferredBadgeGroup = BadgeGroup.Friends;
-				}
-				else if (Groups[BadgeGroup.Helpers].Any(a => a.Badge.IsRegistered))
-				{
-					preferredBadgeGroup = BadgeGroup.Helpers;
-				}
-				else if (Groups[BadgeGroup.Jobs].Any(a => a.Badge.IsRegistered))
-				{
-					preferredBadgeGroup = BadgeGroup.Jobs;
-				}
-				else
-				{
-					preferredBadgeGroup = BadgeGroup.Friends;
-				}
-
-				MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup = preferredBadgeGroup;
-			}
-
-			return preferredBadgeGroup.Value;
 		}
 	}
 }

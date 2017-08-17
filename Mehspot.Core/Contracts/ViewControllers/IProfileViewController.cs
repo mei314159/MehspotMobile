@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Mehspot.Core.Contracts.Wrappers;
 
 namespace Mehspot.Core
@@ -11,7 +11,7 @@ namespace Mehspot.Core
         string FullName { get; set; }
         string ProfilePicturePath { get; set; }
         bool SaveButtonEnabled { get; set; }
-
+        bool IsActive { get; }
         void ReloadData();
         void HideKeyboard();
 

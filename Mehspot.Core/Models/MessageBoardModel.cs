@@ -18,7 +18,7 @@ namespace Mehspot.Core.Models
 
         public MessageBoardItemDto[] Items;
         public event Action LoadingStart;
-        public event Action LoadingEnd;
+        public event Action<Result<MessageBoardItemDto[]>> LoadingEnd;
         public volatile bool dataLoaded;
 
         public MessageBoardModel(MessagesService messagesService, IMessageBoardViewController viewController)
@@ -40,16 +40,14 @@ namespace Mehspot.Core.Models
             {
                 LoadingStart?.Invoke();
             }
-            
+
             var result = await messagesService.GetMessageBoard(viewController.Filter);
             if (result.IsSuccess)
             {
                 this.Items = result.Data;
-                viewController.DisplayMessageBoard();
-                viewController.UpdateApplicationBadge(result.Data.Length > 0 ? result.Data.Sum(a => a.UnreadMessagesCount) : 0);
             }
 
-            LoadingEnd?.Invoke();
+            LoadingEnd?.Invoke(result);
             dataLoaded = result.IsSuccess;
             loading = false;
         }

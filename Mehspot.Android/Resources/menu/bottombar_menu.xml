@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+bottomBar/badges" android:icon="@drawable/ic_action_search3x" android:title="Badges" />
+	<item android:id="@+bottomBar/messages" android:icon="@drawable/ic_action_chat_icon3x" android:title="Messages" />
+	<item android:id="@+bottomBar/profile" android:icon="@drawable/ic_action_profile3x" android:title="Profile" />
+</menu>

@@ -163,6 +163,9 @@
     <Reference Include="Xamarin.RangeSlider.Droid">
       <HintPath>..\packages\Xamarin.RangeSlider.0.6.17\lib\MonoAndroid10\Xamarin.RangeSlider.Droid.dll</HintPath>
     </Reference>
+    <Reference Include="BottomNavigationBar">
+      <HintPath>..\packages\BottomNavigationBar.1.4.0.3\lib\MonoAndroid403\BottomNavigationBar.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -218,6 +221,7 @@
     <Compile Include="Views\Cells\RangeSliderCell.cs" />
     <Compile Include="Activities\UserProfileViewActivity.cs" />
     <Compile Include="Views\BadgeSummaryItemSimpified.cs" />
+    <Compile Include="Fragments\BadgeGroupFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -247,7 +251,7 @@
     <AndroidResource Include="Resources\layout\BadgeSummaryItem.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
-    <AndroidResource Include="Resources\layout\MainActivity.axml" />
+    <AndroidResource Include="Resources\layout\BadgeGroupFragment.axml" />
     <AndroidResource Include="Resources\layout\app_bar.axml" />
     <AndroidResource Include="Resources\drawable\babysitter.png" />
     <AndroidResource Include="Resources\drawable\babysitterb.png" />
@@ -325,6 +329,23 @@
     <AndroidResource Include="Resources\drawable\like_pic.png" />
     <AndroidResource Include="Resources\drawable\profile_image_small.png" />
     <AndroidResource Include="Resources\drawable\roundedFrame100.xml" />
+    <AndroidResource Include="Resources\menu\bottombar_menu.xml" />
+    <AndroidResource Include="Resources\layout\MainActivity.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_search3x.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_search3x.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_search3x.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_search3x.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_search3x.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_chat_icon3x.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_profile3x.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_chat_icon3x.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_profile3x.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_chat_icon3x.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_profile3x.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_chat_icon3x.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_profile3x.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_chat_icon3x.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_profile3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

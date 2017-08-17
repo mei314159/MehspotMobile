@@ -109,6 +109,34 @@ namespace Mehspot.Core.Models
             }
         }
 
+		public BadgeGroup GetCurrentKey(IReadOnlyDictionary<BadgeGroup, IReadOnlyCollection<BadgeInfo>> groups)
+		{
+			var preferredBadgeGroup = MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup;
+			if (preferredBadgeGroup == null)
+			{
+				if (groups[BadgeGroup.Friends].Any(a => a.Badge.IsRegistered))
+				{
+					preferredBadgeGroup = BadgeGroup.Friends;
+				}
+				else if (groups[BadgeGroup.Helpers].Any(a => a.Badge.IsRegistered))
+				{
+					preferredBadgeGroup = BadgeGroup.Helpers;
+				}
+				else if (groups[BadgeGroup.Jobs].Any(a => a.Badge.IsRegistered))
+				{
+					preferredBadgeGroup = BadgeGroup.Jobs;
+				}
+				else
+				{
+					preferredBadgeGroup = BadgeGroup.Friends;
+				}
+
+				MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup = preferredBadgeGroup;
+			}
+
+			return preferredBadgeGroup.Value;
+		}
+
         public bool IsRowExpanded(int row)
         {
             return expandedRows.Contains(row);
