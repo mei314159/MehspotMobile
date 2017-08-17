@@ -44,7 +44,21 @@ namespace mehspot.iOS
 			step4.OnContinue += Step4OnContinue;
 			this.DataSource = new PageDataSource(new List<UIViewController> { step1, step2, step3, step4 });
 			this.SetViewControllers(new[] { step1 }, UIPageViewControllerNavigationDirection.Forward, false, (finished) => { });
+			LoadProfile();
+		}
 
+		public override void ViewDidAppear(bool animated)
+		{
+			foreach (var pc in this.View.Subviews.OfType<UIPageControl>())
+			{
+				pc.PageIndicatorTintColor = UIColor.LightGray;
+				pc.CurrentPageIndicatorTintColor = UIColor.FromRGB(174, 210, 122);
+				pc.BackgroundColor = UIColor.White;
+			}
+		}
+
+		async Task LoadProfile()
+		{
 			viewHelper.ShowOverlay("Loading Profile");
 			var result = await profileService.LoadProfileAsync();
 			viewHelper.HideOverlay();
@@ -58,16 +72,6 @@ namespace mehspot.iOS
 			else
 			{
 				viewHelper.ShowAlert("Error", "Can not load profile");
-			}
-		}
-
-		public override void ViewDidAppear(bool animated)
-		{
-			foreach (var pc in this.View.Subviews.OfType<UIPageControl>())
-			{
-				pc.PageIndicatorTintColor = UIColor.LightGray;
-				pc.CurrentPageIndicatorTintColor = UIColor.FromRGB(174, 210, 122);
-				pc.BackgroundColor = UIColor.White;
 			}
 		}
 
@@ -97,6 +101,12 @@ namespace mehspot.iOS
 
 		async void Step4OnContinue(BadgeGroup badgeGroup)
 		{
+			if (profile == null)
+			{
+				await LoadProfile();
+				return;
+			}
+
 			if (profileImageStream == null && string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
 			{
 				viewHelper.ShowPrompt("Error", "Please, upload a profile picture", "OK", () =>
@@ -107,7 +117,7 @@ namespace mehspot.iOS
 			}
 
 			if (profile.Zip == null)
-			{ 
+			{
 				viewHelper.ShowPrompt("Error", "Please, set Zip code and Subdivision", "OK", () =>
 				{
 					this.SetViewControllers(new[] { step2 }, UIPageViewControllerNavigationDirection.Reverse, true, null);
