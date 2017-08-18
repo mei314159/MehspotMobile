@@ -7,32 +7,34 @@ using Mehspot.Core.DTO.Subdivision;
 using Mehspot.Core.Services;
 using Mehspot.Core.Builders;
 using System.IO;
-using System.Diagnostics;
 
 namespace Mehspot.Core.Models
 {
     public class ProfileModel<TView> : IListModel<TView>
     {
-        public event Action LoadingStart;
-        public event Action<Result<ProfileDto>> LoadingEnd;
-        public event Action SignedOut;
-        public volatile bool dataLoaded;
-        public CellBuilder<TView> cellBuilder;
-        //public List<TView> Cells = new List<TView>();
-        public IList<TView> Cells { get; }
-
         private volatile bool loading;
-        private ProfileDto profile;
+
+        private readonly IProfileViewController viewController;
+
+        private CellBuilder<TView> cellBuilder;
         private ProfileService profileService;
         private SubdivisionService subdivisionService;
-        private readonly IProfileViewController viewController;
         private KeyValuePair<string, string>[] genders = {
                 new KeyValuePair<string, string>(null, "N/A"),
                 new KeyValuePair<string, string>("M", "Male"),
                 new KeyValuePair<string, string>("F", "Female")
         };
+		
+        public volatile bool dataLoaded;
 
-        public ProfileModel(ProfileService profileService, SubdivisionService subdivisionService, IProfileViewController viewController, CellBuilder<TView> cellBuilder)
+		public IList<TView> Cells { get; }
+		public ProfileDto Profile { get; private set; }
+
+		public event Action LoadingStart;
+		public event Action<Result<ProfileDto>> LoadingEnd;
+		public event Action SignedOut;
+
+		public ProfileModel(ProfileService profileService, SubdivisionService subdivisionService, IProfileViewController viewController, CellBuilder<TView> cellBuilder)
         {
             Cells = new List<TView>();
             this.viewController = viewController;
@@ -58,7 +60,7 @@ namespace Mehspot.Core.Models
 
         public async Task InitializeTableAsync(ProfileDto profile)
         {
-            this.profile = profile;
+            this.Profile = profile;
             var subdivisions = await GetSubdivisions(profile.Zip).ConfigureAwait(false);
             viewController.InvokeOnMainThread(() =>
             {
@@ -109,7 +111,7 @@ namespace Mehspot.Core.Models
                 await this.profileService.UploadProfileImageAsync(pictureStream).ConfigureAwait(false);
             }
 
-            var result = await this.profileService.UpdateAsync(profile).ConfigureAwait(false);
+            var result = await this.profileService.UpdateAsync(Profile).ConfigureAwait(false);
             viewController.ViewHelper.HideOverlay();
             viewController.InvokeOnMainThread(() =>
             {
