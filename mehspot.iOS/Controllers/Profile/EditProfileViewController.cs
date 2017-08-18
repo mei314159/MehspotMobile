@@ -24,8 +24,6 @@ namespace Mehspot.iOS
         private ProfileModel<UITableViewCell> model;
         private string profilePicturePath;
 
-        public ProfileDto profile;
-
         #region IProfileViewController
         public IViewHelper ViewHelper { get; set; }
 
@@ -64,14 +62,29 @@ namespace Mehspot.iOS
 
             set
             {
+                NSUrl url = null;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    var url = NSUrl.FromString(value);
-                    if (url != null)
+                    url = NSUrl.FromString(value);
+                }
+
+                var oldImage = this.ProfilePicture.Image;
+                if (url != null)
+                {
+                    this.ProfilePicture.SetImage(url, (image, error, cacheType, imageUrl) =>
                     {
-                        this.ProfilePicture.SetImage(url);
-                        profilePicturePath = value;
-                    }
+                        oldImage?.Dispose();
+                        oldImage = null;
+                    });
+
+                    profilePicturePath = value;
+                }
+                else
+                {
+                    this.ProfilePicture.Image = UIImage.FromFile("profile_image");
+					oldImage?.Dispose();
+					oldImage = null;
+                    profilePicturePath = null;
                 }
             }
         }
@@ -125,6 +138,12 @@ namespace Mehspot.iOS
             }
         }
 
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+            this.ProfilePicturePath = model.Profile?.ProfilePicturePath;
+        }
+
         void Model_LoadingStart()
         {
             InvokeOnMainThread(() =>
@@ -152,8 +171,8 @@ namespace Mehspot.iOS
                 ViewHelper.ShowAlert("Error", "Can not load profile data");
             }
 
-			InvokeOnMainThread(() =>
-			{
+            InvokeOnMainThread(() =>
+            {
                 TableView.SetContentOffset(CGPoint.Empty, true);
                 RefreshControl.EndRefreshing();
                 this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = TableView.UserInteractionEnabled = true;
