@@ -162,8 +162,31 @@ namespace Mehspot.Core
             foreach (var badgeValue in profile.BadgeValues)
             {
                 var badgeItem = badgeValue.Value.BadgeBadgeItem.BadgeItem;
-                if (ProfileKeys.ExcludedKeys.Contains(badgeItem.Name))
+				BadgeDataType valueType = BadgeDataType.String;
+				Enum.TryParse(badgeItem.ValueType, out valueType);
+
+                ExcludingKey excludingKey = ProfileKeys.ExcludedKeys.FirstOrDefault(a => a.Name == badgeItem.Name);
+                if (excludingKey != null)
+                {
+                    if (excludingKey.UseDefault){
+                        switch (valueType)
+                        {
+                            case BadgeDataType.Boolean:
+                                badgeValue.Value.Value = bool.FalseString;
+                                break;
+                            case BadgeDataType.Integer:
+                                badgeValue.Value.Value = default(int).ToString();
+                                break;
+							case BadgeDataType.Float:
+                                badgeValue.Value.Value = default(float).ToString();
+								break;
+                            default:
+                                break;
+                        }
+                    }
+
                     continue;
+                }
 
                 var itemName = badgeItem.Name;
                 var badgeSpecificName = string.Format("{0}{1}", profile.BadgeName, itemName);
@@ -172,8 +195,6 @@ namespace Mehspot.Core
                 var placeholder = MehspotResources.ResourceManager.GetString(badgeItemDefaultKey) ?? badgeItem.DefaultValue;
                 var label = badgeSpecificValue ?? MehspotResources.ResourceManager.GetString(itemName) ?? itemName;
 
-                BadgeDataType valueType = BadgeDataType.String;
-                Enum.TryParse(badgeItem.ValueType, out valueType);
                 if (itemName.EndsWith("Subdivision", StringComparison.OrdinalIgnoreCase) && itemName.StartsWith(profile.BadgeName, StringComparison.OrdinalIgnoreCase))
                 {
                     var zipFieldName = itemName.Replace("Subdivision", "Zip");
