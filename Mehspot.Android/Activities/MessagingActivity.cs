@@ -49,7 +49,7 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
-				protected override async void OnCreate(Bundle savedInstanceState)
+		protected override async void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.MessagingActivity);

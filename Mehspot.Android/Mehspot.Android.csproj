@@ -222,6 +222,8 @@
     <Compile Include="Activities\UserProfileViewActivity.cs" />
     <Compile Include="Views\BadgeSummaryItemSimpified.cs" />
     <Compile Include="Fragments\BadgeGroupFragment.cs" />
+    <Compile Include="Activities\WalkthroughActivity.cs" />
+    <Compile Include="Views\ExtentedEditText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -346,6 +348,18 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_profile3x.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_chat_icon3x.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_profile3x.png" />
+    <AndroidResource Include="Resources\layout\WalkthroughActivity.axml" />
+    <AndroidResource Include="Resources\layout\WalkthroughStep1.axml" />
+    <AndroidResource Include="Resources\layout\WalkthroughStep2.axml" />
+    <AndroidResource Include="Resources\drawable\profile_image_big.png" />
+    <AndroidResource Include="Resources\drawable\subdivisionicon.png" />
+    <AndroidResource Include="Resources\drawable\border.xml" />
+    <AndroidResource Include="Resources\layout\WalkthroughStep3.axml" />
+    <AndroidResource Include="Resources\drawable\w3_background.png" />
+    <AndroidResource Include="Resources\layout\WalkthroughStep4.axml" />
+    <AndroidResource Include="Resources\drawable\r100orange.xml" />
+    <AndroidResource Include="Resources\drawable\r100green.xml" />
+    <AndroidResource Include="Resources\drawable\r100blue.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

@@ -166,7 +166,7 @@ namespace Mehspot.AndroidApp
 		}
 		#endregion
 
-		protected override async void OnCreate(Bundle savedInstanceState)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.ViewBadgeProfileActivity);

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Android.Database;
-using Facebook;
 using Android.Support.V4.Widget;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.AndroidApp.Core.Builders;
@@ -17,14 +15,9 @@ using Mehspot.Core.Models;
 using Mehspot.Core.Services;
 using Mehspot.Core.Contracts.Wrappers;
 using Android.Graphics;
-using Java.Net;
 using Android.Provider;
-using System.Collections.Generic;
-using System.Collections;
-using Java.Nio;
 using Android.Content.PM;
 using Android.Support.V4.Content;
-using Mehspot.AndroidApp.Core;
 using Android.Support.V4.App;
 using System.Linq;
 
@@ -314,6 +307,7 @@ namespace Mehspot.AndroidApp
                     }
                     break;
             }
+
             profileImageChanged = true;
         }
 
