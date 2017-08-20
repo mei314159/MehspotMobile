@@ -27,7 +27,8 @@ namespace mehspot.iOS
 
 
 		public int? SelectedSubdivisionId { get; set; }
-		public int? SelectedSubdivisionOptionId { get; set; }		public string ZipCode { get; set; }
+		public int? SelectedSubdivisionOptionId { get; set; }
+		public string ZipCode { get; set; }
 
 		List<SubdivisionDTO> Subdivisions;
 		public event WalkthroughStep2Delegate OnContinue;

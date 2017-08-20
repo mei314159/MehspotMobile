@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Mehspot.AndroidApp.Activities;
 using Mehspot.AndroidApp.Core;
 using Mehspot.Core;
 
@@ -17,13 +18,12 @@ namespace Mehspot.AndroidApp
 			base.OnCreate(savedInstanceState);
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.SplashScreen);
-
 		}
 
 		protected override void OnStart()
 		{
 			base.OnStart();
-            RunAsync();
+			RunAsync();
 		}
 
 		async Task RunAsync()
@@ -32,9 +32,14 @@ namespace Mehspot.AndroidApp
 			{
 				MehspotAppContext.Instance.Initialize(new ApplicationDataStorage());
 				Type targetActivityType;
+				//targetActivityType = typeof(WalkthroughActivity);
 				if (!MehspotAppContext.Instance.AuthManager.IsAuthenticated())
 				{
 					targetActivityType = typeof(SignInActivity);
+				}
+				else if (!MehspotAppContext.Instance.DataStorage.WalkthroughPassed)
+				{
+					targetActivityType = typeof(WalkthroughActivity);
 				}
 				else
 				{

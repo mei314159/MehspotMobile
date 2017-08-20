@@ -21,61 +21,64 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.AndroidApp
 {
-	public class BadgesFragment : Android.Support.V4.App.Fragment, IBadgesViewController
-	{
-		private TabLayout tabLayout;
-		private BadgesModel model;
-		
-		public IViewHelper ViewHelper { get; private set; }
+    public class BadgesFragment : Android.Support.V4.App.Fragment, IBadgesViewController
+    {
+        private TabLayout tabLayout;
+        private BadgesModel model;
+
+        public IViewHelper ViewHelper { get; private set; }
 
 
-		public override Android.Views.View OnCreateView(Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Bundle savedInstanceState)
-		{
-			return inflater.Inflate(Resource.Layout.BadgesActivity, container, false);
-		}
+        public override Android.Views.View OnCreateView(Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Bundle savedInstanceState)
+        {
+            return inflater.Inflate(Resource.Layout.BadgesActivity, container, false);
+        }
 
-		public override void OnViewCreated(Android.Views.View view, Bundle savedInstanceState)
-		{
-			base.OnViewCreated(view, savedInstanceState);
-			this.ViewHelper = new ActivityHelper(this.Activity);
+        public override void OnViewCreated(Android.Views.View view, Bundle savedInstanceState)
+        {
+            base.OnViewCreated(view, savedInstanceState);
+            this.ViewHelper = new ActivityHelper(this.Activity);
 
-			tabLayout = View.FindViewById<TabLayout>(Resource.Id.sliding_tabs);
-			model = new BadgesModel(new BadgeService(MehspotAppContext.Instance.DataStorage), this);
-			model.LoadingStart += Model_LoadingStart;
-			model.LoadingEnd += Model_LoadingEnd;
-		}
+            tabLayout = View.FindViewById<TabLayout>(Resource.Id.sliding_tabs);
+            model = new BadgesModel(new BadgeService(MehspotAppContext.Instance.DataStorage), this);
+            model.LoadingStart += Model_LoadingStart;
+            model.LoadingEnd += Model_LoadingEnd;
+			model.RefreshAsync(model.Items == null, true);
+        }
 
-		public override void OnStart()
-		{
-			base.OnStart();
+        public override void OnStart()
+        {
+            base.OnStart();
             (this.Activity as MainActivity)?.SelectTab(this.GetType());
-            model.RefreshAsync(model.Items == null, true);
-		}
+        }
 
-		void Model_LoadingStart()
-		{
-		}
+        void Model_LoadingStart()
+        {
+        }
 
-		void Model_LoadingEnd()
-		{
-		}
+        void Model_LoadingEnd()
+        {
+        }
 
         public void DisplayBadges()
         {
-			tabLayout.SetTabTextColors(ContextCompat.GetColor(this.Activity, Resource.Color.black), ContextCompat.GetColor(this.Activity, Resource.Color.dark_orange));
+            Activity.RunOnUiThread(() =>
+            {
+                tabLayout.SetTabTextColors(ContextCompat.GetColor(this.Activity, Resource.Color.black), ContextCompat.GetColor(this.Activity, Resource.Color.dark_orange));
 
-			var groups = model.BadgeHelper.GetGroups();
+                var groups = model.BadgeHelper.GetGroups();
 
-			//Fragment array
-			var fragments = groups.Select(a => new BadgeGroupFragment(a.Key, a.Value)).ToArray();
+                //Fragment array
+                var fragments = groups.Select(a => new BadgeGroupFragment(a.Key, a.Value)).ToArray();
 
-			//Tab title array
-			var titles = CharSequence.ArrayFromStringArray(groups.Select(a => MehspotResources.ResourceManager.GetString("BadgeGroup_" + a.Key.ToString())).ToArray());
-			var viewPager = View.FindViewById<ViewPager>(Resource.Id.viewpager);
-			//viewpager holding fragment array and tab title text
-			viewPager.Adapter = new TabsFragmentPagerAdapter(Activity.SupportFragmentManager, fragments, titles);
-			// Give the TabLayout the ViewPager 
-			tabLayout.SetupWithViewPager(viewPager);
+                //Tab title array
+                var titles = CharSequence.ArrayFromStringArray(groups.Select(a => MehspotResources.ResourceManager.GetString("BadgeGroup_" + a.Key.ToString())).ToArray());
+                var viewPager = View.FindViewById<ViewPager>(Resource.Id.viewpager);
+                //viewpager holding fragment array and tab title text
+                viewPager.Adapter = new TabsFragmentPagerAdapter(Activity.SupportFragmentManager, fragments, titles);
+                // Give the TabLayout the ViewPager 
+                tabLayout.SetupWithViewPager(viewPager);
+            });
         }
     }
 }
