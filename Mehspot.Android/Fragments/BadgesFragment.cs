@@ -64,20 +64,20 @@ namespace Mehspot.AndroidApp
         {
             Activity.RunOnUiThread(() =>
             {
-                tabLayout.SetTabTextColors(ContextCompat.GetColor(this.Activity, Resource.Color.black), ContextCompat.GetColor(this.Activity, Resource.Color.dark_orange));
-
-                var groups = model.BadgeHelper.GetGroups();
-
-                //Fragment array
-                var fragments = groups.Select(a => new BadgeGroupFragment(a.Key, a.Value)).ToArray();
-
-                //Tab title array
-                var titles = CharSequence.ArrayFromStringArray(groups.Select(a => MehspotResources.ResourceManager.GetString("BadgeGroup_" + a.Key.ToString())).ToArray());
+				tabLayout.SetTabTextColors(ContextCompat.GetColor(this.Activity, Resource.Color.black), ContextCompat.GetColor(this.Activity, Resource.Color.dark_orange));
                 var viewPager = View.FindViewById<ViewPager>(Resource.Id.viewpager);
-                //viewpager holding fragment array and tab title text
-                viewPager.Adapter = new TabsFragmentPagerAdapter(Activity.SupportFragmentManager, fragments, titles);
-                // Give the TabLayout the ViewPager 
-                tabLayout.SetupWithViewPager(viewPager);
+                if (viewPager != null)
+                {
+					var groups = model.BadgeHelper.GetGroups();
+                    //Fragment array
+                    var fragments = groups.Select(a => new BadgeGroupFragment(a.Key, a.Value)).ToArray();
+					//Tab title array
+					var titles = CharSequence.ArrayFromStringArray(groups.Select(a => MehspotResources.ResourceManager.GetString("BadgeGroup_" + a.Key.ToString())).ToArray());
+                    //viewpager holding fragment array and tab title text
+                    viewPager.Adapter = new TabsFragmentPagerAdapter(Activity.SupportFragmentManager, fragments, titles);
+                    // Give the TabLayout the ViewPager 
+                    tabLayout.SetupWithViewPager(viewPager);
+                }
             });
         }
     }
