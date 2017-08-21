@@ -107,6 +107,7 @@ namespace Mehspot.AndroidApp
         {
             this.ViewHelper.ShowOverlay("Wait...");
             var wrapper = this.View.FindViewById<LinearLayout>(Resource.Id.badgesWrapper);
+            wrapper.RemoveAllViews();
             foreach (var item in this.Badges)
             {
                 var bubble = CreateItem(item);
