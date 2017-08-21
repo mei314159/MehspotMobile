@@ -50,7 +50,7 @@ namespace Mehspot.AndroidApp
 
 			if (IsPlayServicesAvailable())
 			{
-				var intent = new Intent(this.Activity, typeof(RegistrationIntentService));
+                var intent = new Intent(this.Activity, typeof(RegistrationIntentService));
 				this.Activity.StartService(intent);
 			}
 

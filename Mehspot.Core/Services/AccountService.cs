@@ -7,6 +7,7 @@ using Mehspot.Core.Contracts;
 using Newtonsoft.Json;
 using Mehspot.Core.DTO;
 using Mehspot.Core.Services;
+using System.Net;
 
 namespace Mehspot.Core.Auth
 {
@@ -135,14 +136,24 @@ namespace Mehspot.Core.Auth
                     }
 
                 }
-                catch (HttpRequestException)
+                catch (HttpRequestException ex)
                 {
                     return new AuthenticationResult
                     {
                         IsSuccess = false,
-                        ErrorMessage = "No internet connection."
+                        ErrorMessage = "No internet connection.",
+                        IsNetworkIssue = true
                     };
                 }
+				catch (WebException ex)
+				{
+					return new AuthenticationResult
+					{
+						IsSuccess = false,
+                        ErrorMessage = ex.Message,
+						IsNetworkIssue = true
+					};
+				}
                 catch (Exception ex)
                 {
                     return new AuthenticationResult

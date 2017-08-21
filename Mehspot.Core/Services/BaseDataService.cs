@@ -8,6 +8,7 @@ using Mehspot.Core.Dto;
 using Mehspot.Core;
 using Mehspot.Core.DTO;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace Mehspot.Core
 {
@@ -28,7 +29,8 @@ namespace Mehspot.Core
                 Data = (T)result.Data,
                 ErrorMessage = result.ErrorMessage,
                 IsSuccess = result.IsSuccess,
-                ModelState = result.ModelState
+				ModelState = result.ModelState,
+				IsNetworkIssue = result.IsNetworkIssue
             };
         }
 
@@ -67,17 +69,29 @@ namespace Mehspot.Core
                         };
                     }
                 }
-                catch (HttpRequestException)
+                catch (WebException ex){
+					MehspotAppContext.Instance.LogNetworkException(ex);
+					return new Result<object>
+					{
+						IsSuccess = false,
+                        ErrorMessage = ex.Message,
+						IsNetworkIssue = true
+					};
+                }
+                catch (HttpRequestException ex)
                 {
+                    MehspotAppContext.Instance.LogNetworkException(ex);
                     return new Result<object>
                     {
                         IsSuccess = false,
-                        ErrorMessage = "No internet connection."
+                        ErrorMessage = "No internet connection.",
+                        IsNetworkIssue = true
                     };
                 }
+
                 catch (Exception ex)
                 {
-                    MehspotAppContext.Instance.LogException(ex);
+                    MehspotAppContext.Instance.LogNetworkException(ex);
                     return new Result<object>
                     {
                         IsSuccess = false,
@@ -164,8 +178,9 @@ namespace Mehspot.Core
                     }
 
                 }
-                catch (HttpRequestException)
+                catch (HttpRequestException ex)
                 {
+                    MehspotAppContext.Instance.LogNetworkException(ex);
                     return new Result<TResult>
                     {
                         IsSuccess = false,
@@ -174,6 +189,7 @@ namespace Mehspot.Core
                 }
                 catch (Exception ex)
                 {
+                    MehspotAppContext.Instance.LogNetworkException(ex);
                     return new Result<TResult>
                     {
                         IsSuccess = false,

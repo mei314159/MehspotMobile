@@ -62,7 +62,7 @@ namespace Mehspot.Core
                 await this.LoadCellsAsync();
                 controller.ReloadData();
             }
-            else
+            else if (!profileResult.IsNetworkIssue)
             {
                 controller.ViewHelper.ShowAlert("Error", "Can not load profile data");
             }
@@ -100,7 +100,7 @@ namespace Mehspot.Core
                     }
                 });
             }
-            else
+            else if (!result.IsNetworkIssue)
             {
                 var error = result.ModelState?.ModelState?.Select(a => a.Value?.FirstOrDefault())?.FirstOrDefault();
                 message = error != null ? error : result.ErrorMessage;
@@ -139,7 +139,7 @@ namespace Mehspot.Core
                                      {
                                          controller.Dismiss();
                                      }
-                                     else
+                                     else if (!result.IsNetworkIssue)
                                      {
                                          controller.ViewHelper.ShowAlert("Error", result.ErrorMessage);
                                      }

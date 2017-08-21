@@ -3,14 +3,12 @@ using Android.App;
 using Android.Content;
 using Android.Gms.Gcm;
 using Android.Gms.Iid;
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Util;
 using Mehspot.Core;
 using Mehspot.Core.DTO.Push;
 using Mehspot.Core.Push;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Mehspot.AndroidApp
 {
@@ -73,7 +71,6 @@ namespace Mehspot.AndroidApp
                  !oldDeviceToken.Equals(token) ||
                  !MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend))
             {
-
                 MehspotAppContext.Instance.DataStorage.PushDeviceTokenSentToBackend = false;
                 MehspotAppContext.Instance.DataStorage.OldPushToken = oldDeviceToken;
                 MehspotAppContext.Instance.DataStorage.PushToken = token;

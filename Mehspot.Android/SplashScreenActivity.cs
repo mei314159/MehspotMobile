@@ -6,6 +6,7 @@ using Android.Content;
 using Android.OS;
 using Mehspot.AndroidApp.Activities;
 using Mehspot.AndroidApp.Core;
+using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
 
 namespace Mehspot.AndroidApp

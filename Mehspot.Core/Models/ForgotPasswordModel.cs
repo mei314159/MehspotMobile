@@ -38,7 +38,7 @@ namespace Mehspot.Core.Models
                         OnSuccess(result);
                     }
                 }
-                else
+                else if (!result.IsNetworkIssue)
                 {
                     ViewHelper.ShowAlert("Authentication error", result.ErrorMessage);
                 }

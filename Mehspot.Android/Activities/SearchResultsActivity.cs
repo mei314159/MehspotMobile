@@ -125,7 +125,8 @@ namespace Mehspot.AndroidApp
 
 		void OnLoadingError(Mehspot.Core.DTO.Result result)
 		{
-			this.ViewHelper.ShowAlert("Search Error", "Please check if you set your Zip Code and Subdivision in your profile.");
+            if (!result.IsNetworkIssue)
+			    this.ViewHelper.ShowAlert("Search Error", "Please check if you set your Zip Code and Subdivision in your profile.");
 		}
 
 		private void LoadingMoreStarted()

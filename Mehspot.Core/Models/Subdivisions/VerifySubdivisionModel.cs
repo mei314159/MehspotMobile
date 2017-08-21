@@ -53,7 +53,7 @@ namespace Mehspot.Core.Models.Subdivisions
                 this.controller.SaveButtonEnabled = true;
                 controller.ViewHelper.HideOverlay();
             }
-            else
+            else if (!optionsResult.IsNetworkIssue)
             {
                 controller.ViewHelper.HideOverlay();
                 controller.ViewHelper.ShowAlert("Error", optionsResult.ErrorMessage);
@@ -142,10 +142,9 @@ namespace Mehspot.Core.Models.Subdivisions
                 this.controller.OnSubdivisionVerified(controller.Subdivision, !verify);
 
             }
-            else
+            else if (!result.IsNetworkIssue)
             {
                 controller.ViewHelper.ShowAlert("Error", result.ErrorMessage);
-
             }
         }
 

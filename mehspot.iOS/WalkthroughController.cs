@@ -18,7 +18,8 @@ namespace mehspot.iOS
 		private WalkthroughStep1Controller step1;
 		private WalkthroughStep2Controller step2;
 		private WalkthroughStep3Controller step3;
-		private WalkthroughStep4Controller step4;
+		private WalkthroughStep4Controller step4;
+
 		ProfileService profileService;
 
 		ProfileDto profile;
@@ -69,7 +70,7 @@ namespace mehspot.iOS
 				step2.ZipCode = profile.Zip;
 				step2.SelectedSubdivisionId = profile.SubdivisionId;
 			}
-			else
+			else if (!result.IsNetworkIssue)
 			{
 				viewHelper.ShowAlert("Error", "Can not load profile");
 			}
@@ -142,7 +143,7 @@ namespace mehspot.iOS
 					View.Window.SwapController(targetViewController);
 				});
 			}
-			else
+			else if (!result.IsNetworkIssue)
 			{
 				viewHelper.ShowAlert("Error", "Can not save user profile");
 				viewHelper.HideOverlay();
@@ -153,7 +154,7 @@ namespace mehspot.iOS
 		async Task UploadProfilePictureAsync(Stream photoStream)
 		{
 			var photoResult = await profileService.UploadProfileImageAsync(photoStream).ConfigureAwait(false);
-			if (photoResult != null && !photoResult.IsSuccess)
+            if (photoResult != null && !photoResult.IsSuccess && !photoResult.IsNetworkIssue)
 			{
 				viewHelper.ShowAlert("Error", "Can not save profile picture");
 				viewHelper.HideOverlay();

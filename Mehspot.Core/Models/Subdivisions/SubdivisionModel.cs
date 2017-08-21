@@ -117,11 +117,11 @@ namespace Mehspot.Core.Models.Subdivisions
 
             if (string.IsNullOrWhiteSpace(DTO.Name))
             {
-                controller.ViewHelper.ShowAlert("Error", "Enter subdivision name");
+                controller.ViewHelper.ShowAlert("Validation Error", "Enter subdivision name");
             }
             else if (string.IsNullOrWhiteSpace(DTO.Address.FormattedAddress))
             {
-                controller.ViewHelper.ShowAlert("Error", "Enter subdivision address");
+                controller.ViewHelper.ShowAlert("Validation Error", "Enter subdivision address");
             }
             else
             {
@@ -154,7 +154,7 @@ namespace Mehspot.Core.Models.Subdivisions
                 {
                     controller.DismissViewController(DTO);
                 }
-                else
+                else if (!result.IsNetworkIssue)
                 {
                     var error = result.ModelState?.ModelState?.Select(a => a.Value?.FirstOrDefault())?.FirstOrDefault();
                     var message = error != null ? error : result.ErrorMessage;
