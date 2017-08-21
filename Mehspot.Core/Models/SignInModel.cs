@@ -43,7 +43,7 @@ namespace Mehspot.Core.Models
                     await this.SignedInInternalAsync(authenticationResult).ConfigureAwait(false);
                     viewHelper.HideOverlay();
                 }
-                else
+                else if (!authenticationResult.IsNetworkIssue)
                 {
                     viewHelper.ShowAlert("Authentication error", authenticationResult.ErrorMessage);
                     viewHelper.HideOverlay();
@@ -62,7 +62,7 @@ namespace Mehspot.Core.Models
                 await this.SignedInInternalAsync(authenticationResult).ConfigureAwait(false);
                 viewHelper.HideOverlay();
             }
-            else
+            else if (!authenticationResult.IsNetworkIssue)
             {
                 SignInError?.Invoke(authenticationResult);
                 viewHelper.ShowAlert("Authentication error", authenticationResult.ErrorMessage);

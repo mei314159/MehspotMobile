@@ -288,11 +288,12 @@ namespace Mehspot.AndroidApp.Activities
                 var intent = new Intent(this, typeof(MainActivity));
                 StartActivity(intent);
             }
-            else
+            else if (!result.IsNetworkIssue)
             {
                 viewHelper.ShowAlert("Error", "Can not save user profile");
-                viewHelper.HideOverlay();
             }
+
+			viewHelper.HideOverlay();
         }
 
         private void PictureButtonClick(object sender, EventArgs e)
@@ -358,7 +359,7 @@ namespace Mehspot.AndroidApp.Activities
                 profile = result.Data;
                 SetProfileData();
             }
-            else
+            else if (!result.IsNetworkIssue)
             {
                 viewHelper.ShowAlert("Error", "Can not load profile");
             }
@@ -375,7 +376,7 @@ namespace Mehspot.AndroidApp.Activities
                     subdivisionsLoaded = true;
                     Subdivisions = subdivisionsResult.Data;
                 }
-                else
+                else if (!subdivisionsResult.IsNetworkIssue)
                 {
                     viewHelper.ShowAlert("Error", subdivisionsResult.ErrorMessage);
                 }
@@ -411,7 +412,7 @@ namespace Mehspot.AndroidApp.Activities
                 stream.Dispose();
             }
 
-            if (photoResult != null && !photoResult.IsSuccess)
+            if (photoResult != null && !photoResult.IsSuccess && !photoResult.IsNetworkIssue)
             {
                 viewHelper.ShowAlert("Error", "Can not save profile picture");
                 viewHelper.HideOverlay();

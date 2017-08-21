@@ -51,7 +51,7 @@ namespace Mehspot.Core.Models
                     await InitializeDataAsync();
                 }
             }
-            else
+            else if (!profileResult.IsNetworkIssue)
             {
                 viewController.ViewHelper.ShowAlert("Error", "Can not load data");
             }

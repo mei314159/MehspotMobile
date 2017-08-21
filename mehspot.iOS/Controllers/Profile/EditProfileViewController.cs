@@ -166,7 +166,7 @@ namespace Mehspot.iOS
             {
                 await model.InitializeTableAsync(profileResult.Data).ConfigureAwait(false);
             }
-            else
+            else if (!profileResult.IsNetworkIssue)
             {
                 ViewHelper.ShowAlert("Error", "Can not load profile data");
             }

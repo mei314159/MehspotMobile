@@ -47,12 +47,9 @@ namespace Mehspot.Core.Models
 
                 if (result.IsSuccess)
                 {
-                    if (OnResetPasswordSuccess != null)
-                    {
-                        OnResetPasswordSuccess(result);
-                    }
+                    OnResetPasswordSuccess?.Invoke(result);
                 }
-                else
+                else if (!result.IsNetworkIssue)
                 {
                     viewHelper.ShowAlert("Authentication error", result.ErrorMessage);
                 }

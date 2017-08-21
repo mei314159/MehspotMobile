@@ -100,7 +100,7 @@ namespace Mehspot.Core.Models
                 LoadProfile();
 
             }
-            else
+            else if (!result.IsNetworkIssue)
             {
                 controller.ViewHelper.ShowAlert("Error", "Can not load profile data");
                 return;

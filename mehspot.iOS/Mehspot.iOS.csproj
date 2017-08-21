@@ -408,6 +408,7 @@
     <Compile Include="NoResultsView.designer.cs">
       <DependentUpon>NoResultsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ErrorView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

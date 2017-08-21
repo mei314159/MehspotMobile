@@ -68,7 +68,8 @@ namespace Mehspot.Core.Services
             {
                 ErrorMessage = result.ErrorMessage,
                 IsSuccess = result.IsSuccess,
-                ModelState = result.ModelState
+                ModelState = result.ModelState,
+                IsNetworkIssue = result.IsNetworkIssue
             };
 
             if (result.IsSuccess)
@@ -97,7 +98,8 @@ namespace Mehspot.Core.Services
             {
                 ErrorMessage = result.ErrorMessage,
                 IsSuccess = result.IsSuccess,
-                ModelState = result.ModelState
+				ModelState = result.ModelState,
+				IsNetworkIssue = result.IsNetworkIssue
             };
             if (result.IsSuccess)
             {

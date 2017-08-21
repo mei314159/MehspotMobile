@@ -71,7 +71,7 @@ namespace Mehspot.Core.Models
                     BadgeHelper.Items = this.Items = result.Data;
                     viewController.DisplayBadges();
                 }
-                else
+                else if (!result.IsNetworkIssue)
                 {
                     viewController.ViewHelper.ShowAlert("Error", "Can not load badges");
                 }

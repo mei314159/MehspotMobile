@@ -24,30 +24,45 @@ namespace Mehspot.Core.Push
             var uri = new Uri (Constants.ApiHost + "/api/Push/RegisterToken");
 
             using (var webClient = new HttpClient ()) {
-                try {
-                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
+                try
+                {
+                    webClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", this._applicationDataStorage.AuthInfo.AccessToken);
 
-                    var data = new Dictionary<string, string> ();
-                    data.Add ("oldToken", oldToken);
-                    data.Add ("token", newToken);
-                    data.Add ("osType", _applicationDataStorage.OsType.ToString ());
+                    var data = new Dictionary<string, string>();
+                    data.Add("oldToken", oldToken);
+                    data.Add("token", newToken);
+                    data.Add("osType", _applicationDataStorage.OsType.ToString());
 
-                    var response = await webClient.PostAsync (uri, new FormUrlEncodedContent (data)).ConfigureAwait (false);
-                    var responseString = await response.Content.ReadAsStringAsync ().ConfigureAwait (false);
-                    if (response.StatusCode == HttpStatusCode.OK) {
-                        return new Result {
+                    var response = await webClient.PostAsync(uri, new FormUrlEncodedContent(data)).ConfigureAwait(false);
+                    var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        return new Result
+                        {
                             IsSuccess = true,
                             ErrorMessage = null
                         };
-                    } else {
-                        var errorResponse = JsonConvert.DeserializeObject<ErrorDto> (responseString);
-                        return new Result {
-                            IsSuccess = false,
-                            ErrorMessage = errorResponse.ErrorMessage
-                        };
                     }
 
-                } catch (Exception ex) {
+                    var errorResponse = JsonConvert.DeserializeObject<ErrorDto>(responseString);
+                    return new Result
+                    {
+                        IsSuccess = false,
+                        ErrorMessage = errorResponse.ErrorMessage
+                    };
+
+                }
+                catch (WebException ex)
+				{
+                    MehspotAppContext.Instance.LogNetworkException(ex);
+					return new Result
+					{
+						IsSuccess = false,
+						ErrorMessage = ex.Message,
+                        IsNetworkIssue = true
+					};
+                }
+                catch (Exception ex) {
                     return new Result {
                         IsSuccess = false,
                         ErrorMessage = ex.Message

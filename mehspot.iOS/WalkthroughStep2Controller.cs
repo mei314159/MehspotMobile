@@ -136,7 +136,7 @@ namespace mehspot.iOS
 					this.subdivisionsLoaded = true;
 					Subdivisions = subdivisionsResult.Data;
 				}
-				else
+                else if (!subdivisionsResult.IsNetworkIssue)
 				{
 					viewHelper.ShowAlert("Error", subdivisionsResult.ErrorMessage);
 				}

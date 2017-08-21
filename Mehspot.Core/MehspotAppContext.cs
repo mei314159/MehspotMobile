@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Mehspot.Core.Auth;
 using Mehspot.Core.Contracts;
@@ -38,6 +40,7 @@ namespace Mehspot.Core
         public IApplicationDataStorage DataStorage { get; private set; }
 
         public event Action<Exception> OnException;
+        public event Action<Exception> OnNetworkException;
 
         public AccountService AuthManager { get; private set; }
 
@@ -82,6 +85,11 @@ namespace Mehspot.Core
         {
             OnException?.Invoke(ex);
         }
+
+		public void LogNetworkException(Exception ex)
+		{
+			OnNetworkException(ex);
+		}
 
         void HubConnection_StateChanged(StateChange obj)
         {

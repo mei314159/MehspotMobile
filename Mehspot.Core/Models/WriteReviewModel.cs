@@ -23,7 +23,7 @@ namespace Mehspot.Core.Models
             {
                 this.controller.NotifySaved(result.Data);
             }
-            else
+            else if (!result.IsNetworkIssue)
             {
                 controller.ViewHelper.ShowAlert("Meh...  Sorry for the trouble.", "Mehspot support has been notified of this issue." + Environment.NewLine + "Please try again in a later time.");
             }

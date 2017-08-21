@@ -55,7 +55,7 @@ namespace Mehspot.Core.Models
                 {
                     SignedUp?.Invoke(result);
                 }
-                else
+                else if (!result.IsNetworkIssue)
                 {
                     var modelStateError = result.ModelState?.ModelState?.Count > 0 ? result.ModelState.ModelState.First().Value.FirstOrDefault() : result.ErrorMessage;
                     viewHelper.ShowAlert("Sign Up error", modelStateError);

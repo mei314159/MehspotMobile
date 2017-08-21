@@ -17,16 +17,18 @@ namespace Mehspot.Core.Services
 
         public async Task<Result<ProfileDto>> LoadProfileAsync()
         {
-            var profile = await this.GetAsync<ProfileDto>("Profile/Get");
-            MehspotAppContext.Instance.DataStorage.Profile = profile.Data;
-            return profile;
+            var result = await this.GetAsync<ProfileDto>("Profile/Get");
+			if (result.IsSuccess)
+                MehspotAppContext.Instance.DataStorage.Profile = result.Data;
+            return result;
         }
 
         public async Task<Result<UserProfileSummaryDTO>> LoadProfileSummaryAsync(string userId)
         {
-            var userProfile = await this.GetAsync<UserProfileSummaryDTO>($"Profile/Summary?userId={userId}");
-            MehspotAppContext.Instance.DataStorage.UserProfile = userProfile.Data;
-            return userProfile;
+            var result = await this.GetAsync<UserProfileSummaryDTO>($"Profile/Summary?userId={userId}");
+            if (result.IsSuccess)
+                MehspotAppContext.Instance.DataStorage.UserProfile = result.Data;
+            return result;
         }
 
         public async Task<Result<ProfileDto>> UpdateAsync(ProfileDto profile)

@@ -9,6 +9,8 @@ using Android.Support.V7.App;
 using BottomNavigationBar;
 using BottomNavigationBar.Listeners;
 using HockeyApp.Android;
+using Mehspot.AndroidApp.Wrappers;
+using Mehspot.Core;
 
 namespace Mehspot.AndroidApp
 {
@@ -17,10 +19,14 @@ namespace Mehspot.AndroidApp
     {
         internal BottomBar BottomBar;
         private Dictionary<Android.Support.V4.App.Fragment, bool> fragments;
+        private ActivityHelper activityHelper;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.MainActivity);
+            this.activityHelper = new ActivityHelper(this);
+            MehspotAppContext.Instance.OnNetworkException += Instance_OnNetworkException;
             fragments = new Dictionary<Android.Support.V4.App.Fragment, bool>{
                 {new BadgesFragment(), false},
                 {new MessageBoardFragment(), false},
@@ -77,43 +83,51 @@ namespace Mehspot.AndroidApp
 
         public void OnMenuTabSelected(int menuItemId)
         {
-            Android.Support.V4.App.Fragment currentFragment;
-            switch (menuItemId)
+            RunOnUiThread(() =>
             {
-                case Resource.BottomBar.badges:
-                    {
-                        currentFragment = fragments.Keys.ElementAt(0);
-                        break;
-                    }
-                case Resource.BottomBar.messages:
-                    {
-                        currentFragment = fragments.Keys.ElementAt(1);
-                        break;
-                    }
-                case Resource.BottomBar.profile:
-                    {
-                        currentFragment = fragments.Keys.ElementAt(2);
-                        break;
-                    }
-                default:
-                    return;
-            }
+                Android.Support.V4.App.Fragment currentFragment;
+                switch (menuItemId)
+                {
+                    case Resource.BottomBar.badges:
+                        {
+                            currentFragment = fragments.Keys.ElementAt(0);
+                            break;
+                        }
+                    case Resource.BottomBar.messages:
+                        {
+                            currentFragment = fragments.Keys.ElementAt(1);
+                            break;
+                        }
+                    case Resource.BottomBar.profile:
+                        {
+                            currentFragment = fragments.Keys.ElementAt(2);
+                            break;
+                        }
+                    default:
+                        return;
+                }
 
-            var fragmentTransaction = SupportFragmentManager.BeginTransaction();
-            fragmentTransaction.Replace(Resource.MainActivity.Root, currentFragment);
-            fragmentTransaction.SetTransition(Android.Support.V4.App.FragmentTransaction.TransitFragmentFade);
-            fragmentTransaction.AddToBackStack(null);
-            fragmentTransaction.Commit();
+                var fragmentTransaction = SupportFragmentManager.BeginTransaction();
+                fragmentTransaction.Replace(Resource.MainActivity.Root, currentFragment);
+                fragmentTransaction.SetTransition(Android.Support.V4.App.FragmentTransaction.TransitFragmentFade);
+                fragmentTransaction.AddToBackStack(null);
+                fragmentTransaction.Commit();
 
-            foreach (var fragment in fragments.Keys.ToArray())
-            {
-                fragments[fragment] = fragment == currentFragment;
-            }
+                foreach (var fragment in fragments.Keys.ToArray())
+                {
+                    fragments[fragment] = fragment == currentFragment;
+                }
+            });
         }
 
         public void OnMenuTabReSelected(int menuItemId)
         {
             //throw new NotImplementedException();
+        }
+
+        void Instance_OnNetworkException(Exception ex)
+        {
+            this.activityHelper.ShowAlert("Connection Error", "Sorry, no Internet connectivity detected. Please reconnect and try again.");
         }
     }
 }

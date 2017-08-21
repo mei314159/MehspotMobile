@@ -119,7 +119,7 @@ namespace Mehspot.Core.Models
                 {
                     viewController.ViewHelper.ShowAlert("Success", "Profile successfully saved");
                 }
-                else
+                else if (!result.IsNetworkIssue)
                 {
                     var error = result.ModelState?.ModelState?.SelectMany(a => a.Value)?.FirstOrDefault();
                     var message = error != null ? error : result.ErrorMessage;
