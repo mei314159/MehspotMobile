@@ -81,22 +81,17 @@ namespace Mehspot.Core.Models.Subdivisions
         {
             controller.ViewHelper.ShowOverlay("Saving...");
 
-            Result result;
+            Result<SubdivisionDTO> result;
             var verify = Result.NameOptionId.HasValue && Result.AddressOptionId.HasValue;
+            SubdivisionOptionDTO dto = null;
             if (verify)
             {
-                var verifyResult = await this.subdivisionService.VerifyOptionAsync(Result.NameOptionId.Value);
-                if (verifyResult.IsSuccess)
-                {
-                    controller.Subdivision = verifyResult.Data;
-                }
-
-                result = verifyResult;
+                result = await this.subdivisionService.VerifyOptionAsync(Result.NameOptionId.Value).ConfigureAwait(false);
             }
             else
             {
                 var zip = controller.ZipCode ?? this.PostalCode;
-                var dto = new SubdivisionOptionDTO();
+                dto = new SubdivisionOptionDTO();
                 dto.Name = Result.NameOptionId.HasValue ? options.First(a => a.Id == Result.NameOptionId).Name : Result.NewName;
 
                 if (string.IsNullOrWhiteSpace(dto.Name))
@@ -133,13 +128,13 @@ namespace Mehspot.Core.Models.Subdivisions
                     };
                 }
 
-                result = await this.subdivisionService.CreateOptionAsync(dto);
+                result = await this.subdivisionService.CreateOptionAsync(dto).ConfigureAwait(false);
             }
 
             controller.ViewHelper.HideOverlay();
             if (result.IsSuccess)
             {
-                this.controller.OnSubdivisionVerified(controller.Subdivision, !verify);
+                this.controller.OnSubdivisionVerified(result.Data, !verify);
 
             }
             else if (!result.IsNetworkIssue)

@@ -1,4 +1,4 @@
-using Foundation;
+﻿using Foundation;
 using System;
 using UIKit;
 using Mehspot.Core;
@@ -181,13 +181,18 @@ namespace Mehspot.iOS
 			model.OnGoToMessaging += GoToMessaging;
 		}
 
-		public override async void ViewWillAppear(bool animated)
+		public override void ViewWillAppear(bool animated)
 		{
 			SendMessageButton.SelectedSegment = 0;
-			await model.RefreshView();
-		}
+        }
 
-		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        public override async void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            await model.RefreshView();
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
 		{
 			if (segue.Identifier == "GoToMessagingSegue" && this.model.Profile != null)
 			{
