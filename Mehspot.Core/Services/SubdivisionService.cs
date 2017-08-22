@@ -71,9 +71,9 @@ namespace Mehspot.Core.Services
             return result;
         }
 
-        public async Task<Result> CreateOptionAsync(SubdivisionOptionDTO subdivisionOption)
+        public async Task<Result<SubdivisionDTO>> CreateOptionAsync(SubdivisionOptionDTO subdivisionOption)
         {
-            return await PostAsync<object>($"Subdivision/CreateOption", subdivisionOption).ConfigureAwait(false);
+            return await PostAsync<SubdivisionDTO>($"Subdivision/CreateOption", subdivisionOption).ConfigureAwait(false);
         }
     }
 }
