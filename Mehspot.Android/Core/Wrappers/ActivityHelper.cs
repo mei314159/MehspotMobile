@@ -11,38 +11,44 @@ namespace Mehspot.AndroidApp.Wrappers
     {
         Handler handler;
         ProgressDialog dialog;
-        readonly Context context;
+        readonly Activity activity;
 
-        public ActivityHelper(Context context)
+        public ActivityHelper(Activity context)
         {
-            this.context = context;
+            this.activity = context;
             this.handler = new Handler(Android.App.Application.Context.MainLooper);
         }
 
         public void ShowOverlay(string text, bool opaque = false)
         {
-            dialog = new ProgressDialog(context);
-            dialog.SetMessage(text);
-            dialog.SetProgressStyle(ProgressDialogStyle.Spinner);
-            dialog.SetCancelable(false);
-            dialog.Show();
+            activity.RunOnUiThread(() =>
+            {
+                dialog = new ProgressDialog(activity);
+                dialog.SetMessage(text);
+                dialog.SetProgressStyle(ProgressDialogStyle.Spinner);
+                dialog.SetCancelable(false);
+                dialog.Show();
+            });
         }
 
         public void HideOverlay()
         {
-            if (dialog != null && dialog.IsShowing)
+            activity.RunOnUiThread(() =>
             {
-                dialog.Hide();
-                dialog.Dispose();
-                dialog = null;
-            }
+                if (dialog != null && dialog.IsShowing)
+                {
+                    dialog.Hide();
+                    dialog.Dispose();
+                    dialog = null;
+                }
+            });
         }
 
         public void ShowAlert(string title, string text, Action action = null)
         {
             handler.Post(() =>
                 {
-                    var alert = new AlertDialog.Builder(context);
+                    var alert = new AlertDialog.Builder(activity);
                     alert.SetTitle(title);
                     alert.SetMessage(text);
                     alert.SetPositiveButton("OK", (senderAlert, args) => action?.Invoke());
@@ -54,7 +60,7 @@ namespace Mehspot.AndroidApp.Wrappers
         {
             handler.Post(() =>
                 {
-                    var alert = new AlertDialog.Builder(context);
+                    var alert = new AlertDialog.Builder(activity);
                     alert.SetTitle(title);
                     alert.SetMessage(text);
                     alert.SetNegativeButton("Cancel", (sender, e) => { });
