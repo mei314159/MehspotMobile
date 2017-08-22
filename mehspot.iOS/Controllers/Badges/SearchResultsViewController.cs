@@ -233,7 +233,8 @@ namespace Mehspot.iOS
 
 		void OnLoadingError(Result result)
 		{
-			new ViewHelper(this.View).ShowAlert("Search Error", "Please check if you set your Zip Code and Subdivision in your profile.");
+            if (!result.IsNetworkIssue)
+			    new ViewHelper(this.View).ShowAlert("Search Error", "Please check if you set your Zip Code and Subdivision in your profile.");
 		}
 
 		private void LoadingMoreStarted()

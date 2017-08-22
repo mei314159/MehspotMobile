@@ -307,9 +307,15 @@ namespace Mehspot.iOS
         {
             InvokeOnMainThread(() =>
             {
+				var topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
 
-                var y = UIApplication.SharedApplication.KeyWindow.RootViewController.PrefersStatusBarHidden() ? 0 : 20;
-				ErrorView.ShowInView(UIApplication.SharedApplication.KeyWindow.RootViewController.View, new CGPoint(0, y), "No Internet Connection");
+                while (topController.PresentedViewController != null)
+				{
+					topController = topController.PresentedViewController;
+				}
+
+				var y = topController.PrefersStatusBarHidden() ? 0 : 20;
+				ErrorView.ShowInView(topController.View, new CGPoint(0, y), "No Internet Connection");
             });
         }
     }
