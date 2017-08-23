@@ -11,6 +11,7 @@ using Mehspot.Core;
 using Mehspot.Core.Models;
 using Mehspot.Core.Services;
 using Mehspot.Core.DTO;
+using Mehspot.AndroidApp.Activities;
 
 namespace Mehspot.AndroidApp
 {
@@ -81,7 +82,7 @@ namespace Mehspot.AndroidApp
 
 		private void Model_SignedIn(AuthenticationResult result, ProfileDto profile)
 		{
-			this.StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+			this.StartActivity(new Intent(Application.Context, typeof(WalkthroughActivity)));
 		}
 	}
 }
