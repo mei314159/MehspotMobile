@@ -25,7 +25,7 @@ namespace Mehspot.Core.Services
             else
             {
                 result = await this.GetAsync<List<SubdivisionDTO>>("Subdivision/List?zipCode=" + zip);
-                if (result.IsSuccess)
+                if (result.IsSuccess && !cache.ContainsKey(zip))
                 {
                     cache.Add(zip, result);
                 }
