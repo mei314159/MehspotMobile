@@ -81,6 +81,7 @@ namespace Mehspot.Core.Models
                                 profile.Zip = a;
                                 ZipCell_ValueChanged(c, a, subdivisionCell);
                             }, "Zip", KeyboardType.Numeric, mask: "#####");
+                zipCell.MaxLength = 5;
                 subdivisionCell.IsReadOnly = string.IsNullOrWhiteSpace(profile.Zip) || !zipCell.IsValid;
                 Cells.Add((TView)zipCell);
                 Cells.Add((TView)subdivisionCell);
