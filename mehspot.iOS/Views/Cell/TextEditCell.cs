@@ -68,6 +68,7 @@ namespace Mehspot.iOS.Views
 			set
 			{
 				TextView.Text = value;
+                UpdateSize();
 			}
 		}
 
@@ -187,7 +188,7 @@ namespace Mehspot.iOS.Views
 			return false;
 		}
 
-		void UpdateSize()
+		public void UpdateSize()
 		{
 			var sizeThatFitsTextView = this.TextView.SizeThatFits(new CGSize(this.TextView.Frame.Size.Width, int.MaxValue));
 			var height = sizeThatFitsTextView.Height > 100 ? 100 : sizeThatFitsTextView.Height < 43 ? 43 : sizeThatFitsTextView.Height;

@@ -112,6 +112,11 @@ namespace Mehspot.AndroidApp
         {
             this.TextInput.SetKeyboardType(type, DefaultMaxLength);
         }
+
+        public void UpdateSize()
+        {
+            
+        }
     }
 
 }

@@ -12,6 +12,9 @@ using Mehspot.Core.Contracts.ViewControllers;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.Models.Subdivisions;
 using Mehspot.iOS.Core.Builders;
+using Mehspot.Core.Builders;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Mehspot.iOS.Controllers
 {
@@ -70,6 +73,8 @@ namespace Mehspot.iOS.Controllers
             this.MainTable.TableFooterView = new UIView();
             MainTable.DataSource = this;
             MainTable.Delegate = this;
+            MainTable.RowHeight = UITableView.AutomaticDimension;
+            MainTable.EstimatedRowHeight = 44;
             ViewHelper = new ViewHelper(this.View);
 
             mapView = new MapView(MapWrapperView.Bounds);
@@ -87,6 +92,7 @@ namespace Mehspot.iOS.Controllers
             mapView.AutoresizingMask = UIViewAutoresizing.All;
             MapWrapperView.AutoresizingMask = UIViewAutoresizing.All;
             model = new VerifySubdivisionModel<UITableViewCell>(this, new SubdivisionService(MehspotAppContext.Instance.DataStorage), new IosCellBuilder());
+            model.Change += UpdateTableSize;
         }
 
         public override async void ViewDidAppear(bool animated)
@@ -96,7 +102,13 @@ namespace Mehspot.iOS.Controllers
 
         public void DisplayCells()
         {
-            MainTable.ReloadData();
+            UIView.Animate(0, MainTable.ReloadData, UpdateTableSize);
+        }
+
+        private void UpdateTableSize()
+        {
+            MainTable.Frame = new CoreGraphics.CGRect(MainTable.Frame.Location, MainTable.ContentSize);
+            View.LayoutIfNeeded();
         }
 
         void MapView_DraggingMarkerStarted(object sender, GMSMarkerEventEventArgs e)
@@ -116,6 +128,7 @@ namespace Mehspot.iOS.Controllers
 
             var firstResult = response.FirstResult;
             model.ReverseGeocodeCallback(firstResult.Coordinate.Latitude, firstResult.Coordinate.Longitude, firstResult.Country, firstResult.PostalCode, firstResult?.Lines);
+            UpdateTableSize();
         }
 
         async partial void SaveButtonTouched(UIBarButtonItem sender)
@@ -140,7 +153,8 @@ namespace Mehspot.iOS.Controllers
 
         public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            return model.Sections[indexPath.Section].Rows[indexPath.Row];
+            UITableViewCell uITableViewCell = model.Sections[indexPath.Section].Rows[indexPath.Row];
+            return uITableViewCell;
         }
 
         [Export("tableView:titleForHeaderInSection:")]
@@ -152,7 +166,7 @@ namespace Mehspot.iOS.Controllers
         [Export("numberOfSectionsInTableView:")]
         public nint NumberOfSections(UITableView tableView)
         {
-            return model.Sections.Count;
+            return model?.Sections?.Count ?? 0;
         }
 
         public void ShowLocation(double latitude, double longitude)
