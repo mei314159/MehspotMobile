@@ -48,8 +48,9 @@ namespace Mehspot.AndroidApp.Activities
         private ImageView UserImage;
         private Button Continue1Button;
 
-        private bool subdivisionSelectorEnabled;
-        private bool subdivisionsLoaded;
+        private volatile bool subdivisionSelectorEnabled;
+        private volatile bool subdivisionsLoaded;
+        private volatile bool subdivisionsLoading;
         List<SubdivisionDTO> Subdivisions;
         private ExtendedEditText ZipField;
         private Button SubdivisionButton;
@@ -149,7 +150,7 @@ namespace Mehspot.AndroidApp.Activities
                 case 0:
                     UserImage = view.FindViewById<ImageView>(Resource.Walkthrough1.ProfilePicture);
                     UserImage.ClipToOutline = true;
-                    SetProfileData();
+                    SetProfileDataAsync();
                     Continue1Button = view.FindViewById<Button>(Resource.Walkthrough1.ContinueButton);
                     view.FindViewById<Button>(Resource.Walkthrough1.pictureButton).Click += PictureButtonClick;
                     view.FindViewById<Button>(Resource.Walkthrough1.ContinueButton).Click += Continue1Button_Click;
@@ -159,7 +160,7 @@ namespace Mehspot.AndroidApp.Activities
                     Continue2Button.Click += Continue2Button_Click;
                     ZipField = view.FindViewById<ExtendedEditText>(Resource.Walkthrough2.zipCode);
                     ZipField.Mask = "#####";
-                    SetProfileData();
+                    SetProfileDataAsync();
                     ZipField.TextChanged += ZipCode_TextChangedAsync;
                     SubdivisionButton = FindViewById<Button>(Resource.Walkthrough2.subdivisionButton);
                     SubdivisionButton.Click += SubdivisionButton_Click;
@@ -187,13 +188,16 @@ namespace Mehspot.AndroidApp.Activities
             }
         }
 
-        private void SetProfileData()
+        private async void SetProfileDataAsync()
         {
             if (ZipField != null)
             {
-                ZipField.TextChanged -= ZipCode_TextChangedAsync;
                 ZipField.Text = profile?.Zip;
-                ZipField.TextChanged += ZipCode_TextChangedAsync;
+                if (ZipField.IsValid)
+                {
+                    subdivisionSelectorEnabled = false;
+                    await LoadSubdivisionsAsync();
+                }
             }
 
             if (UserImage != null)
@@ -293,7 +297,7 @@ namespace Mehspot.AndroidApp.Activities
                 viewHelper.ShowAlert("Error", "Can not save user profile");
             }
 
-			viewHelper.HideOverlay();
+            viewHelper.HideOverlay();
         }
 
         private void PictureButtonClick(object sender, EventArgs e)
@@ -319,9 +323,13 @@ namespace Mehspot.AndroidApp.Activities
             {
                 var imm = (InputMethodManager)ZipField.Context.GetSystemService(InputMethodService);
                 var result = imm.HideSoftInputFromWindow(ZipField.WindowToken, 0);
-            }
 
-            await LoadSubdivisionsAsync();
+                await LoadSubdivisionsAsync();
+            }
+            else
+            {
+                subdivisionSelectorEnabled = false;
+            }
         }
 
         void SubdivisionButton_Click(object sender, EventArgs e)
@@ -357,7 +365,7 @@ namespace Mehspot.AndroidApp.Activities
             if (result.IsSuccess)
             {
                 profile = result.Data;
-                SetProfileData();
+                SetProfileDataAsync();
             }
             else if (!result.IsNetworkIssue)
             {
