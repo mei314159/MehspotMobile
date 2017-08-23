@@ -8,6 +8,7 @@ namespace Mehspot.Core.Builders
         bool IsValid { get; }
         string Text { get; set; }
         bool Multiline { get; set; }
+        int? MaxLength { get; set; }
         void SetKeyboardType(KeyboardType type);
     }
 
