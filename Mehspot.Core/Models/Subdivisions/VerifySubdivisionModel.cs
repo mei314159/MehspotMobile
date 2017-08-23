@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace Mehspot.Core.Models.Subdivisions
         string Country;
         string PostalCode;
 
+        public event Action Change;
 
         public VerifySubdivisionModel(IVerifySubdivisionController controller, SubdivisionService subdivisionService, CellBuilder<TCell> cellBuilder)
         {
@@ -167,7 +169,7 @@ namespace Mehspot.Core.Models.Subdivisions
             namePickerCell = cellBuilder.GetPickerCell(Result.NameOptionId, NameOptionChanged, "Subdivision Name", nameOptions.ToArray(), "Other");
             nameSection.Rows.Add(namePickerCell);
 
-            otherNameCell = cellBuilder.GetTextEditCell(Result.NewName, (c, a) => Result.NewName = a, "Other", KeyboardType.Default, "New Subdivision Name");
+            otherNameCell = cellBuilder.GetTextEditCell(Result.NewName, (c, a) => { Result.NewName = a; Change?.Invoke(); }, "Other", KeyboardType.Default, "New name");
             otherNameCell.Hidden = Result.NameOptionId.HasValue;
             otherNameCell.Multiline = false;
             nameSection.Rows.Add((TCell)otherNameCell);
@@ -177,7 +179,7 @@ namespace Mehspot.Core.Models.Subdivisions
             addressPickerCell = cellBuilder.GetPickerCell(Result.AddressOptionId, AddressOptionChanged, "Subdivision Location", addressOptions.ToArray(), "Other");
             adressSection.Rows.Add(addressPickerCell);
 
-            otherAddressCell = cellBuilder.GetTextEditCell(Result.NewName, (c, a) => Result.NewName = a, "Other", KeyboardType.Default, "New Subdivision Name");
+            otherAddressCell = cellBuilder.GetTextEditCell(Result.NewName, (c, a) => { Result.NewName = a; Change?.Invoke(); }, "Other", KeyboardType.Default, "New address");
             otherAddressCell.Hidden = Result.AddressOptionId.HasValue;
             otherAddressCell.Multiline = false;
             adressSection.Rows.Add((TCell)otherAddressCell);
@@ -193,6 +195,7 @@ namespace Mehspot.Core.Models.Subdivisions
         {
             Result.NameOptionId = value;
             otherNameCell.Hidden = value.HasValue;
+            Change?.Invoke();
         }
 
         void AddressOptionChanged(int? value)
@@ -211,6 +214,7 @@ namespace Mehspot.Core.Models.Subdivisions
                 controller.MarkerDraggable = true;
                 controller.LoadPlaceByCoordinates(Constants.Location.DefaultLatitude, Constants.Location.DefaultLongitude);
             }
+            Change?.Invoke();
         }
     }
 }
