@@ -79,6 +79,7 @@ namespace Mehspot.AndroidApp.Activities
             };
 
             viewPager = (ViewPager)FindViewById(Resource.Id.viewPager);
+            viewPager.OffscreenPageLimit = 100;
             dotsLayout = (LinearLayout)FindViewById(Resource.Id.layoutPanel);
             AddDots(0);
 
@@ -321,6 +322,7 @@ namespace Mehspot.AndroidApp.Activities
         {
             if (ZipField.IsValid)
             {
+                profile.Zip = ZipField.Text;
                 var imm = (InputMethodManager)ZipField.Context.GetSystemService(InputMethodService);
                 var result = imm.HideSoftInputFromWindow(ZipField.WindowToken, 0);
 
