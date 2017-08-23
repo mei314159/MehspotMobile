@@ -13,20 +13,23 @@ using Xamarin.Facebook;
 using Xamarin.Facebook.Login;
 using Xamarin.Facebook.Login.Widget;
 using Mehspot.Core.Services;
+using Mehspot.AndroidApp.Activities;
 
 namespace Mehspot.AndroidApp
 {
 	[Activity(Label = "Sign In")]
 	public class SignInActivity : Activity, IFacebookCallback
-	{
-		SignInModel model;
-		ICallbackManager callbackManager;
+    {
+		ActivityHelper activityHelper;
+        SignInModel model;
+        ICallbackManager callbackManager;
 
-		protected override void OnCreate(Bundle savedInstanceState)
-		{
-			base.OnCreate(savedInstanceState);
-			SetContentView(Resource.Layout.SignIn);
-			model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), new ActivityHelper(this));
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.SignIn);
+            activityHelper = new ActivityHelper(this);
+            model = new SignInModel(MehspotAppContext.Instance.AuthManager, new ProfileService(MehspotAppContext.Instance.DataStorage), activityHelper);
 			model.SignedIn += Model_SignedIn;
 
 			FindViewById<Button>(Resource.Id.SignIn_Button).Click += SignInButton_Click;
@@ -58,7 +61,19 @@ namespace Mehspot.AndroidApp
 
 		private void Model_SignedIn(AuthenticationResult result, Mehspot.Core.DTO.ProfileDto profile)
 		{
-			this.StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+			
+            this.activityHelper.ShowOverlay("Wait...");
+            RunOnUiThread(() =>
+			{
+				if (string.IsNullOrWhiteSpace(profile.Zip) || profile.SubdivisionId == null || string.IsNullOrWhiteSpace(profile.ProfilePicturePath))
+				{
+                    this.StartActivity(new Intent(Application.Context, typeof(WalkthroughActivity)));
+				}
+				else
+				{
+					this.StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+				}
+			});
 		}
 
 		public void OnCancel()
