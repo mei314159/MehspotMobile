@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Android.Animation;
 using Android.Content;
 using Android.OS;
@@ -8,6 +9,7 @@ using Mehspot.AndroidApp.Resources.layout;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.DTO;
+using Mehspot.Core.Models;
 using Mehspot.Core.Services.Badges;
 
 namespace Mehspot.AndroidApp
@@ -16,13 +18,13 @@ namespace Mehspot.AndroidApp
     {
 
         private BadgeGroup key;
-        private IReadOnlyCollection<BadgeInfo> Badges;
         private List<BadgeSummaryItem> wrapList = new List<BadgeSummaryItem>();
+        readonly BadgesModel model;
 
-        public BadgeGroupFragment(BadgeGroup key, IReadOnlyCollection<BadgeInfo> value)
+        public BadgeGroupFragment(BadgeGroup key, BadgesModel model)
         {
+            this.model = model;
             this.key = key;
-            this.Badges = value;
         }
 
         public IViewHelper ViewHelper { get; private set; }
@@ -108,7 +110,8 @@ namespace Mehspot.AndroidApp
             this.ViewHelper.ShowOverlay("Wait...");
             var wrapper = this.View.FindViewById<LinearLayout>(Resource.Id.badgesWrapper);
             wrapper.RemoveAllViews();
-            foreach (var item in this.Badges)
+            var badges = model.BadgeHelper.GetGroups().Single(a => a.Key == this.key).Value;
+            foreach (var item in badges)
             {
                 var bubble = CreateItem(item);
                 wrapper.AddView(bubble);

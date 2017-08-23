@@ -43,13 +43,13 @@ namespace Mehspot.AndroidApp
             model = new BadgesModel(new BadgeService(MehspotAppContext.Instance.DataStorage), this);
             model.LoadingStart += Model_LoadingStart;
             model.LoadingEnd += Model_LoadingEnd;
-			model.RefreshAsync(model.Items == null, true);
         }
 
         public override void OnStart()
         {
             base.OnStart();
             (this.Activity as MainActivity)?.SelectTab(this.GetType());
+			model.RefreshAsync(model.Items == null, true);
         }
 
         void Model_LoadingStart()
@@ -64,17 +64,17 @@ namespace Mehspot.AndroidApp
         {
             Activity.RunOnUiThread(() =>
             {
-				tabLayout.SetTabTextColors(ContextCompat.GetColor(this.Activity, Resource.Color.black), ContextCompat.GetColor(this.Activity, Resource.Color.dark_orange));
-                var viewPager = View.FindViewById<ViewPager>(Resource.Id.viewpager);
+                tabLayout.SetTabTextColors(ContextCompat.GetColor(this.Activity, Resource.Color.black), ContextCompat.GetColor(this.Activity, Resource.Color.dark_orange));
+                var viewPager = base.View.FindViewById<ViewPager>(Resource.Id.viewpager);
                 if (viewPager != null)
                 {
-					var groups = model.BadgeHelper.GetGroups();
                     //Fragment array
-                    var fragments = groups.Select(a => new BadgeGroupFragment(a.Key, a.Value)).ToArray();
-					//Tab title array
-					var titles = CharSequence.ArrayFromStringArray(groups.Select(a => MehspotResources.ResourceManager.GetString("BadgeGroup_" + a.Key.ToString())).ToArray());
+                    var groupKeys = Enum.GetValues(typeof(BadgeGroup)).Cast<BadgeGroup>().ToList();
+                    var fragments = groupKeys.Select(a => new BadgeGroupFragment(a, model)).ToArray();
+                    //Tab title array
+                    var titles = CharSequence.ArrayFromStringArray(groupKeys.Select(a => MehspotResources.ResourceManager.GetString("BadgeGroup_" + a.ToString())).ToArray());
                     //viewpager holding fragment array and tab title text
-                    viewPager.Adapter = new TabsFragmentPagerAdapter(Activity.SupportFragmentManager, fragments, titles);
+                    viewPager.Adapter = new TabsFragmentPagerAdapter(ChildFragmentManager, fragments, titles);
                     // Give the TabLayout the ViewPager 
                     tabLayout.SetupWithViewPager(viewPager);
                 }
