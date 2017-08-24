@@ -52,6 +52,7 @@ namespace Mehspot.AndroidApp
 			searchResultsAdapter.MessageButtonClicked += Item_MessageButtonClicked;
 			searchResultsAdapter.ViewProfileButtonClicked += Item_ViewProfileButtonClicked;
 			searchResultsAdapter.Clicked += Item_Clicked;
+            searchResultsAdapter.OnRegisterButtonTouched += SearchResultsAdapter_OnRegisterButtonTouched;
 			ListView.Adapter = searchResultsAdapter;
 
 			Refresher.SetColorSchemeColors(Resource.Color.xam_dark_blue,
@@ -160,7 +161,51 @@ namespace Mehspot.AndroidApp
 			this.StartActivity(messagingActivity);
 		}
 
-		private ValueAnimator SlideAnimator(View view, int start, int end)
+        void SearchResultsAdapter_OnRegisterButtonTouched()
+        {
+			var target = new Intent(this, typeof(EditBadgeProfileActivity));
+			if (model.controller.BadgeSummary.RequiredBadgeId.HasValue)
+			{
+				target.PutExtra("badgeId", model.controller.BadgeSummary.RequiredBadgeId.Value);
+				target.PutExtra("badgeName", model.controller.BadgeSummary.RequiredBadgeName);
+				target.PutExtra("badgeIsRegistered", model.controller.BadgeSummary.RequiredBadgeIsRegistered);
+			}
+			else
+			{
+				target.PutExtra("badgeId", model.controller.BadgeSummary.BadgeId);
+				target.PutExtra("badgeName", model.controller.BadgeSummary.BadgeName);
+				target.PutExtra("badgeIsRegistered", false);
+			}
+
+			target.PutExtra("redirectToSearchResults", true);
+
+            this.StartActivityForResult(target, 1);
+        }
+
+        protected override void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
+        {
+            if (requestCode == 1 && resultCode == Android.App.Result.Ok)
+            {
+                ReqiredBadgeWasRegistered();
+            }
+            else
+            {
+                base.OnActivityResult(requestCode, resultCode, data);
+            }
+        }
+
+		internal void ReqiredBadgeWasRegistered()
+		{
+			//this.viewWasInitialized = false;
+			if (BadgeSummary.RequiredBadgeId.HasValue)
+				BadgeSummary.RequiredBadgeIsRegistered = true;
+			else
+			{
+				BadgeSummary.IsRegistered = true;
+			}
+		}
+
+        private ValueAnimator SlideAnimator(View view, int start, int end)
 		{
 			var animator = ValueAnimator.OfInt(start, end);
 			animator.Update += (sender, e) =>

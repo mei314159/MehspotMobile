@@ -117,7 +117,9 @@ namespace Mehspot.AndroidApp
 
 		public void GoToSearchResults()
 		{
-			this.Dismiss();
+            Intent myIntent = new Intent(this, typeof(SearchResultsActivity));
+			SetResult(Android.App.Result.Ok, myIntent);
+			Finish();
 		}
 
 		private void Model_LoadingStarted()
