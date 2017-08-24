@@ -209,10 +209,18 @@ namespace Mehspot.AndroidApp
 			}
 		}
 
-		void SearchButton_Click(object sender, EventArgs e)
+		async void SearchButton_Click(object sender, EventArgs e)
 		{
 			SearchButton.Visibility = ViewStates.Gone;
-			model.LoadMessageBoardAsync();
+            refresher.Refreshing = true;
+			await model.LoadMessageBoardAsync();
+			refresher.Refreshing = false;
+            if ((model.Items?.Length ?? 0) == 0){
+                ViewHelper.ShowAlert(string.Empty, "Users not found", () => {
+                    SearchBar.Text = null;
+                    SearchButton.Visibility = ViewStates.Visible;
+                });
+            }
 		}
 
 	}
