@@ -16,7 +16,7 @@ namespace Mehspot.AndroidApp.Adapters
 		public event Action<ISearchResultDTO> MessageButtonClicked;
 		public event Action<ISearchResultDTO> ViewProfileButtonClicked;
 		public event Action<ISearchResultDTO, SearchResultItem> Clicked;
-
+        public event Action OnRegisterButtonTouched;
 		NoResultsView noResultsView;
 
 		private readonly Activity context;
@@ -79,34 +79,11 @@ namespace Mehspot.AndroidApp.Adapters
 			else if (this.model.RegisterButtonVisible)
 			{
 				var searchLimitCell = new SearchLimitCell(context, model.controller.BadgeSummary.RequiredBadgeName, model.controller.BadgeSummary.BadgeName);
-				searchLimitCell.OnRegisterButtonTouched += OnRegisterButtonTouched;
+                searchLimitCell.OnRegisterButtonTouched += () => OnRegisterButtonTouched?.Invoke();
 				cell = searchLimitCell;
 			}
 
 			return cell;
-
-
-		}
-
-		void OnRegisterButtonTouched()
-		{
-			var target = new Intent(this.context, typeof(EditBadgeProfileActivity));
-			if (model.controller.BadgeSummary.RequiredBadgeId.HasValue)
-			{
-				target.PutExtra("badgeId", model.controller.BadgeSummary.RequiredBadgeId.Value);
-				target.PutExtra("badgeName", model.controller.BadgeSummary.RequiredBadgeName);
-				target.PutExtra("badgeIsRegistered", model.controller.BadgeSummary.RequiredBadgeIsRegistered);
-			}
-			else
-			{
-				target.PutExtra("badgeId", model.controller.BadgeSummary.BadgeId);
-				target.PutExtra("badgeName", model.controller.BadgeSummary.BadgeName);
-				target.PutExtra("badgeIsRegistered", false);
-			}
-
-			target.PutExtra("redirectToSearchResults", true);
-
-			this.context.StartActivity(target);
 		}
 	}
 }
