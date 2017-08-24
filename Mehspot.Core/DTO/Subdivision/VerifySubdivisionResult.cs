@@ -14,5 +14,7 @@ namespace Mehspot.iOS.Controllers.Subdivisions
 		public int? AddressOptionId { get; set; }
 
 		public string NewName { get; set; }
+
+        public string NewAddress { get; set; }
 	}
 }

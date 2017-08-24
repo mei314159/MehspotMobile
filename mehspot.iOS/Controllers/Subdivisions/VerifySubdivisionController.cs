@@ -137,11 +137,16 @@ namespace Mehspot.iOS.Controllers
 
         void HandleReverseGeocodeCallback(ReverseGeocodeResponse response, NSError error)
         {
-            if (error != null)
+            if (error != null )
                 return;
 
-            var firstResult = response.FirstResult;
-            model.ReverseGeocodeCallback(firstResult.Coordinate.Latitude, firstResult.Coordinate.Longitude, firstResult.Country, firstResult.PostalCode, firstResult?.Lines);
+			var firstResult = response?.FirstResult;
+            if (firstResult != null)
+            {
+                model.ReverseGeocodeCallback(firstResult.Coordinate.Latitude, firstResult.Coordinate.Longitude, firstResult.Country, firstResult.PostalCode, firstResult?.Lines);
+            }
+
+			ViewHelper.HideOverlay();
         }
 
         async partial void SaveButtonTouched(UIBarButtonItem sender)

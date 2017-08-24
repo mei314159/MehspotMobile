@@ -120,19 +120,19 @@ namespace Mehspot.Core.Models.Subdivisions
                 }
                 else
                 {
-                    if (string.IsNullOrWhiteSpace(this.otherAddressCell.Text))
-					{
-						controller.ViewHelper.ShowAlert("Validation Error", "Address can not be empty");
-						controller.ViewHelper.HideOverlay();
-						return;
-					}
+                    if (string.IsNullOrWhiteSpace(Result.NewAddress))
+                    {
+                        controller.ViewHelper.ShowAlert("Validation Error", "Address can not be empty");
+                        controller.ViewHelper.HideOverlay();
+                        return;
+                    }
 
                     dto.Address = new AddressDTO
                     {
                         Latitude = this.Latitude,
                         Longitude = this.Longitude,
                         Country = this.Country,
-                        FormattedAddress = this.otherAddressCell.Text,
+                        FormattedAddress = Result.NewAddress,
                         PostalCode = zip,
                         GoverningDistrictId = 1,
                     };
@@ -160,7 +160,8 @@ namespace Mehspot.Core.Models.Subdivisions
             this.Country = country;
             this.PostalCode = postalCode;
             this.otherAddressCell.Editable = true;
-            otherAddressCell.Text = addressLines != null ? string.Join(", ", addressLines) : string.Empty;
+            otherAddressCell.Text = Result.NewAddress = addressLines != null ? string.Join(", ", addressLines) : string.Empty;
+
             controller.ViewHelper.HideOverlay();
         }
 
@@ -187,7 +188,7 @@ namespace Mehspot.Core.Models.Subdivisions
             addressPickerCell = cellBuilder.GetPickerCell(Result.AddressOptionId, AddressOptionChanged, "Subdivision Location", addressOptions.ToArray(), "Other");
             adressSection.Rows.Add(addressPickerCell);
 
-            otherAddressCell = cellBuilder.GetTextEditCell(Result.NewName, (c, a) => { Result.NewName = a; Change?.Invoke(); }, "Other", KeyboardType.Default, "New address");
+            otherAddressCell = cellBuilder.GetTextEditCell(Result.NewAddress, (c, a) => { Result.NewAddress = a; Change?.Invoke(); }, "Other", KeyboardType.Default, "New address");
             otherAddressCell.Hidden = Result.AddressOptionId.HasValue;
             otherAddressCell.Multiline = false;
             adressSection.Rows.Add((TCell)otherAddressCell);
