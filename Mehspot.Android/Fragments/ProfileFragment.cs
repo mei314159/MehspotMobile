@@ -359,7 +359,10 @@ namespace Mehspot.AndroidApp
                 profileImageChanged = false;
             }
 
-            await model.SaveProfileAsync(stream);
+            var result = await model.SaveProfileAsync(stream);
+            if (result){
+                this.UserName = model.Profile.UserName;
+            }
             if (stream != null)
             {
                 stream.Dispose();
