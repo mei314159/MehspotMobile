@@ -48,7 +48,6 @@ namespace Mehspot.Core.Models.Subdivisions
             if (optionsResult.IsSuccess)
             {
                 options = optionsResult.Data;
-
                 this.InitializeInternal();
 
                 controller.DisplayCells();
@@ -99,6 +98,7 @@ namespace Mehspot.Core.Models.Subdivisions
                 if (string.IsNullOrWhiteSpace(dto.Name))
                 {
                     controller.ViewHelper.ShowAlert("Validation Error", "Subdivision Name can not be empty");
+                    controller.ViewHelper.HideOverlay();
                     return;
                 }
 
@@ -107,6 +107,7 @@ namespace Mehspot.Core.Models.Subdivisions
                     if (string.IsNullOrWhiteSpace(dto.Name))
                     {
                         controller.ViewHelper.ShowAlert("Validation Error", "Subdivision Name length can not exceed 128 symbols ");
+                        controller.ViewHelper.HideOverlay();
                         return;
                     }
                 }
@@ -119,6 +120,13 @@ namespace Mehspot.Core.Models.Subdivisions
                 }
                 else
                 {
+                    if (string.IsNullOrWhiteSpace(this.otherAddressCell.Text))
+					{
+						controller.ViewHelper.ShowAlert("Validation Error", "Address can not be empty");
+						controller.ViewHelper.HideOverlay();
+						return;
+					}
+
                     dto.Address = new AddressDTO
                     {
                         Latitude = this.Latitude,
@@ -161,7 +169,7 @@ namespace Mehspot.Core.Models.Subdivisions
             var nameOptions = options.DistinctBy(a => a.Name).Select(a => new KeyValuePair<int?, string>(a.Id, a.Name)).ToList();
             var addressOptions = options.DistinctBy(a => a.Address.FormattedAddress).Select(a => new KeyValuePair<int?, string>(a.Id, a.Address.FormattedAddress)).ToList();
 
-            var nameOption = nameOptions.First(a => a.Key == controller.Subdivision.OptionId);
+            var nameOption = nameOptions.First(a => a.Value == controller.Subdivision.DisplayName);
             Result = new VerifySubdivisionResult(nameOption.Key, addressOptions[0].Key);
 
             var nameSection = new SectionModel<TCell>("Verify Subdivision Name");
@@ -187,8 +195,8 @@ namespace Mehspot.Core.Models.Subdivisions
             Sections.Add(nameSection);
             Sections.Add(adressSection);
 
-            //var option = options.First(a => a.Id == addressOptions[0].Key.Value);
-            //controller.ShowLocation(option.Address.Latitude, option.Address.Longitude);
+            var option = options.First(a => a.Id == addressOptions[0].Key.Value);
+            controller.ShowLocation(option.Address.Latitude, option.Address.Longitude);
         }
 
         void NameOptionChanged(int? value)
