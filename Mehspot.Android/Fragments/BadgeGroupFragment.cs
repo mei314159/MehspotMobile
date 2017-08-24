@@ -71,7 +71,7 @@ namespace Mehspot.AndroidApp
         void Item_SearchButtonClicked(BadgeInfo dto)
         {
             var target = new Intent(this.Context, typeof(SearchBadgeActivity));
-            target.PutExtra("badgeSummary", dto.Badge);
+            target.PutExtra("badgeSummary", model.BadgeHelper.GetBadgeSummary(dto.SearchBadge));
             target.PutExtra("titleKey", dto.CustomKey);
             this.StartActivity(target);
         }
