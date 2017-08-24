@@ -77,6 +77,7 @@ namespace Mehspot.AndroidApp
                     viewPager.Adapter = new TabsFragmentPagerAdapter(ChildFragmentManager, fragments, titles);
                     // Give the TabLayout the ViewPager 
                     tabLayout.SetupWithViewPager(viewPager);
+                    viewPager.CurrentItem = (int)(MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup ?? BadgeGroup.Friends) - 1;
                 }
             });
         }
