@@ -74,8 +74,11 @@ namespace Mehspot.Core.Models.Subdivisions
 
         public void OnSubdivisionVerified(SubdivisionDTO result, bool isNewOption)
         {
+            if (result == null)
+                return;
+            
             SelectedSubdivision.IsVerifiedByCurrentUser = true;
-            if (isNewOption)
+            if (isNewOption && this.controller.Subdivisions.All(a => a.DisplayName != result.DisplayName))
             {
                 SelectedSubdivision = new SubdivisionDTO();
                 this.controller.Subdivisions.Add(SelectedSubdivision);

@@ -75,15 +75,17 @@ namespace Mehspot.iOS.Controllers
             MainTable.Delegate = this;
             MainTable.RowHeight = UITableView.AutomaticDimension;
             MainTable.EstimatedRowHeight = 44;
+            MainTable.ClipsToBounds = true;
+            MainTable.AddObserver(this, (NSString) "contentSize", NSKeyValueObservingOptions.Old | NSKeyValueObservingOptions.New, (IntPtr)1);
             ViewHelper = new ViewHelper(this.View);
 
             mapView = new MapView(MapWrapperView.Bounds);
             mapView.DraggingMarkerStarted += MapView_DraggingMarkerStarted;
             mapView.DraggingMarkerEnded += MapView_DraggingMarkerEnded;
 
-            marker = Marker.FromPosition(mapView.Camera.Target);
+            marker = new Marker();
             marker.Map = mapView;
-            marker.Draggable = true;
+            marker.Draggable = false;
             MapWrapperView.AddSubview(mapView);
             MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Trailing, 1, 0));
             MapWrapperView.AddConstraint(NSLayoutConstraint.Create(mapView, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, MapWrapperView, NSLayoutAttribute.Trailing, 1, 0));
@@ -105,9 +107,21 @@ namespace Mehspot.iOS.Controllers
             UIView.Animate(0, MainTable.ReloadData, UpdateTableSize);
         }
 
+        public override void ObserveValue(NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
+        {
+            if ((int)context == 1)
+            {
+                UpdateTableSize();
+            }
+            else
+            {
+                base.ObserveValue(keyPath, ofObject, change, context);
+            }
+        }
+
         private void UpdateTableSize()
         {
-            MainTable.Frame = new CoreGraphics.CGRect(MainTable.Frame.Location, MainTable.ContentSize);
+            MainTableHeight.Constant = MainTable.ContentSize.Height;
             View.LayoutIfNeeded();
         }
 
@@ -128,7 +142,6 @@ namespace Mehspot.iOS.Controllers
 
             var firstResult = response.FirstResult;
             model.ReverseGeocodeCallback(firstResult.Coordinate.Latitude, firstResult.Coordinate.Longitude, firstResult.Country, firstResult.PostalCode, firstResult?.Lines);
-            UpdateTableSize();
         }
 
         async partial void SaveButtonTouched(UIBarButtonItem sender)
@@ -171,7 +184,6 @@ namespace Mehspot.iOS.Controllers
 
         public void ShowLocation(double latitude, double longitude)
         {
-            View.LayoutSubviews();
             var camera = CameraPosition.FromCamera(latitude, longitude, 15);
             mapView.Camera = camera;
             marker.Position = camera.Target;

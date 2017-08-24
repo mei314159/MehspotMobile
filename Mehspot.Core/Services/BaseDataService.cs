@@ -9,6 +9,7 @@ using Mehspot.Core;
 using Mehspot.Core.DTO;
 using Newtonsoft.Json;
 using System.Net;
+using System.Diagnostics;
 
 namespace Mehspot.Core
 {
@@ -156,6 +157,7 @@ namespace Mehspot.Core
                     }
 
                     string responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    Debug.WriteLine(responseString);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         var messageDto = JsonConvert.DeserializeObject<TResult>(responseString);
