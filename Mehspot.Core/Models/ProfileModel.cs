@@ -101,7 +101,7 @@ namespace Mehspot.Core.Models
                 });
         }
 
-        public async Task SaveProfileAsync(Stream pictureStream = null)
+        public async Task<bool> SaveProfileAsync(Stream pictureStream = null)
         {
             viewController.SaveButtonEnabled = false;
             viewController.HideKeyboard();
@@ -130,6 +130,8 @@ namespace Mehspot.Core.Models
 
                 this.viewController.SaveButtonEnabled = true;
             });
+
+            return result.IsSuccess;
         }
 
         private async void ZipCell_ValueChanged(ITextEditCell sender, string value, ISubdivisionPickerCell subdivisionCell)
