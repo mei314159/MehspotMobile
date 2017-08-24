@@ -87,6 +87,7 @@ namespace Mehspot.AndroidApp
             (this.Activity as MainActivity)?.SelectTab(this.GetType());
 			if (!model.dataLoaded)
 			{
+                SearchBar.Text = null;
 				await this.model.LoadMessageBoardAsync(true);
 			}
 		}
