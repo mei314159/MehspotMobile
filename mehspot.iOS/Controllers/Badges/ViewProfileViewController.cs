@@ -280,7 +280,7 @@ namespace Mehspot.iOS
         {
             MessageUserId = userId;
             MessageUserName = userName;
-            string segueName = this.ParentController is UserProfileViewController ? "UnwindToMessagingSegue" : "GoToMessagingSegue";
+            string segueName = this.ParentController is UserProfileViewController && userId == this.UserId ? "UnwindToMessagingSegue" : "GoToMessagingSegue";
             base.PerformSegue(segueName, this);
         }
 
