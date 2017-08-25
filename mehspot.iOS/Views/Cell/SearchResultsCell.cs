@@ -54,7 +54,7 @@ namespace Mehspot.iOS.Views.Cell
             this.DistanceLabel.Text = Math.Round (item.Details.DistanceFrom ?? 0, 2) + " miles";
             this.SubdivisionLabel.Text = !string.IsNullOrWhiteSpace (item.Details.Subdivision) ? $"{item.Details.Subdivision} ({item.Details.ZipCode})" : item.Details.ZipCode;
             this.FavoriteIcon.Hidden = !item.Details.Favourite;
-            this.LikesLabel.Text = $"{item.Details.Likes} Likes / {item.Details.Recommendations} Recommendations";
+            this.LikesLabel.Text = $"{item.Details.Recommendations} Recommendations";
             this.HourlyRateLabel.Text = item.InfoLabel1;
             this.AgeRangeLabel.Text = item.InfoLabel2;
 
