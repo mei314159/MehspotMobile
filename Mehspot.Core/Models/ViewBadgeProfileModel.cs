@@ -257,9 +257,9 @@ namespace Mehspot.Core.Models
 
         public void RowSelected(int row)
         {
-            if (ShowRecommendations)
+            if (ShowRecommendations && row >=4)
             {
-                var dto = recommendations[row];
+                var dto = recommendations[row-4];
                 if (this.currentUserId != dto.FromUserId)
                 {
                     OnGoToMessaging?.Invoke(dto.FromUserId, dto.FromUserName);
