@@ -252,6 +252,9 @@
 	<data name="SkillLevel" xml:space="preserve">
     <value>Skill level</value>
   </data>
+	<data name="Description" xml:space="preserve">
+    <value>Additional Information</value>
+  </data>
 	<data name="Court" xml:space="preserve">
     <value>Court</value>
   </data>
