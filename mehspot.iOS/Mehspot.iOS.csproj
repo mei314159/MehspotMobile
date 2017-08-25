@@ -409,6 +409,9 @@
       <DependentUpon>NoResultsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorView.cs" />
+    <Compile Include="Views\Cell\TextViewCell.designer.cs">
+      <DependentUpon>TextViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

@@ -47,18 +47,18 @@ namespace Mehspot.iOS.Views.Cell
 
         internal static RecommendationCell Create (BadgeUserRecommendationDTO item)
         {
-            var cell = (RecommendationCell)Nib.Instantiate (null, null) [0];
-            cell.Configure (item);
-
-            var initilaCellBound = cell.Message.Frame.Location.Y + cell.Message.Frame.Height;
-            var textSize = cell.Message.SizeThatFits (new CGSize (cell.Message.Frame.Width, nfloat.MaxValue));
-            var height = textSize.Height > cell.Message.Frame.Height ? textSize.Height : cell.Message.Frame.Height;
-            cell.Message.Frame = new CGRect (cell.Message.Frame.Location, new CGSize (textSize.Width, height));
-            var cellBound = cell.Message.Frame.Location.Y + cell.Message.Frame.Height;
-            cell.Frame = new CGRect (cell.Frame.Location, new CGSize (cell.Frame.Width, cellBound > initilaCellBound ? cell.Frame.Height + cellBound - initilaCellBound : cell.Frame.Height));
-
+            var cell = (RecommendationCell)Nib.Instantiate(null, null)[0];
+            cell.Configure(item);
+            cell.UpdateSize();
             return cell;
+        }
 
+        private void UpdateSize()
+        {
+            var initilaCellBound = this.Message.Frame.Location.Y + this.Message.Frame.Height;
+            var textSize = this.Message.SizeThatFits(new CGSize(this.Message.Frame.Width, nfloat.MaxValue));
+            var height = textSize.Height > this.Message.Frame.Height ? textSize.Height : this.Message.Frame.Height;
+            this.RecommendationHeight.Constant = height;
         }
     }
 }
