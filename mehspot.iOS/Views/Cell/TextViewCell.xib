@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,83 +15,45 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="9" numberOfLines="2">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="16">
                         <rect key="frame" x="15" y="0.0" width="145" height="44"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
-                        <nil key="highlightedColor"/>
                         <constraints>
-                            <constraint id="19" firstItem="16" firstAttribute="width" constant="145"/>
+                            <constraint firstAttribute="width" constant="145" id="19"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="55" translatesAutoresizingMaskIntoConstraints="NO" editable="NO" showsHorizontalScrollIndicator="NO" bounces="NO" text="Text">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" editable="NO" text="Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="55">
                         <rect key="frame" x="165" y="5" width="150" height="34"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" identifier="TextViewHeight" id="2eW-wH-5XK"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     </textView>
                 </subviews>
                 <constraints>
-                    <constraint id="17" firstItem="16" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
-                    <constraint id="18" firstItem="16" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY"/>
-                    <constraint id="27" firstItem="16" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height"/>
-                    <constraint id="56" firstItem="55" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="5"/>
-                    <constraint id="57" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="55" secondAttribute="bottom" constant="5"/>
-                    <constraint id="59" firstItem="55" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="5"/>
-                    <constraint id="60" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="55" secondAttribute="trailing" constant="5"/>
+                    <constraint firstItem="16" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15" id="17"/>
+                    <constraint firstItem="16" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="18"/>
+                    <constraint firstItem="16" firstAttribute="height" secondItem="YTl-1W-gDM" secondAttribute="height" id="27"/>
+                    <constraint firstItem="55" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="5" id="56"/>
+                    <constraint firstAttribute="bottom" secondItem="55" secondAttribute="bottom" constant="5" id="57"/>
+                    <constraint firstItem="55" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="5" id="59"/>
+                    <constraint firstAttribute="trailing" secondItem="55" secondAttribute="trailing" constant="5" id="60"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="FieldLabel" destination="16" id="name-outlet-16"/>
                 <outlet property="Text" destination="55" id="name-outlet-55"/>
+                <outlet property="TextViewHeight" destination="2eW-wH-5XK" id="kqB-Q2-sId"/>
             </connections>
-            <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="chat-icon" width="25" height="25"/>
-        <image name="profile-icon" width="25" height="25"/>
-        <image name="signout-icon" width="22" height="22"/>
-        <image name="logo.jpg" width="1242" height="795"/>
-        <image name="profile_image.png" width="400" height="400"/>
-        <image name="badges/babysitter.png" width="70" height="69"/>
-        <image name="badges/babysitteremployer.png" width="70" height="70"/>
-        <image name="badges/fitness.png" width="210" height="210"/>
-        <image name="badges/friendship.png" width="210" height="210"/>
-        <image name="badges/golf.png" width="500" height="500"/>
-        <image name="badges/hobby.png" width="210" height="208"/>
-        <image name="badges/kidsplaydate.png" width="210" height="210"/>
-        <image name="badges/otherjobs.png" width="210" height="210"/>
-        <image name="badges/petsitter.png" width="500" height="500"/>
-        <image name="badges/petsitteremployer.png" width="500" height="500"/>
-        <image name="badges/sports.png" width="70" height="70"/>
-        <image name="badges/tennis.png" width="140" height="140"/>
-        <image name="badges/tutor.png" width="466" height="467"/>
-        <image name="badges/tutoremployer.png" width="494" height="489"/>
-        <image name="badges/babysitterb.png" width="70" height="69"/>
-        <image name="badges/babysitteremployerb.png" width="70" height="70"/>
-        <image name="badges/friendshipb.png" width="210" height="210"/>
-        <image name="badges/golfb.png" width="500" height="500"/>
-        <image name="badges/petsitterb.png" width="500" height="500"/>
-        <image name="badges/petsitteremployerb.png" width="500" height="500"/>
-        <image name="badges/sportsb.png" width="70" height="70"/>
-        <image name="badges/tennisb.png" width="140" height="140"/>
-        <image name="badges/tutorb.png" width="466" height="467"/>
-        <image name="badges/tutoremployerb.png" width="494" height="489"/>
-        <image name="badges/fitnessb.png" width="210" height="210"/>
-        <image name="badges/hobbyb.png" width="210" height="208"/>
-        <image name="badges/kidsplaydateb.png" width="210" height="210"/>
-        <image name="badges/otherjobsb.png" width="210" height="210"/>
-        <image name="search-icon" width="25" height="25"/>
-        <image name="star-yellow-icon" width="24" height="24"/>
-        <image name="more-icon" width="25" height="25"/>
-        <image name="details-icon" width="25" height="25"/>
-        <image name="review-icon" width="25" height="25"/>
-        <image name="signin-fb.png" width="220" height="40"/>
-        <image name="logo-small.jpg" width="300" height="192"/>
-    </resources>
 </document>
