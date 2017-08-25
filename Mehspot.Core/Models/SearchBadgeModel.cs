@@ -39,7 +39,7 @@ namespace Mehspot.Core
 
         private ISearchQueryDTO CreateQueryDTO(int badgeId, string badgeName)
         {
-            var queryDtoType = typeof(SearchFilterDTOBase).GetTypeInfo().Assembly.ExportedTypes
+            var queryDtoType = typeof(ISearchQueryDTO).GetTypeInfo().Assembly.ExportedTypes
             .FirstOrDefault(a => a.GetTypeInfo()
             .GetCustomAttribute<SearchFilterDtoAttribute>()?.BadgeName == badgeName);
             var result = (ISearchQueryDTO)Activator.CreateInstance(queryDtoType);

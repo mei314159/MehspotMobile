@@ -18,7 +18,7 @@ namespace Mehspot.Core.DTO.Badges
         [Cell("Gender", 3, CellType.TextView)]
         public string Gender { get; set; }
 
-        [Cell("Family Composition", 4, CellType.TextView)]
+        [Cell("Marital Status and Ages of Children", 4, CellType.TextView)]
         public string FriendshipFamilyComposition { get; set; }
 
         [Cell("Profession", 5, CellType.TextView)]
