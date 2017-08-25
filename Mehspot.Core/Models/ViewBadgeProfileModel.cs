@@ -93,7 +93,7 @@ namespace Mehspot.Core.Models
                 this.controller.Subdivision = result.Data.Details.SubdivisionName?.Trim();
                 this.controller.Distance = Math.Round(result.Data.Details.Distance ?? 0, 2) + " miles";
                 this.controller.HideFavoriteIcon = !result.Data.Details.IsFavorite;
-                this.controller.Likes = $"{result.Data.Details.ReferenceCount} Reference / {result.Data.Details.RecommendationsCount} Recommendations";
+                this.controller.Likes = $"{result.Data.Details.ReferenceCount} References / {result.Data.Details.RecommendationsCount} Recommendations";
                 this.controller.FirstName = result.Data.Details.FirstName;
                 this.controller.InfoLabel1 = result.Data.AdditionalInfo.InfoLabel1;
                 this.controller.InfoLabel2 = result.Data.AdditionalInfo.InfoLabel2;
