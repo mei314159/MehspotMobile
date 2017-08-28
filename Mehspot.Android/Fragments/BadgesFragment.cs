@@ -25,11 +25,11 @@ namespace Mehspot.AndroidApp
     {
         private TabLayout tabLayout;
         private BadgesModel model;
-
+        private int? currentTab;
         public IViewHelper ViewHelper { get; private set; }
 
 
-        public override Android.Views.View OnCreateView(Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Bundle savedInstanceState)
+        public override Android.Views.View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             return inflater.Inflate(Resource.Layout.BadgesActivity, container, false);
         }
@@ -49,7 +49,7 @@ namespace Mehspot.AndroidApp
         {
             base.OnStart();
             (this.Activity as MainActivity)?.SelectTab(this.GetType());
-			model.RefreshAsync(model.Items == null, true);
+            model.RefreshAsync(model.Items == null, true);
         }
 
         void Model_LoadingStart()
@@ -77,7 +77,8 @@ namespace Mehspot.AndroidApp
                     viewPager.Adapter = new TabsFragmentPagerAdapter(ChildFragmentManager, fragments, titles);
                     // Give the TabLayout the ViewPager 
                     tabLayout.SetupWithViewPager(viewPager);
-                    viewPager.CurrentItem = (int)(MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup ?? BadgeGroup.Friends) - 1;
+                    viewPager.CurrentItem = currentTab ?? ((int)(MehspotAppContext.Instance.DataStorage.PreferredBadgeGroup ?? BadgeGroup.Friends) - 1);
+                    viewPager.PageSelected += (sender, e) => currentTab = e.Position;
                 }
             });
         }
