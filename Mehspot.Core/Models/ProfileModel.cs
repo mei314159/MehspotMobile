@@ -71,7 +71,7 @@ namespace Mehspot.Core.Models
                 Cells.Clear();
                 Cells.Add((TView)cellBuilder.GetTextEditCell(profile.UserName, (c, a) => profile.UserName = a, "User Name"));
                 Cells.Add((TView)cellBuilder.GetTextEditCell(profile.Email, (c, a) => profile.Email = a, "Email", KeyboardType.Email, null, true));
-                var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.SubdivisionId, (property) =>
+                var subdivisionCell = cellBuilder.GetSubdivisionPickerCell(profile.SubdivisionId, profile.SubdivisionOptionId, (property) =>
                             {
                                 profile.SubdivisionId = property?.Id;
                                 profile.SubdivisionOptionId = property?.OptionId;

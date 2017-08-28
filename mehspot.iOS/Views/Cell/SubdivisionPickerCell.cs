@@ -49,27 +49,34 @@ namespace Mehspot.iOS.Views
 			set
 			{
 				subdivisions = value;
-				this.SetSelectValueButtonTitle(value?.FirstOrDefault(a => a.Id == this.SelectedSubdivisionId));
+                var dto = value?
+                    .FirstOrDefault(a =>
+                                    a.Id == this.SelectedSubdivisionId
+                                    && (this.SelectedSubdivisionOptionId == null ||
+                                        a.OptionId == SelectedSubdivisionOptionId));
+                this.SetSelectValueButtonTitle(dto);
 			}
 		}
 
 		public int? SelectedSubdivisionId { get; set; }
+		public int? SelectedSubdivisionOptionId { get; private set; }
 
-		public string ZipCode { get; set; }
+        public string ZipCode { get; set; }
 
-		public bool IsReadOnly
-		{
-			get
-			{
-				return this.SelectValueButton.Enabled;
-			}
-			set
-			{
-				this.SelectValueButton.Enabled = !value;
-			}
-		}
+        public bool IsReadOnly
+        {
+            get
+            {
+                return this.SelectValueButton.Enabled;
+            }
+            set
+            {
+                this.SelectValueButton.Enabled = !value;
+            }
+        }
 
-		public static SubdivisionPickerCell Create(int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
+
+        public static SubdivisionPickerCell Create(int? selectedId, int? optionId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
 		{
 			var cell = (SubdivisionPickerCell)Nib.Instantiate(null, null)[0];
 			cell.placeholder = label;
@@ -77,6 +84,7 @@ namespace Mehspot.iOS.Views
 			cell.FieldLabel.Text = label;
 			cell.ZipCode = zipCode;
 			cell.SelectedSubdivisionId = selectedId;
+            cell.SelectedSubdivisionOptionId = optionId;
 			cell.SetProperty = setProperty;
 			cell.Subdivisions = list;
 			return cell;
@@ -93,11 +101,13 @@ namespace Mehspot.iOS.Views
 			subdivisionsListController.ZipCode = this.ZipCode;
 			subdivisionsListController.Subdivisions = this.Subdivisions;
 			subdivisionsListController.SelectedSubdivisionId = this.SelectedSubdivisionId;
+            subdivisionsListController.SelectedSubdivisionOptionId = this.SelectedSubdivisionOptionId;
 			subdivisionsListController.OnDismissed += (dto) =>
 			{
 				cell.SetProperty(dto);
 				cell.SetSelectValueButtonTitle(dto);
 				cell.SelectedSubdivisionId = dto.Id;
+                cell.SelectedSubdivisionOptionId = dto.OptionId;
 			};
 
 			await controller.PresentViewControllerAsync(subdivisionsListController, true);

@@ -56,9 +56,9 @@ namespace Mehspot.iOS.Core.Builders
 			return RecommendationCell.Create(item);
 		}
 
-		public override ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
+		public override ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, int? optionId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
 		{
-			return SubdivisionPickerCell.Create(selectedId, setProperty, label, list, zipCode, isReadOnly);
+			return SubdivisionPickerCell.Create(selectedId, optionId, setProperty, label, list, zipCode, isReadOnly);
 		}
 
 		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, KeyboardType type = KeyboardType.Default, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)

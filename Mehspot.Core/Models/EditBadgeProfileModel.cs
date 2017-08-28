@@ -201,7 +201,7 @@ namespace Mehspot.Core
                     var zipCode = profile.BadgeValues.FirstOrDefault(a => a.Value.BadgeBadgeItem.BadgeItem.Name == zipFieldName).Value?.Value;
                     var subdivisions = await GetSubdivisions(zipCode);
                     int value;
-                    var cell = cellBuilder.GetSubdivisionPickerCell(int.TryParse(badgeValue.Value.Value, out value) ? value : (int?)null, property => badgeValue.Value.Value = property?.Id.ToString(), label, subdivisions, zipCode);
+                    var cell = cellBuilder.GetSubdivisionPickerCell(int.TryParse(badgeValue.Value.Value, out value) ? value : (int?)null, null, property => badgeValue.Value.Value = property?.Id.ToString(), label, subdivisions, zipCode);
                     cell.FieldName = itemName;
                     Cells.Add((TCell)cell);
                 }

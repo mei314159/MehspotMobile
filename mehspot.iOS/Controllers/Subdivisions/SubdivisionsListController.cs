@@ -31,7 +31,7 @@ namespace Mehspot.iOS.Controllers
 		public List<SubdivisionDTO> Subdivisions { get; set; }
 		public string ZipCode { get; set; }
 		public int? SelectedSubdivisionId { get; set; }
-
+        public int? SelectedSubdivisionOptionId { get; set; }
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();

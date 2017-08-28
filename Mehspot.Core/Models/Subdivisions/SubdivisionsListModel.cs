@@ -20,7 +20,11 @@ namespace Mehspot.Core.Models.Subdivisions
             if (this.controller.Subdivisions != null && this.controller.Subdivisions.Count > 0)
             {
                 SelectedSubdivision =
-                    this.controller.Subdivisions?.FirstOrDefault(a => a.Id == this.controller.SelectedSubdivisionId) ??
+                    this.controller.Subdivisions?
+                        .FirstOrDefault(a => 
+                                        a.Id == this.controller.SelectedSubdivisionId &&
+                                        (this.controller.SelectedSubdivisionOptionId == null ||
+                                         a.OptionId == this.controller.SelectedSubdivisionOptionId)) ??
                     this.controller.Subdivisions?.FirstOrDefault();
 
                 if (SelectedSubdivision != null)

@@ -97,7 +97,7 @@ namespace mehspot.iOS
 			subdivisionsListController.Subdivisions = this.Subdivisions;
 
 			subdivisionsListController.SelectedSubdivisionId = this.SelectedSubdivisionId;
-
+            subdivisionsListController.SelectedSubdivisionOptionId = this.SelectedSubdivisionOptionId;
 			subdivisionsListController.OnDismissed += (dto) =>
 						{
 							SubdivisionField.SetTitle(dto.DisplayName, UIControlState.Normal);
