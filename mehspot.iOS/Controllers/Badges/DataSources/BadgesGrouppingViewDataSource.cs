@@ -106,7 +106,7 @@ namespace mehspot.iOS.Controllers.Badges.DataSources
 
 		public override void RefreshTable()
 		{
-			this.Groups = model.BadgeHelper.GetGroups();
+            this.Groups = model.Groups;
 			if (CurrentKey == default(int))
 				CurrentKey = model.GetCurrentKey(this.Groups);
 			base.RefreshTable();
