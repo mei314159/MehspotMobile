@@ -123,7 +123,7 @@ namespace mehspot.iOS
 
 			var storyboard = UIStoryboard.FromName("Badges", null);
 			var controller = (SearchBadgeController)storyboard.InstantiateViewController("SearchBadgeController");
-			controller.BadgeSummary = model.BadgeHelper.GetBadgeSummary(this.selectedBadge.SearchBadge);
+			controller.BadgeSummary = model.GetBadgeSummary(this.selectedBadge.SearchBadge);
 			controller.TitleKey = this.selectedBadge.CustomKey;
 
 			this.NavigationController?.ShowViewController(controller, this);

@@ -170,7 +170,7 @@
     <Compile Include="Contracts\ViewControllers\IUserProfileViewController.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="DTO\Profile\UserProfileSummaryDTO.cs" />
-    <Compile Include="Services\Badges\BadgeHelper.cs" />
+    <Compile Include="Services\Badges\BadgeInfo.cs" />
     <Compile Include="DTO\Profile\BadgeSummaryBaseDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchFilterDTOBase.cs" />
   </ItemGroup>

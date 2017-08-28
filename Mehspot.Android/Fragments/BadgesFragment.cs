@@ -28,7 +28,6 @@ namespace Mehspot.AndroidApp
         private int? currentTab;
         public IViewHelper ViewHelper { get; private set; }
 
-
         public override Android.Views.View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             return inflater.Inflate(Resource.Layout.BadgesActivity, container, false);

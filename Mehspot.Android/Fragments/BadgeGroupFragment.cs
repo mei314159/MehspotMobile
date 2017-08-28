@@ -71,7 +71,7 @@ namespace Mehspot.AndroidApp
         void Item_SearchButtonClicked(BadgeInfo dto)
         {
             var target = new Intent(this.Context, typeof(SearchBadgeActivity));
-            target.PutExtra("badgeSummary", model.BadgeHelper.GetBadgeSummary(dto.SearchBadge));
+            target.PutExtra("badgeSummary", model.GetBadgeSummary(dto.SearchBadge));
             target.PutExtra("titleKey", dto.CustomKey);
             this.StartActivity(target);
         }
@@ -110,7 +110,7 @@ namespace Mehspot.AndroidApp
             this.ViewHelper.ShowOverlay("Wait...");
             var wrapper = this.View.FindViewById<LinearLayout>(Resource.Id.badgesWrapper);
             wrapper.RemoveAllViews();
-            var badges = model.BadgeHelper.GetGroups().Single(a => a.Key == this.key).Value;
+            var badges = model.Groups.Single(a => a.Key == this.key).Value;
             foreach (var item in badges)
             {
                 var bubble = CreateItem(item);
