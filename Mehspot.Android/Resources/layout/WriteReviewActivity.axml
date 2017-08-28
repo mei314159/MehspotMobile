@@ -21,7 +21,8 @@
             android:textColor="#ffffffff"
             android:background="@color/dark_green"
             android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginRight="10dp" />
     </Toolbar>
     <EditText
         android:inputType="textMultiLine"
