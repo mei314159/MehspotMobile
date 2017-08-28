@@ -120,9 +120,9 @@ namespace Mehspot.Core.Models
             this.ShowRecommendations = false;
         }
 
-        public async Task LoadRecommendations()
+        public async Task LoadRecommendations(bool reload = false)
         {
-            if (recommendationCells.Count == 0)
+            if (recommendationCells.Count == 0 || reload)
             {
                 //controller.ViewHelper.ShowOverlay("Wait...");
                 OnRefreshing?.Invoke();

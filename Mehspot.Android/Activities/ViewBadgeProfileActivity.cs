@@ -24,8 +24,9 @@ namespace Mehspot.AndroidApp
 	public class ViewBadgeProfileActivity : Activity, IViewBadgeProfileController
 	{
 		private ViewBadgeProfileModel<View> model;
+        private bool loadRecommendation;
 
-		public int BadgeId => Intent.GetIntExtra("badgeId", 0);
+        public int BadgeId => Intent.GetIntExtra("badgeId", 0);
 		public ISearchResultDTO SearchResultDTO => Intent.GetExtra<ISearchResultDTO>("searchResult");
 
 		public string BadgeName => Intent.GetStringExtra("badgeName");
@@ -184,12 +185,21 @@ namespace Mehspot.AndroidApp
 			Segments.MessageButton.Click += MessageButton_Click;
 		}
 
-		protected override void OnResume()
-		{
-			base.OnResume();
-			Segments.HighlightSelectedButton(Segments.DetailsButton);
-			model.LoadProfile();
-		}
+        protected override void OnStart()
+        {
+            base.OnStart();
+            if (loadRecommendation)
+            {
+                loadRecommendation = false;
+                Segments.HighlightSelectedButton(Segments.RecommendationsButton);
+                model.LoadRecommendations(true);
+            }
+            else
+            {
+                Segments.HighlightSelectedButton(Segments.DetailsButton);
+                model.RefreshView();
+            }
+        }
 
 		void DetailsButton_Click(object sender, EventArgs e)
 		{
@@ -207,13 +217,6 @@ namespace Mehspot.AndroidApp
 		{
 			Segments.HighlightSelectedButton(Segments.MessageButton);
 			GoToMessaging(this.UserId, this.FirstName);
-		}
-
-		protected override void OnStart()
-		{
-			base.OnStart();
-			Segments.HighlightSelectedButton(Segments.DetailsButton);
-			model.RefreshView();
 		}
 
 		public void SetProfilePictureUrl(string value)
@@ -272,9 +275,21 @@ namespace Mehspot.AndroidApp
 		void RecommendationsDataSource_OnWriteReviewButtonTouched()
 		{
 			var activity = new Intent(this, typeof(WriteReviewActivity));
-			//activity.PutExtra("userId", this.SearchResultDTO.Details.UserId);
-			//activity.PutExtra("badgeId", this.SearchResultDTO.Details.BadgeId);
-			this.StartActivity(activity);
+            activity.PutExtra("userId", this.UserId);
+            activity.PutExtra("badgeId", this.BadgeId);
+            this.StartActivityForResult(activity, 1);
+		}
+
+        protected override async void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
+		{
+			if (requestCode == 1 && resultCode == Android.App.Result.Ok)
+			{
+                this.loadRecommendation = true;
+			}
+			else
+			{
+				base.OnActivityResult(requestCode, resultCode, data);
+			}
 		}
 	}
 }
