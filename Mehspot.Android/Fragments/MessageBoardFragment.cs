@@ -88,6 +88,7 @@ namespace Mehspot.AndroidApp
 			if (!model.dataLoaded)
 			{
                 SearchBar.Text = null;
+                SearchButton.Visibility = ViewStates.Gone;
 				await this.model.LoadMessageBoardAsync(true);
 			}
 		}
