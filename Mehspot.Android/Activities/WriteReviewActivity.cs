@@ -50,6 +50,8 @@ namespace Mehspot.AndroidApp.Activities
 		{
 			await model.SaveAsync(this.FindViewById<EditText>(Resource.WriteReviewActivity.CommentView).Text);
 
+            Intent intent = new Intent(this, typeof(ViewBadgeProfileActivity));
+            this.SetResult(Result.Ok, intent);
 			this.Finish();
 		}
 	}
