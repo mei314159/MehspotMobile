@@ -105,6 +105,9 @@ namespace Mehspot.iOS.Controllers
         public void DisplayCells()
         {
             UIView.Animate(0, MainTable.ReloadData, UpdateTableSize);
+			var option = model.options?.FirstOrDefault(a => a.Id == model.addressOptions[0].Key.Value);
+            if (option != null)
+		        this.ShowLocation(option.Address.Latitude, option.Address.Longitude);
         }
 
         public override void ObserveValue(NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
