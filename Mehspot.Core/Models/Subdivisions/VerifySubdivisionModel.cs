@@ -17,7 +17,7 @@ namespace Mehspot.Core.Models.Subdivisions
         private readonly IVerifySubdivisionController controller;
         private readonly SubdivisionService subdivisionService;
         private readonly CellBuilder<TCell> cellBuilder;
-        private List<SubdivisionOptionDTO> options;
+
         public VerifySubdivisionResult Result { get; set; }
         public List<SectionModel<TCell>> Sections;
 
@@ -25,7 +25,9 @@ namespace Mehspot.Core.Models.Subdivisions
         private ITextEditCell otherNameCell;
         private TCell addressPickerCell;
         private ITextEditCell otherAddressCell;
-
+		public List<SubdivisionOptionDTO> options;
+		public List<KeyValuePair<int?, string>> nameOptions;
+		public List<KeyValuePair<int?, string>> addressOptions;
         double Latitude;
         double Longitude;
         string Country;
@@ -167,8 +169,8 @@ namespace Mehspot.Core.Models.Subdivisions
 
         private void InitializeInternal()
         {
-            var nameOptions = options.DistinctBy(a => a.Name).Select(a => new KeyValuePair<int?, string>(a.Id, a.Name)).ToList();
-            var addressOptions = options.DistinctBy(a => a.Address.FormattedAddress).Select(a => new KeyValuePair<int?, string>(a.Id, a.Address.FormattedAddress)).ToList();
+            this.nameOptions = options.DistinctBy(a => a.Name).Select(a => new KeyValuePair<int?, string>(a.Id, a.Name)).ToList();
+            this.addressOptions = options.DistinctBy(a => a.Address.FormattedAddress).Select(a => new KeyValuePair<int?, string>(a.Id, a.Address.FormattedAddress)).ToList();
 
             var nameOption = nameOptions.First(a => a.Value == controller.Subdivision.DisplayName);
             Result = new VerifySubdivisionResult(nameOption.Key, addressOptions[0].Key);
@@ -195,9 +197,6 @@ namespace Mehspot.Core.Models.Subdivisions
 
             Sections.Add(nameSection);
             Sections.Add(adressSection);
-
-            var option = options.First(a => a.Id == addressOptions[0].Key.Value);
-            controller.ShowLocation(option.Address.Latitude, option.Address.Longitude);
         }
 
         void NameOptionChanged(int? value)
