@@ -15,7 +15,7 @@ namespace Mehspot.Core.Builders
         public abstract TCell GetRangeCell<T>(int? defaultValue, Action<T> setProperty, string placeholder, int minValue, int maxValue, bool isReadOnly = false);
         public abstract TCell GetMaxMinRangeCell<T>(int? defaultMinValue, int? defaultMaxValue, Action<T> setMinProperty, Action<T> setMaxProperty, string placeholder, int minValue, int maxValue, bool isReadOnly = false);
         public abstract TCell GetPickerCell<T>(T initialValue, Action<T> setProperty, string label, KeyValuePair<T, string>[] rowValues, string placeholder = null, bool isReadOnly = false);
-        public abstract ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false);
+        public abstract ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, int? optionId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false);
         public abstract TCell GetMultiselectCell<T>(IEnumerable<T> initialValue, Action<IEnumerable<T>> setProperty, string label, KeyValuePair<T, string>[] rowValues, bool isReadOnly = false);
         public abstract TCell GetDatePickerCell<T>(T initialValue, Action<T> setProperty, string label, bool isReadOnly = false);
         public abstract IButtonCell GetButtonCell(string title);

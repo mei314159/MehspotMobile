@@ -45,6 +45,7 @@ namespace Mehspot.AndroidApp.Activities
 
 		public IViewHelper ViewHelper { get; set; }
 		public int? SelectedSubdivisionId => Intent.GetExtra<int?>("selectedSubdivisionId");
+        public int? SelectedSubdivisionOptionId => Intent.GetExtra<int?>("selectedSubdivisionOptionId");
 		public List<SubdivisionDTO> Subdivisions => Intent.GetExtra<List<SubdivisionDTO>>("subdivisions");
 		public Android.Support.V7.Widget.Toolbar Toolbar => FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.SubdivisionListActivity.Menu);
 		public string ZipCode => Intent.GetStringExtra("zipCode");

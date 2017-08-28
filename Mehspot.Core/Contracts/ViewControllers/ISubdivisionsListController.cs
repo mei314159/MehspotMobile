@@ -11,6 +11,8 @@ namespace Mehspot.Core.Contracts.ViewControllers
         string ZipCode { get; }
         int? SelectedSubdivisionId { get; }
 
+        int? SelectedSubdivisionOptionId { get; }
+
         void SetMapLocation(double latitude, double longitude);
 
         void InitializeList(List<SubdivisionDTO> subdivisions, SubdivisionDTO selectedSubdivision);

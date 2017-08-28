@@ -345,6 +345,7 @@ namespace Mehspot.AndroidApp.Activities
             target.PutExtra("zipCode", profile.Zip);
             target.PutExtra("subdivisions", Subdivisions);
             target.PutExtra<int?>("selectedSubdivisionId", profile.SubdivisionId);
+            target.PutExtra<int?>("selectedSubdivisionOptionId", profile.SubdivisionOptionId);
             target.PutExtra<Action<SubdivisionDTO>>("onDismissed", (dto) =>
             {
                 SubdivisionButton.Text = dto?.DisplayName ?? "Subdivision";

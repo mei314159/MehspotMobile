@@ -16,7 +16,7 @@ namespace Mehspot.AndroidApp
 
 		public Action<SubdivisionDTO> SetProperty { get; private set; }
 
-		public SubdivisionPickerCell(Context context, int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false) :
+		public SubdivisionPickerCell(Context context, int? selectedId, int? optionId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false) :
 											base(context)
 		{
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
@@ -27,6 +27,7 @@ namespace Mehspot.AndroidApp
 			this.FieldLabel.Text = label;
 			this.ZipCode = zipCode;
 			this.SelectedSubdivisionId = selectedId;
+            this.SelectedSubdivisionOptionId = optionId;
 			this.SetProperty = setProperty;
 			this.Subdivisions = list;
 
@@ -35,47 +36,54 @@ namespace Mehspot.AndroidApp
 
 		public string FieldName { get; set; }
 
-		public int? SelectedSubdivisionId { get; private set; }
+        public int? SelectedSubdivisionId { get; private set; }
+		public int? SelectedSubdivisionOptionId { get; private set; }
 
-		public bool IsReadOnly
-		{
-			get
-			{
-				return this.SelectValueButton.Enabled;
-			}
-			set
-			{
-				this.SelectValueButton.Enabled = !value;
-			}
-		}
+        public bool IsReadOnly
+        {
+            get
+            {
+                return this.SelectValueButton.Enabled;
+            }
+            set
+            {
+                this.SelectValueButton.Enabled = !value;
+            }
+        }
 
-		List<SubdivisionDTO> subdivisions;
-		public List<SubdivisionDTO> Subdivisions
-		{
-			get
-			{
-				return subdivisions;
-			}
+        List<SubdivisionDTO> subdivisions;
+        public List<SubdivisionDTO> Subdivisions
+        {
+            get
+            {
+                return subdivisions;
+            }
 
-			set
-			{
-				subdivisions = value;
-				this.SetSelectValueButtonTitle(value?.FirstOrDefault(a => a.Id == this.SelectedSubdivisionId));
-			}
-		}
+            set
+            {
+                subdivisions = value;
+                var dto = value?.FirstOrDefault(a =>
+                     a.Id == this.SelectedSubdivisionId &&
+                     (this.SelectedSubdivisionId == null ||
+                      a.OptionId == this.SelectedSubdivisionOptionId));
+                this.SetSelectValueButtonTitle(dto);
+            }
+        }
 
-		public string ZipCode { get; set; }
+        public string ZipCode { get; set; }
 
-		public TextView SelectValueButton => this.FindViewById<TextView>(Resource.SubdivisionPickerCell.SelectValueButton);
+        public TextView SelectValueButton => this.FindViewById<TextView>(Resource.SubdivisionPickerCell.SelectValueButton);
 
-		public TextView FieldLabel => this.FindViewById<TextView>(Resource.SubdivisionPickerCell.FieldLabel);
+        public TextView FieldLabel => this.FindViewById<TextView>(Resource.SubdivisionPickerCell.FieldLabel);
 
-		void SelectValueButton_Click(object sender, EventArgs e)
+
+        void SelectValueButton_Click(object sender, EventArgs e)
 		{
 			var target = new Intent(Context, typeof(SubdivisionsListActivity));
 			target.PutExtra("zipCode", this.ZipCode);
 			target.PutExtra("subdivisions", this.Subdivisions);
 			target.PutExtra<int?>("selectedSubdivisionId", this.SelectedSubdivisionId);
+            target.PutExtra<int?>("selectedSubdivisionOptionId", this.SelectedSubdivisionOptionId);
 			target.PutExtra<Action<SubdivisionDTO>>("onDismissed", (dto) =>
 						{
 							this.SetProperty(dto);

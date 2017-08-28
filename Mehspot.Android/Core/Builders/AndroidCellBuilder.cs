@@ -64,9 +64,9 @@ namespace Mehspot.AndroidApp.Core.Builders
 			return new RecommendationCell(activity, item);
 		}
 
-		public override ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
+		public override ISubdivisionPickerCell GetSubdivisionPickerCell(int? selectedId, int? optionId, Action<SubdivisionDTO> setProperty, string label, List<SubdivisionDTO> list, string zipCode, bool isReadOnly = false)
 		{
-			return new SubdivisionPickerCell(activity, selectedId, setProperty, label, list, zipCode, isReadOnly);
+            return new SubdivisionPickerCell(activity, selectedId, optionId, setProperty, label, list, zipCode, isReadOnly);
 		}
 
 		public override ITextEditCell GetTextEditCell(string initialValue, Action<ITextEditCell, string> setProperty, string label, Mehspot.Core.Builders.KeyboardType type = Mehspot.Core.Builders.KeyboardType.Default, string placeholder = null, bool isReadOnly = false, string mask = null, string validationRegex = null)
