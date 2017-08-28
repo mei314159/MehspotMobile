@@ -5,105 +5,129 @@ using System.ComponentModel;
 
 namespace Mehspot.iOS
 {
-	[Register("ExtendedTextView"), DesignTimeVisible(true)]
-	public class ExtendedTextView : UITextView
-	{
-		string placeholder;
+    [Register("ExtendedTextView"), DesignTimeVisible(true)]
+    public class ExtendedTextView : UITextView
+    {
+        string placeholder;
 
-		public bool Multiline { get; set; } = true;
+        public bool Multiline { get; set; } = true;
 
-		[Export("Placeholder"), Browsable(true)]
-		public string Placeholder
-		{
-			get
-			{
-				return placeholder;
-			}
+        [Export("Placeholder"), Browsable(true)]
+        public string Placeholder
+        {
+            get
+            {
+                return placeholder;
+            }
 
-			set
-			{
-				placeholder = value;
-				SetNeedsDisplay();
-			}
-		}
+            set
+            {
+                placeholder = value;
+                SetNeedsDisplay();
+            }
+        }
 
+        public override bool Editable
+        {
+            get
+            {
+                return base.Editable;
+            }
+            set
+            {
+                base.Editable = value;
+                this.TextColor = value ? UIColor.DarkTextColor : UIColor.LightGray;
+            }
+        }
 
-		public override string Text
-		{
-			get
-			{
-				return base.Text;
-			}
-			set
-			{
-				if (value != placeholder)
-				{
-					this.TextColor = UIColor.DarkTextColor;
-				}
+        public override string Text
+        {
+            get
+            {
+                return base.Text;
+            }
+            set
+            {
+                if (value != placeholder)
+                {
+                    this.TextColor = UIColor.DarkTextColor;
+                }
 
-				base.Text = value;
-			}
-		}
+                base.Text = value;
+            }
+        }
 
-		public ExtendedTextView(IntPtr handle)
-			: base(handle)
-		{
-		}
+        public override UIColor TextColor
+        {
+            get
+            {
+                return base.TextColor;
+            }
+            set
+            {
+                base.TextColor = this.Editable ? value : UIColor.LightGray;
+            }
+        }
 
-		public override void AwakeFromNib()
-		{
-			base.AwakeFromNib();
+        public ExtendedTextView(IntPtr handle)
+            : base(handle)
+        {
+        }
 
-			Initialize();
-		}
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
 
-		void Initialize()
-		{
-			ShouldBeginEditing = t =>
-			{
-				HidePlaceholder();
+            Initialize();
+        }
 
-				return true;
-			};
-			ShouldEndEditing = t =>
-			{
-				ShowPlaceholder();
+        void Initialize()
+        {
+            ShouldBeginEditing = t =>
+            {
+                HidePlaceholder();
 
-				return true;
-			};
+                return true;
+            };
+            ShouldEndEditing = t =>
+            {
+                ShowPlaceholder();
 
-			EnablesReturnKeyAutomatically = true;
-			this.ShouldChangeText += (textView, range, text) =>
-			{
-				return text != Environment.NewLine || this.Multiline;
-			};
+                return true;
+            };
 
-			ShowPlaceholder();
-		}
+            EnablesReturnKeyAutomatically = true;
+            this.ShouldChangeText += (textView, range, text) =>
+            {
+                return text != Environment.NewLine || this.Multiline;
+            };
 
-		public override bool BecomeFirstResponder()
-		{
-			HidePlaceholder();
+            ShowPlaceholder();
+        }
 
-			return base.BecomeFirstResponder();
-		}
+        public override bool BecomeFirstResponder()
+        {
+            HidePlaceholder();
 
-		void HidePlaceholder()
-		{
-			if (Text == Placeholder)
-			{
-				Text = string.Empty;
-				this.TextColor = UIColor.DarkTextColor;
-			}
-		}
+            return base.BecomeFirstResponder();
+        }
 
-		public void ShowPlaceholder()
-		{
-			if (string.IsNullOrEmpty(Text))
-			{
-				Text = Placeholder;
-				this.TextColor = UIColor.LightGray;
-			}
-		}
-	}
+        void HidePlaceholder()
+        {
+            if (Text == Placeholder)
+            {
+                Text = string.Empty;
+                this.TextColor = UIColor.DarkTextColor;
+            }
+        }
+
+        public void ShowPlaceholder()
+        {
+            if (string.IsNullOrEmpty(Text))
+            {
+                Text = Placeholder;
+                this.TextColor = UIColor.LightGray;
+            }
+        }
+    }
 }
