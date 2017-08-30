@@ -27,7 +27,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.AndroidApp.Activities
 {
-	[Activity(Label = "Subdivision Activity")]
+	[Activity(Label = "Subdivision Activity", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class SubdivisionActivity : AppCompatActivity, ISubdivisionController, IOnMapReadyCallback, ILocationListener,
 	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener, GoogleApiClient.IOnConnectionFailedListener
 	{
@@ -42,7 +42,6 @@ namespace Mehspot.AndroidApp.Activities
 		private Geocoder geocoder;
 		private CameraPosition camera;
 		private LocationManager locationManager;
-		private string locationProvider;
 		private SetPositionDelegate locationDetected;
 		private Action locationDetectionError;
 

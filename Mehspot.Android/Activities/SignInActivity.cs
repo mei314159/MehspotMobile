@@ -14,10 +14,11 @@ using Xamarin.Facebook.Login;
 using Xamarin.Facebook.Login.Widget;
 using Mehspot.Core.Services;
 using Mehspot.AndroidApp.Activities;
+using Android.Content.PM;
 
 namespace Mehspot.AndroidApp
 {
-	[Activity(Label = "Sign In")]
+	[Activity(Label = "Sign In", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class SignInActivity : Activity, IFacebookCallback
     {
 		ActivityHelper activityHelper;

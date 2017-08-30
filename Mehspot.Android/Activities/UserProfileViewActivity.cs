@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Renderscripts;
@@ -21,7 +22,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.AndroidApp
 {
-	[Activity(Label = "UserProfileView")]
+	[Activity(Label = "UserProfileView", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class UserProfileViewActivity : Activity, IUserProfileViewController
 	{
 		private const int BlurRadius = 3;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V7.App;
@@ -14,7 +15,7 @@ using Mehspot.Core;
 
 namespace Mehspot.AndroidApp
 {
-    [Activity(Label = "Mehspot", Icon = "@mipmap/ic_launcher")]
+    [Activity(Label = "Mehspot", Icon = "@mipmap/ic_launcher", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity, IOnMenuTabClickListener
     {
         internal BottomBar BottomBar;

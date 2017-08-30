@@ -1,6 +1,7 @@
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
@@ -20,7 +21,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.AndroidApp
 {
-	[Activity(Label = "Messaging")]
+	[Activity(Label = "Messaging", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MessagingActivity : Activity, 	IMessagingViewController
 	{
 		private MessagingModel messagingModel;
