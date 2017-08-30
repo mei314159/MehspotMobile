@@ -2,6 +2,7 @@
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -14,7 +15,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.AndroidApp
 {
-	[Activity(Label = "Search Badge")]
+	[Activity(Label = "Search Badge", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class SearchBadgeActivity : Activity, ISearchFilterController
 	{
 		private SearchBadgeModel<View> model;

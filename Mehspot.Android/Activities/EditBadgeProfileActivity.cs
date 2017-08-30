@@ -2,6 +2,7 @@
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
@@ -17,7 +18,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.AndroidApp
 {
-	[Activity(Label = "Edit Badge")]
+	[Activity(Label = "Edit Badge", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class EditBadgeProfileActivity : Activity, IEditBadgeProfileController
 	{
 		private EditBadgeProfileModel<View> model;

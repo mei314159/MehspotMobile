@@ -5,6 +5,7 @@ using System.Linq;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Gms.Common;
 using Android.Gms.Common.Apis;
 using Android.Gms.Maps;
@@ -27,7 +28,7 @@ using Mehspot.Core.Services;
 
 namespace Mehspot.AndroidApp.Activities
 {
-	[Activity(Label = "Verify Subdivision Activity")]
+	[Activity(Label = "Verify Subdivision Activity", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class VerifySubdivisionActivity : AppCompatActivity, IVerifySubdivisionController, IOnMapReadyCallback,
 	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener, GoogleApiClient.IOnConnectionFailedListener
 	{

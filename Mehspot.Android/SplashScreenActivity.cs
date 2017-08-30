@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Mehspot.AndroidApp.Activities;
 using Mehspot.AndroidApp.Core;
@@ -11,7 +12,7 @@ using Mehspot.Core;
 
 namespace Mehspot.AndroidApp
 {
-	[Activity(MainLauncher = true, NoHistory = true, Theme = "@android:style/Theme.Holo.NoActionBar")]
+	[Activity(MainLauncher = true, NoHistory = true, Theme = "@android:style/Theme.Holo.NoActionBar", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class SplashScreenActivity : Activity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)

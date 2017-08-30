@@ -15,11 +15,12 @@ using Mehspot.Core.DTO;
 using Mehspot.Core.DTO.Search;
 using Mehspot.Core.Services;
 using Mehspot.Models.ViewModels;
+using Android.Content.PM;
 
 namespace Mehspot.AndroidApp
 {
 
-	[Activity(Label = "Search Results")]
+	[Activity(Label = "Search Results", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class SearchResultsActivity : Activity, ISearchResultsController, ViewTreeObserver.IOnScrollChangedListener
 	{
 		private SearchResultsModel model;

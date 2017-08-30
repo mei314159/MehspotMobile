@@ -26,20 +26,18 @@ using Mehspot.Core.Models.Subdivisions;
 
 namespace Mehspot.AndroidApp.Activities
 {
-	[Activity(Label = "SubdivisionsListActivity")]
+	[Activity(Label = "SubdivisionsListActivity", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class SubdivisionsListActivity : AppCompatActivity, ISubdivisionsListController, IOnMapReadyCallback, ILocationListener,
 	Android.Support.V7.Widget.Toolbar.IOnMenuItemClickListener
 	{
 		private const long MinTime = 0;
 		private const float MinDistance = 0;
 
-		private static readonly string TAG = "X:" + nameof(SubdivisionsListActivity);
 		private SubdivisionsListModel model;
 		private Marker marker;
 		private GoogleMap map;
 		private LocationManager locationManager;
 		private CameraPosition camera;
-		private string locationProvider;
 		private SetPositionDelegate locationDetected;
 		private Action locationDetectionError;
 

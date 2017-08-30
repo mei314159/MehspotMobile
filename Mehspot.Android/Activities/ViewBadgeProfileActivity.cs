@@ -17,10 +17,11 @@ using Mehspot.Models.ViewModels;
 using Mehspot.AndroidApp.Adapters;
 using Mehspot.AndroidApp.Activities;
 using Mehspot.AndroidApp.Core.Builders;
+using Android.Content.PM;
 
 namespace Mehspot.AndroidApp
 {
-	[Activity(Label = "View Badge Profile")]
+	[Activity(Label = "View Badge Profile", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class ViewBadgeProfileActivity : Activity, IViewBadgeProfileController
 	{
 		private ViewBadgeProfileModel<View> model;

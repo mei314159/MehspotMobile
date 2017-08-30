@@ -1,14 +1,10 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Mehspot.AndroidApp.Wrappers;
 using Mehspot.Core;
@@ -18,7 +14,7 @@ using Mehspot.Core.Models;
 
 namespace Mehspot.AndroidApp.Activities
 {
-	[Activity(Label = "Write Recommendation")]
+    [Activity(Label = "Write Recommendation", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class WriteReviewActivity : Activity, IWriteReviewController
 	{
 		private WriteReviewModel model;

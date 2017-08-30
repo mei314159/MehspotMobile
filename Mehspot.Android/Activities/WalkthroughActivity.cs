@@ -30,7 +30,7 @@ using AlertDialog = Android.App.AlertDialog;
 
 namespace Mehspot.AndroidApp.Activities
 {
-    [Activity(Label = "WalkthroughActivity")]
+    [Activity(Label = "WalkthroughActivity", ScreenOrientation = ScreenOrientation.Portrait)]
     public class WalkthroughActivity : AppCompatActivity
     {
         private const ushort CameraRequestCode = 19081;
@@ -50,7 +50,6 @@ namespace Mehspot.AndroidApp.Activities
 
         private volatile bool subdivisionSelectorEnabled;
         private volatile bool subdivisionsLoaded;
-        private volatile bool subdivisionsLoading;
         List<SubdivisionDTO> Subdivisions;
         private ExtendedEditText ZipField;
         private Button SubdivisionButton;

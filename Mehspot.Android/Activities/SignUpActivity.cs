@@ -12,10 +12,11 @@ using Mehspot.Core.Models;
 using Mehspot.Core.Services;
 using Mehspot.Core.DTO;
 using Mehspot.AndroidApp.Activities;
+using Android.Content.PM;
 
 namespace Mehspot.AndroidApp
 {
-	[Activity(Label = "Sign Up")]
+	[Activity(Label = "Sign Up", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class SignUpActivity : Activity
 	{
 		SignUpModel model;
