@@ -30,7 +30,7 @@ namespace Mehspot.Core.DTO.Badges
         [Cell("Age Range", 6, CellType.TextView)]
         public string TennisAgeRange { get; set; }
 
-        [Cell("Additiona Information", 7, CellType.TextView)]
+        [Cell("Additional Information", 7, CellType.TextView)]
         public string Description { get; set; }
 
         public string InfoLabel1
