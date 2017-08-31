@@ -7,9 +7,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.mehspot.application</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.6.9</string>
+	<string>1.6.10</string>
 	<key>CFBundleVersion</key>
-	<string>1.6.129</string>
+	<string>1.6.130</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
