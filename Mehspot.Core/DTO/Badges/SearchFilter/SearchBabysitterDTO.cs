@@ -18,8 +18,23 @@ namespace Mehspot.Core.DTO.Search
 
         [Cell(Label = "Age Range", CellType = CellType.Select, Order = 3, OptionsKey = BadgeService.BadgeKeys.AgeRange)]
         public int? AgeRange { get; set; }
+        IBaseFilterDTO details;
 
-		[Cell(CellType = CellType.Complex, Order = 0)]
-        public IBaseFilterDTO Details => new BabysitterFilterDTO();
+        [Cell(CellType = CellType.Complex, Order = 0)]
+        public IBaseFilterDTO Details
+        {
+            get
+            {
+                if (details == null){
+                    details = new BabysitterFilterDTO();
+                }
+                return details;
+            }
+
+            set
+            {
+                details = value;
+            }
+        }
     }
 }
