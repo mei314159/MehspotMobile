@@ -48,12 +48,6 @@ namespace Mehspot.AndroidApp
 		{
 			base.OnViewCreated(view, savedInstanceState);
 
-			if (IsPlayServicesAvailable())
-			{
-                var intent = new Intent(this.Activity, typeof(RegistrationIntentService));
-				this.Activity.StartService(intent);
-			}
-
 			SearchBar.BeforeTextChanged += SearchBar_BeforeTextChanged;
 			SearchBar.TextChanged += SearchBar_TextChanged;
 			SearchButton.Click += SearchButton_Click;
@@ -170,27 +164,6 @@ namespace Mehspot.AndroidApp
 			messagingActivity.PutExtra("toUserName", toUserName);
 			messagingActivity.PutExtra("toProfilePicturePath", dto.WithUser.ProfilePicturePath);
 			this.StartActivity(messagingActivity);
-		}
-
-		public bool IsPlayServicesAvailable()
-		{
-			int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this.Activity);
-			if (resultCode != ConnectionResult.Success)
-			{
-				if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
-					Console.WriteLine(GoogleApiAvailability.Instance.GetErrorString(resultCode));
-				else
-				{
-					Console.WriteLine("Sorry, this device is not supported");
-					this.Activity.Finish();
-				}
-				return false;
-			}
-			else
-			{
-				Console.WriteLine("Google Play Services is available.");
-				return true;
-			}
 		}
 
 		void SearchBar_BeforeTextChanged(object sender, Android.Text.TextChangedEventArgs e)
