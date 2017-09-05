@@ -378,6 +378,7 @@
     <AndroidResource Include="Resources\drawable\r100orange.xml" />
     <AndroidResource Include="Resources\drawable\r100green.xml" />
     <AndroidResource Include="Resources\drawable\r100blue.xml" />
+    <AndroidResource Include="Resources\drawable\iconsm.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

@@ -4,6 +4,7 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Gms.Common;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V7.App;
@@ -40,13 +41,19 @@ namespace Mehspot.AndroidApp
             BottomBar.SetItems(Resource.Menu.bottombar_menu);
             BottomBar.SetOnMenuTabClickListener(this);
 
-            // Setting colors for different tabs when there's more than three of them.
-            // You can set colors for tabs in three different ways as shown below.
-            //_bottomBar.MapColorForTab(0, new Color(ContextCompat.GetColor(this, Resource.Color.dark_green)));
-            //_bottomBar.MapColorForTab(1, "#5D4037");
-            //_bottomBar.MapColorForTab(2, "#7B1FA2");
+			// Setting colors for different tabs when there's more than three of them.
+			// You can set colors for tabs in three different ways as shown below.
+			//_bottomBar.MapColorForTab(0, new Color(ContextCompat.GetColor(this, Resource.Color.dark_green)));
+			//_bottomBar.MapColorForTab(1, "#5D4037");
+			//_bottomBar.MapColorForTab(2, "#7B1FA2");
+			if (IsPlayServicesAvailable())
+			{
+				var intent = new Intent(this, typeof(RegistrationIntentService));
+				this.StartService(intent);
+			}
 
-        }
+
+		}
 
         public void OnClick(IDialogInterface dialog, int which)
         {
@@ -129,6 +136,26 @@ namespace Mehspot.AndroidApp
         void Instance_OnNetworkException(Exception ex)
         {
             this.activityHelper.ShowAlert("Connection Error", "Sorry, no Internet connectivity detected. Please reconnect and try again.");
-        }
+		}
+
+		public bool IsPlayServicesAvailable()
+		{
+			int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+			if (resultCode != ConnectionResult.Success)
+			{
+				if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+					Console.WriteLine(GoogleApiAvailability.Instance.GetErrorString(resultCode));
+				else
+				{
+					Console.WriteLine("Sorry, this device is not supported");
+				}
+				return false;
+			}
+			else
+			{
+				Console.WriteLine("Google Play Services is available.");
+				return true;
+			}
+		}
     }
 }

@@ -127,11 +127,11 @@ namespace Mehspot.AndroidApp
             var pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.OneShot);
 
             var notificationBuilder = new Notification.Builder(this)
-                //.SetSmallIcon(Icon.CreateWithResource(this, Resource.Drawable.ic_stat_ic_notification))
                 .SetContentTitle("New Message")
                 .SetContentText(push.Message)
+                                                      .SetSmallIcon(Resource.Drawable.iconsm)
                 .SetAutoCancel(true)
-                .SetContentIntent(pendingIntent);
+                                                      .SetContentIntent(pendingIntent);
 
             var notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
             notificationManager.Notify(0, notificationBuilder.Build());
