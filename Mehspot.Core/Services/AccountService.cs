@@ -168,7 +168,12 @@ namespace Mehspot.Core.Auth
 
         public async Task<Result> SignUpAsync(string email, string username, string password, string confirmPassword)
         {
-            var result = await this.PostAsync<object>("Account/Register", new SignUpDTO { Email = email, UserName = username, Password = password, ConfirmPassword = confirmPassword }, true).ConfigureAwait(false);
+            var result = await this.PostAsync<object>("Account/Register", new SignUpDTO {
+                Email = email, 
+                UserName = username, 
+                Password = password, 
+                ConfirmPassword = confirmPassword, 
+                OsType = ApplicationDataStorage.OsType }, true).ConfigureAwait(false);
             return result;
         }
 

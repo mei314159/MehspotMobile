@@ -1,3 +1,5 @@
+using Mehspot.Core.Push;
+
 namespace Mehspot.Core.DTO
 {
 
@@ -10,6 +12,8 @@ namespace Mehspot.Core.DTO
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }
+
+        public OsType OsType { get; set; }
     }
 
     
