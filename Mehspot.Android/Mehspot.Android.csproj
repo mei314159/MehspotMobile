@@ -242,6 +242,7 @@
     <Compile Include="Fragments\BadgeGroupFragment.cs" />
     <Compile Include="Activities\WalkthroughActivity.cs" />
     <Compile Include="Views\ExtentedEditText.cs" />
+    <Compile Include="GCMBroadcastReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
