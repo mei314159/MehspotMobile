@@ -64,7 +64,7 @@ namespace Mehspot.AndroidApp
             Activity.RunOnUiThread(() =>
             {
                 tabLayout.SetTabTextColors(ContextCompat.GetColor(this.Activity, Resource.Color.black), ContextCompat.GetColor(this.Activity, Resource.Color.dark_orange));
-                var viewPager = base.View.FindViewById<ViewPager>(Resource.Id.viewpager);
+                var viewPager = base.View?.FindViewById<ViewPager>(Resource.Id.viewpager);
                 if (viewPager != null)
                 {
                     //Fragment array

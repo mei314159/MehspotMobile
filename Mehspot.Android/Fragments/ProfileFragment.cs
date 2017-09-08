@@ -201,6 +201,8 @@ namespace Mehspot.AndroidApp
 
             Activity.RunOnUiThread(() =>
             {
+                if (!this.IsActive)
+                    return;
                 ProfileContainer.Visibility = ViewStates.Visible;
                 this.SaveButton.Enabled = this.ChangePhotoButton.Enabled = true;
                 //ViewHelper.HideOverlay();

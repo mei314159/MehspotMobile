@@ -64,6 +64,9 @@ namespace Mehspot.Core.Models
             var subdivisions = await GetSubdivisions(profile.Zip).ConfigureAwait(false);
             viewController.InvokeOnMainThread(() =>
             {
+                if (!viewController.IsActive)
+                    return;
+                
                 viewController.UserName = profile.UserName;
                 viewController.FullName = $"{profile.FirstName} {profile.LastName}".Trim(' ');
                 viewController.ProfilePicturePath = profile.ProfilePicturePath;
