@@ -14,6 +14,7 @@ using SDWebImage;
 using UIKit;
 using CoreGraphics;
 using mehspot.iOS.Views;
+using mehspot.iOS;
 
 namespace Mehspot.iOS
 {
@@ -201,11 +202,11 @@ namespace Mehspot.iOS
             var notification = JsonConvert.DeserializeObject<PushNotification>(pushJson);
 
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = notification.Data.Badge ?? 1;
-            var controller = Window.RootViewController as UITabBarController;
-            if (controller == null)
+            var tabBarController = Window.RootViewController as UITabBarController;
+            if (tabBarController == null)
                 return;
 
-            foreach (var c in controller.ViewControllers)
+            foreach (var c in tabBarController.ViewControllers)
             {
                 var rootController = c as UINavigationController;
                 if (rootController == null)
@@ -213,30 +214,76 @@ namespace Mehspot.iOS
                     continue;
                 }
 
-                if (rootController.TopViewController is MessageBoardViewController)
+                if (notification.NotificationType == NotificationTypeEnum.Message)
                 {
-                    var messageBoardViewController = ((MessageBoardViewController)rootController.TopViewController);
-
-                    if (controller.SelectedViewController != rootController || !messageBoardViewController.IsViewLoaded)
+                    if (OpenMessaging(notification, rootController, tabBarController))
                     {
-                        controller.SelectedViewController = rootController;
-                    }
-
-                    if (rootController.VisibleViewController is MessagingViewController)
-                    {
-                        var messagingViewController = ((MessagingViewController)rootController.VisibleViewController);
-                        messagingViewController.ReloadAsync();
                         break;
                     }
-                    else
-                    {
-                        messageBoardViewController.ShowMessagesFromUser(notification.FromUserId, notification.FromUserName);
-
-                        break;
-                    }
-                }
+				}
+                else if (notification.NotificationType == NotificationTypeEnum.GroupMessage)
+				{
+					if (OpenGroupMessaging(notification, rootController, tabBarController))
+					{
+						break;
+					}
+				}
             }
         }
+
+        private bool OpenMessaging(PushNotification notification, UINavigationController rootController, UITabBarController tabBarController)
+        {
+            if (rootController.TopViewController is MessageBoardViewController)
+            {
+                var messageBoardViewController = ((MessageBoardViewController)rootController.TopViewController);
+
+                if (tabBarController.SelectedViewController != rootController || !messageBoardViewController.IsViewLoaded)
+                {
+                    tabBarController.SelectedViewController = rootController;
+                }
+
+                if (rootController.VisibleViewController is MessagingViewController)
+                {
+                    var messagingViewController = ((MessagingViewController)rootController.VisibleViewController);
+                    messagingViewController.ReloadAsync();
+                    return true;
+                }
+                else
+                {
+                    messageBoardViewController.ShowMessagesFromUser(notification.FromUserId, notification.FromUserName);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+		private bool OpenGroupMessaging(PushNotification notification, UINavigationController rootController, UITabBarController tabBarController)
+		{
+			if (rootController.TopViewController is GroupsListViewController)
+			{
+				var messageBoardViewController = ((GroupsListViewController)rootController.TopViewController);
+
+				if (tabBarController.SelectedViewController != rootController || !messageBoardViewController.IsViewLoaded)
+				{
+					tabBarController.SelectedViewController = rootController;
+				}
+
+				if (rootController.VisibleViewController is GroupMessagingViewController)
+				{
+					var messagingViewController = ((GroupMessagingViewController)rootController.VisibleViewController);
+					messagingViewController.ReloadAsync();
+					return true;
+				}
+				else
+				{
+                    messageBoardViewController.ShowMessagesFromGroup(notification.GroupMessage);
+					return true;
+				}
+			}
+
+			return false;
+		}
 
         private static void RegisterPushNotifications()
         {
@@ -307,15 +354,15 @@ namespace Mehspot.iOS
         {
             InvokeOnMainThread(() =>
             {
-				var topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
+                var topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
 
                 while (topController.PresentedViewController != null)
-				{
-					topController = topController.PresentedViewController;
-				}
+                {
+                    topController = topController.PresentedViewController;
+                }
 
-				var y = topController.PrefersStatusBarHidden() ? 0 : 20;
-				ErrorView.ShowInView(topController.View, new CGPoint(0, y), "No Internet Connection");
+                var y = topController.PrefersStatusBarHidden() ? 0 : 20;
+                ErrorView.ShowInView(topController.View, new CGPoint(0, y), "No Internet Connection");
             });
         }
     }

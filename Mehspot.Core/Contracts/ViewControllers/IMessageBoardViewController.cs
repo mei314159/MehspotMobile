@@ -14,6 +14,4 @@ namespace Mehspot.Core.Contracts.ViewControllers
         void UpdateApplicationBadge(int value);
         void UpdateMessageBoardCell(MessageBoardItemDto dto, int index);
     }
-
-
 }

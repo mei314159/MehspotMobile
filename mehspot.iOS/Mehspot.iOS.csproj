@@ -172,6 +172,15 @@
     <ImageAsset Include="Assets.xcassets\eye.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\eye.imageset\eye%403x.png" />
     <ImageAsset Include="Assets.xcassets\eye.imageset\eye%402x.png" />
+    <ImageAsset Include="Assets.xcassets\private-group.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\private-group.imageset\private%402x.png" />
+    <ImageAsset Include="Assets.xcassets\private-group.imageset\private%403x.png" />
+    <ImageAsset Include="Assets.xcassets\closed-group.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\closed-group.imageset\closed%402x.png" />
+    <ImageAsset Include="Assets.xcassets\closed-group.imageset\closed%403x.png" />
+    <ImageAsset Include="Assets.xcassets\groups.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\groups.imageset\groups%403x.png" />
+    <ImageAsset Include="Assets.xcassets\groups.imageset\groups%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -209,6 +218,10 @@
     <Folder Include="Assets.xcassets\arrowup.imageset\" />
     <Folder Include="Assets.xcassets\round-arrow.imageset\" />
     <Folder Include="Assets.xcassets\eye.imageset\" />
+    <Folder Include="Assets.xcassets\private-group.imageset\" />
+    <Folder Include="Assets.xcassets\closed-group.imageset\" />
+    <Folder Include="Assets.xcassets\groups.imageset\" />
+    <Folder Include="Controllers\Groups\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -240,6 +253,7 @@
     <InterfaceDefinition Include="Badges.storyboard" />
     <InterfaceDefinition Include="Contact.storyboard" />
     <InterfaceDefinition Include="NoResultsView.xib" />
+    <InterfaceDefinition Include="Views\Cell\GroupsListItemCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -411,6 +425,18 @@
     <Compile Include="Views\ErrorView.cs" />
     <Compile Include="Views\Cell\TextViewCell.designer.cs">
       <DependentUpon>TextViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupsListViewController.cs" />
+    <Compile Include="GroupsListViewController.designer.cs">
+      <DependentUpon>GroupsListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cell\GroupsListItemCell.cs" />
+    <Compile Include="Views\Cell\GroupsListItemCell.designer.cs">
+      <DependentUpon>GroupsListItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Groups\GroupMessagingViewController.cs" />
+    <Compile Include="Controllers\Groups\GroupMessagingViewController.designer.cs">
+      <DependentUpon>GroupMessagingViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

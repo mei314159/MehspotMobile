@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Mehspot.Core.DTO.Groups;
+using Newtonsoft.Json;
 
 namespace Mehspot.Core.DTO.Push
 {
@@ -12,6 +13,12 @@ namespace Mehspot.Core.DTO.Push
 
         [JsonProperty (PropertyName = "fromUserName")]
         public string FromUserName { get; set; }
+
+		[JsonProperty(PropertyName = "notificationType")]
+		public NotificationTypeEnum NotificationType { get; set; }
+
+		[JsonProperty(PropertyName = "groupMessage")]
+		public GroupMessageDTO GroupMessage { get; set; }
     }
 
     public class NotificationData
@@ -27,4 +34,11 @@ namespace Mehspot.Core.DTO.Push
         [JsonProperty (PropertyName = "sound")]
         public string Sound { get; set; }
     }
+
+	public enum NotificationTypeEnum
+	{
+		Message = 1,
+		GroupMessage = 2,
+		EventMessage = 3
+	}
 }

@@ -32,6 +32,7 @@ namespace Mehspot.Core.Push
                     data.Add("oldToken", oldToken);
                     data.Add("token", newToken);
                     data.Add("osType", _applicationDataStorage.OsType.ToString());
+                    data.Add("appVersion", _applicationDataStorage.AppVersion);
 
                     var response = await webClient.PostAsync(uri, new FormUrlEncodedContent(data)).ConfigureAwait(false);
                     var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);

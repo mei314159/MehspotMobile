@@ -6,253 +6,255 @@ using Mehspot.Core.Push;
 
 namespace Mehspot.iOS.Core
 {
-	public class ApplicationDataStorage : IApplicationDataStorage
-	{
-		public AuthenticationInfoDTO AuthInfo
-		{
-			get
-			{
-				var data = NSUserDefaults.StandardUserDefaults.StringForKey(nameof(IApplicationDataStorage.AuthInfo));
+    public class ApplicationDataStorage : IApplicationDataStorage
+    {
+        public AuthenticationInfoDTO AuthInfo
+        {
+            get
+            {
+                var data = NSUserDefaults.StandardUserDefaults.StringForKey(nameof(IApplicationDataStorage.AuthInfo));
 
-				if (!string.IsNullOrWhiteSpace(data))
-				{
-					var result = JsonConvert.DeserializeObject<AuthenticationInfoDTO>(data);
-					return result;
-				}
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    var result = JsonConvert.DeserializeObject<AuthenticationInfoDTO>(data);
+                    return result;
+                }
 
-				return null;
-			}
-			set
-			{
-				if (value == null)
-				{
-					NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.AuthInfo));
-				}
-				else
-				{
-					var data = JsonConvert.SerializeObject(value);
-					NSUserDefaults.StandardUserDefaults.SetString(data, nameof(IApplicationDataStorage.AuthInfo));
-					NSUserDefaults.StandardUserDefaults.Synchronize();
-				}
-			}
-		}
+                return null;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.AuthInfo));
+                }
+                else
+                {
+                    var data = JsonConvert.SerializeObject(value);
+                    NSUserDefaults.StandardUserDefaults.SetString(data, nameof(IApplicationDataStorage.AuthInfo));
+                    NSUserDefaults.StandardUserDefaults.Synchronize();
+                }
+            }
+        }
 
-		public string PushToken
-		{
-			get
-			{
-				var result = NSUserDefaults
-					.StandardUserDefaults
-					.StringForKey(nameof(IApplicationDataStorage.PushToken));
+        public string PushToken
+        {
+            get
+            {
+                var result = NSUserDefaults
+                    .StandardUserDefaults
+                    .StringForKey(nameof(IApplicationDataStorage.PushToken));
 
-				return result;
-			}
+                return result;
+            }
 
-			set
-			{
-				NSUserDefaults
-					.StandardUserDefaults
-					.SetString(value, nameof(IApplicationDataStorage.PushToken));
-				NSUserDefaults.StandardUserDefaults.Synchronize();
-			}
-		}
+            set
+            {
+                NSUserDefaults
+                    .StandardUserDefaults
+                    .SetString(value, nameof(IApplicationDataStorage.PushToken));
+                NSUserDefaults.StandardUserDefaults.Synchronize();
+            }
+        }
 
-		public string OldPushToken
-		{
-			get
-			{
-				var result = NSUserDefaults
-					.StandardUserDefaults
-					.StringForKey(nameof(IApplicationDataStorage.OldPushToken));
+        public string OldPushToken
+        {
+            get
+            {
+                var result = NSUserDefaults
+                    .StandardUserDefaults
+                    .StringForKey(nameof(IApplicationDataStorage.OldPushToken));
 
-				return result;
-			}
+                return result;
+            }
 
-			set
-			{
-				if (value == null)
-				{
-					NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.OldPushToken));
-				}
-				else
-				{
-					NSUserDefaults
-						.StandardUserDefaults
-						.SetString(value, nameof(IApplicationDataStorage.OldPushToken));
-					NSUserDefaults.StandardUserDefaults.Synchronize();
-				}
-			}
-		}
+            set
+            {
+                if (value == null)
+                {
+                    NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.OldPushToken));
+                }
+                else
+                {
+                    NSUserDefaults
+                        .StandardUserDefaults
+                        .SetString(value, nameof(IApplicationDataStorage.OldPushToken));
+                    NSUserDefaults.StandardUserDefaults.Synchronize();
+                }
+            }
+        }
 
-		public bool PushDeviceTokenSentToBackend
-		{
-			get
-			{
-				var result = NSUserDefaults
-					.StandardUserDefaults
-					.BoolForKey(nameof(IApplicationDataStorage.PushDeviceTokenSentToBackend));
+        public bool PushDeviceTokenSentToBackend
+        {
+            get
+            {
+                var result = NSUserDefaults
+                    .StandardUserDefaults
+                    .BoolForKey(nameof(IApplicationDataStorage.PushDeviceTokenSentToBackend));
 
-				return result;
-			}
+                return result;
+            }
 
-			set
-			{
-				NSUserDefaults
-					.StandardUserDefaults
-					.SetBool(value, nameof(IApplicationDataStorage.PushDeviceTokenSentToBackend));
-				NSUserDefaults.StandardUserDefaults.Synchronize();
-			}
-		}
+            set
+            {
+                NSUserDefaults
+                    .StandardUserDefaults
+                    .SetBool(value, nameof(IApplicationDataStorage.PushDeviceTokenSentToBackend));
+                NSUserDefaults.StandardUserDefaults.Synchronize();
+            }
+        }
 
-		public bool PushIsEnabled
-		{
-			get
-			{
-				var result = NSUserDefaults
-					.StandardUserDefaults
-					.BoolForKey(nameof(IApplicationDataStorage.PushIsEnabled));
+        public bool PushIsEnabled
+        {
+            get
+            {
+                var result = NSUserDefaults
+                    .StandardUserDefaults
+                    .BoolForKey(nameof(IApplicationDataStorage.PushIsEnabled));
 
-				return result;
-			}
+                return result;
+            }
 
-			set
-			{
-				NSUserDefaults
-					.StandardUserDefaults
-					.SetBool(value, nameof(IApplicationDataStorage.PushIsEnabled));
-				NSUserDefaults.StandardUserDefaults.Synchronize();
-			}
-		}
+            set
+            {
+                NSUserDefaults
+                    .StandardUserDefaults
+                    .SetBool(value, nameof(IApplicationDataStorage.PushIsEnabled));
+                NSUserDefaults.StandardUserDefaults.Synchronize();
+            }
+        }
 
-		public OsType OsType
-		{
-			get
-			{
-				return OsType.iOS;
-			}
-		}
+        public OsType OsType
+        {
+            get
+            {
+                return OsType.iOS;
+            }
+        }
 
-		public bool WalkthroughPassed
-		{
-			get
-			{
-				return Profile != null &&
-				!string.IsNullOrWhiteSpace(Profile.ProfilePicturePath) &&
-				!string.IsNullOrWhiteSpace(Profile.Zip) &&
-				Profile.SubdivisionId != null;
-			}
-		}
+        public bool WalkthroughPassed
+        {
+            get
+            {
+                return Profile != null &&
+                !string.IsNullOrWhiteSpace(Profile.ProfilePicturePath) &&
+                !string.IsNullOrWhiteSpace(Profile.Zip) &&
+                Profile.SubdivisionId != null;
+            }
+        }
 
-		public ProfileDto Profile
-		{
-			get
-			{
-				var data = NSUserDefaults.StandardUserDefaults.StringForKey(nameof(IApplicationDataStorage.Profile));
+        public ProfileDto Profile
+        {
+            get
+            {
+                var data = NSUserDefaults.StandardUserDefaults.StringForKey(nameof(IApplicationDataStorage.Profile));
 
-				if (!string.IsNullOrWhiteSpace(data))
-				{
-					var result = JsonConvert.DeserializeObject<ProfileDto>(data);
-					return result;
-				}
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    var result = JsonConvert.DeserializeObject<ProfileDto>(data);
+                    return result;
+                }
 
-				return null;
-			}
-			set
-			{
-				if (value == null)
-				{
-					NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.Profile));
-				}
-				else
-				{
-					var data = JsonConvert.SerializeObject(value);
-					NSUserDefaults.StandardUserDefaults.SetString(data, nameof(IApplicationDataStorage.Profile));
-					NSUserDefaults.StandardUserDefaults.Synchronize();
-				}
-			}
-		}
+                return null;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.Profile));
+                }
+                else
+                {
+                    var data = JsonConvert.SerializeObject(value);
+                    NSUserDefaults.StandardUserDefaults.SetString(data, nameof(IApplicationDataStorage.Profile));
+                    NSUserDefaults.StandardUserDefaults.Synchronize();
+                }
+            }
+        }
 
-		public UserProfileSummaryDTO UserProfile
-		{
-			get
-			{
-				var data = NSUserDefaults.StandardUserDefaults.StringForKey(nameof(IApplicationDataStorage.UserProfile));
+        public UserProfileSummaryDTO UserProfile
+        {
+            get
+            {
+                var data = NSUserDefaults.StandardUserDefaults.StringForKey(nameof(IApplicationDataStorage.UserProfile));
 
-				if (!string.IsNullOrWhiteSpace(data))
-				{
-					var result = JsonConvert.DeserializeObject<UserProfileSummaryDTO>(data);
-					return result;
-				}
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    var result = JsonConvert.DeserializeObject<UserProfileSummaryDTO>(data);
+                    return result;
+                }
 
-				return null;
-			}
+                return null;
+            }
 
-			set
-			{
-				if (value == null)
-				{
-					NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.UserProfile));
-				}
-				else
-				{
-					var data = JsonConvert.SerializeObject(value);
-					NSUserDefaults.StandardUserDefaults.SetString(data, nameof(IApplicationDataStorage.UserProfile));
-					NSUserDefaults.StandardUserDefaults.Synchronize();
-				}
-			}
-		}
+            set
+            {
+                if (value == null)
+                {
+                    NSUserDefaults.StandardUserDefaults.RemoveObject(nameof(IApplicationDataStorage.UserProfile));
+                }
+                else
+                {
+                    var data = JsonConvert.SerializeObject(value);
+                    NSUserDefaults.StandardUserDefaults.SetString(data, nameof(IApplicationDataStorage.UserProfile));
+                    NSUserDefaults.StandardUserDefaults.Synchronize();
+                }
+            }
+        }
 
-		public BadgeGroup? PreferredBadgeGroup
-		{
-			get
-			{
-				var value = (int)NSUserDefaults
-					.StandardUserDefaults
-					.IntForKey(nameof(IApplicationDataStorage.PreferredBadgeGroup));
+        public BadgeGroup? PreferredBadgeGroup
+        {
+            get
+            {
+                var value = (int)NSUserDefaults
+                    .StandardUserDefaults
+                    .IntForKey(nameof(IApplicationDataStorage.PreferredBadgeGroup));
 
-				if (value == default(int))
-				{
-					return null;
-				}
+                if (value == default(int))
+                {
+                    return null;
+                }
 
-				var result = (BadgeGroup)value;
-				return result;
-			}
+                var result = (BadgeGroup)value;
+                return result;
+            }
 
-			set
-			{
-				NSUserDefaults
-					.StandardUserDefaults
-					.SetInt((int)value, nameof(IApplicationDataStorage.PreferredBadgeGroup));
-				NSUserDefaults.StandardUserDefaults.Synchronize();
-			}
-		}
+            set
+            {
+                NSUserDefaults
+                    .StandardUserDefaults
+                    .SetInt((int)value, nameof(IApplicationDataStorage.PreferredBadgeGroup));
+                NSUserDefaults.StandardUserDefaults.Synchronize();
+            }
+        }
 
-		public T Get<T>(string key)
-		{
-			var data = NSUserDefaults.StandardUserDefaults.StringForKey(key);
+        public string AppVersion => NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
 
-			if (!string.IsNullOrWhiteSpace(data))
-			{
-				var result = JsonConvert.DeserializeObject<T>(data);
-				return result;
-			}
+        public T Get<T>(string key)
+        {
+            var data = NSUserDefaults.StandardUserDefaults.StringForKey(key);
 
-			return default(T);
-		}
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                var result = JsonConvert.DeserializeObject<T>(data);
+                return result;
+            }
 
-		public void Set<T>(string key, T value) where T : class
-		{
-			if (value == null)
-			{
-				NSUserDefaults.StandardUserDefaults.RemoveObject(key);
-			}
-			else
-			{
-				var data = JsonConvert.SerializeObject(value);
-				NSUserDefaults.StandardUserDefaults.SetString(data, key);
-				NSUserDefaults.StandardUserDefaults.Synchronize();
-			}
-		}
-	}
+            return default(T);
+        }
+
+        public void Set<T>(string key, T value) where T : class
+        {
+            if (value == null)
+            {
+                NSUserDefaults.StandardUserDefaults.RemoveObject(key);
+            }
+            else
+            {
+                var data = JsonConvert.SerializeObject(value);
+                NSUserDefaults.StandardUserDefaults.SetString(data, key);
+                NSUserDefaults.StandardUserDefaults.Synchronize();
+            }
+        }
+    }
 }

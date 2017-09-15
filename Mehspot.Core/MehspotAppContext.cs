@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Mehspot.Core.Auth;
 using Mehspot.Core.Contracts;
 using Mehspot.Core.DTO;
+using Mehspot.Core.DTO.Groups;
 using Mehspot.Core.Messaging;
 using Microsoft.AspNet.SignalR.Client;
 
@@ -17,6 +18,7 @@ namespace Mehspot.Core
         private IHubProxy proxy;
         public static MehspotAppContext Instance => lazy.Value;
         public event Action<MessagingNotificationType, MessageDto> ReceivedNotification;
+        public event Action<MessagingNotificationType, GroupMessageDTO> ReceivedGroupNotification;
 
         private MehspotAppContext()
         {
@@ -73,6 +75,8 @@ namespace Mehspot.Core
 
                 proxy = connection.CreateHubProxy("MessageNotificationHub");
                 proxy.On<MessagingNotificationType, MessageDto>("OnSendNotification", OnSendNotification);
+                proxy.On<MessagingNotificationType, GroupMessageDTO>("OnSendGroupNotification", OnSendGroupNotification);
+
                 await connection.Start();
             }
             catch (Exception ex)
@@ -86,10 +90,10 @@ namespace Mehspot.Core
             OnException?.Invoke(ex);
         }
 
-		public void LogNetworkException(Exception ex)
-		{
-			OnNetworkException(ex);
-		}
+        public void LogNetworkException(Exception ex)
+        {
+            OnNetworkException(ex);
+        }
 
         void HubConnection_StateChanged(StateChange obj)
         {
@@ -109,10 +113,12 @@ namespace Mehspot.Core
 
         private void OnSendNotification(MessagingNotificationType notificationType, MessageDto data)
         {
-            if (ReceivedNotification != null)
-            {
-                ReceivedNotification(notificationType, data);
-            }
+            ReceivedNotification?.Invoke(notificationType, data);
+        }
+
+        private void OnSendGroupNotification(MessagingNotificationType notificationType, GroupMessageDTO data)
+        {
+            ReceivedGroupNotification?.Invoke(notificationType, data);
         }
 
         private void OnAuthenticated(AuthenticationInfoDTO authInfo)
