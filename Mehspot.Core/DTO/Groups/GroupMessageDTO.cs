@@ -24,5 +24,19 @@ namespace Mehspot.Core.DTO.Groups
         public bool Liked { get; set; }
 
         public DateTime Posted { get; set; }
+
+
+        public string FullName
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName))
+                {
+                    return UserName;
+                }
+
+                return (FirstName + " " + LastName).Trim();
+            }
+        }
     }
 }

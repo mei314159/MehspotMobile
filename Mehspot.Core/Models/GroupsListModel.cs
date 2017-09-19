@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mehspot.Core.Contracts.ViewControllers;
@@ -17,21 +19,20 @@ namespace Mehspot.Core.Models
         private readonly GroupService groupsService;
         private readonly IGroupsListViewController viewController;
 
-        public GroupsListItemDTO[] Items;
+        public List<GroupsListItemDTO> Items = new List<GroupsListItemDTO>();
         public event Action LoadingStart;
         public event Action<Result<GroupsListItemDTO[]>> LoadingEnd;
-        public volatile bool dataLoaded;
 
         public GroupsListModel(GroupService groupsService, IGroupsListViewController viewController)
         {
             this.viewController = viewController;
-			this.groupsService = groupsService;
-            MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
+            this.groupsService = groupsService;
+            MehspotAppContext.Instance.ReceivedGroupNotification += OnSendNotification;
         }
 
         public int Page { get; private set; } = 1;
 
-        public async Task LoadMessageBoardAsync(bool isFirstLoad = false)
+        public async Task LoadGroupsListAsync(bool isFirstLoad = false)
         {
             if (loading)
                 return;
@@ -45,29 +46,47 @@ namespace Mehspot.Core.Models
             var result = await groupsService.GetList().ConfigureAwait(false);
             if (result.IsSuccess)
             {
-                this.Items = result.Data;
+                lock (((ICollection)this.Items).SyncRoot)
+                {
+                    this.Items.Clear();
+                    this.Items.AddRange(result.Data.OrderByDescending(a => a.HasUnreadMessages).ThenByDescending(a => a.SentDate));
+                }
             }
 
             LoadingEnd?.Invoke(result);
-            dataLoaded = result.IsSuccess;
             loading = false;
         }
 
-        void OnSendNotification(MessagingNotificationType notificationType, MessageDto data)
+        void OnSendNotification(MessagingNotificationType notificationType, GroupMessageDTO data)
         {
-            //if (notificationType == MessagingNotificationType.Message && Items != null)
-            //{
-            //    for (int i = 0; i < Items.Length; i++)
-            //    {
-            //        var item = Items[i];
-            //        if (item.WithUser.Id == data.FromUserId)
-            //        {
-            //            item.UnreadMessagesCount++;
-            //            viewController.UpdateCell(item, i);
-            //            break;
-            //        }
-            //    }
-            //}
+            if (notificationType == MessagingNotificationType.GroupMessage && Items != null)
+            {
+                UpdateList(data);
+            }
+        }
+
+        public void UpdateList(GroupMessageDTO data)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                var item = Items[i];
+                if (item.GroupId == data.GroupId)
+                {
+                    if (item.LastMessageUserId != MehspotAppContext.Instance.AuthManager.AuthInfo.UserId)
+                    {
+                        item.HasUnreadMessages = true;
+                    }
+
+                    item.LastMessage = data.Message;
+                    item.MessageId = data.MessageId;
+                    item.LastMessageUserId = data.UserId;
+                    item.SentDate = data.Posted;
+                    Items.Remove(item);
+                    Items.Insert(0, item);
+                    viewController.DisplayGroups();
+                    break;
+                }
+            }
         }
     }
 }

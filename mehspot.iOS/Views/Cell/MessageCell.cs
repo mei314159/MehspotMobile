@@ -64,7 +64,7 @@ namespace Mehspot.iOS
 			this.MessageWrapper.BackgroundColor = isMyMessage ? UIColor.FromRGB(58, 155, 252) : UIColor.FromRGB(249, 217, 128);
 			this.message.TextColor = isMyMessage ? UIColor.White : UIColor.DarkTextColor;
 			this.message.Text = dto.Message;
-            this.DateLabel.Text = dto.Posted.AddSeconds(NSTimeZone.SystemTimeZone.GetSecondsFromGMT).ToString("MM/dd/yyyy hh:mm tt");
+			this.DateLabel.Text = dto.FullName + " at " + dto.Posted.AddSeconds(NSTimeZone.SystemTimeZone.GetSecondsFromGMT).ToString("MM/dd/yyyy hh:mm tt");
 
 			CGRect titleLabelBounds = new CGRect(CGPoint.Empty, new CGSize(MessageWrapper.Frame.Width - 20, int.MaxValue - 20));
 			CGRect minimumTextRect = this.message.TextRectForBounds(titleLabelBounds, 0);

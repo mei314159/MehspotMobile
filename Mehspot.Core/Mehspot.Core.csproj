@@ -217,7 +217,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\portable-net45+win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.1\lib\portable-net45+sl50+win+wpa81+wp80\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.2\lib\portable-net45+sl50+win+wpa81+wp80\Microsoft.AspNet.SignalR.Client.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

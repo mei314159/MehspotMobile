@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mehspot.Core.Contracts.ViewControllers;
@@ -16,7 +18,7 @@ namespace Mehspot.Core.Models
         private readonly MessagesService messagesService;
         private readonly IMessageBoardViewController viewController;
 
-        public MessageBoardItemDto[] Items;
+        public readonly List<MessageBoardItemDto> Items = new List<MessageBoardItemDto>();
         public event Action LoadingStart;
         public event Action<Result<MessageBoardItemDto[]>> LoadingEnd;
         public volatile bool dataLoaded;
@@ -44,7 +46,12 @@ namespace Mehspot.Core.Models
             var result = await messagesService.GetMessageBoard(viewController.Filter);
             if (result.IsSuccess)
             {
-                this.Items = result.Data;
+                lock (((ICollection)this.Items).SyncRoot)
+                {
+                    this.Items.Clear();
+                    this.Items.AddRange(result.Data.OrderByDescending(a => a.UnreadMessagesCount)
+                                        .ThenByDescending(a => a.SentDate));
+                }
             }
 
             LoadingEnd?.Invoke(result);
@@ -56,17 +63,31 @@ namespace Mehspot.Core.Models
         {
             if (notificationType == MessagingNotificationType.Message && Items != null)
             {
-                for (int i = 0; i < Items.Length; i++)
+                UpdateList(data);
+            }
+        }
+
+        public void UpdateList(MessageDto data)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                var item = Items[i];
+                if (item.WithUser.Id == data.FromUserId)
                 {
-                    var item = Items[i];
-                    if (item.WithUser.Id == data.FromUserId)
-                    {
-                        item.UnreadMessagesCount++;
-                        viewController.UpdateMessageBoardCell(item, i);
-                        break;
-                    }
+                    item.UnreadMessagesCount++;
+                    item.LastMessage = data.Message;
+                    item.SentDate = data.SentDate;
+                    item.IsRead = data.IsRead;
+                    item.ToUserId = data.ToUserId;
+                    Items.Remove(item);
+                    Items.Insert(0, item);
+                    viewController.DisplayMessageBoard();
+                    break;
                 }
             }
         }
     }
 }
+
+
+

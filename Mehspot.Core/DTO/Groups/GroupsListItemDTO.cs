@@ -13,8 +13,14 @@ namespace Mehspot.Core.DTO.Groups
 
         public string LastMessage { get; set; }
 
+        public string LastMessageUserId { get; set; }
+
         public GroupTypeEnum GroupType { get; set; }
 
         public GroupUserTypeEnum GroupUserType { get; set; }
+
+        public DateTime? LastSeen { get; set; }
+
+        public bool HasUnreadMessages { get; set; }
     }
 }

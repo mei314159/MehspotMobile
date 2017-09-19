@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio from the outlets and
+// This file has been generated automatically by Xamarin Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -30,6 +30,10 @@ namespace mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel LastMessage { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView UnreadIcon { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (GroupName != null) {
@@ -50,6 +54,11 @@ namespace mehspot.iOS
             if (LastMessage != null) {
                 LastMessage.Dispose ();
                 LastMessage = null;
+            }
+
+            if (UnreadIcon != null) {
+                UnreadIcon.Dispose ();
+                UnreadIcon = null;
             }
         }
     }

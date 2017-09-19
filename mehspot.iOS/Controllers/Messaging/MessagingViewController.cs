@@ -176,11 +176,7 @@ namespace Mehspot.iOS
 		{
 			if (notificationType == MessagingNotificationType.Message && string.Equals(data.FromUserId, ToUserId, StringComparison.InvariantCultureIgnoreCase))
 			{
-				InvokeOnMainThread(() =>
-				{
-					AddMessageBubbleToEnd(data);
-				});
-
+				AddMessageBubbleToEnd(data);
 				await this.messagingModel.MarkMessagesReadAsync();
 			}
 		}
@@ -216,10 +212,16 @@ namespace Mehspot.iOS
 
 		public void AddMessageBubbleToEnd(MessageDto messageDto)
 		{
+			if (messages.Any(a => a.Id == messageDto.Id))
+				return;
 			messages.Insert(0, messageDto);
-			var row = NSIndexPath.FromRowSection(messages.Count - 1, 0);
-			messagesList.InsertRows(new[] { row }, UITableViewRowAnimation.None);
-			ScrollToEnd();
+
+			InvokeOnMainThread(() =>
+				{
+					var row = NSIndexPath.FromRowSection(messages.Count - 1, 0);
+					messagesList.InsertRows(new[] { row }, UITableViewRowAnimation.None);
+					ScrollToEnd();
+				});
 		}
 
 		public nint RowsInSection(UITableView tableView, nint section)

@@ -26,51 +26,60 @@
                         </constraints>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="16" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2" adjustsFontSizeToFit="NO">
-                        <rect key="frame" x="15" y="29" width="239" height="32"/>
+                        <rect key="frame" x="15" y="29" width="219" height="32"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <string key="text">dfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfgdfgs sdfgsdgkhsdf ghdsfglh dsfghsdlg sdfg</string>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1846" translatesAutoresizingMaskIntoConstraints="NO">
-                        <rect key="frame" x="276" y="18" width="24" height="24"/>
+                        <rect key="frame" x="242" y="42" width="20" height="20"/>
                         <constraints>
-                            <constraint id="1849" firstItem="1846" firstAttribute="height" constant="24"/>
+                            <constraint id="1849" firstItem="1846" firstAttribute="height" constant="20"/>
                             <constraint id="4138" firstAttribute="width" secondItem="1846" secondAttribute="height" multiplier="1:1"/>
                         </constraints>
                         <color key="tintColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5939" translatesAutoresizingMaskIntoConstraints="NO">
-                        <rect key="frame" x="267" y="45" width="42" height="15"/>
+                        <rect key="frame" x="267" y="45" width="42" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <constraints>
                             <constraint id="5959" firstItem="5939" firstAttribute="height" constant="15"/>
-                            <constraint id="5978" firstItem="5939" firstAttribute="width" constant="42" relation="greaterThanOrEqual"/>
+                            <constraint id="5978" firstItem="5939" firstAttribute="width" constant="42"/>
                         </constraints>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6000" translatesAutoresizingMaskIntoConstraints="NO" image="letter">
+                        <rect key="frame" x="276" y="10" width="24" height="24"/>
+                        <constraints>
+                            <constraint id="6003" firstItem="6000" firstAttribute="height" constant="24"/>
+                            <constraint id="6004" firstAttribute="width" secondItem="6000" secondAttribute="height" multiplier="1:1"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint id="8" firstItem="7" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="4"/>
                     <constraint id="10" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="66"/>
                     <constraint id="17" firstItem="16" firstAttribute="leading" secondItem="7" secondAttribute="leading"/>
-                    <constraint id="18" firstItem="16" firstAttribute="trailing" secondItem="7" secondAttribute="trailing"/>
                     <constraint id="19" firstItem="16" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="4"/>
                     <constraint id="21" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="16" secondAttribute="bottom" constant="4" relation="greaterThanOrEqual"/>
                     <constraint id="1790" firstItem="7" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="15"/>
-                    <constraint id="1848" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="1846" secondAttribute="trailing" constant="20"/>
-                    <constraint id="1851" firstItem="1846" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" constant="-5"/>
-                    <constraint id="5956" firstItem="5939" firstAttribute="centerX" secondItem="1846" secondAttribute="centerX"/>
-                    <constraint id="5958" firstItem="5939" firstAttribute="top" secondItem="1846" secondAttribute="bottom" constant="3"/>
+                    <constraint id="5991" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="5939" secondAttribute="trailing" constant="11"/>
+                    <constraint id="5992" firstItem="YTl-1W-gDM" firstAttribute="bottom" secondItem="5939" secondAttribute="bottom" constant="9"/>
+                    <constraint id="5993" firstItem="1846" firstAttribute="centerY" secondItem="5939" secondAttribute="centerY"/>
+                    <constraint id="5995" firstItem="5939" firstAttribute="leading" secondItem="1846" secondAttribute="trailing" constant="4"/>
+                    <constraint id="5999" firstItem="YTl-1W-gDM" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" constant="86"/>
+                    <constraint id="6001" firstItem="6000" firstAttribute="centerX" secondItem="5939" secondAttribute="centerX"/>
+                    <constraint id="6005" firstItem="6000" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="10"/>
                 </constraints>
-                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
             </tableViewCellContentView>
             <connections>
                 <outlet property="GroupName" destination="7" id="name-outlet-7"/>
                 <outlet property="LastMessage" destination="16" id="name-outlet-16"/>
                 <outlet property="GroupTypeName" destination="5939" id="name-outlet-5939"/>
                 <outlet property="GroupType" destination="1846" id="name-outlet-1846"/>
+                <outlet property="UnreadIcon" destination="6000" id="name-outlet-6000"/>
             </connections>
             <point key="canvasLocation" x="-5" y="17"/>
         </tableViewCell>
@@ -139,5 +148,6 @@
         <image name="private-group" width="36" height="36"/>
         <image name="closed-group" width="36" height="36"/>
         <image name="groups" width="25" height="25"/>
+        <image name="letter" width="24" height="24"/>
     </resources>
 </document>
