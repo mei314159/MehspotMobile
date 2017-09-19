@@ -7,24 +7,12 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace Mehspot.iOS.Views
 {
-    [Register ("TextViewCell")]
-    partial class TextViewCell
+    [Register ("TextEditCell")]
+    partial class TextEditCell
     {
-        [Outlet]
-        NSLayoutConstraint TextViewHeight { get; set; }
-
-
-        [Outlet]
-        UILabel FieldLabel { get; set; }
-
-
-        [Outlet]
-        UITextView Text { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
             if (FieldLabel != null) {
@@ -32,9 +20,9 @@ namespace Mehspot.iOS.Views
                 FieldLabel = null;
             }
 
-            if (Text != null) {
-                Text.Dispose ();
-                Text = null;
+            if (TextView != null) {
+                TextView.Dispose ();
+                TextView = null;
             }
 
             if (TextViewHeight != null) {

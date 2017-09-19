@@ -16,26 +16,29 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Drawing;
 using SDWebImage;
+using Mehspot.Core.DTO.Groups;
 
 namespace Mehspot.iOS
 {
-	public partial class MessagingViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate, IMessagingViewController
+	public partial class GroupMessagingViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate, IGroupMessagingViewController
 	{
-		private readonly List<MessageDto> messages = new List<MessageDto>();
+		private readonly List<GroupMessageDTO> messages = new List<GroupMessageDTO>();
 
-		private readonly MessagingModel messagingModel;
+		private readonly GroupMessagingModel messagingModel;
 		private readonly UIRefreshControl refreshControl;
 		private const int spacing = 20;
 
-		public MessagingViewController(IntPtr handle) : base(handle)
+		public GroupMessagingViewController(IntPtr handle) : base(handle)
 		{
 			refreshControl = new UIRefreshControl();
-			messagingModel = new MessagingModel(new MessagesService(MehspotAppContext.Instance.DataStorage), this);
+			messagingModel = new GroupMessagingModel(new GroupService(MehspotAppContext.Instance.DataStorage), this);
 		}
 
-		public string ToUserName { get; set; }
-		public string ToUserId { get; set; }
-		public string ProfilePicturePath { get; set; }
+		public int GroupId { get; set; }
+		public string GroupName { get; set; }
+		public GroupTypeEnum GroupType { get; set; }
+		public GroupUserTypeEnum GroupUserType { get; set; }
+
 		public UIViewController ParentController { get; set; }
 
 		public IViewHelper ViewHelper { get; private set; }
@@ -50,8 +53,11 @@ namespace Mehspot.iOS
 			}
 			set
 			{
-				this.textField.Text = value;
-				LayoutTextInput();
+				InvokeOnMainThread(() =>
+				{
+					this.textField.Text = value;
+					LayoutTextInput();
+				});
 			}
 		}
 
@@ -60,7 +66,7 @@ namespace Mehspot.iOS
 		{
 			ViewHelper = new ViewHelper(this.messagesList);
 
-			MehspotAppContext.Instance.ReceivedNotification += OnSendNotification;
+			MehspotAppContext.Instance.ReceivedGroupNotification += OnSendNotification;
 			View.BringSubviewToFront(messageFieldWrapper);
 			messagesList.RegisterNibForCellReuse(MessageCell.Nib, MessageCell.Key);
 			this.View.BackgroundColor = UIColor.White;
@@ -71,7 +77,18 @@ namespace Mehspot.iOS
 			messagesList.AddGestureRecognizer(new UITapGestureRecognizer(this.HideKeyboard));
 			messagesList.RowHeight = UITableView.AutomaticDimension;
 			messagesList.EstimatedRowHeight = 50;
-
+			var canPostMessagesRoles = new[]
+			{
+				GroupUserTypeEnum.Owner,
+				GroupUserTypeEnum.GroupAdmin,
+				GroupUserTypeEnum.EventAdmin
+			};
+			bool canWrite = this.GroupType != GroupTypeEnum.Private || canPostMessagesRoles.Contains(this.GroupUserType);
+			messageFieldWrapper.Hidden = !canWrite;
+			if (!canWrite)
+			{
+				MessageWrapperBottomConstraint.Constant = 60;
+			}
 			textField.Changed += (sender, e) =>
 			{
 				LayoutTextInput();
@@ -91,64 +108,20 @@ namespace Mehspot.iOS
 			textField.LayoutIfNeeded();
 		}
 
-		[Action("UnwindToMessagingViewController:")]
-		public void UnwindToMessagingViewController(UIStoryboardSegue segue)
+		[Action("UnwindGroupToMessagingViewController:")]
+		public void UnwindGroupToMessagingViewController(UIStoryboardSegue segue)
 		{
 		}
 
 		partial void CloseButtonTouched(UIBarButtonItem sender)
 		{
-			if (ParentController is MessageBoardViewController || ParentController is ViewProfileViewController)
-			{
-				DismissViewController(true, null);
-			}
-			else
-			{
-				PerformSegue("UnwindToSearchResults", this);
-			}
-		}
-
-		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-		{
-			if (segue.Identifier == "ShowUserProfileSegue")
-			{
-				var controller = (UserProfileViewController)segue.DestinationViewController;
-				controller.ToUserName = this.ToUserName;
-				controller.ToUserId = this.ToUserId;
-				controller.ParentController = this;
-			}
-
-			base.PrepareForSegue(segue, sender);
+			DismissViewController(true, null);
 		}
 
 		public override void ViewWillAppear(bool animated)
 		{
-			this.Title = ToUserName;
-			this.NavBar.TopItem.Title = ToUserName;
-
-			var composeButton = new UIButton(new RectangleF(0, 0, 30, 30));
-			composeButton.ContentMode = UIViewContentMode.ScaleAspectFill;
-			composeButton.Layer.CornerRadius = composeButton.Frame.Width / 2;
-			composeButton.ClipsToBounds = true;
-			composeButton.TouchUpInside += (sender, e) =>
-			{
-				PerformSegue("ShowUserProfileSegue", this);
-			};
-
-			if (!string.IsNullOrEmpty(ProfilePicturePath))
-			{
-				var url = NSUrl.FromString(ProfilePicturePath);
-				if (url != null)
-				{
-					composeButton.SetBackgroundImage(url, UIControlState.Normal);
-				}
-			}
-			else
-			{
-				composeButton.SetBackgroundImage(UIImage.FromFile("profile_image.png"), UIControlState.Normal);
-			}
-
-			UserPic.CustomView = composeButton;
+			this.Title = GroupName;
+			this.NavBar.TopItem.Title = GroupName;
 		}
 
 		public void ScrollToEnd()
@@ -172,12 +145,12 @@ namespace Mehspot.iOS
 			await messagingModel.SendMessageAsync();
 		}
 
-		async void OnSendNotification(MessagingNotificationType notificationType, MessageDto data)
+		void OnSendNotification(MessagingNotificationType notificationType, GroupMessageDTO data)
 		{
-			if (notificationType == MessagingNotificationType.Message && string.Equals(data.FromUserId, ToUserId, StringComparison.InvariantCultureIgnoreCase))
+			if (notificationType == MessagingNotificationType.GroupMessage
+				&& data.GroupId == GroupId)
 			{
 				AddMessageBubbleToEnd(data);
-				await this.messagingModel.MarkMessagesReadAsync();
 			}
 		}
 
@@ -187,41 +160,43 @@ namespace Mehspot.iOS
 			this.messages.Clear();
 			this.messagingModel.Page = 1;
 			await this.messagingModel.LoadMessagesAsync();
-			await this.messagingModel.MarkMessagesReadAsync();
 			refreshControl.EndRefreshing();
 		}
 
-		public void DisplayMessages(Result<CollectionDto<MessageDto>> messagesResult)
+		public void DisplayMessages(Result<GroupMessageDTO[]> messagesResult)
 		{
+			messages.AddRange(messagesResult.Data);
 			InvokeOnMainThread(() =>
 			{
-				messages.AddRange(messagesResult.Data.Data);
-				var rows = messagesResult.Data.Data.Select((a, i) => NSIndexPath.FromRowSection(i, 0)).Reverse().ToArray();
+				var rows = messagesResult.Data.Select((a, i) => NSIndexPath.FromRowSection(i, 0)).Reverse().ToArray();
 				messagesList.InsertRows(rows, UITableViewRowAnimation.None);
 				if (messages.Count > 0 && rows.Length > 0)
 				{
-					messagesList.ScrollToRow(NSIndexPath.FromRowSection(rows.Length - 1, 0), UITableViewScrollPosition.None, true);
+					messagesList.ScrollToRow(rows.Last(), UITableViewScrollPosition.None, true);
 				}
 			});
 		}
 
 		public void ToggleMessagingControls(bool enabled)
 		{
-			this.sendButton.Enabled = enabled;
+			InvokeOnMainThread(() =>
+			{
+				this.sendButton.Enabled = enabled;
+			});
 		}
 
-		public void AddMessageBubbleToEnd(MessageDto messageDto)
+		public void AddMessageBubbleToEnd(GroupMessageDTO messageDto)
 		{
-			if (messages.Any(a => a.Id == messageDto.Id))
-				return;
-			messages.Insert(0, messageDto);
-
 			InvokeOnMainThread(() =>
+			{
+				if (this.GroupId == messageDto.GroupId && messages.All(a => a.MessageId != messageDto.MessageId))
 				{
+					messages.Insert(0, messageDto);
 					var row = NSIndexPath.FromRowSection(messages.Count - 1, 0);
 					messagesList.InsertRows(new[] { row }, UITableViewRowAnimation.None);
 					ScrollToEnd();
-				});
+				}
+			});
 		}
 
 		public nint RowsInSection(UITableView tableView, nint section)
@@ -287,11 +262,6 @@ namespace Mehspot.iOS
 			}
 
 			this.View.LayoutIfNeeded();
-		}
-
-		public void ScrollingDown()
-		{
-
 		}
 	}
 }

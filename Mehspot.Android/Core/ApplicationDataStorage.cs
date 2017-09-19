@@ -190,6 +190,12 @@ namespace Mehspot.AndroidApp.Core
 			}
 		}
 
+        public string AppVersion => Application.Context
+                                               .ApplicationContext
+                                               .PackageManager
+                                               .GetPackageInfo(Application.Context.ApplicationContext.PackageName, 0)
+                                               .VersionName;
+
 		public T Get<T>(string key)
 		{
 			var data = settings.GetString(key, null);

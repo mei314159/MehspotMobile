@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" id="3" translatesAutoresizingMaskIntoConstraints="NO">
-                        <rect key="frame" x="10" y="30" width="200" height="30"/>
+                        <rect key="frame" x="10" y="30" width="240" height="30"/>
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0" green="0.53333333333333333" blue="1" alpha="1"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
@@ -23,14 +23,14 @@
                         </userDefinedRuntimeAttributes>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0">
-                                <rect key="frame" x="10" y="5" width="180" height="20"/>
+                                <rect key="frame" x="10" y="5" width="220" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint id="4" firstItem="3" firstAttribute="width" constant="200"/>
+                            <constraint id="4" firstItem="3" firstAttribute="width" constant="240"/>
                             <constraint id="5" firstItem="3" firstAttribute="height" constant="30" relation="greaterThanOrEqual"/>
                             <constraint id="7" firstItem="6" firstAttribute="centerY" secondItem="3" secondAttribute="centerY"/>
                             <constraint id="49" firstItem="6" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="10"/>
@@ -40,7 +40,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="58" translatesAutoresizingMaskIntoConstraints="NO" minimumFontSize="9">
-                        <rect key="frame" x="20" y="12" width="180" height="15"/>
+                        <rect key="frame" x="20" y="12" width="220" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                         <nil key="highlightedColor"/>
@@ -108,5 +108,29 @@
         <image name="signin-fb.png" width="220" height="40"/>
         <image name="logo.jpg" width="1242" height="795"/>
         <image name="logo-small.jpg" width="300" height="192"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="private-group" width="36" height="36"/>
+        <image name="closed-group" width="36" height="36"/>
+        <image name="groups" width="25" height="25"/>
+        <image name="slider-default_trackBackground.png" width="11" height="9"/>
+        <image name="slider-default7-trackCrossedOver.png" width="6" height="4"/>
+        <image name="slider-default7-trackBackground.png" width="6" height="4"/>
+        <image name="slider-default7-track.png" width="6" height="4"/>
+        <image name="slider-default7-handle.png" width="43" height="43"/>
+        <image name="slider-default7-handle-disabled.png" width="43" height="43"/>
+        <image name="slider-default-trackCrossedOver.png" width="11" height="9"/>
+        <image name="slider-default-trackBackground.png" width="11" height="9"/>
+        <image name="slider-default-track.png" width="11" height="9"/>
+        <image name="slider-default-handle.png" width="23" height="23"/>
+        <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
+        <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
+        <image name="letter" width="24" height="24"/>
     </resources>
 </document>

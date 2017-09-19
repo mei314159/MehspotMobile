@@ -173,6 +173,15 @@
     <Compile Include="Services\Badges\BadgeInfo.cs" />
     <Compile Include="DTO\Profile\BadgeSummaryBaseDTO.cs" />
     <Compile Include="DTO\Badges\SearchFilter\SearchFilterDTOBase.cs" />
+    <Compile Include="Services\GroupService.cs" />
+    <Compile Include="DTO\Groups\GroupsListItemDTO.cs" />
+    <Compile Include="DTO\Groups\GroupTypeEnum.cs" />
+    <Compile Include="DTO\Groups\GroupUserTypeEnum.cs" />
+    <Compile Include="Models\GroupsListModel.cs" />
+    <Compile Include="Contracts\ViewControllers\IGroupsListViewController.cs" />
+    <Compile Include="Contracts\ViewControllers\IGroupMessagingViewController.cs" />
+    <Compile Include="DTO\Groups\GroupMessageDTO.cs" />
+    <Compile Include="Models\GroupMessagingModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -195,6 +204,7 @@
     <Folder Include="Contracts\Cells\" />
     <Folder Include="Models\Subdivisions\" />
     <Folder Include="Services\Badges\" />
+    <Folder Include="DTO\Groups\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -207,7 +217,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\portable-net45+win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.1\lib\portable-net45+sl50+win+wpa81+wp80\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.2\lib\portable-net45+sl50+win+wpa81+wp80\Microsoft.AspNet.SignalR.Client.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

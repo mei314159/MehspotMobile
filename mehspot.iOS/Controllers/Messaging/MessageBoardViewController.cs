@@ -91,12 +91,15 @@ namespace Mehspot.iOS
 
 		public void DisplayMessageBoard()
 		{
-			MessageBoardTable.ReloadData();
+			InvokeOnMainThread(() =>
+			{
+				MessageBoardTable.ReloadData();
+			});
 		}
 
 		public nint RowsInSection(UITableView tableView, nint section)
 		{
-			return model.Items?.Length ?? 0;
+			return model.Items.Count;
 		}
 
 		public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -168,23 +171,19 @@ namespace Mehspot.iOS
 			cell.Message.Text = item.LastMessage;
 			cell.CountLabel.Hidden = item.UnreadMessagesCount == 0;
 			cell.CountLabel.Text = item.UnreadMessagesCount.ToString();
+			if (item.UnreadMessagesCount > 0)
+			{
+				cell.BackgroundColor = UIColor.FromRGB(255, 241, 229);
+			}
+			else
+			{
+				cell.BackgroundColor = UIColor.White;
+			}
 		}
 
-		public void UpdateMessageBoardCell(MessageBoardItemDto dto, int index)
+		public void UpdateList(MessageDto message)
 		{
-			if (dto != null)
-			{
-				InvokeOnMainThread(() =>
-				{
-					var cell = MessageBoardTable.CellAt(NSIndexPath.FromItemSection(index, 0)) as MessageBoardCell;
-					if (cell != null)
-					{
-						cell.CountLabel.Text = (int.Parse(cell.CountLabel.Text) + 1).ToString();
-						cell.Message.Text = dto.LastMessage;
-						cell.CountLabel.Hidden = false;
-					}
-				});
-			}
+			model.UpdateList(message);
 		}
 
 		private async void RefreshControl_ValueChanged(object sender, EventArgs e)
