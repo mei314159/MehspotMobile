@@ -15,6 +15,7 @@ namespace Mehspot.Core.Models
 
     public class ViewBadgeProfileModel<TCell> : IListModel<TCell>
     {
+        private volatile bool reviewed;
         private volatile bool loading;
         private bool showRecommendations;
         public IBadgeProfileDTO Profile;
@@ -132,9 +133,9 @@ namespace Mehspot.Core.Models
                 if (result.IsSuccess)
                 {
                     recommendationCells.AddRange(GetExtraCells());
-                    bool reviewed = false;
                     if (result.Data?.Recommendations != null)
                     {
+                        reviewed = false;
                         foreach (var item in result.Data.Recommendations)
                         {
                             if (item.FromUserId == currentUserId)
@@ -257,9 +258,9 @@ namespace Mehspot.Core.Models
 
         public void RowSelected(int row)
         {
-            if (ShowRecommendations && row >=4)
+            if (ShowRecommendations && row >= (reviewed ? 3 : 4))
             {
-                var dto = recommendations[row-4];
+                var dto = recommendations[row - (reviewed ? 3 : 4)];
                 if (this.currentUserId != dto.FromUserId)
                 {
                     OnGoToMessaging?.Invoke(dto.FromUserId, dto.FromUserName);
