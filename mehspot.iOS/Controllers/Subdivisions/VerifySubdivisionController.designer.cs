@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -26,15 +26,7 @@ namespace Mehspot.iOS.Controllers
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UINavigationBar NavBar { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UINavigationItem NavBarItem { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIBarButtonItem SaveButton { get; set; }
+        UIKit.UIButton SaveButton { get; set; }
 
 
         [Action ("CloseButtonTouched:")]
@@ -43,6 +35,10 @@ namespace Mehspot.iOS.Controllers
 
         [Action ("SaveButtonTouched:")]
         partial void SaveButtonTouched (UIKit.UIBarButtonItem sender);
+
+        [Action ("SaveButton_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SaveButton_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
@@ -59,16 +55,6 @@ namespace Mehspot.iOS.Controllers
             if (MapWrapperView != null) {
                 MapWrapperView.Dispose ();
                 MapWrapperView = null;
-            }
-
-            if (NavBar != null) {
-                NavBar.Dispose ();
-                NavBar = null;
-            }
-
-            if (NavBarItem != null) {
-                NavBarItem.Dispose ();
-                NavBarItem = null;
             }
 
             if (SaveButton != null) {

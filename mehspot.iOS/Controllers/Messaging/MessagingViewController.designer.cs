@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -28,10 +28,6 @@ namespace Mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UINavigationBar NavBar { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton sendButton { get; set; }
 
         [Outlet]
@@ -44,15 +40,23 @@ namespace Mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIBarButtonItem UserPic { get; set; }
+        UIKit.UILabel TitleLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton UserPic { get; set; }
 
         [Action ("CloseButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);
+        partial void CloseButtonTouched (UIKit.UIButton sender);
 
         [Action ("SendButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SendButtonTouched (UIKit.UIButton sender);
+
+        [Action ("UserPicTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void UserPicTouched (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
@@ -71,11 +75,6 @@ namespace Mehspot.iOS
                 MessageWrapperBottomConstraint = null;
             }
 
-            if (NavBar != null) {
-                NavBar.Dispose ();
-                NavBar = null;
-            }
-
             if (sendButton != null) {
                 sendButton.Dispose ();
                 sendButton = null;
@@ -89,6 +88,11 @@ namespace Mehspot.iOS
             if (TextViewHeightConstraint != null) {
                 TextViewHeightConstraint.Dispose ();
                 TextViewHeightConstraint = null;
+            }
+
+            if (TitleLabel != null) {
+                TitleLabel.Dispose ();
+                TitleLabel = null;
             }
 
             if (UserPic != null) {

@@ -54,15 +54,12 @@ namespace Mehspot.iOS.Controllers
         {
             get
             {
-                return (this.NavBarItem.RightBarButtonItems?.Count() ?? 0) > 0;
+                return this.SaveButton.Enabled;
             }
 
             set
             {
-                if (!value)
-                {
-                    this.NavBarItem.RightBarButtonItems = new UIBarButtonItem[] { };
-                }
+                this.SaveButton.Enabled = value;
             }
         }
 
@@ -152,7 +149,7 @@ namespace Mehspot.iOS.Controllers
 			ViewHelper.HideOverlay();
         }
 
-        async partial void SaveButtonTouched(UIBarButtonItem sender)
+        async partial void SaveButton_TouchUpInside(UIButton sender)
         {
             await model.SaveAsync();
         }
