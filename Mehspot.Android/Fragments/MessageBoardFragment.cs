@@ -75,7 +75,7 @@ namespace Mehspot.AndroidApp
 			model.LoadingEnd -= Model_LoadingEnd;
 		}
 
-		public override async void OnStart()
+		public override void OnStart()
 		{
 			base.OnStart();
             (this.Activity as MainActivity)?.SelectTab(this.GetType());
@@ -83,9 +83,14 @@ namespace Mehspot.AndroidApp
 			{
                 SearchBar.Text = null;
                 SearchButton.Visibility = ViewStates.Gone;
-				await this.model.LoadMessageBoardAsync(true);
 			}
 		}
+
+        public override void OnResume()
+        {
+			base.OnResume();
+			this.model.LoadMessageBoardAsync(true);
+        }
 
 		void Model_LoadingStart()
 		{
@@ -189,7 +194,7 @@ namespace Mehspot.AndroidApp
             refresher.Refreshing = true;
 			await model.LoadMessageBoardAsync();
 			refresher.Refreshing = false;
-            if ((model.Items?.Length ?? 0) == 0){
+            if ((model.Items?.Count ?? 0) == 0){
                 ViewHelper.ShowAlert(string.Empty, "Users not found", () => {
                     SearchBar.Text = null;
                     SearchButton.Visibility = ViewStates.Visible;
