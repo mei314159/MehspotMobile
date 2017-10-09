@@ -93,12 +93,13 @@ namespace mehspot.iOS
 
 		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
 		{
-			var controller = segue.DestinationViewController as GroupMessagingViewController;
+            var controller = (GroupMessagingViewController)((UINavigationController)segue.DestinationViewController).ViewControllers.First();
 			if (controller != null)
 			{
 				controller.GroupId = this.SelectedItem.GroupId;
 				controller.GroupName = this.SelectedItem.GroupName;
-				controller.GroupType = this.SelectedItem.GroupType;
+				controller.GroupDescription = this.SelectedItem.GroupDescription;
+                controller.GroupType = this.SelectedItem.GroupType;
 				controller.GroupUserType = this.SelectedItem.GroupUserType;
 			}
 

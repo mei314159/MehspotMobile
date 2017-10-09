@@ -14,9 +14,8 @@ using Mehspot.iOS.Extensions;
 using CoreGraphics;
 using System.Threading.Tasks;
 using System.Linq;
-using System.Drawing;
-using SDWebImage;
 using Mehspot.Core.DTO.Groups;
+using mehspot.iOS;
 
 namespace Mehspot.iOS
 {
@@ -28,7 +27,7 @@ namespace Mehspot.iOS
 		private readonly UIRefreshControl refreshControl;
 		private const int spacing = 20;
 
-		public GroupMessagingViewController(IntPtr handle) : base(handle)
+        public GroupMessagingViewController(IntPtr handle) : base(handle)
 		{
 			refreshControl = new UIRefreshControl();
 			messagingModel = new GroupMessagingModel(new GroupService(MehspotAppContext.Instance.DataStorage), this);
@@ -36,6 +35,7 @@ namespace Mehspot.iOS
 
 		public int GroupId { get; set; }
 		public string GroupName { get; set; }
+		public string GroupDescription { get; set; }
 		public GroupTypeEnum GroupType { get; set; }
 		public GroupUserTypeEnum GroupUserType { get; set; }
 
@@ -61,8 +61,7 @@ namespace Mehspot.iOS
 			}
 		}
 
-
-		public override async void ViewDidLoad()
+        public override async void ViewDidLoad()
 		{
 			ViewHelper = new ViewHelper(this.messagesList);
 
@@ -97,7 +96,6 @@ namespace Mehspot.iOS
 			textField.Layer.BorderWidth = 1;
 			textField.Layer.BorderColor = UIColor.LightGray.CGColor;
 			RegisterForKeyboardNotifications();
-
 			await ReloadAsync();
 		}
 
@@ -108,12 +106,12 @@ namespace Mehspot.iOS
 			textField.LayoutIfNeeded();
 		}
 
-		[Action("UnwindGroupToMessagingViewController:")]
+        [Action("UnwindGroupToMessagingViewController:")]
 		public void UnwindGroupToMessagingViewController(UIStoryboardSegue segue)
 		{
 		}
 
-		partial void CloseButtonTouched(UIBarButtonItem sender)
+        partial void CloseButtonTouched(UIBarButtonItem sender)
 		{
 			DismissViewController(true, null);
 		}
@@ -121,7 +119,7 @@ namespace Mehspot.iOS
 		public override void ViewWillAppear(bool animated)
 		{
 			this.Title = GroupName;
-			this.NavBar.TopItem.Title = GroupName;
+            this.NavBar.Title = GroupName;
 		}
 
 		public void ScrollToEnd()
@@ -263,5 +261,16 @@ namespace Mehspot.iOS
 
 			this.View.LayoutIfNeeded();
 		}
-	}
+
+        partial void InfoButtonTouched(UIBarButtonItem sender)
+        {
+            var controller = new GroupInfoViewController();
+			controller.GroupId = this.GroupId;
+			controller.GroupName = this.GroupName;
+            controller.GroupDescription = this.GroupDescription;
+			controller.GroupType = this.GroupType;
+			controller.GroupUserType = this.GroupUserType;
+            this.NavigationController.PushViewController(controller, true);
+        }
+    }
 }

@@ -18,9 +18,9 @@ namespace Mehspot.Core {
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class MehspotResources {
         
-        public static System.Resources.ResourceManager resourceMan;
+        private static System.Resources.ResourceManager resourceMan;
         
-        public static System.Globalization.CultureInfo resourceCulture;
+        private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal MehspotResources() {
@@ -2087,9 +2087,45 @@ namespace Mehspot.Core {
             }
         }
         
-        public static string Helpers_SearchResultsTitle {
+        public static string GroupUserTypeEnum_Owner {
             get {
-                return ResourceManager.GetString("Helpers_SearchResultsTitle", resourceCulture);
+                return ResourceManager.GetString("GroupUserTypeEnum_Owner", resourceCulture);
+            }
+        }
+        
+        public static string GroupUserTypeEnum_GroupAdmin {
+            get {
+                return ResourceManager.GetString("GroupUserTypeEnum_GroupAdmin", resourceCulture);
+            }
+        }
+        
+        public static string GroupUserTypeEnum_EventAdmin {
+            get {
+                return ResourceManager.GetString("GroupUserTypeEnum_EventAdmin", resourceCulture);
+            }
+        }
+        
+        public static string GroupUserTypeEnum_Member {
+            get {
+                return ResourceManager.GetString("GroupUserTypeEnum_Member", resourceCulture);
+            }
+        }
+        
+        public static string GroupTypeEnum_Private {
+            get {
+                return ResourceManager.GetString("GroupTypeEnum_Private", resourceCulture);
+            }
+        }
+        
+        public static string GroupTypeEnum_Closed {
+            get {
+                return ResourceManager.GetString("GroupTypeEnum_Closed", resourceCulture);
+            }
+        }
+        
+        public static string GroupTypeEnum_Public {
+            get {
+                return ResourceManager.GetString("GroupTypeEnum_Public", resourceCulture);
             }
         }
     }

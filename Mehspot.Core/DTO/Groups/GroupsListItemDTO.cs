@@ -7,6 +7,8 @@ namespace Mehspot.Core.DTO.Groups
 
         public string GroupName { get; set; }
 
+        public string GroupDescription { get; set; }
+
         public int? MessageId { get; set; }
 
         public DateTime? SentDate { get; set; }

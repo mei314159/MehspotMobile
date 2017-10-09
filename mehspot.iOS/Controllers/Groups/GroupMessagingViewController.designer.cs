@@ -16,6 +16,10 @@ namespace Mehspot.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem InfoButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView messageFieldWrapper { get; set; }
 
         [Outlet]
@@ -32,7 +36,7 @@ namespace Mehspot.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UINavigationBar NavBar { get; set; }
+        UIKit.UINavigationItem NavBar { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -50,12 +54,21 @@ namespace Mehspot.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void CloseButtonTouched (UIKit.UIBarButtonItem sender);
 
+        [Action ("InfoButtonTouched:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void InfoButtonTouched (UIKit.UIBarButtonItem sender);
+
         [Action ("SendButtonTouched:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SendButtonTouched (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
+            if (InfoButton != null) {
+                InfoButton.Dispose ();
+                InfoButton = null;
+            }
+
             if (messageFieldWrapper != null) {
                 messageFieldWrapper.Dispose ();
                 messageFieldWrapper = null;

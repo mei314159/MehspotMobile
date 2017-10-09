@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,11 +17,11 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search for user" translatesAutoresizingMaskIntoConstraints="NO" id="452">
+                            <searchBar contentMode="redraw" placeholder="Search for user" translatesAutoresizingMaskIntoConstraints="NO" id="452" misplaced="YES">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="456">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="456" misplaced="YES">
                                 <rect key="frame" x="0.0" y="44" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -64,7 +58,6 @@
             </objects>
             <point key="canvasLocation" x="-1234" y="-461"/>
         </scene>
-        <!--View Controller-->
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -79,7 +72,7 @@
                     <connections>
                         <segue destination="4413" kind="relationship" relationship="viewControllers" id="4441"/>
                         <segue destination="193" kind="relationship" relationship="viewControllers" id="382"/>
-                        <segue id="10236" destination="9267" kind="relationship" relationship="viewControllers"/>
+                        <segue destination="9267" kind="relationship" relationship="viewControllers" id="10236"/>
                         <segue destination="4247" kind="relationship" relationship="viewControllers" id="4365"/>
                     </connections>
                 </tabBarController>
@@ -87,8 +80,6 @@
             </objects>
             <point key="canvasLocation" x="-2802" y="251"/>
         </scene>
-        <!--Login View Controller-->
-        <!--Title-->
         <!--Messages-->
         <scene sceneID="192">
             <objects>
@@ -107,8 +98,6 @@
             </objects>
             <point key="canvasLocation" x="-1703" y="-460"/>
         </scene>
-        <!--Search Badge-->
-        <!--Title-->
         <!--Profile-->
         <scene sceneID="4053">
             <objects>
@@ -133,7 +122,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="4033">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="4033" misplaced="YES">
                                     <rect key="frame" x="96" y="10" width="101" height="24"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="textColor"/>
@@ -280,12 +269,6 @@
             </objects>
             <point key="canvasLocation" x="-1704" y="1053"/>
         </scene>
-        <!--View Profile View Controller-->
-        <!--Badge-->
-        <!--Signup View Controller-->
-        <!--Write a review-->
-        <!--Forgot Password View Controller-->
-        <!--Reset Password View Controller-->
         <!--Title-->
         <scene sceneID="7721">
             <objects>
@@ -344,10 +327,10 @@
             </objects>
             <point key="canvasLocation" x="-1236" y="1055"/>
         </scene>
-        <!--User Profile View Controller-->
+        <!--Groups-->
         <scene sceneID="9257">
             <objects>
-                <tableViewController id="9258" sceneMemberID="viewController" customClass="GroupsListViewController">
+                <tableViewController id="9258" customClass="GroupsListViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="1" sectionFooterHeight="28" id="9260">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -369,16 +352,19 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Groups" id="9259"/>
                     <connections>
-                        <segue id="13062" destination="11509" kind="presentation" identifier="GoToMessaging"/>
+                        <segue id="21199" destination="21145" kind="presentation" identifier="GoToMessaging"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9265" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1202" y="1816"/>
         </scene>
+        <!--Groups-->
         <scene sceneID="9266">
             <objects>
                 <navigationController id="9267" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Groups" image="groups" id="10235"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9269">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -386,13 +372,12 @@
                     <connections>
                         <segue destination="9258" kind="relationship" relationship="rootViewController" id="9268"/>
                     </connections>
-                    <tabBarItem key="tabBarItem" id="10235" title="Groups" image="groups"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9270" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1705" y="1788"/>
         </scene>
+        <!--Title-->
         <scene sceneID="11508">
             <objects>
                 <viewController storyboardIdentifier="GroupMessagingViewController" id="11509" customClass="GroupMessagingViewController" sceneMemberID="viewController">
@@ -404,21 +389,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11513">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="11535"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Title" id="11530">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="11531">
-                                            <connections>
-                                                <action selector="CloseButtonTouched:" destination="11509" id="11532"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11536">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
@@ -474,55 +444,83 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="11513" firstAttribute="top" secondItem="11548" secondAttribute="bottom" id="11547"/>
-                            <constraint firstItem="11513" firstAttribute="centerX" secondItem="11529" secondAttribute="centerX" id="11549"/>
-                            <constraint firstItem="11513" firstAttribute="width" secondItem="11529" secondAttribute="width" id="11550"/>
+                            <constraint firstItem="11517" firstAttribute="bottom" secondItem="11560" secondAttribute="top" id="11511"/>
                             <constraint firstItem="11536" firstAttribute="top" secondItem="11529" secondAttribute="top" id="11551"/>
                             <constraint firstItem="11536" firstAttribute="leading" secondItem="11529" secondAttribute="leading" id="11552"/>
                             <constraint firstItem="11536" firstAttribute="trailing" secondItem="11529" secondAttribute="trailing" id="11553"/>
-                            <constraint firstItem="11519" firstAttribute="top" secondItem="11513" secondAttribute="bottom" id="11554"/>
                             <constraint firstItem="11519" firstAttribute="leading" secondItem="11529" secondAttribute="leading" id="11555"/>
                             <constraint firstItem="11519" firstAttribute="trailing" secondItem="11529" secondAttribute="trailing" id="11556"/>
                             <constraint firstItem="11517" firstAttribute="trailing" secondItem="11529" secondAttribute="trailing" id="11557"/>
                             <constraint firstItem="11517" firstAttribute="leading" secondItem="11529" secondAttribute="leading" id="11558"/>
                             <constraint firstItem="11519" firstAttribute="bottom" secondItem="11517" secondAttribute="top" id="11559"/>
-                            <constraint firstItem="11517" firstAttribute="bottom" secondItem="11560" secondAttribute="top" id="11511"/>
+                            <constraint id="29451" firstItem="11519" firstAttribute="top" secondItem="11536" secondAttribute="top" constant="64"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="11528"/>
                     <connections>
                         <outlet property="MessageWrapperBottomConstraint" destination="11511" id="11510"/>
-                        <outlet property="NavBar" destination="11513" id="11512"/>
                         <outlet property="TextViewHeightConstraint" destination="11515" id="11514"/>
                         <outlet property="messageFieldWrapper" destination="11517" id="11516"/>
+                        <outlet property="messagesBottomMargin" destination="11559" id="name-outlet-11559"/>
                         <outlet property="messagesList" destination="11519" id="11518"/>
                         <outlet property="sendButton" destination="11521" id="11520"/>
                         <outlet property="textField" destination="11523" id="11522"/>
                         <segue destination="11525" kind="unwind" identifier="UnwindToSearchResults" unwindAction="UnwindToSearchResultsViewController:" id="11524"/>
-                        <outlet property="messagesBottomMargin" destination="11559" id="name-outlet-11559"/>
+                        <outlet property="InfoButton" destination="23788" id="name-outlet-23788"/>
+                        <outlet property="NavBar" destination="21262" id="name-outlet-21262"/>
                     </connections>
+                    <navigationItem id="21262" key="navigationItem" title="Group">
+                        <barButtonItem key="leftBarButtonItem" id="23699" systemItem="stop">
+                            <connections>
+                                <action selector="CloseButtonTouched:" destination="11509" id="23700"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="23788" title="Group Info">
+                            <connections>
+                                <action selector="InfoButtonTouched:" destination="11509" id="26448"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11561" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="11525" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-735" y="1810"/>
+            <point key="canvasLocation" x="-643" y="1826"/>
+        </scene>
+        <scene sceneID="21144">
+            <objects>
+                <navigationController id="21145" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="21147">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="21263" destination="11509" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="21148" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-685" y="989"/>
         </scene>
     </scenes>
     <resources>
         <image name="chat-icon" width="25" height="25"/>
-        <image name="details-icon" width="25" height="25"/>
-        <image name="like-pic" width="49.6666679" height="33"/>
-        <image name="logo-small.jpg" width="300" height="192"/>
-        <image name="logo.jpg" width="1242" height="795"/>
+        <image name="groups" width="25" height="25"/>
         <image name="profile-icon" width="25" height="25"/>
         <image name="profile_image.png" width="400" height="400"/>
-        <image name="review-icon" width="25" height="25"/>
         <image name="search-icon" width="25" height="25"/>
-        <image name="star-pic" width="35.6666679" height="32.6666679"/>
-        <image name="star-yellow-icon" width="24" height="24"/>
         <image name="signout-icon" width="22" height="22"/>
+        <image name="star-yellow-icon" width="24" height="24"/>
         <image name="more-icon" width="25" height="25"/>
+        <image name="details-icon" width="25" height="25"/>
+        <image name="review-icon" width="25" height="25"/>
         <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="private-group" width="36" height="36"/>
+        <image name="closed-group" width="36" height="36"/>
+        <image name="letter" width="24" height="24"/>
         <image name="badges/babysitter.png" width="70" height="69"/>
         <image name="badges/babysitteremployer.png" width="70" height="70"/>
         <image name="badges/fitness.png" width="210" height="210"/>
@@ -552,6 +550,8 @@
         <image name="badges/kidsplaydateb.png" width="210" height="210"/>
         <image name="badges/otherjobsb.png" width="210" height="210"/>
         <image name="signin-fb.png" width="220" height="40"/>
+        <image name="logo.jpg" width="1242" height="795"/>
+        <image name="logo-small.jpg" width="300" height="192"/>
         <image name="slider-default_trackBackground.png" width="11" height="9"/>
         <image name="slider-default7-trackCrossedOver.png" width="6" height="4"/>
         <image name="slider-default7-trackBackground.png" width="6" height="4"/>
@@ -566,14 +566,8 @@
         <image name="slider-default-handle-disabled.png" width="23" height="23"/>
         <image name="w3_background_t.png" width="375" height="267.5"/>
         <image name="badge_group_bg.png" width="375" height="219.5"/>
-        <image name="round-arrow" width="128" height="128"/>
-        <image name="eye" width="30" height="30"/>
         <image name="subdivisionicon.png" width="232" height="231.5"/>
-        <image name="private-group" width="36" height="36"/>
-        <image name="closed-group" width="36" height="36"/>
-        <image name="groups" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina47"/>
     </simulatedMetricsContainer>
