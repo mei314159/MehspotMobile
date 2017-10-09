@@ -14,23 +14,29 @@ namespace Mehspot.Core.Services
         {
         }
 
-		public Task<Result<GroupsListItemDTO[]>> GetList()
-		{
+        public Task<Result<GroupsListItemDTO[]>> GetList()
+        {
             return GetAsync<GroupsListItemDTO[]>("groups/list");
-		}
+        }
 
-		public Task<Result<GroupMessageDTO[]>> GetMessages(int pageNumber, int groupId)
-		{
+        public Task<Result<GroupMessageDTO[]>> GetMessages(int pageNumber, int groupId)
+        {
             return GetAsync<GroupMessageDTO[]>($"groups/{groupId}/messages?pageNumber={pageNumber}");
-		}
+        }
 
-		public Task<Result<GroupMessageDTO>> SendMessageAsync(string message, int groupId)
-		{
-			var data = new Dictionary<string, string>();
-			data.Add("Message", message);
+        public Task<Result<GroupMessageDTO>> SendMessageAsync(string message, int groupId)
+        {
+            var data = new Dictionary<string, string>();
+            data.Add("Message", message);
 
             return SendDataAsync<GroupMessageDTO>($"groups/{groupId}/messages", HttpMethod.Post, new FormUrlEncodedContent(data));
 
-		}
+        }
+
+        public async Task<Result> LeaveGroupAsync(int groupId)
+        {
+            var result = await this.PostAsync<object>($"groups/{groupId}/leave", null).ConfigureAwait(false);
+            return result;
+        }
     }
 }

@@ -24,7 +24,7 @@
     <MtouchFastDev>true</MtouchFastDev>
     <IOSDebuggerPort>39697</IOSDebuggerPort>
     <MtouchLink>None</MtouchLink>
-    <MtouchArch>x86_64</MtouchArch>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
@@ -119,6 +119,7 @@
     <Reference Include="Google.Maps">
       <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.1.0.2\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
     </Reference>
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -442,6 +443,8 @@
     <Compile Include="Controllers\Groups\GroupsListViewController.designer.cs">
       <DependentUpon>GroupsListViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupInfoViewController.cs" />
+    <Compile Include="MyDialogViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />

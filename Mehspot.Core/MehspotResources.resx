@@ -1035,7 +1035,25 @@
 	<data name="ValidationError" xml:space="preserve">
     <value>Validation Error</value>
   </data>
-	<data name="Helpers_SearchResultsTitle" xml:space="preserve">
-        <value>Helpers</value>
+  <data name="GroupUserTypeEnum_Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+	<data name="GroupUserTypeEnum_GroupAdmin" xml:space="preserve">
+    <value>Group Admin</value>
+  </data>
+	<data name="GroupUserTypeEnum_EventAdmin" xml:space="preserve">
+    <value>Event Admin</value>
+  </data>
+	<data name="GroupUserTypeEnum_Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+	<data name="GroupTypeEnum_Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
+	<data name="GroupTypeEnum_Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+	<data name="GroupTypeEnum_Public" xml:space="preserve">
+    <value>Public</value>
   </data>
 </root>
