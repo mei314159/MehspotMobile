@@ -1,11 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,10 +10,8 @@
                 <outlet property="MainTable" destination="138" id="name-outlet-138"/>
                 <outlet property="MainTableHeight" destination="156" id="ohQ-Dg-p04"/>
                 <outlet property="MapWrapperView" destination="63" id="name-outlet-63"/>
-                <outlet property="NavBar" destination="52" id="name-outlet-52"/>
-                <outlet property="NavBarItem" destination="53" id="name-outlet-53"/>
-                <outlet property="SaveButton" destination="118" id="name-outlet-118"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="SaveButton" destination="2037" id="name-outlet-2037"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,26 +19,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52">
-                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="62"/>
-                    </constraints>
-                    <items>
-                        <navigationItem title="Subdivision Location" id="53">
-                            <barButtonItem key="leftBarButtonItem" systemItem="stop" id="113">
-                                <connections>
-                                    <action selector="CloseButtonTouched:" destination="-1" id="115"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" systemItem="save" id="118">
-                                <connections>
-                                    <action selector="SaveButtonTouched:" destination="-1" id="119"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,28 +38,107 @@
                     </constraints>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2036" translatesAutoresizingMaskIntoConstraints="NO" buttonType="roundedRect">
+                    <rect key="frame" x="8" y="28" width="46" height="30"/>
+                    <state key="normal" title="Back">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <constraints>
+                        <constraint id="2080" firstItem="2036" firstAttribute="width" constant="46"/>
+                        <constraint id="2081" firstItem="2036" firstAttribute="height" constant="30"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2080"/>
+                            <exclude reference="2081"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="2080"/>
+                            <include reference="2081"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="CloseButtonTouched:" destination="-1" id="2256" eventType="touchUpInside"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2037" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="321" y="28" width="46" height="30"/>
+                    <state key="normal" title="Save">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <constraints>
+                        <constraint id="2039" firstItem="2037" firstAttribute="height" constant="30"/>
+                        <constraint id="2077" firstItem="2037" firstAttribute="width" constant="46"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2039"/>
+                            <exclude reference="2077"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="2039"/>
+                            <include reference="2077"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="SaveButton_TouchUpInside:" destination="-1" id="2254" eventType="touchUpInside"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subdivision Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2106" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="105" y="33" width="166" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17" weight="semibold"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="54" firstAttribute="top" secondItem="2" secondAttribute="top" id="55"/>
                 <constraint firstItem="54" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="56"/>
                 <constraint firstItem="54" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="57"/>
-                <constraint firstItem="52" firstAttribute="top" secondItem="54" secondAttribute="top" constant="20" id="59"/>
-                <constraint firstItem="52" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="60"/>
-                <constraint firstItem="52" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="61"/>
                 <constraint firstItem="63" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="110"/>
                 <constraint firstItem="63" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="111"/>
                 <constraint firstItem="63" firstAttribute="bottom" secondItem="2" secondAttribute="bottom" id="112"/>
-                <constraint firstItem="138" firstAttribute="top" secondItem="52" secondAttribute="bottom" id="139"/>
                 <constraint firstItem="138" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="140"/>
                 <constraint firstItem="138" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="141"/>
                 <constraint firstItem="63" firstAttribute="top" secondItem="138" secondAttribute="bottom" id="193"/>
+                <constraint id="2035" firstItem="138" firstAttribute="top" secondItem="54" secondAttribute="top" constant="64"/>
+                <constraint id="2038" firstItem="2" firstAttribute="trailing" secondItem="2037" secondAttribute="trailing" constant="8"/>
+                <constraint id="2076" firstItem="2037" firstAttribute="top" secondItem="54" secondAttribute="bottom" constant="8"/>
+                <constraint id="2078" firstItem="2036" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="8"/>
+                <constraint id="2079" firstItem="2036" firstAttribute="top" secondItem="54" secondAttribute="bottom" constant="8"/>
+                <constraint id="2107" firstItem="2106" firstAttribute="centerX" secondItem="2" secondAttribute="centerX"/>
+                <constraint id="2109" firstItem="2106" firstAttribute="centerY" secondItem="2036" secondAttribute="centerY"/>
+                <constraint id="2110" firstItem="2037" firstAttribute="leading" secondItem="2106" secondAttribute="trailing" constant="56" relation="greaterThanOrEqual">
+                    <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                </constraint>
+                <constraint id="2111" firstItem="2106" firstAttribute="leading" secondItem="2036" secondAttribute="trailing" constant="53" relation="greaterThanOrEqual">
+                    <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                </constraint>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="110"/>
                     <exclude reference="111"/>
                     <exclude reference="112"/>
+                    <exclude reference="2035"/>
+                    <exclude reference="2038"/>
+                    <exclude reference="2076"/>
+                    <exclude reference="2078"/>
+                    <exclude reference="2079"/>
+                    <exclude reference="2107"/>
+                    <exclude reference="2109"/>
+                    <exclude reference="2110"/>
+                    <exclude reference="2111"/>
+                </mask>
+                <mask key="subviews">
+                    <exclude reference="2036"/>
+                    <exclude reference="2037"/>
+                    <exclude reference="2106"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -93,9 +146,92 @@
                     <include reference="110"/>
                     <include reference="111"/>
                     <include reference="112"/>
+                    <include reference="2035"/>
+                    <include reference="2038"/>
+                    <include reference="2076"/>
+                    <include reference="2078"/>
+                    <include reference="2079"/>
+                    <include reference="2107"/>
+                    <include reference="2109"/>
+                    <include reference="2110"/>
+                    <include reference="2111"/>
+                </mask>
+                <mask key="subviews">
+                    <include reference="2036"/>
+                    <include reference="2037"/>
+                    <include reference="2106"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="2" y="1"/>
         </view>
     </objects>
+    <resources>
+        <image name="chat-icon" width="25" height="25"/>
+        <image name="profile-icon" width="25" height="25"/>
+        <image name="signout-icon" width="22" height="22"/>
+        <image name="search-icon" width="25" height="25"/>
+        <image name="star-yellow-icon" width="24" height="24"/>
+        <image name="more-icon" width="25" height="25"/>
+        <image name="details-icon" width="25" height="25"/>
+        <image name="review-icon" width="25" height="25"/>
+        <image name="user-pic" width="36" height="36"/>
+        <image name="like-pic" width="49.6666679" height="33"/>
+        <image name="star-pic" width="35.6666679" height="32.6666679"/>
+        <image name="round-arrow" width="128" height="128"/>
+        <image name="eye" width="30" height="30"/>
+        <image name="private-group" width="36" height="36"/>
+        <image name="closed-group" width="36" height="36"/>
+        <image name="groups" width="25" height="25"/>
+        <image name="letter" width="24" height="24"/>
+        <image name="profile_image.png" width="400" height="400"/>
+        <image name="badges/babysitter.png" width="70" height="69"/>
+        <image name="badges/babysitteremployer.png" width="70" height="70"/>
+        <image name="badges/fitness.png" width="210" height="210"/>
+        <image name="badges/friendship.png" width="210" height="210"/>
+        <image name="badges/golf.png" width="500" height="500"/>
+        <image name="badges/hobby.png" width="210" height="208"/>
+        <image name="badges/kidsplaydate.png" width="210" height="210"/>
+        <image name="badges/otherjobs.png" width="210" height="210"/>
+        <image name="badges/petsitter.png" width="500" height="500"/>
+        <image name="badges/petsitteremployer.png" width="500" height="500"/>
+        <image name="badges/sports.png" width="70" height="70"/>
+        <image name="badges/tennis.png" width="140" height="140"/>
+        <image name="badges/tutor.png" width="466" height="467"/>
+        <image name="badges/tutoremployer.png" width="494" height="489"/>
+        <image name="badges/babysitterb.png" width="70" height="69"/>
+        <image name="badges/babysitteremployerb.png" width="70" height="70"/>
+        <image name="badges/friendshipb.png" width="210" height="210"/>
+        <image name="badges/golfb.png" width="500" height="500"/>
+        <image name="badges/petsitterb.png" width="500" height="500"/>
+        <image name="badges/petsitteremployerb.png" width="500" height="500"/>
+        <image name="badges/sportsb.png" width="70" height="70"/>
+        <image name="badges/tennisb.png" width="140" height="140"/>
+        <image name="badges/tutorb.png" width="466" height="467"/>
+        <image name="badges/tutoremployerb.png" width="494" height="489"/>
+        <image name="badges/fitnessb.png" width="210" height="210"/>
+        <image name="badges/hobbyb.png" width="210" height="208"/>
+        <image name="badges/kidsplaydateb.png" width="210" height="210"/>
+        <image name="badges/otherjobsb.png" width="210" height="210"/>
+        <image name="signin-fb.png" width="220" height="40"/>
+        <image name="logo.jpg" width="1242" height="795"/>
+        <image name="logo-small.jpg" width="300" height="192"/>
+        <image name="slider-default_trackBackground.png" width="11" height="9"/>
+        <image name="slider-default7-trackCrossedOver.png" width="6" height="4"/>
+        <image name="slider-default7-trackBackground.png" width="6" height="4"/>
+        <image name="slider-default7-track.png" width="6" height="4"/>
+        <image name="slider-default7-handle.png" width="43" height="43"/>
+        <image name="slider-default7-handle-disabled.png" width="43" height="43"/>
+        <image name="slider-default-trackCrossedOver.png" width="11" height="9"/>
+        <image name="slider-default-trackBackground.png" width="11" height="9"/>
+        <image name="slider-default-track.png" width="11" height="9"/>
+        <image name="slider-default-handle.png" width="23" height="23"/>
+        <image name="slider-default-handle-highlighted.png" width="23" height="23"/>
+        <image name="slider-default-handle-disabled.png" width="23" height="23"/>
+        <image name="w3_background_t.png" width="375" height="267.5"/>
+        <image name="badge_group_bg.png" width="375" height="219.5"/>
+        <image name="subdivisionicon.png" width="232" height="231.5"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina47"/>
+    </simulatedMetricsContainer>
 </document>

@@ -27,7 +27,8 @@ namespace Mehspot.iOS
 		private readonly UIRefreshControl refreshControl;
 		private const int spacing = 20;
 
-		public MessagingViewController(IntPtr handle) : base(handle)
+
+        public MessagingViewController(IntPtr handle) : base(handle)
 		{
 			refreshControl = new UIRefreshControl();
 			messagingModel = new MessagingModel(new MessagesService(MehspotAppContext.Instance.DataStorage), this);
@@ -96,7 +97,7 @@ namespace Mehspot.iOS
 		{
 		}
 
-		partial void CloseButtonTouched(UIBarButtonItem sender)
+        partial void CloseButtonTouched(UIButton sender)
 		{
 			if (ParentController is MessageBoardViewController || ParentController is ViewProfileViewController)
 			{
@@ -124,31 +125,20 @@ namespace Mehspot.iOS
 		public override void ViewWillAppear(bool animated)
 		{
 			this.Title = ToUserName;
-			this.NavBar.TopItem.Title = ToUserName;
-
-			var composeButton = new UIButton(new RectangleF(0, 0, 30, 30));
-			composeButton.ContentMode = UIViewContentMode.ScaleAspectFill;
-			composeButton.Layer.CornerRadius = composeButton.Frame.Width / 2;
-			composeButton.ClipsToBounds = true;
-			composeButton.TouchUpInside += (sender, e) =>
-			{
-				PerformSegue("ShowUserProfileSegue", this);
-			};
+            this.TitleLabel.Text = ToUserName;
 
 			if (!string.IsNullOrEmpty(ProfilePicturePath))
 			{
 				var url = NSUrl.FromString(ProfilePicturePath);
 				if (url != null)
 				{
-					composeButton.SetBackgroundImage(url, UIControlState.Normal);
+					UserPic.SetBackgroundImage(url, UIControlState.Normal);
 				}
 			}
 			else
 			{
-				composeButton.SetBackgroundImage(UIImage.FromFile("profile_image.png"), UIControlState.Normal);
+				UserPic.SetBackgroundImage(UIImage.FromFile("profile_image.png"), UIControlState.Normal);
 			}
-
-			UserPic.CustomView = composeButton;
 		}
 
 		public void ScrollToEnd()
@@ -167,7 +157,12 @@ namespace Mehspot.iOS
 			refreshControl.EndRefreshing();
 		}
 
-		async partial void SendButtonTouched(UIButton sender)
+        partial void UserPicTouched(UIButton sender)
+        {
+            PerformSegue("ShowUserProfileSegue", this);
+        }
+
+        async partial void SendButtonTouched(UIButton sender)
 		{
 			await messagingModel.SendMessageAsync();
 		}
