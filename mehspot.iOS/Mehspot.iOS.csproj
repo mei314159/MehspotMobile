@@ -185,6 +185,7 @@
     <ImageAsset Include="Assets.xcassets\letter.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\letter.imageset\letter%402x.png" />
     <ImageAsset Include="Assets.xcassets\letter.imageset\letter%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iTunesArtwork%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
