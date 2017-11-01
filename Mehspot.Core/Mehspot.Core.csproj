@@ -13,7 +13,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
@@ -182,6 +182,7 @@
     <Compile Include="Contracts\ViewControllers\IGroupMessagingViewController.cs" />
     <Compile Include="DTO\Groups\GroupMessageDTO.cs" />
     <Compile Include="Models\GroupMessagingModel.cs" />
+    <Compile Include="DTO\Groups\GroupPrememberDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

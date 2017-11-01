@@ -7,6 +7,12 @@ using Mehspot.Core;
 using Mehspot.iOS.Wrappers;
 using Mehspot.Core.Contracts.Wrappers;
 using Mehspot.Core.Services;
+using System.Collections.Generic;
+using System.Collections;
+using mehspot.iOS.Views.Cell;
+using System.Linq;
+using Mehspot.iOS;
+using System.Threading.Tasks;
 
 namespace mehspot.iOS
 {
@@ -14,6 +20,8 @@ namespace mehspot.iOS
     {
         private IViewHelper viewHelper;
         private GroupService groupService;
+        private GroupInfoMembersSource DataSource;
+        private UIRefreshControl refreshControl;
 
         public int GroupId { get; set; }
         public string GroupName { get; set; }
@@ -27,10 +35,11 @@ namespace mehspot.iOS
 
         public override void ViewDidLoad()
         {
+            this.TableView.RegisterNibForCellReuse(GroupMemberCell.Nib, GroupMemberCell.Key);
             this.viewHelper = new ViewHelper(this.View);
             this.groupService = new GroupService(MehspotAppContext.Instance.DataStorage);
-            this.Root = new RootElement("Group Info") {
-                new Section (string.Empty) {
+            this.Root = new RootElement(this.GroupName) {
+                new Section ("Group Info") {
                     new StringElement ("Name", this.GroupName),
                     new StringElement ("Description", this.GroupDescription),
                     new StringElement ("Group Type", MehspotResources.ResourceManager.GetString($"GroupTypeEnum_{this.GroupType}")),
@@ -38,6 +47,7 @@ namespace mehspot.iOS
                 }
             };
 
+            this.Root.Add(new Section("Members"));
             if (GroupUserType != GroupUserTypeEnum.Owner)
             {
                 UIButton leaveButton = new UIButton(UIButtonType.System);
@@ -49,6 +59,11 @@ namespace mehspot.iOS
                     new UIViewElement(string.Empty, leaveButton, false)
                 });
             }
+
+            this.refreshControl = new UIRefreshControl();
+            this.TableView.AddSubview(refreshControl);
+            refreshControl.ValueChanged += RefreshControl_ValueChanged;
+            LoadDataAsync();
         }
 
         void LeaveButton_TouchUpInside(object sender, EventArgs e)
@@ -78,6 +93,98 @@ namespace mehspot.iOS
 
             this.PresentViewController(alert, true, null);
 
+        }
+
+        public override DialogViewController.Source CreateSizingSource(bool unevenRows)
+        {
+            this.DataSource = new GroupInfoMembersSource(this, this.GroupUserType);
+            DataSource.OnRowSelected += DataSource_OnRowSelected;
+            return DataSource;
+        }
+
+        async void RefreshControl_ValueChanged(object sender, EventArgs e)
+        {
+            await LoadDataAsync();
+        }
+
+        private async Task LoadDataAsync()
+        {
+            InvokeOnMainThread(() => refreshControl.BeginRefreshing());
+            var result = await this.groupService.GetMembersAsync(this.GroupId).ConfigureAwait(false);
+            InvokeOnMainThread(() =>
+            {
+                if (result.IsSuccess)
+                    this.DataSource.SetData(result.Data);
+                this.TableView.ReloadData();
+                refreshControl.EndRefreshing();
+            });
+        }
+
+        void DataSource_OnRowSelected(GroupPrememberDTO dto)
+        {
+            var controller = (UserProfileViewController)UIStoryboard.FromName("Contact", null).InstantiateViewController("UserProfileViewController");
+            controller.ToUserName = dto.Username;
+            controller.ToUserId = dto.UserId;
+            controller.ParentController = this;
+            this.PresentViewController(controller, true, null);
+        }
+    }
+
+    public class GroupInfoMembersSource : DialogViewController.Source
+    {
+        readonly GroupUserTypeEnum groupUserType;
+        private readonly List<GroupPrememberDTO> membersList = new List<GroupPrememberDTO>();
+
+        public event Action<GroupPrememberDTO> OnRowSelected;
+
+        public GroupInfoMembersSource(DialogViewController container, GroupUserTypeEnum groupUserType) : base(container)
+        {
+            this.groupUserType = groupUserType;
+        }
+
+        public override nint RowsInSection(UITableView tableview, nint section)
+        {
+            if (section == 1)
+            {
+                return this.membersList.Count;
+            }
+
+            return base.RowsInSection(tableview, section);
+        }
+
+        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        {
+            if (indexPath.Section == 1)
+            {
+                var cell = this.Container.TableView.DequeueReusableCell(GroupMemberCell.Key, indexPath) as GroupMemberCell;
+                cell.Member = membersList[indexPath.Row];
+                return cell;
+            }
+            else
+            {
+                return base.GetCell(tableView, indexPath);
+            }
+        }
+
+        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        {
+            if (indexPath.Section == 1)
+            {
+                var dto = membersList[indexPath.Row];
+                this.OnRowSelected?.Invoke(dto);
+                return;
+            }
+
+            base.RowSelected(tableView, indexPath);
+        }
+
+        public void SetData(GroupPrememberDTO[] data)
+        {
+            lock (((ICollection)this.membersList).SyncRoot)
+            {
+                membersList.Clear();
+                membersList.AddRange(data.OrderBy(x => x.GroupUserType != GroupUserTypeEnum.Owner).ThenBy(x => x.Username));
+            }
         }
     }
 }

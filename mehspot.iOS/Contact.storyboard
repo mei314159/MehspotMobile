@@ -17,7 +17,7 @@
                         <viewControllerLayoutGuide type="bottom" id="85"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="88">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5275">
@@ -27,7 +27,7 @@
                                     <constraint firstAttribute="height" constant="20" id="5279"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="7643" misplaced="YES">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="7643" misplaced="YES" ambiguous="YES">
                                 <rect key="frame" x="0.0" y="64" width="375" height="536"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
@@ -212,13 +212,13 @@
         <!--User Profile View Controller-->
         <scene sceneID="17721">
             <objects>
-                <viewController id="17722" customClass="UserProfileViewController" sceneMemberID="viewController">
+                <viewController id="17722" customClass="UserProfileViewController" sceneMemberID="viewController" storyboardIdentifier="UserProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="17719"/>
                         <viewControllerLayoutGuide type="bottom" id="17720"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="17723">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7726">
@@ -390,7 +390,7 @@
                         <viewControllerLayoutGuide type="bottom" id="4899"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4902">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4905">
@@ -566,7 +566,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6648"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6651">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6656" customClass="ExtendedTextView">

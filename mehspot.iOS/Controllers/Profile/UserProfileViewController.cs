@@ -12,7 +12,6 @@ using Mehspot.Core;
 using Mehspot.Core.DTO;
 using SDWebImage;
 using CoreImage;
-using System.Drawing;
 
 namespace Mehspot.iOS
 {
