@@ -19,6 +19,11 @@ namespace Mehspot.Core.Services
             return GetAsync<GroupsListItemDTO[]>("groups/list");
         }
 
+        public Task<Result<GroupPrememberDTO[]>> GetMembersAsync(int groupId)
+        {
+            return GetAsync<GroupPrememberDTO[]>($"groups/{groupId}/members");
+        }
+
         public Task<Result<GroupMessageDTO[]>> GetMessages(int pageNumber, int groupId)
         {
             return GetAsync<GroupMessageDTO[]>($"groups/{groupId}/messages?pageNumber={pageNumber}");

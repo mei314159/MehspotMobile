@@ -13,7 +13,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
@@ -22,15 +22,16 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
-    <IOSDebuggerPort>39697</IOSDebuggerPort>
+    <IOSDebuggerPort>39698</IOSDebuggerPort>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <CodesignProvision></CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 <AssemblyName>Mehspot.iOS</AssemblyName>
+<IOSDebugOverWiFi>false</IOSDebugOverWiFi>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType></DebugType>
@@ -260,6 +261,7 @@
     <InterfaceDefinition Include="Contact.storyboard" />
     <InterfaceDefinition Include="NoResultsView.xib" />
     <InterfaceDefinition Include="Views\Cell\GroupsListItemCell.xib" />
+    <InterfaceDefinition Include="Views\Cell\GroupMemberCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -446,6 +448,10 @@
     </Compile>
     <Compile Include="GroupInfoViewController.cs" />
     <Compile Include="MyDialogViewController.cs" />
+    <Compile Include="Views\Cell\GroupMemberCell.cs" />
+    <Compile Include="Views\Cell\GroupMemberCell.designer.cs">
+      <DependentUpon>GroupMemberCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_image.png" />
