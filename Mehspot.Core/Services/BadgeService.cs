@@ -90,9 +90,9 @@ namespace Mehspot.Core.Services
             return await GetAsync<BadgeProfileDTO<EditBadgeProfileDTO>>($"Badges/EditProfile?badgeId={badgeId}&userId={this.ApplicationDataStorage.AuthInfo.UserId}").ConfigureAwait(false);
         }
 
-        public async Task<Result<ISearchResultDTO[]>> Search(ISearchQueryDTO filter, int skip, int take, Type resultType)
+        public async Task<Result<ISearchResultDTO[]>> Search(ISearchQueryDTO filter, int skip, int take, bool mostActiveFirst, Type resultType)
         {
-            var result = await GetAsync($"Badges/SearchForApp?skip={skip}&take={take}&" + filter.GetQueryString(), resultType).ConfigureAwait(false);
+            var result = await GetAsync($"Badges/SearchForApp?skip={skip}&take={take}&mostActiveFirst={mostActiveFirst}&" + filter.GetQueryString(), resultType).ConfigureAwait(false);
 
             var dto = new Result<ISearchResultDTO[]>
             {

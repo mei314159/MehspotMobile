@@ -86,7 +86,6 @@
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
     <CodesignProvision></CodesignProvision>
-<MtouchSdkVersion></MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup>
       <CscToolExe>mcs.exe</CscToolExe>
@@ -187,6 +186,9 @@
     <ImageAsset Include="Assets.xcassets\letter.imageset\letter%402x.png" />
     <ImageAsset Include="Assets.xcassets\letter.imageset\letter%403x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iTunesArtwork%402x.png" />
+    <ImageAsset Include="Assets.xcassets\medal-icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\medal-icon.imageset\medal%402x.png" />
+    <ImageAsset Include="Assets.xcassets\medal-icon.imageset\medal%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -229,6 +231,7 @@
     <Folder Include="Assets.xcassets\groups.imageset\" />
     <Folder Include="Controllers\Groups\" />
     <Folder Include="Assets.xcassets\letter.imageset\" />
+    <Folder Include="Assets.xcassets\medal-icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

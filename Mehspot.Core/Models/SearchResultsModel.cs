@@ -27,6 +27,7 @@ namespace Mehspot.Core
         public event OnLoadingError OnLoadingError;
         public event Action LoadingMoreStarted;
         public event Action LoadingMoreEnded;
+        public bool MostActiveFirst { get; set; }
 
         public readonly List<ISearchResultDTO> Items = new List<ISearchResultDTO>();
         public ISearchResultDTO SelectedItem => Items?[selectedItemIndex];
@@ -61,14 +62,14 @@ namespace Mehspot.Core
             return RegisterButtonVisible ? this.Items.Count + 1 : this.Items.Count;
         }
 
-        public async Task LoadDataAsync(bool refresh = false)
+        public async Task LoadDataAsync(bool refresh)
         {
             if (loading)
                 return;
 
             loading = true;
             var skip = refresh ? 0 : (this.Items?.Count ?? 0);
-            var result = await badgeService.Search(this.controller.SearchQuery, skip, pageSize, this.resultType);
+            var result = await badgeService.Search(this.controller.SearchQuery, skip, pageSize, this.MostActiveFirst, this.resultType);
             this.TriedToSearch = true;
             if (result.IsSuccess)
             {
@@ -99,7 +100,7 @@ namespace Mehspot.Core
             if (!loading && !this.RegisterButtonVisible)
             {
                 LoadingMoreStarted?.Invoke();
-                await this.LoadDataAsync();
+                await this.LoadDataAsync(false);
                 LoadingMoreEnded?.Invoke();
             }
         }

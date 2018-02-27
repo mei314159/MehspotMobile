@@ -25,7 +25,7 @@ namespace Mehspot.iOS
 		SearchResultsModel model;
 		private NoResultsView noResultsView;
 
-		public IViewHelper ViewHelper { get; set; }
+        public IViewHelper ViewHelper { get; set; }
 		public BadgeSummaryDTO BadgeSummary { get; set; }
 		public ISearchQueryDTO SearchQuery { get; set; }
 		public string TitleKey { get; set; }
@@ -46,7 +46,7 @@ namespace Mehspot.iOS
 			model.OnLoadingError += OnLoadingError;
 
 			this.RefreshControl.ValueChanged += RefreshControl_ValueChanged;
-			this.TableView.TableFooterView.Hidden = true;
+            this.TableView.TableFooterView.Hidden = true;
 			this.NavBar.Title = model.GetTitle();
 		}
 
@@ -80,7 +80,14 @@ namespace Mehspot.iOS
 			TableView.ReloadData();
 		}
 
-		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        async partial void MostActiveButton_Activated(UIBarButtonItem sender)
+        {
+            this.model.MostActiveFirst = !this.model.MostActiveFirst;
+            this.MostActiveButton.TintColor = this.model.MostActiveFirst ? this.View.TintColor : UIColor.LightGray;
+            await RefreshResultsAsync();
+        }
+
+        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			model.SelectRow(indexPath.Row);
 			tableView.ReloadRows(new[] { indexPath }, UITableViewRowAnimation.Fade);
